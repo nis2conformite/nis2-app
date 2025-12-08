@@ -1,0 +1,33 @@
+{
+  "name": "audit-nis2-app",
+  "version": "1.0.0",
+  "description": "Application d'audit NIS2 automatisée avec paiement Stripe",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@stripe/stripe-js": "^2.4.0",
+    "@supabase/supabase-js": "^2.39.0",
+    "date-fns": "^3.0.0",
+    "formidable": "^3.5.4",
+    "lucide-react": "^0.294.0",
+    "micro": "^10.0.1",
+    "next": "^14.0.4",
+    "pdfkit": "^0.17.2",
+    "puppeteer": "^21.6.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "resend": "^3.0.0",
+    "stripe": "^14.9.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.0.4",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.18"
+  }
+}
