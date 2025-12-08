@@ -26,27 +26,23 @@ export default function Home() {
   }
 
   useEffect(() => {
-    const initializeApp = () => {
-      try {
-        // JavaScript ORIGINAL sans modification
-// Variables globales pour tracker l'état du quiz et de la vidéo (avant tout le reste)
-        let quizIsOpen = false;
-        let videoIsPlaying = false;
+  // Exposer handleStripeCheckout sur window AVANT tout le reste
+  window.handleStripeCheckout = handleStripeCheckout;
+  
+  const initializeApp = () => {
+    try {
+      // JavaScript ORIGINAL
+      const elements = document.querySelectorAll('[id]');
+      // ... reste du code...
+    } catch (error) {
+      console.error('❌ Erreur JS (ignorée):', error);
+      // Ne pas bloquer le reste
+    }
+  };
 
-        // Sticky header au scroll
-        const stickyHeader = document.getElementById('stickyHeader');
-        const heroSection = document.querySelector('.hero');
-        
-        window.addEventListener('scroll', () => {
-            if (heroSection) {
-                const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-                if (window.scrollY > heroBottom) {
-                    stickyHeader.classList.add('visible');
-                } else {
-                    stickyHeader.classList.remove('visible');
-                }
-            }
-        });
+  const timer = setTimeout(initializeApp, 500);
+  return () => clearTimeout(timer);
+}, []);
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2722,9 +2718,9 @@ export default function Home() {
                         <li>Rapport de diagnostic</li>
                         <li>Plan d'actions prioritaires</li>
                     </ul>
-                    <a href="#" className="btn btn-secondary">
+                    <button onClick={handleStripeCheckout} className="btn btn-secondary">
                         Je fais mon diagnostic NIS2
-                    </a>
+                    </button>
                 </div>
 
                 <div className="price-card" style={{Delay: '0.1s'}}>
