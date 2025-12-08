@@ -5,7 +5,6 @@ import { sendAuditEmail } from '../../../lib/resend';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// CRITICAL: Désactiver le parsing automatique du body
 export const config = {
   api: {
     bodyParser: false,
@@ -24,7 +23,6 @@ export default async function handler(req, res) {
   let event;
 
   try {
-    // Vérifier la signature avec le body RAW
     event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
     console.log('✅ Webhook vérifié:', event.type);
   } catch (err) {
@@ -32,7 +30,6 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: `Webhook Error: ${err.message}` });
   }
 
-  // Gérer l'événement checkout.session.completed
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
     
@@ -43,25 +40,29 @@ export default async function handler(req, res) {
     });
 
     try {
-      // Générer un token unique pour l'audit
+      // Générer un token unique
       const token = require('crypto').randomBytes(32).toString('hex');
       
-      // Créer l'audit dans Supabase
+      // Créer l'audit avec les BONS noms de colonnes
       const { data: audit, error: dbError } = await supabaseAdmin
         .from('audits')
         .insert({
-          email: session.customer_details?.email,
-          token: token,
+          client_email: session.customer_details?.email,           // ← client_email
+          unique_token: token,                                      // ← unique_token
           payment_status: 'paid',
-          stripe_session_id: session.id,
-          amount: session.amount_total / 100,
+          stripe_payment_id: session.id,                            // ← stripe_payment_id
+          stripe_customer_id: session.customer,
+          amount_paid: session.amount_total / 100,                  // ← amount_paid
+          audit_data: {},
+          completion_percentage: 0,
+          is_completed: false,
         })
         .select()
         .single();
 
       if (dbError) {
         console.error('❌ Erreur DB:', dbError);
-        return res.status(500).json({ error: 'Database error' });
+        return res.status(500).json({ error: 'Database error', details: dbError });
       }
 
       console.log('✅ Audit créé:', audit.id);
@@ -84,7 +85,6 @@ export default async function handler(req, res) {
     }
   }
 
-  // Autres événements
   console.log('ℹ️ Événement non géré:', event.type);
   return res.status(200).json({ received: true });
 }
