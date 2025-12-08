@@ -1,6 +1,6 @@
 import PDFDocument from 'pdfkit';
 import { supabaseAdmin } from '../../../lib/supabase';
-import { sendPdfEmail } from '../../../lib/resend';
+import { sendReportEmail } from '../../../lib/resend';
 import { env } from '../../../lib/env.js';
 
 export default async function handler(req, res) {
@@ -78,16 +78,14 @@ if (completedItems < totalItems) {
 
     console.log('📤 PDF uploadé:', pdfUrl);
 
-    const conformeCount = Object.values(audit.audit_data).filter(v => v === 'conforme').length;
+    const conformeCount = Object.values(auditData).filter(v => v === 'conforme').length;
     const conformityRate = Math.round((conformeCount / completedItems) * 100);
 
-    await sendPdfEmail({
-      clientName: audit.client_name || audit.entity_name,
-      clientEmail: audit.client_email,
-      conformityRate: conformityRate,
-      compliantCount: conformeCount,
-      pdfUrl: pdfUrl,
-    });
+    await sendReportEmail({
+  to: audit.client_email,
+  pdfUrl: pdfUrl,
+  auditId: auditId,
+});
 
     console.log('📧 Email envoyé à:', audit.client_email);
 
