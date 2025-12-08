@@ -1,7 +1,4 @@
-import Stripe from 'stripe';
-import { env } from '../../../lib/env.js';
-
-const stripe = new Stripe(env.STRIPE_SECRET_KEY);
+import { env } from '../../lib/env';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -9,30 +6,19 @@ export default async function handler(req, res) {
   }
 
   try {
-    console.log('=== STRIPE CONFIG ===');
-    console.log('Secret Key présente:', env.STRIPE_SECRET_KEY ? 'OUI ✅' : 'NON ❌');
-    console.log('Prix ID:', env.STRIPE_PRICE_ID);
-
-    if (!env.STRIPE_PRICE_ID) {
-      return res.status(400).json({ error: 'STRIPE_PRICE_ID manquant dans env.js' });
-    }
-
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price: env.STRIPE_PRICE_ID,
-          quantity: 1,
-        },
-      ],
-      mode: 'payment',
-      success_url: `${env.BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${env.BASE_URL}/`,
+    // Rediriger vers le Payment Link Stripe
+    const paymentLink = 'https://buy.stripe.com/test_9B6aEP8u7eVS9hu7fw0Ba00';
+    
+    console.log('✅ Redirection vers Payment Link Stripe');
+    
+    return res.status(200).json({ 
+      url: paymentLink
     });
-
-    return res.status(200).json({ sessionId: session.id });
+    
   } catch (error) {
-    console.error('Erreur Stripe:', error);
-    return res.status(500).json({ error: error.message });
+    console.error('❌ Erreur:', error);
+    return res.status(500).json({ 
+      error: 'Une erreur est survenue lors de la création de la session de paiement' 
+    });
   }
 }
