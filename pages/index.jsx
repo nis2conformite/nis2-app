@@ -26,23 +26,30 @@ export default function Home() {
   }
 
   useEffect(() => {
-  // Exposer handleStripeCheckout sur window AVANT tout le reste
-  window.handleStripeCheckout = handleStripeCheckout;
-  
-  const initializeApp = () => {
-    try {
-      // JavaScript ORIGINAL
-      const elements = document.querySelectorAll('[id]');
-      // ... reste du code...
-    } catch (error) {
-      console.error('❌ Erreur JS (ignorée):', error);
-      // Ne pas bloquer le reste
-    }
-  };
+    // Exposer handleStripeCheckout globalement
+    window.handleStripeCheckout = handleStripeCheckout;
 
-  const timer = setTimeout(initializeApp, 500);
-  return () => clearTimeout(timer);
-}, []);
+    const initializeApp = () => {
+      try {
+        // JavaScript ORIGINAL sans modification
+// Variables globales pour tracker l'état du quiz et de la vidéo (avant tout le reste)
+        let quizIsOpen = false;
+        let videoIsPlaying = false;
+
+        // Sticky header au scroll
+        const stickyHeader = document.getElementById('stickyHeader');
+        const heroSection = document.querySelector('.hero');
+        
+        window.addEventListener('scroll', () => {
+            if (heroSection) {
+                const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+                if (window.scrollY > heroBottom) {
+                    stickyHeader.classList.add('visible');
+                } else {
+                    stickyHeader.classList.remove('visible');
+                }
+            }
+        });
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
