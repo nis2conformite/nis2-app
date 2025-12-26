@@ -2767,8 +2767,8 @@ export default function Home() {
                         <li>Rapport complet validé par nos équipes</li>
                         <li>Analyse des écarts de conformité</li>
                         <li>Plan de remédiation détaillé avec priorisation </li>
-			<li></strong>Restitution avec un expert, 1h de visio</strong></li>
-                        <li></strong>Entretien préalable avec un expert, 1h de visio</strong></li>
+			<li><strong>Restitution avec un expert, 1h de visio</strong></li>
+                        <li><strong>Entretien préalable avec un expert, 1h de visio</strong></li>
 			<li>Roadmap personnalisée pour une mise en conformité</li>
 			<li>Enregistrement de votre entreprise à l'ANSSI</li>
 			<li>Constitution dossier d'aides d'état</li>
