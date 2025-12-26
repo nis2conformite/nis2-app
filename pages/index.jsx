@@ -2744,7 +2744,7 @@ export default function Home() {
                         <li>Rapport complet validé par nos équipes</li>
                         <li>Analyse des écarts de conformité</li>
                         <li>Plan de remédiation détaillé avec priorisation </li>
-                        <li></strong>Restitution avec un expert, 1h de visio</strong></li>
+                        <li><strong>Restitution avec un expert, 1h de visio</strong></li>
 			<li>Accès à notre base de modèle de documents</li>
 			<li>6 mois d'accès à notre plateforme</li>
                     </ul>
