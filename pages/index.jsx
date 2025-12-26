@@ -3312,33 +3312,3 @@ export default function Home() {
     </>
   );
 }
-
-      } catch (error) {
-        console.error('Erreur lors de l\'initialisation:', error);
-      }
-    };
-
-    // Appeler initializeApp quand le DOM est prêt
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initializeApp);
-    } else {
-      initializeApp();
-    }
-
-    // Cleanup function
-    return () => {
-      // Nettoyer les event listeners si nécessaire
-    };
-  }, []);
-
-  return (
-    <>
-      <Head>
-        <title>Votre Application</title>
-      </Head>
-      <div id="root">
-        {/* Le contenu HTML est géré par le JavaScript dans useEffect */}
-      </div>
-    </>
-  );
-}
