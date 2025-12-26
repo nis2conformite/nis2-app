@@ -2523,7 +2523,7 @@ export default function Home() {
 <div className="bg-gradient"></div>
 
     <div className="alert-bar">
-        <span>⚠️ Directive NIS2 arrive bientôt • Premières sanctions en 2027 • Agissez maintenant</span>
+        <span>⚠️ NIS2 Obligatoire • Premières sanctions en 2027 • Agissez maintenant</span>
     </div>
 
     {/* Sticky Header avec CTA */}
@@ -2544,15 +2544,15 @@ export default function Home() {
     <div className="container">
         {/* HERO */}
         <section className="hero">
-            <div className="logo">NIS2 Conformité</div>
-            <div className="tagline">Certifié ISO 27001 • 15 ans d'expertise • 0 client sanctionné</div>
+            <div className="logo">Cyber Solferino</div>
+            <div className="tagline">Référentiel ANSSI • Une équipe de Cyber Experts • 15 ans d'expertise</div>
             
             <h1>
-                <span className="highlight">Évitez 10M€ d'amende NIS2</span>
+                <span className="highlight">Évitez 10M€ d'amende</span>
                 La cybersécurité : un impératif stratégique
             </h1>
             
-            <p className="subtitle">Protégez votre activité, votre réputation et votre capacité à durer. Transformez la directive NIS2 en levier de performance avec un accompagnement expert certifié ISO 27001.</p>
+            <p className="subtitle">Protégez votre activité, votre réputation et votre résilience. Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber certifiés ISO 27001.</p>
 
             <div className="stats">
                 <div className="stat">
@@ -2564,12 +2564,12 @@ export default function Home() {
                     <div className="stat-label">amende max</div>
                 </div>
                 <div className="stat">
-                    <div className="stat-value">98%</div>
-                    <div className="stat-label">conformité obtenue</div>
+                    <div className="stat-value">70%</div>
+                    <div className="stat-label">d'aides d'état possibles</div>
                 </div>
                 <div className="stat">
-                    <div className="stat-value">90 j</div>
-                    <div className="stat-label">durée moyenne</div>
+                    <div className="stat-value">48h</div>
+                    <div className="stat-label">résultat de l'audit</div>
                 </div>
             </div>
 
@@ -2609,7 +2609,7 @@ export default function Home() {
                     <li><strong>Responsabilité du dirigeant</strong> — Engagement pénal personnel en cas de manquement</li>
                     <li><strong>Exclusion des marchés</strong> — Impossibilité de répondre aux appels d'offres publics et privés</li>
                     <li><strong>Perte de confiance B2B</strong> — Vos clients exigent désormais la conformité</li>
-                    <li><strong>Contrôles réglementaires</strong> — L'ANSSI démarre les audits dès 2026</li>
+                    <li><strong>Contrôles réglementaires</strong> — Audits de votre entreprise sur site sans préavis de l'ANSSI </li>
                 </ul>
             </section>
 
@@ -2619,7 +2619,8 @@ export default function Home() {
                 <ul className="value-list">
                     <li><strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection</li>
                     <li><strong>Différenciez-vous</strong> — Positionnez-vous comme le partenaire de confiance de votre secteur</li>
-                    <li><strong>Rassurez vos clients</strong> — ISO 27001 + NIS2 = argument commercial décisif</li>
+                    <li><strong>Rassurez vos clients</strong> — Montrez que vous protéger les données de vos clients</li>
+		    <li><strong>Fidélisez vos partenaires</strong> — Consolidez votre réputation d'acteur stable et responsable</li>
                     <li><strong>Valorisez votre entreprise</strong> — Une organisation conforme vaut plus en cas de cession</li>
                 </ul>
             </section>
@@ -2637,7 +2638,7 @@ export default function Home() {
         <section className="impact-section">
             <div className="section-header">
                 <div className="section-badge">RISQUES CHIFFRÉS</div>
-                <h2>Sans protection, votre survie en jeu</h2>
+                <h2>La prévention est plus rentable qu’une crise cyber : réduction des arrêts d’activité, des rançons et des litiges</h2>
                 <p className="section-subtitle">Les cyberattaques explosent et visent les PME</p>
             </div>
 
@@ -2670,15 +2671,15 @@ export default function Home() {
         <section className="expertise-section">
             <div className="section-header">
                 <div className="section-badge success">NOTRE APPROCHE</div>
-                <h2>Une méthode éprouvée • Certifiée ISO 27001</h2>
-                <p className="section-subtitle">L'expertise qui transforme la complexité réglementaire en feuille de route pragmatique</p>
+                <h2>Une méthode éprouvée • Résultat Garanti</h2>
+                <p className="section-subtitle">Atteignez la conformité avec la feuille de route validée officiellement par l’ANSSI. </p>
             </div>
 
             <div className="expertise-grid">
                 <div className="expertise-card" style={{Delay: '0s'}}>
                     <div className="expertise-number">15+</div>
                     <div className="expertise-title">Années d'expérience terrain</div>
-                    <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité.</p>
+                    <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber.</p>
                 </div>
 
                 <div className="expertise-card highlight" style={{Delay: '0.15s'}}>
@@ -2688,8 +2689,8 @@ export default function Home() {
                             <polyline points="22 4 12 14.01 9 11.01"></polyline>
                         </svg>
                     </div>
-                    <div className="expertise-title">Certification ISO 27001</div>
-                    <p>Consultants accrédités aux normes internationales. Méthodologie validée et reconnue par l'ANSSI.</p>
+                    <div className="expertise-title">Une équipe d'experts en cyber défense</div>
+                    <p>Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
                 </div>
             </div>
         </section>
@@ -2713,17 +2714,17 @@ export default function Home() {
             <div className="pricing-cards">
                 <div className="price-card" style={{Delay: '0s'}}>
                     <h3>Découverte</h3>
-                    <div className="price">1 490€</div>
-                    <div className="price-sub">3 jours • Diagnostic</div>
+                    <div className="price">3 490€</div>
+                    <div className="price-sub">Immédiat • Diagnostic</div>
                     <div className="ideal-for">
                         <strong>Idéal pour :</strong>
-                        Premier diagnostic • État des lieux initial
+                        Evaluation immédiate et abordable
                     </div>
                     <ul className="features">
                         <li>Audit cyber NIS2 initial</li>
                         <li><strong>Résultat immédiat ⚡</strong></li>
-                        <li>Rapport de diagnostic</li>
-                        <li>Plan d'actions prioritaires</li>
+                        <li>Rapport d'audit synthétique</li>
+                        <li>Recommandations d’actions prioritaires</li>
                     </ul>
                     <button onClick={handleStripeCheckout} className="btn btn-secondary">
                         Je fais mon diagnostic NIS2
@@ -2732,18 +2733,20 @@ export default function Home() {
 
                 <div className="price-card" style={{Delay: '0.1s'}}>
                     <h3>Essentiel</h3>
-                    <div className="price">3 490€</div>
-                    <div className="price-sub">2 sem. • Base solide</div>
+                    <div className="price">7 990€</div>
+                    <div className="price-sub">En 48H</div>
                     <div className="ideal-for">
                         <strong>Idéal pour :</strong>
-                        PME ~50 sal. • Budget limité
+                        Entités nécessitant un plan structuré
                     </div>
                     <ul className="features">
-                        <li>Audit cyber NIS2 complet</li>
-                        <li>Rapport complet</li>
-                        <li>Restitution et plan d'action avec expert</li>
-                        <li><strong>Plan d'action détaillé</strong></li>
-                        <li>Dépôt dossier ANSSI</li>
+                        <li>Audit cyber NIS2</li>
+                        <li>Rapport complet validé par nos équipes</li>
+                        <li>Analyse des écarts de conformité</li>
+                        <li>Plan de remédiation détaillé avec priorisation </li>
+                        <li></strong>Restitution avec un expert, 1h de visio</strong></li>
+			<li>Accès à notre base de modèle de documents</li>
+			<li>6 mois d'accès à notre plateforme</li>
                     </ul>
                     <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-secondary">
                         Prendre rendez-vous
@@ -2753,42 +2756,28 @@ export default function Home() {
                 <div className="price-card featured" style={{Delay: '0.2s'}}>
                     <div className="popular-badge">⭐ POPULAIRE</div>
                     <h3>Expertise</h3>
-                    <div className="price">8 900€</div>
-                    <div className="price-sub">1 mois • Conformité totale</div>
+                    <div className="price">14 900€</div>
+                    <div className="price-sub">1 mois</div>
                     <div className="ideal-for">
                         <strong>Idéal pour :</strong>
-                        PME 50-150 sal. • Plan structuré
+                        Entités nécessitant un plan structuré et un accompagnement en cas de contrôle
                     </div>
                     <ul className="features">
-                        <li>Audit cyber NIS2 approfondi</li>
-                        <li>Rapport complet + gap analysis</li>
-                        <li>Plan action 12 mois</li>
-                        <li><strong>Formation dirigeants incluse</strong></li>
-                        <li>Dépôt dossier ANSSI</li>
+                        <li>Audit cyber NIS2</li>
+                        <li>Rapport complet validé par nos équipes</li>
+                        <li>Analyse des écarts de conformité</li>
+                        <li>Plan de remédiation détaillé avec priorisation </li>
+			<li></strong>Restitution avec un expert, 1h de visio</strong></li>
+                        <li></strong>Entretien préalable avec un expert, 1h de visio</strong></li>
+			<li>Roadmap personnalisée pour une mise en conformité</li>
+			<li>Enregistrement de votre entreprise à l'ANSSI</li>
+			<li>Constitution dossier d'aides d'état</li>
+			<li>Accès à notre base de modèle de documents</li>
+			<li>12 mois d'accès à notre plateforme</li>
+			<li>Mise a jour des dernières evolutions législatives</li>
                     </ul>
                     <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary">
                         Prendre rendez-vous
-                    </a>
-                </div>
-
-                <div className="price-card" style={{Delay: '0.3s'}}>
-                    <h3>Sérénité</h3>
-                    <div className="price">À partir de<br />19 900€</div>
-                    <div className="price-sub">3 mois • Clé en main</div>
-                    <div className="ideal-for">
-                        <strong>Idéal pour :</strong>
-                        PME 100-250 sal. • Secteurs critiques
-                    </div>
-                    <ul className="features">
-                        <li>Référent cyber dédié</li>
-                        <li>Audit cyber NIS2 complet</li>
-                        <li>Dépôt dossier ANSSI</li>
-                        <li><strong>Formation équipes + dirigeants</strong></li>
-                        <li>Simulation incident cyber</li>
-                        <li>Roadmap 24 mois</li>
-                    </ul>
-                    <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-secondary">
-                        Sur mesure
                     </a>
                 </div>
             </div>
@@ -2806,7 +2795,7 @@ export default function Home() {
                 <div className="testimonials-wrapper">
                     <div className="testimonial">
                         <div className="testimonial-text">
-                            "Mise en conformité en 90 jours chrono. Résultat concret : nous avons remporté un appel d'offres stratégique grâce à notre certification ISO 27001. L'investissement s'est rentabilisé dès le premier contrat."
+                            "L’accompagnement NIS2 nous a permis de structurer clairement nos obligations et de prioriser les actions essentielles. La démarche est pragmatique, pédagogique et parfaitement adaptée à une PME."
                         </div>
                         <div className="testimonial-author">
                             <div className="author-avatar">AM</div>
@@ -2932,7 +2921,7 @@ export default function Home() {
         {/* FINAL CTA */}
         <section className="final-cta">
             <h2>Sécurisez votre avenir dès aujourd'hui</h2>
-            <p>Échange confidentiel avec un consultant certifié ISO 27001<br /><strong>Bâtissez votre feuille de route conformité • Transformez la contrainte en levier</strong></p>
+            <p>Échange confidentiel avec un consultant certifié ISO 27001<br /><strong>Audit indépendant pour mesurer votre conformité et identifier les écarts critiques, avec des livrables clairs et actionnables.</strong></p>
             <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn">
                 📅 Réserver un échange gratuit
             </a>
