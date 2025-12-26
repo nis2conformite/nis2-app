@@ -2523,7 +2523,7 @@ export default function Home() {
 <div className="bg-gradient"></div>
 
     <div className="alert-bar">
-        <span>⚠️ NIS2 Obligatoire • Premières sanctions en 2027 • Agissez maintenant</span>
+        <span>⚠️ NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant</span>
     </div>
 
     {/* Sticky Header avec CTA */}
@@ -2532,7 +2532,7 @@ export default function Home() {
             <div className="sticky-logo">NIS2<span> Conformité</span></div>
             <div className="sticky-cta-group">
                 <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn-sticky primary">
-                    📅 Diagnostic Gratuit
+                    📅 RDV expert gratuit
                 </a>
                 <a href="#pricing" className="btn-sticky secondary">
                     Nos offres
@@ -2561,15 +2561,15 @@ export default function Home() {
                 </div>
                 <div className="stat">
                     <div className="stat-value">10M€</div>
-                    <div className="stat-label">amende max</div>
+                    <div className="stat-label">amende max ou 2% du CA</div>
                 </div>
                 <div className="stat">
                     <div className="stat-value">70%</div>
-                    <div className="stat-label">d'aides d'état possibles</div>
+                    <div className="stat-label">d'aides de l'état possibles</div>
                 </div>
                 <div className="stat">
-                    <div className="stat-value">48h</div>
-                    <div className="stat-label">résultat de l'audit</div>
+                    <div className="stat-value">+40%</div>
+                    <div className="stat-label">de cyber attaques en 2024</div>
                 </div>
             </div>
 
@@ -2578,8 +2578,8 @@ export default function Home() {
                 <button onClick={() => window.openQuiz()} className="btn btn-primary">
                     🎯 Suis-je concerné par NIS2 ?
                 </button>
-                <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-secondary">
-                    📅 Diagnostic Cyber Gratuit
+                <a href="https://drive.google.com/file/d/1pHdC_x0PCa2rkWBBPx9MHWujG2xm6H8B/view?usp=share_link" target="_blank" className="btn btn-secondary">
+                    Comprendre NIS2 en détail
                 </a>
             </div>
         </section>
@@ -2606,7 +2606,7 @@ export default function Home() {
                 <h2>⚠️ Les enjeux de la non-conformité</h2>
                 <ul className="warning-list">
                     <li><strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</li>
-                    <li><strong>Responsabilité du dirigeant</strong> — Engagement pénal personnel en cas de manquement</li>
+                    <li><strong>Responsabilité pénale du dirigeant</strong> — En cas de manquement aux obligations NIS2</li>
                     <li><strong>Exclusion des marchés</strong> — Impossibilité de répondre aux appels d'offres publics et privés</li>
                     <li><strong>Perte de confiance B2B</strong> — Vos clients exigent désormais la conformité</li>
                     <li><strong>Contrôles réglementaires</strong> — Audits de votre entreprise sur site sans préavis de l'ANSSI </li>
@@ -2638,8 +2638,8 @@ export default function Home() {
         <section className="impact-section">
             <div className="section-header">
                 <div className="section-badge">RISQUES CHIFFRÉS</div>
-                <h2>La prévention est plus rentable qu’une crise cyber : réduction des arrêts d’activité, des rançons et des litiges</h2>
-                <p className="section-subtitle">Les cyberattaques explosent et visent les PME</p>
+                <h2>La prévention est plus rentable qu’une crise cyber</h2>
+                <p className="section-subtitle">Vulnérabilité des PME • 43% perdent des clients après une attaque cyber</p>
             </div>
 
             <div className="impact-cards">
@@ -2654,16 +2654,16 @@ export default function Home() {
                     <div className="impact-icon">💸</div>
                     <div className="impact-stat">4,35M€</div>
                     <div className="impact-label">Coût moyen cyberattaque</div>
-                    <p className="impact-detail">Rançongiciel, arrêt de production (21j en moyenne), perte de données. 60% des PME touchées ferment dans les 6 mois.</p>
+                    <p className="impact-detail">Rançongiciel, arrêt de production (21j en moyenne), perte de données. 60% des PME touchées ferment dans les 12 mois.</p>
                 </div>
             </div>
         </section>
 
         {/* CTA Inline 2 */}
         <div className="cta-inline">
-            <p>🛡️ Sécurisez votre entreprise • Réduisez vos risques cyber</p>
+            <p>🛡️ Renforcez la sécurité informatique et la résilience de votre entreprise</p>
             <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn">
-                📅 Diagnostic gratuit
+                📅 Echange gratuit avec un expert
             </a>
         </div>
 
@@ -2671,8 +2671,8 @@ export default function Home() {
         <section className="expertise-section">
             <div className="section-header">
                 <div className="section-badge success">NOTRE APPROCHE</div>
-                <h2>Une méthode éprouvée • Résultat Garanti</h2>
-                <p className="section-subtitle">Atteignez la conformité avec la feuille de route validée officiellement par l’ANSSI. </p>
+                <h2>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
+                <p className="section-subtitle">Notre accompagnement se base sur le référentiel officiel de l’ANSSI.</p>
             </div>
 
             <div className="expertise-grid">
@@ -2909,7 +2909,7 @@ export default function Home() {
 
             <div className="faq-item">
                 <div className="faq-question">
-                    🏆 Pourquoi vous choisir ?
+                    🏆 Pourquoi nous choisir ?
                     <span>↓</span>
                 </div>
                 <div className="faq-answer">
@@ -2928,8 +2928,8 @@ export default function Home() {
         </section>
 
         <footer className="footer">
-            <p><strong>NIS2 Conformité</strong> • Certifiés ISO 27001 • Partenaires ANSSI</p>
-            <p style={{marginTop: '10px'}}>0 client sanctionné • 98% conformité atteinte • 150+ organisations accompagnées</p>
+            <p><strong>Cyber Solferino</strong> • Mise en conformité NIS2 • Basé sur le referenciel ANSSI</p>
+            <p style={{marginTop: '10px'}}>www.cyber-solferino.com • bla bla bla</p>
             <p style={{marginTop: '8px', opacity: '0.6'}}>Mentions légales • CGV • Politique de confidentialité</p>
         </footer>
     </div>
