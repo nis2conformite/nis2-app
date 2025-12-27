@@ -2659,11 +2659,11 @@ export default function Home() {
         {/* HERO */}
         <section className="hero">
             <div className="logo">Cyber Solferino</div>
-            <div className="tagline">Référentiel ANSSI • Une équipe de Cyber Experts • 15 ans d'expertise</div>
+            <div className="tagline">La cyber sécurité : un impératif stratégique</div>
             
             <h1>
-                <span className="highlight">Évitez 10M€ d'amende</span>
-                La cybersécurité : un impératif stratégique
+                <span className="highlight">Anticipez les risques financiers liés à NIS2</span>
+                La plateforme d’audit et de conformité cyber pensée pour les PME et ETI européennes
             </h1>
             
             <p className="subtitle">Protégez votre activité, votre réputation et votre résilience. Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber certifiés ISO 27001.</p>
@@ -2671,7 +2671,7 @@ export default function Home() {
             <div className="stats">
                 <div className="stat">
                     <div className="stat-value">92%</div>
-                    <div className="stat-label">PME non prêtes</div>
+                    <div className="stat-label">PME et ETI non prêtes</div>
                 </div>
                 <div className="stat">
                     <div className="stat-value">10M€</div>
@@ -2753,7 +2753,7 @@ export default function Home() {
             <div className="section-header">
                 <div className="section-badge">RISQUES CHIFFRÉS</div>
                 <h2>La prévention est plus rentable qu’une crise cyber</h2>
-                <p className="section-subtitle">Vulnérabilité des PME • 43% perdent des clients après une attaque cyber</p>
+                <p className="section-subtitle">Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber</p>
             </div>
 
             <div className="impact-cards">
@@ -2767,8 +2767,8 @@ export default function Home() {
                 <div className="impact-card" style={{Delay: '0.15s'}}>
                     <div className="impact-icon">💸</div>
                     <div className="impact-stat">4,35M€</div>
-                    <div className="impact-label">Coût moyen cyberattaque</div>
-                    <p className="impact-detail">Rançongiciel, arrêt de production (21j en moyenne), perte de données. 60% des PME touchées ferment dans les 12 mois.</p>
+                    <div className="impact-label">Coût moyen cyber attaque</div>
+                    <p className="impact-detail"> 60% des PME touchées ferment dans les 12 mois.Arrêt de production (21 jours en moyenne), perte de données, rançons.</p>
                 </div>
             </div>
         </section>
@@ -2822,7 +2822,7 @@ export default function Home() {
                 <div className="expertise-card" style={{Delay: '0s'}}>
                     <div className="expertise-number">15+</div>
                     <div className="expertise-title">Années d'expérience terrain</div>
-                    <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber.</p>
+                    <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber. Notre équipe d'experts internationaux a piloté des projets dans plus de 10 pays</p>
                 </div>
 
                 <div className="expertise-card highlight" style={{Delay: '0.15s'}}>
@@ -2987,7 +2987,7 @@ export default function Home() {
 
         {/* CTA Inline 3 */}
         <div className="cta-inline">
-            <p>💬 Échangez avec un expert certifié • Obtenez des réponses claires</p>
+            <p>💬 Échangez avec un de nos experts • Obtenez des réponses claires</p>
             <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn">
                 📅 Prendre rendez-vous
             </a>
