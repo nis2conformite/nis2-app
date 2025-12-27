@@ -2795,24 +2795,24 @@ export default function Home() {
                     <div className="timeline-item">
                         <div className="timeline-number">01</div>
                         <div className="timeline-content">
-                            <h3 className="timeline-title">Research and strategy</h3>
-                            <p className="timeline-description">We spend enough time to uncover business goals and client needs.</p>
+                            <h3 className="timeline-title">Analyse de conformité</h3>
+                            <p className="timeline-description">Identification des écarts clés de conformité selon le refenciel de l'ANSSI.</p>
                         </div>
                     </div>
 
                     <div className="timeline-item">
                         <div className="timeline-number">02</div>
                         <div className="timeline-content">
-                            <h3 className="timeline-title">Development and scale</h3>
-                            <p className="timeline-description">We utilize our best talents to design digital products and services.</p>
+                            <h3 className="timeline-title">Comprendre ses vulnérabilités</h3>
+                            <p className="timeline-description">Connaitre son niveau de conformité aux obligations de sécurité NIS2</p>
                         </div>
                     </div>
 
                     <div className="timeline-item">
                         <div className="timeline-number">03</div>
                         <div className="timeline-content">
-                            <h3 className="timeline-title">Testing and evaluation</h3>
-                            <p className="timeline-description">Before the launch, our team test complete website thoroughly.</p>
+                            <h3 className="timeline-title">Accompgnement adapté</h3>
+                            <p className="timeline-description">Choissisez l'offre adaptée en fonction de votre niveau global de maturité cyber</p>
                         </div>
                     </div>
                 </div>
