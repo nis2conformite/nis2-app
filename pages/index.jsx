@@ -1154,6 +1154,120 @@ export default function Home() {
             box-shadow: 0 4px 16px rgba(9, 30, 66, 0.06);
         }
 
+        /* Timeline horizontale */
+        .timeline-container {
+            margin: 48px 0;
+            padding: 0 20px;
+        }
+
+        .timeline-horizontal {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .timeline-horizontal::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 100px;
+            right: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #00875A 0%, #17B897 50%, #00875A 100%);
+            z-index: 0;
+        }
+
+        .timeline-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-number {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00C896 0%, #00875A 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 24px rgba(0, 135, 90, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-item:hover .timeline-number {
+            transform: scale(1.1) translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 135, 90, 0.4);
+        }
+
+        .timeline-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .timeline-description {
+            font-size: 15px;
+            color: #64748B;
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        /* Responsive timeline */
+        @media (max-width: 968px) {
+            .timeline-horizontal {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 32px;
+            }
+
+            .timeline-horizontal::before {
+                display: none;
+            }
+
+            .timeline-item {
+                flex-direction: row;
+                text-align: left;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .timeline-number {
+                width: 80px;
+                height: 80px;
+                font-size: 28px;
+                flex-shrink: 0;
+            }
+
+            .timeline-content {
+                flex: 1;
+                padding-top: 12px;
+            }
+
+            .timeline-title {
+                text-align: left;
+            }
+
+            .timeline-description {
+                text-align: left;
+                max-width: 100%;
+            }
+        }
+
         .expertise-grid {
             display: grid;
             gap: 16px;
@@ -2673,6 +2787,35 @@ export default function Home() {
                 <div className="section-badge success">NOTRE APPROCHE</div>
                 <h2>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
                 <p className="section-subtitle">Notre accompagnement se base sur le référentiel officiel de l’ANSSI.</p>
+            </div>
+
+            {/* Timeline horizontale */}
+            <div className="timeline-container">
+                <div className="timeline-horizontal">
+                    <div className="timeline-item">
+                        <div className="timeline-number">01</div>
+                        <div className="timeline-content">
+                            <h3 className="timeline-title">Research and strategy</h3>
+                            <p className="timeline-description">We spend enough time to uncover business goals and client needs.</p>
+                        </div>
+                    </div>
+
+                    <div className="timeline-item">
+                        <div className="timeline-number">02</div>
+                        <div className="timeline-content">
+                            <h3 className="timeline-title">Development and scale</h3>
+                            <p className="timeline-description">We utilize our best talents to design digital products and services.</p>
+                        </div>
+                    </div>
+
+                    <div className="timeline-item">
+                        <div className="timeline-number">03</div>
+                        <div className="timeline-content">
+                            <h3 className="timeline-title">Testing and evaluation</h3>
+                            <p className="timeline-description">Before the launch, our team test complete website thoroughly.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div className="expertise-grid">
