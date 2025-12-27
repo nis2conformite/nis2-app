@@ -1154,6 +1154,120 @@ export default function Home() {
             box-shadow: 0 4px 16px rgba(9, 30, 66, 0.06);
         }
 
+        /* Timeline horizontale */
+        .timeline-container {
+            margin: 48px 0;
+            padding: 0 20px;
+        }
+
+        .timeline-horizontal {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .timeline-horizontal::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 100px;
+            right: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #00875A 0%, #17B897 50%, #00875A 100%);
+            z-index: 0;
+        }
+
+        .timeline-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-number {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00C896 0%, #00875A 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 24px rgba(0, 135, 90, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-item:hover .timeline-number {
+            transform: scale(1.1) translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 135, 90, 0.4);
+        }
+
+        .timeline-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .timeline-description {
+            font-size: 15px;
+            color: #64748B;
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        /* Responsive timeline */
+        @media (max-width: 968px) {
+            .timeline-horizontal {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 32px;
+            }
+
+            .timeline-horizontal::before {
+                display: none;
+            }
+
+            .timeline-item {
+                flex-direction: row;
+                text-align: left;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .timeline-number {
+                width: 80px;
+                height: 80px;
+                font-size: 28px;
+                flex-shrink: 0;
+            }
+
+            .timeline-content {
+                flex: 1;
+                padding-top: 12px;
+            }
+
+            .timeline-title {
+                text-align: left;
+            }
+
+            .timeline-description {
+                text-align: left;
+                max-width: 100%;
+            }
+        }
+
         .expertise-grid {
             display: grid;
             gap: 16px;
@@ -2667,64 +2781,48 @@ export default function Home() {
             </a>
         </div>
 
-        {/* NOTRE APPROCHE */}
+        {/* EXPERTISE */}
         <section className="expertise-section">
             <div className="section-header">
-                <div className="section-badge success">QUI SOMMES-NOUS ?</div>
-                <h2>Votre partenaire transversal en conformité NIS2</h2>
-                <p className="section-subtitle">
-                    Nous intervenons là où d'autres hésitent : entre la législation et le terrain, 
-                    entre la stratégie et l'opérationnel, entre la direction et les équipes techniques.
-                </p>
+                <div className="section-badge success">NOTRE APPROCHE</div>
+                <h2>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
+                <p className="section-subtitle">Notre accompagnement se base sur le référentiel officiel de l’ANSSI.</p>
             </div>
 
-            <div className="expertise-grid">
-                <div className="expertise-card" style={{delay: '0s'}}>
-                    <div style={{fontSize: '40px', marginBottom: '16px'}}>🔍</div>
-                    <div className="expertise-title">Analyse sur mesure</div>
-                    <p>Fini les checklists standards. Nous étudions votre structure, vos flux, votre organisation pour concevoir une solution entièrement adaptée.</p>
-                </div>
+            {/* Timeline horizontale */}
+            <div className="timeline-container">
+                <div className="timeline-horizontal">
+                    <div className="timeline-item">
+                        <div className="timeline-number">01</div>
+                        <div className="timeline-content">
+                            <h3 className="timeline-title">Research and strategy</h3>
+                            <p className="timeline-description">We spend enough time to uncover business goals and client needs.</p>
+                        </div>
+                    </div>
 
-                <div className="expertise-card highlight" style={{delay: '0.15s'}}>
-                    <div style={{fontSize: '40px', marginBottom: '16px'}}>🧩</div>
-                    <div className="expertise-title">Solutions modulaires</div>
-                    <p>Trois niveaux d'audit — Découverte, Essentiel, Expertise — pour accompagner votre progression selon votre maturité.</p>
-                </div>
+                    <div className="timeline-item">
+                        <div className="timeline-number">02</div>
+                        <div className="timeline-content">
+                            <h3 className="timeline-title">Development and scale</h3>
+                            <p className="timeline-description">We utilize our best talents to design digital products and services.</p>
+                        </div>
+                    </div>
 
-                <div className="expertise-card" style={{delay: '0.3s'}}>
-                    <div style={{fontSize: '40px', marginBottom: '16px'}}>🤝</div>
-                    <div className="expertise-title">Accompagnement intégral</div>
-                    <p>Nous vous guidons dans la mise en œuvre, la formation et le suivi pour assurer la pérennité de vos efforts.</p>
+                    <div className="timeline-item">
+                        <div className="timeline-number">03</div>
+                        <div className="timeline-content">
+                            <h3 className="timeline-title">Testing and evaluation</h3>
+                            <p className="timeline-description">Before the launch, our team test complete website thoroughly.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            {/* Logos partenaires/certifications */}
-            <div className="partners-section">
-                <div className="partners-title">Reconnus et certifiés par</div>
-                <div className="partners-logos">
-                    <img src="https://via.placeholder.com/150x50/0052CC/FFFFFF?text=ANSSI" alt="ANSSI" className="partner-logo" />
-                    <img src="https://via.placeholder.com/150x50/0052CC/FFFFFF?text=ISO+27001" alt="ISO 27001" className="partner-logo" />
-                    <img src="https://via.placeholder.com/150x50/0052CC/FFFFFF?text=EBIOS" alt="EBIOS" className="partner-logo" />
-                    <img src="https://via.placeholder.com/150x50/0052CC/FFFFFF?text=RGPD" alt="RGPD" className="partner-logo" />
-                </div>
-            </div>
-        </section>
-
-        {/* NOTRE ÉQUIPE */}
-        <section className="expertise-section">
-            <div className="section-header">
-                <div className="section-badge">NOTRE ÉQUIPE</div>
-                <h2>Des experts reconnus, une approche pragmatique</h2>
-                <p className="section-subtitle">
-                    La conformité NIS2 nécessite une maîtrise pointue du droit, de la cybersécurité et du pilotage de projets complexes.
-                </p>
             </div>
 
             <div className="expertise-grid">
                 <div className="expertise-card" style={{Delay: '0s'}}>
                     <div className="expertise-number">15+</div>
                     <div className="expertise-title">Années d'expérience terrain</div>
-                    <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité cyber.</p>
+                    <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber.</p>
                 </div>
 
                 <div className="expertise-card highlight" style={{Delay: '0.15s'}}>
@@ -2734,25 +2832,9 @@ export default function Home() {
                             <polyline points="22 4 12 14.01 9 11.01"></polyline>
                         </svg>
                     </div>
-                    <div className="expertise-title">Équipe d'élite certifiée</div>
-                    <p>Consultants ISO 27001, juristes IT, anciens conseillers parlementaires. Méthodologie validée par l'ANSSI.</p>
+                    <div className="expertise-title">Une équipe d'experts en cyber défense</div>
+                    <p>Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
                 </div>
-
-                <div className="expertise-card" style={{Delay: '0.3s'}}>
-                    <div className="expertise-number">10+</div>
-                    <div className="expertise-title">Pays d'intervention</div>
-                    <p>Expertise internationale, compréhension locale. Nous adaptons notre discours à tous vos interlocuteurs.</p>
-                </div>
-            </div>
-
-            <div style={{textAlign: 'center', marginTop: '32px', padding: '24px', background: 'var(--gray-50)', borderRadius: '16px'}}>
-                <p style={{fontSize: '15px', color: 'var(--gray-600)', lineHeight: '1.6', marginBottom: '16px'}}>
-                    <strong style={{color: 'var(--dark)'}}>Notre engagement :</strong> Pragmatisme, confidentialité et confiance absolue. 
-                    Nous ne jugeons pas, nous faisons progresser votre organisation avec respect et transparence.
-                </p>
-                <p style={{fontSize: '13px', color: 'var(--gray-500)', fontStyle: 'italic'}}>
-                    « La meilleure expertise est celle que l'on comprend. »
-                </p>
             </div>
         </section>
 
@@ -2842,110 +2924,6 @@ export default function Home() {
                     </a>
                 </div>
             </div>
-        </section>
- {/* TABLEAU COMPARATIF DES OFFRES */}
-        <section style={{padding: '48px 24px', maxWidth: '1200px', margin: '0 auto'}}>
-            <div className="section-header">
-                <h2>Comparaison détaillée de nos offres</h2>
-                <p className="section-subtitle">Choisissez l'accompagnement adapté à votre maturité</p>
-            </div>
-
-            <table className="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Caractéristiques</th>
-                        <th>Découverte</th>
-                        <th>Essentiel</th>
-                        <th className="highlight">Expertise</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Prix</td>
-                        <td>3 490€</td>
-                        <td>7 990€</td>
-                        <td className="highlight-col">14 900€</td>
-                    </tr>
-                    <tr>
-                        <td>Délai</td>
-                        <td>Immédiat</td>
-                        <td>48H</td>
-                        <td className="highlight-col">1 mois</td>
-                    </tr>
-                    <tr>
-                        <td>Audit cyber NIS2</td>
-                        <td><span className="check-icon">✓</span></td>
-                        <td><span className="check-icon">✓</span></td>
-                        <td className="highlight-col"><span className="check-icon">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Rapport d'audit</td>
-                        <td>Synthétique</td>
-                        <td>Complet validé</td>
-                        <td className="highlight-col">Complet validé</td>
-                    </tr>
-                    <tr>
-                        <td>Analyse des écarts</td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td><span className="check-icon">✓</span></td>
-                        <td className="highlight-col"><span className="check-icon">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Plan de remédiation détaillé</td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td><span className="check-icon">✓</span></td>
-                        <td className="highlight-col"><span className="check-icon">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Entretien préalable avec expert (1h)</td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td className="highlight-col"><span className="check-icon">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Restitution avec expert (1h)</td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td><span className="check-icon">✓</span></td>
-                        <td className="highlight-col"><span className="check-icon">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Roadmap personnalisée</td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td className="highlight-col"><span className="check-icon">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Enregistrement ANSSI</td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td className="highlight-col"><span className="check-icon">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Constitution dossier aides d'État</td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td className="highlight-col"><span className="check-icon">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Accès base de documents</td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td><span className="check-icon">✓</span></td>
-                        <td className="highlight-col"><span className="check-icon">✓</span></td>
-                    </tr>
-                    <tr>
-                        <td>Accès plateforme</td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td>6 mois</td>
-                        <td className="highlight-col">12 mois</td>
-                    </tr>
-                    <tr>
-                        <td>Mise à jour législative</td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td><span className="cross-icon">✗</span></td>
-                        <td className="highlight-col"><span className="check-icon">✓</span></td>
-                    </tr>
-                </tbody>
-            </table>
         </section>
 
         {/* TÉMOIGNAGES */}
