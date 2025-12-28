@@ -380,31 +380,51 @@ export default function Home() {
 
       <style jsx global>{`
         :root {
-          --primary-dark: #1E2A4A;
-          --primary: #2D4263;
-          --primary-light: #3E5879;
-          --accent: #C44536;
-          --accent-light: #E86F5E;
-          --accent-hover: #A63829;
-          --text-primary: #1E2A4A;
-          --text-secondary: #64748B;
+          /* Couleurs principales - TECH DYNAMIQUE */
+          --primary-dark: #0F172A;
+          --primary: #1E293B;
+          --primary-light: #334155;
+          
+          /* Accent ORANGE vif (Startup Tech) */
+          --accent: #F97316;
+          --accent-light: #FB923C;
+          --accent-hover: #EA580C;
+          
+          /* Accent CYAN (Tech/Cyber) */
+          --accent-secondary: #06B6D4;
+          --accent-secondary-light: #22D3EE;
+          --accent-secondary-dark: #0891B2;
+          
+          /* Neutrals */
+          --text-primary: #0F172A;
+          --text-secondary: #475569;
           --text-light: #94A3B8;
+          
+          /* Backgrounds */
           --bg-primary: #FFFFFF;
-          --bg-secondary: #F5F7FA;
-          --bg-tertiary: #EDF2F7;
-          --bg-dark: #1E2A4A;
-          --success: #059669;
-          --success-bg: rgba(5, 150, 105, 0.08);
-          --success-border: rgba(5, 150, 105, 0.2);
-          --warning: #D97706;
-          --warning-bg: rgba(217, 119, 6, 0.08);
-          --warning-border: rgba(217, 119, 6, 0.2);
-          --error: #DC2626;
-          --error-bg: rgba(220, 38, 38, 0.08);
-          --error-border: rgba(220, 38, 38, 0.2);
-          --info: #0284C7;
-          --info-bg: rgba(2, 132, 199, 0.08);
-          --info-border: rgba(2, 132, 199, 0.2);
+          --bg-secondary: #F8FAFC;
+          --bg-accent: #FFF7ED;
+          --bg-accent-secondary: #ECFEFF;
+          --bg-dark: #0F172A;
+          
+          /* Semantic colors */
+          --success: #10B981;
+          --success-bg: rgba(16, 185, 129, 0.1);
+          --success-border: rgba(16, 185, 129, 0.2);
+          
+          --warning: #F59E0B;
+          --warning-bg: rgba(245, 158, 11, 0.1);
+          --warning-border: rgba(245, 158, 11, 0.2);
+          
+          --error: #EF4444;
+          --error-bg: rgba(239, 68, 68, 0.1);
+          --error-border: rgba(239, 68, 68, 0.2);
+          
+          --info: #3B82F6;
+          --info-bg: rgba(59, 130, 246, 0.1);
+          --info-border: rgba(59, 130, 246, 0.2);
+          
+          /* Spacing */
           --space-xs: 8px;
           --space-sm: 16px;
           --space-md: 24px;
@@ -412,10 +432,14 @@ export default function Home() {
           --space-xl: 48px;
           --space-2xl: 64px;
           --space-3xl: 96px;
+          
+          /* Containers */
           --container-sm: 640px;
           --container-md: 768px;
           --container-lg: 1024px;
           --container-xl: 1280px;
+          
+          /* Transitions */
           --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
           --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -471,11 +495,11 @@ export default function Home() {
           right: 0;
           background: rgba(255, 255, 255, 0.95);
           backdrop-filter: blur(10px);
-          box-shadow: 0 2px 16px rgba(30, 42, 74, 0.08);
+          box-shadow: 0 2px 16px rgba(15, 23, 42, 0.08);
           padding: var(--space-sm) 0;
           transition: top var(--transition-base);
           z-index: 1000;
-          border-bottom: 1px solid rgba(45, 66, 99, 0.12);
+          border-bottom: 1px solid rgba(15, 23, 42, 0.1);
         }
 
         .sticky-header.visible {
@@ -497,11 +521,6 @@ export default function Home() {
           color: var(--primary);
         }
 
-        .sticky-header .header-cta {
-          display: flex;
-          gap: var(--space-sm);
-        }
-
         .hero {
           background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary) 100%);
           color: white;
@@ -517,7 +536,18 @@ export default function Home() {
           right: 0;
           width: 600px;
           height: 600px;
-          background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+          pointer-events: none;
+        }
+
+        .hero::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 500px;
+          height: 500px;
+          background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
           pointer-events: none;
         }
 
@@ -604,12 +634,12 @@ export default function Home() {
         .btn-primary {
           background: var(--accent);
           color: white;
-          box-shadow: 0 2px 8px rgba(196, 69, 54, 0.2);
+          box-shadow: 0 2px 8px rgba(249, 115, 22, 0.25);
         }
 
         .btn-primary:hover {
           background: var(--accent-hover);
-          box-shadow: 0 4px 16px rgba(196, 69, 54, 0.3);
+          box-shadow: 0 4px 16px rgba(249, 115, 22, 0.35);
           transform: translateY(-2px);
         }
 
@@ -644,9 +674,9 @@ export default function Home() {
 
         .section-badge {
           display: inline-block;
-          background: rgba(45, 66, 99, 0.08);
-          color: var(--primary-dark);
-          border: 1px solid rgba(45, 66, 99, 0.15);
+          background: rgba(249, 115, 22, 0.1);
+          color: var(--accent);
+          border: 1px solid rgba(249, 115, 22, 0.2);
           border-radius: 6px;
           padding: 6px 14px;
           font-size: 13px;
@@ -656,10 +686,10 @@ export default function Home() {
           margin-bottom: var(--space-md);
         }
 
-        .section-badge.accent {
-          background: rgba(196, 69, 54, 0.08);
-          color: var(--accent);
-          border-color: rgba(196, 69, 54, 0.15);
+        .section-badge.cyan {
+          background: rgba(6, 182, 212, 0.1);
+          color: var(--accent-secondary);
+          border-color: rgba(6, 182, 212, 0.2);
         }
 
         .section-title {
@@ -690,7 +720,7 @@ export default function Home() {
 
         .credibility-card {
           background: white;
-          border: 1px solid rgba(45, 66, 99, 0.12);
+          border: 1px solid rgba(15, 23, 42, 0.1);
           border-radius: 16px;
           padding: var(--space-xl);
           text-align: center;
@@ -698,21 +728,21 @@ export default function Home() {
         }
 
         .credibility-card:hover {
-          border-color: rgba(45, 66, 99, 0.25);
-          box-shadow: 0 4px 24px rgba(30, 42, 74, 0.08);
+          border-color: var(--accent);
+          box-shadow: 0 4px 24px rgba(249, 115, 22, 0.12);
           transform: translateY(-4px);
         }
 
         .credibility-icon {
           width: 64px;
           height: 64px;
-          background: rgba(196, 69, 54, 0.08);
+          background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           margin: 0 auto var(--space-md);
-          color: var(--accent);
+          color: white;
           font-size: 32px;
           font-weight: 700;
         }
@@ -737,22 +767,102 @@ export default function Home() {
           font-weight: 700;
         }
 
-        .quiz-trigger-section {
-          background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
-          color: white;
-          padding: var(--space-xl) 0;
-          text-align: center;
+        /* QUIZ MEGA CARD - ULTRA VISIBLE */
+        .quiz-trigger-section-enhanced {
+          background: linear-gradient(135deg, 
+            rgba(249, 115, 22, 0.05) 0%, 
+            rgba(6, 182, 212, 0.05) 100%);
+          padding: var(--space-2xl) 0;
         }
 
-        .quiz-trigger-section h2 {
-          color: white;
+        .quiz-mega-card {
+          max-width: 800px;
+          margin: 0 auto;
+          background: white;
+          border: 2px solid var(--accent);
+          border-radius: 24px;
+          padding: var(--space-2xl);
+          text-align: center;
+          box-shadow: 
+            0 20px 60px rgba(249, 115, 22, 0.15),
+            0 8px 24px rgba(6, 182, 212, 0.1);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .quiz-mega-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(90deg, var(--accent) 0%, var(--accent-secondary) 100%);
+        }
+
+        .quiz-icon {
+          width: 80px;
+          height: 80px;
+          margin: 0 auto var(--space-md);
+          background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 48px;
+          box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+        }
+
+        .quiz-mega-card h2 {
+          color: var(--primary);
           margin-bottom: var(--space-md);
         }
 
-        .quiz-trigger-section p {
-          color: rgba(255, 255, 255, 0.9);
+        .quiz-mega-card p {
           font-size: 18px;
-          margin-bottom: var(--space-lg);
+          color: var(--text-secondary);
+          margin-bottom: var(--space-xl);
+        }
+
+        .quiz-features {
+          display: flex;
+          justify-content: center;
+          gap: var(--space-lg);
+          margin-bottom: var(--space-xl);
+          flex-wrap: wrap;
+        }
+
+        .quiz-feature {
+          display: flex;
+          align-items: center;
+          gap: var(--space-xs);
+          color: var(--text-secondary);
+          font-size: 15px;
+        }
+
+        .quiz-feature svg {
+          color: var(--accent-secondary);
+        }
+
+        .btn-quiz-large {
+          background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+          color: white;
+          padding: 20px 48px;
+          border-radius: 12px;
+          font-weight: 700;
+          font-size: 18px;
+          border: none;
+          cursor: pointer;
+          box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+          transition: all var(--transition-base);
+          display: inline-flex;
+          align-items: center;
+          gap: var(--space-sm);
+        }
+
+        .btn-quiz-large:hover {
+          transform: translateY(-4px) scale(1.02);
+          box-shadow: 0 12px 32px rgba(249, 115, 22, 0.4);
         }
 
         .approach-section {
@@ -768,7 +878,7 @@ export default function Home() {
           display: flex;
           gap: var(--space-lg);
           padding: var(--space-lg) 0;
-          border-left: 2px solid rgba(45, 66, 99, 0.15);
+          border-left: 2px solid rgba(6, 182, 212, 0.2);
           position: relative;
           padding-left: 60px;
           margin-left: 20px;
@@ -784,14 +894,15 @@ export default function Home() {
           width: 40px;
           height: 40px;
           background: white;
-          border: 3px solid var(--accent);
+          border: 3px solid var(--accent-secondary);
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           font-weight: 700;
-          color: var(--accent);
+          color: var(--accent-secondary);
           font-size: 16px;
+          box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
         }
 
         .timeline-content h3 {
@@ -810,7 +921,7 @@ export default function Home() {
 
         .split-card {
           background: white;
-          border: 1px solid rgba(45, 66, 99, 0.12);
+          border: 1px solid rgba(15, 23, 42, 0.1);
           border-radius: 16px;
           padding: var(--space-xl);
         }
@@ -836,7 +947,7 @@ export default function Home() {
 
         .split-list li {
           padding: var(--space-md) 0;
-          border-bottom: 1px solid rgba(45, 66, 99, 0.08);
+          border-bottom: 1px solid rgba(15, 23, 42, 0.08);
           display: flex;
           flex-direction: column;
           gap: var(--space-xs);
@@ -867,14 +978,16 @@ export default function Home() {
           position: relative;
           border-radius: 16px;
           overflow: hidden;
-          box-shadow: 0 8px 32px rgba(30, 42, 74, 0.12);
+          box-shadow: 0 8px 32px rgba(15, 23, 42, 0.12);
           cursor: pointer;
           transition: all var(--transition-base);
+          border: 2px solid transparent;
         }
 
         .video-thumbnail:hover {
           transform: scale(1.02);
-          box-shadow: 0 12px 48px rgba(30, 42, 74, 0.18);
+          box-shadow: 0 12px 48px rgba(249, 115, 22, 0.2);
+          border-color: var(--accent);
         }
 
         .video-thumbnail img {
@@ -889,7 +1002,7 @@ export default function Home() {
           transform: translate(-50%, -50%);
           width: 80px;
           height: 80px;
-          background: var(--accent);
+          background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -897,11 +1010,12 @@ export default function Home() {
           color: white;
           font-size: 32px;
           transition: all var(--transition-base);
+          box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);
         }
 
         .video-thumbnail:hover .video-play-btn {
           transform: translate(-50%, -50%) scale(1.1);
-          background: var(--accent-hover);
+          box-shadow: 0 12px 32px rgba(249, 115, 22, 0.5);
         }
 
         .testimonials-section {
@@ -923,7 +1037,7 @@ export default function Home() {
         .testimonial {
           min-width: 100%;
           background: white;
-          border: 1px solid rgba(45, 66, 99, 0.12);
+          border: 1px solid rgba(15, 23, 42, 0.1);
           border-radius: 16px;
           padding: var(--space-xl);
         }
@@ -945,7 +1059,7 @@ export default function Home() {
         .testimonial-avatar {
           width: 64px;
           height: 64px;
-          background: var(--primary);
+          background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-secondary-light) 100%);
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -979,7 +1093,7 @@ export default function Home() {
           height: 48px;
           border-radius: 50%;
           background: white;
-          border: 2px solid rgba(45, 66, 99, 0.12);
+          border: 2px solid rgba(15, 23, 42, 0.1);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -1003,7 +1117,7 @@ export default function Home() {
           width: 12px;
           height: 12px;
           border-radius: 50%;
-          background: rgba(45, 66, 99, 0.2);
+          background: rgba(15, 23, 42, 0.2);
           cursor: pointer;
           transition: all var(--transition-fast);
         }
@@ -1014,6 +1128,7 @@ export default function Home() {
           border-radius: 6px;
         }
 
+        /* PRICING SIMPLIFIÉ */
         .pricing-section {
           background: white;
         }
@@ -1028,7 +1143,7 @@ export default function Home() {
 
         .price-card {
           background: white;
-          border: 1px solid rgba(45, 66, 99, 0.12);
+          border: 2px solid rgba(15, 23, 42, 0.1);
           border-radius: 16px;
           padding: var(--space-xl);
           transition: all var(--transition-base);
@@ -1036,15 +1151,15 @@ export default function Home() {
         }
 
         .price-card:hover {
-          border-color: rgba(45, 66, 99, 0.25);
-          box-shadow: 0 4px 24px rgba(30, 42, 74, 0.08);
+          border-color: var(--accent);
+          box-shadow: 0 8px 32px rgba(249, 115, 22, 0.15);
           transform: translateY(-4px);
         }
 
         .price-card.popular {
           border: 2px solid var(--accent);
           transform: scale(1.05);
-          box-shadow: 0 20px 40px rgba(196, 69, 54, 0.12);
+          box-shadow: 0 20px 40px rgba(249, 115, 22, 0.2);
         }
 
         .price-card.popular::before {
@@ -1052,7 +1167,7 @@ export default function Home() {
           position: absolute;
           top: -12px;
           right: 24px;
-          background: var(--accent);
+          background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
           color: white;
           padding: 6px 16px;
           border-radius: 20px;
@@ -1080,7 +1195,7 @@ export default function Home() {
         }
 
         .price-ideal {
-          background: rgba(45, 66, 99, 0.05);
+          background: rgba(249, 115, 22, 0.05);
           padding: var(--space-sm);
           border-radius: 8px;
           margin-bottom: var(--space-lg);
@@ -1119,6 +1234,33 @@ export default function Home() {
           color: var(--primary);
         }
 
+        /* Section "Plus de" pour différentiel */
+        .price-plus-section {
+          background: rgba(6, 182, 212, 0.05);
+          border: 1px solid rgba(6, 182, 212, 0.2);
+          border-radius: 8px;
+          padding: var(--space-md);
+          margin: var(--space-md) 0;
+        }
+
+        .price-plus-section h4 {
+          color: var(--accent-secondary);
+          font-size: 14px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: var(--space-sm);
+        }
+
+        .price-plus-section .price-features {
+          margin-bottom: 0;
+        }
+
+        .price-plus-section .price-features li::before {
+          content: '+';
+          color: var(--accent-secondary);
+        }
+
         .faq-section {
           background: var(--bg-secondary);
         }
@@ -1130,7 +1272,7 @@ export default function Home() {
 
         .faq-item {
           background: white;
-          border: 1px solid rgba(45, 66, 99, 0.12);
+          border: 1px solid rgba(15, 23, 42, 0.1);
           border-radius: 12px;
           margin-bottom: var(--space-md);
           cursor: pointer;
@@ -1138,7 +1280,7 @@ export default function Home() {
         }
 
         .faq-item:hover {
-          border-color: rgba(45, 66, 99, 0.25);
+          border-color: var(--accent);
         }
 
         .faq-question {
@@ -1187,17 +1329,38 @@ export default function Home() {
           color: white;
           text-align: center;
           padding: var(--space-3xl) 0;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .final-cta::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 500px;
+          height: 500px;
+          background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
         }
 
         .final-cta h2 {
           color: white;
           margin-bottom: var(--space-md);
+          position: relative;
+          z-index: 1;
         }
 
         .final-cta p {
           color: rgba(255, 255, 255, 0.9);
           font-size: 18px;
           margin-bottom: var(--space-xl);
+          position: relative;
+          z-index: 1;
+        }
+
+        .final-cta .btn {
+          position: relative;
+          z-index: 1;
         }
 
         footer {
@@ -1251,7 +1414,7 @@ export default function Home() {
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(30, 42, 74, 0.8);
+          background: rgba(15, 23, 42, 0.8);
           backdrop-filter: blur(4px);
           z-index: 10000;
           align-items: center;
@@ -1288,7 +1451,7 @@ export default function Home() {
           width: 40px;
           height: 40px;
           border-radius: 50%;
-          background: rgba(45, 66, 99, 0.08);
+          background: rgba(15, 23, 42, 0.08);
           border: none;
           display: flex;
           align-items: center;
@@ -1301,7 +1464,8 @@ export default function Home() {
         }
 
         .modal-close:hover {
-          background: rgba(45, 66, 99, 0.15);
+          background: rgba(249, 115, 22, 0.1);
+          color: var(--accent);
           transform: rotate(90deg);
         }
 
@@ -1330,7 +1494,7 @@ export default function Home() {
         .quiz-progress-bar {
           width: 100%;
           height: 8px;
-          background: rgba(45, 66, 99, 0.1);
+          background: rgba(15, 23, 42, 0.1);
           border-radius: 4px;
           overflow: hidden;
           margin-top: var(--space-md);
@@ -1338,7 +1502,7 @@ export default function Home() {
 
         .quiz-progress {
           height: 100%;
-          background: var(--accent);
+          background: linear-gradient(90deg, var(--accent) 0%, var(--accent-secondary) 100%);
           transition: width var(--transition-base);
           width: 10%;
         }
@@ -1376,7 +1540,7 @@ export default function Home() {
 
         .quiz-answer {
           padding: var(--space-md);
-          border: 2px solid rgba(45, 66, 99, 0.12);
+          border: 2px solid rgba(15, 23, 42, 0.1);
           border-radius: 12px;
           cursor: pointer;
           transition: all var(--transition-fast);
@@ -1387,18 +1551,18 @@ export default function Home() {
 
         .quiz-answer:hover {
           border-color: var(--accent);
-          background: rgba(196, 69, 54, 0.05);
+          background: rgba(249, 115, 22, 0.05);
         }
 
         .quiz-answer.selected {
           border-color: var(--accent);
-          background: rgba(196, 69, 54, 0.08);
+          background: rgba(249, 115, 22, 0.08);
         }
 
         .quiz-answer-radio {
           width: 24px;
           height: 24px;
-          border: 2px solid rgba(45, 66, 99, 0.3);
+          border: 2px solid rgba(15, 23, 42, 0.3);
           border-radius: 50%;
           position: relative;
         }
@@ -1439,23 +1603,24 @@ export default function Home() {
         }
 
         .quiz-btn-next {
-          background: var(--accent);
+          background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
           color: white;
         }
 
         .quiz-btn-next:hover:not(:disabled) {
-          background: var(--accent-hover);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 16px rgba(249, 115, 22, 0.3);
         }
 
         .quiz-btn-next:disabled {
-          background: rgba(45, 66, 99, 0.2);
+          background: rgba(15, 23, 42, 0.2);
           cursor: not-allowed;
         }
 
         .quiz-btn-prev {
           background: transparent;
           color: var(--primary);
-          border: 2px solid rgba(45, 66, 99, 0.2);
+          border: 2px solid rgba(15, 23, 42, 0.2);
         }
 
         .quiz-btn-prev:hover {
@@ -1527,12 +1692,13 @@ export default function Home() {
 
         .quiz-result-btn.primary:hover {
           background: var(--accent-hover);
+          transform: translateY(-2px);
         }
 
         .quiz-result-btn.secondary {
           background: transparent;
           color: var(--primary);
-          border: 2px solid rgba(45, 66, 99, 0.2);
+          border: 2px solid rgba(15, 23, 42, 0.2);
         }
 
         .quiz-result-btn.secondary:hover {
@@ -1561,7 +1727,7 @@ export default function Home() {
 
         .lead-option {
           background: var(--bg-secondary);
-          border: 2px solid rgba(45, 66, 99, 0.12);
+          border: 2px solid rgba(15, 23, 42, 0.1);
           border-radius: 16px;
           padding: var(--space-xl);
           text-align: center;
@@ -1571,7 +1737,7 @@ export default function Home() {
 
         .lead-option:hover {
           border-color: var(--accent);
-          background: rgba(196, 69, 54, 0.05);
+          background: rgba(249, 115, 22, 0.05);
           transform: translateY(-4px);
         }
 
@@ -1610,7 +1776,7 @@ export default function Home() {
         .form-group select {
           width: 100%;
           padding: var(--space-md);
-          border: 1px solid rgba(45, 66, 99, 0.2);
+          border: 1px solid rgba(15, 23, 42, 0.2);
           border-radius: 8px;
           font-family: inherit;
           font-size: 16px;
@@ -1621,7 +1787,7 @@ export default function Home() {
         .form-group select:focus {
           outline: none;
           border-color: var(--accent);
-          box-shadow: 0 0 0 3px rgba(196, 69, 54, 0.1);
+          box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
         }
 
         .form-checkbox {
@@ -1721,6 +1887,15 @@ export default function Home() {
             font-size: 15px;
           }
 
+          .btn-quiz-large {
+            padding: 18px 32px;
+            font-size: 16px;
+          }
+
+          .quiz-mega-card {
+            padding: var(--space-xl);
+          }
+
           .modal-content {
             margin: var(--space-md);
           }
@@ -1732,6 +1907,30 @@ export default function Home() {
           .quiz-result-btn {
             width: 100%;
           }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes pulse {
+          0%, 100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.6s ease-out;
         }
       `}</style>
 
@@ -1802,18 +2001,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* QUIZ TRIGGER */}
-      <section className="quiz-trigger-section">
+      {/* QUIZ MEGA CARD - ULTRA VISIBLE */}
+      <section className="quiz-trigger-section-enhanced">
         <div className="container">
-          <h2>🎯 Suis-je concerné par NIS2 ?</h2>
-          <p>Répondez à 10 questions simples pour savoir si votre entreprise entre dans le périmètre de la directive.</p>
-          <button className="btn btn-secondary" onClick={() => window.openQuiz()}>
-            Faire le test gratuit
-          </button>
-          <div style={{marginTop: 'var(--space-md)'}}>
-            <a href="https://drive.google.com/file/d/1pHdC_x0PCa2rkWBBPx9MHWujG2xm6H8B/view?usp=share_link" target="_blank" className="btn-ghost" style={{color: 'white'}}>
-              Comprendre NIS2 en détail
-            </a>
+          <div className="quiz-mega-card">
+            <div className="quiz-icon">🎯</div>
+            <h2>Êtes-vous concerné par NIS2 ?</h2>
+            <p>Répondez à 10 questions simples pour découvrir si votre entreprise entre dans le périmètre de la directive.</p>
+            
+            <div className="quiz-features">
+              <div className="quiz-feature">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                2 minutes
+              </div>
+              <div className="quiz-feature">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Résultat immédiat
+              </div>
+              <div className="quiz-feature">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                100% confidentiel
+              </div>
+            </div>
+
+            <button className="btn-quiz-large" onClick={() => window.openQuiz()}>
+              Faire le diagnostic gratuit
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+
+            <div style={{marginTop: 'var(--space-md)'}}>
+              <a href="https://drive.google.com/file/d/1pHdC_x0PCa2rkWBBPx9MHWujG2xm6H8B/view?usp=share_link" target="_blank" className="btn-ghost">
+                📄 Télécharger le guide NIS2 complet
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -1822,7 +2053,7 @@ export default function Home() {
       <section className="approach-section">
         <div className="container">
           <div className="section-title">
-            <span className="section-badge">NOTRE APPROCHE</span>
+            <span className="section-badge cyan">NOTRE APPROCHE</span>
             <h2>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
             <p className="section-subtitle">
               Notre accompagnement se base sur le référentiel officiel de l'ANSSI.
@@ -1934,7 +2165,7 @@ export default function Home() {
       <section className="video-section">
         <div className="container">
           <div className="section-title">
-            <span className="section-badge">COMPRENDRE</span>
+            <span className="section-badge cyan">COMPRENDRE</span>
             <h2>🎥 Comprendre NIS2 en vidéo</h2>
             <p className="section-subtitle">
               Découvrez en quelques minutes ce que la directive NIS2 signifie concrètement pour votre entreprise.
@@ -1952,7 +2183,7 @@ export default function Home() {
       <section className="testimonials-section">
         <div className="container">
           <div className="section-title">
-            <span className="section-badge accent">TÉMOIGNAGES</span>
+            <span className="section-badge">TÉMOIGNAGES</span>
             <h2>Dirigeants conformes, entreprises gagnantes</h2>
             <p className="section-subtitle">
               Ils ont fait de NIS2 un levier de performance
@@ -2019,7 +2250,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRICING */}
+      {/* PRICING SIMPLIFIÉ */}
       <section className="pricing-section" id="pricing">
         <div className="container">
           <div className="section-title">
@@ -2037,6 +2268,7 @@ export default function Home() {
           </div>
           
           <div className="pricing-grid">
+            {/* DÉCOUVERTE */}
             <div className="price-card">
               <h3>Découverte</h3>
               <div className="price">3 490€</div>
@@ -2056,6 +2288,7 @@ export default function Home() {
               </button>
             </div>
             
+            {/* ESSENTIEL */}
             <div className="price-card popular">
               <h3>Essentiel</h3>
               <div className="price">7 990€</div>
@@ -2064,41 +2297,45 @@ export default function Home() {
                 <strong>Idéal pour :</strong>
                 Entités nécessitant un plan structuré
               </div>
-              <ul className="price-features">
-                <li>Audit cyber NIS2</li>
-                <li>Rapport complet validé par nos équipes</li>
-                <li>Analyse des écarts de conformité</li>
-                <li>Plan de remédiation détaillé avec priorisation</li>
-                <li><strong>Restitution avec un expert, 1h de visio</strong></li>
-                <li>Accès à notre base de modèles de documents</li>
-                <li>6 mois d'accès à notre plateforme</li>
-              </ul>
+              
+              <div className="price-plus-section">
+                <h4>✓ Tout de Découverte, plus :</h4>
+                <ul className="price-features">
+                  <li>Rapport complet validé par nos équipes</li>
+                  <li>Plan de remédiation détaillé avec priorisation</li>
+                  <li><strong>Restitution avec un expert (1h visio)</strong></li>
+                  <li>Accès base de modèles de documents</li>
+                  <li>6 mois d'accès plateforme</li>
+                </ul>
+              </div>
+
               <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary" style={{width: '100%'}}>
                 Prendre rendez-vous
               </a>
             </div>
             
+            {/* EXPERTISE */}
             <div className="price-card">
               <h3>Expertise</h3>
               <div className="price">14 900€</div>
               <div className="price-duration">1 mois</div>
               <div className="price-ideal">
                 <strong>Idéal pour :</strong>
-                Entités nécessitant un accompagnement complet
+                Accompagnement complet avec enregistrement ANSSI
               </div>
-              <ul className="price-features">
-                <li>Audit cyber NIS2</li>
-                <li>Rapport complet validé par nos équipes</li>
-                <li>Analyse des écarts de conformité</li>
-                <li>Plan de remédiation détaillé avec priorisation</li>
-                <li><strong>Entretien préalable + Restitution avec expert</strong></li>
-                <li>Roadmap personnalisée pour mise en conformité</li>
-                <li>Enregistrement de votre entreprise à l'ANSSI</li>
-                <li>Constitution dossier d'aides d'état</li>
-                <li>Accès à notre base de modèles de documents</li>
-                <li>12 mois d'accès à notre plateforme</li>
-                <li>Mise à jour des dernières évolutions législatives</li>
-              </ul>
+              
+              <div className="price-plus-section">
+                <h4>✓ Tout de Essentiel, plus :</h4>
+                <ul className="price-features">
+                  <li><strong>Entretien préalable + Restitution expert</strong></li>
+                  <li>Roadmap personnalisée mise en conformité</li>
+                  <li>Enregistrement entreprise à l'ANSSI</li>
+                  <li>Constitution dossier aides d'état</li>
+                  <li>12 mois plateforme (vs 6 mois)</li>
+                  <li>Mises à jour évolutions législatives</li>
+                </ul>
+              </div>
+
               <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary" style={{width: '100%'}}>
                 Prendre rendez-vous
               </a>
@@ -2111,7 +2348,7 @@ export default function Home() {
       <section className="faq-section">
         <div className="container">
           <div className="section-title">
-            <span className="section-badge">FAQ</span>
+            <span className="section-badge cyan">FAQ</span>
             <h2>Les questions que se posent les dirigeants</h2>
           </div>
           
@@ -2197,7 +2434,7 @@ export default function Home() {
           <h2>Sécurisez votre avenir dès aujourd'hui</h2>
           <p>
             Échange confidentiel avec un consultant certifié ISO 27001<br/>
-            <strong>Audit indépendant pour mesurer votre conformité et identifier les écarts critiques, avec des livrables clairs et actionnables.</strong>
+            <strong>Audit indépendant pour mesurer votre conformité et identifier les écarts critiques.</strong>
           </p>
           <div>
             <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary">
@@ -2238,7 +2475,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* QUIZ MODAL */}
+      {/* QUIZ MODAL - Toutes les 10 questions */}
       <div className="modal" id="quizModal">
         <div className="modal-content">
           <button className="modal-close" onClick={() => window.closeQuiz()}>×</button>
