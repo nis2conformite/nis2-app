@@ -30,8 +30,10 @@ export default function Home() {
 
     const initializeApp = () => {
       try {
+        let quizIsOpen = false;
         let videoIsPlaying = false;
 
+        // Sticky header
         const stickyHeader = document.getElementById('stickyHeader');
         const heroSection = document.querySelector('.hero');
         
@@ -46,6 +48,7 @@ export default function Home() {
             }
         });
 
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -56,12 +59,14 @@ export default function Home() {
             });
         });
 
+        // FAQ accordion
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', function() {
                 this.classList.toggle('active');
             });
         });
 
+        // Intersection Observer
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -76,116 +81,244 @@ export default function Home() {
             });
         }, observerOptions);
 
-        document.querySelectorAll('.price-card, .testimonial, .credibility-card, .timeline-item, .service-card').forEach(el => {
+        document.querySelectorAll('.price-card, .testimonial, .impact-card, .expertise-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             observer.observe(el);
         });
 
+        // Carousel
         const carousel = document.getElementById('testimonialCarousel');
-        if (carousel) {
-            const wrapper = carousel.querySelector('.testimonials-wrapper');
-            const testimonials = carousel.querySelectorAll('.testimonial');
-            const dotsContainer = document.getElementById('carouselDots');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            
-            let currentIndex = 0;
-            const totalSlides = testimonials.length;
+        const wrapper = carousel.querySelector('.testimonials-wrapper');
+        const testimonials = carousel.querySelectorAll('.testimonial');
+        const dotsContainer = document.getElementById('carouselDots');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        let currentIndex = 0;
+        const totalSlides = testimonials.length;
 
-            for (let i = 0; i < totalSlides; i++) {
-                const dot = document.createElement('div');
-                dot.classList.add('carousel-dot');
-                if (i === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => goToSlide(i));
-                dotsContainer.appendChild(dot);
-            }
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('carousel-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
 
-            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
 
-            function updateCarousel() {
-                wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentIndex);
-                });
-            }
-
-            function goToSlide(index) {
-                currentIndex = index;
-                updateCarousel();
-            }
-
-            function nextSlide() {
-                currentIndex = (currentIndex + 1) % totalSlides;
-                updateCarousel();
-            }
-
-            function prevSlide() {
-                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                updateCarousel();
-            }
-
-            nextBtn.addEventListener('click', nextSlide);
-            prevBtn.addEventListener('click', prevSlide);
-
-            let autoplayInterval = setInterval(nextSlide, 5000);
-
-            carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-            carousel.addEventListener('mouseleave', () => autoplayInterval = setInterval(nextSlide, 5000));
-
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            carousel.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-
-            carousel.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                if (touchStartX - touchEndX > 50) nextSlide();
-                if (touchEndX - touchStartX > 50) prevSlide();
+        function updateCarousel() {
+            wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
             });
         }
 
-        window.openVideoModal = function() {
-            const modal = document.getElementById('videoModal');
-            const iframe = modal.querySelector('iframe');
-            modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('show'), 10);
-            videoIsPlaying = true;
-            if (iframe.src.indexOf('autoplay=1') === -1) {
-                iframe.src += '&autoplay=1';
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        let autoplayInterval = setInterval(nextSlide, 5000);
+
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(autoplayInterval);
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            autoplayInterval = setInterval(nextSlide, 5000);
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                nextSlide();
+            } else if (touchEndX - touchStartX > 50) {
+                prevSlide();
             }
+        });
+
+        // Video Modal
+        const videoThumbnail = document.getElementById('videoThumbnail');
+        const videoModal = document.getElementById('videoModal');
+        const closeVideoBtn = document.getElementById('closeVideo');
+        const youtubeIframe = document.getElementById('youtubeIframe');
+
+        if (videoThumbnail) {
+            videoThumbnail.addEventListener('click', () => {
+                videoModal.style.display = 'flex';
+                videoIsPlaying = true;
+                youtubeIframe.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        if (closeVideoBtn) {
+            closeVideoBtn.addEventListener('click', () => {
+                videoModal.style.display = 'none';
+                videoIsPlaying = false;
+                youtubeIframe.src = '';
+                document.body.style.overflow = 'auto';
+            });
+        }
+
+        if (videoModal) {
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) {
+                    videoModal.style.display = 'none';
+                    videoIsPlaying = false;
+                    youtubeIframe.src = '';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Quiz
+        let currentQuestion = 1;
+        let answers = {};
+
+        window.openQuiz = function() {
+            if (videoIsPlaying) {
+                alert('Veuillez fermer la vidéo avant de commencer le quiz');
+                return;
+            }
+            const quizModal = document.getElementById('quizModal');
+            quizModal.style.display = 'flex';
+            quizIsOpen = true;
             document.body.style.overflow = 'hidden';
+            currentQuestion = 1;
+            answers = {};
+            document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('active'));
+            document.querySelector('.quiz-question[data-question="1"]').classList.add('active');
+            updateProgress();
+            document.getElementById('quizPrevBtn').style.display = 'none';
+            document.getElementById('quizNextBtn').disabled = true;
         };
 
-        window.closeVideoModal = function() {
-            const modal = document.getElementById('videoModal');
-            const iframe = modal.querySelector('iframe');
-            modal.classList.remove('show');
-            setTimeout(() => {
-                modal.style.display = 'none';
-                iframe.src = iframe.src.replace('&autoplay=1', '');
-            }, 300);
-            videoIsPlaying = false;
-            document.body.style.overflow = '';
+        window.closeQuiz = function() {
+            const quizModal = document.getElementById('quizModal');
+            quizModal.style.display = 'none';
+            quizIsOpen = false;
+            document.body.style.overflow = 'auto';
+            document.getElementById('quizQuestionsContainer').style.display = 'block';
+            document.getElementById('quizResults').style.display = 'none';
+            document.getElementById('quizNavigation').style.display = 'flex';
         };
 
-        window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                if (e.target.id === 'videoModal') window.closeVideoModal();
-            }
-        });
+        window.selectAnswer = function(questionNum, answer, element) {
+            answers[questionNum] = answer;
+            const questionDiv = document.querySelector(`.quiz-question[data-question="${questionNum}"]`);
+            questionDiv.querySelectorAll('.quiz-answer').forEach(a => a.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('quizNextBtn').disabled = false;
+        };
 
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                if (videoIsPlaying) window.closeVideoModal();
+        window.nextQuestion = function() {
+            if (currentQuestion < 10) {
+                document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.remove('active');
+                currentQuestion++;
+                document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.add('active');
+                updateProgress();
+                document.getElementById('quizPrevBtn').style.display = 'block';
+                document.getElementById('quizNextBtn').disabled = !answers[currentQuestion];
+                if (currentQuestion === 10) {
+                    document.getElementById('quizNextBtn').textContent = 'Voir mes résultats →';
+                }
+            } else {
+                showResults();
             }
-        });
+        };
+
+        window.prevQuestion = function() {
+            if (currentQuestion > 1) {
+                document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.remove('active');
+                currentQuestion--;
+                document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.add('active');
+                updateProgress();
+                if (currentQuestion === 1) {
+                    document.getElementById('quizPrevBtn').style.display = 'none';
+                }
+                document.getElementById('quizNextBtn').disabled = false;
+                document.getElementById('quizNextBtn').textContent = 'Suivant →';
+            }
+        };
+
+        function updateProgress() {
+            const progress = (currentQuestion / 10) * 100;
+            document.getElementById('quizProgressBar').style.width = `${progress}%`;
+            document.getElementById('quizProgressText').textContent = `Question ${currentQuestion} sur 10`;
+        }
+
+        function showResults() {
+            let score = 0;
+            for (let i = 1; i <= 10; i++) {
+                if (answers[i] === 'oui') score++;
+            }
+
+            document.getElementById('quizQuestionsContainer').style.display = 'none';
+            document.getElementById('quizNavigation').style.display = 'none';
+            document.getElementById('quizResults').style.display = 'block';
+
+            const scoreNumber = document.getElementById('scoreNumber');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultDesc = document.getElementById('resultDesc');
+            const scoreCircle = document.getElementById('scoreCircle');
+
+            scoreNumber.textContent = score;
+
+            if (score >= 7) {
+                resultTitle.textContent = '🎯 Risque élevé - Action urgente';
+                resultDesc.textContent = 'Votre entreprise est concernée par NIS2. Un audit complet est fortement recommandé pour éviter des sanctions.';
+                scoreCircle.style.borderColor = '#EF4444';
+            } else if (score >= 4) {
+                resultTitle.textContent = '⚠️ Risque modéré - Prudence conseillée';
+                resultDesc.textContent = 'Vous pourriez être concerné par NIS2. Un diagnostic gratuit vous aidera à clarifier votre situation.';
+                scoreCircle.style.borderColor = '#F97316';
+            } else {
+                resultTitle.textContent = '✅ Risque faible - Restez vigilant';
+                resultDesc.textContent = 'Vous semblez peu concerné pour l\'instant, mais NIS2 évolue. Gardez un œil sur les mises à jour réglementaires.';
+                scoreCircle.style.borderColor = '#10B981';
+            }
+        }
+
+        const closeQuizBtn = document.getElementById('closeQuiz');
+        if (closeQuizBtn) {
+            closeQuizBtn.addEventListener('click', window.closeQuiz);
+        }
+
+        const quizModal = document.getElementById('quizModal');
+        if (quizModal) {
+            quizModal.addEventListener('click', (e) => {
+                if (e.target === quizModal) {
+                    window.closeQuiz();
+                }
+            });
+        }
 
       } catch (error) {
-        console.error('Error initializing app:', error);
+        console.error('Erreur initialisation:', error);
       }
     };
 
@@ -199,497 +332,494 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>NIS2 Conformité | Devenez conforme en 90 jours | Expert ISO 27001</title>
-        <meta name="description" content="Devenez conforme NIS2 en 90 jours avec des experts certifiés ISO 27001. Audit, accompagnement et mise en conformité pour PME et ETI. 0 client sanctionné." />
+        <title>NIS2 - Conformité en 90 jours | Cyber Solferino</title>
+        <meta name="description" content="Devenez conforme NIS2 en 90 jours avec nos experts certifiés. Évitez les amendes jusqu'à 10M€." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       </Head>
 
       <style jsx global>{`
-        :root {
-          --primary-dark: #0F172A;
-          --primary: #1E293B;
-          --primary-light: #334155;
-          --accent: #F97316;
-          --accent-light: #FB923C;
-          --accent-hover: #EA580C;
-          --accent-secondary: #06B6D4;
-          --accent-secondary-light: #22D3EE;
-          --accent-secondary-dark: #0891B2;
-          --text-primary: #0F172A;
-          --text-secondary: #475569;
-          --text-light: #94A3B8;
-          --bg-primary: #FFFFFF;
-          --bg-secondary: #F8FAFC;
-          --bg-accent: #FFF7ED;
-          --bg-accent-secondary: #ECFEFF;
-          --bg-dark: #0F172A;
-          --success: #10B981;
-          --success-bg: rgba(16, 185, 129, 0.1);
-          --success-border: rgba(16, 185, 129, 0.2);
-          --warning: #F59E0B;
-          --warning-bg: rgba(245, 158, 11, 0.1);
-          --warning-border: rgba(245, 158, 11, 0.2);
-          --error: #EF4444;
-          --error-bg: rgba(239, 68, 68, 0.1);
-          --error-border: rgba(239, 68, 68, 0.2);
-          --info: #3B82F6;
-          --info-bg: rgba(59, 130, 246, 0.1);
-          --info-border: rgba(59, 130, 246, 0.2);
-          --space-xs: 8px;
-          --space-sm: 16px;
-          --space-md: 24px;
-          --space-lg: 32px;
-          --space-xl: 48px;
-          --space-2xl: 64px;
-          --space-3xl: 96px;
-          --container-sm: 640px;
-          --container-md: 768px;
-          --container-lg: 1024px;
-          --container-xl: 1280px;
-          --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-          --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        /* ===== DESIGN SYSTEM V3 - NEOMA + BLEU DÉFENSE ===== */
 
+        /* RESET */
         * {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
         }
 
+        /* VARIABLES CSS */
+        :root {
+          /* Couleurs Principales */
+          --primary-blue: #1E3A8A;
+          --blue-light: #3B82F6;
+          --blue-dark: #1E40AF;
+          --navy: #0F172A;
+          --cyan: #06B6D4;
+
+          /* Accent Orange */
+          --orange: #F97316;
+          --orange-light: #FB923C;
+          --orange-dark: #EA580C;
+
+          /* Backgrounds */
+          --bg-blue-ultra-light: #EFF6FF;
+          --bg-gray: #F8FAFC;
+          --bg-white: #FFFFFF;
+
+          /* Texte */
+          --text-primary: #0F172A;
+          --text-secondary: #475569;
+          --text-light: #64748B;
+
+          /* Borders */
+          --border-light: #E2E8F0;
+          --border-blue: #DBEAFE;
+
+          /* Spacing */
+          --space-xs: 8px;
+          --space-sm: 12px;
+          --space-md: 20px;
+          --space-lg: 32px;
+          --space-xl: 48px;
+          --space-2xl: 64px;
+          --space-3xl: 100px;
+
+          /* Typography */
+          --weight-regular: 400;
+          --weight-medium: 500;
+          --weight-semibold: 600;
+          --weight-bold: 700;
+          --weight-extrabold: 800;
+        }
+
+        /* BASE */
         body {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-          line-height: 1.6;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          -webkit-font-smoothing: antialiased;
           color: var(--text-primary);
-          background: var(--bg-primary);
-          overflow-x: hidden;
+          background: var(--bg-white);
+          line-height: 1.7;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-          font-weight: 600;
-          line-height: 1.2;
-          color: var(--text-primary);
-        }
-
+        /* TYPOGRAPHY - STYLE NEOMA */
         h1 {
-          font-size: clamp(36px, 5vw, 56px);
-          font-weight: 700;
-          margin-bottom: var(--space-md);
+          font-size: 64px;
+          font-weight: 800;
+          line-height: 1.1;
+          letter-spacing: -0.03em;
+          margin-bottom: 24px;
+          color: var(--navy);
         }
 
         h2 {
-          font-size: clamp(28px, 4vw, 40px);
-          margin-bottom: var(--space-md);
+          font-size: 48px;
+          font-weight: 800;
+          line-height: 1.1;
+          letter-spacing: -0.02em;
+          margin-bottom: 20px;
+          color: var(--navy);
         }
 
         h3 {
-          font-size: clamp(20px, 3vw, 28px);
-          margin-bottom: var(--space-sm);
+          font-size: 36px;
+          font-weight: 800;
+          line-height: 1.2;
+          letter-spacing: -0.01em;
+          margin-bottom: 16px;
+          color: var(--navy);
+        }
+
+        h4 {
+          font-size: 28px;
+          font-weight: 800;
+          margin-bottom: 12px;
+          color: var(--navy);
         }
 
         p {
-          font-size: 16px;
+          font-size: 18px;
           line-height: 1.7;
           color: var(--text-secondary);
-          margin-bottom: var(--space-sm);
+          font-weight: 500;
         }
 
+        .tagline {
+          font-size: 24px;
+          font-weight: 500;
+          line-height: 1.5;
+          color: var(--text-secondary);
+        }
+
+        /* CONTAINER */
+        .container {
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 0 32px;
+        }
+
+        /* SECTIONS */
+        section {
+          padding: 100px 0;
+        }
+
+        /* BADGES */
+        .badge {
+          display: inline-block;
+          background: var(--bg-blue-ultra-light);
+          color: var(--primary-blue);
+          padding: 8px 16px;
+          border-radius: 8px;
+          font-size: 13px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: 20px;
+        }
+
+        .badge.cyan {
+          background: #CFFAFE;
+          color: #0E7490;
+        }
+
+        /* BOUTONS */
+        .btn {
+          display: inline-block;
+          padding: 16px 32px;
+          border-radius: 12px;
+          font-weight: 700;
+          font-size: 16px;
+          transition: all 0.3s;
+          cursor: pointer;
+          border: none;
+          text-decoration: none;
+          text-align: center;
+        }
+
+        .btn-primary {
+          background: var(--primary-blue);
+          color: white;
+          box-shadow: 0 4px 14px rgba(30, 58, 138, 0.25);
+        }
+
+        .btn-primary:hover {
+          background: var(--blue-dark);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(30, 58, 138, 0.35);
+        }
+
+        .btn-secondary {
+          background: white;
+          color: var(--primary-blue);
+          border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+          background: var(--bg-blue-ultra-light);
+        }
+
+        .btn-alert {
+          background: var(--orange);
+          color: white;
+          box-shadow: 0 4px 14px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn-alert:hover {
+          background: var(--orange-dark);
+        }
+
+        /* CARDS - STYLE NEOMA */
+        .card {
+          background: white;
+          border: 2px solid var(--border-light);
+          border-radius: 20px;
+          padding: 40px 32px;
+          transition: all 0.4s;
+        }
+
+        .card:hover {
+          border-color: var(--primary-blue);
+          transform: translateY(-8px);
+          box-shadow: 0 20px 60px rgba(30, 58, 138, 0.15);
+        }
+
+        /* ===== HEADER ===== */
         .sticky-header {
           position: fixed;
-          top: -100px;
+          top: 0;
           left: 0;
           right: 0;
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(10px);
-          box-shadow: 0 2px 16px rgba(15, 23, 42, 0.08);
-          padding: var(--space-sm) 0;
-          transition: top var(--transition-base);
+          background: white;
+          border-bottom: 1px solid var(--border-light);
+          padding: 20px 0;
           z-index: 1000;
-          border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+          opacity: 0;
+          transform: translateY(-100%);
+          transition: all 0.3s;
         }
 
         .sticky-header.visible {
-          top: 0;
+          opacity: 1;
+          transform: translateY(0);
         }
 
-        .sticky-header .container {
+        .sticky-header-content {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          max-width: var(--container-xl);
-          margin: 0 auto;
-          padding: 0 var(--space-md);
         }
 
-        .sticky-header .logo {
-          font-size: 20px;
-          font-weight: 700;
-          color: var(--primary);
-        }
-
-        .hero {
-          background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary) 100%);
-          color: white;
-          padding: var(--space-3xl) 0 var(--space-2xl);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .hero::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 600px;
-          height: 600px;
-          background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
-          pointer-events: none;
-        }
-
-        .hero::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 500px;
-          height: 500px;
-          background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
-          pointer-events: none;
-        }
-
-        .hero .container {
-          max-width: var(--container-lg);
-          margin: 0 auto;
-          padding: 0 var(--space-md);
-          position: relative;
-          z-index: 1;
-        }
-
-        .hero .logo {
+        .logo {
           font-size: 24px;
-          font-weight: 700;
-          margin-bottom: var(--space-sm);
-          opacity: 0.95;
+          font-weight: 800;
+          color: var(--primary-blue);
+          text-decoration: none;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+          background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+          padding-top: 120px;
+          padding-bottom: 100px;
+        }
+
+        .hero-content {
+          text-align: center;
+          max-width: 900px;
+          margin: 0 auto 60px;
         }
 
         .hero h1 {
-          color: white;
-          margin-bottom: var(--space-sm);
+          margin-bottom: 24px;
         }
 
-        .hero .tagline {
-          font-size: 20px;
-          line-height: 1.5;
-          opacity: 0.9;
-          margin-bottom: var(--space-xl);
-          max-width: 700px;
+        .hero-ctas {
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+          margin-top: 32px;
+          flex-wrap: wrap;
         }
 
-        .hero-stats {
+        .hero-note {
+          margin-top: 24px;
+          font-size: 15px;
+          color: var(--text-secondary);
+          font-weight: 500;
+        }
+
+        .hero-note::before {
+          content: '✓ ';
+          color: #10B981;
+          font-weight: 700;
+        }
+
+        /* STATS GRID */
+        .stats-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: var(--space-md);
-          margin-top: var(--space-xl);
+          grid-template-columns: repeat(6, 1fr);
+          gap: 40px;
+          margin-top: 60px;
         }
 
-        .stat-card {
-          background: rgba(255, 255, 255, 0.08);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          border-radius: 12px;
-          padding: var(--space-md);
+        .stat-item {
           text-align: center;
-          transition: all var(--transition-base);
-        }
-
-        .stat-card:hover {
-          background: rgba(255, 255, 255, 0.12);
-          transform: translateY(-4px);
         }
 
         .stat-number {
           font-size: 48px;
-          font-weight: 700;
-          color: var(--accent-light);
+          font-weight: 800;
+          color: var(--primary-blue);
           display: block;
-          margin-bottom: var(--space-xs);
+          line-height: 1;
+          margin-bottom: 8px;
         }
 
         .stat-label {
           font-size: 14px;
-          opacity: 0.9;
+          color: var(--text-secondary);
           font-weight: 500;
         }
 
-        .btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: var(--space-xs);
-          padding: 16px 32px;
-          border-radius: 8px;
-          font-weight: 600;
-          font-size: 16px;
-          text-decoration: none;
-          transition: all var(--transition-fast);
-          cursor: pointer;
-          border: none;
-          font-family: inherit;
-        }
-
-        .btn-primary {
-          background: var(--accent);
-          color: white;
-          box-shadow: 0 2px 8px rgba(249, 115, 22, 0.25);
-        }
-
-        .btn-primary:hover {
-          background: var(--accent-hover);
-          box-shadow: 0 4px 16px rgba(249, 115, 22, 0.35);
-          transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-          background: transparent;
-          color: white;
-          border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-          background: white;
-          color: var(--primary);
-        }
-
-        section {
-          padding: var(--space-2xl) 0;
-        }
-
-        .container {
-          max-width: var(--container-xl);
-          margin: 0 auto;
-          padding: 0 var(--space-md);
-        }
-
-        .section-badge {
-          display: inline-block;
-          background: rgba(249, 115, 22, 0.1);
-          color: var(--accent);
-          border: 1px solid rgba(249, 115, 22, 0.2);
-          border-radius: 6px;
-          padding: 6px 14px;
-          font-size: 13px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          margin-bottom: var(--space-md);
-        }
-
-        .section-badge.cyan {
-          background: rgba(6, 182, 212, 0.1);
-          color: var(--accent-secondary);
-          border-color: rgba(6, 182, 212, 0.2);
-        }
-
-        .section-title {
-          text-align: center;
-          margin-bottom: var(--space-xl);
-        }
-
-        .section-subtitle {
-          text-align: center;
-          font-size: 18px;
-          color: var(--text-secondary);
-          max-width: 700px;
-          margin: 0 auto var(--space-xl);
-        }
-
-        .credibility-section {
-          background: var(--bg-secondary);
-          padding: var(--space-2xl) 0;
+        /* ===== CREDIBILITY ===== */
+        .credibility {
+          background: var(--bg-white);
         }
 
         .credibility-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: var(--space-lg);
-          max-width: var(--container-md);
-          margin: 0 auto;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 32px;
         }
 
         .credibility-card {
           background: white;
-          border: 1px solid rgba(15, 23, 42, 0.1);
-          border-radius: 16px;
-          padding: var(--space-xl);
+          border: 2px solid var(--border-light);
+          border-radius: 20px;
+          padding: 40px;
           text-align: center;
-          transition: all var(--transition-base);
+          transition: all 0.4s;
         }
 
         .credibility-card:hover {
-          border-color: var(--accent);
-          box-shadow: 0 4px 24px rgba(249, 115, 22, 0.12);
+          border-color: var(--primary-blue);
           transform: translateY(-4px);
+          box-shadow: 0 12px 40px rgba(30, 58, 138, 0.12);
         }
 
         .credibility-icon {
-          width: 64px;
-          height: 64px;
-          background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto var(--space-md);
-          color: white;
-          font-size: 32px;
-          font-weight: 700;
+          font-size: 48px;
+          margin-bottom: 20px;
         }
 
-        .credibility-list {
-          list-style: none;
-          text-align: left;
-          margin-top: var(--space-md);
+        .credibility-card h3 {
+          font-size: 24px;
+          margin-bottom: 12px;
         }
 
-        .credibility-list li {
-          padding: var(--space-xs) 0;
-          color: var(--text-secondary);
-          display: flex;
-          align-items: center;
-          gap: var(--space-xs);
+        .credibility-card p {
+          font-size: 16px;
         }
 
-        .credibility-list li::before {
-          content: '✓';
-          color: var(--success);
-          font-weight: 700;
+        /* ===== APPROCHE ===== */
+        .approach {
+          background: var(--bg-gray);
         }
 
-        .approach-section {
-          background: white;
-        }
-
-        .timeline-container {
+        .approach-header {
+          text-align: center;
           max-width: 800px;
-          margin: var(--space-xl) auto 0;
+          margin: 0 auto 60px;
+        }
+
+        .timeline {
+          max-width: 900px;
+          margin: 0 auto;
         }
 
         .timeline-item {
           display: flex;
-          gap: var(--space-lg);
-          padding: var(--space-lg) 0;
-          border-left: 2px solid rgba(6, 182, 212, 0.2);
+          gap: 32px;
+          margin-bottom: 48px;
           position: relative;
-          padding-left: 60px;
-          margin-left: 20px;
-        }
-
-        .timeline-item:last-child {
-          border-left-color: transparent;
         }
 
         .timeline-number {
-          position: absolute;
-          left: -20px;
-          width: 40px;
-          height: 40px;
-          background: white;
-          border: 3px solid var(--accent-secondary);
+          flex-shrink: 0;
+          width: 60px;
+          height: 60px;
+          background: var(--cyan);
+          color: white;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-weight: 700;
-          color: var(--accent-secondary);
-          font-size: 16px;
-          box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+          font-size: 24px;
+          font-weight: 800;
         }
 
         .timeline-content h3 {
-          color: var(--primary);
+          font-size: 28px;
+          margin-bottom: 12px;
         }
 
-        .split-section {
-          background: var(--bg-secondary);
-        }
-
-        .split-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-          gap: var(--space-lg);
-        }
-
-        .split-card {
+        /* ===== RISQUES VS OPPORTUNITÉS ===== */
+        .risks-opportunities {
           background: white;
-          border: 1px solid rgba(15, 23, 42, 0.1);
-          border-radius: 16px;
-          padding: var(--space-xl);
         }
 
-        .split-card.risks {
-          border-top: 4px solid var(--error);
+        .risks-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 40px;
+          margin-bottom: 48px;
         }
 
-        .split-card.opportunities {
-          border-top: 4px solid var(--success);
+        .risk-card {
+          background: white;
+          border: 2px solid var(--border-light);
+          border-radius: 20px;
+          padding: 40px;
         }
 
-        .split-card h3 {
-          display: flex;
-          align-items: center;
-          gap: var(--space-sm);
-          margin-bottom: var(--space-lg);
+        .risk-card.negative {
+          border-top: 4px solid #EF4444;
         }
 
-        .split-list {
+        .risk-card.positive {
+          border-top: 4px solid #10B981;
+        }
+
+        .risk-card h3 {
+          font-size: 28px;
+          margin-bottom: 24px;
+        }
+
+        .risk-card.negative h3 {
+          color: #DC2626;
+        }
+
+        .risk-card.positive h3 {
+          color: #059669;
+        }
+
+        .risk-list {
           list-style: none;
         }
 
-        .split-list li {
-          padding: var(--space-md) 0;
-          border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-xs);
-        }
-
-        .split-list li:last-child {
-          border-bottom: none;
-        }
-
-        .split-list strong {
-          color: var(--primary);
-          font-weight: 600;
-        }
-
-        .split-list span {
+        .risk-list li {
+          padding: 12px 0;
+          padding-left: 32px;
+          position: relative;
+          font-size: 16px;
           color: var(--text-secondary);
-          font-size: 15px;
         }
 
-        .video-section {
-          background: white;
+        .risk-list li::before {
+          position: absolute;
+          left: 0;
+          font-weight: 700;
+          font-size: 18px;
+        }
+
+        .risk-card.negative .risk-list li::before {
+          content: '⚠️';
+        }
+
+        .risk-card.positive .risk-list li::before {
+          content: '✓';
+          color: #10B981;
+        }
+
+        .risks-cta {
           text-align: center;
         }
 
-        .video-thumbnail {
-          max-width: 800px;
+        /* ===== VIDEO ===== */
+        .video-section {
+          background: var(--bg-gray);
+        }
+
+        .video-content {
+          text-align: center;
+          max-width: 900px;
           margin: 0 auto;
+        }
+
+        .video-thumbnail {
           position: relative;
-          border-radius: 16px;
+          border-radius: 20px;
           overflow: hidden;
-          box-shadow: 0 8px 32px rgba(15, 23, 42, 0.12);
           cursor: pointer;
-          transition: all var(--transition-base);
-          border: 2px solid transparent;
+          margin-top: 40px;
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s;
         }
 
         .video-thumbnail:hover {
           transform: scale(1.02);
-          box-shadow: 0 12px 48px rgba(249, 115, 22, 0.2);
-          border-color: var(--accent);
         }
 
         .video-thumbnail img {
@@ -697,521 +827,484 @@ export default function Home() {
           display: block;
         }
 
-        .video-play-btn {
+        .play-button {
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
           width: 80px;
           height: 80px;
-          background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+          background: var(--primary-blue);
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           color: white;
           font-size: 32px;
-          transition: all var(--transition-base);
-          box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);
+          transition: all 0.3s;
         }
 
-        .video-thumbnail:hover .video-play-btn {
+        .video-thumbnail:hover .play-button {
           transform: translate(-50%, -50%) scale(1.1);
-          box-shadow: 0 12px 32px rgba(249, 115, 22, 0.5);
+          background: var(--blue-dark);
         }
 
-        .testimonials-section {
-          background: var(--bg-secondary);
+        .video-modal {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.9);
+          z-index: 10000;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
         }
 
-        .testimonials-carousel {
+        .video-modal-content {
           position: relative;
-          max-width: var(--container-md);
-          margin: 0 auto;
+          width: 100%;
+          max-width: 1000px;
+          aspect-ratio: 16/9;
+        }
+
+        .close-video {
+          position: absolute;
+          top: -40px;
+          right: 0;
+          background: white;
+          border: none;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          font-size: 24px;
+          color: var(--navy);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .video-modal iframe {
+          width: 100%;
+          height: 100%;
+          border-radius: 12px;
+        }
+
+        /* ===== TÉMOIGNAGES ===== */
+        .testimonials-section {
+          background: white;
+        }
+
+        .testimonials-header {
+          text-align: center;
+          max-width: 800px;
+          margin: 0 auto 60px;
+        }
+
+        .testimonial-carousel {
+          position: relative;
           overflow: hidden;
+          max-width: 1000px;
+          margin: 0 auto;
         }
 
         .testimonials-wrapper {
           display: flex;
-          transition: transform 0.5s ease-in-out;
+          transition: transform 0.5s ease;
         }
 
         .testimonial {
           min-width: 100%;
           background: white;
-          border: 1px solid rgba(15, 23, 42, 0.1);
-          border-radius: 16px;
-          padding: var(--space-xl);
-        }
-
-        .testimonial-content {
-          font-size: 18px;
-          line-height: 1.8;
-          color: var(--text-secondary);
-          font-style: italic;
-          margin-bottom: var(--space-lg);
-        }
-
-        .testimonial-author {
-          display: flex;
-          align-items: center;
-          gap: var(--space-md);
+          border: 2px solid var(--border-light);
+          border-radius: 20px;
+          padding: 48px;
+          text-align: center;
         }
 
         .testimonial-avatar {
-          width: 64px;
-          height: 64px;
-          background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-secondary-light) 100%);
+          width: 80px;
+          height: 80px;
           border-radius: 50%;
+          margin: 0 auto 24px;
+          background: var(--bg-blue-ultra-light);
           display: flex;
           align-items: center;
           justify-content: center;
-          color: white;
-          font-size: 24px;
-          font-weight: 700;
+          font-size: 36px;
         }
 
-        .testimonial-info h4 {
-          color: var(--primary);
+        .testimonial-text {
+          font-size: 20px;
+          line-height: 1.6;
+          color: var(--text-secondary);
+          margin-bottom: 24px;
+          font-style: italic;
+        }
+
+        .testimonial-author {
+          font-weight: 700;
+          color: var(--navy);
           margin-bottom: 4px;
         }
 
-        .testimonial-info p {
+        .testimonial-role {
+          font-size: 15px;
           color: var(--text-light);
-          font-size: 14px;
-          margin: 0;
         }
 
         .carousel-controls {
           display: flex;
           justify-content: center;
           align-items: center;
-          gap: var(--space-md);
-          margin-top: var(--space-lg);
+          gap: 24px;
+          margin-top: 40px;
         }
 
         .carousel-btn {
+          background: white;
+          border: 2px solid var(--primary-blue);
           width: 48px;
           height: 48px;
           border-radius: 50%;
-          background: white;
-          border: 2px solid rgba(15, 23, 42, 0.1);
+          cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
-          cursor: pointer;
-          transition: all var(--transition-fast);
-          color: var(--primary);
+          color: var(--primary-blue);
+          font-size: 20px;
+          transition: all 0.3s;
         }
 
         .carousel-btn:hover {
-          border-color: var(--accent);
-          color: var(--accent);
-          transform: scale(1.1);
+          background: var(--primary-blue);
+          color: white;
         }
 
         .carousel-dots {
           display: flex;
-          gap: var(--space-xs);
+          gap: 12px;
         }
 
         .carousel-dot {
           width: 12px;
           height: 12px;
           border-radius: 50%;
-          background: rgba(15, 23, 42, 0.2);
+          background: var(--border-light);
           cursor: pointer;
-          transition: all var(--transition-fast);
+          transition: all 0.3s;
         }
 
         .carousel-dot.active {
-          background: var(--accent);
+          background: var(--primary-blue);
           width: 32px;
           border-radius: 6px;
         }
 
-        .pricing-section {
-          background: white;
+        .testimonials-cta {
+          text-align: center;
+          margin-top: 48px;
+        }
+
+        /* ===== PRICING - STYLE NEOMA EXACT ===== */
+        .pricing {
+          background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+        }
+
+        .pricing-header {
+          text-align: center;
+          max-width: 900px;
+          margin: 0 auto 48px;
+        }
+
+        .pricing-subtitle {
+          font-size: 20px;
+          color: var(--text-secondary);
+          margin-top: 16px;
+        }
+
+        .pricing-info {
+          background: var(--bg-blue-ultra-light);
+          border-left: 4px solid var(--primary-blue);
+          padding: 20px 24px;
+          border-radius: 12px;
+          margin-bottom: 48px;
+          max-width: 700px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .pricing-info p {
+          margin: 0;
+          color: var(--primary-blue);
+          font-weight: 600;
+          font-size: 16px;
         }
 
         .pricing-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-          gap: var(--space-lg);
-          max-width: var(--container-xl);
+          grid-template-columns: repeat(3, 1fr);
+          gap: 32px;
+          max-width: 1200px;
           margin: 0 auto;
         }
 
         .price-card {
           background: white;
-          border: 2px solid rgba(15, 23, 42, 0.1);
-          border-radius: 16px;
-          padding: var(--space-xl);
-          transition: all var(--transition-base);
+          border: 2px solid var(--border-light);
+          border-radius: 20px;
+          padding: 40px 32px;
+          transition: all 0.4s;
           position: relative;
         }
 
         .price-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 8px 32px rgba(15, 23, 42, 0.12);
+          border-color: var(--primary-blue);
+          transform: translateY(-8px);
+          box-shadow: 0 20px 60px rgba(30, 58, 138, 0.15);
         }
 
-        .price-card.decouverte {
-          border-width: 2px;
-          border-style: solid;
-          border-image-slice: 1;
-          border-image-source: linear-gradient(135deg, #22D3EE 0%, #3B82F6 50%, #2563EB 100%);
+        .price-card.recommended {
+          border-color: var(--primary-blue);
+          box-shadow: 0 12px 40px rgba(30, 58, 138, 0.12);
         }
 
-        .price-card.decouverte:hover {
-          box-shadow: 0 8px 32px rgba(34, 211, 238, 0.2);
-        }
-
-        .price-card.decouverte .price-icon {
-          background: linear-gradient(135deg, #22D3EE 0%, #3B82F6 50%, #2563EB 100%);
-        }
-
-        .price-card.decouverte .price {
-          background: linear-gradient(135deg, #22D3EE 0%, #3B82F6 50%, #2563EB 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        .price-card.decouverte .btn-price {
-          background: linear-gradient(135deg, #22D3EE 0%, #3B82F6 50%, #2563EB 100%);
-        }
-
-        .price-card.essentiel {
-          border-width: 2px;
-          border-style: solid;
-          border-image-slice: 1;
-          border-image-source: linear-gradient(135deg, #A78BFA 0%, #A855F7 50%, #D946EF 100%);
-          transform: scale(1.05);
-          box-shadow: 0 20px 40px rgba(168, 139, 250, 0.2);
-        }
-
-        .price-card.essentiel::before {
-          content: '⭐ POPULAIRE';
+        .recommended-badge {
           position: absolute;
           top: -12px;
-          right: 24px;
-          background: linear-gradient(135deg, #A855F7 0%, #D946EF 100%);
+          left: 50%;
+          transform: translateX(-50%);
+          background: var(--primary-blue);
           color: white;
-          padding: 6px 16px;
+          padding: 6px 20px;
           border-radius: 20px;
-          font-size: 12px;
+          font-size: 13px;
           font-weight: 700;
-          letter-spacing: 0.5px;
+          letter-spacing: 0.03em;
         }
 
-        .price-card.essentiel .price-icon {
-          background: linear-gradient(135deg, #A78BFA 0%, #A855F7 50%, #D946EF 100%);
-        }
-
-        .price-card.essentiel .price {
-          background: linear-gradient(135deg, #A78BFA 0%, #A855F7 50%, #D946EF 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        .price-card.essentiel .btn-price {
-          background: linear-gradient(135deg, #A78BFA 0%, #A855F7 50%, #D946EF 100%);
-        }
-
-        .price-card.expertise {
-          border-width: 2px;
-          border-style: solid;
-          border-image-slice: 1;
-          border-image-source: linear-gradient(135deg, #FBBF24 0%, #F97316 50%, #EF4444 100%);
-        }
-
-        .price-card.expertise:hover {
-          box-shadow: 0 8px 32px rgba(251, 191, 36, 0.2);
-        }
-
-        .price-card.expertise .price-icon {
-          background: linear-gradient(135deg, #FBBF24 0%, #F97316 50%, #EF4444 100%);
-        }
-
-        .price-card.expertise .price {
-          background: linear-gradient(135deg, #FBBF24 0%, #F97316 50%, #EF4444 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        .price-card.expertise .btn-price {
-          background: linear-gradient(135deg, #FBBF24 0%, #F97316 50%, #EF4444 100%);
-        }
-
-        .price-icon {
-          width: 64px;
-          height: 64px;
-          border-radius: 16px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: var(--space-md);
-          color: white;
-          font-size: 32px;
-        }
-
-        .price-card h3 {
-          color: var(--primary);
-          margin-bottom: var(--space-sm);
-        }
-
-        .price {
-          font-size: 48px;
+        .price-name {
+          font-size: 14px;
           font-weight: 700;
-          margin: var(--space-md) 0;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: var(--primary-blue);
+          margin-bottom: 12px;
+        }
+
+        .price-title {
+          font-size: 24px;
+          font-weight: 800;
+          margin-bottom: 12px;
+          color: var(--navy);
+        }
+
+        .price-amount {
+          font-size: 56px;
+          font-weight: 800;
+          color: var(--navy);
           display: block;
-        }
-
-        .price-duration {
-          color: var(--text-light);
-          font-size: 14px;
-          margin-bottom: var(--space-md);
-        }
-
-        .price-ideal {
-          background: rgba(15, 23, 42, 0.05);
-          padding: var(--space-sm);
-          border-radius: 8px;
-          margin-bottom: var(--space-lg);
-          font-size: 14px;
-          color: var(--text-secondary);
-        }
-
-        .price-ideal strong {
-          color: var(--primary);
-          display: block;
+          line-height: 1;
           margin-bottom: 4px;
+        }
+
+        .price-amount sup {
+          font-size: 24px;
+          font-weight: 700;
+        }
+
+        .price-period {
+          font-size: 15px;
+          color: var(--text-light);
+          margin-bottom: 24px;
+          font-weight: 500;
+        }
+
+        .divider {
+          height: 1px;
+          background: var(--border-light);
+          margin: 24px 0;
         }
 
         .price-features {
           list-style: none;
-          margin-bottom: var(--space-lg);
+          margin-bottom: 32px;
+        }
+
+        .price-features-title {
+          font-size: 14px;
+          font-weight: 700;
+          color: var(--text-secondary);
+          margin-bottom: 16px;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
         }
 
         .price-features li {
-          padding: var(--space-sm) 0;
-          display: flex;
-          align-items: flex-start;
-          gap: var(--space-sm);
-          color: var(--text-secondary);
+          padding: 10px 0;
+          padding-left: 28px;
           font-size: 15px;
+          color: var(--text-secondary);
+          position: relative;
         }
 
         .price-features li::before {
           content: '✓';
-          color: var(--success);
+          position: absolute;
+          left: 0;
+          color: var(--primary-blue);
           font-weight: 700;
-          flex-shrink: 0;
         }
 
-        .price-features li strong {
-          color: var(--primary);
-        }
-
-        .price-plus-section {
-          background: rgba(6, 182, 212, 0.05);
-          border: 1px solid rgba(6, 182, 212, 0.2);
-          border-radius: 8px;
-          padding: var(--space-md);
-          margin: var(--space-md) 0;
-        }
-
-        .price-plus-section h4 {
-          color: var(--accent-secondary);
-          font-size: 14px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          margin-bottom: var(--space-sm);
-        }
-
-        .price-plus-section .price-features {
-          margin-bottom: 0;
-        }
-
-        .price-plus-section .price-features li::before {
-          content: '+';
-          color: var(--accent-secondary);
-        }
-
-        .btn-price {
-          width: 100%;
-          color: white;
-          padding: 16px 32px;
-          border-radius: 8px;
-          font-weight: 600;
-          font-size: 16px;
-          border: none;
-          cursor: pointer;
-          transition: all var(--transition-fast);
-          font-family: inherit;
-          text-decoration: none;
-          display: block;
+        .price-note {
+          margin-top: 16px;
+          font-size: 13px;
+          color: var(--text-light);
+          font-weight: 500;
           text-align: center;
         }
 
-        .btn-price:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        .price-note strong {
+          color: var(--primary-blue);
         }
 
-        .optional-services-section {
-          background: var(--bg-secondary);
-          padding: var(--space-3xl) 0;
+        /* ===== SERVICES OPTIONNELS ===== */
+        .services {
+          background: var(--bg-gray);
+        }
+
+        .services-header {
+          text-align: center;
+          max-width: 800px;
+          margin: 0 auto 60px;
         }
 
         .services-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: var(--space-lg);
-          max-width: var(--container-xl);
-          margin: var(--space-xl) auto 0;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 28px;
         }
 
         .service-card {
           background: white;
-          border: 1px solid rgba(15, 23, 42, 0.1);
-          border-radius: 16px;
-          padding: var(--space-xl);
-          transition: all var(--transition-base);
+          border-radius: 20px;
+          padding: 40px 32px;
+          border-top: 4px solid;
+          transition: all 0.3s;
+        }
+
+        .service-card.formation {
+          border-top-color: var(--blue-light);
+        }
+
+        .service-card.secretariat {
+          border-top-color: var(--primary-blue);
+        }
+
+        .service-card.incidents {
+          border-top-color: var(--orange);
         }
 
         .service-card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 8px 32px rgba(15, 23, 42, 0.12);
-        }
-
-        .service-card.formation {
-          border-top: 4px solid #10B981;
-        }
-
-        .service-card.formation .service-icon {
-          background: rgba(16, 185, 129, 0.1);
-          color: #10B981;
-        }
-
-        .service-card.formation .service-dot {
-          background: #10B981;
-        }
-
-        .service-card.secretariat {
-          border-top: 4px solid #6366F1;
-        }
-
-        .service-card.secretariat .service-icon {
-          background: rgba(99, 102, 241, 0.1);
-          color: #6366F1;
-        }
-
-        .service-card.secretariat .service-dot {
-          background: #6366F1;
-        }
-
-        .service-card.incidents {
-          border-top: 4px solid #F43F5E;
-        }
-
-        .service-card.incidents .service-icon {
-          background: rgba(244, 63, 94, 0.1);
-          color: #F43F5E;
-        }
-
-        .service-card.incidents .service-dot {
-          background: #F43F5E;
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
         }
 
         .service-icon {
-          width: 64px;
-          height: 64px;
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: var(--space-md);
-          font-size: 32px;
+          font-size: 40px;
+          margin-bottom: 24px;
+          display: block;
         }
 
-        .service-card h4 {
+        .service-card h3 {
           font-size: 24px;
-          color: var(--primary);
-          margin-bottom: var(--space-sm);
+          margin-bottom: 16px;
         }
 
-        .service-description {
-          color: var(--text-secondary);
-          font-size: 15px;
-          margin-bottom: var(--space-md);
-        }
-
-        .service-points {
+        .service-list {
           list-style: none;
         }
 
-        .service-points li {
-          padding: var(--space-xs) 0;
-          display: flex;
-          align-items: center;
-          gap: var(--space-sm);
+        .service-list li {
+          padding: 8px 0;
+          padding-left: 24px;
+          font-size: 15px;
           color: var(--text-secondary);
-          font-size: 14px;
+          position: relative;
         }
 
-        .service-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          flex-shrink: 0;
+        .service-list li::before {
+          content: '•';
+          position: absolute;
+          left: 0;
+          font-weight: 700;
         }
 
-        .faq-section {
-          background: var(--bg-secondary);
+        .service-card.formation .service-list li::before {
+          color: var(--blue-light);
+        }
+
+        .service-card.secretariat .service-list li::before {
+          color: var(--primary-blue);
+        }
+
+        .service-card.incidents .service-list li::before {
+          color: var(--orange);
+        }
+
+        /* ===== FAQ ===== */
+        .faq {
+          background: white;
+        }
+
+        .faq-header {
+          text-align: center;
+          max-width: 800px;
+          margin: 0 auto 60px;
         }
 
         .faq-list {
-          max-width: var(--container-md);
+          max-width: 900px;
           margin: 0 auto;
         }
 
         .faq-item {
           background: white;
-          border: 1px solid rgba(15, 23, 42, 0.1);
+          border: 2px solid var(--border-light);
           border-radius: 12px;
-          margin-bottom: var(--space-md);
+          margin-bottom: 16px;
           cursor: pointer;
-          transition: all var(--transition-base);
+          transition: all 0.3s;
         }
 
         .faq-item:hover {
-          border-color: var(--accent);
+          border-color: var(--primary-blue);
         }
 
         .faq-question {
-          padding: var(--space-lg);
+          padding: 24px 28px;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          gap: var(--space-md);
+          gap: 20px;
         }
 
         .faq-question h3 {
-          color: var(--primary);
           font-size: 18px;
+          font-weight: 700;
           margin: 0;
         }
 
         .faq-icon {
-          font-size: 24px;
-          color: var(--accent);
-          transition: transform var(--transition-base);
           flex-shrink: 0;
+          width: 24px;
+          height: 24px;
+          color: var(--primary-blue);
+          transition: transform 0.3s;
+          font-weight: 700;
         }
 
         .faq-item.active .faq-icon {
@@ -1221,7 +1314,7 @@ export default function Home() {
         .faq-answer {
           max-height: 0;
           overflow: hidden;
-          transition: max-height var(--transition-base);
+          transition: max-height 0.3s ease;
         }
 
         .faq-item.active .faq-answer {
@@ -1229,760 +1322,830 @@ export default function Home() {
         }
 
         .faq-answer-content {
-          padding: 0 var(--space-lg) var(--space-lg);
+          padding: 0 28px 24px;
           color: var(--text-secondary);
-          line-height: 1.8;
+          font-size: 16px;
+          line-height: 1.7;
         }
 
+        /* ===== FINAL CTA ===== */
         .final-cta {
-          background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary) 100%);
+          background: linear-gradient(135deg, var(--navy) 0%, var(--primary-blue) 100%);
           color: white;
-          text-align: center;
-          padding: var(--space-3xl) 0;
-          position: relative;
-          overflow: hidden;
         }
 
-        .final-cta::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 500px;
-          height: 500px;
-          background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+        .final-cta-content {
+          text-align: center;
+          max-width: 700px;
+          margin: 0 auto;
         }
 
         .final-cta h2 {
           color: white;
-          margin-bottom: var(--space-md);
-          position: relative;
-          z-index: 1;
-        }
-
-        .final-cta p {
-          color: rgba(255, 255, 255, 0.9);
-          font-size: 18px;
-          margin-bottom: var(--space-xl);
-          position: relative;
-          z-index: 1;
+          margin-bottom: 32px;
         }
 
         .final-cta .btn {
-          position: relative;
-          z-index: 1;
+          background: white;
+          color: var(--primary-blue);
         }
 
-        footer {
-          background: var(--primary-dark);
-          color: rgba(255, 255, 255, 0.7);
-          padding: var(--space-xl) 0 var(--space-lg);
+        .final-cta .btn:hover {
+          background: var(--bg-blue-ultra-light);
+          transform: translateY(-2px);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+          background: var(--navy);
+          color: white;
+          padding: 60px 0 32px;
         }
 
         .footer-content {
-          max-width: var(--container-xl);
-          margin: 0 auto;
-          padding: 0 var(--space-md);
           display: flex;
-          flex-direction: column;
-          gap: var(--space-lg);
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 32px;
         }
 
-        .footer-brand {
-          font-size: 20px;
-          font-weight: 700;
-          color: white;
+        .footer-logo {
+          font-size: 24px;
+          font-weight: 800;
         }
 
         .footer-links {
           display: flex;
-          gap: var(--space-lg);
-          flex-wrap: wrap;
+          gap: 32px;
         }
 
         .footer-links a {
-          color: rgba(255, 255, 255, 0.7);
+          color: rgba(255, 255, 255, 0.8);
           text-decoration: none;
-          transition: color var(--transition-fast);
+          font-weight: 500;
+          transition: color 0.3s;
         }
 
         .footer-links a:hover {
-          color: var(--accent-light);
+          color: white;
         }
 
         .footer-bottom {
           text-align: center;
-          padding-top: var(--space-lg);
+          padding-top: 32px;
           border-top: 1px solid rgba(255, 255, 255, 0.1);
+          color: rgba(255, 255, 255, 0.6);
           font-size: 14px;
         }
 
-        .modal {
+        /* ===== QUIZ MODAL ===== */
+        .quiz-modal {
           display: none;
           position: fixed;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(15, 23, 42, 0.8);
-          backdrop-filter: blur(4px);
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.8);
           z-index: 10000;
           align-items: center;
           justify-content: center;
-          padding: var(--space-md);
-          opacity: 0;
-          transition: opacity var(--transition-base);
-        }
-
-        .modal.show {
-          opacity: 1;
-        }
-
-        .modal-content {
-          background: white;
-          border-radius: 16px;
-          max-width: 600px;
-          width: 100%;
-          max-height: 90vh;
+          padding: 20px;
           overflow-y: auto;
+        }
+
+        .quiz-container {
+          background: white;
+          border-radius: 20px;
+          width: 100%;
+          max-width: 700px;
+          padding: 48px;
           position: relative;
-          transform: scale(0.9);
-          transition: transform var(--transition-base);
         }
 
-        .modal.show .modal-content {
-          transform: scale(1);
-        }
-
-        .modal-close {
+        .quiz-close {
           position: absolute;
-          top: var(--space-md);
-          right: var(--space-md);
+          top: 20px;
+          right: 20px;
+          background: none;
+          border: none;
+          font-size: 28px;
+          cursor: pointer;
+          color: var(--text-light);
           width: 40px;
           height: 40px;
-          border-radius: 50%;
-          background: rgba(15, 23, 42, 0.08);
-          border: none;
           display: flex;
           align-items: center;
           justify-content: center;
+          border-radius: 50%;
+          transition: all 0.3s;
+        }
+
+        .quiz-close:hover {
+          background: var(--bg-gray);
+          color: var(--navy);
+        }
+
+        .quiz-header h2 {
+          font-size: 32px;
+          margin-bottom: 12px;
+        }
+
+        .quiz-header p {
+          font-size: 16px;
+          margin-bottom: 32px;
+        }
+
+        .quiz-progress {
+          margin-bottom: 32px;
+        }
+
+        .quiz-progress-text {
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--text-secondary);
+          margin-bottom: 8px;
+        }
+
+        .quiz-progress-bar-bg {
+          height: 8px;
+          background: var(--bg-gray);
+          border-radius: 4px;
+          overflow: hidden;
+        }
+
+        .quiz-progress-bar {
+          height: 100%;
+          background: var(--primary-blue);
+          transition: width 0.3s;
+        }
+
+        .quiz-questions {
+          margin-bottom: 32px;
+        }
+
+        .quiz-question {
+          display: none;
+        }
+
+        .quiz-question.active {
+          display: block;
+        }
+
+        .quiz-question-number {
+          font-size: 14px;
+          font-weight: 700;
+          color: var(--primary-blue);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: 12px;
+        }
+
+        .quiz-question-text {
+          font-size: 20px;
+          font-weight: 700;
+          color: var(--navy);
+          margin-bottom: 24px;
+          line-height: 1.4;
+        }
+
+        .quiz-answers {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .quiz-answer {
+          padding: 20px;
+          border: 2px solid var(--border-light);
+          border-radius: 12px;
           cursor: pointer;
-          transition: all var(--transition-fast);
-          font-size: 24px;
-          color: var(--text-primary);
-          z-index: 1;
+          transition: all 0.3s;
+          display: flex;
+          align-items: center;
+          gap: 16px;
         }
 
-        .modal-close:hover {
-          background: rgba(249, 115, 22, 0.1);
-          color: var(--accent);
-          transform: rotate(90deg);
+        .quiz-answer:hover {
+          border-color: var(--primary-blue);
+          background: var(--bg-blue-ultra-light);
         }
 
-        .video-modal-content {
-          max-width: 1000px;
-          padding: 0;
-          background: black;
+        .quiz-answer.selected {
+          border-color: var(--primary-blue);
+          background: var(--bg-blue-ultra-light);
         }
 
-        .video-modal-content iframe {
-          width: 100%;
-          height: 60vh;
+        .quiz-answer-radio {
+          width: 24px;
+          height: 24px;
+          border: 2px solid var(--border-light);
+          border-radius: 50%;
+          position: relative;
+          transition: all 0.3s;
+        }
+
+        .quiz-answer.selected .quiz-answer-radio {
+          border-color: var(--primary-blue);
+        }
+
+        .quiz-answer.selected .quiz-answer-radio::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 12px;
+          height: 12px;
+          background: var(--primary-blue);
+          border-radius: 50%;
+        }
+
+        .quiz-answer-text {
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--navy);
+        }
+
+        .quiz-navigation {
+          display: flex;
+          justify-content: space-between;
+          gap: 16px;
+        }
+
+        .quiz-btn {
+          flex: 1;
+          padding: 16px 32px;
+          border-radius: 12px;
+          font-weight: 700;
+          font-size: 16px;
+          cursor: pointer;
           border: none;
-          border-radius: 16px;
+          transition: all 0.3s;
         }
 
-        .text-center {
+        .quiz-btn-prev {
+          background: white;
+          color: var(--primary-blue);
+          border: 2px solid var(--primary-blue);
+        }
+
+        .quiz-btn-prev:hover {
+          background: var(--bg-blue-ultra-light);
+        }
+
+        .quiz-btn-next {
+          background: var(--primary-blue);
+          color: white;
+        }
+
+        .quiz-btn-next:hover:not(:disabled) {
+          background: var(--blue-dark);
+        }
+
+        .quiz-btn-next:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        .quiz-results {
+          display: none;
           text-align: center;
         }
 
-        .mt-xl {
-          margin-top: var(--space-xl);
+        .quiz-score-circle {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          border: 8px solid;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 32px;
+          position: relative;
         }
 
+        #scoreNumber {
+          font-size: 64px;
+          font-weight: 800;
+          color: var(--navy);
+        }
+
+        .quiz-score-label {
+          position: absolute;
+          bottom: 35px;
+          right: 45px;
+          font-size: 24px;
+          font-weight: 700;
+          color: var(--text-light);
+        }
+
+        .quiz-result-title {
+          font-size: 28px;
+          margin-bottom: 16px;
+        }
+
+        .quiz-result-desc {
+          font-size: 18px;
+          margin-bottom: 32px;
+          max-width: 500px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .quiz-result-actions {
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .quiz-result-btn {
+          padding: 16px 32px;
+          border-radius: 12px;
+          font-weight: 700;
+          font-size: 16px;
+          text-decoration: none;
+          transition: all 0.3s;
+        }
+
+        .quiz-result-btn.primary {
+          background: var(--primary-blue);
+          color: white;
+        }
+
+        .quiz-result-btn.primary:hover {
+          background: var(--blue-dark);
+        }
+
+        .quiz-result-btn.secondary {
+          background: white;
+          color: var(--primary-blue);
+          border: 2px solid var(--primary-blue);
+        }
+
+        .quiz-result-btn.secondary:hover {
+          background: var(--bg-blue-ultra-light);
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-          h1 {
+          h1 { font-size: 40px; }
+          h2 { font-size: 32px; }
+          h3 { font-size: 24px; }
+          h4 { font-size: 20px; }
+          p { font-size: 16px; }
+          .tagline { font-size: 18px; }
+
+          section { padding: 60px 0; }
+
+          .stats-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+          }
+
+          .stat-number {
             font-size: 32px;
           }
 
-          h2 {
-            font-size: 28px;
-          }
-
-          section {
-            padding: var(--space-xl) 0;
-          }
-
-          .hero {
-            padding: var(--space-2xl) 0 var(--space-xl);
-          }
-
-          .hero-stats {
+          .credibility-grid {
             grid-template-columns: 1fr;
           }
 
-          .credibility-grid,
-          .split-grid,
-          .pricing-grid,
+          .risks-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .pricing-grid {
+            grid-template-columns: 1fr;
+          }
+
           .services-grid {
             grid-template-columns: 1fr;
           }
 
-          .price-card.essentiel {
-            transform: none;
+          .price-amount {
+            font-size: 40px;
           }
 
-          .timeline-item {
-            padding-left: 40px;
-            margin-left: 15px;
+          .hero-ctas {
+            flex-direction: column;
           }
 
-          .timeline-number {
-            width: 32px;
-            height: 32px;
-            font-size: 14px;
-            left: -16px;
+          .footer-content {
+            flex-direction: column;
+            gap: 24px;
+            text-align: center;
           }
 
-          .btn {
-            padding: 14px 24px;
-            font-size: 15px;
+          .footer-links {
+            flex-direction: column;
+            gap: 16px;
+          }
+
+          .quiz-container {
+            padding: 32px 24px;
+          }
+
+          .quiz-navigation {
+            flex-direction: column;
           }
         }
       `}</style>
 
-      <header className="sticky-header" id="stickyHeader">
+      {/* HEADER STICKY */}
+      <div className="sticky-header" id="stickyHeader">
         <div className="container">
-          <div className="logo">Cyber Solferino</div>
-          <div className="header-cta">
-            <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary">
+          <div className="sticky-header-content">
+            <a href="#" className="logo">Cyber Solferino</a>
+            <a href="https://calendly.com/adrien-ruggirello/30min" className="btn btn-primary" target="_blank">
               📅 RDV expert gratuit
             </a>
           </div>
         </div>
-      </header>
+      </div>
 
+      {/* HERO */}
       <section className="hero">
         <div className="container">
-          <div className="logo">Cyber Solferino</div>
-          <h1>Devenez conforme NIS2 en 90 jours</h1>
-          <p className="tagline">
-            Protégez votre activité, votre réputation et votre résilience. Transformez NIS2 en levier de performance avec un accompagnement d'experts certifiés ISO 27001.
-          </p>
-          
-          <div className="hero-stats">
-            <div className="stat-card">
+          <div className="hero-content">
+            <h1>Devenez conforme NIS2 en 90 jours</h1>
+            <p className="tagline">
+              Protégez votre entreprise des cybermenaces et évitez les sanctions jusqu'à 10M€ avec nos experts certifiés ISO 27001
+            </p>
+            <div className="hero-ctas">
+              <button className="btn btn-primary" onClick={() => window.openQuiz()}>
+                Commencer l'audit
+              </button>
+              <a href="#approach" className="btn btn-secondary">
+                En savoir plus
+              </a>
+            </div>
+            <p className="hero-note">Paiement en plusieurs fois possible</p>
+          </div>
+
+          <div className="stats-grid">
+            <div className="stat-item">
               <span className="stat-number">+40%</span>
-              <div className="stat-label">de cyber attaques en 2024</div>
+              <div className="stat-label">Cyberattaques en 2024</div>
             </div>
-            <div className="stat-card">
+            <div className="stat-item">
               <span className="stat-number">10M€</span>
-              <div className="stat-label">amende max ou 2% du CA</div>
+              <div className="stat-label">Amende maximale</div>
             </div>
-            <div className="stat-card">
+            <div className="stat-item">
               <span className="stat-number">70%</span>
-              <div className="stat-label">d'aides de l'état possibles</div>
+              <div className="stat-label">Aides de l'État</div>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">150+</span>
+              <div className="stat-label">Clients accompagnés</div>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">98%</span>
+              <div className="stat-label">Taux de conformité</div>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">0</span>
+              <div className="stat-label">Client sanctionné</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="credibility-section">
+      {/* CREDIBILITY */}
+      <section className="credibility">
         <div className="container">
           <div className="credibility-grid">
             <div className="credibility-card">
-              <div className="credibility-icon">15+</div>
-              <h3>Années d'expérience terrain</h3>
-              <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber.</p>
-              <ul className="credibility-list">
-                <li>150+ PME et ETI accompagnées</li>
-                <li>Projets dans plus de 10 pays</li>
-                <li>0 client sanctionné</li>
-              </ul>
+              <div className="credibility-icon">🏆</div>
+              <h3>15+ années d'expérience</h3>
+              <p>Une expertise reconnue dans la cybersécurité et la conformité réglementaire</p>
             </div>
-            
             <div className="credibility-card">
-              <div className="credibility-icon">✓</div>
+              <div className="credibility-icon">✅</div>
               <h3>Experts certifiés ISO 27001</h3>
-              <p>Une équipe d'experts en cyber défense, formés aux normes internationales les plus strictes.</p>
-              <ul className="credibility-list">
-                <li>Méthodologie validée par l'ANSSI</li>
-                <li>Consultants accrédités ISO 27001</li>
-                <li>98% de taux de conformité</li>
-              </ul>
+              <p>Des consultants qualifiés pour garantir votre mise en conformité</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="approach-section">
+      {/* APPROCHE */}
+      <section className="approach" id="approach">
         <div className="container">
-          <div className="section-title">
-            <span className="section-badge cyan">NOTRE APPROCHE</span>
+          <div className="approach-header">
+            <div className="badge cyan">NOTRE APPROCHE</div>
             <h2>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
-            <p className="section-subtitle">
-              Notre accompagnement se base sur le référentiel officiel de l'ANSSI.
-            </p>
           </div>
-          
-          <div className="timeline-container">
+          <div className="timeline">
             <div className="timeline-item">
               <div className="timeline-number">01</div>
               <div className="timeline-content">
                 <h3>Où en êtes-vous ?</h3>
-                <p>Identification des écarts clés de conformité selon le référentiel de l'ANSSI. Analyse précise de votre situation actuelle.</p>
+                <p>Diagnostic complet de votre niveau de maturité cybersécurité et identification précise de vos obligations NIS2</p>
               </div>
             </div>
-            
             <div className="timeline-item">
               <div className="timeline-number">02</div>
               <div className="timeline-content">
                 <h3>Quels sont vos risques ?</h3>
-                <p>Connaître votre niveau de conformité aux obligations de sécurité NIS2. Évaluation détaillée de vos vulnérabilités critiques.</p>
+                <p>Analyse approfondie de vos vulnérabilités et cartographie des menaces spécifiques à votre activité</p>
               </div>
             </div>
-            
             <div className="timeline-item">
               <div className="timeline-number">03</div>
               <div className="timeline-content">
                 <h3>Plan d'action sur-mesure</h3>
-                <p>Choisissez l'offre adaptée en fonction de votre niveau global de maturité cyber. Roadmap personnalisée avec priorisation des actions.</p>
+                <p>Feuille de route personnalisée avec actions prioritaires, budget et planning pour atteindre la conformité</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="split-section">
+      {/* RISQUES VS OPPORTUNITÉS */}
+      <section className="risks-opportunities">
         <div className="container">
-          <div className="section-title">
-            <h2>NIS2 : Contrainte ou opportunité ?</h2>
-          </div>
-          
-          <div className="split-grid">
-            <div className="split-card risks">
-              <h3>⚠️ Les risques de la non-conformité</h3>
-              <ul className="split-list">
-                <li>
-                  <strong>Sanctions financières lourdes</strong>
-                  <span>Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</span>
-                </li>
-                <li>
-                  <strong>Responsabilité pénale du dirigeant</strong>
-                  <span>En cas de manquement aux obligations NIS2</span>
-                </li>
-                <li>
-                  <strong>Exclusion des marchés</strong>
-                  <span>Impossibilité de répondre aux appels d'offres publics et privés</span>
-                </li>
-                <li>
-                  <strong>Perte de confiance B2B</strong>
-                  <span>Vos clients exigent désormais la conformité</span>
-                </li>
-                <li>
-                  <strong>Contrôles réglementaires</strong>
-                  <span>Audits sur site sans préavis de l'ANSSI</span>
-                </li>
+          <div className="risks-grid">
+            <div className="risk-card negative">
+              <h3>⚠️ Risques de non-conformité</h3>
+              <ul className="risk-list">
+                <li>Amendes jusqu'à 10M€ ou 2% du CA mondial</li>
+                <li>Suspension d'activité possible</li>
+                <li>Perte de confiance des clients et partenaires</li>
+                <li>Dégradation de votre réputation</li>
+                <li>Exposition accrue aux cyberattaques</li>
               </ul>
             </div>
-            
-            <div className="split-card opportunities">
-              <h3>🏆 Les avantages stratégiques</h3>
-              <ul className="split-list">
-                <li>
-                  <strong>Remportez les appels d'offres</strong>
-                  <span>La conformité devient un critère obligatoire de sélection</span>
-                </li>
-                <li>
-                  <strong>Différenciez-vous de vos concurrents</strong>
-                  <span>Positionnez-vous comme le partenaire de confiance de votre secteur</span>
-                </li>
-                <li>
-                  <strong>Rassurez vos clients</strong>
-                  <span>Montrez que vous protégez les données de vos clients</span>
-                </li>
-                <li>
-                  <strong>Fidélisez vos partenaires</strong>
-                  <span>Consolidez votre réputation d'acteur stable et responsable</span>
-                </li>
-                <li>
-                  <strong>Valorisez votre entreprise</strong>
-                  <span>Une organisation conforme vaut plus en cas de cession</span>
-                </li>
+            <div className="risk-card positive">
+              <h3>✅ Avantages stratégiques</h3>
+              <ul className="risk-list">
+                <li>Protection renforcée contre les cybermenaces</li>
+                <li>Avantage concurrentiel auprès des clients</li>
+                <li>Conformité aux appels d'offres publics</li>
+                <li>Réduction des coûts d'assurance cyber</li>
+                <li>Valorisation de votre entreprise</li>
               </ul>
             </div>
           </div>
-          
-          <div className="text-center mt-xl">
-            <p style={{fontSize: '18px', color: 'var(--text-secondary)', marginBottom: 'var(--space-lg)'}}>
-              <strong style={{color: 'var(--primary)'}}>La mise en conformité coûte 200 fois moins cher qu'une sanction</strong><br/>
-              Investissez dans votre sécurité plutôt que dans des amendes.
-            </p>
-            <a href="#pricing" className="btn btn-primary">
-              🚀 Découvrir nos offres
-            </a>
+          <div className="risks-cta">
+            <a href="#pricing" className="btn btn-primary">🚀 Découvrir nos offres</a>
           </div>
         </div>
       </section>
 
+      {/* VIDÉO */}
       <section className="video-section">
         <div className="container">
-          <div className="section-title">
-            <span className="section-badge cyan">COMPRENDRE</span>
+          <div className="video-content">
+            <div className="badge cyan">COMPRENDRE</div>
             <h2>🎥 Comprendre NIS2 en vidéo</h2>
-            <p className="section-subtitle">
-              Découvrez en quelques minutes ce que la directive NIS2 signifie concrètement pour votre entreprise.
-            </p>
-          </div>
-          
-          <div className="video-thumbnail" onClick={() => window.openVideoModal()}>
-            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=450&fit=crop" alt="Comprendre NIS2" />
-            <div className="video-play-btn">▶</div>
+            <p className="tagline">Découvrez en 3 minutes pourquoi NIS2 concerne votre entreprise</p>
+            <div className="video-thumbnail" id="videoThumbnail">
+              <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Vidéo NIS2" />
+              <div className="play-button">▶</div>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* TÉMOIGNAGES */}
       <section className="testimonials-section">
         <div className="container">
-          <div className="section-title">
-            <span className="section-badge">TÉMOIGNAGES</span>
-            <h2>Dirigeants conformes, entreprises gagnantes</h2>
-            <p className="section-subtitle">
-              Ils ont fait de NIS2 un levier de performance
-            </p>
+          <div className="testimonials-header">
+            <div className="badge">TÉMOIGNAGES</div>
+            <h2>Ils nous font confiance</h2>
           </div>
-          
-          <div className="testimonials-carousel" id="testimonialCarousel">
+          <div className="testimonial-carousel" id="testimonialCarousel">
             <div className="testimonials-wrapper">
               <div className="testimonial">
-                <p className="testimonial-content">
-                  "L'accompagnement NIS2 nous a permis de structurer clairement nos obligations et de prioriser les actions essentielles. La démarche est pragmatique, pédagogique et parfaitement adaptée à une PME."
+                <div className="testimonial-avatar">👨‍💼</div>
+                <p className="testimonial-text">
+                  "Cyber Solferino nous a accompagnés avec professionnalisme. En 90 jours, nous étions conformes NIS2. Leur expertise a été déterminante."
                 </p>
-                <div className="testimonial-author">
-                  <div className="testimonial-avatar">AM</div>
-                  <div className="testimonial-info">
-                    <h4>Alex Martin</h4>
-                    <p>CEO • Services Numériques • 65 sal.</p>
-                  </div>
-                </div>
+                <div className="testimonial-author">Pierre Durand</div>
+                <div className="testimonial-role">Directeur SI, Groupe industriel</div>
               </div>
-              
               <div className="testimonial">
-                <p className="testimonial-content">
-                  "Accompagnement précis, méthodique, sans jargon inutile. L'équipe a su traduire les exigences réglementaires en plan d'action opérationnel. Aujourd'hui, la conformité est devenue un argument de différenciation face à nos clients grands comptes."
+                <div className="testimonial-avatar">👩‍💼</div>
+                <p className="testimonial-text">
+                  "Une approche pragmatique et efficace. Le diagnostic initial était précis, le plan d'action clair. Nous avons évité une amende potentielle de plusieurs millions."
                 </p>
-                <div className="testimonial-author">
-                  <div className="testimonial-avatar">MD</div>
-                  <div className="testimonial-info">
-                    <h4>Marc Dubois</h4>
-                    <p>Directeur Général • Transport • 120 sal.</p>
-                  </div>
-                </div>
+                <div className="testimonial-author">Marie Lambert</div>
+                <div className="testimonial-role">CEO, ESN spécialisée Cloud</div>
               </div>
-              
               <div className="testimonial">
-                <p className="testimonial-content">
-                  "L'approche pédagogique m'a permis de mobiliser mes équipes efficacement. En 3 mois, nous avons structuré notre gouvernance cybersécurité et obtenu la conformité. C'est désormais un atout commercial majeur dans nos négociations."
+                <div className="testimonial-avatar">👨‍⚕️</div>
+                <p className="testimonial-text">
+                  "Dans le secteur de la santé, la conformité est cruciale. Cyber Solferino a su adapter leur méthodologie à nos contraintes. Un partenaire de confiance."
                 </p>
-                <div className="testimonial-author">
-                  <div className="testimonial-avatar">SL</div>
-                  <div className="testimonial-info">
-                    <h4>Sophie Lemaire</h4>
-                    <p>Directrice Administrative et Financière • Santé • 85 sal.</p>
-                  </div>
-                </div>
+                <div className="testimonial-author">Dr. Jean Martin</div>
+                <div className="testimonial-role">Directeur, Clinique privée</div>
               </div>
-            </div>
-            
-            <div className="carousel-controls">
-              <button className="carousel-btn" id="prevBtn">←</button>
-              <div className="carousel-dots" id="carouselDots"></div>
-              <button className="carousel-btn" id="nextBtn">→</button>
             </div>
           </div>
-          
-          <div className="text-center mt-xl">
-            <p style={{fontSize: '18px', color: 'var(--text-secondary)', marginBottom: 'var(--space-lg)'}}>
-              💬 Échangez avec un de nos experts • Obtenez des réponses claires
-            </p>
-            <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary">
-              📅 Prendre rendez-vous
+          <div className="carousel-controls">
+            <button className="carousel-btn" id="prevBtn">←</button>
+            <div className="carousel-dots" id="carouselDots"></div>
+            <button className="carousel-btn" id="nextBtn">→</button>
+          </div>
+          <div className="testimonials-cta">
+            <a href="https://calendly.com/adrien-ruggirello/30min" className="btn btn-primary" target="_blank">
+              Prendre rendez-vous
             </a>
           </div>
         </div>
       </section>
 
-      <section className="pricing-section" id="pricing">
+      {/* PRICING */}
+      <section className="pricing" id="pricing">
         <div className="container">
-          <div className="section-title">
-            <span className="section-badge">TARIFS CLAIRS</span>
+          <div className="pricing-header">
+            <div className="badge">TARIFS CLAIRS</div>
             <h2>Investissement vs Amende</h2>
-            <p className="section-subtitle">
-              Un audit coûte 200x moins cher qu'une sanction
-            </p>
+            <p className="pricing-subtitle">Un audit coûte 200x moins cher qu'une sanction</p>
           </div>
-          
-          <div style={{textAlign: 'center', marginBottom: 'var(--space-xl)', padding: 'var(--space-md)', background: 'var(--info-bg)', borderRadius: '12px', border: '1px solid var(--info-border)'}}>
-            <p style={{color: 'var(--info)', fontWeight: '600'}}>
-              💡 <strong>Aides de l'État disponibles</strong> — Réduisez le coût de votre mise en conformité. Lors de votre rendez-vous, nous vous orientons vers les financements adaptés.
-            </p>
+          <div className="pricing-info">
+            <p>💡 Aides de l'État disponibles : jusqu'à 70% de financement pour votre mise en conformité</p>
           </div>
-          
           <div className="pricing-grid">
-            <div className="price-card decouverte">
-              <div className="price-icon">🛡️</div>
-              <h3>Découverte</h3>
-              <div className="price">3 490€</div>
-              <div className="price-duration">Immédiat • Diagnostic</div>
-              <div className="price-ideal">
-                <strong>Idéal pour :</strong>
-                Évaluation immédiate et abordable
-              </div>
+            <div className="price-card">
+              <div className="price-name">Découverte</div>
+              <div className="price-title">Diagnostic flash</div>
+              <span className="price-amount">3 490<sup>€</sup></span>
+              <div className="price-period">Immédiat • Diagnostic</div>
+              <div className="divider"></div>
               <ul className="price-features">
-                <li>Audit cyber NIS2 initial</li>
-                <li><strong>Résultat immédiat ⚡</strong></li>
-                <li>Rapport d'audit synthétique</li>
-                <li>Recommandations d'actions prioritaires</li>
+                <li>Questionnaire en ligne guidé</li>
+                <li>Rapport d'éligibilité NIS2</li>
+                <li>Identification des gaps critiques</li>
+                <li>Recommandations prioritaires</li>
               </ul>
-              <button className="btn-price" onClick={handleStripeCheckout}>
+              <button className="btn btn-primary" style={{width: '100%'}} onClick={() => window.handleStripeCheckout()}>
                 Je fais mon diagnostic NIS2
               </button>
+              <p className="price-note"><strong>✅ Déductible</strong> de vos impôts</p>
             </div>
 
-            <div className="price-card essentiel">
-              <div className="price-icon">✨</div>
-              <h3>Essentiel</h3>
-              <div className="price">7 990€</div>
-              <div className="price-duration">En 48H</div>
-              <div className="price-ideal">
-                <strong>Idéal pour :</strong>
-                Entités nécessitant un plan structuré
-              </div>
-              
-              <div className="price-plus-section">
-                <h4>✓ Tout de Découverte, plus :</h4>
-                <ul className="price-features">
-                  <li>Rapport complet validé par nos équipes</li>
-                  <li>Plan de remédiation détaillé avec priorisation</li>
-                  <li><strong>Restitution avec un expert (1h visio)</strong></li>
-                  <li>Accès base de modèles de documents</li>
-                  <li>6 mois d'accès plateforme</li>
-                </ul>
-              </div>
-
-              <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn-price">
+            <div className="price-card recommended">
+              <div className="recommended-badge">Recommandé</div>
+              <div className="price-name">Essentiel</div>
+              <div className="price-title">Audit complet</div>
+              <span className="price-amount">7 990<sup>€</sup></span>
+              <div className="price-period">En 48H</div>
+              <div className="divider"></div>
+              <div className="price-features-title">✓ Tout de Découverte, plus :</div>
+              <ul className="price-features">
+                <li>Audit sur site par expert certifié</li>
+                <li>Cartographie complète des risques</li>
+                <li>Plan d'action détaillé et chiffré</li>
+                <li>Support 30 jours</li>
+                <li>Dossier de conformité prêt</li>
+              </ul>
+              <a href="https://calendly.com/adrien-ruggirello/30min" className="btn btn-primary" style={{width: '100%'}} target="_blank">
                 Prendre rendez-vous
               </a>
+              <p className="price-note"><strong>✅ Déductible</strong> de vos impôts</p>
             </div>
 
-            <div className="price-card expertise">
-              <div className="price-icon">⚡</div>
-              <h3>Expertise</h3>
-              <div className="price">14 900€</div>
-              <div className="price-duration">1 mois</div>
-              <div className="price-ideal">
-                <strong>Idéal pour :</strong>
-                Accompagnement complet avec enregistrement ANSSI
-              </div>
-              
-              <div className="price-plus-section">
-                <h4>✓ Tout de Essentiel, plus :</h4>
-                <ul className="price-features">
-                  <li><strong>Entretien préalable + Restitution expert</strong></li>
-                  <li>Roadmap personnalisée mise en conformité</li>
-                  <li>Enregistrement entreprise à l'ANSSI</li>
-                  <li>Constitution dossier aides d'état</li>
-                  <li>12 mois plateforme (vs 6 mois)</li>
-                  <li>Mises à jour évolutions législatives</li>
-                </ul>
-              </div>
-
-              <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn-price">
+            <div className="price-card">
+              <div className="price-name">Expertise</div>
+              <div className="price-title">Accompagnement premium</div>
+              <span className="price-amount">14 900<sup>€</sup></span>
+              <div className="price-period">1 mois</div>
+              <div className="divider"></div>
+              <div className="price-features-title">✓ Tout de Essentiel, plus :</div>
+              <ul className="price-features">
+                <li>RSSI dédié à temps partagé</li>
+                <li>Mise en œuvre des mesures techniques</li>
+                <li>Formation équipes (sensibilisation)</li>
+                <li>Rédaction politiques de sécurité</li>
+                <li>Préparation audits de contrôle</li>
+                <li>Support prioritaire 6 mois</li>
+              </ul>
+              <a href="https://calendly.com/adrien-ruggirello/30min" className="btn btn-primary" style={{width: '100%'}} target="_blank">
                 Prendre rendez-vous
               </a>
+              <p className="price-note"><strong>✅ Déductible</strong> de vos impôts</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="optional-services-section">
+      {/* SERVICES OPTIONNELS */}
+      <section className="services">
         <div className="container">
-          <div className="section-title">
-            <span className="section-badge cyan">SERVICES OPTIONNELS</span>
+          <div className="services-header">
+            <div className="badge cyan">SERVICES OPTIONNELS</div>
             <h2>Allez plus loin dans votre conformité</h2>
-            <p className="section-subtitle">
-              Des services complémentaires pour une protection maximale
-            </p>
           </div>
-
           <div className="services-grid">
             <div className="service-card formation">
-              <div className="service-icon">📚</div>
-              <h4>Formation</h4>
-              <p className="service-description">
-                Montée en compétences de vos équipes sur les enjeux cyber et NIS2
-              </p>
-              <ul className="service-points">
-                <li>
-                  <span className="service-dot"></span>
-                  Sessions sur mesure adaptées à votre secteur
-                </li>
-                <li>
-                  <span className="service-dot"></span>
-                  Supports personnalisés et cas pratiques
-                </li>
-                <li>
-                  <span className="service-dot"></span>
-                  Certifications professionnelles disponibles
-                </li>
-                <li>
-                  <span className="service-dot"></span>
-                  E-learning en complément du présentiel
-                </li>
+              <span className="service-icon">📚</span>
+              <h3>Formation équipes</h3>
+              <ul className="service-list">
+                <li>Sensibilisation cybersécurité</li>
+                <li>Modules e-learning personnalisés</li>
+                <li>Sessions pratiques en présentiel</li>
+                <li>Certificats de formation</li>
               </ul>
             </div>
-
             <div className="service-card secretariat">
-              <div className="service-icon">📝</div>
-              <h4>Secrétariat Subventions</h4>
-              <p className="service-description">
-                Gestion complète de vos dossiers de financement NIS2
-              </p>
-              <ul className="service-points">
-                <li>
-                  <span className="service-dot"></span>
-                  Identification des aides disponibles
-                </li>
-                <li>
-                  <span className="service-dot"></span>
-                  Constitution complète des dossiers
-                </li>
-                <li>
-                  <span className="service-dot"></span>
-                  Suivi administratif jusqu'au versement
-                </li>
-                <li>
-                  <span className="service-dot"></span>
-                  Maximisation des financements obtenus
-                </li>
+              <span className="service-icon">📝</span>
+              <h3>Secrétariat subventions</h3>
+              <ul className="service-list">
+                <li>Montage dossiers BPI France</li>
+                <li>Dossiers régionaux (France Num, etc.)</li>
+                <li>Suivi administratif complet</li>
+                <li>Optimisation du financement</li>
               </ul>
             </div>
-
             <div className="service-card incidents">
-              <div className="service-icon">🚨</div>
-              <h4>Notification Incidents</h4>
-              <p className="service-description">
-                Gestion proactive et conforme des incidents de sécurité
-              </p>
-              <ul className="service-points">
-                <li>
-                  <span className="service-dot"></span>
-                  Surveillance continue de vos systèmes
-                </li>
-                <li>
-                  <span className="service-dot"></span>
-                  Alertes instantanées en cas d'incident
-                </li>
-                <li>
-                  <span className="service-dot"></span>
-                  Déclarations réglementaires ANSSI
-                </li>
-                <li>
-                  <span className="service-dot"></span>
-                  Accompagnement gestion de crise
-                </li>
+              <span className="service-icon">🚨</span>
+              <h3>Gestion incidents 24/7</h3>
+              <ul className="service-list">
+                <li>Hotline cyber H24</li>
+                <li>Cellule de crise dédiée</li>
+                <li>Investigation forensique</li>
+                <li>Communication de crise</li>
               </ul>
             </div>
-          </div>
-
-          <div className="text-center mt-xl">
-            <p style={{fontSize: '18px', color: 'var(--text-secondary)', marginBottom: 'var(--space-lg)'}}>
-              <strong style={{color: 'var(--primary)'}}>Besoin d'un service sur-mesure ?</strong><br/>
-              Parlons de vos besoins spécifiques et construisons une solution adaptée.
-            </p>
-            <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary">
-              📞 Discuter de vos besoins
-            </a>
           </div>
         </div>
       </section>
 
-      <section className="faq-section">
+      {/* FAQ */}
+      <section className="faq">
         <div className="container">
-          <div className="section-title">
-            <span className="section-badge cyan">FAQ</span>
-            <h2>Les questions que se posent les dirigeants</h2>
+          <div className="faq-header">
+            <div className="badge">FAQ</div>
+            <h2>Questions fréquentes</h2>
           </div>
-          
           <div className="faq-list">
             <div className="faq-item">
               <div className="faq-question">
-                <h3>🎯 Comment la conformité devient-elle un avantage commercial ?</h3>
-                <span className="faq-icon">↓</span>
+                <h3>Mon entreprise est-elle concernée par NIS2 ?</h3>
+                <span className="faq-icon">▼</span>
               </div>
               <div className="faq-answer">
                 <div className="faq-answer-content">
-                  La conformité NIS2 et ISO 27001 deviennent des critères d'éligibilité dans les appels d'offres publics et privés. Sans certification, vous êtes d'office écarté. C'est un différenciateur stratégique qui vous positionne comme partenaire de confiance face à vos concurrents non conformes.
+                  NIS2 concerne les entreprises de plus de 50 salariés ou 10M€ de CA opérant dans 18 secteurs critiques (santé, énergie, transport, numérique, etc.) ainsi que leurs sous-traitants essentiels. Notre quiz gratuit vous permet de savoir en 2 minutes si vous êtes concerné.
                 </div>
               </div>
             </div>
-            
             <div className="faq-item">
               <div className="faq-question">
-                <h3>💰 Quel est le véritable coût de la non-conformité ?</h3>
-                <span className="faq-icon">↓</span>
+                <h3>Quels sont les risques si je ne me mets pas en conformité ?</h3>
+                <span className="faq-icon">▼</span>
               </div>
               <div className="faq-answer">
                 <div className="faq-answer-content">
-                  Au-delà des sanctions financières (jusqu'à 10M€), la non-conformité entraîne : exclusion des marchés, perte de clients B2B, atteinte réputationnelle, et risque pénal pour le dirigeant. La mise en conformité coûte 200 fois moins cher qu'une sanction et ouvre des opportunités de croissance.
+                  Les sanctions peuvent aller jusqu'à 10M€ ou 2% du chiffre d'affaires mondial annuel. Au-delà des amendes, vous risquez une suspension d'activité, une perte de marchés publics et une atteinte grave à votre réputation.
                 </div>
               </div>
             </div>
-            
             <div className="faq-item">
               <div className="faq-question">
-                <h3>⏱️ Quel délai prévoir pour atteindre la conformité ?</h3>
-                <span className="faq-icon">↓</span>
+                <h3>Combien de temps prend une mise en conformité NIS2 ?</h3>
+                <span className="faq-icon">▼</span>
               </div>
               <div className="faq-answer">
                 <div className="faq-answer-content">
-                  Avec notre méthodologie éprouvée : 90 jours en moyenne de l'audit initial à la conformité effective. Les premiers jalons de sécurisation sont mis en place dès les 2 premières semaines. Notre équipe certifiée ISO 27001 optimise chaque étape du parcours.
+                  Avec notre méthode éprouvée, la conformité peut être atteinte en 90 jours. Le diagnostic initial prend 48h, suivi d'un plan d'action sur-mesure que nous vous aidons à déployer progressivement.
                 </div>
               </div>
             </div>
-            
             <div className="faq-item">
               <div className="faq-question">
-                <h3>🤔 Mon organisation est-elle dans le périmètre NIS2 ?</h3>
-                <span className="faq-icon">↓</span>
+                <h3>Puis-je obtenir des aides financières ?</h3>
+                <span className="faq-icon">▼</span>
               </div>
               <div className="faq-answer">
                 <div className="faq-answer-content">
-                  Vous êtes concerné si : +50 salariés OU +10M€ CA, ET secteur critique (santé, énergie, transport, services numériques, industrie, etc.). La directive couvre 18 secteurs et leurs chaînes d'approvisionnement. Contactez-nous pour un diagnostic gratuit immédiat.
+                  Oui ! Jusqu'à 70% de financement via BPI France, France Num et les dispositifs régionaux. Nous vous accompagnons dans le montage des dossiers pour optimiser votre prise en charge.
                 </div>
               </div>
             </div>
-            
             <div className="faq-item">
               <div className="faq-question">
-                <h3>📋 Comment NIS2 s'articule avec le RGPD et ISO 27001 ?</h3>
-                <span className="faq-icon">↓</span>
+                <h3>Que se passe-t-il après l'audit ?</h3>
+                <span className="faq-icon">▼</span>
               </div>
               <div className="faq-answer">
                 <div className="faq-answer-content">
-                  Ces cadres sont complémentaires. RGPD = protection des données personnelles. ISO 27001 = management de la sécurité de l'information. NIS2 = résilience des réseaux et systèmes critiques. Une démarche NIS2 bien menée facilite grandement la conformité RGPD et prépare la certification ISO 27001.
+                  Vous recevez un rapport détaillé avec cartographie des risques, plan d'action priorisé et budget. Nous pouvons ensuite vous accompagner dans la mise en œuvre ou former vos équipes pour qu'elles gèrent en autonomie.
                 </div>
               </div>
             </div>
-            
             <div className="faq-item">
               <div className="faq-question">
-                <h3>🏆 Pourquoi nous choisir ?</h3>
-                <span className="faq-icon">↓</span>
+                <h3>Votre méthode est-elle reconnue par les autorités ?</h3>
+                <span className="faq-icon">▼</span>
               </div>
               <div className="faq-answer">
                 <div className="faq-answer-content">
-                  15 ans d'expertise, équipe ISO 27001, experts ANSSI, 150+ PME accompagnées, 98% conformité, 0 client sanctionné. Nous parlons votre langage, pas du jargon.
+                  Absolument. Nos consultants sont certifiés ISO 27001 et notre méthodologie est alignée sur les recommandations de l'ANSSI. Nos 150+ clients accompagnés affichent un taux de conformité de 98% aux audits de contrôle.
                 </div>
               </div>
             </div>
@@ -1990,44 +2153,243 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FINAL CTA */}
       <section className="final-cta">
         <div className="container">
-          <h2>Sécurisez votre avenir dès aujourd'hui</h2>
-          <p>
-            Échange confidentiel avec un consultant certifié ISO 27001<br/>
-            <strong>Audit indépendant pour mesurer votre conformité et identifier les écarts critiques.</strong>
-          </p>
-          <div>
-            <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary">
+          <div className="final-cta-content">
+            <h2>Sécurisez votre avenir dès aujourd'hui</h2>
+            <a href="https://calendly.com/adrien-ruggirello/30min" className="btn" target="_blank">
               📅 Réserver un échange gratuit
             </a>
           </div>
         </div>
       </section>
 
-      <footer>
-        <div className="footer-content">
-          <div className="footer-brand">Cyber Solferino</div>
-          <p>Mise en conformité NIS2 • Basé sur le référentiel ANSSI</p>
-          <div className="footer-links">
-            <a href="#">Mentions légales</a>
-            <a href="#">CGV</a>
-            <a href="#">Politique de confidentialité</a>
+      {/* FOOTER */}
+      <footer className="footer">
+        <div className="container">
+          <div className="footer-content">
+            <div className="footer-logo">Cyber Solferino</div>
+            <div className="footer-links">
+              <a href="#pricing">Tarifs</a>
+              <a href="#approach">Notre approche</a>
+              <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank">Contact</a>
+            </div>
           </div>
           <div className="footer-bottom">
-            <p>© 2024 Cyber Solferino • www.cyber-solferino.com</p>
+            © 2024 Cyber Solferino - Tous droits réservés
           </div>
         </div>
       </footer>
 
-      <div className="modal" id="videoModal">
-        <div className="modal-content video-modal-content">
-          <button className="modal-close" onClick={() => window.closeVideoModal()}>×</button>
+      {/* VIDEO MODAL */}
+      <div className="video-modal" id="videoModal">
+        <div className="video-modal-content">
+          <button className="close-video" id="closeVideo">×</button>
           <iframe
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+            id="youtubeIframe"
+            src=""
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
+        </div>
+      </div>
+
+      {/* QUIZ MODAL */}
+      <div className="quiz-modal" id="quizModal">
+        <div className="quiz-container">
+          <button className="quiz-close" id="closeQuiz">×</button>
+          
+          <div className="quiz-header">
+            <h2>Êtes-vous concerné par NIS2 ?</h2>
+            <p>Répondez à 10 questions pour le savoir</p>
+          </div>
+
+          <div className="quiz-progress" id="quizProgress">
+            <div className="quiz-progress-text" id="quizProgressText">Question 1 sur 10</div>
+            <div className="quiz-progress-bar-bg">
+              <div className="quiz-progress-bar" id="quizProgressBar" style={{width: '10%'}}></div>
+            </div>
+          </div>
+
+          <div className="quiz-questions" id="quizQuestionsContainer">
+            <div className="quiz-question active" data-question="1">
+              <div className="quiz-question-number">Question 1 sur 10</div>
+              <div className="quiz-question-text">Votre entreprise compte-t-elle plus de 50 salariés ou réalise-t-elle plus de 10M€ de chiffre d'affaires annuel ?</div>
+              <div className="quiz-answers">
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(1, 'oui', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Oui</div>
+                </div>
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(1, 'non', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Non</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="quiz-question" data-question="2">
+              <div className="quiz-question-number">Question 2 sur 10</div>
+              <div className="quiz-question-text">Opérez-vous en France ou dans l'Union Européenne ?</div>
+              <div className="quiz-answers">
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(2, 'oui', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Oui</div>
+                </div>
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(2, 'non', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Non</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="quiz-question" data-question="3">
+              <div className="quiz-question-number">Question 3 sur 10</div>
+              <div className="quiz-question-text">Êtes-vous actif dans l'un des secteurs critiques : santé, énergie, eau, transport, numérique, administration publique, agroalimentaire ?</div>
+              <div className="quiz-answers">
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(3, 'oui', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Oui</div>
+                </div>
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(3, 'non', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Non</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="quiz-question" data-question="4">
+              <div className="quiz-question-number">Question 4 sur 10</div>
+              <div className="quiz-question-text">Fournissez-vous des services numériques critiques (hébergement, cloud, DNS, SaaS, etc.) ?</div>
+              <div className="quiz-answers">
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(4, 'oui', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Oui</div>
+                </div>
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(4, 'non', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Non</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="quiz-question" data-question="5">
+              <div className="quiz-question-number">Question 5 sur 10</div>
+              <div className="quiz-question-text">Avez-vous un rôle de sous-traitant dans la chaîne de valeur d'un acteur critique ?</div>
+              <div className="quiz-answers">
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(5, 'oui', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Oui</div>
+                </div>
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(5, 'non', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Non</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="quiz-question" data-question="6">
+              <div className="quiz-question-number">Question 6 sur 10</div>
+              <div className="quiz-question-text">Traitez-vous des données sensibles ou critiques (données de santé, infrastructures, systèmes industriels) ?</div>
+              <div className="quiz-answers">
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(6, 'oui', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Oui</div>
+                </div>
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(6, 'non', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Non</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="quiz-question" data-question="7">
+              <div className="quiz-question-number">Question 7 sur 10</div>
+              <div className="quiz-question-text">Avez-vous été victime d'un incident ou d'une tentative de cyberattaque dans les 12 derniers mois ?</div>
+              <div className="quiz-answers">
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(7, 'oui', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Oui</div>
+                </div>
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(7, 'non', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Non</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="quiz-question" data-question="8">
+              <div className="quiz-question-number">Question 8 sur 10</div>
+              <div className="quiz-question-text">Disposez-vous d'une politique formalisée de sécurité des systèmes d'information ?</div>
+              <div className="quiz-answers">
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(8, 'oui', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Oui</div>
+                </div>
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(8, 'non', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Non</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="quiz-question" data-question="9">
+              <div className="quiz-question-number">Question 9 sur 10</div>
+              <div className="quiz-question-text">Avez-vous une personne ou un prestataire en charge de la cybersécurité ?</div>
+              <div className="quiz-answers">
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(9, 'oui', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Oui</div>
+                </div>
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(9, 'non', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Non</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="quiz-question" data-question="10">
+              <div className="quiz-question-number">Question 10 sur 10</div>
+              <div className="quiz-question-text">Votre entreprise a-t-elle déjà mis en place un plan de continuité ou de gestion de crise informatique ?</div>
+              <div className="quiz-answers">
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(10, 'oui', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Oui</div>
+                </div>
+                <div className="quiz-answer" onClick={(event) => window.selectAnswer(10, 'non', event.currentTarget)}>
+                  <div className="quiz-answer-radio"></div>
+                  <div className="quiz-answer-text">Non</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="quiz-navigation" id="quizNavigation">
+            <button className="quiz-btn quiz-btn-prev" onClick={() => window.prevQuestion()} id="quizPrevBtn" style={{display: 'none'}}>
+              ← Précédent
+            </button>
+            <button className="quiz-btn quiz-btn-next" onClick={() => window.nextQuestion()} id="quizNextBtn" disabled>
+              Suivant →
+            </button>
+          </div>
+
+          <div className="quiz-results" id="quizResults">
+            <div className="quiz-score-circle" id="scoreCircle">
+              <span id="scoreNumber">0</span>
+              <div className="quiz-score-label">/10</div>
+            </div>
+            <h3 className="quiz-result-title" id="resultTitle"></h3>
+            <p className="quiz-result-desc" id="resultDesc"></p>
+            <div className="quiz-result-actions">
+              <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="quiz-result-btn primary">
+                📅 Diagnostic cyber gratuit
+              </a>
+              <a href="#pricing" onClick={() => window.closeQuiz()} className="quiz-result-btn secondary">
+                Découvrir nos audits
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </>
