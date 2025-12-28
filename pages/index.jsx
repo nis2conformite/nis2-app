@@ -2712,8 +2712,7 @@ export default function Home() {
                     <div className="expertise-title">Une équipe d'experts en cyber défense</div>
                     <p>Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
                 </div>
-            </div>
-		            <p className="subtitle">Protégez votre activité, votre réputation et votre résilience. Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber certifiés ISO 27001.</p>
+            </div>className="subtitle">Protégez votre activité, votre réputation et votre résilience. Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber certifiés ISO 27001.</p>
    <div className="section-header">
             <div className="stats">
                 <div className="stat">
