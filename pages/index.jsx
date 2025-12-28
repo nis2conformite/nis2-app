@@ -2656,62 +2656,61 @@ export default function Home() {
     </div>
 
     <div className="container">
-        {/* HERO */}
-        <section className="hero">
-            <div className="logo">Cyber Solferino</div>
-            <div className="tagline"> La plateforme d’audit et de conformité cyber pensée pour les PME et ETI européennes</div>
-            
-                <div className="section-badge success">NOTRE APPROCHE</div>
-                <h2>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
-                <p className="section-subtitle">Notre accompagnement se base sur le référentiel officiel de l’ANSSI.</p>
-            </div>
-
-            {/* Timeline horizontale */}
-            <div className="timeline-container">
-                <div className="timeline-horizontal">
-                    <div className="timeline-item">
-                        <div className="timeline-number">01</div>
-                        <div className="timeline-content">
-                            <h3 className="timeline-title">Analyse de conformité</h3>
-                            <p className="timeline-description">Identification des écarts clés de conformité selon le refenciel de l'ANSSI.</p>
-                        </div>
-                    </div>
-
-                    <div className="timeline-item">
-                        <div className="timeline-number">02</div>
-                        <div className="timeline-content">
-                            <h3 className="timeline-title">Comprendre ses vulnérabilités</h3>
-                            <p className="timeline-description">Connaitre son niveau de conformité aux obligations de sécurité NIS2</p>
-                        </div>
-                    </div>
-
-                    <div className="timeline-item">
-                        <div className="timeline-number">03</div>
-                        <div className="timeline-content">
-                            <h3 className="timeline-title">Accompgnement adapté</h3>
-                            <p className="timeline-description">Choissisez l'offre adaptée en fonction de votre niveau global de maturité cyber</p>
-                        </div>
-                    </div>
+    {/* HERO */}
+<section className="hero">
+    <div className="logo">Cyber Solferino</div>
+    <div className="tagline">La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes</div>
+    
+    <div className="section-badge success">NOTRE APPROCHE</div>
+    <h2>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
+    <p className="section-subtitle">Notre accompagnement se base sur le référentiel officiel de l'ANSSI.</p>
+    
+    {/* Timeline horizontale */}
+    <div className="timeline-container">
+        <div className="timeline-horizontal">
+            <div className="timeline-item">
+                <div className="timeline-number">01</div>
+                <div className="timeline-content">
+                    <h3 className="timeline-title">Analyse de conformité</h3>
+                    <p className="timeline-description">Identification des écarts clés de conformité selon le référentiel de l'ANSSI.</p>
                 </div>
             </div>
-
-            <div className="expertise-grid">
-                <div className="expertise-card" style={{Delay: '0s'}}>
-                    <div className="expertise-number">15+</div>
-                    <div className="expertise-title">Années d'expérience terrain</div>
-                    <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber. Notre équipe d'experts internationaux a piloté des projets dans plus de 10 pays</p>
+            <div className="timeline-item">
+                <div className="timeline-number">02</div>
+                <div className="timeline-content">
+                    <h3 className="timeline-title">Comprendre vos vulnérabilités</h3>
+                    <p className="timeline-description">Connaître votre niveau de conformité aux obligations de sécurité NIS2</p>
                 </div>
-
-                <div className="expertise-card highlight" style={{Delay: '0.15s'}}>
-                    <div className="certification-badge">
-                        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                    </div>
-                    <div className="expertise-title">Une équipe d'experts en cyber défense</div>
-                    <p>Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
+            </div>
+            <div className="timeline-item">
+                <div className="timeline-number">03</div>
+                <div className="timeline-content">
+                    <h3 className="timeline-title">Accompagnement adapté</h3>
+                    <p className="timeline-description">Choisissez l'offre adaptée en fonction de votre niveau global de maturité cyber</p>
                 </div>
+            </div>
+        </div>
+    </div>
+    
+    <div className="expertise-grid">
+        <div className="expertise-card" style={{animationDelay: '0s'}}>
+            <div className="expertise-number">15+</div>
+            <div className="expertise-title">Années d'expérience terrain</div>
+            <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber. Notre équipe d'experts internationaux a piloté des projets dans plus de 10 pays</p>
+        </div>
+        <div className="expertise-card highlight" style={{animationDelay: '0.15s'}}>
+            <div className="certification-badge">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <div className="expertise-title">Une équipe d'experts en cyber défense</div>
+            <p>Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
+        </div>
+    </div>
+</section>
+		
    <div className="section-header">
             <div className="stats">
                 <div className="stat">
