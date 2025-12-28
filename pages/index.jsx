@@ -30,10 +30,8 @@ export default function Home() {
 
     const initializeApp = () => {
       try {
-        let quizIsOpen = false;
         let videoIsPlaying = false;
 
-        // Sticky header
         const stickyHeader = document.getElementById('stickyHeader');
         const heroSection = document.querySelector('.hero');
         
@@ -48,7 +46,6 @@ export default function Home() {
             }
         });
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -59,14 +56,12 @@ export default function Home() {
             });
         });
 
-        // FAQ accordion
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', function() {
                 this.classList.toggle('active');
             });
         });
 
-        // Intersection Observer
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -81,14 +76,13 @@ export default function Home() {
             });
         }, observerOptions);
 
-        document.querySelectorAll('.price-card, .testimonial, .credibility-card, .timeline-item').forEach(el => {
+        document.querySelectorAll('.price-card, .testimonial, .credibility-card, .timeline-item, .service-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             observer.observe(el);
         });
 
-        // Carousel
         const carousel = document.getElementById('testimonialCarousel');
         if (carousel) {
             const wrapper = carousel.querySelector('.testimonials-wrapper');
@@ -154,7 +148,6 @@ export default function Home() {
             });
         }
 
-        // Video Modal
         window.openVideoModal = function() {
             const modal = document.getElementById('videoModal');
             const iframe = modal.querySelector('iframe');
@@ -179,180 +172,15 @@ export default function Home() {
             document.body.style.overflow = '';
         };
 
-        // Quiz Modal
-        window.openQuiz = function() {
-            const quizModal = document.getElementById('quizModal');
-            quizModal.style.display = 'flex';
-            setTimeout(() => quizModal.classList.add('show'), 10);
-            quizIsOpen = true;
-            document.body.style.overflow = 'hidden';
-        };
-
-        window.closeQuiz = function() {
-            const quizModal = document.getElementById('quizModal');
-            quizModal.classList.remove('show');
-            setTimeout(() => {
-                quizModal.style.display = 'none';
-                window.resetQuiz();
-            }, 300);
-            quizIsOpen = false;
-            document.body.style.overflow = '';
-        };
-
-        // Quiz Logic
-        let currentQuestion = 1;
-        let answers = {};
-
-        window.selectAnswer = function(questionNumber, answer, element) {
-            answers[questionNumber] = answer;
-            
-            const questionDiv = document.querySelector(`.quiz-question[data-question="${questionNumber}"]`);
-            const allAnswers = questionDiv.querySelectorAll('.quiz-answer');
-            allAnswers.forEach(ans => ans.classList.remove('selected'));
-            element.classList.add('selected');
-            
-            document.getElementById('quizNextBtn').disabled = false;
-        };
-
-        window.nextQuestion = function() {
-            if (!answers[currentQuestion]) return;
-            
-            const currentQuestionDiv = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
-            const nextQuestionDiv = document.querySelector(`.quiz-question[data-question="${currentQuestion + 1}"]`);
-            
-            if (nextQuestionDiv) {
-                currentQuestionDiv.classList.remove('active');
-                nextQuestionDiv.classList.add('active');
-                currentQuestion++;
-                
-                document.getElementById('quizPrevBtn').style.display = 'block';
-                document.getElementById('quizNextBtn').disabled = !answers[currentQuestion];
-                
-                const progress = (currentQuestion / 10) * 100;
-                document.getElementById('quizProgress').style.width = progress + '%';
-            } else {
-                window.showResults();
-            }
-        };
-
-        window.prevQuestion = function() {
-            if (currentQuestion > 1) {
-                const currentQuestionDiv = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
-                const prevQuestionDiv = document.querySelector(`.quiz-question[data-question="${currentQuestion - 1}"]`);
-                
-                currentQuestionDiv.classList.remove('active');
-                prevQuestionDiv.classList.add('active');
-                currentQuestion--;
-                
-                if (currentQuestion === 1) {
-                    document.getElementById('quizPrevBtn').style.display = 'none';
-                }
-                
-                document.getElementById('quizNextBtn').disabled = false;
-                
-                const progress = (currentQuestion / 10) * 100;
-                document.getElementById('quizProgress').style.width = progress + '%';
-            }
-        };
-
-        window.showResults = function() {
-            const score = Object.values(answers).filter(a => a === 'oui').length;
-            
-            document.getElementById('quizQuestions').style.display = 'none';
-            document.getElementById('quizNavigation').style.display = 'none';
-            document.getElementById('quizResults').style.display = 'flex';
-            
-            document.getElementById('scoreNumber').textContent = score;
-            
-            let title = '';
-            let desc = '';
-            
-            if (score >= 7) {
-                title = '⚠️ Vous êtes très probablement concerné par NIS2';
-                desc = 'Votre entreprise présente plusieurs critères d\'éligibilité à la directive NIS2. Il est urgent d\'évaluer votre niveau de conformité et de mettre en place les mesures nécessaires.';
-            } else if (score >= 4) {
-                title = '🟡 Vous êtes potentiellement concerné par NIS2';
-                desc = 'Votre entreprise pourrait entrer dans le périmètre de NIS2. Nous vous recommandons vivement de réaliser un audit pour clarifier votre situation et anticiper vos obligations.';
-            } else {
-                title = '✅ Vous semblez hors du périmètre NIS2 pour l\'instant';
-                desc = 'D\'après vos réponses, votre entreprise ne semble pas directement concernée par NIS2. Toutefois, la réglementation évolue et vos clients peuvent exiger des garanties de cybersécurité.';
-            }
-            
-            document.getElementById('resultTitle').textContent = title;
-            document.getElementById('resultDesc').textContent = desc;
-        };
-
-        window.resetQuiz = function() {
-            currentQuestion = 1;
-            answers = {};
-            
-            document.querySelectorAll('.quiz-question').forEach((q, index) => {
-                q.classList.remove('active');
-                if (index === 0) q.classList.add('active');
-                q.querySelectorAll('.quiz-answer').forEach(a => a.classList.remove('selected'));
-            });
-            
-            document.getElementById('quizProgress').style.width = '10%';
-            document.getElementById('quizPrevBtn').style.display = 'none';
-            document.getElementById('quizNextBtn').disabled = true;
-            document.getElementById('quizQuestions').style.display = 'block';
-            document.getElementById('quizNavigation').style.display = 'flex';
-            document.getElementById('quizResults').style.display = 'none';
-        };
-
-        // Lead Modal
-        window.openLeadModal = function() {
-            document.getElementById('leadModal').style.display = 'flex';
-            setTimeout(() => document.getElementById('leadModal').classList.add('show'), 10);
-            document.body.style.overflow = 'hidden';
-        };
-
-        window.closeLeadModal = function() {
-            const modal = document.getElementById('leadModal');
-            modal.classList.remove('show');
-            setTimeout(() => modal.style.display = 'none', 300);
-            document.body.style.overflow = '';
-        };
-
-        window.showDownloadOption = function() {
-            document.getElementById('leadOptions').style.display = 'none';
-            document.getElementById('downloadForm').style.display = 'block';
-        };
-
-        window.showAuditOption = function() {
-            document.getElementById('leadOptions').style.display = 'none';
-            document.getElementById('auditForm').style.display = 'block';
-        };
-
-        window.backToOptions = function() {
-            document.getElementById('leadOptions').style.display = 'flex';
-            document.getElementById('downloadForm').style.display = 'none';
-            document.getElementById('auditForm').style.display = 'none';
-        };
-
-        window.submitDownloadForm = function(e) {
-            e.preventDefault();
-            document.getElementById('downloadForm').innerHTML = '<div class="form-success"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><h3>Merci !</h3><p>Consultez votre boîte mail, le guide NIS2 arrive dans quelques instants.</p></div>';
-        };
-
-        window.submitAuditForm = function(e) {
-            e.preventDefault();
-            document.getElementById('auditForm').innerHTML = '<div class="form-success"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><h3>Merci !</h3><p>Nous vous contactons sous 24h pour planifier votre audit gratuit.</p></div>';
-        };
-
-        // Close modals
         window.addEventListener('click', (e) => {
             if (e.target.classList.contains('modal')) {
                 if (e.target.id === 'videoModal') window.closeVideoModal();
-                if (e.target.id === 'quizModal') window.closeQuiz();
-                if (e.target.id === 'leadModal') window.closeLeadModal();
             }
         });
 
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 if (videoIsPlaying) window.closeVideoModal();
-                if (quizIsOpen) window.closeQuiz();
             }
         });
 
@@ -380,51 +208,35 @@ export default function Home() {
 
       <style jsx global>{`
         :root {
-          /* Couleurs principales - TECH DYNAMIQUE */
           --primary-dark: #0F172A;
           --primary: #1E293B;
           --primary-light: #334155;
-          
-          /* Accent ORANGE vif (Startup Tech) */
           --accent: #F97316;
           --accent-light: #FB923C;
           --accent-hover: #EA580C;
-          
-          /* Accent CYAN (Tech/Cyber) */
           --accent-secondary: #06B6D4;
           --accent-secondary-light: #22D3EE;
           --accent-secondary-dark: #0891B2;
-          
-          /* Neutrals */
           --text-primary: #0F172A;
           --text-secondary: #475569;
           --text-light: #94A3B8;
-          
-          /* Backgrounds */
           --bg-primary: #FFFFFF;
           --bg-secondary: #F8FAFC;
           --bg-accent: #FFF7ED;
           --bg-accent-secondary: #ECFEFF;
           --bg-dark: #0F172A;
-          
-          /* Semantic colors */
           --success: #10B981;
           --success-bg: rgba(16, 185, 129, 0.1);
           --success-border: rgba(16, 185, 129, 0.2);
-          
           --warning: #F59E0B;
           --warning-bg: rgba(245, 158, 11, 0.1);
           --warning-border: rgba(245, 158, 11, 0.2);
-          
           --error: #EF4444;
           --error-bg: rgba(239, 68, 68, 0.1);
           --error-border: rgba(239, 68, 68, 0.2);
-          
           --info: #3B82F6;
           --info-bg: rgba(59, 130, 246, 0.1);
           --info-border: rgba(59, 130, 246, 0.2);
-          
-          /* Spacing */
           --space-xs: 8px;
           --space-sm: 16px;
           --space-md: 24px;
@@ -432,14 +244,10 @@ export default function Home() {
           --space-xl: 48px;
           --space-2xl: 64px;
           --space-3xl: 96px;
-          
-          /* Containers */
           --container-sm: 640px;
           --container-md: 768px;
           --container-lg: 1024px;
           --container-xl: 1280px;
-          
-          /* Transitions */
           --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
           --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -654,14 +462,6 @@ export default function Home() {
           color: var(--primary);
         }
 
-        .btn-ghost {
-          background: transparent;
-          color: var(--primary);
-          text-decoration: underline;
-          text-underline-offset: 4px;
-          padding: 8px 16px;
-        }
-
         section {
           padding: var(--space-2xl) 0;
         }
@@ -765,104 +565,6 @@ export default function Home() {
           content: '✓';
           color: var(--success);
           font-weight: 700;
-        }
-
-        /* QUIZ MEGA CARD - ULTRA VISIBLE */
-        .quiz-trigger-section-enhanced {
-          background: linear-gradient(135deg, 
-            rgba(249, 115, 22, 0.05) 0%, 
-            rgba(6, 182, 212, 0.05) 100%);
-          padding: var(--space-2xl) 0;
-        }
-
-        .quiz-mega-card {
-          max-width: 800px;
-          margin: 0 auto;
-          background: white;
-          border: 2px solid var(--accent);
-          border-radius: 24px;
-          padding: var(--space-2xl);
-          text-align: center;
-          box-shadow: 
-            0 20px 60px rgba(249, 115, 22, 0.15),
-            0 8px 24px rgba(6, 182, 212, 0.1);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .quiz-mega-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 4px;
-          background: linear-gradient(90deg, var(--accent) 0%, var(--accent-secondary) 100%);
-        }
-
-        .quiz-icon {
-          width: 80px;
-          height: 80px;
-          margin: 0 auto var(--space-md);
-          background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 48px;
-          box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
-        }
-
-        .quiz-mega-card h2 {
-          color: var(--primary);
-          margin-bottom: var(--space-md);
-        }
-
-        .quiz-mega-card p {
-          font-size: 18px;
-          color: var(--text-secondary);
-          margin-bottom: var(--space-xl);
-        }
-
-        .quiz-features {
-          display: flex;
-          justify-content: center;
-          gap: var(--space-lg);
-          margin-bottom: var(--space-xl);
-          flex-wrap: wrap;
-        }
-
-        .quiz-feature {
-          display: flex;
-          align-items: center;
-          gap: var(--space-xs);
-          color: var(--text-secondary);
-          font-size: 15px;
-        }
-
-        .quiz-feature svg {
-          color: var(--accent-secondary);
-        }
-
-        .btn-quiz-large {
-          background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-          color: white;
-          padding: 20px 48px;
-          border-radius: 12px;
-          font-weight: 700;
-          font-size: 18px;
-          border: none;
-          cursor: pointer;
-          box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
-          transition: all var(--transition-base);
-          display: inline-flex;
-          align-items: center;
-          gap: var(--space-sm);
-        }
-
-        .btn-quiz-large:hover {
-          transform: translateY(-4px) scale(1.02);
-          box-shadow: 0 12px 32px rgba(249, 115, 22, 0.4);
         }
 
         .approach-section {
@@ -1128,7 +830,6 @@ export default function Home() {
           border-radius: 6px;
         }
 
-        /* PRICING SIMPLIFIÉ */
         .pricing-section {
           background: white;
         }
@@ -1151,29 +852,110 @@ export default function Home() {
         }
 
         .price-card:hover {
-          border-color: var(--accent);
-          box-shadow: 0 8px 32px rgba(249, 115, 22, 0.15);
           transform: translateY(-4px);
+          box-shadow: 0 8px 32px rgba(15, 23, 42, 0.12);
         }
 
-        .price-card.popular {
-          border: 2px solid var(--accent);
+        .price-card.decouverte {
+          border-width: 2px;
+          border-style: solid;
+          border-image-slice: 1;
+          border-image-source: linear-gradient(135deg, #22D3EE 0%, #3B82F6 50%, #2563EB 100%);
+        }
+
+        .price-card.decouverte:hover {
+          box-shadow: 0 8px 32px rgba(34, 211, 238, 0.2);
+        }
+
+        .price-card.decouverte .price-icon {
+          background: linear-gradient(135deg, #22D3EE 0%, #3B82F6 50%, #2563EB 100%);
+        }
+
+        .price-card.decouverte .price {
+          background: linear-gradient(135deg, #22D3EE 0%, #3B82F6 50%, #2563EB 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .price-card.decouverte .btn-price {
+          background: linear-gradient(135deg, #22D3EE 0%, #3B82F6 50%, #2563EB 100%);
+        }
+
+        .price-card.essentiel {
+          border-width: 2px;
+          border-style: solid;
+          border-image-slice: 1;
+          border-image-source: linear-gradient(135deg, #A78BFA 0%, #A855F7 50%, #D946EF 100%);
           transform: scale(1.05);
-          box-shadow: 0 20px 40px rgba(249, 115, 22, 0.2);
+          box-shadow: 0 20px 40px rgba(168, 139, 250, 0.2);
         }
 
-        .price-card.popular::before {
+        .price-card.essentiel::before {
           content: '⭐ POPULAIRE';
           position: absolute;
           top: -12px;
           right: 24px;
-          background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+          background: linear-gradient(135deg, #A855F7 0%, #D946EF 100%);
           color: white;
           padding: 6px 16px;
           border-radius: 20px;
           font-size: 12px;
           font-weight: 700;
           letter-spacing: 0.5px;
+        }
+
+        .price-card.essentiel .price-icon {
+          background: linear-gradient(135deg, #A78BFA 0%, #A855F7 50%, #D946EF 100%);
+        }
+
+        .price-card.essentiel .price {
+          background: linear-gradient(135deg, #A78BFA 0%, #A855F7 50%, #D946EF 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .price-card.essentiel .btn-price {
+          background: linear-gradient(135deg, #A78BFA 0%, #A855F7 50%, #D946EF 100%);
+        }
+
+        .price-card.expertise {
+          border-width: 2px;
+          border-style: solid;
+          border-image-slice: 1;
+          border-image-source: linear-gradient(135deg, #FBBF24 0%, #F97316 50%, #EF4444 100%);
+        }
+
+        .price-card.expertise:hover {
+          box-shadow: 0 8px 32px rgba(251, 191, 36, 0.2);
+        }
+
+        .price-card.expertise .price-icon {
+          background: linear-gradient(135deg, #FBBF24 0%, #F97316 50%, #EF4444 100%);
+        }
+
+        .price-card.expertise .price {
+          background: linear-gradient(135deg, #FBBF24 0%, #F97316 50%, #EF4444 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .price-card.expertise .btn-price {
+          background: linear-gradient(135deg, #FBBF24 0%, #F97316 50%, #EF4444 100%);
+        }
+
+        .price-icon {
+          width: 64px;
+          height: 64px;
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: var(--space-md);
+          color: white;
+          font-size: 32px;
         }
 
         .price-card h3 {
@@ -1184,8 +966,8 @@ export default function Home() {
         .price {
           font-size: 48px;
           font-weight: 700;
-          color: var(--accent);
           margin: var(--space-md) 0;
+          display: block;
         }
 
         .price-duration {
@@ -1195,7 +977,7 @@ export default function Home() {
         }
 
         .price-ideal {
-          background: rgba(249, 115, 22, 0.05);
+          background: rgba(15, 23, 42, 0.05);
           padding: var(--space-sm);
           border-radius: 8px;
           margin-bottom: var(--space-lg);
@@ -1234,7 +1016,6 @@ export default function Home() {
           color: var(--primary);
         }
 
-        /* Section "Plus de" pour différentiel */
         .price-plus-section {
           background: rgba(6, 182, 212, 0.05);
           border: 1px solid rgba(6, 182, 212, 0.2);
@@ -1259,6 +1040,135 @@ export default function Home() {
         .price-plus-section .price-features li::before {
           content: '+';
           color: var(--accent-secondary);
+        }
+
+        .btn-price {
+          width: 100%;
+          color: white;
+          padding: 16px 32px;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+          transition: all var(--transition-fast);
+          font-family: inherit;
+          text-decoration: none;
+          display: block;
+          text-align: center;
+        }
+
+        .btn-price:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .optional-services-section {
+          background: var(--bg-secondary);
+          padding: var(--space-3xl) 0;
+        }
+
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: var(--space-lg);
+          max-width: var(--container-xl);
+          margin: var(--space-xl) auto 0;
+        }
+
+        .service-card {
+          background: white;
+          border: 1px solid rgba(15, 23, 42, 0.1);
+          border-radius: 16px;
+          padding: var(--space-xl);
+          transition: all var(--transition-base);
+        }
+
+        .service-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 32px rgba(15, 23, 42, 0.12);
+        }
+
+        .service-card.formation {
+          border-top: 4px solid #10B981;
+        }
+
+        .service-card.formation .service-icon {
+          background: rgba(16, 185, 129, 0.1);
+          color: #10B981;
+        }
+
+        .service-card.formation .service-dot {
+          background: #10B981;
+        }
+
+        .service-card.secretariat {
+          border-top: 4px solid #6366F1;
+        }
+
+        .service-card.secretariat .service-icon {
+          background: rgba(99, 102, 241, 0.1);
+          color: #6366F1;
+        }
+
+        .service-card.secretariat .service-dot {
+          background: #6366F1;
+        }
+
+        .service-card.incidents {
+          border-top: 4px solid #F43F5E;
+        }
+
+        .service-card.incidents .service-icon {
+          background: rgba(244, 63, 94, 0.1);
+          color: #F43F5E;
+        }
+
+        .service-card.incidents .service-dot {
+          background: #F43F5E;
+        }
+
+        .service-icon {
+          width: 64px;
+          height: 64px;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: var(--space-md);
+          font-size: 32px;
+        }
+
+        .service-card h4 {
+          font-size: 24px;
+          color: var(--primary);
+          margin-bottom: var(--space-sm);
+        }
+
+        .service-description {
+          color: var(--text-secondary);
+          font-size: 15px;
+          margin-bottom: var(--space-md);
+        }
+
+        .service-points {
+          list-style: none;
+        }
+
+        .service-points li {
+          padding: var(--space-xs) 0;
+          display: flex;
+          align-items: center;
+          gap: var(--space-sm);
+          color: var(--text-secondary);
+          font-size: 14px;
+        }
+
+        .service-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          flex-shrink: 0;
         }
 
         .faq-section {
@@ -1482,355 +1392,6 @@ export default function Home() {
           border-radius: 16px;
         }
 
-        .quiz-modal-body {
-          padding: var(--space-xl);
-        }
-
-        .quiz-header {
-          text-align: center;
-          margin-bottom: var(--space-lg);
-        }
-
-        .quiz-progress-bar {
-          width: 100%;
-          height: 8px;
-          background: rgba(15, 23, 42, 0.1);
-          border-radius: 4px;
-          overflow: hidden;
-          margin-top: var(--space-md);
-        }
-
-        .quiz-progress {
-          height: 100%;
-          background: linear-gradient(90deg, var(--accent) 0%, var(--accent-secondary) 100%);
-          transition: width var(--transition-base);
-          width: 10%;
-        }
-
-        .quiz-questions {
-          min-height: 300px;
-        }
-
-        .quiz-question {
-          display: none;
-        }
-
-        .quiz-question.active {
-          display: block;
-        }
-
-        .quiz-question-number {
-          color: var(--text-light);
-          font-size: 14px;
-          margin-bottom: var(--space-sm);
-        }
-
-        .quiz-question-text {
-          font-size: 20px;
-          color: var(--primary);
-          font-weight: 600;
-          margin-bottom: var(--space-lg);
-        }
-
-        .quiz-answers {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-md);
-        }
-
-        .quiz-answer {
-          padding: var(--space-md);
-          border: 2px solid rgba(15, 23, 42, 0.1);
-          border-radius: 12px;
-          cursor: pointer;
-          transition: all var(--transition-fast);
-          display: flex;
-          align-items: center;
-          gap: var(--space-md);
-        }
-
-        .quiz-answer:hover {
-          border-color: var(--accent);
-          background: rgba(249, 115, 22, 0.05);
-        }
-
-        .quiz-answer.selected {
-          border-color: var(--accent);
-          background: rgba(249, 115, 22, 0.08);
-        }
-
-        .quiz-answer-radio {
-          width: 24px;
-          height: 24px;
-          border: 2px solid rgba(15, 23, 42, 0.3);
-          border-radius: 50%;
-          position: relative;
-        }
-
-        .quiz-answer.selected .quiz-answer-radio {
-          border-color: var(--accent);
-        }
-
-        .quiz-answer.selected .quiz-answer-radio::after {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 12px;
-          height: 12px;
-          background: var(--accent);
-          border-radius: 50%;
-        }
-
-        .quiz-navigation {
-          display: flex;
-          justify-content: space-between;
-          margin-top: var(--space-lg);
-          gap: var(--space-md);
-        }
-
-        .quiz-btn {
-          flex: 1;
-          padding: var(--space-md) var(--space-lg);
-          border-radius: 8px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all var(--transition-fast);
-          border: none;
-          font-family: inherit;
-          font-size: 16px;
-        }
-
-        .quiz-btn-next {
-          background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-          color: white;
-        }
-
-        .quiz-btn-next:hover:not(:disabled) {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 16px rgba(249, 115, 22, 0.3);
-        }
-
-        .quiz-btn-next:disabled {
-          background: rgba(15, 23, 42, 0.2);
-          cursor: not-allowed;
-        }
-
-        .quiz-btn-prev {
-          background: transparent;
-          color: var(--primary);
-          border: 2px solid rgba(15, 23, 42, 0.2);
-        }
-
-        .quiz-btn-prev:hover {
-          border-color: var(--primary);
-        }
-
-        .quiz-results {
-          display: none;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          padding: var(--space-xl) 0;
-        }
-
-        .quiz-score-circle {
-          width: 120px;
-          height: 120px;
-          border: 8px solid var(--accent);
-          border-radius: 50%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: var(--space-lg);
-        }
-
-        .quiz-score-circle #scoreNumber {
-          font-size: 48px;
-          font-weight: 700;
-          color: var(--accent);
-          line-height: 1;
-        }
-
-        .quiz-score-label {
-          font-size: 16px;
-          color: var(--text-light);
-        }
-
-        .quiz-result-title {
-          color: var(--primary);
-          margin-bottom: var(--space-md);
-        }
-
-        .quiz-result-desc {
-          color: var(--text-secondary);
-          margin-bottom: var(--space-xl);
-          line-height: 1.8;
-        }
-
-        .quiz-result-actions {
-          display: flex;
-          gap: var(--space-md);
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-
-        .quiz-result-btn {
-          padding: var(--space-md) var(--space-lg);
-          border-radius: 8px;
-          font-weight: 600;
-          text-decoration: none;
-          transition: all var(--transition-fast);
-        }
-
-        .quiz-result-btn.primary {
-          background: var(--accent);
-          color: white;
-        }
-
-        .quiz-result-btn.primary:hover {
-          background: var(--accent-hover);
-          transform: translateY(-2px);
-        }
-
-        .quiz-result-btn.secondary {
-          background: transparent;
-          color: var(--primary);
-          border: 2px solid rgba(15, 23, 42, 0.2);
-        }
-
-        .quiz-result-btn.secondary:hover {
-          border-color: var(--primary);
-        }
-
-        .lead-modal-body {
-          padding: var(--space-xl);
-        }
-
-        .lead-header {
-          text-align: center;
-          margin-bottom: var(--space-xl);
-        }
-
-        .lead-header h2 {
-          color: var(--primary);
-          margin-bottom: var(--space-sm);
-        }
-
-        .lead-options {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: var(--space-lg);
-        }
-
-        .lead-option {
-          background: var(--bg-secondary);
-          border: 2px solid rgba(15, 23, 42, 0.1);
-          border-radius: 16px;
-          padding: var(--space-xl);
-          text-align: center;
-          cursor: pointer;
-          transition: all var(--transition-base);
-        }
-
-        .lead-option:hover {
-          border-color: var(--accent);
-          background: rgba(249, 115, 22, 0.05);
-          transform: translateY(-4px);
-        }
-
-        .lead-option-icon {
-          font-size: 48px;
-          margin-bottom: var(--space-md);
-        }
-
-        .lead-option h3 {
-          color: var(--primary);
-          font-size: 18px;
-          margin-bottom: var(--space-sm);
-        }
-
-        .lead-option p {
-          color: var(--text-secondary);
-          font-size: 14px;
-        }
-
-        .lead-form {
-          display: none;
-        }
-
-        .form-group {
-          margin-bottom: var(--space-md);
-        }
-
-        .form-group label {
-          display: block;
-          color: var(--primary);
-          font-weight: 600;
-          margin-bottom: var(--space-xs);
-        }
-
-        .form-group input,
-        .form-group select {
-          width: 100%;
-          padding: var(--space-md);
-          border: 1px solid rgba(15, 23, 42, 0.2);
-          border-radius: 8px;
-          font-family: inherit;
-          font-size: 16px;
-          transition: all var(--transition-fast);
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-          outline: none;
-          border-color: var(--accent);
-          box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
-        }
-
-        .form-checkbox {
-          display: flex;
-          align-items: flex-start;
-          gap: var(--space-sm);
-        }
-
-        .form-checkbox input {
-          margin-top: 4px;
-        }
-
-        .form-checkbox label {
-          font-size: 14px;
-          color: var(--text-secondary);
-          font-weight: 400;
-        }
-
-        .form-actions {
-          display: flex;
-          gap: var(--space-md);
-          margin-top: var(--space-lg);
-        }
-
-        .form-success {
-          text-align: center;
-          padding: var(--space-xl);
-        }
-
-        .form-success svg {
-          color: var(--success);
-          margin-bottom: var(--space-md);
-        }
-
-        .form-success h3 {
-          color: var(--primary);
-          margin-bottom: var(--space-sm);
-        }
-
-        .form-success p {
-          color: var(--text-secondary);
-        }
-
         .text-center {
           text-align: center;
         }
@@ -1862,11 +1423,12 @@ export default function Home() {
 
           .credibility-grid,
           .split-grid,
-          .pricing-grid {
+          .pricing-grid,
+          .services-grid {
             grid-template-columns: 1fr;
           }
 
-          .price-card.popular {
+          .price-card.essentiel {
             transform: none;
           }
 
@@ -1886,55 +1448,9 @@ export default function Home() {
             padding: 14px 24px;
             font-size: 15px;
           }
-
-          .btn-quiz-large {
-            padding: 18px 32px;
-            font-size: 16px;
-          }
-
-          .quiz-mega-card {
-            padding: var(--space-xl);
-          }
-
-          .modal-content {
-            margin: var(--space-md);
-          }
-
-          .quiz-result-actions {
-            flex-direction: column;
-          }
-
-          .quiz-result-btn {
-            width: 100%;
-          }
-        }
-
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes pulse {
-          0%, 100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.05);
-          }
-        }
-
-        .animate-fade-in-up {
-          animation: fadeInUp 0.6s ease-out;
         }
       `}</style>
 
-      {/* STICKY HEADER */}
       <header className="sticky-header" id="stickyHeader">
         <div className="container">
           <div className="logo">Cyber Solferino</div>
@@ -1946,7 +1462,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* HERO */}
       <section className="hero">
         <div className="container">
           <div className="logo">Cyber Solferino</div>
@@ -1972,7 +1487,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CREDIBILITY SECTION */}
       <section className="credibility-section">
         <div className="container">
           <div className="credibility-grid">
@@ -2001,55 +1515,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* QUIZ MEGA CARD - ULTRA VISIBLE */}
-      <section className="quiz-trigger-section-enhanced">
-        <div className="container">
-          <div className="quiz-mega-card">
-            <div className="quiz-icon">🎯</div>
-            <h2>Êtes-vous concerné par NIS2 ?</h2>
-            <p>Répondez à 10 questions simples pour découvrir si votre entreprise entre dans le périmètre de la directive.</p>
-            
-            <div className="quiz-features">
-              <div className="quiz-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                2 minutes
-              </div>
-              <div className="quiz-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                Résultat immédiat
-              </div>
-              <div className="quiz-feature">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                </svg>
-                100% confidentiel
-              </div>
-            </div>
-
-            <button className="btn-quiz-large" onClick={() => window.openQuiz()}>
-              Faire le diagnostic gratuit
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
-
-            <div style={{marginTop: 'var(--space-md)'}}>
-              <a href="https://drive.google.com/file/d/1pHdC_x0PCa2rkWBBPx9MHWujG2xm6H8B/view?usp=share_link" target="_blank" className="btn-ghost">
-                📄 Télécharger le guide NIS2 complet
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* NOTRE APPROCHE */}
       <section className="approach-section">
         <div className="container">
           <div className="section-title">
@@ -2088,7 +1553,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RISKS VS OPPORTUNITIES */}
       <section className="split-section">
         <div className="container">
           <div className="section-title">
@@ -2161,7 +1625,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* VIDEO SECTION */}
       <section className="video-section">
         <div className="container">
           <div className="section-title">
@@ -2179,7 +1642,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
       <section className="testimonials-section">
         <div className="container">
           <div className="section-title">
@@ -2250,7 +1712,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRICING SIMPLIFIÉ */}
       <section className="pricing-section" id="pricing">
         <div className="container">
           <div className="section-title">
@@ -2268,8 +1729,8 @@ export default function Home() {
           </div>
           
           <div className="pricing-grid">
-            {/* DÉCOUVERTE */}
-            <div className="price-card">
+            <div className="price-card decouverte">
+              <div className="price-icon">🛡️</div>
               <h3>Découverte</h3>
               <div className="price">3 490€</div>
               <div className="price-duration">Immédiat • Diagnostic</div>
@@ -2283,13 +1744,13 @@ export default function Home() {
                 <li>Rapport d'audit synthétique</li>
                 <li>Recommandations d'actions prioritaires</li>
               </ul>
-              <button className="btn btn-primary" onClick={handleStripeCheckout} style={{width: '100%'}}>
+              <button className="btn-price" onClick={handleStripeCheckout}>
                 Je fais mon diagnostic NIS2
               </button>
             </div>
-            
-            {/* ESSENTIEL */}
-            <div className="price-card popular">
+
+            <div className="price-card essentiel">
+              <div className="price-icon">✨</div>
               <h3>Essentiel</h3>
               <div className="price">7 990€</div>
               <div className="price-duration">En 48H</div>
@@ -2309,13 +1770,13 @@ export default function Home() {
                 </ul>
               </div>
 
-              <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary" style={{width: '100%'}}>
+              <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn-price">
                 Prendre rendez-vous
               </a>
             </div>
-            
-            {/* EXPERTISE */}
-            <div className="price-card">
+
+            <div className="price-card expertise">
+              <div className="price-icon">⚡</div>
               <h3>Expertise</h3>
               <div className="price">14 900€</div>
               <div className="price-duration">1 mois</div>
@@ -2336,7 +1797,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary" style={{width: '100%'}}>
+              <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn-price">
                 Prendre rendez-vous
               </a>
             </div>
@@ -2344,7 +1805,108 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ */}
+      <section className="optional-services-section">
+        <div className="container">
+          <div className="section-title">
+            <span className="section-badge cyan">SERVICES OPTIONNELS</span>
+            <h2>Allez plus loin dans votre conformité</h2>
+            <p className="section-subtitle">
+              Des services complémentaires pour une protection maximale
+            </p>
+          </div>
+
+          <div className="services-grid">
+            <div className="service-card formation">
+              <div className="service-icon">📚</div>
+              <h4>Formation</h4>
+              <p className="service-description">
+                Montée en compétences de vos équipes sur les enjeux cyber et NIS2
+              </p>
+              <ul className="service-points">
+                <li>
+                  <span className="service-dot"></span>
+                  Sessions sur mesure adaptées à votre secteur
+                </li>
+                <li>
+                  <span className="service-dot"></span>
+                  Supports personnalisés et cas pratiques
+                </li>
+                <li>
+                  <span className="service-dot"></span>
+                  Certifications professionnelles disponibles
+                </li>
+                <li>
+                  <span className="service-dot"></span>
+                  E-learning en complément du présentiel
+                </li>
+              </ul>
+            </div>
+
+            <div className="service-card secretariat">
+              <div className="service-icon">📝</div>
+              <h4>Secrétariat Subventions</h4>
+              <p className="service-description">
+                Gestion complète de vos dossiers de financement NIS2
+              </p>
+              <ul className="service-points">
+                <li>
+                  <span className="service-dot"></span>
+                  Identification des aides disponibles
+                </li>
+                <li>
+                  <span className="service-dot"></span>
+                  Constitution complète des dossiers
+                </li>
+                <li>
+                  <span className="service-dot"></span>
+                  Suivi administratif jusqu'au versement
+                </li>
+                <li>
+                  <span className="service-dot"></span>
+                  Maximisation des financements obtenus
+                </li>
+              </ul>
+            </div>
+
+            <div className="service-card incidents">
+              <div className="service-icon">🚨</div>
+              <h4>Notification Incidents</h4>
+              <p className="service-description">
+                Gestion proactive et conforme des incidents de sécurité
+              </p>
+              <ul className="service-points">
+                <li>
+                  <span className="service-dot"></span>
+                  Surveillance continue de vos systèmes
+                </li>
+                <li>
+                  <span className="service-dot"></span>
+                  Alertes instantanées en cas d'incident
+                </li>
+                <li>
+                  <span className="service-dot"></span>
+                  Déclarations réglementaires ANSSI
+                </li>
+                <li>
+                  <span className="service-dot"></span>
+                  Accompagnement gestion de crise
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="text-center mt-xl">
+            <p style={{fontSize: '18px', color: 'var(--text-secondary)', marginBottom: 'var(--space-lg)'}}>
+              <strong style={{color: 'var(--primary)'}}>Besoin d'un service sur-mesure ?</strong><br/>
+              Parlons de vos besoins spécifiques et construisons une solution adaptée.
+            </p>
+            <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary">
+              📞 Discuter de vos besoins
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section className="faq-section">
         <div className="container">
           <div className="section-title">
@@ -2428,7 +1990,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
       <section className="final-cta">
         <div className="container">
           <h2>Sécurisez votre avenir dès aujourd'hui</h2>
@@ -2440,14 +2001,10 @@ export default function Home() {
             <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary">
               📅 Réserver un échange gratuit
             </a>
-            <button className="btn btn-secondary" onClick={() => window.openLeadModal()} style={{marginLeft: 'var(--space-sm)'}}>
-              📥 Télécharger le guide NIS2
-            </button>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer>
         <div className="footer-content">
           <div className="footer-brand">Cyber Solferino</div>
@@ -2463,7 +2020,6 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* VIDEO MODAL */}
       <div className="modal" id="videoModal">
         <div className="modal-content video-modal-content">
           <button className="modal-close" onClick={() => window.closeVideoModal()}>×</button>
@@ -2472,296 +2028,6 @@ export default function Home() {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
-        </div>
-      </div>
-
-      {/* QUIZ MODAL - Toutes les 10 questions */}
-      <div className="modal" id="quizModal">
-        <div className="modal-content">
-          <button className="modal-close" onClick={() => window.closeQuiz()}>×</button>
-          <div className="quiz-modal-body">
-            <div className="quiz-header">
-              <h2>⚡ Suis-je concerné par la directive NIS2 ?</h2>
-              <p>Ce quiz rapide vous permet de savoir immédiatement si vous entrez dans le périmètre.</p>
-              <div className="quiz-progress-bar">
-                <div className="quiz-progress" id="quizProgress"></div>
-              </div>
-            </div>
-
-            <div className="quiz-questions" id="quizQuestions">
-              <div className="quiz-question active" data-question="1">
-                <div className="quiz-question-number">Question 1 sur 10</div>
-                <div className="quiz-question-text">Votre entreprise compte-t-elle plus de 50 salariés ?</div>
-                <div className="quiz-answers">
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(1, 'oui', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Oui</div>
-                  </div>
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(1, 'non', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Non</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="quiz-question" data-question="2">
-                <div className="quiz-question-number">Question 2 sur 10</div>
-                <div className="quiz-question-text">Réalisez-vous un chiffre d'affaires supérieur à 10 millions d'euros ?</div>
-                <div className="quiz-answers">
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(2, 'oui', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Oui</div>
-                  </div>
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(2, 'non', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Non</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="quiz-question" data-question="3">
-                <div className="quiz-question-number">Question 3 sur 10</div>
-                <div className="quiz-question-text">Êtes-vous actif dans l'un des secteurs critiques : santé, énergie, eau, transport, numérique, administration publique, agroalimentaire ?</div>
-                <div className="quiz-answers">
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(3, 'oui', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Oui</div>
-                  </div>
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(3, 'non', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Non</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="quiz-question" data-question="4">
-                <div className="quiz-question-number">Question 4 sur 10</div>
-                <div className="quiz-question-text">Fournissez-vous des services numériques critiques (hébergement, cloud, DNS, SaaS, etc.) ?</div>
-                <div className="quiz-answers">
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(4, 'oui', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Oui</div>
-                  </div>
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(4, 'non', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Non</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="quiz-question" data-question="5">
-                <div className="quiz-question-number">Question 5 sur 10</div>
-                <div className="quiz-question-text">Avez-vous un rôle de sous-traitant dans la chaîne de valeur d'un acteur critique ?</div>
-                <div className="quiz-answers">
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(5, 'oui', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Oui</div>
-                  </div>
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(5, 'non', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Non</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="quiz-question" data-question="6">
-                <div className="quiz-question-number">Question 6 sur 10</div>
-                <div className="quiz-question-text">Traitez-vous des données sensibles ou critiques (données de santé, infrastructures, systèmes industriels) ?</div>
-                <div className="quiz-answers">
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(6, 'oui', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Oui</div>
-                  </div>
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(6, 'non', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Non</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="quiz-question" data-question="7">
-                <div className="quiz-question-number">Question 7 sur 10</div>
-                <div className="quiz-question-text">Avez-vous été victime d'un incident ou d'une tentative de cyberattaque dans les 12 derniers mois ?</div>
-                <div className="quiz-answers">
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(7, 'oui', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Oui</div>
-                  </div>
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(7, 'non', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Non</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="quiz-question" data-question="8">
-                <div className="quiz-question-number">Question 8 sur 10</div>
-                <div className="quiz-question-text">Disposez-vous d'une politique formalisée de sécurité des systèmes d'information ?</div>
-                <div className="quiz-answers">
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(8, 'oui', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Oui</div>
-                  </div>
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(8, 'non', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Non</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="quiz-question" data-question="9">
-                <div className="quiz-question-number">Question 9 sur 10</div>
-                <div className="quiz-question-text">Avez-vous une personne ou un prestataire en charge de la cybersécurité ?</div>
-                <div className="quiz-answers">
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(9, 'oui', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Oui</div>
-                  </div>
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(9, 'non', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Non</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="quiz-question" data-question="10">
-                <div className="quiz-question-number">Question 10 sur 10</div>
-                <div className="quiz-question-text">Votre entreprise a-t-elle déjà mis en place un plan de continuité ou de gestion de crise informatique ?</div>
-                <div className="quiz-answers">
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(10, 'oui', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Oui</div>
-                  </div>
-                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(10, 'non', event.currentTarget)}>
-                    <div className="quiz-answer-radio"></div>
-                    <div className="quiz-answer-text">Non</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="quiz-navigation" id="quizNavigation">
-              <button className="quiz-btn quiz-btn-prev" onClick={() => window.prevQuestion()} id="quizPrevBtn" style={{display: 'none'}}>
-                ← Précédent
-              </button>
-              <button className="quiz-btn quiz-btn-next" onClick={() => window.nextQuestion()} id="quizNextBtn" disabled>
-                Suivant →
-              </button>
-            </div>
-
-            <div className="quiz-results" id="quizResults">
-              <div className="quiz-score-circle">
-                <span id="scoreNumber">0</span>
-                <div className="quiz-score-label">/10</div>
-              </div>
-              <h3 className="quiz-result-title" id="resultTitle"></h3>
-              <p className="quiz-result-desc" id="resultDesc"></p>
-              <div className="quiz-result-actions">
-                <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="quiz-result-btn primary">
-                  📅 Diagnostic cyber gratuit
-                </a>
-                <a href="#pricing" onClick={() => window.closeQuiz()} className="quiz-result-btn secondary">
-                  Découvrir nos audits
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* LEAD MODAL */}
-      <div className="modal" id="leadModal">
-        <div className="modal-content">
-          <button className="modal-close" onClick={() => window.closeLeadModal()}>×</button>
-          <div className="lead-modal-body">
-            <div className="lead-header">
-              <h2>🎁 RESSOURCE GRATUITE</h2>
-              <p>Directive NIS2 : Le Guide Essentiel</p>
-            </div>
-
-            <div className="lead-options" id="leadOptions">
-              <div className="lead-option" onClick={() => window.showDownloadOption()}>
-                <div className="lead-option-icon">📥</div>
-                <h3>Télécharger le guide</h3>
-                <p>Tout comprendre en quelques minutes. Format PDF pratique et actionnable.</p>
-              </div>
-              <div className="lead-option" onClick={() => window.showAuditOption()}>
-                <div className="lead-option-icon">📞</div>
-                <h3>Demander un audit gratuit</h3>
-                <p>Diagnostic immédiat de votre situation avec un expert.</p>
-              </div>
-            </div>
-
-            <form className="lead-form" id="downloadForm" onSubmit={(e) => window.submitDownloadForm(e)}>
-              <h3>📥 Téléchargez gratuitement le guide NIS2</h3>
-              <div className="form-group">
-                <label>Prénom *</label>
-                <input type="text" required />
-              </div>
-              <div className="form-group">
-                <label>Nom *</label>
-                <input type="text" required />
-              </div>
-              <div className="form-group">
-                <label>Email professionnel *</label>
-                <input type="email" required />
-              </div>
-              <div className="form-group">
-                <label>Entreprise *</label>
-                <input type="text" required />
-              </div>
-              <div className="form-group form-checkbox">
-                <input type="checkbox" required />
-                <label>J'accepte de recevoir le guide NIS2 et les communications de NIS2 Conformité.</label>
-              </div>
-              <div className="form-actions">
-                <button type="button" className="btn btn-ghost" onClick={() => window.backToOptions()}>← Retour</button>
-                <button type="submit" className="btn btn-primary" style={{flex: 1}}>📥 Télécharger le guide</button>
-              </div>
-            </form>
-
-            <form className="lead-form" id="auditForm" onSubmit={(e) => window.submitAuditForm(e)}>
-              <h3>📞 Demande d'audit gratuit</h3>
-              <div className="form-group">
-                <label>Prénom *</label>
-                <input type="text" required />
-              </div>
-              <div className="form-group">
-                <label>Nom *</label>
-                <input type="text" required />
-              </div>
-              <div className="form-group">
-                <label>Email professionnel *</label>
-                <input type="email" required />
-              </div>
-              <div className="form-group">
-                <label>Téléphone *</label>
-                <input type="tel" required />
-              </div>
-              <div className="form-group">
-                <label>Entreprise *</label>
-                <input type="text" required />
-              </div>
-              <div className="form-group">
-                <label>Nombre de salariés</label>
-                <select>
-                  <option>Sélectionner</option>
-                  <option>1 à 49</option>
-                  <option>50 à 99</option>
-                  <option>100 à 249</option>
-                  <option>250+</option>
-                </select>
-              </div>
-              <div className="form-group form-checkbox">
-                <input type="checkbox" required />
-                <label>J'accepte d'être contacté par NIS2 Conformité pour mon audit gratuit.</label>
-              </div>
-              <div className="form-actions">
-                <button type="button" className="btn btn-ghost" onClick={() => window.backToOptions()}>← Retour</button>
-                <button type="submit" className="btn btn-primary" style={{flex: 1}}>📞 Demander mon audit</button>
-              </div>
-            </form>
-          </div>
         </div>
       </div>
     </>
