@@ -2659,19 +2659,71 @@ export default function Home() {
         {/* HERO */}
         <section className="hero">
             <div className="logo">Cyber Solferino</div>
-            <div className="tagline">Référentiel ANSSI • Une équipe de Cyber Experts • 15 ans d'expertise</div>
+            <div className="tagline">La cyber sécurité : un impératif stratégique</div>
             
             <h1>
-                <span className="highlight">Évitez 10M€ d'amende</span>
-                La cybersécurité : un impératif stratégique
+                <span className="highlight">Anticipez les risques financiers liés à NIS2</span>
+                La plateforme d’audit et de conformité cyber pensée pour les PME et ETI européennes
             </h1>
             
             <p className="subtitle">Protégez votre activité, votre réputation et votre résilience. Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber certifiés ISO 27001.</p>
+   <div className="section-header">
+                <div className="section-badge success">NOTRE APPROCHE</div>
+                <h2>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
+                <p className="section-subtitle">Notre accompagnement se base sur le référentiel officiel de l’ANSSI.</p>
+            </div>
 
+            {/* Timeline horizontale */}
+            <div className="timeline-container">
+                <div className="timeline-horizontal">
+                    <div className="timeline-item">
+                        <div className="timeline-number">01</div>
+                        <div className="timeline-content">
+                            <h3 className="timeline-title">Analyse de conformité</h3>
+                            <p className="timeline-description">Identification des écarts clés de conformité selon le refenciel de l'ANSSI.</p>
+                        </div>
+                    </div>
+
+                    <div className="timeline-item">
+                        <div className="timeline-number">02</div>
+                        <div className="timeline-content">
+                            <h3 className="timeline-title">Comprendre ses vulnérabilités</h3>
+                            <p className="timeline-description">Connaitre son niveau de conformité aux obligations de sécurité NIS2</p>
+                        </div>
+                    </div>
+
+                    <div className="timeline-item">
+                        <div className="timeline-number">03</div>
+                        <div className="timeline-content">
+                            <h3 className="timeline-title">Accompgnement adapté</h3>
+                            <p className="timeline-description">Choissisez l'offre adaptée en fonction de votre niveau global de maturité cyber</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="expertise-grid">
+                <div className="expertise-card" style={{Delay: '0s'}}>
+                    <div className="expertise-number">15+</div>
+                    <div className="expertise-title">Années d'expérience terrain</div>
+                    <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber. Notre équipe d'experts internationaux a piloté des projets dans plus de 10 pays</p>
+                </div>
+
+                <div className="expertise-card highlight" style={{Delay: '0.15s'}}>
+                    <div className="certification-badge">
+                        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <div className="expertise-title">Une équipe d'experts en cyber défense</div>
+                    <p>Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
+                </div>
+            </div>
             <div className="stats">
                 <div className="stat">
                     <div className="stat-value">92%</div>
-                    <div className="stat-label">PME non prêtes</div>
+                    <div className="stat-label">PME et ETI non prêtes</div>
                 </div>
                 <div className="stat">
                     <div className="stat-value">10M€</div>
@@ -2753,7 +2805,7 @@ export default function Home() {
             <div className="section-header">
                 <div className="section-badge">RISQUES CHIFFRÉS</div>
                 <h2>La prévention est plus rentable qu’une crise cyber</h2>
-                <p className="section-subtitle">Vulnérabilité des PME • 43% perdent des clients après une attaque cyber</p>
+                <p className="section-subtitle">Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber</p>
             </div>
 
             <div className="impact-cards">
@@ -2767,8 +2819,8 @@ export default function Home() {
                 <div className="impact-card" style={{Delay: '0.15s'}}>
                     <div className="impact-icon">💸</div>
                     <div className="impact-stat">4,35M€</div>
-                    <div className="impact-label">Coût moyen cyberattaque</div>
-                    <p className="impact-detail">Rançongiciel, arrêt de production (21j en moyenne), perte de données. 60% des PME touchées ferment dans les 12 mois.</p>
+                    <div className="impact-label">Coût moyen cyber attaque</div>
+                    <p className="impact-detail"> 60% des PME touchées ferment dans les 12 mois.Arrêt de production (21 jours en moyenne), perte de données, rançons.</p>
                 </div>
             </div>
         </section>
@@ -2780,63 +2832,6 @@ export default function Home() {
                 📅 Echange gratuit avec un expert
             </a>
         </div>
-
-        {/* EXPERTISE */}
-        <section className="expertise-section">
-            <div className="section-header">
-                <div className="section-badge success">NOTRE APPROCHE</div>
-                <h2>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
-                <p className="section-subtitle">Notre accompagnement se base sur le référentiel officiel de l’ANSSI.</p>
-            </div>
-
-            {/* Timeline horizontale */}
-            <div className="timeline-container">
-                <div className="timeline-horizontal">
-                    <div className="timeline-item">
-                        <div className="timeline-number">01</div>
-                        <div className="timeline-content">
-                            <h3 className="timeline-title">Research and strategy</h3>
-                            <p className="timeline-description">We spend enough time to uncover business goals and client needs.</p>
-                        </div>
-                    </div>
-
-                    <div className="timeline-item">
-                        <div className="timeline-number">02</div>
-                        <div className="timeline-content">
-                            <h3 className="timeline-title">Development and scale</h3>
-                            <p className="timeline-description">We utilize our best talents to design digital products and services.</p>
-                        </div>
-                    </div>
-
-                    <div className="timeline-item">
-                        <div className="timeline-number">03</div>
-                        <div className="timeline-content">
-                            <h3 className="timeline-title">Testing and evaluation</h3>
-                            <p className="timeline-description">Before the launch, our team test complete website thoroughly.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="expertise-grid">
-                <div className="expertise-card" style={{Delay: '0s'}}>
-                    <div className="expertise-number">15+</div>
-                    <div className="expertise-title">Années d'expérience terrain</div>
-                    <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber.</p>
-                </div>
-
-                <div className="expertise-card highlight" style={{Delay: '0.15s'}}>
-                    <div className="certification-badge">
-                        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                    </div>
-                    <div className="expertise-title">Une équipe d'experts en cyber défense</div>
-                    <p>Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
-                </div>
-            </div>
-        </section>
 
         {/* PRICING */}
         <section className="pricing-section" id="pricing">
@@ -2987,7 +2982,7 @@ export default function Home() {
 
         {/* CTA Inline 3 */}
         <div className="cta-inline">
-            <p>💬 Échangez avec un expert certifié • Obtenez des réponses claires</p>
+            <p>💬 Échangez avec un de nos experts • Obtenez des réponses claires</p>
             <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn">
                 📅 Prendre rendez-vous
             </a>
