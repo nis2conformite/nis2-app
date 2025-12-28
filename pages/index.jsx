@@ -2656,7 +2656,7 @@ export default function Home() {
     </div>
 
     <div className="container">
-    {/* HERO */}
+  {/* HERO */}
 <section className="hero">
     <div className="logo">Cyber Solferino</div>
     <div className="tagline">La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes</div>
@@ -2710,7 +2710,6 @@ export default function Home() {
         </div>
     </div>
 </section>
-		
    <div className="section-header">
             <div className="stats">
                 <div className="stat">
