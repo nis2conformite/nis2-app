@@ -2659,15 +2659,8 @@ export default function Home() {
         {/* HERO */}
         <section className="hero">
             <div className="logo">Cyber Solferino</div>
-            <div className="tagline">La cyber sécurité : un impératif stratégique</div>
+            <div className="tagline"> La plateforme d’audit et de conformité cyber pensée pour les PME et ETI européennes</div>
             
-            <h1>
-                <span className="highlight">Anticipez les risques financiers liés à NIS2</span>
-                La plateforme d’audit et de conformité cyber pensée pour les PME et ETI européennes
-            </h1>
-            
-            <p className="subtitle">Protégez votre activité, votre réputation et votre résilience. Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber certifiés ISO 27001.</p>
-   <div className="section-header">
                 <div className="section-badge success">NOTRE APPROCHE</div>
                 <h2>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
                 <p className="section-subtitle">Notre accompagnement se base sur le référentiel officiel de l’ANSSI.</p>
@@ -2720,6 +2713,8 @@ export default function Home() {
                     <p>Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
                 </div>
             </div>
+		            <p className="subtitle">Protégez votre activité, votre réputation et votre résilience. Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber certifiés ISO 27001.</p>
+   <div className="section-header">
             <div className="stats">
                 <div className="stat">
                     <div className="stat-value">92%</div>
