@@ -26,17 +26,14 @@ export default function Home() {
   }
 
   useEffect(() => {
-    // Exposer handleStripeCheckout globalement
     window.handleStripeCheckout = handleStripeCheckout;
 
     const initializeApp = () => {
       try {
-        // JavaScript ORIGINAL sans modification
-// Variables globales pour tracker l'état du quiz et de la vidéo (avant tout le reste)
         let quizIsOpen = false;
         let videoIsPlaying = false;
 
-        // Sticky header au scroll
+        // Sticky header
         const stickyHeader = document.getElementById('stickyHeader');
         const heroSection = document.querySelector('.hero');
         
@@ -84,3360 +81,2452 @@ export default function Home() {
             });
         }, observerOptions);
 
-        document.querySelectorAll('.price-card, .testimonial, .impact-card, .expertise-card').forEach(el => {
+        document.querySelectorAll('.price-card, .testimonial, .credibility-card, .timeline-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             observer.observe(el);
         });
 
-        // Track conversions
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                console.log('Conversion:', this.textContent.trim());
-            });
-        });
-
-        // Carousel Testimonials
+        // Carousel
         const carousel = document.getElementById('testimonialCarousel');
-        const wrapper = carousel.querySelector('.testimonials-wrapper');
-        const testimonials = carousel.querySelectorAll('.testimonial');
-        const dotsContainer = document.getElementById('carouselDots');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        
-        let currentIndex = 0;
-        const totalSlides = testimonials.length;
-
-        // Créer les dots
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('carousel-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
-        }
-
-        const dots = dotsContainer.querySelectorAll('.carousel-dot');
-
-        function updateCarousel() {
-            wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+        if (carousel) {
+            const wrapper = carousel.querySelector('.testimonials-wrapper');
+            const testimonials = carousel.querySelectorAll('.testimonial');
+            const dotsContainer = document.getElementById('carouselDots');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
             
-            // Update dots
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
+            let currentIndex = 0;
+            const totalSlides = testimonials.length;
+
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('carousel-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+            function updateCarousel() {
+                wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            function goToSlide(index) {
+                currentIndex = index;
+                updateCarousel();
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            let autoplayInterval = setInterval(nextSlide, 5000);
+
+            carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+            carousel.addEventListener('mouseleave', () => autoplayInterval = setInterval(nextSlide, 5000));
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) nextSlide();
+                if (touchEndX - touchStartX > 50) prevSlide();
             });
         }
 
-        function goToSlide(index) {
-            currentIndex = index;
-            updateCarousel();
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            updateCarousel();
-        }
-
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        }
-
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
-
-        // Auto-play carousel (optionnel - 5 secondes)
-        let autoplayInterval = setInterval(nextSlide, 5000);
-
-        // Pause auto-play au hover
-        carousel.addEventListener('mouseenter', () => {
-            clearInterval(autoplayInterval);
-        });
-
-        carousel.addEventListener('mouseleave', () => {
-            autoplayInterval = setInterval(nextSlide, 5000);
-        });
-
-        // Swipe mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        carousel.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        carousel.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            if (touchStartX - touchEndX > 50) {
-                nextSlide();
+        // Video Modal
+        window.openVideoModal = function() {
+            const modal = document.getElementById('videoModal');
+            const iframe = modal.querySelector('iframe');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+            videoIsPlaying = true;
+            if (iframe.src.indexOf('autoplay=1') === -1) {
+                iframe.src += '&autoplay=1';
             }
-            if (touchEndX - touchStartX > 50) {
-                prevSlide();
-            }
-        }
+            document.body.style.overflow = 'hidden';
+        };
 
-        // POPUP LEAD MAGNET
-        const popup = document.getElementById('leadPopup');
-        const popupChoices = document.getElementById('popupChoices');
-        const downloadForm = document.getElementById('downloadForm');
-        const contactForm = document.getElementById('contactForm');
-        const successMessage = document.getElementById('successMessage');
-        const successText = document.getElementById('successText');
+        window.closeVideoModal = function() {
+            const modal = document.getElementById('videoModal');
+            const iframe = modal.querySelector('iframe');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                iframe.src = iframe.src.replace('&autoplay=1', '');
+            }, 300);
+            videoIsPlaying = false;
+            document.body.style.overflow = '';
+        };
 
-        // Afficher la popup après 30 secondes
-        let popupShown = false;
-        
-        function tryShowPopup() {
-            // Ne pas afficher si : quiz ouvert OU vidéo en cours OU déjà affichée cette session
-            if (!popupShown && !quizIsOpen && !videoIsPlaying) {
-                popup.classList.add('active');
-                popupShown = true;
-            }
-        }
-        
-        setTimeout(tryShowPopup, 30000); // 30 secondes
+        // Quiz Modal
+        window.openQuiz = function() {
+            const quizModal = document.getElementById('quizModal');
+            quizModal.style.display = 'flex';
+            setTimeout(() => quizModal.classList.add('show'), 10);
+            quizIsOpen = true;
+            document.body.style.overflow = 'hidden';
+        };
 
-        // TRACKING VIDÉO YOUTUBE
-        // Charger l'API YouTube
-        let youtubePlayer;
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        window.closeQuiz = function() {
+            const quizModal = document.getElementById('quizModal');
+            quizModal.classList.remove('show');
+            setTimeout(() => {
+                quizModal.style.display = 'none';
+                window.resetQuiz();
+            }, 300);
+            quizIsOpen = false;
+            document.body.style.overflow = '';
+        };
 
-        // Fonction appelée automatiquement par l'API YouTube
-        window.onYouTubeIframeAPIReady = function() {
-            const iframe = document.querySelector('.video-container iframe');
-            if (iframe) {
-                youtubePlayer = new YT.Player(iframe, {
-                    events: {
-                        'onStateChange': onPlayerStateChange
-                    }
-                });
+        // Quiz Logic
+        let currentQuestion = 1;
+        let answers = {};
+
+        window.selectAnswer = function(questionNumber, answer, element) {
+            answers[questionNumber] = answer;
+            
+            const questionDiv = document.querySelector(`.quiz-question[data-question="${questionNumber}"]`);
+            const allAnswers = questionDiv.querySelectorAll('.quiz-answer');
+            allAnswers.forEach(ans => ans.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            document.getElementById('quizNextBtn').disabled = false;
+        };
+
+        window.nextQuestion = function() {
+            if (!answers[currentQuestion]) return;
+            
+            const currentQuestionDiv = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
+            const nextQuestionDiv = document.querySelector(`.quiz-question[data-question="${currentQuestion + 1}"]`);
+            
+            if (nextQuestionDiv) {
+                currentQuestionDiv.classList.remove('active');
+                nextQuestionDiv.classList.add('active');
+                currentQuestion++;
+                
+                document.getElementById('quizPrevBtn').style.display = 'block';
+                document.getElementById('quizNextBtn').disabled = !answers[currentQuestion];
+                
+                const progress = (currentQuestion / 10) * 100;
+                document.getElementById('quizProgress').style.width = progress + '%';
+            } else {
+                window.showResults();
             }
         };
 
-        // Détecter les changements d'état de la vidéo
-        function onPlayerStateChange(event) {
-            // 1 = Playing, 2 = Paused, 0 = Ended
-            if (event.data === YT.PlayerState.PLAYING) {
-                videoIsPlaying = true;
-                console.log('Vidéo en lecture - popup bloquée');
-            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-                videoIsPlaying = false;
-                console.log('Vidéo en pause/terminée - popup autorisée');
-            }
-        }
-
-        // Fermer la popup
-        function closePopup() {
-            popup.classList.remove('active');
-        }
-
-        // Fermer si clic en dehors
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                closePopup();
-            }
-        });
-
-        // Sélectionner une option
-        function selectOption(type) {
-            popupChoices.style.display = 'none';
-            
-            if (type === 'download') {
-                downloadForm.classList.add('active');
-            } else {
-                contactForm.classList.add('active');
-            }
-        }
-
-        // Retour aux choix
-        function backToChoices() {
-            downloadForm.classList.remove('active');
-            contactForm.classList.remove('active');
-            popupChoices.style.display = 'block';
-        }
-
-        // Soumettre formulaire download
-        function submitDownload(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            
-            // TODO: Envoyer les données à votre backend pour tracking
-            console.log('Download form submitted:', Object.fromEntries(formData));
-            
-            // Télécharger le livre blanc depuis Google Drive
-            const googleDriveLink = 'https://drive.google.com/uc?export=download&id=1mZp7x8nMrbVWUVwq8LMW-f1fEKepCr2u';
-            window.open(googleDriveLink, '_blank');
-            
-            // Afficher succès
-            downloadForm.classList.remove('active');
-            successMessage.classList.add('active');
-            successText.textContent = "✅ Téléchargement lancé ! Le guide NIS2 devrait s'ouvrir dans un nouvel onglet.";
-            
-            // Fermer après 5 secondes
-            setTimeout(() => {
-                closePopup();
-                setTimeout(() => {
-                    successMessage.classList.remove('active');
-                    popupChoices.style.display = 'block';
-                }, 500);
-            }, 5000);
-        }
-
-        // Soumettre formulaire contact
-        function submitContact(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            
-            // TODO: Envoyer les données à votre backend
-            console.log('Contact form submitted:', Object.fromEntries(formData));
-            
-            // Afficher succès
-            contactForm.classList.remove('active');
-            successMessage.classList.add('active');
-            successText.textContent = "Demande reçue ! Un de nos experts vous contactera dans les prochaines heures pour planifier votre audit gratuit.";
-            
-            // Fermer après 5 secondes
-            setTimeout(() => {
-                closePopup();
-                setTimeout(() => {
-                    successMessage.classList.remove('active');
-                    popupChoices.style.display = 'block';
-                }, 500);
-            }, 5000);
-        }
-
-        // QUIZ NIS2 MODAL
-        const quizModal = document.getElementById('quizModal');
-        let currentQuestion = 1;
-        const totalQuestions = 10;
-        const answers = {};
-        // quizIsOpen est déclarée en haut du script (ligne ~2785)
-
-        // Ouvrir le quiz
-        function openQuiz() {
-            quizModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Bloquer le scroll
-            quizIsOpen = true; // Marquer le quiz comme ouvert
-            
-            // Attacher les événements aux réponses (au cas où)
-            attachQuizEvents();
-        }
-
-        // Attacher les événements de clic aux réponses
-        function attachQuizEvents() {
-            document.querySelectorAll('.quiz-answer').forEach(answer => {
-                answer.onclick = function() {
-                    const questionNum = parseInt(this.closest('.quiz-question').dataset.question);
-                    const answerValue = this.querySelector('.quiz-answer-text').textContent.toLowerCase();
-                    selectAnswer(questionNum, answerValue, this);
-                };
-            });
-        }
-
-        // Fermer le quiz
-        function closeQuiz() {
-            quizModal.classList.remove('active');
-            document.body.style.overflow = ''; // Restaurer le scroll
-            quizIsOpen = false; // Marquer le quiz comme fermé
-            
-            // Réinitialiser le quiz après la fermeture
-            setTimeout(resetQuiz, 300);
-        }
-
-        // Fermer si clic en dehors
-        quizModal.addEventListener('click', (e) => {
-            if (e.target === quizModal) {
-                closeQuiz();
-            }
-        });
-
-        // Réinitialiser le quiz
-        function resetQuiz() {
-            currentQuestion = 1;
-            Object.keys(answers).forEach(key => delete answers[key]);
-            
-            // Réafficher les questions et navigation
-            document.getElementById('quizQuestions').style.display = 'block';
-            document.getElementById('quizNavigation').style.display = 'flex';
-            document.querySelector('.quiz-progress').style.display = 'block';
-            document.getElementById('quizResults').classList.remove('active');
-            
-            // Remettre à la question 1
-            document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('active'));
-            document.querySelector('.quiz-question[data-question="1"]').classList.add('active');
-            
-            // Réinitialiser les boutons
-            document.getElementById('quizPrevBtn').style.display = 'none';
-            document.getElementById('quizNextBtn').innerHTML = 'Suivant →';
-            document.getElementById('quizNextBtn').disabled = true;
-            
-            // Réinitialiser les sélections
-            document.querySelectorAll('.quiz-answer').forEach(a => a.classList.remove('selected'));
-            
-            // Réinitialiser la progression
-            updateProgress();
-            
-            // Réinitialiser le score circle
-            document.getElementById('scoreCircle').className = 'quiz-score-circle';
-        }
-
-        function selectAnswer(questionNum, answer, element) {
-            console.log('Answer selected:', questionNum, answer); // Debug
-            
-            // Enregistrer la réponse
-            answers[questionNum] = answer;
-            
-            // Mettre à jour le visuel
-            const allAnswers = element.parentElement.querySelectorAll('.quiz-answer');
-            allAnswers.forEach(a => a.classList.remove('selected'));
-            element.classList.add('selected');
-            
-            // Activer le bouton suivant
-            const quizNextBtn = document.getElementById('quizNextBtn');
-            if (quizNextBtn) {
-                quizNextBtn.disabled = false;
-                quizNextBtn.style.opacity = '1';
-                quizNextBtn.style.cursor = 'pointer';
-                quizNextBtn.style.pointerEvents = 'auto';
-                console.log('Next button enabled'); // Debug
-            } else {
-                console.error('quizNextBtn not found!'); // Debug
-            }
-        }
-
-        function nextQuestion() {
-            if (currentQuestion < totalQuestions) {
-                // Cacher la question actuelle
-                document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.remove('active');
-                
-                // Passer à la suivante
-                currentQuestion++;
-                document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.add('active');
-                
-                // Mettre à jour la progression
-                updateProgress();
-                
-                // Afficher le bouton précédent
-                document.getElementById('quizPrevBtn').style.display = 'flex';
-                
-                // Désactiver le bouton suivant si pas de réponse
-                if (!answers[currentQuestion]) {
-                    document.getElementById('quizNextBtn').disabled = true;
-                }
-                
-                // Si dernière question, changer le texte du bouton
-                if (currentQuestion === totalQuestions) {
-                    document.getElementById('quizNextBtn').innerHTML = 'Voir mon résultat 🎯';
-                }
-            } else {
-                // Afficher les résultats
-                showResults();
-            }
-        }
-
-        function prevQuestion() {
+        window.prevQuestion = function() {
             if (currentQuestion > 1) {
-                // Cacher la question actuelle
-                document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.remove('active');
+                const currentQuestionDiv = document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`);
+                const prevQuestionDiv = document.querySelector(`.quiz-question[data-question="${currentQuestion - 1}"]`);
                 
-                // Revenir à la précédente
+                currentQuestionDiv.classList.remove('active');
+                prevQuestionDiv.classList.add('active');
                 currentQuestion--;
-                document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.add('active');
                 
-                // Mettre à jour la progression
-                updateProgress();
-                
-                // Cacher le bouton précédent si première question
                 if (currentQuestion === 1) {
                     document.getElementById('quizPrevBtn').style.display = 'none';
                 }
                 
-                // Restaurer le texte du bouton suivant
-                document.getElementById('quizNextBtn').innerHTML = 'Suivant →';
+                document.getElementById('quizNextBtn').disabled = false;
                 
-                // Activer le bouton suivant si réponse existe
-                document.getElementById('quizNextBtn').disabled = !answers[currentQuestion];
+                const progress = (currentQuestion / 10) * 100;
+                document.getElementById('quizProgress').style.width = progress + '%';
             }
-        }
+        };
 
-        function updateProgress() {
-            const progress = (currentQuestion / totalQuestions) * 100;
-            document.getElementById('quizProgressBar').style.width = progress + '%';
-            document.getElementById('quizProgressText').textContent = `Question ${currentQuestion} sur ${totalQuestions}`;
-        }
-
-        function showResults() {
-            // Calculer le score (questions 1-7 donnent des points si "oui")
-            let score = 0;
-            for (let i = 1; i <= 7; i++) {
-                if (answers[i] === 'oui') score++;
-            }
+        window.showResults = function() {
+            const score = Object.values(answers).filter(a => a === 'oui').length;
             
-            // Cacher les questions et navigation
             document.getElementById('quizQuestions').style.display = 'none';
             document.getElementById('quizNavigation').style.display = 'none';
-            document.querySelector('.quiz-progress').style.display = 'none';
+            document.getElementById('quizResults').style.display = 'flex';
             
-            // Afficher les résultats
-            const results = document.getElementById('quizResults');
-            const scoreCircle = document.getElementById('scoreCircle');
-            const scoreNumber = document.getElementById('scoreNumber');
-            const resultTitle = document.getElementById('resultTitle');
-            const resultDesc = document.getElementById('resultDesc');
+            document.getElementById('scoreNumber').textContent = score;
             
-            scoreNumber.textContent = score;
+            let title = '';
+            let desc = '';
             
-            // Définir le niveau et les messages
-            if (score <= 3) {
-                scoreCircle.classList.add('low');
-                resultTitle.textContent = 'Faible exposition probable';
-                resultDesc.innerHTML = '<strong>Vigilance recommandée</strong> si vous êtes en croissance ou sous-traitant critique. Même si votre exposition semble faible aujourd\'hui, les évolutions de votre activité peuvent vous faire basculer dans le périmètre NIS2. Un audit de positionnement vous permettra d\'anticiper sereinement.';
-            } else if (score <= 6) {
-                scoreCircle.classList.add('medium');
-                resultTitle.textContent = 'Vous êtes potentiellement concerné';
-                resultDesc.innerHTML = '<strong>Un audit de positionnement est fortement recommandé.</strong> Plusieurs critères indiquent que vous pourriez être dans le périmètre de la directive NIS2. Il est essentiel d\'évaluer précisément votre exposition pour éviter des sanctions et transformer cette obligation en avantage commercial.';
+            if (score >= 7) {
+                title = '⚠️ Vous êtes très probablement concerné par NIS2';
+                desc = 'Votre entreprise présente plusieurs critères d\'éligibilité à la directive NIS2. Il est urgent d\'évaluer votre niveau de conformité et de mettre en place les mesures nécessaires.';
+            } else if (score >= 4) {
+                title = '🟡 Vous êtes potentiellement concerné par NIS2';
+                desc = 'Votre entreprise pourrait entrer dans le périmètre de NIS2. Nous vous recommandons vivement de réaliser un audit pour clarifier votre situation et anticiper vos obligations.';
             } else {
-                scoreCircle.classList.add('high');
-                resultTitle.textContent = 'Vous êtes très probablement concerné';
-                resultDesc.innerHTML = '<strong>Il est urgent d\'agir.</strong> Votre profil correspond clairement aux entités régulées par NIS2. Les contrôles ANSSI démarrent en 2026 et les sanctions peuvent atteindre 10M€. Mais c\'est aussi une opportunité : être conforme vous ouvre l\'accès aux appels d\'offres et renforce votre crédibilité auprès de vos clients.';
+                title = '✅ Vous semblez hors du périmètre NIS2 pour l\'instant';
+                desc = 'D\'après vos réponses, votre entreprise ne semble pas directement concernée par NIS2. Toutefois, la réglementation évolue et vos clients peuvent exiger des garanties de cybersécurité.';
             }
             
-            results.classList.add('active');
-            
-            // TODO: Envoyer les résultats à votre backend pour tracking
-            console.log('Quiz completed:', { score, answers });
-        }
+            document.getElementById('resultTitle').textContent = title;
+            document.getElementById('resultDesc').textContent = desc;
+        };
 
-        // Initialiser les événements au chargement
-        document.addEventListener('DOMContentLoaded', function() {
-            attachQuizEvents();
-            console.log('Quiz events attached');
+        window.resetQuiz = function() {
+            currentQuestion = 1;
+            answers = {};
+            
+            document.querySelectorAll('.quiz-question').forEach((q, index) => {
+                q.classList.remove('active');
+                if (index === 0) q.classList.add('active');
+                q.querySelectorAll('.quiz-answer').forEach(a => a.classList.remove('selected'));
+            });
+            
+            document.getElementById('quizProgress').style.width = '10%';
+            document.getElementById('quizPrevBtn').style.display = 'none';
+            document.getElementById('quizNextBtn').disabled = true;
+            document.getElementById('quizQuestions').style.display = 'block';
+            document.getElementById('quizNavigation').style.display = 'flex';
+            document.getElementById('quizResults').style.display = 'none';
+        };
+
+        // Lead Modal
+        window.openLeadModal = function() {
+            document.getElementById('leadModal').style.display = 'flex';
+            setTimeout(() => document.getElementById('leadModal').classList.add('show'), 10);
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeLeadModal = function() {
+            const modal = document.getElementById('leadModal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+            document.body.style.overflow = '';
+        };
+
+        window.showDownloadOption = function() {
+            document.getElementById('leadOptions').style.display = 'none';
+            document.getElementById('downloadForm').style.display = 'block';
+        };
+
+        window.showAuditOption = function() {
+            document.getElementById('leadOptions').style.display = 'none';
+            document.getElementById('auditForm').style.display = 'block';
+        };
+
+        window.backToOptions = function() {
+            document.getElementById('leadOptions').style.display = 'flex';
+            document.getElementById('downloadForm').style.display = 'none';
+            document.getElementById('auditForm').style.display = 'none';
+        };
+
+        window.submitDownloadForm = function(e) {
+            e.preventDefault();
+            document.getElementById('downloadForm').innerHTML = '<div class="form-success"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><h3>Merci !</h3><p>Consultez votre boîte mail, le guide NIS2 arrive dans quelques instants.</p></div>';
+        };
+
+        window.submitAuditForm = function(e) {
+            e.preventDefault();
+            document.getElementById('auditForm').innerHTML = '<div class="form-success"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><h3>Merci !</h3><p>Nous vous contactons sous 24h pour planifier votre audit gratuit.</p></div>';
+        };
+
+        // Close modals
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                if (e.target.id === 'videoModal') window.closeVideoModal();
+                if (e.target.id === 'quizModal') window.closeQuiz();
+                if (e.target.id === 'leadModal') window.closeLeadModal();
+            }
         });
 
-        // Exposer les fonctions sur window
-        if (typeof updateCarousel !== "undefined") window.updateCarousel = updateCarousel;
-        if (typeof goToSlide !== "undefined") window.goToSlide = goToSlide;
-        if (typeof nextSlide !== "undefined") window.nextSlide = nextSlide;
-        if (typeof prevSlide !== "undefined") window.prevSlide = prevSlide;
-        if (typeof handleSwipe !== "undefined") window.handleSwipe = handleSwipe;
-        if (typeof tryShowPopup !== "undefined") window.tryShowPopup = tryShowPopup;
-        if (typeof onPlayerStateChange !== "undefined") window.onPlayerStateChange = onPlayerStateChange;
-        if (typeof closePopup !== "undefined") window.closePopup = closePopup;
-        if (typeof selectOption !== "undefined") window.selectOption = selectOption;
-        if (typeof backToChoices !== "undefined") window.backToChoices = backToChoices;
-        if (typeof submitDownload !== "undefined") window.submitDownload = submitDownload;
-        if (typeof submitContact !== "undefined") window.submitContact = submitContact;
-        if (typeof openQuiz !== "undefined") window.openQuiz = openQuiz;
-        if (typeof attachQuizEvents !== "undefined") window.attachQuizEvents = attachQuizEvents;
-        if (typeof closeQuiz !== "undefined") window.closeQuiz = closeQuiz;
-        if (typeof resetQuiz !== "undefined") window.resetQuiz = resetQuiz;
-        if (typeof selectAnswer !== "undefined") window.selectAnswer = selectAnswer;
-        if (typeof nextQuestion !== "undefined") window.nextQuestion = nextQuestion;
-        if (typeof prevQuestion !== "undefined") window.prevQuestion = prevQuestion;
-        if (typeof updateProgress !== "undefined") window.updateProgress = updateProgress;
-        if (typeof showResults !== "undefined") window.showResults = showResults;
-        
-        console.log('✅ App initialisée -', 21 , 'fonctions exposées');
-        
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (videoIsPlaying) window.closeVideoModal();
+                if (quizIsOpen) window.closeQuiz();
+            }
+        });
+
       } catch (error) {
-        console.error('❌ Erreur:', error);
-        console.error('Stack:', error.stack);
+        console.error('Error initializing app:', error);
       }
     };
 
-    // Attendre que le DOM soit monté
-    const timer = setTimeout(initializeApp, 500);
-    return () => clearTimeout(timer);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeApp);
+    } else {
+      initializeApp();
+    }
   }, []);
 
   return (
     <>
       <Head>
-        <title>NIS2 Conformité | Expert Cybersécurité ISO 27001 | Accompagnement Stratégique PME</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>NIS2 Conformité | Devenez conforme en 90 jours | Expert ISO 27001</title>
+        <meta name="description" content="Devenez conforme NIS2 en 90 jours avec des experts certifiés ISO 27001. Audit, accompagnement et mise en conformité pour PME et ETI. 0 client sanctionné." />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </Head>
 
       <style jsx global>{`
-* {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+          --primary-dark: #1E2A4A;
+          --primary: #2D4263;
+          --primary-light: #3E5879;
+          --accent: #C44536;
+          --accent-light: #E86F5E;
+          --accent-hover: #A63829;
+          --text-primary: #1E2A4A;
+          --text-secondary: #64748B;
+          --text-light: #94A3B8;
+          --bg-primary: #FFFFFF;
+          --bg-secondary: #F5F7FA;
+          --bg-tertiary: #EDF2F7;
+          --bg-dark: #1E2A4A;
+          --success: #059669;
+          --success-bg: rgba(5, 150, 105, 0.08);
+          --success-border: rgba(5, 150, 105, 0.2);
+          --warning: #D97706;
+          --warning-bg: rgba(217, 119, 6, 0.08);
+          --warning-border: rgba(217, 119, 6, 0.2);
+          --error: #DC2626;
+          --error-bg: rgba(220, 38, 38, 0.08);
+          --error-border: rgba(220, 38, 38, 0.2);
+          --info: #0284C7;
+          --info-bg: rgba(2, 132, 199, 0.08);
+          --info-border: rgba(2, 132, 199, 0.2);
+          --space-xs: 8px;
+          --space-sm: 16px;
+          --space-md: 24px;
+          --space-lg: 32px;
+          --space-xl: 48px;
+          --space-2xl: 64px;
+          --space-3xl: 96px;
+          --container-sm: 640px;
+          --container-md: 768px;
+          --container-lg: 1024px;
+          --container-xl: 1280px;
+          --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+          --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        :root {
-            --primary: #0052CC;
-            --primary-dark: #003D99;
-            --primary-light: #4C9AFF;
-            --secondary: #FF5630;
-            --dark: #091E42;
-            --gray-50: #F7F8FC;
-            --gray-100: #EFF1F5;
-            --gray-200: #DFE1E6;
-            --gray-400: #8993A4;
-            --gray-600: #505F79;
-            --success: #00875A;
-            --accent: #FFAB00;
-            --white: #FFFFFF;
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
         }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--gray-50);
-            color: var(--dark);
-            overflow-x: hidden;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+          line-height: 1.6;
+          color: var(--text-primary);
+          background: var(--bg-primary);
+          overflow-x: hidden;
         }
 
-        .bg-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(ellipse 100% 60% at 50% -10%, rgba(0, 82, 204, 0.06), transparent),
-                radial-gradient(ellipse 80% 50% at 50% 110%, rgba(0, 135, 90, 0.04), transparent);
-            z-index: -1;
+        h1, h2, h3, h4, h5, h6 {
+          font-weight: 600;
+          line-height: 1.2;
+          color: var(--text-primary);
         }
 
-        .container {
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 0 20px;
+        h1 {
+          font-size: clamp(36px, 5vw, 56px);
+          font-weight: 700;
+          margin-bottom: var(--space-md);
         }
 
-        /* Alert Bar */
-        .alert-bar {
-            background: linear-gradient(135deg, var(--secondary) 0%, #FF7452 100%);
-            padding: 12px 20px;
-            text-align: center;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-            position: relative;
-            z-index: 101;
-            box-shadow: 0 2px 8px rgba(255, 86, 48, 0.15);
-            color: white;
+        h2 {
+          font-size: clamp(28px, 4vw, 40px);
+          margin-bottom: var(--space-md);
         }
 
-        /* Sticky Header - OPTIMISÉ LARGEUR */
+        h3 {
+          font-size: clamp(20px, 3vw, 28px);
+          margin-bottom: var(--space-sm);
+        }
+
+        p {
+          font-size: 16px;
+          line-height: 1.7;
+          color: var(--text-secondary);
+          margin-bottom: var(--space-sm);
+        }
+
         .sticky-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background: white;
-            border-bottom: 1px solid var(--gray-200);
-            padding: 8px 12px;
-            z-index: 100;
-            box-shadow: 0 2px 12px rgba(9, 30, 66, 0.1);
-            transform: translateY(-100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          position: fixed;
+          top: -100px;
+          left: 0;
+          right: 0;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          box-shadow: 0 2px 16px rgba(30, 42, 74, 0.08);
+          padding: var(--space-sm) 0;
+          transition: top var(--transition-base);
+          z-index: 1000;
+          border-bottom: 1px solid rgba(45, 66, 99, 0.12);
         }
 
         .sticky-header.visible {
-            transform: translateY(0);
+          top: 0;
         }
 
-        .sticky-header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
+        .sticky-header .container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          max-width: var(--container-xl);
+          margin: 0 auto;
+          padding: 0 var(--space-md);
         }
 
-        .sticky-logo {
-            font-family: 'Lexend', sans-serif;
-            font-size: 13px;
-            font-weight: 800;
-            color: var(--primary);
-            white-space: nowrap;
-            flex: 1;
-            min-width: 0;
-        }
-        
-        /* Masquer "Conformité" sur mobile */
-        .sticky-logo span {
-            display: none;
+        .sticky-header .logo {
+          font-size: 20px;
+          font-weight: 700;
+          color: var(--primary);
         }
 
-        .sticky-cta-group {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-            flex-shrink: 0;
+        .sticky-header .header-cta {
+          display: flex;
+          gap: var(--space-sm);
         }
 
-        .btn-sticky {
-            padding: 8px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            border: none;
-            cursor: pointer;
-            line-height: 1.2;
-        }
-        }
-
-        .btn-sticky.primary {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            font-weight: 700;
-            box-shadow: 0 2px 6px rgba(0, 82, 204, 0.12);
-        }
-
-        .btn-sticky.primary:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.25);
-        }
-
-        .btn-sticky.secondary {
-            background: var(--gray-50);
-            color: var(--primary);
-            border: 1.5px solid var(--gray-200);
-            font-weight: 600;
-        }
-
-        .btn-sticky.secondary:hover {
-            background: white;
-            border-color: var(--primary);
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .alert-bar span {
-            display: inline-block;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Hero Section */
         .hero {
-            padding: 32px 0 40px;
-            animation: fadeIn 1s ease-out;
+          background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary) 100%);
+          color: white;
+          padding: var(--space-3xl) 0 var(--space-2xl);
+          position: relative;
+          overflow: hidden;
         }
 
-        .logo {
-            font-family: 'Lexend', sans-serif;
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 6px;
-            letter-spacing: -0.5px;
-            color: var(--primary);
+        .hero::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 600px;
+          height: 600px;
+          background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+          pointer-events: none;
         }
 
-        .tagline {
-            font-size: 12px;
-            color: var(--gray-600);
-            margin-bottom: 28px;
-            font-weight: 600;
+        .hero .container {
+          max-width: var(--container-lg);
+          margin: 0 auto;
+          padding: 0 var(--space-md);
+          position: relative;
+          z-index: 1;
+        }
+
+        .hero .logo {
+          font-size: 24px;
+          font-weight: 700;
+          margin-bottom: var(--space-sm);
+          opacity: 0.95;
         }
 
         .hero h1 {
-            font-family: 'Lexend', sans-serif;
-            font-size: 36px;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-            animation: fadeIn 1s ease-out 0.2s backwards;
-            color: var(--dark);
+          color: white;
+          margin-bottom: var(--space-sm);
         }
 
-        .hero h1 .highlight {
-            color: var(--secondary);
-            display: block;
+        .hero .tagline {
+          font-size: 20px;
+          line-height: 1.5;
+          opacity: 0.9;
+          margin-bottom: var(--space-xl);
+          max-width: 700px;
         }
 
-        .hero p.subtitle {
-            font-size: 16px;
-            color: var(--gray-600);
-            margin-bottom: 24px;
-            animation: fadeIn 1s ease-out 0.4s backwards;
-            line-height: 1.5;
+        .hero-stats {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: var(--space-md);
+          margin-top: var(--space-xl);
         }
 
-        /* Stats */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 24px;
-            animation: fadeIn 1s ease-out 0.6s backwards;
+        .stat-card {
+          background: rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 12px;
+          padding: var(--space-md);
+          text-align: center;
+          transition: all var(--transition-base);
         }
 
-        .stat {
-            background: white;
-            border: 1.5px solid var(--gray-200);
-            border-radius: 14px;
-            padding: 18px 16px;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 1px 3px rgba(9, 30, 66, 0.06);
+        .stat-card:hover {
+          background: rgba(255, 255, 255, 0.12);
+          transform: translateY(-4px);
         }
 
-        .stat:hover {
-            transform: translateY(-4px);
-            border-color: var(--primary);
-            box-shadow: 0 8px 20px rgba(0, 82, 204, 0.12);
-        }
-
-        .stat-value {
-            font-family: 'Lexend', sans-serif;
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 4px;
-            line-height: 1;
+        .stat-number {
+          font-size: 48px;
+          font-weight: 700;
+          color: var(--accent-light);
+          display: block;
+          margin-bottom: var(--space-xs);
         }
 
         .stat-label {
-            font-size: 12px;
-            color: var(--gray-600);
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        /* CTA Group */
-        .cta-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 32px;
-            animation: fadeIn 1s ease-out 0.8s backwards;
+          font-size: 14px;
+          opacity: 0.9;
+          font-weight: 500;
         }
 
         .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px 24px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: none;
-            cursor: pointer;
-            letter-spacing: 0.2px;
-            font-family: 'Inter', sans-serif;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: var(--space-xs);
+          padding: 16px 32px;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 16px;
+          text-decoration: none;
+          transition: all var(--transition-fast);
+          cursor: pointer;
+          border: none;
+          font-family: inherit;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent) 0%, #FF9500 100%);
-            color: var(--dark);
-            box-shadow: 0 4px 16px rgba(255, 171, 0, 0.25);
+          background: var(--accent);
+          color: white;
+          box-shadow: 0 2px 8px rgba(196, 69, 54, 0.2);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 171, 0, 0.35);
+          background: var(--accent-hover);
+          box-shadow: 0 4px 16px rgba(196, 69, 54, 0.3);
+          transform: translateY(-2px);
         }
 
         .btn-secondary {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--gray-200);
-            box-shadow: 0 1px 3px rgba(9, 30, 66, 0.08);
+          background: transparent;
+          color: white;
+          border: 2px solid white;
         }
 
         .btn-secondary:hover {
-            background: var(--gray-50);
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.12);
+          background: white;
+          color: var(--primary);
         }
 
-        .btn .icon {
-            margin-left: 8px;
-            transition: transform 0.3s ease;
+        .btn-ghost {
+          background: transparent;
+          color: var(--primary);
+          text-decoration: underline;
+          text-underline-offset: 4px;
+          padding: 8px 16px;
         }
 
-        .btn:hover .icon {
-            transform: translateX(4px);
+        section {
+          padding: var(--space-2xl) 0;
         }
 
-        /* Vidéo YouTube */
-        .video-container {
-            margin-bottom: 40px;
-            animation: fadeIn 1s ease-out 1s backwards;
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(9, 30, 66, 0.12);
-            border: 2px solid var(--gray-200);
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Section Headers */
-        .section-header {
-            text-align: center;
-            margin-bottom: 32px;
-            animation: fadeIn 1s ease-out calc(1.2s + var(--delay, 0s)) backwards;
+        .container {
+          max-width: var(--container-xl);
+          margin: 0 auto;
+          padding: 0 var(--space-md);
         }
 
         .section-badge {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--dark);
-            padding: 5px 14px;
-            border-radius: 16px;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.8px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
+          display: inline-block;
+          background: rgba(45, 66, 99, 0.08);
+          color: var(--primary-dark);
+          border: 1px solid rgba(45, 66, 99, 0.15);
+          border-radius: 6px;
+          padding: 6px 14px;
+          font-size: 13px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: var(--space-md);
         }
 
-        .section-badge.success {
-            background: var(--success);
-            color: white;
+        .section-badge.accent {
+          background: rgba(196, 69, 54, 0.08);
+          color: var(--accent);
+          border-color: rgba(196, 69, 54, 0.15);
         }
 
-        .section-header h2 {
-            font-family: 'Lexend', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 10px;
-            color: var(--dark);
-            letter-spacing: -0.5px;
+        .section-title {
+          text-align: center;
+          margin-bottom: var(--space-xl);
         }
 
         .section-subtitle {
-            font-size: 15px;
-            color: var(--gray-600);
-            line-height: 1.5;
-            max-width: 90%;
-            margin: 0 auto;
+          text-align: center;
+          font-size: 18px;
+          color: var(--text-secondary);
+          max-width: 700px;
+          margin: 0 auto var(--space-xl);
         }
 
-        /* Warning Card */
-        .warning-card {
-            background: white;
-            border: 2px solid rgba(255, 86, 48, 0.15);
-            border-left: 6px solid var(--secondary);
-            border-radius: 20px;
-            padding: 24px 20px;
-            margin-bottom: 40px;
-            animation: fadeIn 1s ease-out 1.15s backwards;
-            box-shadow: 0 4px 16px rgba(255, 86, 48, 0.08);
+        .credibility-section {
+          background: var(--bg-secondary);
+          padding: var(--space-2xl) 0;
         }
 
-        .warning-card h2 {
-            font-family: 'Lexend', sans-serif;
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 16px;
-            color: var(--secondary);
+        .credibility-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: var(--space-lg);
+          max-width: var(--container-md);
+          margin: 0 auto;
         }
 
-        .warning-list {
-            list-style: none;
+        .credibility-card {
+          background: white;
+          border: 1px solid rgba(45, 66, 99, 0.12);
+          border-radius: 16px;
+          padding: var(--space-xl);
+          text-align: center;
+          transition: all var(--transition-base);
         }
 
-        .warning-list li {
-            padding: 11px 0;
-            padding-left: 28px;
-            position: relative;
-            font-size: 14px;
-            border-bottom: 1px solid var(--gray-200);
-            color: var(--dark);
-            line-height: 1.5;
+        .credibility-card:hover {
+          border-color: rgba(45, 66, 99, 0.25);
+          box-shadow: 0 4px 24px rgba(30, 42, 74, 0.08);
+          transform: translateY(-4px);
         }
 
-        .warning-list li:last-child {
-            border-bottom: none;
+        .credibility-icon {
+          width: 64px;
+          height: 64px;
+          background: rgba(196, 69, 54, 0.08);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto var(--space-md);
+          color: var(--accent);
+          font-size: 32px;
+          font-weight: 700;
         }
 
-        .warning-list li::before {
-            content: '✗';
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-            font-weight: 800;
-            font-size: 18px;
+        .credibility-list {
+          list-style: none;
+          text-align: left;
+          margin-top: var(--space-md);
         }
 
-        /* Value Proposition */
-        .value-prop {
-            background: linear-gradient(135deg, rgba(0, 135, 90, 0.08) 0%, rgba(0, 135, 90, 0.04) 100%);
-            border: 2px solid var(--success);
-            border-left: 6px solid var(--success);
-            border-radius: 20px;
-            padding: 28px 24px;
-            margin-bottom: 40px;
-            animation: fadeIn 1s ease-out 1.2s backwards;
-            background-color: white;
+        .credibility-list li {
+          padding: var(--space-xs) 0;
+          color: var(--text-secondary);
+          display: flex;
+          align-items: center;
+          gap: var(--space-xs);
         }
 
-        .value-prop h2 {
-            font-family: 'Lexend', sans-serif;
-            font-size: 22px;
-            font-weight: 800;
-            margin-bottom: 16px;
-            color: var(--success);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .credibility-list li::before {
+          content: '✓';
+          color: var(--success);
+          font-weight: 700;
         }
 
-        .value-list {
-            list-style: none;
+        .quiz-trigger-section {
+          background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+          color: white;
+          padding: var(--space-xl) 0;
+          text-align: center;
         }
 
-        .value-list li {
-            padding: 12px 0;
-            padding-left: 32px;
-            position: relative;
-            font-size: 15px;
-            border-bottom: 1px solid var(--gray-200);
-            color: var(--dark);
-            line-height: 1.5;
+        .quiz-trigger-section h2 {
+          color: white;
+          margin-bottom: var(--space-md);
         }
 
-        .value-list li:last-child {
-            border-bottom: none;
+        .quiz-trigger-section p {
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 18px;
+          margin-bottom: var(--space-lg);
         }
 
-        .value-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--success);
-            font-weight: 800;
-            font-size: 20px;
+        .approach-section {
+          background: white;
         }
 
-        /* Impact Section */
-        .impact-section {
-            margin-bottom: 40px;
-        }
-
-        .impact-cards {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            margin-top: 28px;
-        }
-
-        /* Sur écrans moyens et grands : 2 colonnes */
-        @media (min-width: 640px) {
-            .impact-cards {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .impact-card {
-            background: white;
-            border: 1.5px solid var(--gray-200);
-            border-radius: 18px;
-            padding: 28px 24px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: fadeIn 1s ease-out calc(1.4s + var(--delay)) backwards;
-            box-shadow: 0 2px 8px rgba(9, 30, 66, 0.04);
-        }
-
-        .impact-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--secondary);
-            box-shadow: 0 12px 32px rgba(255, 86, 48, 0.12);
-        }
-
-        .impact-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .impact-stat {
-            font-family: 'Lexend', sans-serif;
-            font-size: 52px;
-            font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: 8px;
-            line-height: 1;
-        }
-
-        .impact-label {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-
-        .impact-detail {
-            font-size: 14px;
-            color: var(--gray-600);
-            line-height: 1.6;
-        }
-
-        /* CTA Inline */
-        .cta-inline {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: 16px;
-            padding: 24px 20px;
-            text-align: center;
-            margin: 32px 0;
-            box-shadow: 0 8px 24px rgba(0, 82, 204, 0.2);
-        }
-
-        .cta-inline p {
-            color: white;
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            line-height: 1.4;
-        }
-
-        .cta-inline .btn {
-            background: white;
-            color: var(--primary);
-            display: inline-flex;
-            font-weight: 800;
-        }
-
-        .cta-inline .btn:hover {
-            transform: translateY(-2px) scale(1.03);
-        }
-
-        /* Expertise Section */
-        .expertise-section {
-            margin-bottom: 48px;
-            padding: 36px 24px;
-            background: white;
-            border-radius: 24px;
-            border: 1.5px solid var(--gray-200);
-            box-shadow: 0 4px 16px rgba(9, 30, 66, 0.06);
-        }
-
-        /* Timeline horizontale */
         .timeline-container {
-            margin: 48px 0;
-            padding: 0 20px;
-        }
-
-        .timeline-horizontal {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            gap: 40px;
-        }
-
-        .timeline-horizontal::before {
-            content: '';
-            position: absolute;
-            top: 50px;
-            left: 100px;
-            right: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, #00875A 0%, #17B897 50%, #00875A 100%);
-            z-index: 0;
+          max-width: 800px;
+          margin: var(--space-xl) auto 0;
         }
 
         .timeline-item {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            z-index: 1;
+          display: flex;
+          gap: var(--space-lg);
+          padding: var(--space-lg) 0;
+          border-left: 2px solid rgba(45, 66, 99, 0.15);
+          position: relative;
+          padding-left: 60px;
+          margin-left: 20px;
+        }
+
+        .timeline-item:last-child {
+          border-left-color: transparent;
         }
 
         .timeline-number {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00C896 0%, #00875A 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 24px;
-            box-shadow: 0 8px 24px rgba(0, 135, 90, 0.3);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          position: absolute;
+          left: -20px;
+          width: 40px;
+          height: 40px;
+          background: white;
+          border: 3px solid var(--accent);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          color: var(--accent);
+          font-size: 16px;
         }
 
-        .timeline-item:hover .timeline-number {
-            transform: scale(1.1) translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0, 135, 90, 0.4);
+        .timeline-content h3 {
+          color: var(--primary);
         }
 
-        .timeline-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #0F172A;
-            margin-bottom: 12px;
-            line-height: 1.3;
+        .split-section {
+          background: var(--bg-secondary);
         }
 
-        .timeline-description {
-            font-size: 15px;
-            color: #64748B;
-            line-height: 1.6;
-            max-width: 280px;
+        .split-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: var(--space-lg);
         }
 
-        /* Responsive timeline */
-        @media (max-width: 968px) {
-            .timeline-horizontal {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 32px;
-            }
-
-            .timeline-horizontal::before {
-                display: none;
-            }
-
-            .timeline-item {
-                flex-direction: row;
-                text-align: left;
-                align-items: flex-start;
-                gap: 20px;
-            }
-
-            .timeline-number {
-                width: 80px;
-                height: 80px;
-                font-size: 28px;
-                flex-shrink: 0;
-            }
-
-            .timeline-content {
-                flex: 1;
-                padding-top: 12px;
-            }
-
-            .timeline-title {
-                text-align: left;
-            }
-
-            .timeline-description {
-                text-align: left;
-                max-width: 100%;
-            }
+        .split-card {
+          background: white;
+          border: 1px solid rgba(45, 66, 99, 0.12);
+          border-radius: 16px;
+          padding: var(--space-xl);
         }
 
-        .expertise-grid {
-            display: grid;
-            gap: 16px;
-            margin: 28px 0;
+        .split-card.risks {
+          border-top: 4px solid var(--error);
         }
 
-        .expertise-card {
-            background: var(--gray-50);
-            border: 1.5px solid var(--gray-200);
-            border-radius: 18px;
-            padding: 24px 20px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: fadeIn 1s ease-out calc(1.8s + var(--delay)) backwards;
+        .split-card.opportunities {
+          border-top: 4px solid var(--success);
         }
 
-        .expertise-card:hover {
-            transform: translateY(-4px);
-            background: white;
-            box-shadow: 0 10px 28px rgba(0, 82, 204, 0.1);
-            border-color: var(--primary);
+        .split-card h3 {
+          display: flex;
+          align-items: center;
+          gap: var(--space-sm);
+          margin-bottom: var(--space-lg);
         }
 
-        .expertise-card.highlight {
-            background: linear-gradient(135deg, rgba(0, 135, 90, 0.08) 0%, rgba(0, 135, 90, 0.04) 100%);
-            border: 2px solid var(--success);
-            position: relative;
-            background-color: white;
+        .split-list {
+          list-style: none;
         }
 
-        .expertise-card.highlight::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--success), var(--accent));
-            border-radius: 18px 18px 0 0;
+        .split-list li {
+          padding: var(--space-md) 0;
+          border-bottom: 1px solid rgba(45, 66, 99, 0.08);
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-xs);
         }
 
-        .expertise-number {
-            font-family: 'Lexend', sans-serif;
-            font-size: 56px;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 6px;
-            line-height: 1;
+        .split-list li:last-child {
+          border-bottom: none;
         }
 
-        .expertise-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--dark);
+        .split-list strong {
+          color: var(--primary);
+          font-weight: 600;
         }
 
-        .expertise-card p {
-            font-size: 13px;
-            color: var(--gray-600);
-            line-height: 1.6;
+        .split-list span {
+          color: var(--text-secondary);
+          font-size: 15px;
         }
 
-        .certification-badge {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--success), var(--accent));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-            color: white;
-            box-shadow: 0 6px 20px rgba(0, 135, 90, 0.25);
+        .video-section {
+          background: white;
+          text-align: center;
         }
 
-        .credentials {
-            background: var(--gray-50);
-            border: 1.5px solid var(--gray-200);
-            border-radius: 18px;
-            padding: 24px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 28px;
+        .video-thumbnail {
+          max-width: 800px;
+          margin: 0 auto;
+          position: relative;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 8px 32px rgba(30, 42, 74, 0.12);
+          cursor: pointer;
+          transition: all var(--transition-base);
         }
 
-        .credential-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
+        .video-thumbnail:hover {
+          transform: scale(1.02);
+          box-shadow: 0 12px 48px rgba(30, 42, 74, 0.18);
         }
 
-        .credential-icon {
-            font-size: 32px;
-            flex-shrink: 0;
+        .video-thumbnail img {
+          width: 100%;
+          display: block;
         }
 
-        .credential-text strong {
-            display: block;
-            font-size: 15px;
-            margin-bottom: 3px;
-            color: var(--dark);
-            font-weight: 700;
+        .video-play-btn {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 80px;
+          height: 80px;
+          background: var(--accent);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 32px;
+          transition: all var(--transition-base);
         }
 
-        .credential-text span {
-            font-size: 13px;
-            color: var(--gray-600);
-            line-height: 1.5;
+        .video-thumbnail:hover .video-play-btn {
+          transform: translate(-50%, -50%) scale(1.1);
+          background: var(--accent-hover);
         }
 
-        /* Pricing */
-        .pricing-section {
-            margin-bottom: 48px;
+        .testimonials-section {
+          background: var(--bg-secondary);
         }
 
-        .pricing-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-top: 28px;
-        }
-
-        .price-card {
-            background: white;
-            border: 1.5px solid var(--gray-200);
-            border-radius: 22px;
-            padding: 28px 24px;
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: fadeIn 1s ease-out calc(2.2s + var(--delay)) backwards;
-            box-shadow: 0 2px 8px rgba(9, 30, 66, 0.04);
-        }
-
-        .price-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--primary);
-            box-shadow: 0 16px 40px rgba(0, 82, 204, 0.12);
-        }
-
-        .price-card.featured {
-            background: linear-gradient(135deg, rgba(0, 82, 204, 0.04) 0%, rgba(0, 82, 204, 0.01) 100%);
-            border: 2px solid var(--primary);
-            box-shadow: 0 6px 28px rgba(0, 82, 204, 0.15);
-            background-color: white;
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            background: var(--accent);
-            color: var(--dark);
-            padding: 7px 16px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(255, 171, 0, 0.3);
-        }
-
-        .price-card h3 {
-            font-family: 'Lexend', sans-serif;
-            font-size: 22px;
-            font-weight: 800;
-            margin-bottom: 6px;
-            color: var(--dark);
-        }
-
-        .price-card .price {
-            font-family: 'Lexend', sans-serif;
-            font-size: 44px;
-            color: var(--primary);
-            margin-bottom: 5px;
-            font-weight: 800;
-            line-height: 1;
-        }
-
-        .price-card .price-sub {
-            color: var(--gray-600);
-            font-size: 13px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .ideal-for {
-            background: var(--gray-50);
-            border-left: 3px solid var(--primary);
-            padding: 10px 14px;
-            margin-bottom: 18px;
-            border-radius: 8px;
-            font-size: 13px;
-            color: var(--gray-600);
-            font-weight: 600;
-        }
-
-        .ideal-for strong {
-            color: var(--primary);
-            display: block;
-            margin-bottom: 3px;
-        }
-
-        .features {
-            list-style: none;
-            margin-bottom: 24px;
-        }
-
-        .features li {
-            padding: 10px 0;
-            padding-left: 28px;
-            position: relative;
-            font-size: 14px;
-            color: var(--gray-600);
-            line-height: 1.5;
-        }
-
-        .features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--success);
-            font-weight: 800;
-            font-size: 18px;
-        }
-
-        /* Social Proof */
-        .social-proof {
-            margin-bottom: 48px;
-        }
-
-        .testimonials {
-            position: relative;
-            margin-top: 28px;
-            overflow: hidden;
+        .testimonials-carousel {
+          position: relative;
+          max-width: var(--container-md);
+          margin: 0 auto;
+          overflow: hidden;
         }
 
         .testimonials-wrapper {
-            display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          display: flex;
+          transition: transform 0.5s ease-in-out;
         }
 
         .testimonial {
-            background: white;
-            border: 1.5px solid var(--gray-200);
-            border-radius: 18px;
-            padding: 24px 20px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(9, 30, 66, 0.04);
-            flex: 0 0 100%;
-            min-width: 100%;
+          min-width: 100%;
+          background: white;
+          border: 1px solid rgba(45, 66, 99, 0.12);
+          border-radius: 16px;
+          padding: var(--space-xl);
         }
 
-        .testimonial:hover {
-            border-color: var(--primary);
-            box-shadow: 0 8px 24px rgba(0, 82, 204, 0.1);
-        }
-
-        .testimonial-text {
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 16px;
-            font-style: italic;
-            color: var(--dark);
+        .testimonial-content {
+          font-size: 18px;
+          line-height: 1.8;
+          color: var(--text-secondary);
+          font-style: italic;
+          margin-bottom: var(--space-lg);
         }
 
         .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+          display: flex;
+          align-items: center;
+          gap: var(--space-md);
+        }
+
+        .testimonial-avatar {
+          width: 64px;
+          height: 64px;
+          background: var(--primary);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 24px;
+          font-weight: 700;
+        }
+
+        .testimonial-info h4 {
+          color: var(--primary);
+          margin-bottom: 4px;
+        }
+
+        .testimonial-info p {
+          color: var(--text-light);
+          font-size: 14px;
+          margin: 0;
         }
 
         .carousel-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            margin-top: 24px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: var(--space-md);
+          margin-top: var(--space-lg);
         }
 
         .carousel-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--primary);
-            background: white;
-            color: var(--primary);
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: white;
+          border: 2px solid rgba(45, 66, 99, 0.12);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all var(--transition-fast);
+          color: var(--primary);
         }
 
         .carousel-btn:hover {
-            background: var(--primary);
-            color: white;
-            transform: scale(1.1);
+          border-color: var(--accent);
+          color: var(--accent);
+          transform: scale(1.1);
         }
 
         .carousel-dots {
-            display: flex;
-            gap: 8px;
+          display: flex;
+          gap: var(--space-xs);
         }
 
         .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--gray-300);
-            cursor: pointer;
-            transition: all 0.3s ease;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: rgba(45, 66, 99, 0.2);
+          cursor: pointer;
+          transition: all var(--transition-fast);
         }
 
         .carousel-dot.active {
-            background: var(--primary);
-            width: 24px;
-            border-radius: 5px;
+          background: var(--accent);
+          width: 32px;
+          border-radius: 6px;
         }
 
-        .author-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 15px;
-            color: white;
-            flex-shrink: 0;
+        .pricing-section {
+          background: white;
         }
 
-        .author-name {
-            font-weight: 700;
-            font-size: 14px;
-            margin-bottom: 3px;
-            color: var(--dark);
+        .pricing-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: var(--space-lg);
+          max-width: var(--container-xl);
+          margin: 0 auto;
         }
 
-        .author-role {
-            font-size: 12px;
-            color: var(--gray-600);
-            line-height: 1.4;
+        .price-card {
+          background: white;
+          border: 1px solid rgba(45, 66, 99, 0.12);
+          border-radius: 16px;
+          padding: var(--space-xl);
+          transition: all var(--transition-base);
+          position: relative;
         }
 
-        /* FAQ */
-        .faq {
-            margin-bottom: 48px;
+        .price-card:hover {
+          border-color: rgba(45, 66, 99, 0.25);
+          box-shadow: 0 4px 24px rgba(30, 42, 74, 0.08);
+          transform: translateY(-4px);
+        }
+
+        .price-card.popular {
+          border: 2px solid var(--accent);
+          transform: scale(1.05);
+          box-shadow: 0 20px 40px rgba(196, 69, 54, 0.12);
+        }
+
+        .price-card.popular::before {
+          content: '⭐ POPULAIRE';
+          position: absolute;
+          top: -12px;
+          right: 24px;
+          background: var(--accent);
+          color: white;
+          padding: 6px 16px;
+          border-radius: 20px;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+        }
+
+        .price-card h3 {
+          color: var(--primary);
+          margin-bottom: var(--space-sm);
+        }
+
+        .price {
+          font-size: 48px;
+          font-weight: 700;
+          color: var(--accent);
+          margin: var(--space-md) 0;
+        }
+
+        .price-duration {
+          color: var(--text-light);
+          font-size: 14px;
+          margin-bottom: var(--space-md);
+        }
+
+        .price-ideal {
+          background: rgba(45, 66, 99, 0.05);
+          padding: var(--space-sm);
+          border-radius: 8px;
+          margin-bottom: var(--space-lg);
+          font-size: 14px;
+          color: var(--text-secondary);
+        }
+
+        .price-ideal strong {
+          color: var(--primary);
+          display: block;
+          margin-bottom: 4px;
+        }
+
+        .price-features {
+          list-style: none;
+          margin-bottom: var(--space-lg);
+        }
+
+        .price-features li {
+          padding: var(--space-sm) 0;
+          display: flex;
+          align-items: flex-start;
+          gap: var(--space-sm);
+          color: var(--text-secondary);
+          font-size: 15px;
+        }
+
+        .price-features li::before {
+          content: '✓';
+          color: var(--success);
+          font-weight: 700;
+          flex-shrink: 0;
+        }
+
+        .price-features li strong {
+          color: var(--primary);
+        }
+
+        .faq-section {
+          background: var(--bg-secondary);
+        }
+
+        .faq-list {
+          max-width: var(--container-md);
+          margin: 0 auto;
         }
 
         .faq-item {
-            background: white;
-            border: 1.5px solid var(--gray-200);
-            border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 1px 3px rgba(9, 30, 66, 0.04);
+          background: white;
+          border: 1px solid rgba(45, 66, 99, 0.12);
+          border-radius: 12px;
+          margin-bottom: var(--space-md);
+          cursor: pointer;
+          transition: all var(--transition-base);
         }
 
         .faq-item:hover {
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.08);
+          border-color: rgba(45, 66, 99, 0.25);
         }
 
         .faq-question {
-            font-weight: 700;
-            font-size: 15px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: var(--dark);
+          padding: var(--space-lg);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: var(--space-md);
+        }
+
+        .faq-question h3 {
+          color: var(--primary);
+          font-size: 18px;
+          margin: 0;
+        }
+
+        .faq-icon {
+          font-size: 24px;
+          color: var(--accent);
+          transition: transform var(--transition-base);
+          flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+          transform: rotate(180deg);
         }
 
         .faq-answer {
-            color: var(--gray-600);
-            font-size: 14px;
-            line-height: 1.6;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height var(--transition-base);
         }
 
-        /* Final CTA */
+        .faq-item.active .faq-answer {
+          max-height: 500px;
+        }
+
+        .faq-answer-content {
+          padding: 0 var(--space-lg) var(--space-lg);
+          color: var(--text-secondary);
+          line-height: 1.8;
+        }
+
         .final-cta {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: 24px;
-            padding: 40px 28px;
-            text-align: center;
-            margin-bottom: 48px;
-            animation: fadeIn 1s ease-out 3s backwards;
-            box-shadow: 0 16px 48px rgba(0, 82, 204, 0.3);
+          background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary) 100%);
+          color: white;
+          text-align: center;
+          padding: var(--space-3xl) 0;
         }
 
         .final-cta h2 {
-            font-family: 'Lexend', sans-serif;
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 14px;
-            color: white;
+          color: white;
+          margin-bottom: var(--space-md);
         }
 
         .final-cta p {
-            font-size: 16px;
-            margin-bottom: 28px;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 18px;
+          margin-bottom: var(--space-xl);
         }
 
-        .final-cta .btn {
-            background: white;
-            color: var(--primary);
-            display: inline-flex;
-            font-weight: 800;
-            font-size: 16px;
-            padding: 18px 32px;
+        footer {
+          background: var(--primary-dark);
+          color: rgba(255, 255, 255, 0.7);
+          padding: var(--space-xl) 0 var(--space-lg);
         }
 
-        .final-cta .btn:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        .footer-content {
+          max-width: var(--container-xl);
+          margin: 0 auto;
+          padding: 0 var(--space-md);
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-lg);
         }
 
-        .footer {
-            text-align: center;
-            padding: 36px 0;
-            border-top: 1.5px solid var(--gray-200);
-            color: var(--gray-600);
-            font-size: 12px;
+        .footer-brand {
+          font-size: 20px;
+          font-weight: 700;
+          color: white;
         }
 
-        /* FAB */
-        .fab {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 28px rgba(0, 82, 204, 0.4);
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 99;
-            animation: bounceIn 1s ease-out 3.2s backwards;
+        .footer-links {
+          display: flex;
+          gap: var(--space-lg);
+          flex-wrap: wrap;
         }
 
-        @keyframes bounceIn {
-            0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); opacity: 1; }
+        .footer-links a {
+          color: rgba(255, 255, 255, 0.7);
+          text-decoration: none;
+          transition: color var(--transition-fast);
         }
 
-        .fab:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 36px rgba(0, 82, 204, 0.5);
+        .footer-links a:hover {
+          color: var(--accent-light);
         }
 
-        .fab:active {
-            transform: scale(0.95);
+        .footer-bottom {
+          text-align: center;
+          padding-top: var(--space-lg);
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          font-size: 14px;
         }
 
-        /* Container pour les 2 blocs côte à côte */
-        .risk-opportunity-wrapper {
-            display: grid;
-            gap: 16px;
-            margin-bottom: 40px;
+        .modal {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(30, 42, 74, 0.8);
+          backdrop-filter: blur(4px);
+          z-index: 10000;
+          align-items: center;
+          justify-content: center;
+          padding: var(--space-md);
+          opacity: 0;
+          transition: opacity var(--transition-base);
         }
 
-        /* Section Vidéo YouTube - Design minimaliste */
-        .video-section {
-            margin-bottom: 40px;
+        .modal.show {
+          opacity: 1;
         }
 
-        .video-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
+        .modal-content {
+          background: white;
+          border-radius: 16px;
+          max-width: 600px;
+          width: 100%;
+          max-height: 90vh;
+          overflow-y: auto;
+          position: relative;
+          transform: scale(0.9);
+          transition: transform var(--transition-base);
         }
 
-        .video-header {
-            text-align: center;
-            margin-bottom: 20px;
+        .modal.show .modal-content {
+          transform: scale(1);
         }
 
-        .video-title {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 0;
-            text-align: center;
-            line-height: 1.3;
+        .modal-close {
+          position: absolute;
+          top: var(--space-md);
+          right: var(--space-md);
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: rgba(45, 66, 99, 0.08);
+          border: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all var(--transition-fast);
+          font-size: 24px;
+          color: var(--text-primary);
+          z-index: 1;
         }
 
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* Ratio 16:9 */
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(9, 30, 66, 0.12);
+        .modal-close:hover {
+          background: rgba(45, 66, 99, 0.15);
+          transform: rotate(90deg);
         }
 
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-            border-radius: 12px;
+        .video-modal-content {
+          max-width: 1000px;
+          padding: 0;
+          background: black;
         }
 
-        /* Quiz NIS2 Modal */
-        .quiz-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(9, 30, 66, 0.85);
-            backdrop-filter: blur(4px);
-            z-index: 9998;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: fadeIn 0.3s ease-out;
-            overflow-y: auto;
+        .video-modal-content iframe {
+          width: 100%;
+          height: 60vh;
+          border: none;
+          border-radius: 16px;
         }
 
-        .quiz-overlay.active {
-            display: flex;
-        }
-
-        .quiz-container {
-            background: white;
-            border-radius: 24px;
-            padding: 40px 32px;
-            box-shadow: 0 20px 60px rgba(9, 30, 66, 0.3);
-            max-width: 700px;
-            width: 100%;
-            position: relative;
-            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            margin: 20px auto;
-        }
-
-        .quiz-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--gray-100);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--dark);
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .quiz-close:hover {
-            background: var(--secondary);
-            color: white;
-            transform: rotate(90deg);
+        .quiz-modal-body {
+          padding: var(--space-xl);
         }
 
         .quiz-header {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .quiz-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--secondary) 0%, #d63b1f 100%);
-            color: white;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-
-        .quiz-title {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 12px;
-            line-height: 1.2;
-        }
-
-        .quiz-intro {
-            font-size: 15px;
-            color: var(--text);
-            line-height: 1.6;
-            margin-bottom: 24px;
-        }
-
-        .quiz-benefits {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            margin-bottom: 32px;
-        }
-
-        .quiz-benefit {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            color: var(--success);
-            font-weight: 600;
-        }
-
-        .quiz-progress {
-            margin-bottom: 32px;
+          text-align: center;
+          margin-bottom: var(--space-lg);
         }
 
         .quiz-progress-bar {
-            width: 100%;
-            height: 8px;
-            background: var(--gray-100);
-            border-radius: 20px;
-            overflow: hidden;
-            margin-bottom: 8px;
+          width: 100%;
+          height: 8px;
+          background: rgba(45, 66, 99, 0.1);
+          border-radius: 4px;
+          overflow: hidden;
+          margin-top: var(--space-md);
         }
 
-        .quiz-progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 20px;
+        .quiz-progress {
+          height: 100%;
+          background: var(--accent);
+          transition: width var(--transition-base);
+          width: 10%;
         }
 
-        .quiz-progress-text {
-            font-size: 13px;
-            color: var(--gray-600);
-            text-align: center;
-            font-weight: 600;
+        .quiz-questions {
+          min-height: 300px;
         }
 
         .quiz-question {
-            display: none;
-            animation: fadeIn 0.4s ease-out;
+          display: none;
         }
 
         .quiz-question.active {
-            display: block;
+          display: block;
         }
 
         .quiz-question-number {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
+          color: var(--text-light);
+          font-size: 14px;
+          margin-bottom: var(--space-sm);
         }
 
         .quiz-question-text {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 24px;
-            line-height: 1.4;
+          font-size: 20px;
+          color: var(--primary);
+          font-weight: 600;
+          margin-bottom: var(--space-lg);
         }
 
         .quiz-answers {
-            display: grid;
-            gap: 12px;
-            margin-bottom: 24px;
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-md);
         }
 
         .quiz-answer {
-            border: 2px solid var(--gray-200);
-            border-radius: 16px;
-            padding: 18px 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: white;
+          padding: var(--space-md);
+          border: 2px solid rgba(45, 66, 99, 0.12);
+          border-radius: 12px;
+          cursor: pointer;
+          transition: all var(--transition-fast);
+          display: flex;
+          align-items: center;
+          gap: var(--space-md);
         }
 
         .quiz-answer:hover {
-            border-color: var(--primary);
-            background: var(--gray-50);
-            transform: translateX(4px);
+          border-color: var(--accent);
+          background: rgba(196, 69, 54, 0.05);
         }
 
         .quiz-answer.selected {
-            border-color: var(--primary);
-            background: linear-gradient(135deg, rgba(0, 82, 204, 0.05) 0%, rgba(0, 82, 204, 0.02) 100%);
-            box-shadow: 0 4px 16px rgba(0, 82, 204, 0.15);
+          border-color: var(--accent);
+          background: rgba(196, 69, 54, 0.08);
         }
 
         .quiz-answer-radio {
-            width: 24px;
-            height: 24px;
-            border: 2px solid var(--gray-300);
-            border-radius: 50%;
-            flex-shrink: 0;
-            position: relative;
-            transition: all 0.3s ease;
+          width: 24px;
+          height: 24px;
+          border: 2px solid rgba(45, 66, 99, 0.3);
+          border-radius: 50%;
+          position: relative;
         }
 
         .quiz-answer.selected .quiz-answer-radio {
-            border-color: var(--primary);
-            background: var(--primary);
+          border-color: var(--accent);
         }
 
         .quiz-answer.selected .quiz-answer-radio::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .quiz-answer-text {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--dark);
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 12px;
+          height: 12px;
+          background: var(--accent);
+          border-radius: 50%;
         }
 
         .quiz-navigation {
-            display: flex;
-            gap: 12px;
-            justify-content: space-between;
+          display: flex;
+          justify-content: space-between;
+          margin-top: var(--space-lg);
+          gap: var(--space-md);
         }
 
         .quiz-btn {
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .quiz-btn-prev {
-            background: var(--gray-100);
-            color: var(--dark);
-        }
-
-        .quiz-btn-prev:hover {
-            background: var(--gray-200);
+          flex: 1;
+          padding: var(--space-md) var(--space-lg);
+          border-radius: 8px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all var(--transition-fast);
+          border: none;
+          font-family: inherit;
+          font-size: 16px;
         }
 
         .quiz-btn-next {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            box-shadow: 0 4px 16px rgba(0, 82, 204, 0.3);
-            margin-left: auto;
-            pointer-events: auto;
-        }
-
-        .quiz-btn-next:not(:disabled) {
-            pointer-events: auto;
-            cursor: pointer;
+          background: var(--accent);
+          color: white;
         }
 
         .quiz-btn-next:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 82, 204, 0.4);
+          background: var(--accent-hover);
         }
 
         .quiz-btn-next:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-            pointer-events: none;
+          background: rgba(45, 66, 99, 0.2);
+          cursor: not-allowed;
         }
 
-        /* Résultats */
+        .quiz-btn-prev {
+          background: transparent;
+          color: var(--primary);
+          border: 2px solid rgba(45, 66, 99, 0.2);
+        }
+
+        .quiz-btn-prev:hover {
+          border-color: var(--primary);
+        }
+
         .quiz-results {
-            display: none;
-            text-align: center;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        .quiz-results.active {
-            display: block;
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: var(--space-xl) 0;
         }
 
         .quiz-score-circle {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            margin: 0 auto 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 56px;
-            font-weight: 800;
-            color: white;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+          width: 120px;
+          height: 120px;
+          border: 8px solid var(--accent);
+          border-radius: 50%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: var(--space-lg);
         }
 
-        .quiz-score-circle.low {
-            background: linear-gradient(135deg, var(--success) 0%, #10b759 100%);
-        }
-
-        .quiz-score-circle.medium {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-        }
-
-        .quiz-score-circle.high {
-            background: linear-gradient(135deg, var(--secondary) 0%, #d63b1f 100%);
+        .quiz-score-circle #scoreNumber {
+          font-size: 48px;
+          font-weight: 700;
+          color: var(--accent);
+          line-height: 1;
         }
 
         .quiz-score-label {
-            font-size: 14px;
-            font-weight: 600;
-            margin-top: -8px;
+          font-size: 16px;
+          color: var(--text-light);
         }
 
         .quiz-result-title {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 12px;
+          color: var(--primary);
+          margin-bottom: var(--space-md);
         }
 
         .quiz-result-desc {
-            font-size: 16px;
-            color: var(--text);
-            line-height: 1.6;
-            margin-bottom: 32px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+          color: var(--text-secondary);
+          margin-bottom: var(--space-xl);
+          line-height: 1.8;
         }
 
         .quiz-result-actions {
-            display: grid;
-            gap: 12px;
-            max-width: 500px;
-            margin: 0 auto;
+          display: flex;
+          gap: var(--space-md);
+          flex-wrap: wrap;
+          justify-content: center;
         }
 
         .quiz-result-btn {
-            padding: 16px 24px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+          padding: var(--space-md) var(--space-lg);
+          border-radius: 8px;
+          font-weight: 600;
+          text-decoration: none;
+          transition: all var(--transition-fast);
         }
 
         .quiz-result-btn.primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            box-shadow: 0 4px 16px rgba(0, 82, 204, 0.3);
+          background: var(--accent);
+          color: white;
         }
 
         .quiz-result-btn.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 82, 204, 0.4);
+          background: var(--accent-hover);
         }
 
         .quiz-result-btn.secondary {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+          background: transparent;
+          color: var(--primary);
+          border: 2px solid rgba(45, 66, 99, 0.2);
         }
 
         .quiz-result-btn.secondary:hover {
-            background: var(--gray-50);
+          border-color: var(--primary);
         }
 
-        /* Popup Lead Magnet */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(9, 30, 66, 0.8);
-            backdrop-filter: blur(4px);
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: fadeIn 0.3s ease-out;
+        .lead-modal-body {
+          padding: var(--space-xl);
         }
 
-        .popup-overlay.active {
-            display: flex;
+        .lead-header {
+          text-align: center;
+          margin-bottom: var(--space-xl);
         }
 
-        .popup-content {
-            background: white;
-            border-radius: 24px;
-            max-width: 580px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(9, 30, 66, 0.3);
-            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .lead-header h2 {
+          color: var(--primary);
+          margin-bottom: var(--space-sm);
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        .lead-options {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: var(--space-lg);
         }
 
-        .popup-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--gray-100);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--dark);
-            transition: all 0.3s ease;
-            z-index: 10;
+        .lead-option {
+          background: var(--bg-secondary);
+          border: 2px solid rgba(45, 66, 99, 0.12);
+          border-radius: 16px;
+          padding: var(--space-xl);
+          text-align: center;
+          cursor: pointer;
+          transition: all var(--transition-base);
         }
 
-        .popup-close:hover {
-            background: var(--secondary);
-            color: white;
-            transform: rotate(90deg);
+        .lead-option:hover {
+          border-color: var(--accent);
+          background: rgba(196, 69, 54, 0.05);
+          transform: translateY(-4px);
         }
 
-        .popup-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            padding: 32px 24px;
-            text-align: center;
-            color: white;
-            border-radius: 24px 24px 0 0;
+        .lead-option-icon {
+          font-size: 48px;
+          margin-bottom: var(--space-md);
         }
 
-        .popup-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
+        .lead-option h3 {
+          color: var(--primary);
+          font-size: 18px;
+          margin-bottom: var(--space-sm);
         }
 
-        .popup-title {
-            font-size: 26px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            line-height: 1.2;
+        .lead-option p {
+          color: var(--text-secondary);
+          font-size: 14px;
         }
 
-        .popup-subtitle {
-            font-size: 15px;
-            opacity: 0.95;
-            line-height: 1.4;
-        }
-
-        .popup-body {
-            padding: 32px 24px;
-        }
-
-        .popup-options {
-            display: grid;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .popup-option {
-            border: 2px solid var(--gray-200);
-            border-radius: 16px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: white;
-        }
-
-        .popup-option:hover {
-            border-color: var(--primary);
-            background: var(--gray-50);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 82, 204, 0.1);
-        }
-
-        .popup-option.selected {
-            border-color: var(--primary);
-            background: linear-gradient(135deg, rgba(0, 82, 204, 0.05) 0%, rgba(0, 82, 204, 0.02) 100%);
-            box-shadow: 0 4px 16px rgba(0, 82, 204, 0.15);
-        }
-
-        .popup-option-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 8px;
-        }
-
-        .popup-option-icon {
-            font-size: 32px;
-        }
-
-        .popup-option-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--dark);
-        }
-
-        .popup-option-desc {
-            font-size: 14px;
-            color: var(--text);
-            line-height: 1.5;
-            margin-left: 44px;
-        }
-
-        .popup-form {
-            display: none;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .popup-form.active {
-            display: block;
+        .lead-form {
+          display: none;
         }
 
         .form-group {
-            margin-bottom: 16px;
+          margin-bottom: var(--space-md);
         }
 
-        .form-label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 6px;
+        .form-group label {
+          display: block;
+          color: var(--primary);
+          font-weight: 600;
+          margin-bottom: var(--space-xs);
         }
 
-        .form-label .required {
-            color: var(--secondary);
+        .form-group input,
+        .form-group select {
+          width: 100%;
+          padding: var(--space-md);
+          border: 1px solid rgba(45, 66, 99, 0.2);
+          border-radius: 8px;
+          font-family: inherit;
+          font-size: 16px;
+          transition: all var(--transition-fast);
         }
 
-        .form-input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1.5px solid var(--gray-200);
-            border-radius: 10px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
+        .form-group input:focus,
+        .form-group select:focus {
+          outline: none;
+          border-color: var(--accent);
+          box-shadow: 0 0 0 3px rgba(196, 69, 54, 0.1);
         }
 
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.1);
+        .form-checkbox {
+          display: flex;
+          align-items: flex-start;
+          gap: var(--space-sm);
         }
 
-        .form-input::placeholder {
-            color: var(--gray-400);
+        .form-checkbox input {
+          margin-top: 4px;
         }
 
-        .form-consent {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            margin-bottom: 20px;
+        .form-checkbox label {
+          font-size: 14px;
+          color: var(--text-secondary);
+          font-weight: 400;
         }
 
-        .form-consent input[type="checkbox"] {
-            margin-top: 2px;
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
+        .form-actions {
+          display: flex;
+          gap: var(--space-md);
+          margin-top: var(--space-lg);
         }
 
-        .form-consent label {
-            font-size: 12px;
-            color: var(--text);
-            line-height: 1.5;
-            cursor: pointer;
+        .form-success {
+          text-align: center;
+          padding: var(--space-xl);
         }
 
-        .popup-submit {
-            width: 100%;
-            padding: 16px 24px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 82, 204, 0.3);
+        .form-success svg {
+          color: var(--success);
+          margin-bottom: var(--space-md);
         }
 
-        .popup-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 82, 204, 0.4);
+        .form-success h3 {
+          color: var(--primary);
+          margin-bottom: var(--space-sm);
         }
 
-        .popup-submit:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .form-success p {
+          color: var(--text-secondary);
+        }
+
+        .text-center {
+          text-align: center;
+        }
+
+        .mt-xl {
+          margin-top: var(--space-xl);
+        }
+
+        @media (max-width: 768px) {
+          h1 {
+            font-size: 32px;
+          }
+
+          h2 {
+            font-size: 28px;
+          }
+
+          section {
+            padding: var(--space-xl) 0;
+          }
+
+          .hero {
+            padding: var(--space-2xl) 0 var(--space-xl);
+          }
+
+          .hero-stats {
+            grid-template-columns: 1fr;
+          }
+
+          .credibility-grid,
+          .split-grid,
+          .pricing-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .price-card.popular {
             transform: none;
-        }
+          }
 
-        .popup-back {
-            margin-top: 12px;
-            text-align: center;
-        }
+          .timeline-item {
+            padding-left: 40px;
+            margin-left: 15px;
+          }
 
-        .popup-back button {
-            background: none;
-            border: none;
-            color: var(--primary);
+          .timeline-number {
+            width: 32px;
+            height: 32px;
             font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: underline;
-        }
+            left: -16px;
+          }
 
-        .popup-success {
-            display: none;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .popup-success.active {
-            display: block;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .popup-success-icon {
-            font-size: 64px;
-            margin-bottom: 16px;
-        }
-
-        .popup-success-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
-
-        .popup-success-message {
+          .btn {
+            padding: 14px 24px;
             font-size: 15px;
-            color: var(--text);
-            line-height: 1.5;
-        }
+          }
 
-        /* Responsive */
-        @media (max-width: 640px) {
-            /* Quiz responsive */
-            .quiz-overlay {
-                padding: 10px;
-                align-items: flex-start;
-            }
+          .modal-content {
+            margin: var(--space-md);
+          }
 
-            .quiz-container {
-                padding: 28px 20px;
-                margin: 10px auto;
-                max-height: 95vh;
-                overflow-y: auto;
-            }
+          .quiz-result-actions {
+            flex-direction: column;
+          }
 
-            .quiz-title {
-                font-size: 22px;
-            }
-
-            .quiz-intro {
-                font-size: 14px;
-            }
-
-            .quiz-benefits {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .quiz-question-text {
-                font-size: 17px;
-            }
-
-            .quiz-answer {
-                padding: 14px 16px;
-            }
-
-            .quiz-answer-text {
-                font-size: 15px;
-            }
-
-            .quiz-btn {
-                padding: 12px 20px;
-                font-size: 14px;
-            }
-
-            .quiz-score-circle {
-                width: 130px;
-                height: 130px;
-                font-size: 44px;
-            }
-
-            .quiz-result-title {
-                font-size: 22px;
-            }
-
-            .quiz-result-desc {
-                font-size: 14px;
-            }
-
-            /* Popup responsive */
-            .popup-content {
-                margin: 0;
-                border-radius: 20px;
-                max-height: 85vh;
-            }
-
-            .popup-header {
-                padding: 24px 20px;
-            }
-
-            .popup-title {
-                font-size: 22px;
-            }
-
-            .popup-subtitle {
-                font-size: 14px;
-            }
-
-            .popup-body {
-                padding: 24px 20px;
-            }
-
-            .popup-option {
-                padding: 16px;
-            }
-
-            .popup-option-title {
-                font-size: 16px;
-            }
-
-            .popup-option-desc {
-                font-size: 13px;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .container { max-width: 720px; }
-            .hero h1 { font-size: 52px; }
-            .stats { grid-template-columns: repeat(4, 1fr); }
-            .cta-group { flex-direction: row; }
-            .btn { flex: 1; }
-            .expertise-grid { grid-template-columns: repeat(2, 1fr); }
-            .pricing-cards { flex-direction: row; flex-wrap: wrap; }
-            .price-card { flex: 1; min-width: calc(50% - 8px); }
-            .credentials { flex-direction: row; }
-            .credential-item { flex-direction: column; text-align: center; flex: 1; }
-            
-            .risk-opportunity-wrapper {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-            
-            .warning-card,
-            .value-prop {
-                margin-bottom: 0;
-            }
-            
-            /* Sticky header tablet : design propre une ligne */
-            .sticky-header {
-                padding: 10px 20px;
-            }
-            
-            .sticky-header-content {
-                gap: 12px;
-            }
-            
-            .sticky-logo {
-                font-size: 15px;
-            }
-            
-            /* Réafficher "Conformité" */
-            .sticky-logo span {
-                display: inline;
-            }
-            
-            .sticky-cta-group {
-                gap: 8px;
-            }
-            
-            .btn-sticky {
-                padding: 10px 14px;
-                font-size: 12px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .container { max-width: 1024px; }
-            .hero h1 { font-size: 64px; }
-            
-            /* Garder 2 colonnes pour impact-cards */
-            
-            /* Sticky header desktop : taille normale */
-            .sticky-header {
-                padding: 12px 24px;
-            }
-            
-            .sticky-logo {
-                font-size: 16px;
-            }
-            
-            .btn-sticky {
-                padding: 12px 20px;
-                font-size: 14px;
-            }
+          .quiz-result-btn {
+            width: 100%;
+          }
         }
       `}</style>
 
-<div className="bg-gradient"></div>
-
-    <div className="alert-bar">
-        <span>⚠️ NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant</span>
-    </div>
-
-    {/* Sticky Header avec CTA */}
-    <div className="sticky-header" id="stickyHeader">
-        <div className="sticky-header-content">
-            <div className="sticky-logo">NIS2<span> Conformité</span></div>
-            <div className="sticky-cta-group">
-                <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn-sticky primary">
-                    📅 RDV expert gratuit
-                </a>
-                <a href="#pricing" className="btn-sticky secondary">
-                    Nos offres
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div className="container">
-  {/* HERO */}
-<section className="hero">
-    <div className="logo">Cyber Solferino</div>
-    <div className="tagline">La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes</div>
-    
-    <div className="section-badge success">NOTRE APPROCHE</div>
-    <h2>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
-    <p className="section-subtitle">Notre accompagnement se base sur le référentiel officiel de l'ANSSI.</p>
-    
-    {/* Timeline horizontale */}
-    <div className="timeline-container">
-        <div className="timeline-horizontal">
-            <div className="timeline-item">
-                <div className="timeline-number">01</div>
-                <div className="timeline-content">
-                    <h3 className="timeline-title">Analyse de conformité</h3>
-                    <p className="timeline-description">Identification des écarts clés de conformité selon le référentiel de l'ANSSI.</p>
-                </div>
-            </div>
-            <div className="timeline-item">
-                <div className="timeline-number">02</div>
-                <div className="timeline-content">
-                    <h3 className="timeline-title">Comprendre vos vulnérabilités</h3>
-                    <p className="timeline-description">Connaître votre niveau de conformité aux obligations de sécurité NIS2</p>
-                </div>
-            </div>
-            <div className="timeline-item">
-                <div className="timeline-number">03</div>
-                <div className="timeline-content">
-                    <h3 className="timeline-title">Accompagnement adapté</h3>
-                    <p className="timeline-description">Choisissez l'offre adaptée en fonction de votre niveau global de maturité cyber</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div className="expertise-grid">
-        <div className="expertise-card" style={{animationDelay: '0s'}}>
-            <div className="expertise-number">15+</div>
-            <div className="expertise-title">Années d'expérience terrain</div>
-            <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber. Notre équipe d'experts internationaux a piloté des projets dans plus de 10 pays</p>
-        </div>
-        <div className="expertise-card highlight" style={{animationDelay: '0.15s'}}>
-            <div className="certification-badge">
-                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-            </div>
-            <div className="expertise-title">Une équipe d'experts en cyber défense</div>
-            <p>Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
-        </div>
-    </div>
-</section>
-   <div className="section-header">
-            <div className="stats">
-                <div className="stat">
-                    <div className="stat-value">92%</div>
-                    <div className="stat-label">PME et ETI non prêtes</div>
-                </div>
-                <div className="stat">
-                    <div className="stat-value">10M€</div>
-                    <div className="stat-label">amende max ou 2% du CA</div>
-                </div>
-                <div className="stat">
-                    <div className="stat-value">70%</div>
-                    <div className="stat-label">d'aides de l'état possibles</div>
-                </div>
-                <div className="stat">
-                    <div className="stat-value">+40%</div>
-                    <div className="stat-label">de cyber attaques en 2024</div>
-                </div>
-            </div>
-
-            {/* CTA PRINCIPAL : Quiz d'abord */}
-            <div className="cta-group">
-                <button onClick={() => window.openQuiz()} className="btn btn-primary">
-                    🎯 Suis-je concerné par NIS2 ?
-                </button>
-                <a href="https://drive.google.com/file/d/1pHdC_x0PCa2rkWBBPx9MHWujG2xm6H8B/view?usp=share_link" target="_blank" className="btn btn-secondary">
-                    Comprendre NIS2 en détail
-                </a>
-            </div>
-        </section>
-
-        {/* VIDÉO YOUTUBE : Comprendre NIS2 */}
-        <section className="video-section">
-            <div className="video-header">
-                <div className="video-badge">🎥 Comprendre NIS2 en vidéo</div>
-            </div>
-            <div className="video-container">
-                <iframe 
-                    src="https://www.youtube.com/embed/461tWBUzrY8?enablejsapi=1" 
-                    title="Directive NIS2 expliquée" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowFullScreen>
-                </iframe>
-            </div>
-        </section>
-
-        {/* Wrapper pour afficher les 2 blocs côte à côte sur desktop */}
-        <div className="risk-opportunity-wrapper">
-            {/* RISQUES SANS CONFORMITÉ : Bloc rouge */}
-            <section className="warning-card">
-                <h2>⚠️ Les enjeux de la non-conformité</h2>
-                <ul className="warning-list">
-                    <li><strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</li>
-                    <li><strong>Responsabilité pénale du dirigeant</strong> — En cas de manquement aux obligations NIS2</li>
-                    <li><strong>Exclusion des marchés</strong> — Impossibilité de répondre aux appels d'offres publics et privés</li>
-                    <li><strong>Perte de confiance B2B</strong> — Vos clients exigent désormais la conformité</li>
-                    <li><strong>Contrôles réglementaires</strong> — Audits de votre entreprise sur site sans préavis de l'ANSSI </li>
-                </ul>
-            </section>
-
-            {/* OPPORTUNITÉ : MESSAGE POSITIF */}
-            <section className="value-prop">
-                <h2>🏆 Transformez la contrainte en levier stratégique</h2>
-                <ul className="value-list">
-                    <li><strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection</li>
-                    <li><strong>Différenciez-vous</strong> — Positionnez-vous comme le partenaire de confiance de votre secteur</li>
-                    <li><strong>Rassurez vos clients</strong> — Montrez que vous protéger les données de vos clients</li>
-		    <li><strong>Fidélisez vos partenaires</strong> — Consolidez votre réputation d'acteur stable et responsable</li>
-                    <li><strong>Valorisez votre entreprise</strong> — Une organisation conforme vaut plus en cas de cession</li>
-                </ul>
-            </section>
-        </div>
-
-        {/* CTA Inline 1 */}
-        <div className="cta-inline">
-            <p>🚀 Transformez la contrainte en opportunité business</p>
-            <a href="#pricing" className="btn">
-                Découvrir nos offres
+      {/* STICKY HEADER */}
+      <header className="sticky-header" id="stickyHeader">
+        <div className="container">
+          <div className="logo">Cyber Solferino</div>
+          <div className="header-cta">
+            <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary">
+              📅 RDV expert gratuit
             </a>
+          </div>
         </div>
+      </header>
 
-        {/* RISQUES CHIFFRÉS : 3 cartes avec % attaques cyber */}
-        <section className="impact-section">
-            <div className="section-header">
-                <div className="section-badge">RISQUES CHIFFRÉS</div>
-                <h2>La prévention est plus rentable qu’une crise cyber</h2>
-                <p className="section-subtitle">Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber</p>
+      {/* HERO */}
+      <section className="hero">
+        <div className="container">
+          <div className="logo">Cyber Solferino</div>
+          <h1>Devenez conforme NIS2 en 90 jours</h1>
+          <p className="tagline">
+            Protégez votre activité, votre réputation et votre résilience. Transformez NIS2 en levier de performance avec un accompagnement d'experts certifiés ISO 27001.
+          </p>
+          
+          <div className="hero-stats">
+            <div className="stat-card">
+              <span className="stat-number">+40%</span>
+              <div className="stat-label">de cyber attaques en 2024</div>
             </div>
-
-            <div className="impact-cards">
-                <div className="impact-card" style={{Delay: '0s'}}>
-                    <div className="impact-icon">📈</div>
-                    <div className="impact-stat">+38%</div>
-                    <div className="impact-label">Hausse attaques cyber</div>
-                    <p className="impact-detail">Les attaques contre les PME ont explosé de 38% en 2024. Les cybercriminels ciblent les entreprises non protégées.</p>
-                </div>
-
-                <div className="impact-card" style={{Delay: '0.15s'}}>
-                    <div className="impact-icon">💸</div>
-                    <div className="impact-stat">4,35M€</div>
-                    <div className="impact-label">Coût moyen cyber attaque</div>
-                    <p className="impact-detail"> 60% des PME touchées ferment dans les 12 mois.Arrêt de production (21 jours en moyenne), perte de données, rançons.</p>
-                </div>
+            <div className="stat-card">
+              <span className="stat-number">10M€</span>
+              <div className="stat-label">amende max ou 2% du CA</div>
             </div>
-        </section>
-
-        {/* CTA Inline 2 */}
-        <div className="cta-inline">
-            <p>🛡️ Renforcez la sécurité informatique et la résilience de votre entreprise</p>
-            <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn">
-                📅 Echange gratuit avec un expert
-            </a>
+            <div className="stat-card">
+              <span className="stat-number">70%</span>
+              <div className="stat-label">d'aides de l'état possibles</div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* PRICING */}
-        <section className="pricing-section" id="pricing">
-            <div className="section-header">
-                <div className="section-badge">TARIFS CLAIRS</div>
-                <h2>Investissement vs Amende</h2>
-                <p className="section-subtitle">Un audit coûte 200x moins cher qu'une sanction</p>
-            </div>
-
-            {/* Bandeau Aides État - Design moderne */}
-            <div style={{maxWidth: '850px', margin: '0 auto 40px auto', padding: '16px 24px', background: 'linear-gradient(90deg, rgba(76, 175, 80, 0.08) 0%, rgba(76, 175, 80, 0.12) 100%)', borderLeft: '4px solid #4caf50', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '16px'}}>
-                <div style={{flexShrink: '0', fontSize: '24px'}}>💡</div>
-                <div style={{flex: '1', color: '#2e7d32', fontSize: '15px', lineHeight: '1.5'}}>
-                    <strong style={{color: '#1b5e20'}}>Aides de l'État disponibles</strong> — Réduisez le coût de votre mise en conformité. Lors de votre rendez-vous, nous vous orientons vers les financements adaptés.
-                </div>
-            </div>
-
-            <div className="pricing-cards">
-                <div className="price-card" style={{Delay: '0s'}}>
-                    <h3>Découverte</h3>
-                    <div className="price">3 490€</div>
-                    <div className="price-sub">Immédiat • Diagnostic</div>
-                    <div className="ideal-for">
-                        <strong>Idéal pour :</strong>
-                        Evaluation immédiate et abordable
-                    </div>
-                    <ul className="features">
-                        <li>Audit cyber NIS2 initial</li>
-                        <li><strong>Résultat immédiat ⚡</strong></li>
-                        <li>Rapport d'audit synthétique</li>
-                        <li>Recommandations d’actions prioritaires</li>
-                    </ul>
-                    <button onClick={handleStripeCheckout} className="btn btn-secondary">
-                        Je fais mon diagnostic NIS2
-                    </button>
-                </div>
-
-                <div className="price-card" style={{Delay: '0.1s'}}>
-                    <h3>Essentiel</h3>
-                    <div className="price">7 990€</div>
-                    <div className="price-sub">En 48H</div>
-                    <div className="ideal-for">
-                        <strong>Idéal pour :</strong>
-                        Entités nécessitant un plan structuré
-                    </div>
-                    <ul className="features">
-                        <li>Audit cyber NIS2</li>
-                        <li>Rapport complet validé par nos équipes</li>
-                        <li>Analyse des écarts de conformité</li>
-                        <li>Plan de remédiation détaillé avec priorisation </li>
-                        <li><strong>Restitution avec un expert, 1h de visio</strong></li>
-			<li>Accès à notre base de modèle de documents</li>
-			<li>6 mois d'accès à notre plateforme</li>
-                    </ul>
-                    <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-secondary">
-                        Prendre rendez-vous
-                    </a>
-                </div>
-
-                <div className="price-card featured" style={{Delay: '0.2s'}}>
-                    <div className="popular-badge">⭐ POPULAIRE</div>
-                    <h3>Expertise</h3>
-                    <div className="price">14 900€</div>
-                    <div className="price-sub">1 mois</div>
-                    <div className="ideal-for">
-                        <strong>Idéal pour :</strong>
-                        Entités nécessitant un plan structuré et un accompagnement en cas de contrôle
-                    </div>
-                    <ul className="features">
-                        <li>Audit cyber NIS2</li>
-                        <li>Rapport complet validé par nos équipes</li>
-                        <li>Analyse des écarts de conformité</li>
-                        <li>Plan de remédiation détaillé avec priorisation </li>
-			<li><strong>Restitution avec un expert, 1h de visio</strong></li>
-                        <li><strong>Entretien préalable avec un expert, 1h de visio</strong></li>
-			<li>Roadmap personnalisée pour une mise en conformité</li>
-			<li>Enregistrement de votre entreprise à l'ANSSI</li>
-			<li>Constitution dossier d'aides d'état</li>
-			<li>Accès à notre base de modèle de documents</li>
-			<li>12 mois d'accès à notre plateforme</li>
-			<li>Mise a jour des dernières evolutions législatives</li>
-                    </ul>
-                    <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary">
-                        Prendre rendez-vous
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        {/* TÉMOIGNAGES */}
-        <section className="social-proof">
-            <div className="section-header">
-                <div className="section-badge">TÉMOIGNAGES</div>
-                <h2>Dirigeants conformes, entreprises gagnantes</h2>
-                <p className="section-subtitle">Ils ont fait de NIS2 un levier de performance</p>
-            </div>
-
-            <div className="testimonials" id="testimonialCarousel">
-                <div className="testimonials-wrapper">
-                    <div className="testimonial">
-                        <div className="testimonial-text">
-                            "L’accompagnement NIS2 nous a permis de structurer clairement nos obligations et de prioriser les actions essentielles. La démarche est pragmatique, pédagogique et parfaitement adaptée à une PME."
-                        </div>
-                        <div className="testimonial-author">
-                            <div className="author-avatar">AM</div>
-                            <div className="author-info">
-                                <div className="author-name">Alex Martin</div>
-                                <div className="author-role">CEO • Services Numériques • 65 sal.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="testimonial">
-                        <div className="testimonial-text">
-                            "Accompagnement précis, méthodique, sans jargon inutile. L'équipe a su traduire les exigences réglementaires en plan d'action opérationnel. Aujourd'hui, la conformité est devenue un argument de différenciation face à nos clients grands comptes."
-                        </div>
-                        <div className="testimonial-author">
-                            <div className="author-avatar">MD</div>
-                            <div className="author-info">
-                                <div className="author-name">Marc Dubois</div>
-                                <div className="author-role">Directeur Général • Transport • 120 sal.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="testimonial">
-                        <div className="testimonial-text">
-                            "L'approche pédagogique m'a permis de mobiliser mes équipes efficacement. En 3 mois, nous avons structuré notre gouvernance cybersécurité et obtenu la conformité. C'est désormais un atout commercial majeur dans nos négociations."
-                        </div>
-                        <div className="testimonial-author">
-                            <div className="author-avatar">SL</div>
-                            <div className="author-info">
-                                <div className="author-name">Sophie Lemaire</div>
-                                <div className="author-role">Directrice Administrative et Financière • Santé • 85 sal.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Contrôles Carousel */}
-                <div className="carousel-controls">
-                    <button className="carousel-btn" id="prevBtn">←</button>
-                    <div className="carousel-dots" id="carouselDots"></div>
-                    <button className="carousel-btn" id="nextBtn">→</button>
-                </div>
-            </div>
-        </section>
-
-        {/* CTA Inline 3 */}
-        <div className="cta-inline">
-            <p>💬 Échangez avec un de nos experts • Obtenez des réponses claires</p>
-            <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn">
-                📅 Prendre rendez-vous
-            </a>
-        </div>
-
-        {/* FAQ */}
-        <section className="faq" id="quiz">
-            <div className="section-header">
-                <div className="section-badge">FAQ</div>
-                <h2>Les questions que se posent les dirigeants</h2>
+      {/* CREDIBILITY SECTION */}
+      <section className="credibility-section">
+        <div className="container">
+          <div className="credibility-grid">
+            <div className="credibility-card">
+              <div className="credibility-icon">15+</div>
+              <h3>Années d'expérience terrain</h3>
+              <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber.</p>
+              <ul className="credibility-list">
+                <li>150+ PME et ETI accompagnées</li>
+                <li>Projets dans plus de 10 pays</li>
+                <li>0 client sanctionné</li>
+              </ul>
             </div>
             
-            <div className="faq-item">
-                <div className="faq-question">
-                    🎯 Comment la conformité devient-elle un avantage commercial ?
-                    <span>↓</span>
-                </div>
-                <div className="faq-answer">
-                    La conformité NIS2 et ISO 27001 deviennent des critères d'éligibilité dans les appels d'offres publics et privés. Sans certification, vous êtes d'office écarté. C'est un différenciateur stratégique qui vous positionne comme partenaire de confiance face à vos concurrents non conformes.
-                </div>
+            <div className="credibility-card">
+              <div className="credibility-icon">✓</div>
+              <h3>Experts certifiés ISO 27001</h3>
+              <p>Une équipe d'experts en cyber défense, formés aux normes internationales les plus strictes.</p>
+              <ul className="credibility-list">
+                <li>Méthodologie validée par l'ANSSI</li>
+                <li>Consultants accrédités ISO 27001</li>
+                <li>98% de taux de conformité</li>
+              </ul>
             </div>
-
-            <div className="faq-item">
-                <div className="faq-question">
-                    💰 Quel est le véritable coût de la non-conformité ?
-                    <span>↓</span>
-                </div>
-                <div className="faq-answer">
-                    Au-delà des sanctions financières (jusqu'à 10M€), la non-conformité entraîne : exclusion des marchés, perte de clients B2B, atteinte réputationnelle, et risque pénal pour le dirigeant. La mise en conformité coûte 200 fois moins cher qu'une sanction et ouvre des opportunités de croissance.
-                </div>
-            </div>
-
-            <div className="faq-item">
-                <div className="faq-question">
-                    ⏱️ Quel délai prévoir pour atteindre la conformité ?
-                    <span>↓</span>
-                </div>
-                <div className="faq-answer">
-                    Avec notre méthodologie éprouvée : 90 jours en moyenne de l'audit initial à la conformité effective. Les premiers jalons de sécurisation sont mis en place dès les 2 premières semaines. Notre équipe certifiée ISO 27001 optimise chaque étape du parcours.
-                </div>
-            </div>
-
-            <div className="faq-item">
-                <div className="faq-question">
-                    🤔 Mon organisation est-elle dans le périmètre NIS2 ?
-                    <span>↓</span>
-                </div>
-                <div className="faq-answer">
-                    Vous êtes concerné si : +50 salariés OU +10M€ CA, ET secteur critique (santé, énergie, transport, services numériques, industrie, etc.). La directive couvre 18 secteurs et leurs chaînes d'approvisionnement. Contactez-nous pour un diagnostic gratuit immédiat.
-                </div>
-            </div>
-
-            <div className="faq-item">
-                <div className="faq-question">
-                    📋 Comment NIS2 s'articule avec le RGPD et ISO 27001 ?
-                    <span>↓</span>
-                </div>
-                <div className="faq-answer">
-                    Ces cadres sont complémentaires. RGPD = protection des données personnelles. ISO 27001 = management de la sécurité de l'information. NIS2 = résilience des réseaux et systèmes critiques. Une démarche NIS2 bien menée facilite grandement la conformité RGPD et prépare la certification ISO 27001.
-                </div>
-            </div>
-
-            <div className="faq-item">
-                <div className="faq-question">
-                    🏆 Pourquoi nous choisir ?
-                    <span>↓</span>
-                </div>
-                <div className="faq-answer">
-                    15 ans d'expertise, équipe ISO 27001, experts ANSSI, 150+ PME accompagnées, 98% conformité, 0 client sanctionné. Nous parlons votre langage, pas du jargon.
-                </div>
-            </div>
-        </section>
-
-        {/* FINAL CTA */}
-        <section className="final-cta">
-            <h2>Sécurisez votre avenir dès aujourd'hui</h2>
-            <p>Échange confidentiel avec un consultant certifié ISO 27001<br /><strong>Audit indépendant pour mesurer votre conformité et identifier les écarts critiques, avec des livrables clairs et actionnables.</strong></p>
-            <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn">
-                📅 Réserver un échange gratuit
-            </a>
-        </section>
-
-        <footer className="footer">
-            <p><strong>Cyber Solferino</strong> • Mise en conformité NIS2 • Basé sur le referenciel ANSSI</p>
-            <p style={{marginTop: '10px'}}>www.cyber-solferino.com • bla bla bla</p>
-            <p style={{marginTop: '8px', opacity: '0.6'}}>Mentions légales • CGV • Politique de confidentialité</p>
-        </footer>
-    </div>
-
-    <div className="fab" onClick={() => window.window.location.href='tel:+33123456789'}>
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-        </svg>
-    </div>
-
-    {/* POPUP LEAD MAGNET */}
-    <div className="popup-overlay" id="leadPopup">
-        <div className="popup-content">
-            <button className="popup-close" onClick={() => window.closePopup()}>×</button>
-            
-            {/* Header */}
-            <div className="popup-header">
-                <div className="popup-badge">🎁 RESSOURCE GRATUITE</div>
-                <h2 className="popup-title">Directive NIS2 : Le Guide Essentiel</h2>
-                <p className="popup-subtitle">Téléchargez notre guide exclusif ou échangez avec un expert certifié ISO 27001</p>
-            </div>
-
-            {/* Body avec choix */}
-            <div className="popup-body" id="popupChoices">
-                <div className="popup-options">
-                    <div className="popup-option" onClick={() => window.selectOption('download')}>
-                        <div className="popup-option-header">
-                            <div className="popup-option-icon">📥</div>
-                            <div className="popup-option-title">Télécharger gratuitement le guide NIS2</div>
-                        </div>
-                        <p className="popup-option-desc">
-                            <strong>Tout comprendre en quelques minutes</strong> — Directive, risques pour les entreprises et opportunités. Format PDF pratique et actionnable.
-                        </p>
-                    </div>
-
-                    <div className="popup-option" onClick={() => window.selectOption('contact')}>
-                        <div className="popup-option-header">
-                            <div className="popup-option-icon">📞</div>
-                            <div className="popup-option-title">Réserver un diagnostic gratuit personnalisé</div>
-                        </div>
-                        <p className="popup-option-desc">
-                            <strong>Échange avec un expert cybersécurité</strong> — Diagnostic immédiat de votre situation, recommandations sur-mesure, plan d'action.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            {/* Formulaire Download */}
-            <div className="popup-form" id="downloadForm">
-                <div className="popup-body">
-                    <h3 style={{fontSize: '20px', fontWeight: '700', marginBottom: '20px'}}>📥 Téléchargez gratuitement le guide NIS2</h3>
-                    
-                    <form onSubmit={(e) => { e.preventDefault(); window.submitDownload(event) }}>
-                        <div className="form-group">
-                            <label className="form-label">Prénom <span className="required">*</span></label>
-                            <input type="text" className="form-input" placeholder="Votre prénom" required />
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">Nom <span className="required">*</span></label>
-                            <input type="text" className="form-input" placeholder="Votre nom" required />
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">Email professionnel <span className="required">*</span></label>
-                            <input type="email" className="form-input" placeholder="prenom.nom@entreprise.fr" required />
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">Entreprise <span className="required">*</span></label>
-                            <input type="text" className="form-input" placeholder="Nom de votre entreprise" required />
-                        </div>
-
-                        <div className="form-consent">
-                            <input type="checkbox" id="consentDownload" required />
-                            <label htmlFor="consentDownload">
-                                J'accepte de recevoir le guide NIS2 et les communications de NIS2 Conformité. Politique de confidentialité.
-                            </label>
-                        </div>
-
-                        <button type="submit" className="popup-submit">
-                            📥 Télécharger le guide gratuit
-                        </button>
-                    </form>
-
-                    <div className="popup-back">
-                        <button onClick={() => window.backToChoices()}>← Retour aux options</button>
-                    </div>
-                </div>
-            </div>
-
-            {/* Formulaire Contact */}
-            <div className="popup-form" id="contactForm">
-                <div className="popup-body">
-                    <h3 style={{fontSize: '20px', fontWeight: '700', marginBottom: '20px'}}>📞 Demande d'audit gratuit</h3>
-                    
-                    <form onSubmit={(e) => { e.preventDefault(); window.submitContact(event) }}>
-                        <div className="form-group">
-                            <label className="form-label">Prénom <span className="required">*</span></label>
-                            <input type="text" className="form-input" placeholder="Votre prénom" required />
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">Nom <span className="required">*</span></label>
-                            <input type="text" className="form-input" placeholder="Votre nom" required />
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">Email professionnel <span className="required">*</span></label>
-                            <input type="email" className="form-input" placeholder="prenom.nom@entreprise.fr" required />
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">Téléphone <span className="required">*</span></label>
-                            <input type="tel" className="form-input" placeholder="06 XX XX XX XX" required />
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">Entreprise <span className="required">*</span></label>
-                            <input type="text" className="form-input" placeholder="Nom de votre entreprise" required />
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">Nombre de salariés</label>
-                            <select className="form-input">
-                                <option value="">Sélectionner</option>
-                                <option value="1-49">1 à 49</option>
-                                <option value="50-99">50 à 99</option>
-                                <option value="100-249">100 à 249</option>
-                                <option value="250+">250+</option>
-                            </select>
-                        </div>
-
-                        <div className="form-consent">
-                            <input type="checkbox" id="consentContact" required />
-                            <label htmlFor="consentContact">
-                                J'accepte d'être contacté par NIS2 Conformité pour mon audit gratuit. Politique de confidentialité.
-                            </label>
-                        </div>
-
-                        <button type="submit" className="popup-submit">
-                            📞 Demander mon audit gratuit
-                        </button>
-                    </form>
-
-                    <div className="popup-back">
-                        <button onClick={() => window.backToChoices()}>← Retour aux options</button>
-                    </div>
-                </div>
-            </div>
-
-            {/* Message de succès */}
-            <div className="popup-success" id="successMessage">
-                <div className="popup-success-icon">✅</div>
-                <h3 className="popup-success-title">Merci !</h3>
-                <p className="popup-success-message" id="successText"></p>
-            </div>
+          </div>
         </div>
-    </div>
+      </section>
 
-    {/* QUIZ NIS2 MODAL */}
-    <div className="quiz-overlay" id="quizModal">
-        <div className="quiz-container">
-            <button className="quiz-close" onClick={() => window.closeQuiz()}>×</button>
+      {/* QUIZ TRIGGER */}
+      <section className="quiz-trigger-section">
+        <div className="container">
+          <h2>🎯 Suis-je concerné par NIS2 ?</h2>
+          <p>Répondez à 10 questions simples pour savoir si votre entreprise entre dans le périmètre de la directive.</p>
+          <button className="btn btn-secondary" onClick={() => window.openQuiz()}>
+            Faire le test gratuit
+          </button>
+          <div style={{marginTop: 'var(--space-md)'}}>
+            <a href="https://drive.google.com/file/d/1pHdC_x0PCa2rkWBBPx9MHWujG2xm6H8B/view?usp=share_link" target="_blank" className="btn-ghost" style={{color: 'white'}}>
+              Comprendre NIS2 en détail
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* NOTRE APPROCHE */}
+      <section className="approach-section">
+        <div className="container">
+          <div className="section-title">
+            <span className="section-badge">NOTRE APPROCHE</span>
+            <h2>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
+            <p className="section-subtitle">
+              Notre accompagnement se base sur le référentiel officiel de l'ANSSI.
+            </p>
+          </div>
+          
+          <div className="timeline-container">
+            <div className="timeline-item">
+              <div className="timeline-number">01</div>
+              <div className="timeline-content">
+                <h3>Où en êtes-vous ?</h3>
+                <p>Identification des écarts clés de conformité selon le référentiel de l'ANSSI. Analyse précise de votre situation actuelle.</p>
+              </div>
+            </div>
             
-            {/* Header */}
-            <div className="quiz-header">
-                <div className="quiz-badge">⚡ TEST GRATUIT</div>
-                <h2 className="quiz-title">Suis-je concerné par la directive NIS2 ?</h2>
-                <p className="quiz-intro">
-                    La directive NIS2 ne concerne pas uniquement les grandes entreprises. Ce quiz rapide vous permet de savoir immédiatement si vous entrez dans le périmètre.
+            <div className="timeline-item">
+              <div className="timeline-number">02</div>
+              <div className="timeline-content">
+                <h3>Quels sont vos risques ?</h3>
+                <p>Connaître votre niveau de conformité aux obligations de sécurité NIS2. Évaluation détaillée de vos vulnérabilités critiques.</p>
+              </div>
+            </div>
+            
+            <div className="timeline-item">
+              <div className="timeline-number">03</div>
+              <div className="timeline-content">
+                <h3>Plan d'action sur-mesure</h3>
+                <p>Choisissez l'offre adaptée en fonction de votre niveau global de maturité cyber. Roadmap personnalisée avec priorisation des actions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* RISKS VS OPPORTUNITIES */}
+      <section className="split-section">
+        <div className="container">
+          <div className="section-title">
+            <h2>NIS2 : Contrainte ou opportunité ?</h2>
+          </div>
+          
+          <div className="split-grid">
+            <div className="split-card risks">
+              <h3>⚠️ Les risques de la non-conformité</h3>
+              <ul className="split-list">
+                <li>
+                  <strong>Sanctions financières lourdes</strong>
+                  <span>Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</span>
+                </li>
+                <li>
+                  <strong>Responsabilité pénale du dirigeant</strong>
+                  <span>En cas de manquement aux obligations NIS2</span>
+                </li>
+                <li>
+                  <strong>Exclusion des marchés</strong>
+                  <span>Impossibilité de répondre aux appels d'offres publics et privés</span>
+                </li>
+                <li>
+                  <strong>Perte de confiance B2B</strong>
+                  <span>Vos clients exigent désormais la conformité</span>
+                </li>
+                <li>
+                  <strong>Contrôles réglementaires</strong>
+                  <span>Audits sur site sans préavis de l'ANSSI</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="split-card opportunities">
+              <h3>🏆 Les avantages stratégiques</h3>
+              <ul className="split-list">
+                <li>
+                  <strong>Remportez les appels d'offres</strong>
+                  <span>La conformité devient un critère obligatoire de sélection</span>
+                </li>
+                <li>
+                  <strong>Différenciez-vous de vos concurrents</strong>
+                  <span>Positionnez-vous comme le partenaire de confiance de votre secteur</span>
+                </li>
+                <li>
+                  <strong>Rassurez vos clients</strong>
+                  <span>Montrez que vous protégez les données de vos clients</span>
+                </li>
+                <li>
+                  <strong>Fidélisez vos partenaires</strong>
+                  <span>Consolidez votre réputation d'acteur stable et responsable</span>
+                </li>
+                <li>
+                  <strong>Valorisez votre entreprise</strong>
+                  <span>Une organisation conforme vaut plus en cas de cession</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="text-center mt-xl">
+            <p style={{fontSize: '18px', color: 'var(--text-secondary)', marginBottom: 'var(--space-lg)'}}>
+              <strong style={{color: 'var(--primary)'}}>La mise en conformité coûte 200 fois moins cher qu'une sanction</strong><br/>
+              Investissez dans votre sécurité plutôt que dans des amendes.
+            </p>
+            <a href="#pricing" className="btn btn-primary">
+              🚀 Découvrir nos offres
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* VIDEO SECTION */}
+      <section className="video-section">
+        <div className="container">
+          <div className="section-title">
+            <span className="section-badge">COMPRENDRE</span>
+            <h2>🎥 Comprendre NIS2 en vidéo</h2>
+            <p className="section-subtitle">
+              Découvrez en quelques minutes ce que la directive NIS2 signifie concrètement pour votre entreprise.
+            </p>
+          </div>
+          
+          <div className="video-thumbnail" onClick={() => window.openVideoModal()}>
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=450&fit=crop" alt="Comprendre NIS2" />
+            <div className="video-play-btn">▶</div>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="testimonials-section">
+        <div className="container">
+          <div className="section-title">
+            <span className="section-badge accent">TÉMOIGNAGES</span>
+            <h2>Dirigeants conformes, entreprises gagnantes</h2>
+            <p className="section-subtitle">
+              Ils ont fait de NIS2 un levier de performance
+            </p>
+          </div>
+          
+          <div className="testimonials-carousel" id="testimonialCarousel">
+            <div className="testimonials-wrapper">
+              <div className="testimonial">
+                <p className="testimonial-content">
+                  "L'accompagnement NIS2 nous a permis de structurer clairement nos obligations et de prioriser les actions essentielles. La démarche est pragmatique, pédagogique et parfaitement adaptée à une PME."
                 </p>
-                <div className="quiz-benefits">
-                    <div className="quiz-benefit">✅ Ne pas passer à côté d'une obligation</div>
-                    <div className="quiz-benefit">✅ Anticiper les sanctions</div>
-                    <div className="quiz-benefit">✅ Prendre les bonnes décisions</div>
+                <div className="testimonial-author">
+                  <div className="testimonial-avatar">AM</div>
+                  <div className="testimonial-info">
+                    <h4>Alex Martin</h4>
+                    <p>CEO • Services Numériques • 65 sal.</p>
+                  </div>
                 </div>
+              </div>
+              
+              <div className="testimonial">
+                <p className="testimonial-content">
+                  "Accompagnement précis, méthodique, sans jargon inutile. L'équipe a su traduire les exigences réglementaires en plan d'action opérationnel. Aujourd'hui, la conformité est devenue un argument de différenciation face à nos clients grands comptes."
+                </p>
+                <div className="testimonial-author">
+                  <div className="testimonial-avatar">MD</div>
+                  <div className="testimonial-info">
+                    <h4>Marc Dubois</h4>
+                    <p>Directeur Général • Transport • 120 sal.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="testimonial">
+                <p className="testimonial-content">
+                  "L'approche pédagogique m'a permis de mobiliser mes équipes efficacement. En 3 mois, nous avons structuré notre gouvernance cybersécurité et obtenu la conformité. C'est désormais un atout commercial majeur dans nos négociations."
+                </p>
+                <div className="testimonial-author">
+                  <div className="testimonial-avatar">SL</div>
+                  <div className="testimonial-info">
+                    <h4>Sophie Lemaire</h4>
+                    <p>Directrice Administrative et Financière • Santé • 85 sal.</p>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            {/* Progression */}
-            <div className="quiz-progress">
-                <div className="quiz-progress-bar">
-                    <div className="quiz-progress-fill" id="quizProgressBar" style={{width: '0%'}}></div>
-                </div>
-                <div className="quiz-progress-text" id="quizProgressText">Question 1 sur 10</div>
+            
+            <div className="carousel-controls">
+              <button className="carousel-btn" id="prevBtn">←</button>
+              <div className="carousel-dots" id="carouselDots"></div>
+              <button className="carousel-btn" id="nextBtn">→</button>
             </div>
-
-            {/* Questions */}
-            <div id="quizQuestions">
-                {/* Question 1 */}
-                <div className="quiz-question active" data-question="1">
-                    <div className="quiz-question-number">Question 1 sur 10</div>
-                    <div className="quiz-question-text">Votre entreprise compte-t-elle plus de 50 salariés ?</div>
-                    <div className="quiz-answers">
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(1, 'oui', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Oui</div>
-                        </div>
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(1, 'non', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Non</div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Question 2 */}
-                <div className="quiz-question" data-question="2">
-                    <div className="quiz-question-number">Question 2 sur 10</div>
-                    <div className="quiz-question-text">Réalisez-vous un chiffre d'affaires supérieur à 10 millions d'euros ?</div>
-                    <div className="quiz-answers">
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(2, 'oui', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Oui</div>
-                        </div>
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(2, 'non', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Non</div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Question 3 */}
-                <div className="quiz-question" data-question="3">
-                    <div className="quiz-question-number">Question 3 sur 10</div>
-                    <div className="quiz-question-text">Êtes-vous actif dans l'un des secteurs critiques : santé, énergie, eau, transport, numérique, administration publique, agroalimentaire ?</div>
-                    <div className="quiz-answers">
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(3, 'oui', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Oui</div>
-                        </div>
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(3, 'non', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Non</div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Question 4 */}
-                <div className="quiz-question" data-question="4">
-                    <div className="quiz-question-number">Question 4 sur 10</div>
-                    <div className="quiz-question-text">Fournissez-vous des services numériques critiques (hébergement, cloud, DNS, SaaS, etc.) ?</div>
-                    <div className="quiz-answers">
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(4, 'oui', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Oui</div>
-                        </div>
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(4, 'non', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Non</div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Question 5 */}
-                <div className="quiz-question" data-question="5">
-                    <div className="quiz-question-number">Question 5 sur 10</div>
-                    <div className="quiz-question-text">Avez-vous un rôle de sous-traitant dans la chaîne de valeur d'un acteur critique ?</div>
-                    <div className="quiz-answers">
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(5, 'oui', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Oui</div>
-                        </div>
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(5, 'non', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Non</div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Question 6 */}
-                <div className="quiz-question" data-question="6">
-                    <div className="quiz-question-number">Question 6 sur 10</div>
-                    <div className="quiz-question-text">Traitez-vous des données sensibles ou critiques (données de santé, infrastructures, systèmes industriels) ?</div>
-                    <div className="quiz-answers">
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(6, 'oui', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Oui</div>
-                        </div>
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(6, 'non', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Non</div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Question 7 */}
-                <div className="quiz-question" data-question="7">
-                    <div className="quiz-question-number">Question 7 sur 10</div>
-                    <div className="quiz-question-text">Avez-vous été victime d'un incident ou d'une tentative de cyberattaque dans les 12 derniers mois ?</div>
-                    <div className="quiz-answers">
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(7, 'oui', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Oui</div>
-                        </div>
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(7, 'non', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Non</div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Question 8 */}
-                <div className="quiz-question" data-question="8">
-                    <div className="quiz-question-number">Question 8 sur 10</div>
-                    <div className="quiz-question-text">Disposez-vous d'une politique formalisée de sécurité des systèmes d'information ?</div>
-                    <div className="quiz-answers">
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(8, 'oui', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Oui</div>
-                        </div>
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(8, 'non', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Non</div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Question 9 */}
-                <div className="quiz-question" data-question="9">
-                    <div className="quiz-question-number">Question 9 sur 10</div>
-                    <div className="quiz-question-text">Avez-vous une personne ou un prestataire en charge de la cybersécurité ?</div>
-                    <div className="quiz-answers">
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(9, 'oui', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Oui</div>
-                        </div>
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(9, 'non', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Non</div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Question 10 */}
-                <div className="quiz-question" data-question="10">
-                    <div className="quiz-question-number">Question 10 sur 10</div>
-                    <div className="quiz-question-text">Votre entreprise a-t-elle déjà mis en place un plan de continuité ou de gestion de crise informatique ?</div>
-                    <div className="quiz-answers">
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(10, 'oui', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Oui</div>
-                        </div>
-                        <div className="quiz-answer" onClick={(event) => window.selectAnswer(10, 'non', event.currentTarget)}>
-                            <div className="quiz-answer-radio"></div>
-                            <div className="quiz-answer-text">Non</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Navigation */}
-            <div className="quiz-navigation" id="quizNavigation">
-                <button className="quiz-btn quiz-btn-prev" onClick={() => window.prevQuestion()} id="quizPrevBtn" style={{display: 'none'}}>
-                    ← Précédent
-                </button>
-                <button className="quiz-btn quiz-btn-next" onClick={() => window.nextQuestion()} id="quizNextBtn" disabled>
-                    Suivant →
-                </button>
-            </div>
-
-            {/* Résultats */}
-            <div className="quiz-results" id="quizResults">
-                <div className="quiz-score-circle" id="scoreCircle">
-                    <span id="scoreNumber">0</span>
-                    <div className="quiz-score-label">/10</div>
-                </div>
-                <h3 className="quiz-result-title" id="resultTitle"></h3>
-                <p className="quiz-result-desc" id="resultDesc"></p>
-                <div className="quiz-result-actions">
-                    <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="quiz-result-btn primary">
-                        📅 Diagnostic cyber gratuit
-                    </a>
-                    <a href="#pricing" onClick={() => window.closeQuiz()} className="quiz-result-btn secondary">
-                        Découvrir nos audits
-                    </a>
-                </div>
-            </div>
+          </div>
+          
+          <div className="text-center mt-xl">
+            <p style={{fontSize: '18px', color: 'var(--text-secondary)', marginBottom: 'var(--space-lg)'}}>
+              💬 Échangez avec un de nos experts • Obtenez des réponses claires
+            </p>
+            <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary">
+              📅 Prendre rendez-vous
+            </a>
+          </div>
         </div>
-    </div>
+      </section>
+
+      {/* PRICING */}
+      <section className="pricing-section" id="pricing">
+        <div className="container">
+          <div className="section-title">
+            <span className="section-badge">TARIFS CLAIRS</span>
+            <h2>Investissement vs Amende</h2>
+            <p className="section-subtitle">
+              Un audit coûte 200x moins cher qu'une sanction
+            </p>
+          </div>
+          
+          <div style={{textAlign: 'center', marginBottom: 'var(--space-xl)', padding: 'var(--space-md)', background: 'var(--info-bg)', borderRadius: '12px', border: '1px solid var(--info-border)'}}>
+            <p style={{color: 'var(--info)', fontWeight: '600'}}>
+              💡 <strong>Aides de l'État disponibles</strong> — Réduisez le coût de votre mise en conformité. Lors de votre rendez-vous, nous vous orientons vers les financements adaptés.
+            </p>
+          </div>
+          
+          <div className="pricing-grid">
+            <div className="price-card">
+              <h3>Découverte</h3>
+              <div className="price">3 490€</div>
+              <div className="price-duration">Immédiat • Diagnostic</div>
+              <div className="price-ideal">
+                <strong>Idéal pour :</strong>
+                Évaluation immédiate et abordable
+              </div>
+              <ul className="price-features">
+                <li>Audit cyber NIS2 initial</li>
+                <li><strong>Résultat immédiat ⚡</strong></li>
+                <li>Rapport d'audit synthétique</li>
+                <li>Recommandations d'actions prioritaires</li>
+              </ul>
+              <button className="btn btn-primary" onClick={handleStripeCheckout} style={{width: '100%'}}>
+                Je fais mon diagnostic NIS2
+              </button>
+            </div>
+            
+            <div className="price-card popular">
+              <h3>Essentiel</h3>
+              <div className="price">7 990€</div>
+              <div className="price-duration">En 48H</div>
+              <div className="price-ideal">
+                <strong>Idéal pour :</strong>
+                Entités nécessitant un plan structuré
+              </div>
+              <ul className="price-features">
+                <li>Audit cyber NIS2</li>
+                <li>Rapport complet validé par nos équipes</li>
+                <li>Analyse des écarts de conformité</li>
+                <li>Plan de remédiation détaillé avec priorisation</li>
+                <li><strong>Restitution avec un expert, 1h de visio</strong></li>
+                <li>Accès à notre base de modèles de documents</li>
+                <li>6 mois d'accès à notre plateforme</li>
+              </ul>
+              <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary" style={{width: '100%'}}>
+                Prendre rendez-vous
+              </a>
+            </div>
+            
+            <div className="price-card">
+              <h3>Expertise</h3>
+              <div className="price">14 900€</div>
+              <div className="price-duration">1 mois</div>
+              <div className="price-ideal">
+                <strong>Idéal pour :</strong>
+                Entités nécessitant un accompagnement complet
+              </div>
+              <ul className="price-features">
+                <li>Audit cyber NIS2</li>
+                <li>Rapport complet validé par nos équipes</li>
+                <li>Analyse des écarts de conformité</li>
+                <li>Plan de remédiation détaillé avec priorisation</li>
+                <li><strong>Entretien préalable + Restitution avec expert</strong></li>
+                <li>Roadmap personnalisée pour mise en conformité</li>
+                <li>Enregistrement de votre entreprise à l'ANSSI</li>
+                <li>Constitution dossier d'aides d'état</li>
+                <li>Accès à notre base de modèles de documents</li>
+                <li>12 mois d'accès à notre plateforme</li>
+                <li>Mise à jour des dernières évolutions législatives</li>
+              </ul>
+              <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary" style={{width: '100%'}}>
+                Prendre rendez-vous
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="faq-section">
+        <div className="container">
+          <div className="section-title">
+            <span className="section-badge">FAQ</span>
+            <h2>Les questions que se posent les dirigeants</h2>
+          </div>
+          
+          <div className="faq-list">
+            <div className="faq-item">
+              <div className="faq-question">
+                <h3>🎯 Comment la conformité devient-elle un avantage commercial ?</h3>
+                <span className="faq-icon">↓</span>
+              </div>
+              <div className="faq-answer">
+                <div className="faq-answer-content">
+                  La conformité NIS2 et ISO 27001 deviennent des critères d'éligibilité dans les appels d'offres publics et privés. Sans certification, vous êtes d'office écarté. C'est un différenciateur stratégique qui vous positionne comme partenaire de confiance face à vos concurrents non conformes.
+                </div>
+              </div>
+            </div>
+            
+            <div className="faq-item">
+              <div className="faq-question">
+                <h3>💰 Quel est le véritable coût de la non-conformité ?</h3>
+                <span className="faq-icon">↓</span>
+              </div>
+              <div className="faq-answer">
+                <div className="faq-answer-content">
+                  Au-delà des sanctions financières (jusqu'à 10M€), la non-conformité entraîne : exclusion des marchés, perte de clients B2B, atteinte réputationnelle, et risque pénal pour le dirigeant. La mise en conformité coûte 200 fois moins cher qu'une sanction et ouvre des opportunités de croissance.
+                </div>
+              </div>
+            </div>
+            
+            <div className="faq-item">
+              <div className="faq-question">
+                <h3>⏱️ Quel délai prévoir pour atteindre la conformité ?</h3>
+                <span className="faq-icon">↓</span>
+              </div>
+              <div className="faq-answer">
+                <div className="faq-answer-content">
+                  Avec notre méthodologie éprouvée : 90 jours en moyenne de l'audit initial à la conformité effective. Les premiers jalons de sécurisation sont mis en place dès les 2 premières semaines. Notre équipe certifiée ISO 27001 optimise chaque étape du parcours.
+                </div>
+              </div>
+            </div>
+            
+            <div className="faq-item">
+              <div className="faq-question">
+                <h3>🤔 Mon organisation est-elle dans le périmètre NIS2 ?</h3>
+                <span className="faq-icon">↓</span>
+              </div>
+              <div className="faq-answer">
+                <div className="faq-answer-content">
+                  Vous êtes concerné si : +50 salariés OU +10M€ CA, ET secteur critique (santé, énergie, transport, services numériques, industrie, etc.). La directive couvre 18 secteurs et leurs chaînes d'approvisionnement. Contactez-nous pour un diagnostic gratuit immédiat.
+                </div>
+              </div>
+            </div>
+            
+            <div className="faq-item">
+              <div className="faq-question">
+                <h3>📋 Comment NIS2 s'articule avec le RGPD et ISO 27001 ?</h3>
+                <span className="faq-icon">↓</span>
+              </div>
+              <div className="faq-answer">
+                <div className="faq-answer-content">
+                  Ces cadres sont complémentaires. RGPD = protection des données personnelles. ISO 27001 = management de la sécurité de l'information. NIS2 = résilience des réseaux et systèmes critiques. Une démarche NIS2 bien menée facilite grandement la conformité RGPD et prépare la certification ISO 27001.
+                </div>
+              </div>
+            </div>
+            
+            <div className="faq-item">
+              <div className="faq-question">
+                <h3>🏆 Pourquoi nous choisir ?</h3>
+                <span className="faq-icon">↓</span>
+              </div>
+              <div className="faq-answer">
+                <div className="faq-answer-content">
+                  15 ans d'expertise, équipe ISO 27001, experts ANSSI, 150+ PME accompagnées, 98% conformité, 0 client sanctionné. Nous parlons votre langage, pas du jargon.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="final-cta">
+        <div className="container">
+          <h2>Sécurisez votre avenir dès aujourd'hui</h2>
+          <p>
+            Échange confidentiel avec un consultant certifié ISO 27001<br/>
+            <strong>Audit indépendant pour mesurer votre conformité et identifier les écarts critiques, avec des livrables clairs et actionnables.</strong>
+          </p>
+          <div>
+            <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="btn btn-primary">
+              📅 Réserver un échange gratuit
+            </a>
+            <button className="btn btn-secondary" onClick={() => window.openLeadModal()} style={{marginLeft: 'var(--space-sm)'}}>
+              📥 Télécharger le guide NIS2
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer>
+        <div className="footer-content">
+          <div className="footer-brand">Cyber Solferino</div>
+          <p>Mise en conformité NIS2 • Basé sur le référentiel ANSSI</p>
+          <div className="footer-links">
+            <a href="#">Mentions légales</a>
+            <a href="#">CGV</a>
+            <a href="#">Politique de confidentialité</a>
+          </div>
+          <div className="footer-bottom">
+            <p>© 2024 Cyber Solferino • www.cyber-solferino.com</p>
+          </div>
+        </div>
+      </footer>
+
+      {/* VIDEO MODAL */}
+      <div className="modal" id="videoModal">
+        <div className="modal-content video-modal-content">
+          <button className="modal-close" onClick={() => window.closeVideoModal()}>×</button>
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </div>
+
+      {/* QUIZ MODAL */}
+      <div className="modal" id="quizModal">
+        <div className="modal-content">
+          <button className="modal-close" onClick={() => window.closeQuiz()}>×</button>
+          <div className="quiz-modal-body">
+            <div className="quiz-header">
+              <h2>⚡ Suis-je concerné par la directive NIS2 ?</h2>
+              <p>Ce quiz rapide vous permet de savoir immédiatement si vous entrez dans le périmètre.</p>
+              <div className="quiz-progress-bar">
+                <div className="quiz-progress" id="quizProgress"></div>
+              </div>
+            </div>
+
+            <div className="quiz-questions" id="quizQuestions">
+              <div className="quiz-question active" data-question="1">
+                <div className="quiz-question-number">Question 1 sur 10</div>
+                <div className="quiz-question-text">Votre entreprise compte-t-elle plus de 50 salariés ?</div>
+                <div className="quiz-answers">
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(1, 'oui', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Oui</div>
+                  </div>
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(1, 'non', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Non</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="quiz-question" data-question="2">
+                <div className="quiz-question-number">Question 2 sur 10</div>
+                <div className="quiz-question-text">Réalisez-vous un chiffre d'affaires supérieur à 10 millions d'euros ?</div>
+                <div className="quiz-answers">
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(2, 'oui', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Oui</div>
+                  </div>
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(2, 'non', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Non</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="quiz-question" data-question="3">
+                <div className="quiz-question-number">Question 3 sur 10</div>
+                <div className="quiz-question-text">Êtes-vous actif dans l'un des secteurs critiques : santé, énergie, eau, transport, numérique, administration publique, agroalimentaire ?</div>
+                <div className="quiz-answers">
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(3, 'oui', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Oui</div>
+                  </div>
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(3, 'non', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Non</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="quiz-question" data-question="4">
+                <div className="quiz-question-number">Question 4 sur 10</div>
+                <div className="quiz-question-text">Fournissez-vous des services numériques critiques (hébergement, cloud, DNS, SaaS, etc.) ?</div>
+                <div className="quiz-answers">
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(4, 'oui', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Oui</div>
+                  </div>
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(4, 'non', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Non</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="quiz-question" data-question="5">
+                <div className="quiz-question-number">Question 5 sur 10</div>
+                <div className="quiz-question-text">Avez-vous un rôle de sous-traitant dans la chaîne de valeur d'un acteur critique ?</div>
+                <div className="quiz-answers">
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(5, 'oui', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Oui</div>
+                  </div>
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(5, 'non', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Non</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="quiz-question" data-question="6">
+                <div className="quiz-question-number">Question 6 sur 10</div>
+                <div className="quiz-question-text">Traitez-vous des données sensibles ou critiques (données de santé, infrastructures, systèmes industriels) ?</div>
+                <div className="quiz-answers">
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(6, 'oui', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Oui</div>
+                  </div>
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(6, 'non', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Non</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="quiz-question" data-question="7">
+                <div className="quiz-question-number">Question 7 sur 10</div>
+                <div className="quiz-question-text">Avez-vous été victime d'un incident ou d'une tentative de cyberattaque dans les 12 derniers mois ?</div>
+                <div className="quiz-answers">
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(7, 'oui', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Oui</div>
+                  </div>
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(7, 'non', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Non</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="quiz-question" data-question="8">
+                <div className="quiz-question-number">Question 8 sur 10</div>
+                <div className="quiz-question-text">Disposez-vous d'une politique formalisée de sécurité des systèmes d'information ?</div>
+                <div className="quiz-answers">
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(8, 'oui', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Oui</div>
+                  </div>
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(8, 'non', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Non</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="quiz-question" data-question="9">
+                <div className="quiz-question-number">Question 9 sur 10</div>
+                <div className="quiz-question-text">Avez-vous une personne ou un prestataire en charge de la cybersécurité ?</div>
+                <div className="quiz-answers">
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(9, 'oui', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Oui</div>
+                  </div>
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(9, 'non', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Non</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="quiz-question" data-question="10">
+                <div className="quiz-question-number">Question 10 sur 10</div>
+                <div className="quiz-question-text">Votre entreprise a-t-elle déjà mis en place un plan de continuité ou de gestion de crise informatique ?</div>
+                <div className="quiz-answers">
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(10, 'oui', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Oui</div>
+                  </div>
+                  <div className="quiz-answer" onClick={(event) => window.selectAnswer(10, 'non', event.currentTarget)}>
+                    <div className="quiz-answer-radio"></div>
+                    <div className="quiz-answer-text">Non</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="quiz-navigation" id="quizNavigation">
+              <button className="quiz-btn quiz-btn-prev" onClick={() => window.prevQuestion()} id="quizPrevBtn" style={{display: 'none'}}>
+                ← Précédent
+              </button>
+              <button className="quiz-btn quiz-btn-next" onClick={() => window.nextQuestion()} id="quizNextBtn" disabled>
+                Suivant →
+              </button>
+            </div>
+
+            <div className="quiz-results" id="quizResults">
+              <div className="quiz-score-circle">
+                <span id="scoreNumber">0</span>
+                <div className="quiz-score-label">/10</div>
+              </div>
+              <h3 className="quiz-result-title" id="resultTitle"></h3>
+              <p className="quiz-result-desc" id="resultDesc"></p>
+              <div className="quiz-result-actions">
+                <a href="https://calendly.com/adrien-ruggirello/30min" target="_blank" className="quiz-result-btn primary">
+                  📅 Diagnostic cyber gratuit
+                </a>
+                <a href="#pricing" onClick={() => window.closeQuiz()} className="quiz-result-btn secondary">
+                  Découvrir nos audits
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* LEAD MODAL */}
+      <div className="modal" id="leadModal">
+        <div className="modal-content">
+          <button className="modal-close" onClick={() => window.closeLeadModal()}>×</button>
+          <div className="lead-modal-body">
+            <div className="lead-header">
+              <h2>🎁 RESSOURCE GRATUITE</h2>
+              <p>Directive NIS2 : Le Guide Essentiel</p>
+            </div>
+
+            <div className="lead-options" id="leadOptions">
+              <div className="lead-option" onClick={() => window.showDownloadOption()}>
+                <div className="lead-option-icon">📥</div>
+                <h3>Télécharger le guide</h3>
+                <p>Tout comprendre en quelques minutes. Format PDF pratique et actionnable.</p>
+              </div>
+              <div className="lead-option" onClick={() => window.showAuditOption()}>
+                <div className="lead-option-icon">📞</div>
+                <h3>Demander un audit gratuit</h3>
+                <p>Diagnostic immédiat de votre situation avec un expert.</p>
+              </div>
+            </div>
+
+            <form className="lead-form" id="downloadForm" onSubmit={(e) => window.submitDownloadForm(e)}>
+              <h3>📥 Téléchargez gratuitement le guide NIS2</h3>
+              <div className="form-group">
+                <label>Prénom *</label>
+                <input type="text" required />
+              </div>
+              <div className="form-group">
+                <label>Nom *</label>
+                <input type="text" required />
+              </div>
+              <div className="form-group">
+                <label>Email professionnel *</label>
+                <input type="email" required />
+              </div>
+              <div className="form-group">
+                <label>Entreprise *</label>
+                <input type="text" required />
+              </div>
+              <div className="form-group form-checkbox">
+                <input type="checkbox" required />
+                <label>J'accepte de recevoir le guide NIS2 et les communications de NIS2 Conformité.</label>
+              </div>
+              <div className="form-actions">
+                <button type="button" className="btn btn-ghost" onClick={() => window.backToOptions()}>← Retour</button>
+                <button type="submit" className="btn btn-primary" style={{flex: 1}}>📥 Télécharger le guide</button>
+              </div>
+            </form>
+
+            <form className="lead-form" id="auditForm" onSubmit={(e) => window.submitAuditForm(e)}>
+              <h3>📞 Demande d'audit gratuit</h3>
+              <div className="form-group">
+                <label>Prénom *</label>
+                <input type="text" required />
+              </div>
+              <div className="form-group">
+                <label>Nom *</label>
+                <input type="text" required />
+              </div>
+              <div className="form-group">
+                <label>Email professionnel *</label>
+                <input type="email" required />
+              </div>
+              <div className="form-group">
+                <label>Téléphone *</label>
+                <input type="tel" required />
+              </div>
+              <div className="form-group">
+                <label>Entreprise *</label>
+                <input type="text" required />
+              </div>
+              <div className="form-group">
+                <label>Nombre de salariés</label>
+                <select>
+                  <option>Sélectionner</option>
+                  <option>1 à 49</option>
+                  <option>50 à 99</option>
+                  <option>100 à 249</option>
+                  <option>250+</option>
+                </select>
+              </div>
+              <div className="form-group form-checkbox">
+                <input type="checkbox" required />
+                <label>J'accepte d'être contacté par NIS2 Conformité pour mon audit gratuit.</label>
+              </div>
+              <div className="form-actions">
+                <button type="button" className="btn btn-ghost" onClick={() => window.backToOptions()}>← Retour</button>
+                <button type="submit" className="btn btn-primary" style={{flex: 1}}>📞 Demander mon audit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
