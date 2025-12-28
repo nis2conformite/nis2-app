@@ -585,10 +585,15 @@ export default function Home() {
           padding-bottom: 100px;
         }
 
-        .hero-content {
-          text-align: center;
-          max-width: 900px;
-          margin: 0 auto 60px;
+        .hero-layout {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 80px;
+          align-items: center;
+        }
+
+        .hero-left {
+          max-width: 600px;
         }
 
         .hero h1 {
@@ -598,7 +603,6 @@ export default function Home() {
         .hero-ctas {
           display: flex;
           gap: 16px;
-          justify-content: center;
           margin-top: 32px;
           flex-wrap: wrap;
         }
@@ -616,12 +620,30 @@ export default function Home() {
           font-weight: 700;
         }
 
-        /* STATS GRID */
-        .stats-grid {
+        /* STATS CARD (style NEOMA) */
+        .hero-right {
+          display: flex;
+          justify-content: center;
+        }
+
+        .stats-card {
+          background: white;
+          border-radius: 20px;
+          padding: 48px 40px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          width: 100%;
+          max-width: 500px;
+        }
+
+        .stat-row {
           display: grid;
-          grid-template-columns: repeat(6, 1fr);
+          grid-template-columns: 1fr 1fr;
           gap: 40px;
-          margin-top: 60px;
+          margin-bottom: 40px;
+        }
+
+        .stat-row:last-child {
+          margin-bottom: 0;
         }
 
         .stat-item {
@@ -629,18 +651,20 @@ export default function Home() {
         }
 
         .stat-number {
-          font-size: 48px;
+          font-size: 56px;
           font-weight: 800;
           color: var(--primary-blue);
           display: block;
           line-height: 1;
-          margin-bottom: 8px;
+          margin-bottom: 12px;
         }
 
         .stat-label {
-          font-size: 14px;
+          font-size: 12px;
           color: var(--text-secondary);
-          font-weight: 500;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
         }
 
         /* ===== CREDIBILITY ===== */
@@ -1059,6 +1083,8 @@ export default function Home() {
           padding: 40px 32px;
           transition: all 0.4s;
           position: relative;
+          display: flex;
+          flex-direction: column;
         }
 
         .price-card:hover {
@@ -1132,6 +1158,7 @@ export default function Home() {
         .price-features {
           list-style: none;
           margin-bottom: 32px;
+          flex-grow: 1;
         }
 
         .price-features-title {
@@ -1171,88 +1198,225 @@ export default function Home() {
           color: var(--primary-blue);
         }
 
-        /* ===== SERVICES OPTIONNELS ===== */
+        /* ===== SERVICES - NOS OFFRES ===== */
         .services {
           background: var(--bg-gray);
         }
 
         .services-header {
           text-align: center;
-          max-width: 800px;
+          max-width: 900px;
           margin: 0 auto 60px;
         }
 
-        .services-grid {
+        /* 3 OFFRES PRINCIPALES */
+        .main-services-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 28px;
+          gap: 32px;
+          margin-bottom: 80px;
         }
 
-        .service-card {
+        .main-service-card {
           background: white;
-          border-radius: 20px;
-          padding: 40px 32px;
-          border-top: 4px solid;
+          border-radius: 12px;
+          padding: 0;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
           transition: all 0.3s;
         }
 
-        .service-card.formation {
-          border-top-color: var(--blue-light);
-        }
-
-        .service-card.secretariat {
-          border-top-color: var(--primary-blue);
-        }
-
-        .service-card.incidents {
-          border-top-color: var(--orange);
-        }
-
-        .service-card:hover {
+        .main-service-card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
 
-        .service-icon {
-          font-size: 40px;
-          margin-bottom: 24px;
+        .service-header {
+          padding: 32px 28px 24px;
+          color: white;
+          text-align: center;
+        }
+
+        .main-service-card.cyan .service-header {
+          background: #06B6D4;
+        }
+
+        .main-service-card.orange .service-header {
+          background: #F97316;
+        }
+
+        .main-service-card.purple .service-header {
+          background: #7C3AED;
+        }
+
+        .service-header .service-icon {
+          font-size: 48px;
           display: block;
-        }
-
-        .service-card h3 {
-          font-size: 24px;
           margin-bottom: 16px;
         }
 
-        .service-list {
-          list-style: none;
+        .service-header h3 {
+          font-size: 24px;
+          font-weight: 700;
+          color: white;
+          margin: 0;
         }
 
-        .service-list li {
-          padding: 8px 0;
-          padding-left: 24px;
+        .main-service-card .service-list {
+          list-style: none;
+          padding: 28px;
+          margin: 0;
+          flex-grow: 1;
+        }
+
+        .main-service-card .service-list li {
+          padding: 10px 0;
+          padding-left: 28px;
           font-size: 15px;
           color: var(--text-secondary);
           position: relative;
         }
 
-        .service-list li::before {
-          content: '•';
+        .main-service-card .service-list li::before {
+          content: '✓';
           position: absolute;
           left: 0;
           font-weight: 700;
         }
 
-        .service-card.formation .service-list li::before {
-          color: var(--blue-light);
+        .main-service-card.cyan .service-list li::before {
+          color: #06B6D4;
         }
 
-        .service-card.secretariat .service-list li::before {
-          color: var(--primary-blue);
+        .main-service-card.orange .service-list li::before {
+          color: #F97316;
         }
 
-        .service-card.incidents .service-list li::before {
-          color: var(--orange);
+        .main-service-card.purple .service-list li::before {
+          color: #7C3AED;
+        }
+
+        .btn-service {
+          margin: 0 28px 28px;
+          display: block;
+          text-align: center;
+          padding: 14px 24px;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 15px;
+          text-decoration: none;
+          transition: all 0.3s;
+          background: transparent;
+          border: 2px solid;
+        }
+
+        .main-service-card.cyan .btn-service {
+          border-color: #06B6D4;
+          color: #06B6D4;
+        }
+
+        .main-service-card.cyan .btn-service:hover {
+          background: #06B6D4;
+          color: white;
+        }
+
+        .main-service-card.orange .btn-service {
+          border-color: #F97316;
+          color: #F97316;
+        }
+
+        .main-service-card.orange .btn-service:hover {
+          background: #F97316;
+          color: white;
+        }
+
+        .main-service-card.purple .btn-service {
+          border-color: #7C3AED;
+          color: #7C3AED;
+        }
+
+        .main-service-card.purple .btn-service:hover {
+          background: #7C3AED;
+          color: white;
+        }
+
+        /* SERVICES COMPLÉMENTAIRES */
+        .complementary-section {
+          margin-top: 80px;
+        }
+
+        .complementary-title {
+          font-size: 32px;
+          font-weight: 800;
+          text-align: center;
+          color: var(--navy);
+          margin-bottom: 16px;
+        }
+
+        .complementary-subtitle {
+          text-align: center;
+          font-size: 18px;
+          color: var(--text-secondary);
+          margin-bottom: 48px;
+          max-width: 700px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .complementary-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 32px;
+          background: white;
+          padding: 40px;
+          border-radius: 12px;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .complementary-item {
+          text-align: center;
+        }
+
+        .complementary-icon {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 28px;
+          margin: 0 auto 16px;
+        }
+
+        .complementary-icon.cyan {
+          background: #CFFAFE;
+        }
+
+        .complementary-icon.orange {
+          background: #FFEDD5;
+        }
+
+        .complementary-icon.blue {
+          background: var(--bg-blue-ultra-light);
+        }
+
+        .complementary-icon.red {
+          background: #FEE2E2;
+        }
+
+        .complementary-content h4 {
+          font-size: 16px;
+          font-weight: 700;
+          color: var(--navy);
+          margin-bottom: 8px;
+        }
+
+        .complementary-content p {
+          font-size: 14px;
+          color: var(--text-secondary);
+          line-height: 1.5;
         }
 
         /* ===== FAQ ===== */
@@ -1699,13 +1863,18 @@ export default function Home() {
 
           section { padding: 60px 0; }
 
-          .stats-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+          /* Hero responsive */
+          .hero-layout {
+            grid-template-columns: 1fr;
+            gap: 48px;
+          }
+
+          .hero-left {
+            max-width: 100%;
           }
 
           .stat-number {
-            font-size: 32px;
+            font-size: 40px;
           }
 
           .credibility-grid {
@@ -1720,8 +1889,14 @@ export default function Home() {
             grid-template-columns: 1fr;
           }
 
-          .services-grid {
+          /* Services responsive */
+          .main-services-grid {
             grid-template-columns: 1fr;
+          }
+
+          .complementary-grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
           }
 
           .price-amount {
@@ -1768,46 +1943,46 @@ export default function Home() {
       {/* HERO */}
       <section className="hero">
         <div className="container">
-          <div className="hero-content">
-            <h1>Devenez conforme NIS2 en 90 jours</h1>
-            <p className="tagline">
-              Protégez votre entreprise des cybermenaces et évitez les sanctions jusqu'à 10M€ avec nos experts certifiés ISO 27001
-            </p>
-            <div className="hero-ctas">
-              <button className="btn btn-primary" onClick={() => window.openQuiz()}>
-                Commencer l'audit
-              </button>
-              <a href="#approach" className="btn btn-secondary">
-                En savoir plus
-              </a>
+          <div className="hero-layout">
+            <div className="hero-left">
+              <h1>Devenez conforme NIS2 en 90 jours</h1>
+              <p className="tagline">
+                Protégez votre entreprise des cybermenaces et évitez les sanctions jusqu'à 10M€ avec nos experts certifiés ISO 27001
+              </p>
+              <div className="hero-ctas">
+                <button className="btn btn-primary" onClick={() => window.openQuiz()}>
+                  Commencer l'audit
+                </button>
+                <a href="#approach" className="btn btn-secondary">
+                  En savoir plus
+                </a>
+              </div>
+              <p className="hero-note">Paiement en plusieurs fois possible</p>
             </div>
-            <p className="hero-note">Paiement en plusieurs fois possible</p>
-          </div>
 
-          <div className="stats-grid">
-            <div className="stat-item">
-              <span className="stat-number">+40%</span>
-              <div className="stat-label">Cyberattaques en 2024</div>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">10M€</span>
-              <div className="stat-label">Amende maximale</div>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">70%</span>
-              <div className="stat-label">Aides de l'État</div>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">150+</span>
-              <div className="stat-label">Clients accompagnés</div>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">98%</span>
-              <div className="stat-label">Taux de conformité</div>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">0</span>
-              <div className="stat-label">Client sanctionné</div>
+            <div className="hero-right">
+              <div className="stats-card">
+                <div className="stat-row">
+                  <div className="stat-item">
+                    <span className="stat-number">+40%</span>
+                    <div className="stat-label">CYBERATTAQUES EN 2024</div>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">10M€</span>
+                    <div className="stat-label">AMENDE MAXIMALE</div>
+                  </div>
+                </div>
+                <div className="stat-row">
+                  <div className="stat-item">
+                    <span className="stat-number">150+</span>
+                    <div className="stat-label">CLIENTS ACCOMPAGNÉS</div>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">98%</span>
+                    <div className="stat-label">TAUX DE CONFORMITÉ</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2033,43 +2208,102 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SERVICES OPTIONNELS */}
+      {/* SERVICES - NOS OFFRES */}
       <section className="services">
         <div className="container">
           <div className="services-header">
-            <div className="badge cyan">SERVICES OPTIONNELS</div>
-            <h2>Allez plus loin dans votre conformité</h2>
+            <h2>Nos offres de services</h2>
+            <p className="tagline">Choisissez la solution qui correspond à vos besoins, avec des options complémentaires pour aller plus loin.</p>
           </div>
-          <div className="services-grid">
-            <div className="service-card formation">
-              <span className="service-icon">📚</span>
-              <h3>Formation équipes</h3>
+          
+          {/* 3 OFFRES PRINCIPALES */}
+          <div className="main-services-grid">
+            <div className="main-service-card cyan">
+              <div className="service-header">
+                <span className="service-icon">💡</span>
+                <h3>Pack Start-up</h3>
+              </div>
               <ul className="service-list">
-                <li>Sensibilisation cybersécurité</li>
-                <li>Modules e-learning personnalisés</li>
-                <li>Sessions pratiques en présentiel</li>
-                <li>Certificats de formation</li>
+                <li>Audit simplifié</li>
+                <li>1h d'expertise personnalisée</li>
+                <li>Priorisation des actions</li>
+                <li>Modèles prêts à l'emploi</li>
               </ul>
+              <a href="https://calendly.com/adrien-ruggirello/30min" className="btn btn-service" target="_blank">
+                En savoir plus
+              </a>
             </div>
-            <div className="service-card secretariat">
-              <span className="service-icon">📝</span>
-              <h3>Secrétariat subventions</h3>
+
+            <div className="main-service-card orange">
+              <div className="service-header">
+                <span className="service-icon">🚀</span>
+                <h3>Pack Premium</h3>
+              </div>
               <ul className="service-list">
-                <li>Montage dossiers BPI France</li>
-                <li>Dossiers régionaux (France Num, etc.)</li>
-                <li>Suivi administratif complet</li>
-                <li>Optimisation du financement</li>
+                <li>Audit approfondi</li>
+                <li>Collecte documentaire</li>
+                <li>Remédiation personnalisée</li>
+                <li>Suivi expert cyber</li>
               </ul>
+              <a href="https://calendly.com/adrien-ruggirello/30min" className="btn btn-service" target="_blank">
+                En savoir plus
+              </a>
             </div>
-            <div className="service-card incidents">
-              <span className="service-icon">🚨</span>
-              <h3>Gestion incidents 24/7</h3>
+
+            <div className="main-service-card purple">
+              <div className="service-header">
+                <span className="service-icon">🎓</span>
+                <h3>Pack Sensibilisation</h3>
+              </div>
               <ul className="service-list">
-                <li>Hotline cyber H24</li>
-                <li>Cellule de crise dédiée</li>
-                <li>Investigation forensique</li>
-                <li>Communication de crise</li>
+                <li>Formations thématiques</li>
+                <li>Sensibilisation continue</li>
+                <li>Flexibilité et modularité</li>
+                <li>Suivi de progression</li>
               </ul>
+              <a href="https://calendly.com/adrien-ruggirello/30min" className="btn btn-service" target="_blank">
+                En savoir plus
+              </a>
+            </div>
+          </div>
+
+          {/* SERVICES COMPLÉMENTAIRES */}
+          <div className="complementary-section">
+            <h3 className="complementary-title">Services complémentaires</h3>
+            <p className="complementary-subtitle">Découvrez nos services pour aller plus loin dans la conformité et la sécurité :</p>
+            
+            <div className="complementary-grid">
+              <div className="complementary-item">
+                <div className="complementary-icon cyan">☎️</div>
+                <div className="complementary-content">
+                  <h4>Hotline cyber</h4>
+                  <p>Assistance rapide pour vos questions de sécurité.</p>
+                </div>
+              </div>
+
+              <div className="complementary-item">
+                <div className="complementary-icon orange">⚙️</div>
+                <div className="complementary-content">
+                  <h4>Outils automatisés</h4>
+                  <p>Simplifiez votre conformité avec des solutions clés en main.</p>
+                </div>
+              </div>
+
+              <div className="complementary-item">
+                <div className="complementary-icon blue">🔍</div>
+                <div className="complementary-content">
+                  <h4>Tests techniques</h4>
+                  <p>Évaluation proactive des vulnérabilités.</p>
+                </div>
+              </div>
+
+              <div className="complementary-item">
+                <div className="complementary-icon red">⚡</div>
+                <div className="complementary-content">
+                  <h4>Remédiation rapide</h4>
+                  <p>Mise en place de correctifs critiques.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
