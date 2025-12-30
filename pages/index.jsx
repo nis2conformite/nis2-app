@@ -16,6 +16,7 @@ import {
 
 export default function Home() {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
   const quiz = useQuiz();
   const popup = useLeadPopup({ 
     quizIsOpen: quiz.isOpen, 
@@ -226,17 +227,17 @@ export default function Home() {
       </div>
 
       <div className="container">
-        {/* HERO SECTION */}
+        {/* ✅ 1) HERO SECTION MODIFIÉ */}
         <section className="hero">
           <div className="logo">{CONTACT_INFO.company}</div>
-          <div className="tagline">{CONTACT_INFO.tagline}</div>
+          <div className="tagline">La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes</div>
           
           <h1>
             <span className="highlight">Anticipez les risques financiers liés à NIS2</span>
-            La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes
           </h1>
           
-          <p className="subtitle">
+          {/* ✅ 2) SOUS-TITRE AGRANDI ET EN NOIR */}
+          <p className="subtitle-large">
             Protégez votre activité, votre réputation et votre résilience. 
             Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber certifiés ISO 27001.
           </p>
@@ -310,7 +311,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ✅ PRICING - 3 COLONNES EN DESKTOP */}
+        {/* ✅ 3) PRICING SIMPLIFIÉ */}
         <section className="pricing-section" id="pricing">
           <div className="section-header">
             <div className="section-badge">TARIFS CLAIRS</div>
@@ -326,197 +327,272 @@ export default function Home() {
           </div>
 
           <div className="pricing-cards-desktop">
-            {PRICING_OFFERS.map((offer, index) => (
-              <div 
-                key={offer.id} 
-                className={`price-card-desktop ${offer.popular ? 'featured' : ''}`}
-              >
-                {offer.popular && <div className="popular-badge">⭐ POPULAIRE</div>}
-                
-                <div className="price-card-header">
-                  <h3>{offer.name}</h3>
-                  <div className="price">{offer.price}€</div>
-                  <div className="price-sub">{offer.period}</div>
-                </div>
-
-                <div className="ideal-for">
-                  <strong>Idéal pour :</strong>
-                  {offer.idealFor}
-                </div>
-
-                <ul className="features">
-                  {offer.features.map((feature, i) => (
-                    <li key={i} dangerouslySetInnerHTML={{__html: feature}} />
-                  ))}
-                </ul>
-
-                <div className="price-card-footer">
-                  {offer.cta.type === 'stripe' ? (
-                    <button onClick={handleStripeCheckout} className="btn btn-secondary btn-full">
-                      {offer.cta.text}
-                    </button>
-                  ) : (
-                    <a 
-                      href={offer.cta.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className={`btn btn-full ${offer.popular ? 'btn-primary' : 'btn-secondary'}`}
-                    >
-                      {offer.cta.text}
-                    </a>
-                  )}
-                </div>
+            {/* OFFRE 1 : DÉCOUVERTE */}
+            <div className="price-card-desktop">
+              <div className="price-card-header">
+                <h3>Découverte</h3>
+                <div className="price">3 490€</div>
+                <div className="price-sub">HT • Paiement unique</div>
               </div>
-            ))}
+
+              <div className="ideal-for">
+                <strong>Idéal pour :</strong>
+                PME cherchant à évaluer leur positionnement
+              </div>
+
+              <ul className="features">
+                <li>Audit cyber NIS2 complet</li>
+                <li>Résultat immédiat en ligne</li>
+                <li>Score de conformité détaillé</li>
+                <li>Recommandations prioritaires</li>
+                <li>Support par email</li>
+              </ul>
+
+              <div className="price-card-footer">
+                <button onClick={handleStripeCheckout} className="btn btn-secondary btn-full">
+                  Démarrer l'audit
+                </button>
+              </div>
+            </div>
+
+            {/* OFFRE 2 : ESSENTIEL - POPULAIRE */}
+            <div className="price-card-desktop featured">
+              <div className="popular-badge">⭐ POPULAIRE</div>
+              
+              <div className="price-card-header">
+                <h3>Essentiel</h3>
+                <div className="price">7 990€</div>
+                <div className="price-sub">HT • Paiement unique</div>
+              </div>
+
+              <div className="ideal-for">
+                <strong>Idéal pour :</strong>
+                Entreprises visant la conformité NIS2
+              </div>
+
+              <ul className="features">
+                <li>Tout de l'offre Découverte</li>
+                <li>Rapport validé par experts ISO 27001</li>
+                <li>Analyse écarts de conformité</li>
+                <li>Plan de remédiation détaillé</li>
+                <li>Restitution avec expert (1h visio)</li>
+                <li>Accès plateforme 6 mois</li>
+                <li>Délai de livraison : 48H</li>
+              </ul>
+
+              <div className="price-card-footer">
+                <a 
+                  href={CONTACT_INFO.calendly} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-full"
+                >
+                  📅 Prendre rendez-vous
+                </a>
+              </div>
+            </div>
+
+            {/* OFFRE 3 : EXPERTISE - SIMPLIFIÉ */}
+            <div className="price-card-desktop">
+              <div className="price-card-header">
+                <h3>Expertise</h3>
+                <div className="price">14 900€</div>
+                <div className="price-sub">HT • Paiement unique</div>
+              </div>
+
+              <div className="ideal-for">
+                <strong>Idéal pour :</strong>
+                ETI et secteurs critiques
+              </div>
+
+              <ul className="features">
+                <li><strong>Tout de l'offre Essentiel</strong></li>
+                <li className="feature-plus">+ Entretien préalable expert</li>
+                <li className="feature-plus">+ Roadmap personnalisée</li>
+                <li className="feature-plus">+ Enregistrement ANSSI</li>
+                <li className="feature-plus">+ Dossier aides d'État</li>
+                <li className="feature-plus">+ Accès plateforme 12 mois</li>
+                <li className="feature-plus">+ MAJ évolutions législatives</li>
+              </ul>
+
+              <div className="price-card-footer">
+                <a 
+                  href={CONTACT_INFO.calendly} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary btn-full"
+                >
+                  📅 Prendre rendez-vous
+                </a>
+              </div>
+            </div>
           </div>
+
+          {/* ✅ BOUTON COMPARAISON ACCORDÉON */}
+          <div className="comparison-toggle">
+            <button 
+              className="btn-compare" 
+              onClick={() => setShowComparison(!showComparison)}
+            >
+              {showComparison ? '▼ Masquer le comparatif' : '▶ Comparer nos offres'}
+            </button>
+          </div>
+
+          {/* ✅ COMPARATEUR EN ACCORDÉON */}
+          {showComparison && (
+            <div className="comparison-accordion">
+              <div className="comparison-table-wrapper">
+                <table className="comparison-table">
+                  <thead>
+                    <tr>
+                      <th className="feature-column">Fonctionnalités</th>
+                      <th>Découverte<br/><span className="price-small">3 490€</span></th>
+                      <th className="popular-column">Essentiel ⭐<br/><span className="price-small">7 990€</span></th>
+                      <th>Expertise<br/><span className="price-small">14 900€</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="feature-name">Audit cyber NIS2</td>
+                      <td className="check">✓</td>
+                      <td className="check">✓</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Résultat immédiat</td>
+                      <td className="check">✓</td>
+                      <td className="cross">—</td>
+                      <td className="cross">—</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Rapport validé par experts</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Analyse écarts de conformité</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Plan de remédiation détaillé</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Restitution avec expert</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Entretien préalable expert</td>
+                      <td className="cross">—</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Roadmap personnalisée</td>
+                      <td className="cross">—</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Enregistrement ANSSI</td>
+                      <td className="cross">—</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Dossier aides d'État</td>
+                      <td className="cross">—</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Accès plateforme</td>
+                      <td className="cross">—</td>
+                      <td className="feature-detail">6 mois</td>
+                      <td className="feature-detail">12 mois</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Délai de livraison</td>
+                      <td className="feature-detail">Immédiat</td>
+                      <td className="feature-detail">48H</td>
+                      <td className="feature-detail">1 mois</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </section>
 
-        {/* ✅ SERVICES COMPLÉMENTAIRES */}
+        {/* ✅ 4) SERVICES COMPLÉMENTAIRES - 3 SERVICES */}
         <section className="complementary-services">
           <div className="section-header">
             <h2 className="services-title">Services complémentaires</h2>
             <p className="services-subtitle">Découvrez nos services pour aller plus loin dans la conformité et la sécurité :</p>
           </div>
 
-          <div className="services-grid">
-            <div className="service-card">
-              <div className="service-icon" style={{background: 'linear-gradient(135deg, #00BCD4 0%, #0097A7 100%)'}}>
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                </svg>
-              </div>
-              <h3 className="service-name">Hotline cyber</h3>
-              <p className="service-description">Assistance rapide pour vos questions de sécurité.</p>
-            </div>
-
-            <div className="service-card">
-              <div className="service-icon" style={{background: 'linear-gradient(135deg, #FF9800 0%, #F57C00 100%)'}}>
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <path d="M12 1v6m0 6v6m-6-6h6m6 0h-6"></path>
-                  <circle cx="12" cy="12" r="10"></circle>
-                </svg>
-              </div>
-              <h3 className="service-name">Outils automatisés</h3>
-              <p className="service-description">Simplifiez votre conformité avec des solutions clés en main.</p>
-            </div>
-
-            <div className="service-card">
+          <div className="services-grid-3">
+            {/* SERVICE 1 : FORMATION */}
+            <div className="service-card-detailed">
               <div className="service-icon" style={{background: 'linear-gradient(135deg, #3F51B5 0%, #303F9F 100%)'}}>
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <path d="M9 11l3 3L22 4"></path>
-                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
                 </svg>
               </div>
-              <h3 className="service-name">Tests techniques</h3>
-              <p className="service-description">Évaluation proactive des vulnérabilités.</p>
+              <h3 className="service-name">Formation</h3>
+              <p className="service-tagline">Montée en compétences de vos équipes</p>
+              <ul className="service-features">
+                <li>Sessions sur mesure</li>
+                <li>Supports personnalisés</li>
+                <li>Certifications</li>
+                <li>E-learning disponible</li>
+              </ul>
             </div>
 
-            <div className="service-card">
-              <div className="service-icon" style={{background: 'linear-gradient(135deg, #FFAB00 0%, #FF6F00 100%)'}}>
+            {/* SERVICE 2 : MONTAGE DOSSIERS SUBVENTIONS */}
+            <div className="service-card-detailed">
+              <div className="service-icon" style={{background: 'linear-gradient(135deg, #00875A 0%, #006644 100%)'}}>
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                 </svg>
               </div>
-              <h3 className="service-name">Remédiation rapide</h3>
-              <p className="service-description">Mise en place de correctifs critiques.</p>
+              <h3 className="service-name">Montage dossiers Subventions</h3>
+              <p className="service-tagline">Gestion complète de vos dossiers</p>
+              <ul className="service-features">
+                <li>Identification des aides</li>
+                <li>Constitution des dossiers</li>
+                <li>Suivi administratif</li>
+                <li>Maximisation des financements</li>
+              </ul>
             </div>
-          </div>
-        </section>
 
-        {/* COMPARATEUR */}
-        <section className="comparison-section">
-          <div className="section-header">
-            <div className="section-badge">COMPARATIF</div>
-            <h2>Quelle offre choisir ?</h2>
-            <p className="section-subtitle">Trouvez l'accompagnement adapté à votre niveau de maturité cyber</p>
-          </div>
-
-          <div className="comparison-table-wrapper">
-            <table className="comparison-table">
-              <thead>
-                <tr>
-                  <th className="feature-column">Fonctionnalités</th>
-                  <th>Découverte<br/><span className="price-small">3 490€</span></th>
-                  <th>Essentiel<br/><span className="price-small">7 990€</span></th>
-                  <th className="popular-column">Expertise ⭐<br/><span className="price-small">14 900€</span></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="feature-name">Audit cyber NIS2</td>
-                  <td className="check">✓</td>
-                  <td className="check">✓</td>
-                  <td className="check">✓</td>
-                </tr>
-                <tr>
-                  <td className="feature-name">Résultat immédiat</td>
-                  <td className="check">✓</td>
-                  <td className="cross">—</td>
-                  <td className="cross">—</td>
-                </tr>
-                <tr>
-                  <td className="feature-name">Rapport validé par experts</td>
-                  <td className="cross">—</td>
-                  <td className="check">✓</td>
-                  <td className="check">✓</td>
-                </tr>
-                <tr>
-                  <td className="feature-name">Analyse écarts de conformité</td>
-                  <td className="cross">—</td>
-                  <td className="check">✓</td>
-                  <td className="check">✓</td>
-                </tr>
-                <tr>
-                  <td className="feature-name">Plan de remédiation détaillé</td>
-                  <td className="cross">—</td>
-                  <td className="check">✓</td>
-                  <td className="check">✓</td>
-                </tr>
-                <tr>
-                  <td className="feature-name">Restitution avec expert</td>
-                  <td className="cross">—</td>
-                  <td className="check">✓</td>
-                  <td className="check">✓</td>
-                </tr>
-                <tr>
-                  <td className="feature-name">Entretien préalable expert</td>
-                  <td className="cross">—</td>
-                  <td className="cross">—</td>
-                  <td className="check">✓</td>
-                </tr>
-                <tr>
-                  <td className="feature-name">Roadmap personnalisée</td>
-                  <td className="cross">—</td>
-                  <td className="cross">—</td>
-                  <td className="check">✓</td>
-                </tr>
-                <tr>
-                  <td className="feature-name">Enregistrement ANSSI</td>
-                  <td className="cross">—</td>
-                  <td className="cross">—</td>
-                  <td className="check">✓</td>
-                </tr>
-                <tr>
-                  <td className="feature-name">Dossier aides d'État</td>
-                  <td className="cross">—</td>
-                  <td className="cross">—</td>
-                  <td className="check">✓</td>
-                </tr>
-                <tr>
-                  <td className="feature-name">Accès plateforme</td>
-                  <td className="cross">—</td>
-                  <td className="feature-detail">6 mois</td>
-                  <td className="feature-detail">12 mois</td>
-                </tr>
-                <tr>
-                  <td className="feature-name">Délai de livraison</td>
-                  <td className="feature-detail">Immédiat</td>
-                  <td className="feature-detail">48H</td>
-                  <td className="feature-detail">1 mois</td>
-                </tr>
-              </tbody>
-            </table>
+            {/* SERVICE 3 : NOTIFICATION INCIDENTS */}
+            <div className="service-card-detailed">
+              <div className="service-icon" style={{background: 'linear-gradient(135deg, #FF5630 0%, #d63b1f 100%)'}}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+              </div>
+              <h3 className="service-name">Notification Incidents</h3>
+              <p className="service-tagline">Gestion proactive des incidents</p>
+              <ul className="service-features">
+                <li>Surveillance continue</li>
+                <li>Alertes instantanées</li>
+                <li>Déclarations réglementaires</li>
+                <li>Accompagnement crise</li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -657,12 +733,28 @@ export default function Home() {
         </footer>
       </div>
 
-      {/* ❌ BOUTON TÉLÉPHONE SUPPRIMÉ */}
-
       <QuizModal quiz={quiz} />
 
       <style jsx>{`
-        /* ✅ PRICING 3 COLONNES DESKTOP */
+        /* ✅ 1) TAGLINE MODIFIÉ */
+        .tagline {
+          font-size: 13px;
+          color: #505F79;
+          margin-bottom: 28px;
+          font-weight: 600;
+          line-height: 1.4;
+        }
+
+        /* ✅ 2) SOUS-TITRE AGRANDI ET NOIR */
+        .subtitle-large {
+          font-size: 18px;
+          color: #091E42;
+          margin-bottom: 24px;
+          line-height: 1.6;
+          font-weight: 500;
+        }
+
+        /* ✅ 3) PRICING */
         .pricing-cards-desktop {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -699,7 +791,7 @@ export default function Home() {
           padding: 32px 24px 24px;
           text-align: center;
           border-bottom: 2px solid #F7F8FC;
-          min-height: 180px;
+          min-height: 160px;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -741,8 +833,8 @@ export default function Home() {
         }
 
         .price-card-desktop .features li {
-          padding: 12px 0;
-          padding-left: 32px;
+          padding: 10px 0;
+          padding-left: 28px;
           position: relative;
           font-size: 14px;
           color: #505F79;
@@ -763,6 +855,17 @@ export default function Home() {
           font-size: 18px;
         }
 
+        .price-card-desktop .features li.feature-plus {
+          color: #0052CC;
+          font-weight: 600;
+        }
+
+        .price-card-desktop .features li.feature-plus::before {
+          content: '+';
+          color: #0052CC;
+          font-size: 20px;
+        }
+
         .price-card-footer {
           padding: 24px;
           border-top: 2px solid #F7F8FC;
@@ -773,76 +876,54 @@ export default function Home() {
           justify-content: center;
         }
 
-        /* ✅ SERVICES COMPLÉMENTAIRES */
-        .complementary-services {
-          margin: 64px 0;
-          padding: 48px 32px;
+        /* ✅ BOUTON COMPARAISON */
+        .comparison-toggle {
+          text-align: center;
+          margin-top: 32px;
+        }
+
+        .btn-compare {
           background: white;
-          border-radius: 24px;
-          border: 2px solid #EFF1F5;
-          max-width: 1200px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .services-title {
-          font-size: 32px;
-          font-weight: 800;
-          color: #1e3a8a;
-          text-align: center;
-          margin-bottom: 16px;
-        }
-
-        .services-subtitle {
-          font-size: 16px;
-          color: #64748b;
-          text-align: center;
-          margin-bottom: 40px;
-        }
-
-        .services-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 24px;
-        }
-
-        .service-card {
-          text-align: center;
-          padding: 24px 16px;
-        }
-
-        .service-icon {
-          width: 64px;
-          height: 64px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto 16px;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-name {
-          font-size: 18px;
+          color: #0052CC;
+          border: 2px solid #0052CC;
+          padding: 14px 32px;
+          border-radius: 12px;
+          font-size: 15px;
           font-weight: 700;
-          color: #1e3a8a;
-          margin-bottom: 8px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
         }
 
-        .service-description {
-          font-size: 14px;
-          color: #64748b;
-          line-height: 1.5;
+        .btn-compare:hover {
+          background: #0052CC;
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 82, 204, 0.3);
         }
 
-        /* ✅ COMPARATEUR STYLES */
-        .comparison-section {
-          margin: 64px 0;
+        /* ✅ ACCORDÉON COMPARATEUR */
+        .comparison-accordion {
+          margin-top: 24px;
+          animation: slideDown 0.4s ease;
+          overflow: hidden;
+        }
+
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            max-height: 0;
+          }
+          to {
+            opacity: 1;
+            max-height: 2000px;
+          }
         }
 
         .comparison-table-wrapper {
           overflow-x: auto;
-          margin: 32px 0;
           border-radius: 16px;
           box-shadow: 0 4px 20px rgba(9, 30, 66, 0.08);
         }
@@ -920,21 +1001,117 @@ export default function Home() {
           font-weight: 600;
         }
 
+        /* ✅ 4) SERVICES COMPLÉMENTAIRES - 3 COLONNES */
+        .complementary-services {
+          margin: 64px 0;
+          padding: 48px 32px;
+          background: white;
+          border-radius: 24px;
+          border: 2px solid #EFF1F5;
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .services-title {
+          font-size: 32px;
+          font-weight: 800;
+          color: #1e3a8a;
+          text-align: center;
+          margin-bottom: 16px;
+        }
+
+        .services-subtitle {
+          font-size: 16px;
+          color: #64748b;
+          text-align: center;
+          margin-bottom: 40px;
+        }
+
+        .services-grid-3 {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 32px;
+        }
+
+        .service-card-detailed {
+          text-align: center;
+          padding: 32px 24px;
+          background: #F7F8FC;
+          border-radius: 16px;
+          border: 2px solid #EFF1F5;
+          transition: all 0.3s ease;
+        }
+
+        .service-card-detailed:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 24px rgba(0, 82, 204, 0.1);
+          border-color: #0052CC;
+        }
+
+        .service-icon {
+          width: 72px;
+          height: 72px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 20px;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-name {
+          font-size: 20px;
+          font-weight: 700;
+          color: #091E42;
+          margin-bottom: 8px;
+        }
+
+        .service-tagline {
+          font-size: 15px;
+          color: #505F79;
+          margin-bottom: 20px;
+          font-weight: 600;
+        }
+
+        .service-features {
+          list-style: none;
+          text-align: left;
+          padding: 0;
+        }
+
+        .service-features li {
+          padding: 8px 0;
+          padding-left: 24px;
+          position: relative;
+          font-size: 14px;
+          color: #505F79;
+          line-height: 1.5;
+        }
+
+        .service-features li::before {
+          content: '•';
+          position: absolute;
+          left: 8px;
+          color: #0052CC;
+          font-weight: 800;
+          font-size: 20px;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 1024px) {
           .pricing-cards-desktop {
             grid-template-columns: 1fr;
-            gap: 20px;
           }
 
-          .services-grid {
-            grid-template-columns: repeat(2, 1fr);
+          .services-grid-3 {
+            grid-template-columns: 1fr;
           }
         }
 
         @media (max-width: 640px) {
-          .services-grid {
-            grid-template-columns: 1fr;
+          .subtitle-large {
+            font-size: 16px;
           }
 
           .complementary-services {
