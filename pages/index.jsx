@@ -211,7 +211,6 @@ export default function Home() {
         <span>⚠️ NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant</span>
       </div>
 
-      {/* Sticky Header */}
       <div className="sticky-header" id="stickyHeader">
         <div className="sticky-header-content">
           <div className="sticky-logo">NIS2<span> Conformité</span></div>
@@ -227,7 +226,6 @@ export default function Home() {
       </div>
 
       <div className="container">
-        {/* ✅ 1) HERO SECTION MODIFIÉ */}
         <section className="hero">
           <div className="logo">{CONTACT_INFO.company}</div>
           <div className="tagline">La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes</div>
@@ -236,7 +234,6 @@ export default function Home() {
             <span className="highlight">Anticipez les risques financiers liés à NIS2</span>
           </h1>
           
-          {/* ✅ 2) SOUS-TITRE AGRANDI ET EN NOIR */}
           <p className="subtitle-large">
             Protégez votre activité, votre réputation et votre résilience. 
             Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber certifiés ISO 27001.
@@ -255,13 +252,13 @@ export default function Home() {
             <button onClick={quiz.openQuiz} className="btn btn-primary">
               🎯 Suis-je concerné par NIS2 ?
             </button>
-            <a href={EXTERNAL_LINKS.guideNIS2} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-              Comprendre NIS2 en détail
+            {/* ✅ 1) LIEN VERS ANCRE VIDÉO */}
+            <a href="#video-section" className="btn btn-secondary">
+              Comprendre NIS2 en vidéo
             </a>
           </div>
         </section>
 
-        {/* RISQUES ET OPPORTUNITÉS */}
         <div className="risk-opportunity-wrapper">
           <section className="warning-card">
             <h2>⚠️ Les enjeux de la non-conformité</h2>
@@ -291,7 +288,6 @@ export default function Home() {
           <a href="#pricing" className="btn">Découvrir nos offres</a>
         </div>
 
-        {/* RISQUES CHIFFRÉS */}
         <section className="impact-section">
           <div className="section-header">
             <div className="section-badge">RISQUES CHIFFRÉS</div>
@@ -311,7 +307,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ✅ 3) PRICING SIMPLIFIÉ */}
         <section className="pricing-section" id="pricing">
           <div className="section-header">
             <div className="section-badge">TARIFS CLAIRS</div>
@@ -319,18 +314,24 @@ export default function Home() {
             <p className="section-subtitle">Un audit coûte 200x moins cher qu'une sanction</p>
           </div>
 
-          <div style={{maxWidth: '1200px', margin: '0 auto 40px auto', padding: '16px 24px', background: 'linear-gradient(90deg, rgba(76, 175, 80, 0.08) 0%, rgba(76, 175, 80, 0.12) 100%)', borderLeft: '4px solid #4caf50', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '16px'}}>
-            <div style={{flexShrink: '0', fontSize: '24px'}}>💡</div>
-            <div style={{flex: '1', color: '#2e7d32', fontSize: '15px', lineHeight: '1.5'}}>
-              <strong style={{color: '#1b5e20'}}>Aides de l'État disponibles</strong> — Réduisez le coût de votre mise en conformité.
+          {/* ✅ 2) BLOC VERT AVEC BOUTON SIMULATEUR */}
+          <div className="subsidy-banner">
+            <div className="subsidy-content">
+              <div className="subsidy-icon">💡</div>
+              <div className="subsidy-text">
+                <strong>Aides de l'État disponibles</strong> — Réduisez le coût de votre mise en conformité.
+              </div>
             </div>
+            <button className="btn-simulator" onClick={() => alert('Simulateur en cours de développement')}>
+              📊 Simulateur aides État
+            </button>
           </div>
 
           <div className="pricing-cards-desktop">
-            {/* OFFRE 1 : DÉCOUVERTE */}
+            {/* ✅ 3) OFFRE 1 : ESSENTIELLE (ex-Découverte) */}
             <div className="price-card-desktop">
               <div className="price-card-header">
-                <h3>Découverte</h3>
+                <h3>Essentielle</h3>
                 <div className="price">3 490€</div>
                 <div className="price-sub">HT • Paiement unique</div>
               </div>
@@ -355,12 +356,12 @@ export default function Home() {
               </div>
             </div>
 
-            {/* OFFRE 2 : ESSENTIEL - POPULAIRE */}
+            {/* ✅ 3) OFFRE 2 : SÉRÉNITÉ (ex-Essentiel) - POPULAIRE */}
             <div className="price-card-desktop featured">
               <div className="popular-badge">⭐ POPULAIRE</div>
               
               <div className="price-card-header">
-                <h3>Essentiel</h3>
+                <h3>Sérénité</h3>
                 <div className="price">7 990€</div>
                 <div className="price-sub">HT • Paiement unique</div>
               </div>
@@ -370,9 +371,10 @@ export default function Home() {
                 Entreprises visant la conformité NIS2
               </div>
 
+              {/* ✅ 4) LISTE SIMPLIFIÉE SANS "Tout de l'offre" */}
               <ul className="features">
-                <li>Tout de l'offre Découverte</li>
-                <li>Rapport validé par experts ISO 27001</li>
+                <li>Audit cyber NIS2 complet</li>
+                <li>Rapport validé par experts</li>
                 <li>Analyse écarts de conformité</li>
                 <li>Plan de remédiation détaillé</li>
                 <li>Restitution avec expert (1h visio)</li>
@@ -392,7 +394,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* OFFRE 3 : EXPERTISE - SIMPLIFIÉ */}
+            {/* ✅ 5) OFFRE 3 : EXPERTISE - UN SEUL + */}
             <div className="price-card-desktop">
               <div className="price-card-header">
                 <h3>Expertise</h3>
@@ -406,13 +408,13 @@ export default function Home() {
               </div>
 
               <ul className="features">
-                <li><strong>Tout de l'offre Essentiel</strong></li>
-                <li className="feature-plus">+ Entretien préalable expert</li>
-                <li className="feature-plus">+ Roadmap personnalisée</li>
-                <li className="feature-plus">+ Enregistrement ANSSI</li>
-                <li className="feature-plus">+ Dossier aides d'État</li>
-                <li className="feature-plus">+ Accès plateforme 12 mois</li>
-                <li className="feature-plus">+ MAJ évolutions législatives</li>
+                <li><strong>Tout de l'offre Sérénité</strong></li>
+                <li className="feature-plus">Entretien préalable expert</li>
+                <li className="feature-plus">Roadmap personnalisée</li>
+                <li className="feature-plus">Enregistrement ANSSI</li>
+                <li className="feature-plus">Dossier aides d'État</li>
+                <li className="feature-plus">Accès plateforme 12 mois</li>
+                <li className="feature-plus">MAJ évolutions législatives</li>
               </ul>
 
               <div className="price-card-footer">
@@ -428,7 +430,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ✅ BOUTON COMPARAISON ACCORDÉON */}
           <div className="comparison-toggle">
             <button 
               className="btn-compare" 
@@ -438,7 +439,6 @@ export default function Home() {
             </button>
           </div>
 
-          {/* ✅ COMPARATEUR EN ACCORDÉON */}
           {showComparison && (
             <div className="comparison-accordion">
               <div className="comparison-table-wrapper">
@@ -446,8 +446,8 @@ export default function Home() {
                   <thead>
                     <tr>
                       <th className="feature-column">Fonctionnalités</th>
-                      <th>Découverte<br/><span className="price-small">3 490€</span></th>
-                      <th className="popular-column">Essentiel ⭐<br/><span className="price-small">7 990€</span></th>
+                      <th>Essentielle<br/><span className="price-small">3 490€</span></th>
+                      <th className="popular-column">Sérénité ⭐<br/><span className="price-small">7 990€</span></th>
                       <th>Expertise<br/><span className="price-small">14 900€</span></th>
                     </tr>
                   </thead>
@@ -531,25 +531,29 @@ export default function Home() {
           )}
         </section>
 
-        {/* ✅ 4) SERVICES COMPLÉMENTAIRES - 3 SERVICES */}
-        <section className="complementary-services">
+        {/* ✅ 6) SERVICES COMPLÉMENTAIRES - NOUVEAU FORMAT */}
+        <section className="complementary-services-v2">
           <div className="section-header">
             <h2 className="services-title">Services complémentaires</h2>
-            <p className="services-subtitle">Découvrez nos services pour aller plus loin dans la conformité et la sécurité :</p>
+            <p className="services-subtitle">Découvrez nos services pour aller plus loin dans la conformité et la sécurité</p>
           </div>
 
-          <div className="services-grid-3">
-            {/* SERVICE 1 : FORMATION */}
-            <div className="service-card-detailed">
-              <div className="service-icon" style={{background: 'linear-gradient(135deg, #3F51B5 0%, #303F9F 100%)'}}>
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                </svg>
+          <div className="services-horizontal">
+            {/* SERVICE 1 */}
+            <div className="service-card-h">
+              <div className="service-header-h">
+                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #3F51B5 0%, #303F9F 100%)'}}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                  </svg>
+                </div>
+                <div className="service-title-h">
+                  <h3>Formation</h3>
+                  <p>Montée en compétences de vos équipes</p>
+                </div>
               </div>
-              <h3 className="service-name">Formation</h3>
-              <p className="service-tagline">Montée en compétences de vos équipes</p>
-              <ul className="service-features">
+              <ul className="service-list-h">
                 <li>Sessions sur mesure</li>
                 <li>Supports personnalisés</li>
                 <li>Certifications</li>
@@ -557,17 +561,21 @@ export default function Home() {
               </ul>
             </div>
 
-            {/* SERVICE 2 : MONTAGE DOSSIERS SUBVENTIONS */}
-            <div className="service-card-detailed">
-              <div className="service-icon" style={{background: 'linear-gradient(135deg, #00875A 0%, #006644 100%)'}}>
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                </svg>
+            {/* SERVICE 2 */}
+            <div className="service-card-h">
+              <div className="service-header-h">
+                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #00875A 0%, #006644 100%)'}}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
+                <div className="service-title-h">
+                  <h3>Montage dossiers Subventions</h3>
+                  <p>Gestion complète de vos dossiers</p>
+                </div>
               </div>
-              <h3 className="service-name">Montage dossiers Subventions</h3>
-              <p className="service-tagline">Gestion complète de vos dossiers</p>
-              <ul className="service-features">
+              <ul className="service-list-h">
                 <li>Identification des aides</li>
                 <li>Constitution des dossiers</li>
                 <li>Suivi administratif</li>
@@ -575,18 +583,22 @@ export default function Home() {
               </ul>
             </div>
 
-            {/* SERVICE 3 : NOTIFICATION INCIDENTS */}
-            <div className="service-card-detailed">
-              <div className="service-icon" style={{background: 'linear-gradient(135deg, #FF5630 0%, #d63b1f 100%)'}}>
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                  <line x1="12" y1="9" x2="12" y2="13"></line>
-                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                </svg>
+            {/* SERVICE 3 */}
+            <div className="service-card-h">
+              <div className="service-header-h">
+                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #FF5630 0%, #d63b1f 100%)'}}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg>
+                </div>
+                <div className="service-title-h">
+                  <h3>Notification Incidents</h3>
+                  <p>Gestion proactive des incidents</p>
+                </div>
               </div>
-              <h3 className="service-name">Notification Incidents</h3>
-              <p className="service-tagline">Gestion proactive des incidents</p>
-              <ul className="service-features">
+              <ul className="service-list-h">
                 <li>Surveillance continue</li>
                 <li>Alertes instantanées</li>
                 <li>Déclarations réglementaires</li>
@@ -596,7 +608,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* NOTRE APPROCHE */}
         <section className="expertise-section">
           <div className="section-header">
             <div className="section-badge success">NOTRE APPROCHE</div>
@@ -645,7 +656,6 @@ export default function Home() {
           </a>
         </div>
 
-        {/* TÉMOIGNAGES */}
         <section className="social-proof">
           <div className="section-header">
             <div className="section-badge">TÉMOIGNAGES</div>
@@ -677,8 +687,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* VIDÉO */}
-        <section className="video-section">
+        {/* ✅ ID AJOUTÉ POUR ANCRE */}
+        <section className="video-section" id="video-section">
           <div className="video-header">
             <div className="video-badge">🎥 Comprendre NIS2 en vidéo</div>
           </div>
@@ -699,7 +709,6 @@ export default function Home() {
           </a>
         </div>
 
-        {/* FAQ */}
         <section className="faq">
           <div className="section-header">
             <div className="section-badge">FAQ</div>
@@ -717,7 +726,6 @@ export default function Home() {
           ))}
         </section>
 
-        {/* FINAL CTA */}
         <section className="final-cta">
           <h2>Sécurisez votre avenir dès aujourd'hui</h2>
           <p>Échange confidentiel avec un consultant certifié ISO 27001<br /><strong>Audit indépendant pour mesurer votre conformité</strong></p>
@@ -736,7 +744,6 @@ export default function Home() {
       <QuizModal quiz={quiz} />
 
       <style jsx>{`
-        /* ✅ 1) TAGLINE MODIFIÉ */
         .tagline {
           font-size: 13px;
           color: #505F79;
@@ -745,7 +752,6 @@ export default function Home() {
           line-height: 1.4;
         }
 
-        /* ✅ 2) SOUS-TITRE AGRANDI ET NOIR */
         .subtitle-large {
           font-size: 18px;
           color: #091E42;
@@ -754,7 +760,66 @@ export default function Home() {
           font-weight: 500;
         }
 
-        /* ✅ 3) PRICING */
+        /* ✅ 2) BLOC VERT AVEC BOUTON */
+        .subsidy-banner {
+          max-width: 1200px;
+          margin: 0 auto 40px auto;
+          padding: 20px 28px;
+          background: linear-gradient(90deg, rgba(76, 175, 80, 0.08) 0%, rgba(76, 175, 80, 0.12) 100%);
+          border-left: 4px solid #4caf50;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 20px;
+          flex-wrap: wrap;
+        }
+
+        .subsidy-content {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          flex: 1;
+          min-width: 300px;
+        }
+
+        .subsidy-icon {
+          flex-shrink: 0;
+          font-size: 24px;
+        }
+
+        .subsidy-text {
+          flex: 1;
+          color: #2e7d32;
+          font-size: 15px;
+          line-height: 1.5;
+        }
+
+        .subsidy-text strong {
+          color: #1b5e20;
+        }
+
+        .btn-simulator {
+          background: white;
+          color: #1b5e20;
+          border: 2px solid #4caf50;
+          padding: 12px 24px;
+          border-radius: 10px;
+          font-size: 14px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+          box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15);
+        }
+
+        .btn-simulator:hover {
+          background: #4caf50;
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25);
+        }
+
         .pricing-cards-desktop {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -855,15 +920,16 @@ export default function Home() {
           font-size: 18px;
         }
 
+        /* ✅ 5) UN SEUL TYPE DE + */
         .price-card-desktop .features li.feature-plus {
-          color: #0052CC;
-          font-weight: 600;
+          color: #505F79;
+          font-weight: 500;
         }
 
         .price-card-desktop .features li.feature-plus::before {
-          content: '+';
-          color: #0052CC;
-          font-size: 20px;
+          content: '✓';
+          color: #00875A;
+          font-size: 18px;
         }
 
         .price-card-footer {
@@ -876,7 +942,6 @@ export default function Home() {
           justify-content: center;
         }
 
-        /* ✅ BOUTON COMPARAISON */
         .comparison-toggle {
           text-align: center;
           margin-top: 32px;
@@ -904,7 +969,6 @@ export default function Home() {
           box-shadow: 0 4px 12px rgba(0, 82, 204, 0.3);
         }
 
-        /* ✅ ACCORDÉON COMPARATEUR */
         .comparison-accordion {
           margin-top: 24px;
           animation: slideDown 0.4s ease;
@@ -1001,16 +1065,9 @@ export default function Home() {
           font-weight: 600;
         }
 
-        /* ✅ 4) SERVICES COMPLÉMENTAIRES - 3 COLONNES */
-        .complementary-services {
+        /* ✅ 6) SERVICES COMPLÉMENTAIRES - FORMAT HORIZONTAL */
+        .complementary-services-v2 {
           margin: 64px 0;
-          padding: 48px 32px;
-          background: white;
-          border-radius: 24px;
-          border: 2px solid #EFF1F5;
-          max-width: 1200px;
-          margin-left: auto;
-          margin-right: auto;
         }
 
         .services-title {
@@ -1025,87 +1082,113 @@ export default function Home() {
           font-size: 16px;
           color: #64748b;
           text-align: center;
-          margin-bottom: 40px;
+          margin-bottom: 48px;
         }
 
-        .services-grid-3 {
+        .services-horizontal {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 32px;
+          gap: 24px;
+          max-width: 1200px;
+          margin: 0 auto;
         }
 
-        .service-card-detailed {
-          text-align: center;
-          padding: 32px 24px;
-          background: #F7F8FC;
-          border-radius: 16px;
+        .service-card-h {
+          background: white;
           border: 2px solid #EFF1F5;
+          border-radius: 16px;
+          padding: 28px 24px;
           transition: all 0.3s ease;
+          box-shadow: 0 2px 12px rgba(9, 30, 66, 0.06);
         }
 
-        .service-card-detailed:hover {
+        .service-card-h:hover {
           transform: translateY(-4px);
-          box-shadow: 0 8px 24px rgba(0, 82, 204, 0.1);
+          box-shadow: 0 8px 28px rgba(0, 82, 204, 0.12);
           border-color: #0052CC;
         }
 
-        .service-icon {
-          width: 72px;
-          height: 72px;
-          border-radius: 50%;
+        .service-header-h {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+          margin-bottom: 20px;
+          padding-bottom: 20px;
+          border-bottom: 2px solid #F7F8FC;
+        }
+
+        .service-icon-h {
+          width: 56px;
+          height: 56px;
+          border-radius: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin: 0 auto 20px;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+          flex-shrink: 0;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
         }
 
-        .service-name {
-          font-size: 20px;
+        .service-title-h {
+          flex: 1;
+        }
+
+        .service-title-h h3 {
+          font-size: 18px;
           font-weight: 700;
           color: #091E42;
-          margin-bottom: 8px;
+          margin-bottom: 6px;
+          line-height: 1.3;
         }
 
-        .service-tagline {
-          font-size: 15px;
+        .service-title-h p {
+          font-size: 13px;
           color: #505F79;
-          margin-bottom: 20px;
-          font-weight: 600;
+          line-height: 1.4;
         }
 
-        .service-features {
+        .service-list-h {
           list-style: none;
-          text-align: left;
           padding: 0;
+          margin: 0;
         }
 
-        .service-features li {
-          padding: 8px 0;
+        .service-list-h li {
+          padding: 10px 0;
           padding-left: 24px;
           position: relative;
           font-size: 14px;
           color: #505F79;
           line-height: 1.5;
+          border-bottom: 1px solid #F7F8FC;
         }
 
-        .service-features li::before {
-          content: '•';
+        .service-list-h li:last-child {
+          border-bottom: none;
+        }
+
+        .service-list-h li::before {
+          content: '→';
           position: absolute;
-          left: 8px;
+          left: 0;
           color: #0052CC;
-          font-weight: 800;
-          font-size: 20px;
+          font-weight: 700;
+          font-size: 16px;
         }
 
         /* RESPONSIVE */
         @media (max-width: 1024px) {
-          .pricing-cards-desktop {
+          .pricing-cards-desktop,
+          .services-horizontal {
             grid-template-columns: 1fr;
           }
 
-          .services-grid-3 {
-            grid-template-columns: 1fr;
+          .subsidy-banner {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .subsidy-content {
+            flex-direction: column;
           }
         }
 
@@ -1114,8 +1197,12 @@ export default function Home() {
             font-size: 16px;
           }
 
-          .complementary-services {
-            padding: 32px 20px;
+          .subsidy-banner {
+            padding: 16px 20px;
+          }
+
+          .btn-simulator {
+            width: 100%;
           }
         }
       `}</style>
