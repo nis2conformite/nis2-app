@@ -13,7 +13,6 @@ import {
   EXPERTISE_TIMELINE,
   IMPACT_STATS
 } from '../utils/constants';
-import '../styles/globals.css';
 
 export default function Home() {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
