@@ -56,66 +56,85 @@ const QUESTIONS = [
 const RESULT_CONFIGS = {
   low: {
     title: 'Faible exposition probable',
-    description: '<strong>Vigilance recommandée</strong> si vous êtes en croissance ou sous-traitant critique. Même si votre exposition semble faible aujourd\'hui, les évolutions de votre activité peuvent vous faire basculer dans le périmètre NIS2. Un audit de positionnement vous permettra d\'anticiper sereinement.'
+    description: 'Vigilance recommandée si vous êtes en croissance ou sous-traitant critique.'
   },
   medium: {
     title: 'Vous êtes potentiellement concerné',
-    description: '<strong>Un audit de positionnement est fortement recommandé.</strong> Plusieurs critères indiquent que vous pourriez être dans le périmètre de la directive NIS2. Il est essentiel d\'évaluer précisément votre exposition pour éviter des sanctions et transformer cette obligation en avantage commercial.'
+    description: 'Un audit de positionnement est fortement recommandé.'
   },
   high: {
     title: 'Vous êtes très probablement concerné',
-    description: '<strong>Il est urgent d\'agir.</strong> Votre profil correspond clairement aux entités régulées par NIS2. Les contrôles ANSSI démarrent en 2026 et les sanctions peuvent atteindre 10M€. Mais c\'est aussi une opportunité : être conforme vous ouvre l\'accès aux appels d\'offres et renforce votre crédibilité auprès de vos clients.'
+    description: 'Il est urgent d\'agir. Les contrôles ANSSI démarrent en 2026.'
   }
 };
 
-export const QuizModal = ({ quiz }) => {
-  const {
-    isOpen,
-    currentQuestion,
-    answers,
-    totalQuestions,
-    progress,
-    isAnswered,
-    closeQuiz,
-    selectAnswer,
-    nextQuestion,
-    prevQuestion,
-    calculateScore,
-    getScoreLevel
-  } = quiz;
-
+export function QuizModal({ quiz }) {
+  const [currentQuestion, setCurrentQuestion] = React.useState(1);
+  const [answers, setAnswers] = React.useState({});
   const [showResults, setShowResults] = React.useState(false);
-  const score = calculateScore();
-  const level = getScoreLevel(score);
-  const result = RESULT_CONFIGS[level];
+  
+  if (!quiz || !quiz.isOpen) return null;
 
-  const handleNext = () => {
-    if (currentQuestion === totalQuestions) {
-      setShowResults(true);
+  const totalQuestions = 10;
+  const progress = (currentQuestion / totalQuestions) * 100;
+  const isAnswered = !!answers[currentQuestion];
+
+  const selectAnswer = (answer) => {
+    setAnswers(prev => ({ ...prev, [currentQuestion]: answer }));
+  };
+
+  const nextQuestion = () => {
+    if (currentQuestion < totalQuestions) {
+      setCurrentQuestion(prev => prev + 1);
     } else {
-      nextQuestion();
+      setShowResults(true);
     }
   };
 
-  if (!isOpen) return null;
+  const prevQuestion = () => {
+    if (currentQuestion > 1) {
+      setCurrentQuestion(prev => prev - 1);
+    }
+  };
+
+  const calculateScore = () => {
+    let score = 0;
+    for (let i = 1; i <= 7; i++) {
+      if (answers[i] === 'oui') score++;
+    }
+    return score;
+  };
+
+  const getLevel = (score) => {
+    if (score <= 3) return 'low';
+    if (score <= 6) return 'medium';
+    return 'high';
+  };
+
+  const handleClose = () => {
+    setCurrentQuestion(1);
+    setAnswers({});
+    setShowResults(false);
+    quiz.closeQuiz();
+  };
+
+  const score = calculateScore();
+  const level = getLevel(score);
+  const result = RESULT_CONFIGS[level];
 
   return (
-    <div className="quiz-overlay active">
+    <div className="quiz-overlay active" onClick={(e) => {
+      if (e.target.className === 'quiz-overlay active') handleClose();
+    }}>
       <div className="quiz-container">
-        <button className="quiz-close" onClick={closeQuiz}>×</button>
+        <button className="quiz-close" onClick={handleClose}>×</button>
         
         <div className="quiz-header">
           <div className="quiz-badge">⚡ TEST GRATUIT</div>
           <h2 className="quiz-title">Suis-je concerné par la directive NIS2 ?</h2>
           <p className="quiz-intro">
-            La directive NIS2 ne concerne pas uniquement les grandes entreprises. 
             Ce quiz rapide vous permet de savoir immédiatement si vous entrez dans le périmètre.
           </p>
-          <div className="quiz-benefits">
-            <div className="quiz-benefit">✅ Ne pas passer à côté d'une obligation</div>
-            <div className="quiz-benefit">✅ Anticiper les sanctions</div>
-            <div className="quiz-benefit">✅ Prendre les bonnes décisions</div>
-          </div>
         </div>
 
         {!showResults ? (
@@ -141,7 +160,7 @@ export const QuizModal = ({ quiz }) => {
                   <div
                     key={answer}
                     className={`quiz-answer ${answers[currentQuestion] === answer.toLowerCase() ? 'selected' : ''}`}
-                    onClick={() => selectAnswer(currentQuestion, answer.toLowerCase())}
+                    onClick={() => selectAnswer(answer.toLowerCase())}
                   >
                     <div className="quiz-answer-radio"></div>
                     <div className="quiz-answer-text">{answer}</div>
@@ -158,7 +177,7 @@ export const QuizModal = ({ quiz }) => {
               )}
               <button 
                 className="quiz-btn quiz-btn-next" 
-                onClick={handleNext}
+                onClick={nextQuestion}
                 disabled={!isAnswered}
                 style={{marginLeft: currentQuestion === 1 ? 'auto' : '0'}}
               >
@@ -173,7 +192,7 @@ export const QuizModal = ({ quiz }) => {
               <div className="quiz-score-label">/10</div>
             </div>
             <h3 className="quiz-result-title">{result.title}</h3>
-            <p className="quiz-result-desc" dangerouslySetInnerHTML={{__html: result.description}} />
+            <p className="quiz-result-desc">{result.description}</p>
             <div className="quiz-result-actions">
               <a 
                 href="https://calendly.com/adrien-ruggirello/30min" 
@@ -184,15 +203,360 @@ export const QuizModal = ({ quiz }) => {
                 📅 Diagnostic cyber gratuit
               </a>
               <button 
-                onClick={closeQuiz} 
+                onClick={handleClose} 
                 className="quiz-result-btn secondary"
               >
-                Découvrir nos audits
+                Fermer
               </button>
             </div>
           </div>
         )}
       </div>
+
+      <style jsx>{`
+        .quiz-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(9, 30, 66, 0.85);
+          backdrop-filter: blur(4px);
+          z-index: 9998;
+          display: none;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+          overflow-y: auto;
+        }
+
+        .quiz-overlay.active {
+          display: flex;
+        }
+
+        .quiz-container {
+          background: white;
+          border-radius: 24px;
+          padding: 40px 32px;
+          box-shadow: 0 20px 60px rgba(9, 30, 66, 0.3);
+          max-width: 700px;
+          width: 100%;
+          position: relative;
+          margin: 20px auto;
+        }
+
+        .quiz-close {
+          position: absolute;
+          top: 16px;
+          right: 16px;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: #EFF1F5;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 20px;
+          color: #091E42;
+          transition: all 0.3s ease;
+          z-index: 10;
+        }
+
+        .quiz-close:hover {
+          background: #FF5630;
+          color: white;
+          transform: rotate(90deg);
+        }
+
+        .quiz-header {
+          text-align: center;
+          margin-bottom: 32px;
+        }
+
+        .quiz-badge {
+          display: inline-block;
+          background: linear-gradient(135deg, #FF5630 0%, #d63b1f 100%);
+          color: white;
+          padding: 8px 18px;
+          border-radius: 20px;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          margin-bottom: 16px;
+        }
+
+        .quiz-title {
+          font-size: 32px;
+          font-weight: 800;
+          color: #091E42;
+          margin-bottom: 12px;
+          line-height: 1.2;
+        }
+
+        .quiz-intro {
+          font-size: 15px;
+          color: #505F79;
+          line-height: 1.6;
+        }
+
+        .quiz-progress {
+          margin-bottom: 32px;
+        }
+
+        .quiz-progress-bar {
+          width: 100%;
+          height: 8px;
+          background: #EFF1F5;
+          border-radius: 20px;
+          overflow: hidden;
+          margin-bottom: 8px;
+        }
+
+        .quiz-progress-fill {
+          height: 100%;
+          background: linear-gradient(90deg, #0052CC 0%, #FF5630 100%);
+          transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          border-radius: 20px;
+        }
+
+        .quiz-progress-text {
+          font-size: 13px;
+          color: #8993A4;
+          text-align: center;
+          font-weight: 600;
+        }
+
+        .quiz-question-number {
+          font-size: 13px;
+          font-weight: 700;
+          color: #0052CC;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 12px;
+        }
+
+        .quiz-question-text {
+          font-size: 20px;
+          font-weight: 700;
+          color: #091E42;
+          margin-bottom: 24px;
+          line-height: 1.4;
+        }
+
+        .quiz-answers {
+          display: grid;
+          gap: 12px;
+          margin-bottom: 24px;
+        }
+
+        .quiz-answer {
+          border: 2px solid #DFE1E6;
+          border-radius: 16px;
+          padding: 18px 20px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          background: white;
+        }
+
+        .quiz-answer:hover {
+          border-color: #0052CC;
+          background: #F7F8FC;
+          transform: translateX(4px);
+        }
+
+        .quiz-answer.selected {
+          border-color: #0052CC;
+          background: linear-gradient(135deg, rgba(0, 82, 204, 0.05) 0%, rgba(0, 82, 204, 0.02) 100%);
+          box-shadow: 0 4px 16px rgba(0, 82, 204, 0.15);
+        }
+
+        .quiz-answer-radio {
+          width: 24px;
+          height: 24px;
+          border: 2px solid #DFE1E6;
+          border-radius: 50%;
+          flex-shrink: 0;
+          position: relative;
+          transition: all 0.3s ease;
+        }
+
+        .quiz-answer.selected .quiz-answer-radio {
+          border-color: #0052CC;
+          background: #0052CC;
+        }
+
+        .quiz-answer.selected .quiz-answer-radio::after {
+          content: '✓';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: white;
+          font-size: 14px;
+          font-weight: 700;
+        }
+
+        .quiz-answer-text {
+          font-size: 16px;
+          font-weight: 600;
+          color: #091E42;
+        }
+
+        .quiz-navigation {
+          display: flex;
+          gap: 12px;
+          justify-content: space-between;
+        }
+
+        .quiz-btn {
+          padding: 14px 28px;
+          border-radius: 12px;
+          font-size: 15px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          border: none;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .quiz-btn-prev {
+          background: #EFF1F5;
+          color: #091E42;
+        }
+
+        .quiz-btn-prev:hover {
+          background: #DFE1E6;
+        }
+
+        .quiz-btn-next {
+          background: linear-gradient(135deg, #0052CC 0%, #003D99 100%);
+          color: white;
+          box-shadow: 0 4px 16px rgba(0, 82, 204, 0.3);
+          margin-left: auto;
+        }
+
+        .quiz-btn-next:not(:disabled):hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(0, 82, 204, 0.4);
+        }
+
+        .quiz-btn-next:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        .quiz-results {
+          text-align: center;
+        }
+
+        .quiz-score-circle {
+          width: 160px;
+          height: 160px;
+          border-radius: 50%;
+          margin: 0 auto 24px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          font-size: 56px;
+          font-weight: 800;
+          color: white;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .quiz-score-circle.low {
+          background: linear-gradient(135deg, #00875A 0%, #10b759 100%);
+        }
+
+        .quiz-score-circle.medium {
+          background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .quiz-score-circle.high {
+          background: linear-gradient(135deg, #FF5630 0%, #d63b1f 100%);
+        }
+
+        .quiz-score-label {
+          font-size: 14px;
+          font-weight: 600;
+          margin-top: -8px;
+        }
+
+        .quiz-result-title {
+          font-size: 28px;
+          font-weight: 800;
+          color: #091E42;
+          margin-bottom: 12px;
+        }
+
+        .quiz-result-desc {
+          font-size: 16px;
+          color: #505F79;
+          line-height: 1.6;
+          margin-bottom: 32px;
+        }
+
+        .quiz-result-actions {
+          display: grid;
+          gap: 12px;
+          max-width: 500px;
+          margin: 0 auto;
+        }
+
+        .quiz-result-btn {
+          padding: 16px 24px;
+          border-radius: 12px;
+          font-size: 16px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          border: none;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        }
+
+        .quiz-result-btn.primary {
+          background: linear-gradient(135deg, #0052CC 0%, #003D99 100%);
+          color: white;
+          box-shadow: 0 4px 16px rgba(0, 82, 204, 0.3);
+        }
+
+        .quiz-result-btn.primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(0, 82, 204, 0.4);
+        }
+
+        .quiz-result-btn.secondary {
+          background: white;
+          color: #0052CC;
+          border: 2px solid #0052CC;
+        }
+
+        .quiz-result-btn.secondary:hover {
+          background: #F7F8FC;
+        }
+
+        @media (max-width: 640px) {
+          .quiz-container {
+            padding: 28px 20px;
+          }
+          
+          .quiz-title {
+            font-size: 22px;
+          }
+        }
+      `}</style>
     </div>
   );
-};
+}
