@@ -699,7 +699,7 @@ export default function Home() {
 
         .hero-minimal {
           text-align: center;
-          padding: 16px 20px 100px;
+          padding: 0 20px 100px;
           max-width: 1200px;
           margin: 0 auto;
           background: linear-gradient(to bottom, #FFFFFF 0%, #FAFAFA 100%);
@@ -708,7 +708,7 @@ export default function Home() {
         .hero-logo {
           max-width: 360px;
           height: auto;
-          margin: 0 auto 4px;
+          margin: 0 auto 16px;
           display: block;
         }
 
@@ -718,24 +718,20 @@ export default function Home() {
           color: #64748B;
           line-height: 1.5;
           max-width: 680px;
-          margin: 0 auto 16px;
+          margin: 0 auto 24px;
         }
 
         .hero-separator {
-          width: 120px;
-          height: 3px;
-          background: linear-gradient(90deg, #FF5630 0%, #FFB199 100%);
-          margin: 16px auto;
-          border-radius: 2px;
+          display: none;
         }
 
         .hero-title {
-          font-size: 48px;
+          font-size: 52px;
           font-weight: 900;
           color: #FF5630;
-          line-height: 1.25;
-          max-width: 800px;
-          margin: 0 auto 20px;
+          line-height: 1.2;
+          max-width: 900px;
+          margin: 0 auto 16px;
           letter-spacing: -0.02em;
         }
 
@@ -745,14 +741,14 @@ export default function Home() {
           color: #334155;
           line-height: 1.75;
           max-width: 820px;
-          margin: 0 auto 48px;
+          margin: 0 auto 40px;
         }
 
         .hero-stats-minimal {
           display: flex;
           justify-content: center;
-          gap: 48px;
-          margin-bottom: 56px;
+          gap: 36px;
+          margin-bottom: 48px;
           flex-wrap: wrap;
         }
 
@@ -762,7 +758,7 @@ export default function Home() {
         }
 
         .stat-value-minimal {
-          font-size: 44px;
+          font-size: 48px;
           font-weight: 900;
           color: #0052CC;
           line-height: 1;
@@ -817,40 +813,37 @@ export default function Home() {
         /* RESPONSIVE HERO */
         @media (max-width: 768px) {
           .hero-minimal {
-            padding: 8px 20px 80px;
+            padding: 0 20px 80px;
           }
 
           .hero-logo {
-            max-width: 220px;
-            margin-bottom: 4px;
+            max-width: 240px;
+            margin-bottom: 12px;
           }
 
           .hero-baseline {
             font-size: 14px;
-            margin-bottom: 12px;
-          }
-
-          .hero-separator {
-            margin: 12px auto;
+            margin-bottom: 20px;
           }
 
           .hero-title {
-            font-size: 32px;
-            margin-bottom: 16px;
+            font-size: 34px;
+            margin-bottom: 14px;
+            line-height: 1.15;
           }
 
           .hero-subtitle {
             font-size: 15px;
-            margin-bottom: 36px;
+            margin-bottom: 32px;
             line-height: 1.6;
           }
 
           .hero-stats-minimal {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 28px 20px;
-            margin-bottom: 36px;
-            max-width: 380px;
+            gap: 24px 16px;
+            margin-bottom: 32px;
+            max-width: 360px;
             margin-left: auto;
             margin-right: auto;
           }
@@ -860,7 +853,7 @@ export default function Home() {
           }
 
           .stat-value-minimal {
-            font-size: 32px;
+            font-size: 36px;
           }
 
           .stat-label-minimal {
@@ -869,8 +862,8 @@ export default function Home() {
 
           .hero-cta-primary {
             font-size: 15px;
-            padding: 14px 28px;
-            margin-bottom: 24px;
+            padding: 15px 32px;
+            margin-bottom: 20px;
           }
 
           .hero-cta-link {
@@ -881,6 +874,10 @@ export default function Home() {
         @media (min-width: 769px) and (max-width: 1024px) {
           .hero-stats-minimal {
             gap: 32px;
+          }
+          
+          .hero-title {
+            font-size: 44px;
           }
         }
 
