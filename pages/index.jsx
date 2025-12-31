@@ -140,7 +140,7 @@ export default function Home() {
             <img 
               src="/logo.png" 
               alt="Cyber Solférino" 
-              style={{height: '32px', width: 'auto'}}
+              style={{height: '64px', width: 'auto'}}
             />
           </div>
           <div className="sticky-cta-group">
@@ -174,7 +174,7 @@ export default function Home() {
           
           <p className="subtitle-large">
             Protégez votre activité, votre réputation et votre résilience. 
-            Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber certifiés ISO 27001.
+            Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber.
           </p>
 
           <div className="stats">
@@ -199,7 +199,8 @@ export default function Home() {
         <div className="risk-opportunity-wrapper">
           <section className="warning-card">
             {/* ✅ 1) TITRE SUR 2 LIGNES */}
-            <h2>⚠️ Les enjeux de la<br />non-conformité</h2>
+            <h2>⚠️ Les enjeux de la non-conformité</h2>
+            <br />
             <ul className="warning-list">
               <li><strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</li>
               <li><strong>Responsabilité pénale du dirigeant</strong> — En cas de manquement aux obligations NIS2</li>
@@ -210,7 +211,7 @@ export default function Home() {
           </section>
 
           <section className="value-prop">
-            <h2>🏆 Transformez la contrainte en<br />levier stratégique</h2>
+            <h2>🏆 Transformez la contrainte en levier stratégique</h2>
             <ul className="value-list">
               <li><strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection</li>
               <li><strong>Différenciez-vous</strong> — Positionnez-vous comme le partenaire de confiance de votre secteur</li>
@@ -239,7 +240,6 @@ export default function Home() {
               <div className="impact-header-horizontal">
                 <div className="impact-icon">📈</div>
                 <div className="impact-stat">+38%</div>
-              </div>
               <div className="impact-label">Hausse attaques cyber</div>
               <p className="impact-detail">Les attaques contre les PME ont explosé de 38% en 2024. Les cybercriminels ciblent les entreprises non protégées.</p>
             </div>
@@ -248,7 +248,6 @@ export default function Home() {
               <div className="impact-header-horizontal">
                 <div className="impact-icon">💸</div>
                 <div className="impact-stat">4,35M€</div>
-              </div>
               <div className="impact-label">Coût moyen cyber attaque</div>
               <p className="impact-detail">60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne), perte de données, rançons.</p>
             </div>
