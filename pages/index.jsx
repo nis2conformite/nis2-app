@@ -699,16 +699,16 @@ export default function Home() {
 
         .hero-minimal {
           text-align: center;
-          padding: 80px 20px 100px;
+          padding: 60px 20px 100px;
           max-width: 1200px;
           margin: 0 auto;
           background: linear-gradient(to bottom, #FFFFFF 0%, #FAFAFA 100%);
         }
 
         .hero-logo {
-          max-width: 260px;
+          max-width: 320px;
           height: auto;
-          margin: 0 auto 12px;
+          margin: 0 auto 16px;
           display: block;
         }
 
@@ -718,7 +718,7 @@ export default function Home() {
           color: #64748B;
           line-height: 1.5;
           max-width: 680px;
-          margin: 0 auto 20px;
+          margin: 0 auto 24px;
         }
 
         .hero-separator {
@@ -790,7 +790,7 @@ export default function Home() {
           transition: all 0.3s ease;
           max-width: 500px;
           width: 100%;
-          margin-bottom: 20px;
+          margin-bottom: 32px;
         }
 
         .hero-cta-primary:hover {
@@ -800,12 +800,13 @@ export default function Home() {
         }
 
         .hero-cta-link {
-          display: inline-block;
+          display: block;
           font-size: 16px;
           font-weight: 600;
           color: #0052CC;
           text-decoration: none;
           transition: all 0.3s ease;
+          margin-top: 8px;
         }
 
         .hero-cta-link:hover {
