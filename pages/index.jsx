@@ -23,7 +23,6 @@ export default function Home() {
     videoIsPlaying 
   });
 
-  // Fonction Stripe Checkout
   async function handleStripeCheckout() {
     try {
       const response = await fetch('/api/stripe/create-checkout', {
@@ -47,7 +46,6 @@ export default function Home() {
   }
 
   useEffect(() => {
-    // Sticky header au scroll
     const handleScroll = () => {
       const stickyHeader = document.getElementById('stickyHeader');
       const heroSection = document.querySelector('.hero');
@@ -67,7 +65,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -78,14 +75,12 @@ export default function Home() {
       });
     });
 
-    // FAQ accordion
     document.querySelectorAll('.faq-item').forEach(item => {
       item.addEventListener('click', function() {
         this.classList.toggle('active');
       });
     });
 
-    // Intersection Observer pour animations
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -107,7 +102,6 @@ export default function Home() {
       observer.observe(el);
     });
 
-    // Carousel Testimonials
     const carousel = document.getElementById('testimonialCarousel');
     if (carousel) {
       const wrapper = carousel.querySelector('.testimonials-wrapper');
@@ -178,7 +172,6 @@ export default function Home() {
       });
     }
 
-    // YouTube API
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -227,8 +220,20 @@ export default function Home() {
 
       <div className="container">
         <section className="hero">
-          <div className="logo">{CONTACT_INFO.company}</div>
-          <div className="tagline">La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes</div>
+          {/* ✅ 1) LOGO IMAGE */}
+          <div className="logo-image">
+            <img 
+              src="https://drive.google.com/uc?export=view&id=19YpRsu4WzmRfyUa-96mdjsTG2OY3Ljym" 
+              alt="Cyber Solférino" 
+              style={{maxWidth: '200px', height: 'auto'}}
+            />
+          </div>
+          
+          {/* ✅ 2) TAGLINE SUR 2 LIGNES */}
+          <div className="tagline">
+            La plateforme d'audit et de conformité cyber<br />
+            pensée pour les PME et ETI européennes
+          </div>
           
           <h1>
             <span className="highlight">Anticipez les risques financiers liés à NIS2</span>
@@ -252,33 +257,83 @@ export default function Home() {
             <button onClick={quiz.openQuiz} className="btn btn-primary">
               🎯 Suis-je concerné par NIS2 ?
             </button>
-            {/* ✅ 1) LIEN VERS ANCRE VIDÉO */}
             <a href="#video-section" className="btn btn-secondary">
               Comprendre NIS2 en vidéo
             </a>
           </div>
         </section>
 
-        <div className="risk-opportunity-wrapper">
-          <section className="warning-card">
+        {/* ✅ 3) BLOCS ALIGNÉS FACE À FACE */}
+        <div className="risk-opportunity-wrapper-v2">
+          <section className="warning-card-v2">
             <h2>⚠️ Les enjeux de la non-conformité</h2>
-            <ul className="warning-list">
-              <li><strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</li>
-              <li><strong>Responsabilité pénale du dirigeant</strong> — En cas de manquement aux obligations NIS2</li>
-              <li><strong>Exclusion des marchés</strong> — Impossibilité de répondre aux appels d'offres publics et privés</li>
-              <li><strong>Perte de confiance B2B</strong> — Vos clients exigent désormais la conformité</li>
-              <li><strong>Contrôles réglementaires</strong> — Audits de votre entreprise sur site sans préavis de l'ANSSI</li>
+            <ul className="risk-list">
+              <li>
+                <span className="risk-icon">✕</span>
+                <div>
+                  <strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial
+                </div>
+              </li>
+              <li>
+                <span className="risk-icon">✕</span>
+                <div>
+                  <strong>Responsabilité pénale du dirigeant</strong> — En cas de manquement aux obligations NIS2
+                </div>
+              </li>
+              <li>
+                <span className="risk-icon">✕</span>
+                <div>
+                  <strong>Exclusion des marchés</strong> — Impossibilité de répondre aux appels d'offres publics et privés
+                </div>
+              </li>
+              <li>
+                <span className="risk-icon">✕</span>
+                <div>
+                  <strong>Perte de confiance B2B</strong> — Vos clients exigent désormais la conformité
+                </div>
+              </li>
+              <li>
+                <span className="risk-icon">✕</span>
+                <div>
+                  <strong>Contrôles réglementaires</strong> — Audits de votre entreprise sur site sans préavis de l'ANSSI
+                </div>
+              </li>
             </ul>
           </section>
 
-          <section className="value-prop">
+          <section className="value-prop-v2">
             <h2>🏆 Transformez la contrainte en levier stratégique</h2>
             <ul className="value-list">
-              <li><strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection</li>
-              <li><strong>Différenciez-vous</strong> — Positionnez-vous comme le partenaire de confiance de votre secteur</li>
-              <li><strong>Rassurez vos clients</strong> — Montrez que vous protéger les données de vos clients</li>
-              <li><strong>Fidélisez vos partenaires</strong> — Consolidez votre réputation d'acteur stable et responsable</li>
-              <li><strong>Valorisez votre entreprise</strong> — Une organisation conforme vaut plus en cas de cession</li>
+              <li>
+                <span className="value-icon">✓</span>
+                <div>
+                  <strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection
+                </div>
+              </li>
+              <li>
+                <span className="value-icon">✓</span>
+                <div>
+                  <strong>Différenciez-vous</strong> — Positionnez-vous comme le partenaire de confiance de votre secteur
+                </div>
+              </li>
+              <li>
+                <span className="value-icon">✓</span>
+                <div>
+                  <strong>Rassurez vos clients</strong> — Montrez que vous protégez les données de vos clients
+                </div>
+              </li>
+              <li>
+                <span className="value-icon">✓</span>
+                <div>
+                  <strong>Fidélisez vos partenaires</strong> — Consolidez votre réputation d'acteur stable et responsable
+                </div>
+              </li>
+              <li>
+                <span className="value-icon">✓</span>
+                <div>
+                  <strong>Valorisez votre entreprise</strong> — Une organisation conforme vaut plus en cas de cession
+                </div>
+              </li>
             </ul>
           </section>
         </div>
@@ -288,6 +343,7 @@ export default function Home() {
           <a href="#pricing" className="btn">Découvrir nos offres</a>
         </div>
 
+        {/* ✅ 4) RISQUES CHIFFRÉS - CHIFFRE À CÔTÉ DU LOGO */}
         <section className="impact-section">
           <div className="section-header">
             <div className="section-badge">RISQUES CHIFFRÉS</div>
@@ -295,13 +351,15 @@ export default function Home() {
             <p className="section-subtitle">Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber</p>
           </div>
 
-          <div className="impact-cards">
+          <div className="impact-cards-v2">
             {IMPACT_STATS.map((stat, index) => (
-              <div key={index} className="impact-card">
-                <div className="impact-icon">{stat.icon}</div>
-                <div className="impact-stat">{stat.value}</div>
-                <div className="impact-label">{stat.label}</div>
-                <p className="impact-detail">{stat.description}</p>
+              <div key={index} className="impact-card-v2">
+                <div className="impact-header-v2">
+                  <div className="impact-icon-v2">{stat.icon}</div>
+                  <div className="impact-stat-v2">{stat.value}</div>
+                </div>
+                <div className="impact-label-v2">{stat.label}</div>
+                <p className="impact-detail-v2">{stat.description}</p>
               </div>
             ))}
           </div>
@@ -314,7 +372,6 @@ export default function Home() {
             <p className="section-subtitle">Un audit coûte 200x moins cher qu'une sanction</p>
           </div>
 
-          {/* ✅ 2) BLOC VERT AVEC BOUTON SIMULATEUR */}
           <div className="subsidy-banner">
             <div className="subsidy-content">
               <div className="subsidy-icon">💡</div>
@@ -328,7 +385,6 @@ export default function Home() {
           </div>
 
           <div className="pricing-cards-desktop">
-            {/* ✅ 3) OFFRE 1 : ESSENTIELLE (ex-Découverte) */}
             <div className="price-card-desktop">
               <div className="price-card-header">
                 <h3>Essentielle</h3>
@@ -356,7 +412,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* ✅ 3) OFFRE 2 : SÉRÉNITÉ (ex-Essentiel) - POPULAIRE */}
             <div className="price-card-desktop featured">
               <div className="popular-badge">⭐ POPULAIRE</div>
               
@@ -371,7 +426,6 @@ export default function Home() {
                 Entreprises visant la conformité NIS2
               </div>
 
-              {/* ✅ 4) LISTE SIMPLIFIÉE SANS "Tout de l'offre" */}
               <ul className="features">
                 <li>Audit cyber NIS2 complet</li>
                 <li>Rapport validé par experts</li>
@@ -394,7 +448,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* ✅ 5) OFFRE 3 : EXPERTISE - UN SEUL + */}
             <div className="price-card-desktop">
               <div className="price-card-header">
                 <h3>Expertise</h3>
@@ -531,7 +584,6 @@ export default function Home() {
           )}
         </section>
 
-        {/* ✅ 6) SERVICES COMPLÉMENTAIRES - NOUVEAU FORMAT */}
         <section className="complementary-services-v2">
           <div className="section-header">
             <h2 className="services-title">Services complémentaires</h2>
@@ -539,7 +591,6 @@ export default function Home() {
           </div>
 
           <div className="services-horizontal">
-            {/* SERVICE 1 */}
             <div className="service-card-h">
               <div className="service-header-h">
                 <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #3F51B5 0%, #303F9F 100%)'}}>
@@ -561,7 +612,6 @@ export default function Home() {
               </ul>
             </div>
 
-            {/* SERVICE 2 */}
             <div className="service-card-h">
               <div className="service-header-h">
                 <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #00875A 0%, #006644 100%)'}}>
@@ -583,7 +633,6 @@ export default function Home() {
               </ul>
             </div>
 
-            {/* SERVICE 3 */}
             <div className="service-card-h">
               <div className="service-header-h">
                 <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #FF5630 0%, #d63b1f 100%)'}}>
@@ -608,6 +657,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ✅ 5) EXPERTISE - CHIFFRE À CÔTÉ DU LOGO */}
         <section className="expertise-section">
           <div className="section-header">
             <div className="section-badge success">NOTRE APPROCHE</div>
@@ -629,21 +679,25 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="expertise-grid">
-            <div className="expertise-card">
-              <div className="expertise-number">15+</div>
-              <div className="expertise-title">Années d'expérience terrain</div>
+          <div className="expertise-grid-v2">
+            <div className="expertise-card-v2">
+              <div className="expertise-header-v2">
+                <div className="expertise-number-v2">15+</div>
+                <div className="expertise-title-v2">Années d'expérience terrain</div>
+              </div>
               <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber.</p>
             </div>
 
-            <div className="expertise-card highlight">
-              <div className="certification-badge">
-                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
+            <div className="expertise-card-v2 highlight">
+              <div className="expertise-header-v2">
+                <div className="certification-badge-v2">
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <div className="expertise-title-v2">Une équipe d'experts en cyber défense</div>
               </div>
-              <div className="expertise-title">Une équipe d'experts en cyber défense</div>
               <p>Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
             </div>
           </div>
@@ -687,7 +741,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ✅ ID AJOUTÉ POUR ANCRE */}
         <section className="video-section" id="video-section">
           <div className="video-header">
             <div className="video-badge">🎥 Comprendre NIS2 en vidéo</div>
@@ -744,12 +797,20 @@ export default function Home() {
       <QuizModal quiz={quiz} />
 
       <style jsx>{`
+        /* ✅ 1) LOGO IMAGE */
+        .logo-image {
+          margin-bottom: 20px;
+          text-align: center;
+        }
+
+        /* ✅ 2) TAGLINE 2 LIGNES */
         .tagline {
-          font-size: 13px;
+          font-size: 14px;
           color: #505F79;
           margin-bottom: 28px;
           font-weight: 600;
-          line-height: 1.4;
+          line-height: 1.6;
+          text-align: center;
         }
 
         .subtitle-large {
@@ -760,7 +821,233 @@ export default function Home() {
           font-weight: 500;
         }
 
-        /* ✅ 2) BLOC VERT AVEC BOUTON */
+        /* ✅ 3) BLOCS ALIGNÉS FACE À FACE */
+        .risk-opportunity-wrapper-v2 {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+          margin: 48px 0;
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .warning-card-v2,
+        .value-prop-v2 {
+          background: white;
+          border-radius: 20px;
+          padding: 32px;
+          border: 3px solid;
+        }
+
+        .warning-card-v2 {
+          border-color: #FF5630;
+          background: linear-gradient(to bottom, #fff5f5 0%, white 100%);
+        }
+
+        .value-prop-v2 {
+          border-color: #00875A;
+          background: linear-gradient(to bottom, #f0fdf4 0%, white 100%);
+        }
+
+        .warning-card-v2 h2,
+        .value-prop-v2 h2 {
+          font-size: 24px;
+          font-weight: 800;
+          margin-bottom: 24px;
+          padding-bottom: 20px;
+          border-bottom: 2px solid #F7F8FC;
+        }
+
+        .warning-card-v2 h2 {
+          color: #C9372C;
+        }
+
+        .value-prop-v2 h2 {
+          color: #00875A;
+        }
+
+        .risk-list,
+        .value-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .risk-list li,
+        .value-list li {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+          min-height: 60px;
+        }
+
+        .risk-icon,
+        .value-icon {
+          flex-shrink: 0;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          font-size: 18px;
+          margin-top: 2px;
+        }
+
+        .risk-icon {
+          background: #FFEBE6;
+          color: #C9372C;
+        }
+
+        .value-icon {
+          background: #E3FCEF;
+          color: #00875A;
+        }
+
+        .risk-list li div,
+        .value-list li div {
+          flex: 1;
+          font-size: 14px;
+          line-height: 1.6;
+          color: #505F79;
+        }
+
+        .risk-list li div strong,
+        .value-list li div strong {
+          color: #091E42;
+          display: block;
+          margin-bottom: 4px;
+        }
+
+        /* ✅ 4) IMPACT CARDS - HORIZONTAL */
+        .impact-cards-v2 {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+          margin-top: 40px;
+        }
+
+        .impact-card-v2 {
+          background: white;
+          border: 2px solid #EFF1F5;
+          border-radius: 16px;
+          padding: 24px 20px;
+          text-align: center;
+          transition: all 0.3s ease;
+        }
+
+        .impact-card-v2:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 24px rgba(0, 82, 204, 0.1);
+          border-color: #0052CC;
+        }
+
+        .impact-header-v2 {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin-bottom: 16px;
+        }
+
+        .impact-icon-v2 {
+          font-size: 40px;
+          flex-shrink: 0;
+        }
+
+        .impact-stat-v2 {
+          font-size: 36px;
+          font-weight: 800;
+          color: #FF5630;
+          line-height: 1;
+        }
+
+        .impact-label-v2 {
+          font-size: 16px;
+          font-weight: 700;
+          color: #091E42;
+          margin-bottom: 12px;
+        }
+
+        .impact-detail-v2 {
+          font-size: 13px;
+          color: #505F79;
+          line-height: 1.5;
+        }
+
+        /* ✅ 5) EXPERTISE GRID - HORIZONTAL */
+        .expertise-grid-v2 {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 32px;
+          margin-top: 48px;
+        }
+
+        .expertise-card-v2 {
+          background: white;
+          border: 3px solid #0052CC;
+          border-radius: 20px;
+          padding: 32px;
+          transition: all 0.3s ease;
+        }
+
+        .expertise-card-v2:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(0, 82, 204, 0.15);
+        }
+
+        .expertise-card-v2.highlight {
+          background: linear-gradient(to bottom, #f0f9ff 0%, white 100%);
+        }
+
+        .expertise-header-v2 {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          margin-bottom: 16px;
+          padding-bottom: 20px;
+          border-bottom: 2px solid #F7F8FC;
+        }
+
+        .expertise-number-v2 {
+          font-size: 48px;
+          font-weight: 800;
+          color: #0052CC;
+          line-height: 1;
+          flex-shrink: 0;
+        }
+
+        .certification-badge-v2 {
+          width: 64px;
+          height: 64px;
+          background: linear-gradient(135deg, #0052CC 0%, #003D99 100%);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          flex-shrink: 0;
+        }
+
+        .expertise-title-v2 {
+          font-size: 18px;
+          font-weight: 700;
+          color: #091E42;
+          line-height: 1.3;
+          flex: 1;
+        }
+
+        .expertise-card-v2 p {
+          font-size: 14px;
+          color: #505F79;
+          line-height: 1.6;
+        }
+
         .subsidy-banner {
           max-width: 1200px;
           margin: 0 auto 40px auto;
@@ -920,7 +1207,6 @@ export default function Home() {
           font-size: 18px;
         }
 
-        /* ✅ 5) UN SEUL TYPE DE + */
         .price-card-desktop .features li.feature-plus {
           color: #505F79;
           font-weight: 500;
@@ -1065,7 +1351,6 @@ export default function Home() {
           font-weight: 600;
         }
 
-        /* ✅ 6) SERVICES COMPLÉMENTAIRES - FORMAT HORIZONTAL */
         .complementary-services-v2 {
           margin: 64px 0;
         }
@@ -1175,10 +1460,12 @@ export default function Home() {
           font-size: 16px;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 1024px) {
+          .risk-opportunity-wrapper-v2,
           .pricing-cards-desktop,
-          .services-horizontal {
+          .services-horizontal,
+          .impact-cards-v2,
+          .expertise-grid-v2 {
             grid-template-columns: 1fr;
           }
 
