@@ -134,13 +134,14 @@ export default function Home() {
         <span>⚠️ NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant</span>
       </div>
 
+      {/* ✅ STICKY HEADER AVEC LOGO PLUS GROS */}
       <div className="sticky-header" id="stickyHeader">
         <div className="sticky-header-content">
           <div className="sticky-logo-img">
             <img 
               src="/logo.png" 
               alt="Cyber Solférino" 
-              style={{height: '64px', width: 'auto'}}
+              className="sticky-logo-large"
             />
           </div>
           <div className="sticky-cta-group">
@@ -156,13 +157,14 @@ export default function Home() {
 
       <div className="container">
         <section className="hero">
-          <div className="logo-baseline-wrapper">
+          {/* ✅ 1) LOGO PLUS GROS + TEXTE PLUS PROCHE */}
+          <div className="logo-baseline-wrapper-centered">
             <img 
               src="/logo.png" 
               alt="Cyber Solférino" 
-              className="logo-img"
+              className="logo-img-large"
             />
-            <div className="tagline">
+            <div className="tagline-centered">
               La plateforme d'audit et de conformité cyber<br />
               pensée pour les PME et ETI européennes
             </div>
@@ -174,7 +176,7 @@ export default function Home() {
           
           <p className="subtitle-large">
             Protégez votre activité, votre réputation et votre résilience. 
-            Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber.
+            Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber certifiés ISO 27001.
           </p>
 
           <div className="stats">
@@ -198,9 +200,7 @@ export default function Home() {
 
         <div className="risk-opportunity-wrapper">
           <section className="warning-card">
-            {/* ✅ 1) TITRE SUR 2 LIGNES */}
-            <h2>⚠️ Les enjeux de la non-conformité</h2>
-            <br />
+            <h2>⚠️ Les enjeux de la<br />non-conformité</h2>
             <ul className="warning-list">
               <li><strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</li>
               <li><strong>Responsabilité pénale du dirigeant</strong> — En cas de manquement aux obligations NIS2</li>
@@ -211,7 +211,7 @@ export default function Home() {
           </section>
 
           <section className="value-prop">
-            <h2>🏆 Transformez la contrainte en levier stratégique</h2>
+            <h2>🏆 Transformez la contrainte en<br />levier stratégique</h2>
             <ul className="value-list">
               <li><strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection</li>
               <li><strong>Différenciez-vous</strong> — Positionnez-vous comme le partenaire de confiance de votre secteur</li>
@@ -227,7 +227,7 @@ export default function Home() {
           <a href="#pricing" className="btn">Découvrir nos offres</a>
         </div>
 
-        {/* ✅ 2) RISQUES CHIFFRÉS - 2 CARDS LARGES */}
+        {/* ✅ 2) RISQUES CHIFFRÉS - SANS ESPACE ENTRE TITRE ET TEXTE */}
         <section className="impact-section">
           <div className="section-header">
             <div className="section-badge">RISQUES CHIFFRÉS</div>
@@ -240,7 +240,8 @@ export default function Home() {
               <div className="impact-header-horizontal">
                 <div className="impact-icon">📈</div>
                 <div className="impact-stat">+38%</div>
-              <div className="impact-label">Hausse attaques cyber</div>
+              </div>
+              <div className="impact-label-compact">Hausse attaques cyber</div>
               <p className="impact-detail">Les attaques contre les PME ont explosé de 38% en 2024. Les cybercriminels ciblent les entreprises non protégées.</p>
             </div>
 
@@ -248,7 +249,8 @@ export default function Home() {
               <div className="impact-header-horizontal">
                 <div className="impact-icon">💸</div>
                 <div className="impact-stat">4,35M€</div>
-              <div className="impact-label">Coût moyen cyber attaque</div>
+              </div>
+              <div className="impact-label-compact">Coût moyen cyber attaque</div>
               <p className="impact-detail">60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne), perte de données, rançons.</p>
             </div>
           </div>
@@ -546,7 +548,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ✅ 3) EXPERTISE - RETOUR VERSION ORIGINALE */}
+        {/* ✅ 3) NOTRE APPROCHE - DESIGN EXACT DU SCREENSHOT */}
         <section className="expertise-section">
           <div className="section-header">
             <div className="section-badge success">NOTRE APPROCHE</div>
@@ -568,22 +570,30 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="expertise-grid">
-            <div className="expertise-card">
-              <div className="expertise-number">15+</div>
-              <div className="expertise-title">Années d'expérience terrain</div>
-              <p>Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber.</p>
+          <div className="expertise-grid-horizontal">
+            <div className="expertise-card-horizontal">
+              <div className="expertise-header-horizontal">
+                <div className="expertise-number-large">15+</div>
+                <div className="expertise-text">
+                  <div className="expertise-title-bold">Années d'expérience terrain</div>
+                </div>
+              </div>
+              <p className="expertise-description">Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber.</p>
             </div>
 
-            <div className="expertise-card highlight">
-              <div className="certification-badge">
-                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
+            <div className="expertise-card-horizontal">
+              <div className="expertise-header-horizontal">
+                <div className="certification-icon-large">
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <div className="expertise-text">
+                  <div className="expertise-title-bold">Une équipe d'experts en cyber défense</div>
+                </div>
               </div>
-              <div className="expertise-title">Une équipe d'experts en cyber défense</div>
-              <p>Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
+              <p className="expertise-description">Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
             </div>
           </div>
         </section>
@@ -595,7 +605,6 @@ export default function Home() {
           </a>
         </div>
 
-        {/* ✅ 4) TESTIMONIALS - 3 CÔTE À CÔTE */}
         <section className="social-proof">
           <div className="section-header">
             <div className="section-badge">TÉMOIGNAGES</div>
@@ -675,22 +684,30 @@ export default function Home() {
       <QuizModal quiz={quiz} />
 
       <style jsx>{`
-        .logo-baseline-wrapper {
-          text-align: left;
-          margin-bottom: 32px;
+        /* ✅ 1) LOGO PLUS GROS + TEXTE PLUS PROCHE + CENTRÉ */
+        .logo-baseline-wrapper-centered {
+          text-align: center;
+          margin-bottom: 40px;
         }
 
-        .logo-img {
-          max-width: 200px;
+        .logo-img-large {
+          max-width: 280px;
           height: auto;
-          margin-bottom: 16px;
+          margin-bottom: 8px;
         }
 
-        .tagline {
-          font-size: 14px;
+        .tagline-centered {
+          font-size: 16px;
           color: #505F79;
           font-weight: 600;
-          line-height: 1.6;
+          line-height: 1.5;
+          margin-top: 0;
+        }
+
+        /* STICKY HEADER LOGO PLUS GROS */
+        .sticky-logo-large {
+          height: 48px;
+          width: auto;
         }
 
         .subtitle-large {
@@ -747,7 +764,7 @@ export default function Home() {
           display: inline;
         }
 
-        /* ✅ 2) 2 CARDS LARGES */
+        /* ✅ 2) SANS ESPACE ENTRE TITRE ET TEXTE */
         .impact-cards-two {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -778,7 +795,7 @@ export default function Home() {
           display: flex;
           align-items: center;
           gap: 20px;
-          margin-bottom: 24px;
+          margin-bottom: 16px;
         }
 
         .impact-icon {
@@ -793,17 +810,87 @@ export default function Home() {
           line-height: 1;
         }
 
-        .impact-label {
+        .impact-label-compact {
           font-size: 20px;
           font-weight: 700;
           color: #091E42;
-          margin-bottom: 16px;
+          margin-bottom: 8px;
         }
 
         .impact-detail {
           font-size: 15px;
           color: #505F79;
           line-height: 1.6;
+        }
+
+        /* ✅ 3) NOTRE APPROCHE - DESIGN EXACT */
+        .expertise-grid-horizontal {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 32px;
+          margin-top: 48px;
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .expertise-card-horizontal {
+          background: white;
+          border: 3px solid #0052CC;
+          border-radius: 20px;
+          padding: 36px 32px;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 16px rgba(0, 82, 204, 0.12);
+        }
+
+        .expertise-card-horizontal:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(0, 82, 204, 0.18);
+        }
+
+        .expertise-header-horizontal {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          margin-bottom: 16px;
+        }
+
+        .expertise-number-large {
+          font-size: 56px;
+          font-weight: 800;
+          color: #0052CC;
+          line-height: 1;
+          flex-shrink: 0;
+        }
+
+        .certification-icon-large {
+          width: 80px;
+          height: 80px;
+          background: #0052CC;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          flex-shrink: 0;
+        }
+
+        .expertise-text {
+          flex: 1;
+        }
+
+        .expertise-title-bold {
+          font-size: 20px;
+          font-weight: 700;
+          color: #091E42;
+          line-height: 1.3;
+        }
+
+        .expertise-description {
+          font-size: 15px;
+          color: #505F79;
+          line-height: 1.6;
+          margin: 0;
         }
 
         .price-card-desktop .features li.feature-plus::before {
@@ -1223,7 +1310,6 @@ export default function Home() {
           font-size: 16px;
         }
 
-        /* ✅ 4) TESTIMONIALS GRID 3 COLONNES */
         .testimonials-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -1292,7 +1378,8 @@ export default function Home() {
           .pricing-cards-desktop,
           .services-horizontal,
           .impact-cards-two,
-          .testimonials-grid {
+          .testimonials-grid,
+          .expertise-grid-horizontal {
             grid-template-columns: 1fr;
           }
 
@@ -1317,6 +1404,14 @@ export default function Home() {
 
           .btn-simulator {
             width: 100%;
+          }
+
+          .logo-img-large {
+            max-width: 200px;
+          }
+
+          .tagline-centered {
+            font-size: 14px;
           }
         }
       `}</style>
