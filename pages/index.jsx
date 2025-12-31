@@ -708,7 +708,7 @@ export default function Home() {
         .hero-logo {
           max-width: 360px;
           height: auto;
-          margin: 0 auto 16px;
+          margin: 0 auto 8px;
           display: block;
         }
 
@@ -718,11 +718,15 @@ export default function Home() {
           color: #64748B;
           line-height: 1.5;
           max-width: 680px;
-          margin: 0 auto 24px;
+          margin: 0 auto 20px;
         }
 
         .hero-separator {
-          display: none;
+          width: 120px;
+          height: 3px;
+          background: linear-gradient(90deg, #FF5630 0%, #FFB199 100%);
+          margin: 20px auto;
+          border-radius: 2px;
         }
 
         .hero-title {
