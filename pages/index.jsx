@@ -699,16 +699,16 @@ export default function Home() {
 
         .hero-minimal {
           text-align: center;
-          padding: 32px 20px 100px;
+          padding: 16px 20px 100px;
           max-width: 1200px;
           margin: 0 auto;
           background: linear-gradient(to bottom, #FFFFFF 0%, #FAFAFA 100%);
         }
 
         .hero-logo {
-          max-width: 320px;
+          max-width: 360px;
           height: auto;
-          margin: 0 auto 8px;
+          margin: 0 auto 4px;
           display: block;
         }
 
@@ -718,14 +718,14 @@ export default function Home() {
           color: #64748B;
           line-height: 1.5;
           max-width: 680px;
-          margin: 0 auto 20px;
+          margin: 0 auto 16px;
         }
 
         .hero-separator {
           width: 120px;
           height: 3px;
           background: linear-gradient(90deg, #FF5630 0%, #FFB199 100%);
-          margin: 20px auto;
+          margin: 16px auto;
           border-radius: 2px;
         }
 
@@ -735,7 +735,7 @@ export default function Home() {
           color: #FF5630;
           line-height: 1.25;
           max-width: 800px;
-          margin: 0 auto 24px;
+          margin: 0 auto 20px;
           letter-spacing: -0.02em;
         }
 
@@ -745,7 +745,7 @@ export default function Home() {
           color: #334155;
           line-height: 1.75;
           max-width: 820px;
-          margin: 0 auto 56px;
+          margin: 0 auto 48px;
         }
 
         .hero-stats-minimal {
@@ -817,39 +817,40 @@ export default function Home() {
         /* RESPONSIVE HERO */
         @media (max-width: 768px) {
           .hero-minimal {
-            padding: 24px 20px 80px;
+            padding: 8px 20px 80px;
           }
 
           .hero-logo {
-            max-width: 200px;
-            margin-bottom: 8px;
+            max-width: 220px;
+            margin-bottom: 4px;
           }
 
           .hero-baseline {
             font-size: 14px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
           }
 
           .hero-separator {
-            margin: 16px auto;
+            margin: 12px auto;
           }
 
           .hero-title {
-            font-size: 36px;
-            margin-bottom: 20px;
+            font-size: 32px;
+            margin-bottom: 16px;
           }
 
           .hero-subtitle {
-            font-size: 16px;
-            margin-bottom: 40px;
+            font-size: 15px;
+            margin-bottom: 36px;
+            line-height: 1.6;
           }
 
           .hero-stats-minimal {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 32px 24px;
-            margin-bottom: 40px;
-            max-width: 400px;
+            gap: 28px 20px;
+            margin-bottom: 36px;
+            max-width: 380px;
             margin-left: auto;
             margin-right: auto;
           }
@@ -859,12 +860,21 @@ export default function Home() {
           }
 
           .stat-value-minimal {
-            font-size: 36px;
+            font-size: 32px;
+          }
+
+          .stat-label-minimal {
+            font-size: 12px;
           }
 
           .hero-cta-primary {
-            font-size: 16px;
-            padding: 16px 32px;
+            font-size: 15px;
+            padding: 14px 28px;
+            margin-bottom: 24px;
+          }
+
+          .hero-cta-link {
+            font-size: 14px;
           }
         }
 
