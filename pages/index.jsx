@@ -699,7 +699,7 @@ export default function Home() {
 
         .hero-minimal {
           text-align: center;
-          padding: 60px 20px 100px;
+          padding: 32px 20px 100px;
           max-width: 1200px;
           margin: 0 auto;
           background: linear-gradient(to bottom, #FFFFFF 0%, #FAFAFA 100%);
@@ -708,7 +708,7 @@ export default function Home() {
         .hero-logo {
           max-width: 320px;
           height: auto;
-          margin: 0 auto 16px;
+          margin: 0 auto 8px;
           display: block;
         }
 
@@ -718,7 +718,7 @@ export default function Home() {
           color: #64748B;
           line-height: 1.5;
           max-width: 680px;
-          margin: 0 auto 24px;
+          margin: 0 auto 20px;
         }
 
         .hero-separator {
@@ -817,19 +817,26 @@ export default function Home() {
         /* RESPONSIVE HERO */
         @media (max-width: 768px) {
           .hero-minimal {
-            padding: 60px 20px 80px;
+            padding: 24px 20px 80px;
           }
 
           .hero-logo {
-            max-width: 180px;
+            max-width: 200px;
+            margin-bottom: 8px;
           }
 
           .hero-baseline {
             font-size: 14px;
+            margin-bottom: 16px;
+          }
+
+          .hero-separator {
+            margin: 16px auto;
           }
 
           .hero-title {
             font-size: 36px;
+            margin-bottom: 20px;
           }
 
           .hero-subtitle {
@@ -838,9 +845,17 @@ export default function Home() {
           }
 
           .hero-stats-minimal {
-            flex-direction: column;
-            gap: 32px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px 24px;
             margin-bottom: 40px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .stat-minimal {
+            min-width: unset;
           }
 
           .stat-value-minimal {
