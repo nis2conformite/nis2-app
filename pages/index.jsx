@@ -134,7 +134,6 @@ export default function Home() {
         <span>⚠️ NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant</span>
       </div>
 
-      {/* ✅ STICKY HEADER AVEC LOGO PLUS GROS */}
       <div className="sticky-header" id="stickyHeader">
         <div className="sticky-header-content">
           <div className="sticky-logo-img">
@@ -156,46 +155,58 @@ export default function Home() {
       </div>
 
       <div className="container">
-        <section className="hero">
-          {/* ✅ 1) LOGO PLUS GROS + TEXTE PLUS PROCHE */}
-          <div className="logo-baseline-wrapper-centered">
-            <img 
-              src="/logo.png" 
-              alt="Cyber Solférino" 
-              className="logo-img-large"
-            />
-            <div className="tagline-centered">
-              La plateforme d'audit et de conformité cyber<br />
-              pensée pour les PME et ETI européennes
-            </div>
-          </div>
+        {/* ✅ NOUVELLE SECTION HERO - PROPOSITION 3 MINIMALISTE PREMIUM */}
+        <section className="hero-minimal">
+          <img 
+            src="/logo.png" 
+            alt="Cyber Solférino" 
+            className="hero-logo"
+          />
           
-          <h1>
-            <span className="highlight">Anticipez les risques financiers liés à NIS2</span>
-          </h1>
-          
-          <p className="subtitle-large">
-            Protégez votre activité, votre réputation et votre résilience. 
-            Transformez NIS2 en levier de performance avec un accompagnement d'experts cyber certifiés ISO 27001.
+          <p className="hero-baseline">
+            La plateforme d'audit et de conformité cyber<br />
+            pensée pour les PME et ETI européennes
           </p>
 
-          <div className="stats">
-            {HERO_STATS.map((stat, index) => (
-              <div key={index} className="stat">
-                <div className="stat-value">{stat.value}</div>
-                <div className="stat-label">{stat.label}</div>
-              </div>
-            ))}
+          <div className="hero-separator"></div>
+
+          <h1 className="hero-title">
+            Anticipez les risques financiers<br />
+            liés à NIS2
+          </h1>
+          
+          <p className="hero-subtitle">
+            Protégez votre activité, votre réputation et votre résilience. 
+            Transformez NIS2 en levier de performance avec un accompagnement 
+            d'experts cyber certifiés ISO 27001.
+          </p>
+
+          <div className="hero-stats-minimal">
+            <div className="stat-minimal">
+              <div className="stat-value-minimal">92%</div>
+              <div className="stat-label-minimal">PME et ETI<br />non prêtes</div>
+            </div>
+            <div className="stat-minimal">
+              <div className="stat-value-minimal">10M€</div>
+              <div className="stat-label-minimal">amende max<br />ou 2% du CA</div>
+            </div>
+            <div className="stat-minimal">
+              <div className="stat-value-minimal">70%</div>
+              <div className="stat-label-minimal">d'aides de l'état<br />possibles</div>
+            </div>
+            <div className="stat-minimal">
+              <div className="stat-value-minimal">+40%</div>
+              <div className="stat-label-minimal">de cyber attaques<br />en 2024</div>
+            </div>
           </div>
 
-          <div className="cta-group">
-            <button onClick={quiz.openQuiz} className="btn btn-primary">
-              🎯 Suis-je concerné par NIS2 ?
-            </button>
-            <a href="#video-section" className="btn btn-secondary">
-              Comprendre NIS2 en vidéo
-            </a>
-          </div>
+          <button onClick={quiz.openQuiz} className="hero-cta-primary">
+            🎯 Suis-je concerné par NIS2 ?
+          </button>
+
+          <a href="#video-section" className="hero-cta-link">
+            Comprendre NIS2 en vidéo →
+          </a>
         </section>
 
         <div className="risk-opportunity-wrapper">
@@ -227,7 +238,6 @@ export default function Home() {
           <a href="#pricing" className="btn">Découvrir nos offres</a>
         </div>
 
-        {/* ✅ 2) RISQUES CHIFFRÉS - SANS ESPACE ENTRE TITRE ET TEXTE */}
         <section className="impact-section">
           <div className="section-header">
             <div className="section-badge">RISQUES CHIFFRÉS</div>
@@ -548,7 +558,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ✅ 3) NOTRE APPROCHE - DESIGN EXACT DU SCREENSHOT */}
         <section className="expertise-section">
           <div className="section-header">
             <div className="section-badge success">NOTRE APPROCHE</div>
@@ -684,38 +693,178 @@ export default function Home() {
       <QuizModal quiz={quiz} />
 
       <style jsx>{`
-        /* ✅ 1) LOGO PLUS GROS + TEXTE PLUS PROCHE + CENTRÉ */
-        .logo-baseline-wrapper-centered {
+        /* ═══════════════════════════════════════════════════════════
+           ✨ NOUVELLE SECTION HERO - MINIMALISTE PREMIUM (PROP 3)
+           ═══════════════════════════════════════════════════════════ */
+
+        .hero-minimal {
           text-align: center;
-          margin-bottom: 40px;
+          padding: 80px 20px 100px;
+          max-width: 1200px;
+          margin: 0 auto;
+          background: linear-gradient(to bottom, #FFFFFF 0%, #FAFAFA 100%);
         }
 
-        .logo-img-large {
-          max-width: 280px;
+        .hero-logo {
+          max-width: 260px;
           height: auto;
+          margin: 0 auto 12px;
+          display: block;
+        }
+
+        .hero-baseline {
+          font-size: 16px;
+          font-weight: 600;
+          color: #64748B;
+          line-height: 1.5;
+          max-width: 680px;
+          margin: 0 auto 20px;
+        }
+
+        .hero-separator {
+          width: 120px;
+          height: 3px;
+          background: linear-gradient(90deg, #FF5630 0%, #FFB199 100%);
+          margin: 20px auto;
+          border-radius: 2px;
+        }
+
+        .hero-title {
+          font-size: 48px;
+          font-weight: 900;
+          color: #FF5630;
+          line-height: 1.25;
+          max-width: 800px;
+          margin: 0 auto 24px;
+          letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+          font-size: 18px;
+          font-weight: 500;
+          color: #334155;
+          line-height: 1.75;
+          max-width: 820px;
+          margin: 0 auto 56px;
+        }
+
+        .hero-stats-minimal {
+          display: flex;
+          justify-content: center;
+          gap: 48px;
+          margin-bottom: 56px;
+          flex-wrap: wrap;
+        }
+
+        .stat-minimal {
+          text-align: center;
+          min-width: 140px;
+        }
+
+        .stat-value-minimal {
+          font-size: 44px;
+          font-weight: 900;
+          color: #0052CC;
+          line-height: 1;
           margin-bottom: 8px;
         }
 
-        .tagline-centered {
-          font-size: 16px;
-          color: #505F79;
+        .stat-label-minimal {
+          font-size: 13px;
           font-weight: 600;
-          line-height: 1.5;
-          margin-top: 0;
+          color: #64748B;
+          line-height: 1.4;
         }
 
-        /* STICKY HEADER LOGO PLUS GROS */
+        .hero-cta-primary {
+          display: inline-block;
+          background: #FF5630;
+          color: white;
+          padding: 18px 48px;
+          border-radius: 14px;
+          font-size: 17px;
+          font-weight: 700;
+          border: none;
+          cursor: pointer;
+          box-shadow: 0 6px 20px rgba(255, 86, 48, 0.25);
+          transition: all 0.3s ease;
+          max-width: 500px;
+          width: 100%;
+          margin-bottom: 20px;
+        }
+
+        .hero-cta-primary:hover {
+          background: #E64825;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 28px rgba(255, 86, 48, 0.35);
+        }
+
+        .hero-cta-link {
+          display: inline-block;
+          font-size: 16px;
+          font-weight: 600;
+          color: #0052CC;
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+
+        .hero-cta-link:hover {
+          text-decoration: underline;
+          color: #003D99;
+        }
+
+        /* RESPONSIVE HERO */
+        @media (max-width: 768px) {
+          .hero-minimal {
+            padding: 60px 20px 80px;
+          }
+
+          .hero-logo {
+            max-width: 180px;
+          }
+
+          .hero-baseline {
+            font-size: 14px;
+          }
+
+          .hero-title {
+            font-size: 36px;
+          }
+
+          .hero-subtitle {
+            font-size: 16px;
+            margin-bottom: 40px;
+          }
+
+          .hero-stats-minimal {
+            flex-direction: column;
+            gap: 32px;
+            margin-bottom: 40px;
+          }
+
+          .stat-value-minimal {
+            font-size: 36px;
+          }
+
+          .hero-cta-primary {
+            font-size: 16px;
+            padding: 16px 32px;
+          }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .hero-stats-minimal {
+            gap: 32px;
+          }
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           🔄 RESTE DU DESIGN INCHANGÉ
+           ═══════════════════════════════════════════════════════════ */
+
         .sticky-logo-large {
           height: 48px;
           width: auto;
-        }
-
-        .subtitle-large {
-          font-size: 18px;
-          color: #091E42;
-          margin-bottom: 24px;
-          line-height: 1.6;
-          font-weight: 500;
         }
 
         .risk-opportunity-wrapper {
@@ -764,7 +913,6 @@ export default function Home() {
           display: inline;
         }
 
-        /* ✅ 2) SANS ESPACE ENTRE TITRE ET TEXTE */
         .impact-cards-two {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -823,7 +971,6 @@ export default function Home() {
           line-height: 1.6;
         }
 
-        /* ✅ 3) NOTRE APPROCHE - DESIGN EXACT */
         .expertise-grid-horizontal {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -1390,28 +1537,6 @@ export default function Home() {
 
           .subsidy-content {
             flex-direction: column;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .subtitle-large {
-            font-size: 16px;
-          }
-
-          .subsidy-banner {
-            padding: 16px 20px;
-          }
-
-          .btn-simulator {
-            width: 100%;
-          }
-
-          .logo-img-large {
-            max-width: 200px;
-          }
-
-          .tagline-centered {
-            font-size: 14px;
           }
         }
       `}</style>
