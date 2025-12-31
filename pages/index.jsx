@@ -102,76 +102,6 @@ export default function Home() {
       observer.observe(el);
     });
 
-    const carousel = document.getElementById('testimonialCarousel');
-    if (carousel) {
-      const wrapper = carousel.querySelector('.testimonials-wrapper');
-      const testimonials = carousel.querySelectorAll('.testimonial');
-      const dotsContainer = document.getElementById('carouselDots');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      
-      let currentIndex = 0;
-      const totalSlides = testimonials.length;
-
-      for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement('div');
-        dot.classList.add('carousel-dot');
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(i));
-        dotsContainer.appendChild(dot);
-      }
-
-      const dots = dotsContainer.querySelectorAll('.carousel-dot');
-
-      function updateCarousel() {
-        wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-        dots.forEach((dot, index) => {
-          dot.classList.toggle('active', index === currentIndex);
-        });
-      }
-
-      function goToSlide(index) {
-        currentIndex = index;
-        updateCarousel();
-      }
-
-      function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateCarousel();
-      }
-
-      function prevSlide() {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        updateCarousel();
-      }
-
-      if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-      if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-
-      let autoplayInterval = setInterval(nextSlide, 5000);
-
-      carousel.addEventListener('mouseenter', () => {
-        clearInterval(autoplayInterval);
-      });
-
-      carousel.addEventListener('mouseleave', () => {
-        autoplayInterval = setInterval(nextSlide, 5000);
-      });
-
-      let touchStartX = 0;
-      let touchEndX = 0;
-
-      carousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-      });
-
-      carousel.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        if (touchStartX - touchEndX > 50) nextSlide();
-        if (touchEndX - touchStartX > 50) prevSlide();
-      });
-    }
-
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -204,7 +134,6 @@ export default function Home() {
         <span>⚠️ NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant</span>
       </div>
 
-      {/* ✅ 5) STICKY HEADER AVEC LOGO */}
       <div className="sticky-header" id="stickyHeader">
         <div className="sticky-header-content">
           <div className="sticky-logo-img">
@@ -227,7 +156,6 @@ export default function Home() {
 
       <div className="container">
         <section className="hero">
-          {/* ✅ 1) LOGO + BASELINE À GAUCHE */}
           <div className="logo-baseline-wrapper">
             <img 
               src="/logo.png" 
@@ -268,10 +196,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ✅ 2) ANCIEN DESIGN AVEC ALIGNEMENT */}
         <div className="risk-opportunity-wrapper">
           <section className="warning-card">
-            <h2>⚠️ Les enjeux de la non-conformité</h2>
+            {/* ✅ 1) TITRE SUR 2 LIGNES */}
+            <h2>⚠️ Les enjeux de la<br />non-conformité</h2>
             <ul className="warning-list">
               <li><strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</li>
               <li><strong>Responsabilité pénale du dirigeant</strong> — En cas de manquement aux obligations NIS2</li>
@@ -282,7 +210,7 @@ export default function Home() {
           </section>
 
           <section className="value-prop">
-            <h2>🏆 Transformez la contrainte en levier stratégique</h2>
+            <h2>🏆 Transformez la contrainte en<br />levier stratégique</h2>
             <ul className="value-list">
               <li><strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection</li>
               <li><strong>Différenciez-vous</strong> — Positionnez-vous comme le partenaire de confiance de votre secteur</li>
@@ -298,7 +226,7 @@ export default function Home() {
           <a href="#pricing" className="btn">Découvrir nos offres</a>
         </div>
 
-        {/* ✅ 3) RISQUES CHIFFRÉS - CARDS LARGES */}
+        {/* ✅ 2) RISQUES CHIFFRÉS - 2 CARDS LARGES */}
         <section className="impact-section">
           <div className="section-header">
             <div className="section-badge">RISQUES CHIFFRÉS</div>
@@ -306,17 +234,24 @@ export default function Home() {
             <p className="section-subtitle">Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber</p>
           </div>
 
-          <div className="impact-cards">
-            {IMPACT_STATS.map((stat, index) => (
-              <div key={index} className="impact-card">
-                <div className="impact-header-horizontal">
-                  <div className="impact-icon">{stat.icon}</div>
-                  <div className="impact-stat">{stat.value}</div>
-                </div>
-                <div className="impact-label">{stat.label}</div>
-                <p className="impact-detail">{stat.description}</p>
+          <div className="impact-cards-two">
+            <div className="impact-card-large">
+              <div className="impact-header-horizontal">
+                <div className="impact-icon">📈</div>
+                <div className="impact-stat">+38%</div>
               </div>
-            ))}
+              <div className="impact-label">Hausse attaques cyber</div>
+              <p className="impact-detail">Les attaques contre les PME ont explosé de 38% en 2024. Les cybercriminels ciblent les entreprises non protégées.</p>
+            </div>
+
+            <div className="impact-card-large">
+              <div className="impact-header-horizontal">
+                <div className="impact-icon">💸</div>
+                <div className="impact-stat">4,35M€</div>
+              </div>
+              <div className="impact-label">Coût moyen cyber attaque</div>
+              <p className="impact-detail">60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne), perte de données, rançons.</p>
+            </div>
           </div>
         </section>
 
@@ -403,7 +338,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* ✅ 4) EXPERTISE AVEC + AU LIEU DE ✓ */}
             <div className="price-card-desktop">
               <div className="price-card-header">
                 <h3>Expertise</h3>
@@ -613,6 +547,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ✅ 3) EXPERTISE - RETOUR VERSION ORIGINALE */}
         <section className="expertise-section">
           <div className="section-header">
             <div className="section-badge success">NOTRE APPROCHE</div>
@@ -661,6 +596,7 @@ export default function Home() {
           </a>
         </div>
 
+        {/* ✅ 4) TESTIMONIALS - 3 CÔTE À CÔTE */}
         <section className="social-proof">
           <div className="section-header">
             <div className="section-badge">TÉMOIGNAGES</div>
@@ -668,27 +604,19 @@ export default function Home() {
             <p className="section-subtitle">Ils ont fait de NIS2 un levier de performance</p>
           </div>
 
-          <div className="testimonials" id="testimonialCarousel">
-            <div className="testimonials-wrapper">
-              {TESTIMONIALS.map((testimonial) => (
-                <div key={testimonial.id} className="testimonial">
-                  <div className="testimonial-text">"{testimonial.text}"</div>
-                  <div className="testimonial-author">
-                    <div className="author-avatar">{testimonial.author.avatar}</div>
-                    <div className="author-info">
-                      <div className="author-name">{testimonial.author.name}</div>
-                      <div className="author-role">{testimonial.author.role}</div>
-                    </div>
+          <div className="testimonials-grid">
+            {TESTIMONIALS.map((testimonial) => (
+              <div key={testimonial.id} className="testimonial">
+                <div className="testimonial-text">"{testimonial.text}"</div>
+                <div className="testimonial-author">
+                  <div className="author-avatar">{testimonial.author.avatar}</div>
+                  <div className="author-info">
+                    <div className="author-name">{testimonial.author.name}</div>
+                    <div className="author-role">{testimonial.author.role}</div>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            <div className="carousel-controls">
-              <button className="carousel-btn" id="prevBtn">←</button>
-              <div className="carousel-dots" id="carouselDots"></div>
-              <button className="carousel-btn" id="nextBtn">→</button>
-            </div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -748,7 +676,6 @@ export default function Home() {
       <QuizModal quiz={quiz} />
 
       <style jsx>{`
-        /* ✅ 1) LOGO + BASELINE À GAUCHE */
         .logo-baseline-wrapper {
           text-align: left;
           margin-bottom: 32px;
@@ -775,7 +702,6 @@ export default function Home() {
           font-weight: 500;
         }
 
-        /* ✅ 2) ANCIEN DESIGN BLOCS */
         .risk-opportunity-wrapper {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -822,69 +748,71 @@ export default function Home() {
           display: inline;
         }
 
-        /* ✅ 3) IMPACT CARDS - LARGES AVEC HEADER HORIZONTAL */
-        .impact-cards {
+        /* ✅ 2) 2 CARDS LARGES */
+        .impact-cards-two {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 24px;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 32px;
           margin-top: 40px;
+          max-width: 1000px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
-        .impact-card {
+        .impact-card-large {
           background: white;
           border: 2px solid #EFF1F5;
-          border-radius: 16px;
-          padding: 28px 24px;
+          border-radius: 20px;
+          padding: 36px 32px;
           text-align: left;
           transition: all 0.3s ease;
+          box-shadow: 0 4px 16px rgba(9, 30, 66, 0.08);
         }
 
-        .impact-card:hover {
+        .impact-card-large:hover {
           transform: translateY(-4px);
-          box-shadow: 0 8px 24px rgba(0, 82, 204, 0.1);
+          box-shadow: 0 12px 32px rgba(0, 82, 204, 0.12);
           border-color: #0052CC;
         }
 
         .impact-header-horizontal {
           display: flex;
           align-items: center;
-          gap: 16px;
-          margin-bottom: 20px;
+          gap: 20px;
+          margin-bottom: 24px;
         }
 
         .impact-icon {
-          font-size: 48px;
+          font-size: 56px;
           flex-shrink: 0;
         }
 
         .impact-stat {
-          font-size: 42px;
+          font-size: 48px;
           font-weight: 800;
           color: #FF5630;
           line-height: 1;
         }
 
         .impact-label {
-          font-size: 18px;
+          font-size: 20px;
           font-weight: 700;
           color: #091E42;
-          margin-bottom: 12px;
+          margin-bottom: 16px;
         }
 
         .impact-detail {
-          font-size: 14px;
+          font-size: 15px;
           color: #505F79;
           line-height: 1.6;
         }
 
-        /* ✅ 4) EXPERTISE AVEC + */
         .price-card-desktop .features li.feature-plus::before {
           content: '+';
           color: #0052CC;
           font-size: 20px;
         }
 
-        /* ✅ 5) STICKY HEADER AVEC LOGO */
         .sticky-logo-img {
           display: flex;
           align-items: center;
@@ -1296,11 +1224,76 @@ export default function Home() {
           font-size: 16px;
         }
 
+        /* ✅ 4) TESTIMONIALS GRID 3 COLONNES */
+        .testimonials-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          margin-top: 40px;
+        }
+
+        .testimonial {
+          background: white;
+          border: 2px solid #EFF1F5;
+          border-radius: 20px;
+          padding: 32px 28px;
+          box-shadow: 0 4px 16px rgba(9, 30, 66, 0.08);
+          transition: all 0.3s ease;
+        }
+
+        .testimonial:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(0, 82, 204, 0.12);
+          border-color: #0052CC;
+        }
+
+        .testimonial-text {
+          font-size: 15px;
+          line-height: 1.7;
+          color: #505F79;
+          font-style: italic;
+          margin-bottom: 24px;
+        }
+
+        .testimonial-author {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding-top: 20px;
+          border-top: 2px solid #F7F8FC;
+        }
+
+        .author-avatar {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #0052CC 0%, #003D99 100%);
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          font-size: 18px;
+          flex-shrink: 0;
+        }
+
+        .author-name {
+          font-size: 15px;
+          font-weight: 700;
+          color: #091E42;
+        }
+
+        .author-role {
+          font-size: 13px;
+          color: #505F79;
+        }
+
         @media (max-width: 1024px) {
           .risk-opportunity-wrapper,
           .pricing-cards-desktop,
           .services-horizontal,
-          .impact-cards {
+          .impact-cards-two,
+          .testimonials-grid {
             grid-template-columns: 1fr;
           }
 
