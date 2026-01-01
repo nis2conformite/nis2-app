@@ -708,7 +708,7 @@ export default function Home() {
         .hero-logo {
           max-width: 360px;
           height: auto;
-          margin: 0 auto 4px;
+          margin: 0 auto 2px;
           display: block;
         }
 
@@ -970,16 +970,16 @@ export default function Home() {
           display: flex;
           align-items: center;
           gap: 20px;
-          margin-bottom: 16px;
+          margin-bottom: 12px;
         }
 
         .impact-icon {
-          font-size: 56px;
+          font-size: 40px;
           flex-shrink: 0;
         }
 
         .impact-stat {
-          font-size: 48px;
+          font-size: 36px;
           font-weight: 800;
           color: #FF5630;
           line-height: 1;
@@ -989,7 +989,7 @@ export default function Home() {
           font-size: 20px;
           font-weight: 700;
           color: #091E42;
-          margin-bottom: 8px;
+          margin-bottom: 4px;
         }
 
         .impact-detail {
@@ -1006,6 +1006,7 @@ export default function Home() {
           max-width: 1200px;
           margin-left: auto;
           margin-right: auto;
+          align-items: start;
         }
 
         .expertise-card-horizontal {
@@ -1015,6 +1016,8 @@ export default function Home() {
           padding: 36px 32px;
           transition: all 0.3s ease;
           box-shadow: 0 4px 16px rgba(0, 82, 204, 0.12);
+          display: flex;
+          flex-direction: column;
         }
 
         .expertise-card-horizontal:hover {
@@ -1027,10 +1030,11 @@ export default function Home() {
           align-items: center;
           gap: 20px;
           margin-bottom: 16px;
+          min-height: 40px;
         }
 
         .expertise-number-large {
-          font-size: 56px;
+          font-size: 28px;
           font-weight: 800;
           color: #0052CC;
           line-height: 1;
@@ -1038,8 +1042,8 @@ export default function Home() {
         }
 
         .certification-icon-large {
-          width: 80px;
-          height: 80px;
+          width: 40px;
+          height: 40px;
           background: #0052CC;
           border-radius: 50%;
           display: flex;
@@ -1049,8 +1053,15 @@ export default function Home() {
           flex-shrink: 0;
         }
 
+        .certification-icon-large svg {
+          width: 24px;
+          height: 24px;
+        }
+
         .expertise-text {
           flex: 1;
+          display: flex;
+          align-items: center;
         }
 
         .expertise-title-bold {
