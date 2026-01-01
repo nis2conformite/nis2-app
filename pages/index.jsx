@@ -496,7 +496,7 @@ export default function Home() {
           <div className="services-horizontal">
             <div className="service-card-h">
               <div className="service-header-h">
-                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%)'}}>
+                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%)'}}>
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <polyline points="14 2 14 8 20 8"></polyline>
@@ -519,7 +519,7 @@ export default function Home() {
 
             <div className="service-card-h">
               <div className="service-header-h">
-                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #3F51B5 0%, #303F9F 100%)'}}>
+                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%)'}}>
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                     <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
@@ -539,7 +539,7 @@ export default function Home() {
 
             <div className="service-card-h">
               <div className="service-header-h">
-                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #00875A 0%, #006644 100%)'}}>
+                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)'}}>
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                     <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
                     <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
@@ -559,7 +559,7 @@ export default function Home() {
 
             <div className="service-card-h">
               <div className="service-header-h">
-                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #FF5630 0%, #d63b1f 100%)'}}>
+                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%)'}}>
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                     <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
                     <line x1="12" y1="9" x2="12" y2="13"></line>
@@ -786,7 +786,7 @@ export default function Home() {
         .stat-value-minimal {
           font-size: 48px;
           font-weight: 900;
-          color: #0052CC;
+          color: #1E3A8A;
           line-height: 1;
           margin-bottom: 8px;
         }
@@ -825,7 +825,7 @@ export default function Home() {
           display: block;
           font-size: 16px;
           font-weight: 600;
-          color: #0052CC;
+          color: #1E3A8A;
           text-decoration: none;
           transition: all 0.3s ease;
           margin-top: 8px;
@@ -833,7 +833,7 @@ export default function Home() {
 
         .hero-cta-link:hover {
           text-decoration: underline;
-          color: #003D99;
+          color: #1E40AF;
         }
 
         /* RESPONSIVE HERO */
@@ -930,7 +930,7 @@ export default function Home() {
         .sticky-header-content {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 4px 20px;
+          padding: 12px 20px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -942,7 +942,7 @@ export default function Home() {
         }
 
         .sticky-logo-large {
-          height: 128px;
+          height: 50px;
           width: auto;
         }
 
@@ -975,22 +975,22 @@ export default function Home() {
 
         .btn-sticky.secondary {
           background: white;
-          color: #0052CC;
-          border: 2px solid #0052CC;
+          color: #1E3A8A;
+          border: 2px solid #1E3A8A;
         }
 
         .btn-sticky.secondary:hover {
-          background: #0052CC;
+          background: #1E3A8A;
           color: white;
         }
 
         @media (max-width: 640px) {
           .sticky-header-content {
-            padding: 4px 16px;
+            padding: 10px 16px;
           }
 
           .sticky-logo-large {
-            height: 96px;
+            height: 40px;
           }
 
           .btn-sticky {
@@ -1072,7 +1072,7 @@ export default function Home() {
         .impact-card-large:hover {
           transform: translateY(-4px);
           box-shadow: 0 12px 32px rgba(0, 82, 204, 0.12);
-          border-color: #0052CC;
+          border-color: #1E3A8A;
         }
 
         .impact-header-horizontal {
@@ -1120,7 +1120,7 @@ export default function Home() {
 
         .expertise-card-horizontal {
           background: white;
-          border: 3px solid #0052CC;
+          border: 3px solid #1E3A8A;
           border-radius: 20px;
           padding: 36px 32px;
           transition: all 0.3s ease;
@@ -1145,7 +1145,7 @@ export default function Home() {
         .expertise-number-large {
           font-size: 28px;
           font-weight: 800;
-          color: #0052CC;
+          color: #1E3A8A;
           line-height: 1;
           flex-shrink: 0;
         }
@@ -1153,7 +1153,7 @@ export default function Home() {
         .certification-icon-large {
           width: 40px;
           height: 40px;
-          background: #0052CC;
+          background: #1E3A8A;
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -1189,7 +1189,7 @@ export default function Home() {
 
         .price-card-desktop .features li.feature-plus::before {
           content: '+';
-          color: #0052CC;
+          color: #1E3A8A;
           font-size: 20px;
         }
 
@@ -1289,7 +1289,7 @@ export default function Home() {
         }
 
         .price-card-desktop.featured {
-          border: 3px solid #0052CC;
+          border: 3px solid #1E3A8A;
           box-shadow: 0 8px 32px rgba(0, 82, 204, 0.2);
         }
 
@@ -1313,7 +1313,7 @@ export default function Home() {
         .price-card-desktop .price {
           font-size: 48px;
           font-weight: 800;
-          color: #0052CC;
+          color: #1E3A8A;
           line-height: 1;
           margin-bottom: 8px;
         }
@@ -1356,7 +1356,7 @@ export default function Home() {
           content: '✓';
           position: absolute;
           left: 0;
-          color: #00875A;
+          color: #1E3A8A;
           font-weight: 800;
           font-size: 18px;
         }
@@ -1383,8 +1383,8 @@ export default function Home() {
 
         .btn-compare {
           background: white;
-          color: #0052CC;
-          border: 2px solid #0052CC;
+          color: #1E3A8A;
+          border: 2px solid #1E3A8A;
           padding: 14px 32px;
           border-radius: 12px;
           font-size: 15px;
@@ -1397,7 +1397,7 @@ export default function Home() {
         }
 
         .btn-compare:hover {
-          background: #0052CC;
+          background: #1E3A8A;
           color: white;
           transform: translateY(-2px);
           box-shadow: 0 4px 12px rgba(0, 82, 204, 0.3);
@@ -1434,7 +1434,7 @@ export default function Home() {
         }
 
         .comparison-table thead {
-          background: linear-gradient(135deg, #0052CC 0%, #003D99 100%);
+          background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
           color: white;
         }
 
@@ -1483,7 +1483,7 @@ export default function Home() {
         }
 
         .check {
-          color: #00875A;
+          color: #1E3A8A;
           font-size: 20px;
           font-weight: 700;
         }
@@ -1540,7 +1540,7 @@ export default function Home() {
         .service-card-h:hover {
           transform: translateY(-4px);
           box-shadow: 0 8px 28px rgba(0, 82, 204, 0.12);
-          border-color: #0052CC;
+          border-color: #1E3A8A;
         }
 
         .service-header-h {
@@ -1585,7 +1585,7 @@ export default function Home() {
         .service-price {
           font-size: 20px;
           font-weight: 800;
-          color: #0052CC;
+          color: #1E3A8A;
           margin: 0;
         }
 
@@ -1614,7 +1614,7 @@ export default function Home() {
           content: '→';
           position: absolute;
           left: 0;
-          color: #0052CC;
+          color: #1E3A8A;
           font-weight: 700;
           font-size: 16px;
         }
@@ -1665,7 +1665,7 @@ export default function Home() {
         .testimonial:hover {
           transform: translateY(-4px);
           box-shadow: 0 12px 32px rgba(0, 82, 204, 0.12);
-          border-color: #0052CC;
+          border-color: #1E3A8A;
         }
 
         .testimonial-text {
@@ -1688,7 +1688,7 @@ export default function Home() {
           width: 48px;
           height: 48px;
           border-radius: 50%;
-          background: linear-gradient(135deg, #0052CC 0%, #003D99 100%);
+          background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
           color: white;
           display: flex;
           align-items: center;
@@ -1737,7 +1737,7 @@ export default function Home() {
           }
 
           .testimonials-grid::-webkit-scrollbar-thumb {
-            background: #0052CC;
+            background: #1E3A8A;
             border-radius: 4px;
           }
         }
