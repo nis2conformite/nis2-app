@@ -708,7 +708,7 @@ export default function Home() {
         .hero-logo {
           max-width: 360px;
           height: auto;
-          margin: 0 auto 8px;
+          margin: 0 auto 4px;
           display: block;
         }
 
@@ -718,14 +718,14 @@ export default function Home() {
           color: #64748B;
           line-height: 1.5;
           max-width: 680px;
-          margin: 0 auto 20px;
+          margin: 0 auto 12px;
         }
 
         .hero-separator {
           width: 120px;
           height: 3px;
           background: linear-gradient(90deg, #FF5630 0%, #FFB199 100%);
-          margin: 20px auto;
+          margin: 12px auto;
           border-radius: 2px;
         }
 
@@ -735,7 +735,7 @@ export default function Home() {
           color: #FF5630;
           line-height: 1.2;
           max-width: 900px;
-          margin: 0 auto 16px;
+          margin: 0 auto 12px;
           letter-spacing: -0.02em;
         }
 
@@ -745,14 +745,14 @@ export default function Home() {
           color: #334155;
           line-height: 1.75;
           max-width: 820px;
-          margin: 0 auto 40px;
+          margin: 0 auto 32px;
         }
 
         .hero-stats-minimal {
           display: flex;
           justify-content: center;
-          gap: 36px;
-          margin-bottom: 48px;
+          gap: 28px;
+          margin-bottom: 36px;
           flex-wrap: wrap;
         }
 
@@ -790,7 +790,7 @@ export default function Home() {
           transition: all 0.3s ease;
           max-width: 500px;
           width: 100%;
-          margin-bottom: 32px;
+          margin-bottom: 20px;
         }
 
         .hero-cta-primary:hover {
