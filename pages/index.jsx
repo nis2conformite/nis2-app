@@ -942,7 +942,7 @@ export default function Home() {
         }
 
         .sticky-logo-large {
-          height: 64px;
+          height: 128px;
           width: auto;
         }
 
@@ -990,7 +990,7 @@ export default function Home() {
           }
 
           .sticky-logo-large {
-            height: 48px;
+            height: 96px;
           }
 
           .btn-sticky {
