@@ -743,7 +743,7 @@ export default function Home() {
         .hero-logo {
           max-width: 288px;
           height: auto;
-          margin: 0 auto 24px;
+          margin: 0 auto 34px;
           display: block;
         }
 
@@ -1135,12 +1135,12 @@ export default function Home() {
           background: white;
           border: 3px solid #1E3A8A;
           border-radius: 20px;
-          padding: 36px 32px;
+          padding: 28px 32px;
           transition: all 0.3s ease;
           box-shadow: 0 4px 16px rgba(0, 82, 204, 0.12);
           display: flex;
           flex-direction: column;
-          min-height: 280px;
+          min-height: 240px;
         }
 
         .expertise-card-horizontal:hover {
@@ -1152,8 +1152,8 @@ export default function Home() {
           display: flex;
           align-items: center;
           gap: 20px;
-          margin-bottom: 16px;
-          min-height: 80px;
+          margin-bottom: 12px;
+          min-height: 70px;
         }
 
         .expertise-number-large {
@@ -1674,6 +1674,8 @@ export default function Home() {
           padding: 32px 28px;
           box-shadow: 0 4px 16px rgba(9, 30, 66, 0.08);
           transition: all 0.3s ease;
+          display: flex;
+          flex-direction: column;
         }
 
         .testimonial:hover {
@@ -1688,6 +1690,7 @@ export default function Home() {
           color: #505F79;
           font-style: italic;
           margin-bottom: 24px;
+          flex: 1;
         }
 
         .testimonial-author {
@@ -1696,6 +1699,7 @@ export default function Home() {
           gap: 12px;
           padding-top: 20px;
           border-top: 2px solid #F7F8FC;
+          margin-top: auto;
         }
 
         .author-avatar {
@@ -1778,11 +1782,13 @@ export default function Home() {
           .subsidy-title {
             justify-content: center;
             font-size: 15px;
+            margin-bottom: 8px;
           }
 
           .subsidy-description {
             font-size: 13px;
             line-height: 1.4;
+            display: block;
           }
 
           .btn-simulator {
