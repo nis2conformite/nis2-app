@@ -233,14 +233,13 @@ export default function Home() {
           </section>
         </div>
 
-        <div className="cta-inline" style={{background: 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%)'}}>
+        <div className="cta-inline" style={{background: '#1E3A8A'}}>
           <p>🚀 Transformez la contrainte en opportunité business</p>
           <a href="#pricing" className="btn">Découvrir nos offres</a>
         </div>
 
         <section className="impact-section">
           <div className="section-header">
-            <div className="section-badge">RISQUES CHIFFRÉS</div>
             <h2 style={{color: '#1E3A8A'}}>La prévention est plus rentable qu'une crise cyber</h2>
             <p className="section-subtitle">Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber</p>
           </div>
@@ -268,7 +267,6 @@ export default function Home() {
 
         <section className="pricing-section" id="pricing">
           <div className="section-header">
-            <div className="section-badge">TARIFS CLAIRS</div>
             <h2 style={{color: '#1E3A8A'}}>Investissement vs Amende</h2>
             <p className="section-subtitle">Un audit coûte 200x moins cher qu'une sanction</p>
           </div>
@@ -582,7 +580,6 @@ export default function Home() {
 
         <section className="expertise-section">
           <div className="section-header">
-            <div className="section-badge">NOTRE APPROCHE</div>
             <h2 style={{color: '#1E3A8A'}}>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
             <p className="section-subtitle">Notre accompagnement se base sur le référentiel officiel de l'ANSSI.</p>
           </div>
@@ -629,7 +626,7 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="cta-inline" style={{background: 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%)'}}>
+        <div className="cta-inline" style={{background: '#1E3A8A'}}>
           <p>🛡️ Renforcez la sécurité informatique et la résilience de votre entreprise</p>
           <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn">
             📅 Echange gratuit avec un expert
@@ -638,7 +635,6 @@ export default function Home() {
 
         <section className="social-proof">
           <div className="section-header">
-            <div className="section-badge">TÉMOIGNAGES</div>
             <h2 style={{color: '#1E3A8A'}}>Dirigeants conformes, entreprises gagnantes</h2>
             <p className="section-subtitle">Ils ont fait de NIS2 un levier de performance</p>
           </div>
@@ -673,7 +669,7 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="cta-inline" style={{background: 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%)'}}>
+        <div className="cta-inline" style={{background: '#1E3A8A'}}>
           <p>💬 Échangez avec un de nos experts • Obtenez des réponses claires</p>
           <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn">
             📅 Prendre rendez-vous
@@ -682,7 +678,6 @@ export default function Home() {
 
         <section className="faq">
           <div className="section-header">
-            <div className="section-badge">FAQ</div>
             <h2 style={{color: '#1E3A8A'}}>Les questions que se posent les dirigeants</h2>
           </div>
           
@@ -697,7 +692,7 @@ export default function Home() {
           ))}
         </section>
 
-        <section className="final-cta" style={{background: 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%)'}}>
+        <section className="final-cta" style={{background: '#1E3A8A'}}>
           <h2>Sécurisez votre avenir dès aujourd'hui</h2>
           <p>Échange confidentiel avec un consultant certifié ISO 27001<br /><strong>Audit indépendant pour mesurer votre conformité</strong></p>
           <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn">
@@ -730,7 +725,7 @@ export default function Home() {
         .hero-logo {
           max-width: 360px;
           height: auto;
-          margin: 0 auto 2px;
+          margin: 0 auto 24px;
           display: block;
         }
 
@@ -740,7 +735,7 @@ export default function Home() {
           color: #64748B;
           line-height: 1.5;
           max-width: 680px;
-          margin: 0 auto 12px;
+          margin: 0 auto 20px;
         }
 
         .hero-separator {
@@ -930,7 +925,7 @@ export default function Home() {
         .sticky-header-content {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 12px 20px;
+          padding: 8px 20px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -986,7 +981,7 @@ export default function Home() {
 
         @media (max-width: 640px) {
           .sticky-header-content {
-            padding: 10px 16px;
+            padding: 6px 16px;
           }
 
           .sticky-logo-large {
@@ -1753,6 +1748,7 @@ export default function Home() {
           .subsidy-banner {
             flex-direction: column;
             align-items: center;
+            gap: 12px;
           }
 
           .subsidy-content {
@@ -1762,10 +1758,17 @@ export default function Home() {
 
           .subsidy-title {
             justify-content: center;
+            font-size: 15px;
+          }
+
+          .subsidy-description {
+            font-size: 13px;
+            line-height: 1.4;
           }
 
           .btn-simulator {
             width: 100%;
+            font-size: 14px;
           }
         }
       `}</style>
