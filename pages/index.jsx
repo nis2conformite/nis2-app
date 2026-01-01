@@ -546,7 +546,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <div className="service-title-h">
-                  <h3>Montage dossiers Subventions</h3>
+                  <h3>Montage dossiers<br />Subventions</h3>
                   <p className="service-price">299€</p>
                 </div>
               </div>
@@ -567,7 +567,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <div className="service-title-h">
-                  <h3>Notification Incidents</h3>
+                  <h3>Notification<br />Incidents</h3>
                   <p className="service-price">99€/mois</p>
                 </div>
               </div>
@@ -930,7 +930,7 @@ export default function Home() {
         .sticky-header-content {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 12px 20px;
+          padding: 4px 20px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -942,7 +942,7 @@ export default function Home() {
         }
 
         .sticky-logo-large {
-          height: 48px;
+          height: 64px;
           width: auto;
         }
 
@@ -986,11 +986,11 @@ export default function Home() {
 
         @media (max-width: 640px) {
           .sticky-header-content {
-            padding: 10px 16px;
+            padding: 4px 16px;
           }
 
           .sticky-logo-large {
-            height: 36px;
+            height: 48px;
           }
 
           .btn-sticky {
@@ -1552,6 +1552,7 @@ export default function Home() {
           padding-bottom: 20px;
           border-bottom: 2px solid #F7F8FC;
           text-align: center;
+          min-height: 160px;
         }
 
         .service-icon-h {
@@ -1575,6 +1576,10 @@ export default function Home() {
           color: #091E42;
           margin-bottom: 6px;
           line-height: 1.3;
+          min-height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .service-price {
