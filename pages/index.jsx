@@ -624,6 +624,15 @@ export default function Home() {
               <p className="expertise-description">Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
             </div>
           </div>
+
+          <div className="certification-logos">
+            <div className="certification-logos-container">
+              <img src="/uploads/Logo_ANSSI.png" alt="ANSSI - Agence Nationale de la Sécurité des Systèmes d'Information" className="cert-logo" />
+              <img src="/uploads/Logo-cybermalveillance.PNG" alt="Cybermalveillance.gouv.fr" className="cert-logo" />
+              <img src="/uploads/logo_expertcyber.jpg" alt="Expert Cyber - Label Sécurité Numérique" className="cert-logo" />
+              <img src="/uploads/iso_27001_02-1024x704.png" alt="ISO 27001 Certified - Information Security Management" className="cert-logo" />
+            </div>
+          </div>
         </section>
 
         <div className="cta-inline" style={{background: '#1E3A8A'}}>
@@ -653,6 +662,7 @@ export default function Home() {
               </div>
             ))}
           </div>
+          <div className="carousel-hint">← Faites glisser pour voir plus →</div>
         </section>
 
         <section className="video-section" id="video-section">
@@ -1201,6 +1211,37 @@ export default function Home() {
           margin: 0;
         }
 
+        .certification-logos {
+          margin-top: 48px;
+          padding: 32px 20px;
+          background: #F7F8FC;
+          border-radius: 16px;
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .certification-logos-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 48px;
+          flex-wrap: wrap;
+        }
+
+        .cert-logo {
+          height: 60px;
+          width: auto;
+          object-fit: contain;
+          filter: grayscale(30%) opacity(0.85);
+          transition: all 0.3s ease;
+        }
+
+        .cert-logo:hover {
+          filter: grayscale(0%) opacity(1);
+          transform: scale(1.05);
+        }
+
         .price-card-desktop .features li.feature-plus::before {
           content: '+';
           color: #1E3A8A;
@@ -1228,9 +1269,8 @@ export default function Home() {
         .subsidy-content {
           flex: 1;
           display: flex;
-          flex-direction: row;
-          align-items: center;
-          gap: 12px;
+          flex-direction: column;
+          gap: 4px;
         }
 
         .subsidy-title {
@@ -1241,6 +1281,7 @@ export default function Home() {
           align-items: center;
           gap: 8px;
           white-space: nowrap;
+          justify-content: center;
         }
 
         .subsidy-title strong {
@@ -1251,6 +1292,7 @@ export default function Home() {
           color: #2e7d32;
           font-size: 15px;
           line-height: 1.5;
+          text-align: center;
         }
 
         .btn-simulator {
@@ -1727,6 +1769,10 @@ export default function Home() {
           color: #505F79;
         }
 
+        .carousel-hint {
+          display: none;
+        }
+
         /* Carousel mobile pour testimonials */
         @media (max-width: 1024px) {
           .testimonials-grid {
@@ -1737,6 +1783,7 @@ export default function Home() {
             padding-bottom: 20px;
             margin-top: 32px;
             -webkit-overflow-scrolling: touch;
+            position: relative;
           }
 
           .testimonial {
@@ -1758,6 +1805,45 @@ export default function Home() {
             background: #1E3A8A;
             border-radius: 4px;
           }
+
+          /* Indicateur de scroll avec pseudo-éléments */
+          .social-proof {
+            position: relative;
+          }
+
+          .carousel-hint {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1E3A8A;
+            opacity: 0.7;
+            animation: fadeInOut 3s ease-in-out infinite;
+          }
+
+          @keyframes fadeInOut {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+          }
+
+          .social-proof::after {
+            content: '→';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 32px;
+            color: #1E3A8A;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: slideHint 2s ease-in-out infinite;
+          }
+
+          @keyframes slideHint {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(10px); }
+          }
         }
 
         @media (max-width: 1024px) {
@@ -1766,6 +1852,19 @@ export default function Home() {
           .impact-cards-two,
           .expertise-grid-horizontal {
             grid-template-columns: 1fr;
+          }
+
+          .certification-logos {
+            margin-top: 32px;
+            padding: 24px 16px;
+          }
+
+          .certification-logos-container {
+            gap: 24px 32px;
+          }
+
+          .cert-logo {
+            height: 50px;
           }
 
           .subsidy-banner {
