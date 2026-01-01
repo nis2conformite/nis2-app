@@ -695,7 +695,25 @@ export default function Home() {
         <section className="final-cta" style={{background: '#1E3A8A'}}>
           <h2>Sécurisez votre avenir dès aujourd'hui</h2>
           <p>Échange confidentiel avec un consultant certifié ISO 27001<br /><strong>Audit indépendant pour mesurer votre conformité</strong></p>
-          <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn">
+          <a 
+            href={CONTACT_INFO.calendly} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="btn"
+            style={{
+              background: 'white',
+              color: '#1E3A8A',
+              border: 'none',
+              fontWeight: '700',
+              fontSize: '17px',
+              padding: '18px 48px',
+              borderRadius: '14px',
+              textDecoration: 'none',
+              display: 'inline-block',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 16px rgba(255, 255, 255, 0.2)'
+            }}
+          >
             📅 Réserver un échange gratuit
           </a>
         </section>
@@ -723,7 +741,7 @@ export default function Home() {
         }
 
         .hero-logo {
-          max-width: 360px;
+          max-width: 288px;
           height: auto;
           margin: 0 auto 24px;
           display: block;
@@ -838,7 +856,7 @@ export default function Home() {
           }
 
           .hero-logo {
-            max-width: 240px;
+            max-width: 192px;
             margin-bottom: 12px;
           }
 
@@ -1122,6 +1140,7 @@ export default function Home() {
           box-shadow: 0 4px 16px rgba(0, 82, 204, 0.12);
           display: flex;
           flex-direction: column;
+          min-height: 280px;
         }
 
         .expertise-card-horizontal:hover {
@@ -1134,7 +1153,7 @@ export default function Home() {
           align-items: center;
           gap: 20px;
           margin-bottom: 16px;
-          min-height: 40px;
+          min-height: 80px;
         }
 
         .expertise-number-large {
