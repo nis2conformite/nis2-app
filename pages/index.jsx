@@ -275,9 +275,11 @@ export default function Home() {
 
           <div className="subsidy-banner">
             <div className="subsidy-content">
-              <div className="subsidy-icon">💡</div>
-              <div className="subsidy-text">
-                <strong>Aides de l'État disponibles</strong> — Réduisez le coût de votre mise en conformité.
+              <div className="subsidy-title">
+                💡 <strong>Aides de l'État disponibles</strong> 💡
+              </div>
+              <div className="subsidy-description">
+                Réduisez le coût de votre mise en conformité.
               </div>
             </div>
             <button className="btn-simulator" onClick={() => alert('Simulateur en cours de développement')}>
@@ -1179,39 +1181,40 @@ export default function Home() {
         .subsidy-banner {
           max-width: 1200px;
           margin: 0 auto 40px auto;
-          padding: 20px 28px;
+          padding: 24px 32px;
           background: linear-gradient(90deg, rgba(76, 175, 80, 0.08) 0%, rgba(76, 175, 80, 0.12) 100%);
           border-left: 4px solid #4caf50;
           border-radius: 12px;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 20px;
-          flex-wrap: wrap;
+          gap: 24px;
         }
 
         .subsidy-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .subsidy-title {
+          color: #1b5e20;
+          font-size: 17px;
+          font-weight: 700;
           display: flex;
           align-items: center;
-          gap: 16px;
-          flex: 1;
-          min-width: 300px;
+          gap: 8px;
         }
 
-        .subsidy-icon {
-          flex-shrink: 0;
-          font-size: 24px;
+        .subsidy-title strong {
+          font-weight: 700;
         }
 
-        .subsidy-text {
-          flex: 1;
+        .subsidy-description {
           color: #2e7d32;
           font-size: 15px;
           line-height: 1.5;
-        }
-
-        .subsidy-text strong {
-          color: #1b5e20;
         }
 
         .btn-simulator {
@@ -1220,12 +1223,13 @@ export default function Home() {
           border: 2px solid #4caf50;
           padding: 12px 24px;
           border-radius: 10px;
-          font-size: 14px;
+          font-size: 15px;
           font-weight: 700;
           cursor: pointer;
           transition: all 0.3s ease;
           white-space: nowrap;
           box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15);
+          flex-shrink: 0;
         }
 
         .btn-simulator:hover {
@@ -1689,11 +1693,16 @@ export default function Home() {
 
           .subsidy-banner {
             flex-direction: column;
-            text-align: center;
+            align-items: flex-start;
+            text-align: left;
           }
 
           .subsidy-content {
-            flex-direction: column;
+            width: 100%;
+          }
+
+          .btn-simulator {
+            width: 100%;
           }
         }
       `}</style>
