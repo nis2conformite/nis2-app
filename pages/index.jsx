@@ -627,10 +627,10 @@ export default function Home() {
 
           <div className="certification-logos">
             <div className="certification-logos-container">
-              <img src="/uploads/Logo_ANSSI.png" alt="ANSSI - Agence Nationale de la Sécurité des Systèmes d'Information" className="cert-logo" />
-              <img src="/uploads/Logo-cybermalveillance.PNG" alt="Cybermalveillance.gouv.fr" className="cert-logo" />
-              <img src="/uploads/logo_expertcyber.jpg" alt="Expert Cyber - Label Sécurité Numérique" className="cert-logo" />
-              <img src="/uploads/iso_27001_02-1024x704.png" alt="ISO 27001 Certified - Information Security Management" className="cert-logo" />
+              <img src="/Logo_ANSSI.png" alt="ANSSI - Agence Nationale de la Sécurité des Systèmes d'Information" className="cert-logo" />
+              <img src="/Logo-cybermalveillance.PNG" alt="Cybermalveillance.gouv.fr" className="cert-logo" />
+              <img src="/logo_expertcyber.jpg" alt="Expert Cyber - Label Sécurité Numérique" className="cert-logo" />
+              <img src="/iso_27001_02-1024x704.png" alt="ISO 27001 Certified - Information Security Management" className="cert-logo" />
             </div>
           </div>
         </section>
