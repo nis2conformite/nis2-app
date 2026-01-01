@@ -48,7 +48,7 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const stickyHeader = document.getElementById('stickyHeader');
-      const heroSection = document.querySelector('.hero');
+      const heroSection = document.querySelector('.hero-minimal');
       
       if (heroSection && stickyHeader) {
         const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
@@ -496,6 +496,29 @@ export default function Home() {
           <div className="services-horizontal">
             <div className="service-card-h">
               <div className="service-header-h">
+                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%)'}}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                </div>
+                <div className="service-title-h">
+                  <h3>Modèles de documents</h3>
+                  <p className="service-price">99€/mois</p>
+                </div>
+              </div>
+              <ul className="service-list-h">
+                <li>Modèles pour mise en conformité</li>
+                <li>Mis à jour avec la réglementation</li>
+                <li>Accès illimité</li>
+              </ul>
+            </div>
+
+            <div className="service-card-h">
+              <div className="service-header-h">
                 <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #3F51B5 0%, #303F9F 100%)'}}>
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
@@ -504,14 +527,13 @@ export default function Home() {
                 </div>
                 <div className="service-title-h">
                   <h3>Formation</h3>
-                  <p>Montée en compétences de vos équipes</p>
+                  <p className="service-price">149€/pers</p>
                 </div>
               </div>
               <ul className="service-list-h">
-                <li>Sessions sur mesure</li>
-                <li>Supports personnalisés</li>
-                <li>Certifications</li>
-                <li>E-learning disponible</li>
+                <li>Formation obligatoire des dirigeants</li>
+                <li>Formation en distanciel</li>
+                <li>Formation présentiel sur site possible</li>
               </ul>
             </div>
 
@@ -525,13 +547,12 @@ export default function Home() {
                 </div>
                 <div className="service-title-h">
                   <h3>Montage dossiers Subventions</h3>
-                  <p>Gestion complète de vos dossiers</p>
+                  <p className="service-price">299€</p>
                 </div>
               </div>
               <ul className="service-list-h">
                 <li>Identification des aides</li>
                 <li>Constitution des dossiers</li>
-                <li>Suivi administratif</li>
                 <li>Maximisation des financements</li>
               </ul>
             </div>
@@ -547,14 +568,13 @@ export default function Home() {
                 </div>
                 <div className="service-title-h">
                   <h3>Notification Incidents</h3>
-                  <p>Gestion proactive des incidents</p>
+                  <p className="service-price">99€/mois</p>
                 </div>
               </div>
               <ul className="service-list-h">
-                <li>Surveillance continue</li>
-                <li>Alertes instantanées</li>
-                <li>Déclarations réglementaires</li>
-                <li>Accompagnement crise</li>
+                <li>Déclaration incident en 24h à l'ANSSI</li>
+                <li>Conseil gestion de crise</li>
+                <li>Hotline téléphonique inclus</li>
               </ul>
             </div>
           </div>
@@ -1194,8 +1214,9 @@ export default function Home() {
         .subsidy-content {
           flex: 1;
           display: flex;
-          flex-direction: column;
-          gap: 4px;
+          flex-direction: row;
+          align-items: center;
+          gap: 12px;
         }
 
         .subsidy-title {
@@ -1205,6 +1226,7 @@ export default function Home() {
           display: flex;
           align-items: center;
           gap: 8px;
+          white-space: nowrap;
         }
 
         .subsidy-title strong {
@@ -1498,8 +1520,8 @@ export default function Home() {
 
         .services-horizontal {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 24px;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
           max-width: 1200px;
           margin: 0 auto;
         }
@@ -1508,9 +1530,11 @@ export default function Home() {
           background: white;
           border: 2px solid #EFF1F5;
           border-radius: 16px;
-          padding: 28px 24px;
+          padding: 24px 20px;
           transition: all 0.3s ease;
           box-shadow: 0 2px 12px rgba(9, 30, 66, 0.06);
+          display: flex;
+          flex-direction: column;
         }
 
         .service-card-h:hover {
@@ -1521,11 +1545,13 @@ export default function Home() {
 
         .service-header-h {
           display: flex;
-          align-items: flex-start;
-          gap: 16px;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
           margin-bottom: 20px;
           padding-bottom: 20px;
           border-bottom: 2px solid #F7F8FC;
+          text-align: center;
         }
 
         .service-icon-h {
@@ -1544,30 +1570,32 @@ export default function Home() {
         }
 
         .service-title-h h3 {
-          font-size: 18px;
+          font-size: 17px;
           font-weight: 700;
           color: #091E42;
           margin-bottom: 6px;
           line-height: 1.3;
         }
 
-        .service-title-h p {
-          font-size: 13px;
-          color: #505F79;
-          line-height: 1.4;
+        .service-price {
+          font-size: 20px;
+          font-weight: 800;
+          color: #0052CC;
+          margin: 0;
         }
 
         .service-list-h {
           list-style: none;
           padding: 0;
           margin: 0;
+          flex: 1;
         }
 
         .service-list-h li {
           padding: 10px 0;
           padding-left: 24px;
           position: relative;
-          font-size: 14px;
+          font-size: 13px;
           color: #505F79;
           line-height: 1.5;
           border-bottom: 1px solid #F7F8FC;
@@ -1584,6 +1612,33 @@ export default function Home() {
           color: #0052CC;
           font-weight: 700;
           font-size: 16px;
+        }
+
+        /* Responsive services */
+        @media (max-width: 1100px) {
+          .services-horizontal {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .services-horizontal {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+
+          .service-card-h {
+            padding: 24px;
+          }
+
+          .service-title-h h3 {
+            font-size: 18px;
+          }
+
+          .service-price {
+            font-size: 22px;
+          }
         }
 
         .testimonials-grid {
@@ -1685,7 +1740,6 @@ export default function Home() {
         @media (max-width: 1024px) {
           .risk-opportunity-wrapper,
           .pricing-cards-desktop,
-          .services-horizontal,
           .impact-cards-two,
           .expertise-grid-horizontal {
             grid-template-columns: 1fr;
@@ -1693,12 +1747,16 @@ export default function Home() {
 
           .subsidy-banner {
             flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
+            align-items: center;
           }
 
           .subsidy-content {
             width: 100%;
+            text-align: center;
+          }
+
+          .subsidy-title {
+            justify-content: center;
           }
 
           .btn-simulator {
