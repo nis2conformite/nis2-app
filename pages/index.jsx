@@ -889,9 +889,96 @@ export default function Home() {
            🔄 RESTE DU DESIGN INCHANGÉ
            ═══════════════════════════════════════════════════════════ */
 
+        .sticky-header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          background: white;
+          box-shadow: 0 2px 12px rgba(9, 30, 66, 0.08);
+          z-index: 1000;
+          transform: translateY(-100%);
+          transition: transform 0.3s ease;
+        }
+
+        .sticky-header.visible {
+          transform: translateY(0);
+        }
+
+        .sticky-header-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 12px 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .sticky-logo-img {
+          display: flex;
+          align-items: center;
+        }
+
         .sticky-logo-large {
           height: 48px;
           width: auto;
+        }
+
+        .sticky-cta-group {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+        }
+
+        .btn-sticky {
+          padding: 10px 20px;
+          border-radius: 8px;
+          font-size: 14px;
+          font-weight: 700;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+        }
+
+        .btn-sticky.primary {
+          background: #FF5630;
+          color: white;
+          border: none;
+        }
+
+        .btn-sticky.primary:hover {
+          background: #E64825;
+          transform: translateY(-2px);
+        }
+
+        .btn-sticky.secondary {
+          background: white;
+          color: #0052CC;
+          border: 2px solid #0052CC;
+        }
+
+        .btn-sticky.secondary:hover {
+          background: #0052CC;
+          color: white;
+        }
+
+        @media (max-width: 640px) {
+          .sticky-header-content {
+            padding: 10px 16px;
+          }
+
+          .sticky-logo-large {
+            height: 36px;
+          }
+
+          .btn-sticky {
+            padding: 8px 16px;
+            font-size: 13px;
+          }
+
+          .btn-sticky.secondary {
+            display: none;
+          }
         }
 
         .risk-opportunity-wrapper {
@@ -954,7 +1041,7 @@ export default function Home() {
           background: white;
           border: 2px solid #EFF1F5;
           border-radius: 20px;
-          padding: 36px 32px;
+          padding: 24px 28px;
           text-align: left;
           transition: all 0.3s ease;
           box-shadow: 0 4px 16px rgba(9, 30, 66, 0.08);
@@ -969,8 +1056,8 @@ export default function Home() {
         .impact-header-horizontal {
           display: flex;
           align-items: center;
-          gap: 20px;
-          margin-bottom: 12px;
+          gap: 16px;
+          margin-bottom: 8px;
         }
 
         .impact-icon {
@@ -989,7 +1076,7 @@ export default function Home() {
           font-size: 20px;
           font-weight: 700;
           color: #091E42;
-          margin-bottom: 4px;
+          margin-bottom: 8px;
         }
 
         .impact-detail {
@@ -1558,12 +1645,44 @@ export default function Home() {
           color: #505F79;
         }
 
+        /* Carousel mobile pour testimonials */
+        @media (max-width: 1024px) {
+          .testimonials-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 16px;
+            padding-bottom: 20px;
+            margin-top: 32px;
+            -webkit-overflow-scrolling: touch;
+          }
+
+          .testimonial {
+            min-width: 85%;
+            scroll-snap-align: start;
+            flex-shrink: 0;
+          }
+
+          .testimonials-grid::-webkit-scrollbar {
+            height: 8px;
+          }
+
+          .testimonials-grid::-webkit-scrollbar-track {
+            background: #F7F8FC;
+            border-radius: 4px;
+          }
+
+          .testimonials-grid::-webkit-scrollbar-thumb {
+            background: #0052CC;
+            border-radius: 4px;
+          }
+        }
+
         @media (max-width: 1024px) {
           .risk-opportunity-wrapper,
           .pricing-cards-desktop,
           .services-horizontal,
           .impact-cards-two,
-          .testimonials-grid,
           .expertise-grid-horizontal {
             grid-template-columns: 1fr;
           }
