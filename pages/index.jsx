@@ -233,7 +233,7 @@ export default function Home() {
           </section>
         </div>
 
-        <div className="cta-inline">
+        <div className="cta-inline" style={{background: 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%)'}}>
           <p>🚀 Transformez la contrainte en opportunité business</p>
           <a href="#pricing" className="btn">Découvrir nos offres</a>
         </div>
@@ -241,7 +241,7 @@ export default function Home() {
         <section className="impact-section">
           <div className="section-header">
             <div className="section-badge">RISQUES CHIFFRÉS</div>
-            <h2>La prévention est plus rentable qu'une crise cyber</h2>
+            <h2 style={{color: '#1E3A8A'}}>La prévention est plus rentable qu'une crise cyber</h2>
             <p className="section-subtitle">Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber</p>
           </div>
 
@@ -269,7 +269,7 @@ export default function Home() {
         <section className="pricing-section" id="pricing">
           <div className="section-header">
             <div className="section-badge">TARIFS CLAIRS</div>
-            <h2>Investissement vs Amende</h2>
+            <h2 style={{color: '#1E3A8A'}}>Investissement vs Amende</h2>
             <p className="section-subtitle">Un audit coûte 200x moins cher qu'une sanction</p>
           </div>
 
@@ -489,7 +489,7 @@ export default function Home() {
 
         <section className="complementary-services-v2">
           <div className="section-header">
-            <h2 className="services-title">Services complémentaires</h2>
+            <h2 className="services-title" style={{color: '#1E3A8A'}}>Services complémentaires</h2>
             <p className="services-subtitle">Découvrez nos services pour aller plus loin dans la conformité et la sécurité</p>
           </div>
 
@@ -582,8 +582,8 @@ export default function Home() {
 
         <section className="expertise-section">
           <div className="section-header">
-            <div className="section-badge success">NOTRE APPROCHE</div>
-            <h2>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
+            <div className="section-badge">NOTRE APPROCHE</div>
+            <h2 style={{color: '#1E3A8A'}}>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
             <p className="section-subtitle">Notre accompagnement se base sur le référentiel officiel de l'ANSSI.</p>
           </div>
 
@@ -629,7 +629,7 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="cta-inline">
+        <div className="cta-inline" style={{background: 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%)'}}>
           <p>🛡️ Renforcez la sécurité informatique et la résilience de votre entreprise</p>
           <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn">
             📅 Echange gratuit avec un expert
@@ -639,7 +639,7 @@ export default function Home() {
         <section className="social-proof">
           <div className="section-header">
             <div className="section-badge">TÉMOIGNAGES</div>
-            <h2>Dirigeants conformes, entreprises gagnantes</h2>
+            <h2 style={{color: '#1E3A8A'}}>Dirigeants conformes, entreprises gagnantes</h2>
             <p className="section-subtitle">Ils ont fait de NIS2 un levier de performance</p>
           </div>
 
@@ -673,7 +673,7 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="cta-inline">
+        <div className="cta-inline" style={{background: 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%)'}}>
           <p>💬 Échangez avec un de nos experts • Obtenez des réponses claires</p>
           <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn">
             📅 Prendre rendez-vous
@@ -683,7 +683,7 @@ export default function Home() {
         <section className="faq">
           <div className="section-header">
             <div className="section-badge">FAQ</div>
-            <h2>Les questions que se posent les dirigeants</h2>
+            <h2 style={{color: '#1E3A8A'}}>Les questions que se posent les dirigeants</h2>
           </div>
           
           {FAQ_ITEMS.map((item) => (
@@ -697,7 +697,7 @@ export default function Home() {
           ))}
         </section>
 
-        <section className="final-cta">
+        <section className="final-cta" style={{background: 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%)'}}>
           <h2>Sécurisez votre avenir dès aujourd'hui</h2>
           <p>Échange confidentiel avec un consultant certifié ISO 27001<br /><strong>Audit indépendant pour mesurer votre conformité</strong></p>
           <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn">
