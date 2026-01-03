@@ -189,7 +189,13 @@ export default function Home() {
               <div className="stat-value-minimal">70%</div>
               <div className="stat-label-minimal">d'aides de l'état<br />possibles</div>
             </div>
-<a 
+            <div className="stat-minimal">
+              <div className="stat-value-minimal">65</div>
+              <div className="stat-label-minimal">questions<br />d'audit</div>
+            </div>
+          </div>
+
+          <a 
             href={CONTACT_INFO.calendly} 
             target="_blank" 
             rel="noopener noreferrer"
