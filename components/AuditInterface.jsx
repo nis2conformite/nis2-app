@@ -90,8 +90,6 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
 
   const handleNoteChange = (itemKey, note) => {
     setNotes({ ...notes, [itemKey]: note });
-    // Ne pas sauvegarder automatiquement les notes
-    // L'utilisateur devra cliquer sur "Sauvegarder"
   };
 
   const handleFileUpload = async (itemKey, files) => {
@@ -115,7 +113,6 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
       const result = await response.json();
 
       if (result.success) {
-        // Mettre à jour la liste des documents localement
         const updatedDocs = {
           ...documents,
           [itemKey]: [...(documents[itemKey] || []), ...result.files]
@@ -218,7 +215,7 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
         <h3 className="font-semibold text-gray-900 mb-2">{question}</h3>
         <p className="text-sm text-gray-600 mb-3">📎 Preuves attendues: {preuves}</p>
         
-        <div className="flex gap-2 mb-3">
+        <div className="flex gap-2 mb-3 flex-wrap">
           <button 
             onClick={() => onStatusChange(id, 'conforme')} 
             className={`px-4 py-2 rounded transition-colors ${status === 'conforme' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
@@ -263,7 +260,6 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
             {uploadingFiles[id] && <span className="text-sm text-gray-500">Upload en cours...</span>}
           </div>
 
-          {/* Liste des documents uploadés */}
           {itemDocs.length > 0 && (
             <div className="bg-gray-50 rounded p-3 space-y-2">
               <p className="text-xs font-medium text-gray-700 mb-2">Documents joints ({itemDocs.length}) :</p>
@@ -295,54 +291,66 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Grille d'Audit NIS2</h1>
-              <p className="text-sm text-gray-500">Progression: {completed}/{total} ({progress}%)</p>
+    <div className="audit-interface">
+      {/* Barre de progression sticky */}
+      <div className="bg-white shadow-md sticky top-0 z-20 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div className="flex-1">
+              <div className="flex items-center justify-between mb-2">
+                <p className="text-sm font-medium text-gray-700">
+                  Progression: {completed}/{total} ({progress}%)
+                </p>
+                {lastSaved && (
+                  <span className="text-xs text-gray-500">
+                    💾 Dernier enregistrement: {lastSaved.toLocaleTimeString()}
+                  </span>
+                )}
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-3">
+                <div 
+                  className="bg-blue-600 h-3 rounded-full transition-all duration-300" 
+                  style={{width: `${progress}%`}}
+                ></div>
+              </div>
             </div>
-            <div className="flex gap-4 items-center">
-              {lastSaved && <span className="text-sm text-gray-500">💾 Sauvegardé: {lastSaved.toLocaleTimeString()}</span>}
+            
+            <div className="flex gap-3 w-full sm:w-auto">
               <button 
                 onClick={saveChanges} 
                 disabled={saving} 
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 font-medium transition-colors"
+                className="flex-1 sm:flex-none bg-blue-600 text-white px-6 py-2.5 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 font-medium transition-colors text-sm"
               >
                 {saving ? 'Sauvegarde...' : '💾 Sauvegarder'}
               </button>
               <button 
                 onClick={submitReport} 
                 disabled={!isComplete || submitting} 
-                className={`px-6 py-2 rounded-lg font-medium transition-colors ${isComplete ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
+                className={`flex-1 sm:flex-none px-6 py-2.5 rounded-lg font-medium transition-colors text-sm ${isComplete ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
                 title={isComplete ? 'Envoyer le rapport' : `Il manque ${total - completed} point(s)`}
               >
                 {submitting ? 'Envoi...' : '📧 Envoyer mon rapport'}
               </button>
             </div>
           </div>
-          {!isComplete && (
-            <div className="mt-3">
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div className="bg-blue-600 h-2 rounded-full transition-all duration-300" style={{width: `${progress}%`}}></div>
-              </div>
-            </div>
-          )}
+          
           {isComplete && (
-            <div className="mt-3 bg-green-50 border border-green-200 rounded p-3 text-green-800 text-sm font-medium">
+            <div className="mt-3 bg-green-50 border border-green-200 rounded-lg p-3 text-green-800 text-sm font-medium">
               ✅ Audit complet ! Vous pouvez maintenant envoyer votre rapport.
             </div>
           )}
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      {/* Contenu principal */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
         {/* Informations Entreprise */}
-        <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">🏢 Informations de l'entreprise</h2>
+        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2 border-b pb-3">
+            <span>🏢</span>
+            <span>Informations de l'entreprise</span>
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Nom de l'entité *</label>
@@ -351,7 +359,7 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
                 value={companyInfo.entity_name} 
                 onChange={(e) => handleCompanyInfoChange('entity_name', e.target.value)}
                 placeholder="Ex: ABC Corporation"
-                className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
             <div>
@@ -359,7 +367,7 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
               <select 
                 value={companyInfo.entity_sector} 
                 onChange={(e) => handleCompanyInfoChange('entity_sector', e.target.value)}
-                className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="">-- Sélectionnez un secteur --</option>
                 {secteurs.map((secteur, index) => (
@@ -374,7 +382,7 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
                 value={companyInfo.phone} 
                 onChange={(e) => handleCompanyInfoChange('phone', e.target.value)}
                 placeholder="Ex: +33 1 23 45 67 89"
-                className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
             <div>
@@ -384,7 +392,8 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
                 value={companyInfo.email} 
                 onChange={(e) => handleCompanyInfoChange('email', e.target.value)}
                 placeholder="contact@entreprise.fr"
-                className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                disabled
               />
             </div>
             <div className="md:col-span-2">
@@ -394,7 +403,7 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
                 value={companyInfo.address} 
                 onChange={(e) => handleCompanyInfoChange('address', e.target.value)}
                 placeholder="123 Rue de la Paix"
-                className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
             <div>
@@ -404,7 +413,7 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
                 value={companyInfo.postal_code} 
                 onChange={(e) => handleCompanyInfoChange('postal_code', e.target.value)}
                 placeholder="Ex: 75001"
-                className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
             <div>
@@ -414,7 +423,7 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
                 value={companyInfo.city} 
                 onChange={(e) => handleCompanyInfoChange('city', e.target.value)}
                 placeholder="Ex: Paris"
-                className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
             <div>
@@ -424,7 +433,7 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
                 value={companyInfo.country} 
                 onChange={(e) => handleCompanyInfoChange('country', e.target.value)}
                 placeholder="Ex: France"
-                className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
             <div>
@@ -434,7 +443,7 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
                 value={companyInfo.employees} 
                 onChange={(e) => handleCompanyInfoChange('employees', e.target.value)}
                 placeholder="Ex: 250"
-                className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
             <div>
@@ -444,36 +453,40 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
                 value={companyInfo.revenue} 
                 onChange={(e) => handleCompanyInfoChange('revenue', e.target.value)}
                 placeholder="Ex: 10 000 000"
-                className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
           </div>
-          <p className="text-xs text-gray-500 mt-3">* Champs obligatoires pour l'envoi du rapport</p>
+          <p className="text-xs text-gray-500 mt-4 italic">* Champs obligatoires pour l'envoi du rapport</p>
         </div>
 
         {/* Statistiques */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <div className="text-3xl font-bold text-blue-600">{progress}%</div>
-            <div className="text-sm text-gray-600">Progression</div>
-            <div className="text-xs text-gray-400 mt-1">{completed}/{total} points</div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <div className="text-4xl font-bold text-blue-600 mb-1">{progress}%</div>
+            <div className="text-sm font-medium text-gray-700">Progression</div>
+            <div className="text-xs text-gray-500 mt-1">{completed}/{total} points</div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow">
-            <div className="text-3xl font-bold text-green-600">{conformity}%</div>
-            <div className="text-sm text-gray-600">Conformité</div>
-            <div className="text-xs text-gray-400 mt-1">{conforme} conformes</div>
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <div className="text-4xl font-bold text-green-600 mb-1">{conformity}%</div>
+            <div className="text-sm font-medium text-gray-700">Conformité</div>
+            <div className="text-xs text-gray-500 mt-1">{conforme} conformes</div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow">
-            <div className="text-3xl font-bold text-gray-900">{total - completed}</div>
-            <div className="text-sm text-gray-600">Points restants</div>
-            <div className="text-xs text-gray-400 mt-1">à évaluer</div>
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <div className="text-4xl font-bold text-gray-900 mb-1">{total - completed}</div>
+            <div className="text-sm font-medium text-gray-700">Points restants</div>
+            <div className="text-xs text-gray-500 mt-1">à évaluer</div>
           </div>
         </div>
 
+        {/* Questions */}
         <div className="space-y-6">
           {/* Article 20 - Gouvernance */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">📋 Article 20 - Gouvernance</h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-3 flex items-center gap-2">
+              <span>📋</span>
+              <span>Article 20 - Gouvernance</span>
+            </h2>
             <QuestionItem id="20_1" question="Les organes de direction approuvent les mesures de gestion des risques cybersécurité" preuves="PV de conseil, décisions formelles" status={auditData['20_1']} note={notes['20_1']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="20_2" question="Les organes de direction supervisent la mise en œuvre des mesures" preuves="Reportings réguliers, tableaux de bord" status={auditData['20_2']} note={notes['20_2']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="20_3" question="Formation obligatoire en cybersécurité pour les organes de direction" preuves="Certificats de formation, attestations" status={auditData['20_3']} note={notes['20_3']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
@@ -482,8 +495,11 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
           </div>
 
           {/* Article 21.1 - Analyse des risques */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">🔍 Article 21.1 - Analyse des risques</h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-3 flex items-center gap-2">
+              <span>🔍</span>
+              <span>Article 21.1 - Analyse des risques</span>
+            </h2>
             <QuestionItem id="21_1_1" question="Identification des actifs critiques et sensibles" preuves="Inventaire des actifs, cartographie" status={auditData['21_1_1']} note={notes['21_1_1']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_1_2" question="Analyse des menaces et vulnérabilités" preuves="Rapports d'analyse de risques" status={auditData['21_1_2']} note={notes['21_1_2']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_1_3" question="Évaluation de l'impact des incidents" preuves="Matrices de risques, BIA" status={auditData['21_1_3']} note={notes['21_1_3']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
@@ -492,8 +508,11 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
           </div>
 
           {/* Article 21.2 - Politiques de sécurité */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">📜 Article 21.2 - Politiques de sécurité</h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-3 flex items-center gap-2">
+              <span>📜</span>
+              <span>Article 21.2 - Politiques de sécurité</span>
+            </h2>
             <QuestionItem id="21_2_1" question="Politique de sécurité des systèmes d'information" preuves="Document de politique approuvé" status={auditData['21_2_1']} note={notes['21_2_1']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_2_2" question="Politique de contrôle d'accès" preuves="Procédures d'accès, matrice des droits" status={auditData['21_2_2']} note={notes['21_2_2']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_2_3" question="Politique de classification des données" preuves="Grille de classification, labels" status={auditData['21_2_3']} note={notes['21_2_3']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
@@ -502,8 +521,11 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
           </div>
 
           {/* Article 21.3 - Gestion des incidents */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">🚨 Article 21.3 - Gestion des incidents</h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-3 flex items-center gap-2">
+              <span>🚨</span>
+              <span>Article 21.3 - Gestion des incidents</span>
+            </h2>
             <QuestionItem id="21_3_1" question="Procédure de détection des incidents" preuves="SIEM, logs, alertes" status={auditData['21_3_1']} note={notes['21_3_1']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_3_2" question="Procédure de traitement des incidents" preuves="Plan de réponse aux incidents" status={auditData['21_3_2']} note={notes['21_3_2']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_3_3" question="Notification aux autorités compétentes" preuves="Procédure de notification, registre" status={auditData['21_3_3']} note={notes['21_3_3']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
@@ -512,8 +534,11 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
           </div>
 
           {/* Article 21.4 - Continuité d'activité */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">🔄 Article 21.4 - Continuité d'activité</h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-3 flex items-center gap-2">
+              <span>🔄</span>
+              <span>Article 21.4 - Continuité d'activité</span>
+            </h2>
             <QuestionItem id="21_4_1" question="Plan de continuité d'activité (PCA)" preuves="Document PCA approuvé" status={auditData['21_4_1']} note={notes['21_4_1']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_4_2" question="Plan de reprise d'activité (PRA)" preuves="Document PRA, procédures de reprise" status={auditData['21_4_2']} note={notes['21_4_2']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_4_3" question="Tests réguliers des plans de continuité" preuves="Rapports de tests, exercices" status={auditData['21_4_3']} note={notes['21_4_3']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
@@ -522,8 +547,11 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
           </div>
 
           {/* Article 21.5 - Sécurité de la chaîne d'approvisionnement */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">🔗 Article 21.5 - Sécurité de la chaîne d'approvisionnement</h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-3 flex items-center gap-2">
+              <span>🔗</span>
+              <span>Article 21.5 - Sécurité de la chaîne d'approvisionnement</span>
+            </h2>
             <QuestionItem id="21_5_1" question="Évaluation des risques fournisseurs" preuves="Questionnaires sécurité, audits fournisseurs" status={auditData['21_5_1']} note={notes['21_5_1']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_5_2" question="Clauses de sécurité dans les contrats" preuves="Contrats avec clauses cyber" status={auditData['21_5_2']} note={notes['21_5_2']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_5_3" question="Contrôle et surveillance des fournisseurs" preuves="Audits, revues de sécurité" status={auditData['21_5_3']} note={notes['21_5_3']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
@@ -532,8 +560,11 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
           </div>
 
           {/* Article 21.6 - Sécurité réseau */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">🌐 Article 21.6 - Sécurité réseau</h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-3 flex items-center gap-2">
+              <span>🌐</span>
+              <span>Article 21.6 - Sécurité réseau</span>
+            </h2>
             <QuestionItem id="21_6_1" question="Segmentation réseau et zones de sécurité" preuves="Architecture réseau, VLANs" status={auditData['21_6_1']} note={notes['21_6_1']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_6_2" question="Pare-feu et filtrage réseau" preuves="Configuration firewall, règles" status={auditData['21_6_2']} note={notes['21_6_2']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_6_3" question="Détection et prévention des intrusions (IDS/IPS)" preuves="Systèmes IDS/IPS, logs" status={auditData['21_6_3']} note={notes['21_6_3']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
@@ -542,8 +573,11 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
           </div>
 
           {/* Article 21.7 - Contrôle d'accès */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">🔐 Article 21.7 - Contrôle d'accès</h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-3 flex items-center gap-2">
+              <span>🔐</span>
+              <span>Article 21.7 - Contrôle d'accès</span>
+            </h2>
             <QuestionItem id="21_7_1" question="Gestion des identités et des accès (IAM)" preuves="Système IAM, processus de provisioning" status={auditData['21_7_1']} note={notes['21_7_1']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_7_2" question="Authentification forte (MFA)" preuves="Configuration MFA, taux d'adoption" status={auditData['21_7_2']} note={notes['21_7_2']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_7_3" question="Gestion des comptes privilégiés" preuves="Coffre-fort à mots de passe, PAM" status={auditData['21_7_3']} note={notes['21_7_3']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
@@ -552,8 +586,11 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
           </div>
 
           {/* Article 21.8 - Sécurité des actifs */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">💾 Article 21.8 - Sécurité des actifs</h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-3 flex items-center gap-2">
+              <span>💾</span>
+              <span>Article 21.8 - Sécurité des actifs</span>
+            </h2>
             <QuestionItem id="21_8_1" question="Inventaire des actifs IT" preuves="CMDB, inventaire à jour" status={auditData['21_8_1']} note={notes['21_8_1']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_8_2" question="Classification et étiquetage des actifs" preuves="Classification, labels de sensibilité" status={auditData['21_8_2']} note={notes['21_8_2']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_8_3" question="Gestion des supports amovibles" preuves="Politique sur supports amovibles, chiffrement" status={auditData['21_8_3']} note={notes['21_8_3']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
@@ -562,8 +599,11 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
           </div>
 
           {/* Article 21.9 - Chiffrement */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">🔒 Article 21.9 - Chiffrement</h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-3 flex items-center gap-2">
+              <span>🔒</span>
+              <span>Article 21.9 - Chiffrement</span>
+            </h2>
             <QuestionItem id="21_9_1" question="Chiffrement des données sensibles au repos" preuves="Configuration chiffrement, algorithmes" status={auditData['21_9_1']} note={notes['21_9_1']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_9_2" question="Chiffrement des données en transit" preuves="TLS/SSL, certificats" status={auditData['21_9_2']} note={notes['21_9_2']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_9_3" question="Gestion des clés cryptographiques" preuves="KMS, procédure de gestion des clés" status={auditData['21_9_3']} note={notes['21_9_3']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
@@ -572,8 +612,11 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
           </div>
 
           {/* Article 21.10 - Ressources humaines */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">👥 Article 21.10 - Ressources humaines</h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-3 flex items-center gap-2">
+              <span>👥</span>
+              <span>Article 21.10 - Ressources humaines</span>
+            </h2>
             <QuestionItem id="21_10_1" question="Sensibilisation et formation à la cybersécurité" preuves="Programme de formation, taux de participation" status={auditData['21_10_1']} note={notes['21_10_1']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_10_2" question="Tests de phishing et simulation d'attaques" preuves="Campagnes de phishing, résultats" status={auditData['21_10_2']} note={notes['21_10_2']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_10_3" question="Clauses de sécurité dans les contrats de travail" preuves="Contrats avec clauses cyber, NDA" status={auditData['21_10_3']} note={notes['21_10_3']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
@@ -582,8 +625,11 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
           </div>
 
           {/* Article 21.11 - Développement sécurisé */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">💻 Article 21.11 - Développement sécurisé</h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-3 flex items-center gap-2">
+              <span>💻</span>
+              <span>Article 21.11 - Développement sécurisé</span>
+            </h2>
             <QuestionItem id="21_11_1" question="Cycle de développement sécurisé (SDLC)" preuves="Processus SDLC documenté" status={auditData['21_11_1']} note={notes['21_11_1']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_11_2" question="Revues de code et analyse statique" preuves="Outils SAST, rapports de revue" status={auditData['21_11_2']} note={notes['21_11_2']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_11_3" question="Tests de sécurité applicatifs" preuves="Tests DAST, pentests, rapports" status={auditData['21_11_3']} note={notes['21_11_3']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
@@ -592,8 +638,11 @@ export default function AuditInterface({ audit, onUpdateAudit }) {
           </div>
 
           {/* Article 21.12 - Journalisation et surveillance */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-2">📊 Article 21.12 - Journalisation et surveillance</h2>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 border-b pb-3 flex items-center gap-2">
+              <span>📊</span>
+              <span>Article 21.12 - Journalisation et surveillance</span>
+            </h2>
             <QuestionItem id="21_12_1" question="Centralisation des logs (SIEM)" preuves="Solution SIEM, configuration" status={auditData['21_12_1']} note={notes['21_12_1']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_12_2" question="Rétention des logs conformément aux exigences" preuves="Politique de rétention, archivage" status={auditData['21_12_2']} note={notes['21_12_2']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
             <QuestionItem id="21_12_3" question="Protection et intégrité des logs" preuves="Logs sécurisés, non modifiables" status={auditData['21_12_3']} note={notes['21_12_3']} onStatusChange={handleStatusChange} onNoteChange={handleNoteChange} />
