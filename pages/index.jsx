@@ -168,14 +168,12 @@ export default function Home() {
           <div className="hero-separator"></div>
 
           <h1 className="hero-title">
-            Anticipez les risques financiers<br />
-            liés à NIS2
+            Mesurez vos risques NIS2<br />
+            et priorisez vos actions
           </h1>
           
           <p className="hero-subtitle">
-            Protégez votre activité, votre réputation et votre résilience. 
-            Transformez NIS2 en levier de performance avec un accompagnement 
-            d'experts cyber certifiés ISO 27001.
+            Audit structuré • Selon référentiel ANSSI • Rapport détaillé • Recommandations priorisées
           </p>
 
           <div className="hero-stats-minimal">
@@ -191,13 +189,7 @@ export default function Home() {
               <div className="stat-value-minimal">70%</div>
               <div className="stat-label-minimal">d'aides de l'état<br />possibles</div>
             </div>
-            <div className="stat-minimal">
-              <div className="stat-value-minimal">+40%</div>
-              <div className="stat-label-minimal">de cyber attaques<br />en 2024</div>
-            </div>
-          </div>
-
-          <a 
+<a 
             href={CONTACT_INFO.calendly} 
             target="_blank" 
             rel="noopener noreferrer"
@@ -205,6 +197,10 @@ export default function Home() {
           >
             📞 Échange gratuit - Suis-je éligible ?
           </a>
+
+          <p className="hero-reassurance">
+            ✓ Certifié ISO 27001 • ✓ Méthodologie ANSSI • ✓ Sans engagement
+          </p>
         </section>
 
         {/* Section liens informatifs */}
@@ -835,6 +831,14 @@ export default function Home() {
           background: #E64825;
           transform: translateY(-2px);
           box-shadow: 0 8px 28px rgba(255, 86, 48, 0.35);
+        }
+
+        .hero-reassurance {
+          font-size: 14px;
+          font-weight: 600;
+          color: #64748B;
+          margin-top: 16px;
+          text-align: center;
         }
 
         .hero-cta-link {
