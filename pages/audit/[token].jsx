@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
+import AuditLayout from '../../components/AuditLayout';
 
 export default function ClientAuditPage() {
   const router = useRouter();
@@ -60,51 +62,169 @@ export default function ClientAuditPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600 text-lg">Chargement de votre audit...</p>
+      <>
+        <Head>
+          <title>Chargement de l'audit | NIS2 Conformité</title>
+        </Head>
+        <div className="loading-screen">
+          <div className="loading-content">
+            <div className="spinner"></div>
+            <p>Chargement de votre audit...</p>
+          </div>
+
+          <style jsx>{`
+            .loading-screen {
+              min-height: 100vh;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background: #F7F9FC;
+            }
+
+            .loading-content {
+              text-align: center;
+            }
+
+            .spinner {
+              width: 64px;
+              height: 64px;
+              border: 4px solid #E2E8F0;
+              border-top-color: #1E3A8A;
+              border-radius: 50%;
+              animation: spin 0.8s linear infinite;
+              margin: 0 auto 24px;
+            }
+
+            @keyframes spin {
+              to { transform: rotate(360deg); }
+            }
+
+            p {
+              font-size: 17px;
+              color: #64748B;
+              font-weight: 500;
+            }
+          `}</style>
         </div>
-      </div>
+      </>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center bg-white p-8 rounded-lg shadow-lg max-w-md">
-          <div className="text-red-500 text-6xl mb-4">⚠️</div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">Audit introuvable</h1>
-          <p className="text-gray-600 mb-6">{error}</p>
-          <button
-            onClick={() => router.push('/')}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Retour à l'accueil
-          </button>
+      <>
+        <Head>
+          <title>Audit introuvable | NIS2 Conformité</title>
+        </Head>
+        <div className="error-screen">
+          <div className="error-card">
+            <div className="error-icon">⚠️</div>
+            <h1>Audit introuvable</h1>
+            <p>{error}</p>
+            <button onClick={() => router.push('/')}>
+              Retour à l'accueil
+            </button>
+          </div>
+
+          <style jsx>{`
+            .error-screen {
+              min-height: 100vh;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background: #F7F9FC;
+              padding: 20px;
+            }
+
+            .error-card {
+              background: white;
+              padding: 48px 40px;
+              border-radius: 20px;
+              box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+              text-align: center;
+              max-width: 480px;
+            }
+
+            .error-icon {
+              font-size: 72px;
+              margin-bottom: 24px;
+            }
+
+            h1 {
+              font-size: 28px;
+              font-weight: 800;
+              color: #0F172A;
+              margin-bottom: 12px;
+            }
+
+            p {
+              font-size: 16px;
+              color: #64748B;
+              margin-bottom: 32px;
+              line-height: 1.6;
+            }
+
+            button {
+              background: #1E3A8A;
+              color: white;
+              padding: 14px 32px;
+              border-radius: 12px;
+              border: none;
+              font-size: 16px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: all 0.3s ease;
+            }
+
+            button:hover {
+              background: #1E40AF;
+              transform: translateY(-2px);
+              box-shadow: 0 4px 16px rgba(30, 58, 138, 0.3);
+            }
+          `}</style>
         </div>
-      </div>
+      </>
     );
   }
 
   if (!audit) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <p className="text-gray-600">Aucun audit trouvé</p>
-        </div>
+      <div className="empty-state">
+        <p>Aucun audit trouvé</p>
+        <style jsx>{`
+          .empty-state {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #F7F9FC;
+          }
+          
+          p {
+            font-size: 17px;
+            color: #64748B;
+          }
+        `}</style>
       </div>
     );
   }
 
+  // Charger AuditInterface dynamiquement
   const AuditInterface = require('../../components/AuditInterface').default;
 
   return (
-    <div>
-      <AuditInterface
-        audit={audit}
-        onUpdateAudit={handleUpdate}
-      />
-    </div>
+    <>
+      <Head>
+        <title>Audit NIS2 - {audit.entity_name || 'En cours'} | NIS2 Conformité</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
+
+      <AuditLayout>
+        <AuditInterface
+          audit={audit}
+          onUpdateAudit={handleUpdate}
+        />
+      </AuditLayout>
+    </>
   );
 }
