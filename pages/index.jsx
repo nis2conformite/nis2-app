@@ -4,6 +4,7 @@ import { useQuiz } from '../hooks/useQuiz';
 import { useLeadPopup } from '../hooks/useLeadPopup';
 import { QuizModal } from '../components/QuizModal';
 import MenuBurger from '../components/MenuBurger';
+import '../styles/home.css';
 import { 
   PRICING_OFFERS, 
   TESTIMONIALS, 
