@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useQuiz } from '../hooks/useQuiz';
 import { useLeadPopup } from '../hooks/useLeadPopup';
 import { QuizModal } from '../components/QuizModal';
+import MenuBurger from '../components/MenuBurger';
 import { 
   PRICING_OFFERS, 
   TESTIMONIALS, 
@@ -144,11 +145,9 @@ export default function Home() {
             />
           </div>
           <div className="sticky-cta-group">
+            <MenuBurger />
             <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-sticky primary">
-              📅 RDV expert gratuit
-            </a>
-            <a href="#pricing" className="btn-sticky secondary">
-              Nos offres
+              📞 Échange gratuit
             </a>
           </div>
         </div>
@@ -171,14 +170,12 @@ export default function Home() {
           <div className="hero-separator"></div>
 
           <h1 className="hero-title">
-            Anticipez les risques financiers<br />
-            liés à NIS2
+            Mesurez vos risques NIS2<br />
+            et priorisez vos actions
           </h1>
           
           <p className="hero-subtitle">
-            Protégez votre activité, votre réputation et votre résilience. 
-            Transformez NIS2 en levier de performance avec un accompagnement 
-            d'experts cyber certifiés ISO 27001.
+            Audit structuré • Selon référentiel ANSSI • Rapport détaillé • Recommandations priorisées
           </p>
 
           <div className="hero-stats-minimal">
@@ -195,18 +192,37 @@ export default function Home() {
               <div className="stat-label-minimal">d'aides de l'état<br />possibles</div>
             </div>
             <div className="stat-minimal">
-              <div className="stat-value-minimal">+40%</div>
-              <div className="stat-label-minimal">de cyber attaques<br />en 2024</div>
+              <div className="stat-value-minimal">65</div>
+              <div className="stat-label-minimal">questions<br />d'audit</div>
             </div>
           </div>
 
-          <button onClick={quiz.openQuiz} className="hero-cta-primary">
-            🎯 Suis-je concerné par NIS2 ?
-          </button>
-
-          <a href="#video-section" className="hero-cta-link">
-            Comprendre NIS2 en vidéo →
+          <a 
+            href={CONTACT_INFO.calendly} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hero-cta-primary"
+          >
+            📞 Échange gratuit - Suis-je éligible ?
           </a>
+
+          <p className="hero-reassurance">
+            ✓ Certifié ISO 27001 • ✓ Méthodologie ANSSI • ✓ Sans engagement
+          </p>
+        </section>
+
+        {/* Section liens informatifs */}
+        <section className="info-links-section">
+          <h3 className="info-links-title">Vous vous posez des questions ?</h3>
+          <div className="info-links-container">
+            <button onClick={quiz.openQuiz} className="info-link">
+              📋 Suis-je concerné par NIS2 ?
+            </button>
+            <a href="#video-section" className="info-link">
+              🎥 Comprendre NIS2 en 3min
+            </a>
+          </div>
+          <p className="info-links-subtitle">Réponses claires et rapides</p>
         </section>
 
         <div className="risk-opportunity-wrapper">
@@ -231,11 +247,6 @@ export default function Home() {
               <li><strong>Valorisez votre entreprise</strong> — Une organisation conforme vaut plus en cas de cession</li>
             </ul>
           </section>
-        </div>
-
-        <div className="cta-inline" style={{background: '#1E3A8A'}}>
-          <p>🚀 Transformez la contrainte en opportunité business</p>
-          <a href="#pricing" className="btn">Découvrir nos offres</a>
         </div>
 
         <section className="impact-section">
@@ -635,13 +646,6 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="cta-inline" style={{background: '#1E3A8A'}}>
-          <p>🛡️ Renforcez la sécurité informatique et la résilience de votre entreprise</p>
-          <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn">
-            📅 Echange gratuit avec un expert
-          </a>
-        </div>
-
         <section className="social-proof">
           <div className="section-header">
             <h2 style={{color: '#1E3A8A'}}>Dirigeants conformes, entreprises gagnantes</h2>
@@ -678,13 +682,6 @@ export default function Home() {
             </iframe>
           </div>
         </section>
-
-        <div className="cta-inline" style={{background: '#1E3A8A'}}>
-          <p>💬 Échangez avec un de nos experts • Obtenez des réponses claires</p>
-          <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn">
-            📅 Prendre rendez-vous
-          </a>
-        </div>
 
         <section className="faq">
           <div className="section-header">
@@ -844,6 +841,14 @@ export default function Home() {
           box-shadow: 0 8px 28px rgba(255, 86, 48, 0.35);
         }
 
+        .hero-reassurance {
+          font-size: 14px;
+          font-weight: 600;
+          color: #64748B;
+          margin-top: 16px;
+          text-align: center;
+        }
+
         .hero-cta-link {
           display: block;
           font-size: 16px;
@@ -857,6 +862,59 @@ export default function Home() {
         .hero-cta-link:hover {
           text-decoration: underline;
           color: #1E40AF;
+        }
+
+        /* Section liens informatifs après hero */
+        .info-links-section {
+          background: #F7F8FC;
+          padding: 32px 20px;
+          text-align: center;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .info-links-title {
+          font-size: 20px;
+          font-weight: 700;
+          color: #1E3A8A;
+          margin-bottom: 20px;
+        }
+
+        .info-links-container {
+          display: flex;
+          justify-content: center;
+          gap: 24px;
+          flex-wrap: wrap;
+          margin-bottom: 12px;
+        }
+
+        .info-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 12px 24px;
+          background: white;
+          border: 2px solid #1E3A8A;
+          border-radius: 10px;
+          color: #1E3A8A;
+          font-size: 15px;
+          font-weight: 600;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        .info-link:hover {
+          background: #1E3A8A;
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+        }
+
+        .info-links-subtitle {
+          font-size: 14px;
+          color: #64748B;
+          margin: 0;
         }
 
         /* RESPONSIVE HERO */
@@ -913,6 +971,25 @@ export default function Home() {
             font-size: 15px;
             padding: 15px 32px;
             margin-bottom: 20px;
+          }
+
+          .info-links-section {
+            padding: 24px 16px;
+          }
+
+          .info-links-title {
+            font-size: 18px;
+          }
+
+          .info-links-container {
+            flex-direction: column;
+            gap: 12px;
+          }
+
+          .info-link {
+            width: 100%;
+            justify-content: center;
+            font-size: 14px;
           }
 
           .hero-cta-link {
