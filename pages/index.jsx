@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useQuiz } from '../hooks/useQuiz';
 import { useLeadPopup } from '../hooks/useLeadPopup';
 import { QuizModal } from '../components/QuizModal';
+import MenuBurger from '../components/MenuBurger';
 import { 
   PRICING_OFFERS, 
   TESTIMONIALS, 
@@ -144,6 +145,7 @@ export default function Home() {
             />
           </div>
           <div className="sticky-cta-group">
+            <MenuBurger />
             <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-sticky primary">
               📞 Échange gratuit
             </a>
