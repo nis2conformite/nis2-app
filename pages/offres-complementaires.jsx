@@ -1,654 +1,861 @@
-import PageLayout from '../components/PageLayout';
+import { useState } from 'react';
 import Head from 'next/head';
+import PageLayout from '../components/PageLayout';
 
-export default function OffresComplementaires() {
-  const services = [
-    {
-      id: 1,
-      icon: '📄',
-      title: 'Modèles de documents',
-      price: '99€/mois',
-      features: [
-        'Modèles pour mise en conformité',
-        'Mis à jour avec la réglementation',
-        'Accès illimité',
-      ],
-    },
-    {
-      id: 2,
-      icon: '📚',
-      title: 'Formation',
-      price: '149€/pers',
-      features: [
-        'Formation obligatoire des dirigeants',
-        'Formation en distanciel',
-        'Formation présentiel sur site possible',
-      ],
-    },
-    {
-      id: 3,
-      icon: '💼',
-      title: 'Montage dossiers Subventions',
-      price: '299€',
-      features: [
-        'Identification des aides',
-        'Constitution des dossiers',
-        'Maximisation des financements',
-      ],
-    },
-    {
-      id: 4,
-      icon: '⚠️',
-      title: 'Notification Incidents',
-      price: '99€/mois',
-      features: [
-        'Déclaration incident en 24h à l\'ANSSI',
-        'Conseil gestion de crise',
-        'Hotline téléphonique inclus',
-      ],
-    },
-  ];
+const CONTACT_INFO = {
+  calendly: 'https://calendly.com/nis2conformite/30min',
+  email: 'nis2conformite@gmail.com',
+  company: 'Cyber Solférino',
+  website: 'www.cyber-solferino.com'
+};
+
+export default function OffresServices() {
+  const [showComparison, setShowComparison] = useState(false);
+
+  async function handleStripeCheckout() {
+    try {
+      const response = await fetch('/api/stripe/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      
+      const data = await response.json();
+      
+      if (data.error) {
+        alert('Erreur: ' + data.error);
+        return;
+      }
+      
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+    }
+  }
 
   return (
     <>
       <Head>
-        <title>Offres complémentaires | NIS2 Conformité</title>
-        <meta name="description" content="Découvrez nos services complémentaires : modèles de documents, formations cybersécurité, montage de dossiers de subventions, notification d'incidents ANSSI." />
+        <title>Nos Solutions NIS2 | Audits, Formations & Services Complémentaires</title>
+        <meta name="description" content="Découvrez nos solutions complètes pour votre mise en conformité NIS2 : audits, formations, modèles de documents et services d'accompagnement. Prix transparents et expertise certifiée." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
       <PageLayout>
-        {/* Hero */}
-        <section className="hero">
-          <div className="container">
-            <h1>Services complémentaires</h1>
-            <p className="hero-subtitle">
-              Découvrez nos services pour aller plus loin dans la conformité et la sécurité
-            </p>
+        {/* HERO */}
+        <section className="hero-offres">
+          <div className="hero-badge">💼 Nos Solutions</div>
+          <h1>Tout pour votre conformité NIS2</h1>
+          <p className="hero-subtitle">
+            Des audits complets aux formations en passant par les services complémentaires.<br />
+            <strong>Choisissez la solution adaptée à votre maturité cyber.</strong>
+          </p>
+        </section>
+
+        {/* OFFRES PRINCIPALES - FORMAT SIMPLIFIÉ */}
+        <section className="main-offers">
+          <div className="section-intro">
+            <h2>🎯 Nos Audits de Conformité NIS2</h2>
+            <p>3 formules d'accompagnement adaptées à votre maturité cyber</p>
+          </div>
+
+          <div className="offers-simplified">
+            <div className="offer-simple">
+              <div className="offer-simple-header">
+                <h3>Essentielle</h3>
+                <div className="offer-simple-price">3 490€ <span>HT</span></div>
+              </div>
+              <p className="offer-simple-desc">Auto-évaluation guidée • Résultat immédiat • Score de conformité</p>
+              <button onClick={handleStripeCheckout} className="btn-simple">Démarrer l'audit →</button>
+            </div>
+
+            <div className="offer-simple featured">
+              <div className="popular-badge-simple">⭐ POPULAIRE</div>
+              <div className="offer-simple-header">
+                <h3>Sérénité</h3>
+                <div className="offer-simple-price">7 990€ <span>HT</span></div>
+              </div>
+              <p className="offer-simple-desc">Audit complet + Expert • Plan de remédiation • Livraison 48H</p>
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-simple btn-simple-primary">
+                Prendre RDV →
+              </a>
+            </div>
+
+            <div className="offer-simple">
+              <div className="offer-simple-header">
+                <h3>Expertise</h3>
+                <div className="offer-simple-price">14 900€ <span>HT</span></div>
+              </div>
+              <p className="offer-simple-desc">Accompagnement complet • Roadmap personnalisée • 12 mois de suivi</p>
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-simple">
+                Prendre RDV →
+              </a>
+            </div>
+          </div>
+
+          <div className="offers-cta-bottom">
+            <a href="/#pricing" className="link-details">
+              📊 Voir le comparatif détaillé des offres
+            </a>
           </div>
         </section>
 
-        {/* Services grid */}
-        <section className="services-section">
-          <div className="container">
-            <div className="services-grid">
-              {services.map((service) => (
-                <div key={service.id} className="service-card">
-                  <div className="service-icon">{service.icon}</div>
-                  <h3>{service.title}</h3>
-                  <div className="service-price">{service.price}</div>
-                  <ul className="service-features">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx}>
-                        <span className="check">→</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+        {/* SERVICES COMPLÉMENTAIRES */}
+        <section className="complementary-section">
+          <div className="section-intro">
+            <h2>🛠️ Services Complémentaires</h2>
+            <p>Renforcez votre conformité avec nos services additionnels</p>
           </div>
-        </section>
 
-        {/* Détails des services */}
-        <section className="details-section">
-          <div className="container">
-            <h2>Détails de nos services complémentaires</h2>
-
-            {/* Modèles de documents */}
-            <div className="detail-block">
-              <div className="detail-icon">📄</div>
-              <h3>Modèles de documents de conformité</h3>
-              <div className="detail-content">
-                <div className="detail-text">
-                  <p className="lead">
-                    Accédez à une bibliothèque complète de modèles professionnels pour accélérer
-                    votre mise en conformité NIS2.
-                  </p>
-                  <ul>
-                    <li><strong>Politiques de sécurité</strong> — Modèles conformes ANSSI</li>
-                    <li><strong>Procédures opérationnelles</strong> — Gestion des incidents, sauvegarde, continuité</li>
-                    <li><strong>Registres et tableaux de bord</strong> — Suivi des actifs, risques, audits</li>
-                    <li><strong>Modèles de contrats</strong> — Sous-traitants, DPA, clauses cyber</li>
-                    <li><strong>Mises à jour continues</strong> — Évolution avec la réglementation</li>
-                  </ul>
-                </div>
-                <div className="detail-price-box">
-                  <div className="price-highlight">99€/mois</div>
-                  <p>Accès illimité à tous les modèles</p>
-                  <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer" className="cta-detail">
-                    Souscrire
-                  </a>
-                </div>
+          <div className="services-grid">
+            {/* MODÈLES DE DOCUMENTS */}
+            <div className="service-card-modern">
+              <div className="service-icon-modern" style={{background: 'linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%)'}}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
               </div>
+              <h3>Modèles de documents</h3>
+              <div className="service-price-modern">99€<span>/mois</span></div>
+              <ul className="service-features-modern">
+                <li>Templates conformité NIS2</li>
+                <li>Mis à jour réglementairement</li>
+                <li>Accès illimité</li>
+                <li>Politiques ANSSI</li>
+              </ul>
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-service-modern">
+                En savoir plus
+              </a>
             </div>
 
-            {/* Formation */}
-            <div className="detail-block alternate">
-              <div className="detail-icon">📚</div>
-              <h3>Formations cybersécurité et NIS2</h3>
-              <div className="detail-content">
-                <div className="detail-text">
-                  <p className="lead">
-                    Formez vos équipes et dirigeants aux enjeux de la cybersécurité et aux obligations NIS2.
-                  </p>
-                  <h4>Formats disponibles :</h4>
-                  <ul>
-                    <li><strong>Formation obligatoire des dirigeants</strong> — Responsabilité pénale, gouvernance cyber</li>
-                    <li><strong>Sensibilisation équipes</strong> — Phishing, mots de passe, bonnes pratiques</li>
-                    <li><strong>Formation technique IT</strong> — Sécurisation SI, gestion incidents, audits</li>
-                    <li><strong>En distanciel ou sur site</strong> — Adaptabilité totale à votre organisation</li>
-                  </ul>
-                  <p className="note">
-                    <a href="/formations">Voir toutes nos formations →</a>
-                  </p>
-                </div>
-                <div className="detail-price-box">
-                  <div className="price-highlight">149€/pers</div>
-                  <p>Tarif dégressif par volume</p>
-                  <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer" className="cta-detail">
-                    Devis personnalisé
-                  </a>
-                </div>
+            {/* FORMATIONS */}
+            <div className="service-card-modern featured-service">
+              <div className="featured-badge-service">RECOMMANDÉ</div>
+              <div className="service-icon-modern" style={{background: 'linear-gradient(135deg, #FF5630 0%, #E64825 100%)'}}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
               </div>
+              <h3>Formations NIS2</h3>
+              <div className="service-price-modern">149€<span>/pers</span></div>
+              <ul className="service-features-modern">
+                <li>Formation dirigeants (obligatoire)</li>
+                <li>Sensibilisation équipes</li>
+                <li>Distanciel ou présentiel</li>
+                <li>Certifications incluses</li>
+              </ul>
+              <a href="#formations" className="btn-service-modern btn-service-primary">
+                Voir les formations
+              </a>
             </div>
 
-            {/* Subventions */}
-            <div className="detail-block">
-              <div className="detail-icon">💼</div>
-              <h3>Montage de dossiers de subventions</h3>
-              <div className="detail-content">
-                <div className="detail-text">
-                  <p className="lead">
-                    Bénéficiez de jusqu'à 70% d'aides de l'État pour financer votre mise en conformité NIS2.
-                  </p>
-                  <h4>Notre accompagnement :</h4>
-                  <ul>
-                    <li><strong>Identification des aides éligibles</strong> — France Num, BPI, Régions, Europe</li>
-                    <li><strong>Constitution des dossiers complets</strong> — Documents, justificatifs, budget</li>
-                    <li><strong>Maximisation des financements</strong> — Cumul d'aides, optimisation fiscale</li>
-                    <li><strong>Suivi administratif</strong> — Relances, réponses aux demandes complémentaires</li>
-                  </ul>
-                  <div className="stat-highlight">
-                    💡 <strong>En moyenne, nos clients récupèrent 12 000€ d'aides</strong>
-                  </div>
-                </div>
-                <div className="detail-price-box">
-                  <div className="price-highlight">299€</div>
-                  <p>Forfait unique par dossier</p>
-                  <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer" className="cta-detail">
-                    Simuler mes aides
-                  </a>
-                </div>
+            {/* SUBVENTIONS */}
+            <div className="service-card-modern">
+              <div className="service-icon-modern" style={{background: 'linear-gradient(135deg, #16A34A 0%, #15803D 100%)'}}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
               </div>
+              <h3>Montage Subventions</h3>
+              <div className="service-price-modern">299€<span></span></div>
+              <ul className="service-features-modern">
+                <li>Identification des aides (70% max)</li>
+                <li>Constitution dossiers</li>
+                <li>France Num, BPI, Régions</li>
+                <li>12 000€ récupérés en moyenne</li>
+              </ul>
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-service-modern">
+                En savoir plus
+              </a>
             </div>
 
-            {/* Notification incidents */}
-            <div className="detail-block alternate">
-              <div className="detail-icon">⚠️</div>
-              <h3>Notification d'incidents à l'ANSSI</h3>
-              <div className="detail-content">
-                <div className="detail-text">
-                  <p className="lead">
-                    Obligation NIS2 : déclarer tout incident de sécurité significatif à l'ANSSI dans les 24h.
-                    Nous gérons cette obligation pour vous.
-                  </p>
-                  <h4>Service inclus :</h4>
-                  <ul>
-                    <li><strong>Déclaration en 24h</strong> — Rédaction et envoi du rapport d'incident conforme</li>
-                    <li><strong>Conseil gestion de crise</strong> — Support immédiat par nos experts</li>
-                    <li><strong>Hotline téléphonique 24/7</strong> — Joignabilité permanente en cas d'incident</li>
-                    <li><strong>Suivi post-incident</strong> — Reporting complémentaire à 72h et bilan final</li>
-                  </ul>
-                  <div className="warning-highlight">
-                    ⚠️ <strong>Sans déclaration dans les délais : sanction jusqu'à 10M€</strong>
-                  </div>
-                </div>
-                <div className="detail-price-box">
-                  <div className="price-highlight">99€/mois</div>
-                  <p>Abonnement annuel</p>
-                  <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer" className="cta-detail">
-                    Souscrire
-                  </a>
-                </div>
+            {/* NOTIFICATION INCIDENTS */}
+            <div className="service-card-modern">
+              <div className="service-icon-modern" style={{background: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)'}}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Pourquoi ces services */}
-        <section className="why-section">
-          <div className="container">
-            <h2>Pourquoi ces services sont complémentaires ?</h2>
-            <div className="why-grid">
-              <div className="why-card">
-                <span className="why-icon">🎯</span>
-                <h4>Conformité complète</h4>
-                <p>
-                  L'audit identifie vos écarts. Les modèles, formations et accompagnement vous permettent
-                  de les combler efficacement.
-                </p>
-              </div>
-
-              <div className="why-card">
-                <span className="why-icon">💰</span>
-                <h4>Optimisation budgétaire</h4>
-                <p>
-                  Les subventions réduisent drastiquement le coût de mise en conformité. En moyenne,
-                  70% des dépenses peuvent être financées.
-                </p>
-              </div>
-
-              <div className="why-card">
-                <span className="why-icon">⚡</span>
-                <h4>Réactivité en cas de crise</h4>
-                <p>
-                  La notification d'incidents vous protège juridiquement et vous permet de respecter
-                  vos obligations même en situation d'urgence.
-                </p>
-              </div>
-
-              <div className="why-card">
-                <span className="why-icon">📈</span>
-                <h4>Montée en compétences</h4>
-                <p>
-                  Les formations garantissent que vos équipes comprennent et appliquent durablement
-                  les bonnes pratiques de cybersécurité.
-                </p>
-              </div>
+              <h3>Notification Incidents</h3>
+              <div className="service-price-modern">99€<span>/mois</span></div>
+              <ul className="service-features-modern">
+                <li>Déclaration ANSSI 24h</li>
+                <li>Gestion de crise</li>
+                <li>Hotline 24/7</li>
+                <li>Évitez les 10M€ d'amende</li>
+              </ul>
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-service-modern">
+                En savoir plus
+              </a>
             </div>
           </div>
         </section>
 
-        {/* CTA Final */}
-        <section className="cta-section">
-          <div className="container">
-            <h2>Besoin d'un accompagnement complet ?</h2>
-            <p>
-              Discutons ensemble de vos besoins spécifiques et construisons une offre sur-mesure.
-            </p>
+        {/* FORMATIONS DÉTAILLÉES */}
+        <section className="formations-section" id="formations">
+          <div className="section-intro">
+            <h2>📚 Formations NIS2 & Cybersécurité</h2>
+            <p>Formez vos équipes aux nouvelles obligations • Formats adaptés à vos contraintes</p>
+          </div>
+
+          {/* FORMATS DE FORMATION */}
+          <div className="formations-formats">
+            <h3 className="subsection-title">4 Formats disponibles</h3>
+            <div className="formats-grid">
+              <div className="format-card featured-format">
+                <div className="format-icon">💻</div>
+                <h4>MOOC autonome</h4>
+                <p>24/7 • Plateforme e-learning</p>
+                <ul>
+                  <li>Vidéos courtes + quiz</li>
+                  <li>Suivi apprenant</li>
+                  <li>Formation à grande échelle</li>
+                </ul>
+              </div>
+
+              <div className="format-card">
+                <div className="format-icon">📹</div>
+                <h4>Sessions en ligne</h4>
+                <p>1-2h • Interactive • Q&A en direct</p>
+                <ul>
+                  <li>Modules interactifs</li>
+                  <li>Replays disponibles</li>
+                  <li>Pour tous collaborateurs</li>
+                </ul>
+              </div>
+
+              <div className="format-card">
+                <div className="format-icon">🏢</div>
+                <h4>Sur site</h4>
+                <p>Demi-journée • Formateur certifié</p>
+                <ul>
+                  <li>Ateliers pratiques</li>
+                  <li>Groupes jusqu'à 20 pers</li>
+                  <li>Mobilisation complète</li>
+                </ul>
+              </div>
+
+              <div className="format-card">
+                <div className="format-icon">👔</div>
+                <h4>Pack Dirigeants</h4>
+                <p>90min • Responsabilité pénale</p>
+                <ul>
+                  <li>Obligations légales</li>
+                  <li>Synthèse + recommandations</li>
+                  <li>Pour COMEX</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* POURQUOI FORMER */}
+          <div className="why-train">
+            <h3 className="subsection-title">Pourquoi former vos équipes ?</h3>
+            <div className="why-train-grid">
+              <div className="why-card">
+                <div className="why-icon">⚖️</div>
+                <h4>Obligation légale NIS2</h4>
+                <p>Formation obligatoire des dirigeants et sensibilisation des équipes</p>
+              </div>
+
+              <div className="why-card">
+                <div className="why-icon">👥</div>
+                <h4>90% des incidents = humain</h4>
+                <p>Former pour réduire drastiquement les risques cyber</p>
+              </div>
+
+              <div className="why-card">
+                <div className="why-icon">📊</div>
+                <h4>ROI démontré</h4>
+                <p>70% de réduction des risques • 240K€ économisés/an en moyenne</p>
+              </div>
+
+              <div className="why-card">
+                <div className="why-icon">🔄</div>
+                <h4>Culture durable</h4>
+                <p>Ancrer les bonnes pratiques dans le temps</p>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA FORMATIONS */}
+          <div className="formation-cta">
+            <p>💡 <strong>Remises sur volume disponibles</strong> • Jusqu'à 70% d'aides de l'État</p>
+            <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-large">
+              📅 Discuter de vos besoins en formation
+            </a>
+          </div>
+        </section>
+
+        {/* CTA FINAL */}
+        <section className="final-cta-modern">
+          <h2>Prêt à sécuriser votre conformité NIS2 ?</h2>
+          <p>Échangez gratuitement avec un expert certifié • Réponse en 24h</p>
+          <div className="cta-buttons">
             <a 
-              href="https://calendly.com/nis2conformite/30min" 
+              href={CONTACT_INFO.calendly} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="cta-button"
+              className="btn btn-primary btn-large"
             >
-              📞 Obtenir un devis personnalisé
+              📅 Réserver un échange gratuit
             </a>
-            <p className="cta-note">
-              ✓ Réponse sous 2h • ✓ Tarifs transparents • ✓ Sans engagement
-            </p>
+            <a 
+              href={`mailto:${CONTACT_INFO.email}`}
+              className="btn btn-secondary btn-large"
+            >
+              📧 Nous contacter par email
+            </a>
           </div>
         </section>
 
         <style jsx>{`
-          .hero {
-            background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
-            color: white;
-            padding: 80px 20px;
+          /* HERO */
+          .hero-offres {
             text-align: center;
+            padding: 60px 20px 80px;
+            max-width: 900px;
+            margin: 0 auto;
           }
 
-          .hero h1 {
+          .hero-badge {
+            display: inline-block;
+            background: #1E3A8A;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 24px;
+          }
+
+          .hero-offres h1 {
             font-size: 48px;
             font-weight: 900;
+            color: #0F172A;
             margin-bottom: 20px;
+            line-height: 1.2;
           }
 
           .hero-subtitle {
-            font-size: 20px;
-            opacity: 0.95;
-            max-width: 700px;
-            margin: 0 auto;
+            font-size: 18px;
+            color: #64748B;
+            line-height: 1.7;
           }
 
-          .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+          .hero-subtitle strong {
+            color: #1E3A8A;
           }
 
-          /* Services grid */
-          .services-section {
-            padding: 80px 20px;
-            background: #F7F8FC;
-          }
-
-          .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-          }
-
-          .service-card {
-            background: white;
-            padding: 40px 32px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          /* SECTION INTRO */
+          .section-intro {
             text-align: center;
-            transition: all 0.3s ease;
+            margin-bottom: 48px;
           }
 
-          .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 32px rgba(30, 58, 138, 0.15);
-          }
-
-          .service-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-          }
-
-          .service-card h3 {
-            font-size: 22px;
-            font-weight: 800;
+          .section-intro h2 {
+            font-size: 36px;
+            font-weight: 900;
             color: #1E3A8A;
             margin-bottom: 16px;
-            min-height: 56px;
           }
 
-          .service-price {
-            font-size: 32px;
-            font-weight: 900;
-            color: #FF5630;
-            margin-bottom: 24px;
+          .section-intro p {
+            font-size: 17px;
+            color: #64748B;
           }
 
-          .service-features {
-            list-style: none;
-            padding: 0;
-            text-align: left;
-          }
-
-          .service-features li {
-            padding: 10px 0;
-            font-size: 15px;
-            color: #334155;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-          }
-
-          .check {
-            color: #1E3A8A;
-            font-weight: 700;
-            flex-shrink: 0;
-          }
-
-          /* Details section */
-          .details-section {
-            padding: 80px 20px;
-          }
-
-          .details-section h2 {
-            font-size: 36px;
+          .subsection-title {
+            font-size: 28px;
             font-weight: 800;
-            color: #1E3A8A;
-            margin-bottom: 60px;
-            text-align: center;
-          }
-
-          .detail-block {
-            max-width: 1000px;
-            margin: 0 auto 80px;
-            background: white;
-            padding: 48px;
-            border-radius: 20px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-          }
-
-          .detail-block.alternate {
-            background: #F7F8FC;
-          }
-
-          .detail-icon {
-            font-size: 72px;
-            text-align: center;
-            margin-bottom: 24px;
-          }
-
-          .detail-block h3 {
-            font-size: 32px;
-            font-weight: 800;
-            color: #1E3A8A;
+            color: #0F172A;
             margin-bottom: 32px;
             text-align: center;
           }
 
-          .detail-content {
+          /* MAIN OFFERS */
+          .main-offers {
+            margin: 80px 0;
+          }
+
+          /* MAIN OFFERS - FORMAT SIMPLIFIÉ */
+          .main-offers {
+            margin: 80px 0;
+          }
+
+          .offers-simplified {
             display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 48px;
-            align-items: start;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto 32px;
           }
 
-          .detail-text .lead {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1E3A8A;
-            margin-bottom: 24px;
-          }
-
-          .detail-text h4 {
-            font-size: 20px;
-            color: #1E3A8A;
-            margin: 24px 0 16px;
-          }
-
-          .detail-text ul {
-            list-style: none;
-            padding: 0;
-          }
-
-          .detail-text li {
-            padding: 12px 0;
-            padding-left: 28px;
-            position: relative;
-            font-size: 16px;
-            line-height: 1.6;
-            color: #334155;
-          }
-
-          .detail-text li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #16A34A;
-            font-weight: 700;
-          }
-
-          .note {
-            margin-top: 24px;
-            padding: 16px;
-            background: #FFF3CD;
-            border-radius: 8px;
-            font-size: 15px;
-          }
-
-          .note a {
-            color: #1E3A8A;
-            font-weight: 700;
-            text-decoration: none;
-          }
-
-          .note a:hover {
-            text-decoration: underline;
-          }
-
-          .stat-highlight,
-          .warning-highlight {
-            margin-top: 24px;
-            padding: 20px;
-            border-radius: 12px;
-            font-size: 16px;
-          }
-
-          .stat-highlight {
-            background: #DCFCE7;
-            border-left: 4px solid #16A34A;
-          }
-
-          .warning-highlight {
-            background: #FEE2E2;
-            border-left: 4px solid #DC2626;
-          }
-
-          .detail-price-box {
-            background: #1E3A8A;
-            padding: 32px 24px;
-            border-radius: 16px;
+          .offer-simple {
+            background: white;
+            border: 3px solid #E2E8F0;
+            border-radius: 20px;
+            padding: 32px 28px;
             text-align: center;
-            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
           }
 
-          .price-highlight {
-            font-size: 42px;
-            font-weight: 900;
-            color: #FF5630;
+          .offer-simple:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(0, 82, 204, 0.15);
+            border-color: #1E3A8A;
+          }
+
+          .offer-simple.featured {
+            border: 4px solid #1E3A8A;
+            box-shadow: 0 8px 32px rgba(0, 82, 204, 0.2);
+          }
+
+          .popular-badge-simple {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FFAB00;
+            color: #091E42;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+          }
+
+          .offer-simple-header h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #0F172A;
             margin-bottom: 12px;
           }
 
-          .detail-price-box p {
-            font-size: 15px;
-            opacity: 0.9;
-            margin-bottom: 24px;
+          .offer-simple-price {
+            font-size: 42px;
+            font-weight: 900;
+            color: #1E3A8A;
+            line-height: 1;
           }
 
-          .cta-detail {
-            display: block;
-            padding: 16px 32px;
-            background: #FF5630;
-            color: white;
+          .offer-simple-price span {
             font-size: 16px;
+            font-weight: 600;
+            color: #64748B;
+          }
+
+          .offer-simple-desc {
+            font-size: 15px;
+            color: #64748B;
+            line-height: 1.6;
+            flex: 1;
+          }
+
+          .btn-simple {
+            display: inline-block;
+            padding: 14px 28px;
+            background: white;
+            color: #1E3A8A;
+            border: 2px solid #1E3A8A;
+            border-radius: 12px;
+            font-size: 15px;
             font-weight: 700;
             text-decoration: none;
-            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+          }
+
+          .btn-simple:hover {
+            background: #1E3A8A;
+            color: white;
+            transform: translateY(-2px);
+          }
+
+          .btn-simple-primary {
+            background: #FF5630;
+            color: white;
+            border-color: #FF5630;
+          }
+
+          .btn-simple-primary:hover {
+            background: #E64825;
+            border-color: #E64825;
+          }
+
+          .offers-cta-bottom {
+            text-align: center;
+            padding-top: 16px;
+          }
+
+          .link-details {
+            font-size: 16px;
+            color: #1E3A8A;
+            text-decoration: none;
+            font-weight: 600;
             transition: all 0.3s ease;
           }
 
-          .cta-detail:hover {
-            background: #E64825;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(255, 86, 48, 0.4);
+          .link-details:hover {
+            text-decoration: underline;
           }
 
-          /* Why section */
-          .why-section {
-            padding: 80px 20px;
-            background: #F7F8FC;
+          /* SERVICES COMPLÉMENTAIRES */
+          .complementary-section {
+            margin: 80px 0;
+            padding: 60px 20px;
+            background: #F7F9FC;
+            border-radius: 24px;
           }
 
-          .why-section h2 {
-            font-size: 36px;
-            font-weight: 800;
-            color: #1E3A8A;
-            margin-bottom: 48px;
-            text-align: center;
-          }
-
-          .why-grid {
+          .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+          }
+
+          .service-card-modern {
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            position: relative;
+          }
+
+          .service-card-modern:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 82, 204, 0.15);
+            border-color: #1E3A8A;
+          }
+
+          .service-card-modern.featured-service {
+            border: 3px solid #FF5630;
+            box-shadow: 0 8px 32px rgba(255, 86, 48, 0.2);
+          }
+
+          .featured-badge-service {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FF5630;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+          }
+
+          .service-icon-modern {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+          }
+
+          .service-card-modern h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 12px;
+          }
+
+          .service-price-modern {
+            font-size: 36px;
+            font-weight: 900;
+            color: #1E3A8A;
+            margin-bottom: 24px;
+          }
+
+          .service-price-modern span {
+            font-size: 16px;
+            font-weight: 600;
+            color: #64748B;
+          }
+
+          .service-features-modern {
+            list-style: none;
+            margin-bottom: 28px;
+            text-align: left;
+          }
+
+          .service-features-modern li {
+            padding: 10px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 14px;
+            color: #505F79;
+            border-bottom: 1px solid #F1F5F9;
+          }
+
+          .service-features-modern li:last-child {
+            border-bottom: none;
+          }
+
+          .service-features-modern li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #1E3A8A;
+            font-weight: 700;
+          }
+
+          .btn-service-modern {
+            display: inline-block;
+            padding: 12px 24px;
+            background: white;
+            color: #1E3A8A;
+            border: 2px solid #1E3A8A;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+          }
+
+          .btn-service-modern:hover {
+            background: #1E3A8A;
+            color: white;
+          }
+
+          .btn-service-primary {
+            background: #FF5630;
+            color: white;
+            border-color: #FF5630;
+          }
+
+          .btn-service-primary:hover {
+            background: #E64825;
+            border-color: #E64825;
+          }
+
+          /* FORMATIONS */
+          .formations-section {
+            margin: 80px 0;
+          }
+
+          .formations-formats {
+            margin-bottom: 60px;
+          }
+
+          .formats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+          }
+
+          .format-card {
+            background: white;
+            border: 2px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+          }
+
+          .format-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 82, 204, 0.12);
+            border-color: #1E3A8A;
+          }
+
+          .format-card.featured-format {
+            border: 3px solid #FFAB00;
+            background: linear-gradient(135deg, rgba(255, 171, 0, 0.05) 0%, rgba(255, 171, 0, 0.02) 100%);
+          }
+
+          .format-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+          }
+
+          .format-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 8px;
+          }
+
+          .format-card p {
+            font-size: 13px;
+            color: #64748B;
+            margin-bottom: 16px;
+            font-weight: 600;
+          }
+
+          .format-card ul {
+            list-style: none;
+            text-align: left;
+          }
+
+          .format-card ul li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+            color: #505F79;
+          }
+
+          .format-card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #1E3A8A;
+            font-weight: 700;
+          }
+
+          /* WHY TRAIN */
+          .why-train {
+            margin-bottom: 48px;
+          }
+
+          .why-train-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
           }
 
           .why-card {
             background: white;
-            padding: 32px;
+            border: 2px solid #E2E8F0;
             border-radius: 16px;
+            padding: 28px 24px;
             text-align: center;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+          }
+
+          .why-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 82, 204, 0.12);
+            border-color: #1E3A8A;
           }
 
           .why-icon {
-            font-size: 48px;
-            display: block;
+            font-size: 40px;
             margin-bottom: 16px;
           }
 
           .why-card h4 {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 700;
-            color: #1E3A8A;
+            color: #0F172A;
             margin-bottom: 12px;
           }
 
           .why-card p {
-            font-size: 15px;
-            line-height: 1.6;
+            font-size: 14px;
             color: #64748B;
+            line-height: 1.5;
           }
 
-          /* CTA section */
-          .cta-section {
-            background: #1E3A8A;
-            color: white;
-            padding: 80px 20px;
+          /* FORMATION CTA */
+          .formation-cta {
             text-align: center;
+            background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+            padding: 40px 32px;
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 0 auto;
           }
 
-          .cta-section h2 {
+          .formation-cta p {
+            font-size: 17px;
+            color: #1E3A8A;
+            margin-bottom: 24px;
+          }
+
+          /* FINAL CTA */
+          .final-cta-modern {
+            text-align: center;
+            padding: 60px 32px;
+            background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+            border-radius: 24px;
+            margin: 80px 0;
+            box-shadow: 0 16px 48px rgba(30, 58, 138, 0.3);
+          }
+
+          .final-cta-modern h2 {
             font-size: 36px;
             font-weight: 900;
-            margin-bottom: 20px;
-          }
-
-          .cta-section p {
-            font-size: 18px;
-            opacity: 0.95;
-            max-width: 600px;
-            margin: 0 auto 32px;
-          }
-
-          .cta-button {
-            display: inline-block;
-            padding: 20px 48px;
-            background: #FF5630;
             color: white;
+            margin-bottom: 16px;
+          }
+
+          .final-cta-modern p {
             font-size: 18px;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 14px;
-            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 32px;
           }
 
-          .cta-button:hover {
-            background: #E64825;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 86, 48, 0.3);
+          .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
           }
 
-          .cta-note {
-            font-size: 14px;
-            margin-top: 16px;
-            opacity: 0.8;
+          .btn-large {
+            padding: 18px 40px;
+            font-size: 17px;
           }
 
+          /* RESPONSIVE */
           @media (max-width: 1024px) {
-            .detail-content {
-              grid-template-columns: 1fr;
-            }
-
-            .detail-price-box {
-              max-width: 400px;
-              margin: 0 auto;
+            .offers-simplified,
+            .services-grid,
+            .formats-grid,
+            .why-train-grid {
+              grid-template-columns: repeat(2, 1fr);
             }
           }
 
           @media (max-width: 768px) {
-            .hero h1 {
+            .hero-offres h1 {
               font-size: 32px;
             }
 
-            .services-section,
-            .details-section,
-            .why-section,
-            .cta-section {
-              padding: 48px 20px;
+            .section-intro h2 {
+              font-size: 28px;
             }
 
-            .detail-block {
-              padding: 32px 20px;
+            .offers-simplified,
+            .services-grid,
+            .formats-grid,
+            .why-train-grid {
+              grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+              flex-direction: column;
+            }
+
+            .btn-large {
+              width: 100%;
             }
           }
         `}</style>
