@@ -42,7 +42,6 @@ export default function OffresServices() {
       <PageLayout>
         {/* HERO */}
         <section className="hero-offres">
-          <div className="hero-badge">💼 Nos Solutions</div>
           <h1>Tout pour votre conformité NIS2</h1>
           <p className="hero-subtitle">
             Des audits complets aux formations en passant par les services complémentaires.<br />
@@ -282,10 +281,9 @@ export default function OffresServices() {
 
           {/* BANNIÈRE AIDES */}
           <div className="aides-banner">
-            <div className="aides-icon">💰</div>
-            <div className="aides-content">
-              <h4>Jusqu'à 70% d'aides de l'État</h4>
-              <p>Financement des formations par les OPCO • Subventions France Num, BPI, Régions</p>
+            <div className="aides-content-full">
+              <h3>Jusqu'à 70% d'aides de l'État possibles</h3>
+              <p>Prise en charge par les OPCO • Subventions France Num, BPI, Régions</p>
             </div>
             <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-aides">
               En savoir plus
@@ -316,22 +314,11 @@ export default function OffresServices() {
             margin: 0 auto;
           }
 
-          .hero-badge {
-            display: inline-block;
-            background: #1E3A8A;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 24px;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 24px;
-          }
-
           .hero-offres h1 {
             font-size: 48px;
             font-weight: 900;
             color: #0F172A;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             line-height: 1.2;
           }
 
@@ -743,43 +730,41 @@ export default function OffresServices() {
 
           /* BANNIÈRE AIDES */
           .aides-banner {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 48px auto 0;
-            padding: 32px 40px;
+            padding: 36px 48px;
             background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
             border: 3px solid #1E3A8A;
             border-radius: 20px;
             display: flex;
             align-items: center;
-            gap: 24px;
+            justify-content: space-between;
+            gap: 32px;
             box-shadow: 0 8px 24px rgba(30, 58, 138, 0.15);
           }
 
-          .aides-icon {
-            font-size: 56px;
-            flex-shrink: 0;
-          }
-
-          .aides-content {
+          .aides-content-full {
             flex: 1;
+            text-align: left;
           }
 
-          .aides-content h4 {
-            font-size: 22px;
-            font-weight: 800;
+          .aides-content-full h3 {
+            font-size: 26px;
+            font-weight: 900;
             color: #1E3A8A;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            line-height: 1.2;
           }
 
-          .aides-content p {
-            font-size: 15px;
+          .aides-content-full p {
+            font-size: 16px;
             color: #505F79;
             line-height: 1.5;
           }
 
           .btn-aides {
             display: inline-block;
-            padding: 14px 28px;
+            padding: 16px 32px;
             background: #1E3A8A;
             color: white;
             border-radius: 12px;
@@ -842,6 +827,10 @@ export default function OffresServices() {
               padding: 32px 28px;
             }
 
+            .aides-content-full {
+              text-align: center;
+            }
+
             .btn-aides {
               width: 100%;
             }
@@ -875,15 +864,11 @@ export default function OffresServices() {
               padding: 24px 20px;
             }
 
-            .aides-icon {
-              font-size: 48px;
+            .aides-content-full h3 {
+              font-size: 22px;
             }
 
-            .aides-content h4 {
-              font-size: 20px;
-            }
-
-            .aides-content p {
+            .aides-content-full p {
               font-size: 14px;
             }
 
