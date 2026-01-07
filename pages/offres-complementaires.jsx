@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Head from 'next/head';
 import PageLayout from '../components/PageLayout';
 
@@ -10,8 +9,6 @@ const CONTACT_INFO = {
 };
 
 export default function OffresServices() {
-  const [showComparison, setShowComparison] = useState(false);
-
   async function handleStripeCheckout() {
     try {
       const response = await fetch('/api/stripe/create-checkout', {
@@ -94,10 +91,95 @@ export default function OffresServices() {
             </div>
           </div>
 
-          <div className="offers-cta-bottom">
-            <a href="/#pricing" className="link-details">
-              📊 Voir le comparatif détaillé des offres
-            </a>
+          {/* TABLEAU COMPARATIF - TOUJOURS AFFICHÉ */}
+          <div className="comparison-section">
+            <h3 className="comparison-title">📊 Comparatif détaillé des offres</h3>
+            <div className="comparison-table-wrapper">
+              <table className="comparison-table">
+                <thead>
+                  <tr>
+                    <th className="feature-column">Fonctionnalités</th>
+                    <th>Essentielle<br/><span className="price-small">3 490€</span></th>
+                    <th className="popular-column">Sérénité ⭐<br/><span className="price-small">7 990€</span></th>
+                    <th>Expertise<br/><span className="price-small">14 900€</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="feature-name">Audit cyber NIS2</td>
+                    <td className="check">✓</td>
+                    <td className="check">✓</td>
+                    <td className="check">✓</td>
+                  </tr>
+                  <tr>
+                    <td className="feature-name">Résultat immédiat</td>
+                    <td className="check">✓</td>
+                    <td className="cross">—</td>
+                    <td className="cross">—</td>
+                  </tr>
+                  <tr>
+                    <td className="feature-name">Rapport validé par experts</td>
+                    <td className="cross">—</td>
+                    <td className="check">✓</td>
+                    <td className="check">✓</td>
+                  </tr>
+                  <tr>
+                    <td className="feature-name">Analyse écarts de conformité</td>
+                    <td className="cross">—</td>
+                    <td className="check">✓</td>
+                    <td className="check">✓</td>
+                  </tr>
+                  <tr>
+                    <td className="feature-name">Plan de remédiation détaillé</td>
+                    <td className="cross">—</td>
+                    <td className="check">✓</td>
+                    <td className="check">✓</td>
+                  </tr>
+                  <tr>
+                    <td className="feature-name">Restitution avec expert</td>
+                    <td className="cross">—</td>
+                    <td className="check">✓</td>
+                    <td className="check">✓</td>
+                  </tr>
+                  <tr>
+                    <td className="feature-name">Entretien préalable expert</td>
+                    <td className="cross">—</td>
+                    <td className="cross">—</td>
+                    <td className="check">✓</td>
+                  </tr>
+                  <tr>
+                    <td className="feature-name">Roadmap personnalisée</td>
+                    <td className="cross">—</td>
+                    <td className="cross">—</td>
+                    <td className="check">✓</td>
+                  </tr>
+                  <tr>
+                    <td className="feature-name">Enregistrement ANSSI</td>
+                    <td className="cross">—</td>
+                    <td className="cross">—</td>
+                    <td className="check">✓</td>
+                  </tr>
+                  <tr>
+                    <td className="feature-name">Dossier aides d'État</td>
+                    <td className="cross">—</td>
+                    <td className="cross">—</td>
+                    <td className="check">✓</td>
+                  </tr>
+                  <tr>
+                    <td className="feature-name">Accès plateforme</td>
+                    <td className="cross">—</td>
+                    <td className="feature-detail">6 mois</td>
+                    <td className="feature-detail">12 mois</td>
+                  </tr>
+                  <tr>
+                    <td className="feature-name">Délai de livraison</td>
+                    <td className="feature-detail">Immédiat</td>
+                    <td className="feature-detail">48H</td>
+                    <td className="feature-detail">1 mois</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
 
@@ -142,15 +224,15 @@ export default function OffresServices() {
                 </svg>
               </div>
               <h3>Formations NIS2</h3>
-              <div className="service-price-modern">149€<span>/pers</span></div>
+              <div className="service-price-modern">349€<span>/pers</span></div>
               <ul className="service-features-modern">
                 <li>Formation dirigeants (obligatoire)</li>
-                <li>Sensibilisation équipes</li>
-                <li>Distanciel ou présentiel</li>
-                <li>Certifications incluses</li>
+                <li>Prise en charge OPCO</li>
+                <li>Plateforme en ligne</li>
+                <li>Formation sur site : nous consulter</li>
               </ul>
-              <a href="#formations" className="btn-service-modern btn-service-primary">
-                Voir les formations
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-service-modern btn-service-primary">
+                En savoir plus
               </a>
             </div>
 
@@ -197,100 +279,16 @@ export default function OffresServices() {
               </a>
             </div>
           </div>
-        </section>
 
-        {/* FORMATIONS DÉTAILLÉES */}
-        <section className="formations-section" id="formations">
-          <div className="section-intro">
-            <h2>📚 Formations NIS2 & Cybersécurité</h2>
-            <p>Formez vos équipes aux nouvelles obligations • Formats adaptés à vos contraintes</p>
-          </div>
-
-          {/* FORMATS DE FORMATION */}
-          <div className="formations-formats">
-            <h3 className="subsection-title">4 Formats disponibles</h3>
-            <div className="formats-grid">
-              <div className="format-card featured-format">
-                <div className="format-icon">💻</div>
-                <h4>MOOC autonome</h4>
-                <p>24/7 • Plateforme e-learning</p>
-                <ul>
-                  <li>Vidéos courtes + quiz</li>
-                  <li>Suivi apprenant</li>
-                  <li>Formation à grande échelle</li>
-                </ul>
-              </div>
-
-              <div className="format-card">
-                <div className="format-icon">📹</div>
-                <h4>Sessions en ligne</h4>
-                <p>1-2h • Interactive • Q&A en direct</p>
-                <ul>
-                  <li>Modules interactifs</li>
-                  <li>Replays disponibles</li>
-                  <li>Pour tous collaborateurs</li>
-                </ul>
-              </div>
-
-              <div className="format-card">
-                <div className="format-icon">🏢</div>
-                <h4>Sur site</h4>
-                <p>Demi-journée • Formateur certifié</p>
-                <ul>
-                  <li>Ateliers pratiques</li>
-                  <li>Groupes jusqu'à 20 pers</li>
-                  <li>Mobilisation complète</li>
-                </ul>
-              </div>
-
-              <div className="format-card">
-                <div className="format-icon">👔</div>
-                <h4>Pack Dirigeants</h4>
-                <p>90min • Responsabilité pénale</p>
-                <ul>
-                  <li>Obligations légales</li>
-                  <li>Synthèse + recommandations</li>
-                  <li>Pour COMEX</li>
-                </ul>
-              </div>
+          {/* BANNIÈRE AIDES */}
+          <div className="aides-banner">
+            <div className="aides-icon">💰</div>
+            <div className="aides-content">
+              <h4>Jusqu'à 70% d'aides de l'État</h4>
+              <p>Financement des formations par les OPCO • Subventions France Num, BPI, Régions</p>
             </div>
-          </div>
-
-          {/* POURQUOI FORMER */}
-          <div className="why-train">
-            <h3 className="subsection-title">Pourquoi former vos équipes ?</h3>
-            <div className="why-train-grid">
-              <div className="why-card">
-                <div className="why-icon">⚖️</div>
-                <h4>Obligation légale NIS2</h4>
-                <p>Formation obligatoire des dirigeants et sensibilisation des équipes</p>
-              </div>
-
-              <div className="why-card">
-                <div className="why-icon">👥</div>
-                <h4>90% des incidents = humain</h4>
-                <p>Former pour réduire drastiquement les risques cyber</p>
-              </div>
-
-              <div className="why-card">
-                <div className="why-icon">📊</div>
-                <h4>ROI démontré</h4>
-                <p>70% de réduction des risques • 240K€ économisés/an en moyenne</p>
-              </div>
-
-              <div className="why-card">
-                <div className="why-icon">🔄</div>
-                <h4>Culture durable</h4>
-                <p>Ancrer les bonnes pratiques dans le temps</p>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA FORMATIONS */}
-          <div className="formation-cta">
-            <p>💡 <strong>Remises sur volume disponibles</strong> • Jusqu'à 70% d'aides de l'État</p>
-            <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-large">
-              📅 Discuter de vos besoins en formation
+            <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-aides">
+              En savoir plus
             </a>
           </div>
         </section>
@@ -299,22 +297,14 @@ export default function OffresServices() {
         <section className="final-cta-modern">
           <h2>Prêt à sécuriser votre conformité NIS2 ?</h2>
           <p>Échangez gratuitement avec un expert certifié • Réponse en 24h</p>
-          <div className="cta-buttons">
-            <a 
-              href={CONTACT_INFO.calendly} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn btn-primary btn-large"
-            >
-              📅 Réserver un échange gratuit
-            </a>
-            <a 
-              href={`mailto:${CONTACT_INFO.email}`}
-              className="btn btn-secondary btn-large"
-            >
-              📧 Nous contacter par email
-            </a>
-          </div>
+          <a 
+            href={CONTACT_INFO.calendly} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="btn btn-primary btn-large btn-solo"
+          >
+            📅 Réserver un échange gratuit
+          </a>
         </section>
 
         <style jsx>{`
@@ -512,6 +502,107 @@ export default function OffresServices() {
             text-decoration: underline;
           }
 
+          /* TABLEAU COMPARATIF */
+          .comparison-section {
+            margin-top: 60px;
+          }
+
+          .comparison-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0F172A;
+            text-align: center;
+            margin-bottom: 32px;
+          }
+
+          .comparison-table-wrapper {
+            overflow-x: auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 82, 204, 0.12);
+            max-width: 1000px;
+            margin: 0 auto;
+          }
+
+          .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            min-width: 700px;
+          }
+
+          .comparison-table thead {
+            background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+            color: white;
+          }
+
+          .comparison-table th {
+            padding: 24px 20px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 1.4;
+          }
+
+          .comparison-table th:first-child {
+            text-align: left;
+            width: 40%;
+          }
+
+          .comparison-table th.popular-column {
+            background: linear-gradient(135deg, #FFAB00 0%, #FF9500 100%);
+            color: #091E42;
+          }
+
+          .price-small {
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.95;
+            display: block;
+            margin-top: 6px;
+          }
+
+          .comparison-table tbody tr {
+            border-bottom: 1px solid #EFF1F5;
+            transition: background 0.2s ease;
+          }
+
+          .comparison-table tbody tr:hover {
+            background: #F7F9FC;
+          }
+
+          .comparison-table tbody tr:last-child {
+            border-bottom: none;
+          }
+
+          .comparison-table td {
+            padding: 18px 20px;
+            text-align: center;
+          }
+
+          .feature-name {
+            text-align: left !important;
+            font-weight: 600;
+            color: #091E42;
+            font-size: 15px;
+          }
+
+          .check {
+            color: #1E3A8A;
+            font-size: 22px;
+            font-weight: 700;
+          }
+
+          .cross {
+            color: #8993A4;
+            font-size: 18px;
+          }
+
+          .feature-detail {
+            font-size: 14px;
+            color: #505F79;
+            font-weight: 600;
+          }
+
           /* SERVICES COMPLÉMENTAIRES */
           .complementary-section {
             margin: 80px 0;
@@ -650,143 +741,60 @@ export default function OffresServices() {
             border-color: #E64825;
           }
 
-          /* FORMATIONS */
-          .formations-section {
-            margin: 80px 0;
-          }
-
-          .formations-formats {
-            margin-bottom: 60px;
-          }
-
-          .formats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+          /* BANNIÈRE AIDES */
+          .aides-banner {
+            max-width: 900px;
+            margin: 48px auto 0;
+            padding: 32px 40px;
+            background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+            border: 3px solid #1E3A8A;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
             gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
+            box-shadow: 0 8px 24px rgba(30, 58, 138, 0.15);
           }
 
-          .format-card {
-            background: white;
-            border: 2px solid #E2E8F0;
-            border-radius: 16px;
-            padding: 28px 24px;
-            text-align: center;
-            transition: all 0.3s ease;
+          .aides-icon {
+            font-size: 56px;
+            flex-shrink: 0;
           }
 
-          .format-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0, 82, 204, 0.12);
-            border-color: #1E3A8A;
+          .aides-content {
+            flex: 1;
           }
 
-          .format-card.featured-format {
-            border: 3px solid #FFAB00;
-            background: linear-gradient(135deg, rgba(255, 171, 0, 0.05) 0%, rgba(255, 171, 0, 0.02) 100%);
-          }
-
-          .format-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-          }
-
-          .format-card h4 {
-            font-size: 18px;
-            font-weight: 700;
-            color: #0F172A;
+          .aides-content h4 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1E3A8A;
             margin-bottom: 8px;
           }
 
-          .format-card p {
-            font-size: 13px;
-            color: #64748B;
-            margin-bottom: 16px;
-            font-weight: 600;
-          }
-
-          .format-card ul {
-            list-style: none;
-            text-align: left;
-          }
-
-          .format-card ul li {
-            padding: 6px 0;
-            padding-left: 20px;
-            position: relative;
-            font-size: 13px;
+          .aides-content p {
+            font-size: 15px;
             color: #505F79;
-          }
-
-          .format-card ul li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #1E3A8A;
-            font-weight: 700;
-          }
-
-          /* WHY TRAIN */
-          .why-train {
-            margin-bottom: 48px;
-          }
-
-          .why-train-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-          }
-
-          .why-card {
-            background: white;
-            border: 2px solid #E2E8F0;
-            border-radius: 16px;
-            padding: 28px 24px;
-            text-align: center;
-            transition: all 0.3s ease;
-          }
-
-          .why-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 82, 204, 0.12);
-            border-color: #1E3A8A;
-          }
-
-          .why-icon {
-            font-size: 40px;
-            margin-bottom: 16px;
-          }
-
-          .why-card h4 {
-            font-size: 16px;
-            font-weight: 700;
-            color: #0F172A;
-            margin-bottom: 12px;
-          }
-
-          .why-card p {
-            font-size: 14px;
-            color: #64748B;
             line-height: 1.5;
           }
 
-          /* FORMATION CTA */
-          .formation-cta {
-            text-align: center;
-            background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
-            padding: 40px 32px;
-            border-radius: 20px;
-            max-width: 800px;
-            margin: 0 auto;
+          .btn-aides {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #1E3A8A;
+            color: white;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
           }
 
-          .formation-cta p {
-            font-size: 17px;
-            color: #1E3A8A;
-            margin-bottom: 24px;
+          .btn-aides:hover {
+            background: #1E40AF;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
           }
 
           /* FINAL CTA */
@@ -812,11 +820,8 @@ export default function OffresServices() {
             margin-bottom: 32px;
           }
 
-          .cta-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
+          .btn-solo {
+            display: inline-block;
           }
 
           .btn-large {
@@ -827,10 +832,18 @@ export default function OffresServices() {
           /* RESPONSIVE */
           @media (max-width: 1024px) {
             .offers-simplified,
-            .services-grid,
-            .formats-grid,
-            .why-train-grid {
+            .services-grid {
               grid-template-columns: repeat(2, 1fr);
+            }
+
+            .aides-banner {
+              flex-direction: column;
+              text-align: center;
+              padding: 32px 28px;
+            }
+
+            .btn-aides {
+              width: 100%;
             }
           }
 
@@ -844,14 +857,34 @@ export default function OffresServices() {
             }
 
             .offers-simplified,
-            .services-grid,
-            .formats-grid,
-            .why-train-grid {
+            .services-grid {
               grid-template-columns: 1fr;
             }
 
-            .cta-buttons {
-              flex-direction: column;
+            .comparison-table-wrapper {
+              border-radius: 12px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+              padding: 14px 12px;
+              font-size: 14px;
+            }
+
+            .aides-banner {
+              padding: 24px 20px;
+            }
+
+            .aides-icon {
+              font-size: 48px;
+            }
+
+            .aides-content h4 {
+              font-size: 20px;
+            }
+
+            .aides-content p {
+              font-size: 14px;
             }
 
             .btn-large {
