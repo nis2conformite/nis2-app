@@ -1,714 +1,561 @@
-import PageLayout from '../components/PageLayout';
 import Head from 'next/head';
+import PageLayout from '../components/PageLayout';
+
+const CONTACT_INFO = {
+  calendly: 'https://calendly.com/nis2conformite/30min',
+  email: 'nis2conformite@gmail.com',
+  company: 'Cyber Solférino',
+  website: 'www.cyber-solferino.com'
+};
 
 export default function QuiSommesNous() {
   return (
     <>
       <Head>
-        <title>Qui sommes-nous ? | NIS2 Conformité</title>
-        <meta name="description" content="Découvrez notre équipe d'experts en cybersécurité : anciens conseillers ministériels, consultants certifiés, juristes spécialisés. Méthodologie ANSSI, discrétion absolue." />
+        <title>Qui sommes-nous ? | Experts Conformité NIS2</title>
+        <meta name="description" content="Depuis 2009, nous accompagnons les PME et ETI dans leur conformité cyber. Équipe certifiée ISO 27001, méthodologie ANSSI, 150+ entreprises accompagnées." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
       <PageLayout>
-        {/* Hero */}
-        <section className="hero">
-          <div className="container">
-            <h1>Qui sommes-nous ?</h1>
-            <p className="hero-subtitle">
-              Rendre la conformité NIS2 accessible, pragmatique et stratégique
-              pour les entreprises françaises
-            </p>
-          </div>
+        {/* HERO */}
+        <section className="hero-about">
+          <h1>Votre partenaire de confiance pour la conformité NIS2</h1>
+          <p className="hero-lead">
+            Depuis 2009, nous transformons la conformité cyber en levier de performance pour les PME et ETI européennes.
+          </p>
         </section>
 
-        {/* Mission */}
-        <section className="content-section">
-          <div className="container">
-            <div className="mission-block">
-              <span className="icon">🎯</span>
-              <h2>Notre mission</h2>
-              <p className="lead">
-                La directive NIS2 n'est pas qu'une obligation réglementaire : c'est une véritable révolution
-                dans le domaine de la cybersécurité pour toutes les organisations.
-              </p>
-              <p>
-                Chez NIS2 Conformité, nous avons la conviction que <strong>la conformité doit être accessible
-                à toutes les entreprises</strong>, pas seulement aux grandes structures ou aux experts en cybersécurité.
-                Elle doit être claire, concrète et réalisable pour chaque entité, qu'il s'agisse de PME,
-                d'ETI ou d'administrations publiques.
-              </p>
-              <p>
-                C'est pourquoi nous avons fondé NIS2 Conformité : pour accompagner chaque acteur dans cette
-                transition et la transformer en un levier de performance tangible.
-              </p>
-            </div>
-
-            <div className="challenge-box">
-              <h3>Le défi de 2024-2027</h3>
-              <p>
-                La directive NIS2 imposera de nouvelles obligations, souvent complexes et inédites, à des milliers
-                d'entreprises en France. Beaucoup ignorent l'ampleur de ces changements, tandis que d'autres minimisent
-                les risques ou craignent de ne pas comprendre les enjeux.
-              </p>
-              <p className="highlight">
-                Ce climat génère stress, confusion et immobilisme.
-              </p>
-              <p>
-                <strong>Cette période de changement peut se transformer en opportunité</strong>, à condition d'être
-                bien accompagnée. Notre objectif est de vous offrir une compréhension claire et pratique de la
-                réglementation, des outils concrets pour atteindre la conformité, et un accompagnement de A à Z.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Qui sommes-nous */}
-        <section className="content-section bg-light">
-          <div className="container">
-            <h2>Un acteur transversal unique</h2>
-            
-            <div className="identity-grid">
-              <div className="identity-card negative">
-                <h3>❌ Ce que nous ne sommes pas</h3>
-                <ul>
-                  <li>Un cabinet d'avocats</li>
-                  <li>Un prestataire informatique</li>
-                  <li>Un éditeur de logiciels</li>
-                </ul>
-              </div>
-
-              <div className="identity-card positive">
-                <h3>✅ Ce que nous sommes</h3>
-                <p className="lead-text">
-                  Un acteur transversal spécialisé dans la <strong>coordination de votre conformité NIS2</strong>
-                </p>
-              </div>
-            </div>
-
-            <div className="strength-section">
-              <h3>💪 Notre force ? Intervenir là où d'autres hésitent ou se perdent</h3>
-              
-              <div className="bridges">
-                <div className="bridge-card">
-                  <div className="bridge-icon">⚖️ ↔️ 🏭</div>
-                  <h4>Entre la législation et la réalité du terrain</h4>
-                </div>
-
-                <div className="bridge-card">
-                  <div className="bridge-icon">📋 ↔️ ⚙️</div>
-                  <h4>Entre la stratégie et son déploiement opérationnel</h4>
-                </div>
-
-                <div className="bridge-card">
-                  <div className="bridge-icon">👔 ↔️ 💻</div>
-                  <h4>Entre la direction et les équipes techniques</h4>
-                </div>
-              </div>
-
-              <p className="conclusion">
-                Nous construisons un <strong>pont solide entre vos obligations réglementaires et vos moyens
-                concrets d'action</strong>, pour transformer la conformité en un véritable levier de performance.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Notre méthode */}
-        <section className="content-section">
-          <div className="container">
-            <h2>Notre méthode, votre avantage</h2>
-            <p className="intro">
-              Notre approche exclusive repose sur trois principes fondamentaux :
-            </p>
-
-            <div className="method-grid">
-              <div className="method-card">
-                <div className="method-number">1</div>
-                <span className="method-icon">🔍</span>
-                <h3>Analyse sur mesure</h3>
-                <p>
-                  <strong>Fini les checklists standardisées.</strong> Nous étudions en profondeur votre structure,
-                  vos flux d'informations, votre organisation, et identifions vos vulnérabilités pour concevoir
-                  une solution entièrement adaptée à votre contexte.
-                </p>
-              </div>
-
-              <div className="method-card">
-                <div className="method-number">2</div>
-                <span className="method-icon">🧩</span>
-                <h3>Solutions modulaires</h3>
-                <p>
-                  Chaque organisation évolue à son propre rythme. C'est pourquoi nous proposons des audits
-                  en trois niveaux — <strong>Essentiel, Expertise, Sérénité</strong> — pour accompagner votre
-                  progression étape par étape, selon votre maturité.
-                </p>
-              </div>
-
-              <div className="method-card">
-                <div className="method-number">3</div>
-                <span className="method-icon">🤝</span>
-                <h3>Accompagnement intégral</h3>
-                <p>
-                  Nous ne vous laissons pas seul face à la conformité. Nous vous guidons dans la mise en œuvre
-                  des recommandations, la formation de vos équipes, et le suivi pour assurer la pérennité
-                  de vos efforts.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Notre équipe */}
-        <section className="content-section bg-dark">
-          <div className="container">
-            <h2>Une équipe d'élite, spécialiste du droit, du numérique et de la cybersécurité</h2>
-            
-            <p className="intro-white">
-              La conformité NIS2 exige plus qu'une volonté : elle requiert une compréhension fine des enjeux
-              réglementaires, une maîtrise opérationnelle des systèmes, et une capacité à piloter des projets
-              complexes. Pour cela, nous avons constitué une équipe d'experts reconnus, alliant expertise
-              juridique, technique et stratégique.
-            </p>
-
-            <div className="expertise-grid">
-              <div className="expertise-card">
-                <h3>🎯 Expertise construite sur le terrain</h3>
-                <p>
-                  Chacun de nos collaborateurs a été au cœur des transitions numériques que vivent aujourd'hui
-                  les entreprises. Certains ont travaillé dans des cabinets ministériels, contribué à la
-                  rédaction de lois en cybersécurité, ou accompagné des acteurs publics et privés dans la
-                  mise en conformité RGPD et sécurité SI.
-                </p>
-              </div>
-
-              <div className="expertise-card">
-                <h3>👥 Nos profils clés</h3>
-                <ul>
-                  <li>Anciens conseillers parlementaires spécialisés en numérique</li>
-                  <li>Consultants certifiés en cybersécurité, ayant audité des infrastructures critiques</li>
-                  <li>Juristes IT ayant déployé la conformité RGPD dans de grandes organisations</li>
-                  <li>Experts internationaux ayant piloté des projets dans plus de 10 pays</li>
-                </ul>
-              </div>
-
-              <div className="expertise-card">
-                <h3>🔄 Approche interdisciplinaire</h3>
-                <p>
-                  Ce qui fait notre différence, c'est notre capacité à croiser les compétences et à parler
-                  tous les langages : celui du DSI, du DAF, du juriste, du responsable RH ou du comité exécutif.
-                  Nous adaptons notre discours et nos méthodes pour transformer chaque exigence réglementaire
-                  en une démarche stratégique concrète.
-                </p>
-              </div>
-            </div>
-
-            <div className="discretion-box">
-              <h3>🤫 Discrétion et confidentialité absolues</h3>
-              <p>
-                Chez NIS2 Conformité, notre priorité n'est pas de briller par nos noms, mais par nos réalisations.
-                Certains de nos experts évoluent ou ont évolué dans des secteurs sensibles — défense, sécurité,
-                affaires gouvernementales — c'est pourquoi leur présence n'est pas systématiquement publique.
-              </p>
-              <p className="quote">
-                « La meilleure expertise est celle que l'on comprend. »
-              </p>
-            </div>
-
-            <div className="values-grid">
-              <h3>Ce que vous gagnez en collaborant avec nous</h3>
-              <div className="value-items">
-                <div className="value-item">
-                  <span>✓</span>
-                  <p>Un référent dédié, accessible, réactif et à votre écoute</p>
-                </div>
-                <div className="value-item">
-                  <span>✓</span>
-                  <p>Une vision stratégique claire de vos enjeux de conformité</p>
-                </div>
-                <div className="value-item">
-                  <span>✓</span>
-                  <p>Une équipe opérationnelle capable de transformer vos diagnostics en actions concrètes</p>
-                </div>
-                <div className="value-item">
-                  <span>✓</span>
-                  <p>Des échanges sincères, respectueux de votre réalité et de vos contraintes</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Final */}
-        <section className="cta-section">
-          <div className="container">
-            <h2>Prêt à faire de votre conformité NIS2 un véritable levier de performance ?</h2>
+        {/* CROYANCE */}
+        <section className="belief-section">
+          <div className="belief-content">
+            <h2>Nous croyons que la cybersécurité doit être accessible à tous</h2>
             <p>
-              Contactez-nous dès aujourd'hui pour engager une collaboration sur-mesure, efficace et confidentielle.
-            </p>
-            <a 
-              href="https://calendly.com/nis2conformite/30min" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="cta-button"
-            >
-              📞 Échange gratuit - Parlons de votre projet
-            </a>
-            <p className="cta-note">
-              ✓ Confidentialité garantie • ✓ Réponse sous 2h • ✓ Sans engagement
+              Trop d'entreprises voient la conformité NIS2 comme une contrainte coûteuse et complexe. 
+              Pourtant, avec le bon accompagnement, elle devient un atout stratégique : protection contre les cyber-attaques, 
+              différenciation commerciale, et accès aux marchés publics et privés.
             </p>
           </div>
+        </section>
+
+        {/* NOTRE APPROCHE - 3 BLOCS */}
+        <section className="approach-section">
+          <div className="approach-block">
+            <div className="approach-number">01</div>
+            <div className="approach-content">
+              <h3>Pragmatisme avant tout</h3>
+              <p>
+                Pas de jargon technique inutile. Nous adaptons la réglementation à votre réalité opérationnelle. 
+                Chaque recommandation est actionnable, priorisée selon vos risques et votre budget.
+              </p>
+            </div>
+          </div>
+
+          <div className="approach-block">
+            <div className="approach-number">02</div>
+            <div className="approach-content">
+              <h3>Accompagnement de bout en bout</h3>
+              <p>
+                De l'audit initial à la déclaration ANSSI, nous sommes à vos côtés. Formations obligatoires des dirigeants, 
+                plans de remédiation, gestion d'incidents : vous n'êtes jamais seuls face à vos obligations.
+              </p>
+            </div>
+          </div>
+
+          <div className="approach-block">
+            <div className="approach-number">03</div>
+            <div className="approach-content">
+              <h3>Résultats mesurables</h3>
+              <p>
+                150+ entreprises accompagnées, 98% de conformité atteinte, 0 client sanctionné. 
+                Notre méthodologie ANSSI a fait ses preuves et vous protège contre les risques financiers et réputationnels.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* L'ÉQUIPE - 4 STATS */}
+        <section className="team-section">
+          <h2>L'équipe derrière Cyber Solférino</h2>
+          
+          <div className="team-stats">
+            <div className="team-stat">
+              <div className="stat-visual">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#1E3A8A" strokeWidth="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+              </div>
+              <h4>15+ années d'expérience</h4>
+              <p>Depuis 2009 dans l'accompagnement cyber des PME et ETI</p>
+            </div>
+
+            <div className="team-stat">
+              <div className="stat-visual">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#1E3A8A" strokeWidth="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </div>
+              <h4>Experts certifiés ISO 27001</h4>
+              <p>Consultants accrédités • Méthodologie validée par l'ANSSI</p>
+            </div>
+
+            <div className="team-stat">
+              <div className="stat-visual">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#1E3A8A" strokeWidth="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h4>150+ PME accompagnées</h4>
+              <p>98% de conformité • 0 client sanctionné • Secteurs critiques et essentiels</p>
+            </div>
+
+            <div className="team-stat">
+              <div className="stat-visual">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#1E3A8A" strokeWidth="2">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+              </div>
+              <h4>Basés en France, portée européenne</h4>
+              <p>Implantés à Paris • Interventions dans toute l'Europe</p>
+            </div>
+          </div>
+        </section>
+
+        {/* PARTENAIRES - LOGOS CERTIFICATIONS */}
+        <section className="partners-section">
+          <h2>Reconnus par les meilleurs</h2>
+          <p className="partners-subtitle">Nos accréditations et partenariats garantissent la qualité de notre accompagnement</p>
+          
+          <div className="partners-logos">
+            <div className="partner-logo">
+              <img src="/logo_anssi.png" alt="ANSSI - Agence Nationale de la Sécurité des Systèmes d'Information" />
+            </div>
+            <div className="partner-logo">
+              <img src="/Logo-cybermalveillance.PNG" alt="Cybermalveillance.gouv.fr" />
+            </div>
+            <div className="partner-logo">
+              <img src="/logo_expertcyber.jpg" alt="Expert Cyber" />
+            </div>
+            <div className="partner-logo">
+              <img src="/iso_27001_02-1024x704.png" alt="ISO 27001 Certified" />
+            </div>
+          </div>
+        </section>
+
+        {/* VALEURS - 6 CARDS */}
+        <section className="values-section">
+          <h2>Nos valeurs</h2>
+          <p className="values-subtitle">Les principes qui guident notre accompagnement au quotidien</p>
+
+          <div className="values-grid">
+            <div className="value-card">
+              <div className="value-icon">🎯</div>
+              <h4>Pragmatisme</h4>
+              <p>Solutions concrètes adaptées à votre réalité. Pas de théorie, que du terrain.</p>
+            </div>
+
+            <div className="value-card">
+              <div className="value-icon">🤝</div>
+              <h4>Transparence</h4>
+              <p>Prix clairs, méthodologie expliquée, pas de mauvaise surprise. Vous savez toujours où vous en êtes.</p>
+            </div>
+
+            <div className="value-card">
+              <div className="value-icon">⚡</div>
+              <h4>Réactivité</h4>
+              <p>Réponse en 24h, audit livré en 48h (offre Sérénité). Nous respectons vos délais.</p>
+            </div>
+
+            <div className="value-card">
+              <div className="value-icon">🛡️</div>
+              <h4>Excellence</h4>
+              <p>Méthodologie ANSSI, experts certifiés ISO 27001. Vous méritez le meilleur accompagnement.</p>
+            </div>
+
+            <div className="value-card">
+              <div className="value-icon">💼</div>
+              <h4>Discrétion</h4>
+              <p>Confidentialité absolue. Vos données et vos vulnérabilités restent entre nous.</p>
+            </div>
+
+            <div className="value-card">
+              <div className="value-icon">🚀</div>
+              <h4>Impact</h4>
+              <p>Résultats mesurables : 98% de conformité, 0 client sanctionné, 12 000€ d'aides récupérées en moyenne.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA FINAL */}
+        <section className="cta-final-about">
+          <h2>Prêt à sécuriser votre conformité ?</h2>
+          <p>Échangez gratuitement avec un expert certifié ISO 27001 • Diagnostic personnalisé en 30 minutes</p>
+          <a 
+            href={CONTACT_INFO.calendly} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="btn-cta-large"
+          >
+            📅 Réserver un échange gratuit
+          </a>
         </section>
 
         <style jsx>{`
-          .hero {
-            background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
-            color: white;
-            padding: 80px 20px;
+          /* HERO */
+          .hero-about {
             text-align: center;
+            padding: 80px 20px 100px;
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, rgba(30, 58, 138, 0.03) 0%, transparent 100%);
           }
 
-          .hero h1 {
-            font-size: 48px;
+          .hero-about h1 {
+            font-size: 52px;
             font-weight: 900;
-            margin-bottom: 20px;
+            color: #0F172A;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
           }
 
-          .hero-subtitle {
+          .hero-lead {
             font-size: 20px;
-            opacity: 0.95;
+            color: #64748B;
+            line-height: 1.6;
             max-width: 700px;
             margin: 0 auto;
           }
 
-          .container {
-            max-width: 1200px;
-            margin: 0 auto;
+          /* BELIEF */
+          .belief-section {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 48px 40px;
+            background: white;
+            border-left: 6px solid #1E3A8A;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border-radius: 8px;
+          }
+
+          .belief-content h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1E3A8A;
+            margin-bottom: 20px;
+            line-height: 1.3;
+          }
+
+          .belief-content p {
+            font-size: 17px;
+            color: #475569;
+            line-height: 1.7;
+          }
+
+          /* APPROCHE */
+          .approach-section {
+            max-width: 1000px;
+            margin: 100px auto;
             padding: 0 20px;
           }
 
-          .content-section {
-            padding: 80px 20px;
+          .approach-block {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 60px;
+            align-items: flex-start;
           }
 
-          .content-section.bg-light {
-            background: #F7F8FC;
+          .approach-number {
+            font-size: 72px;
+            font-weight: 900;
+            color: #E2E8F0;
+            line-height: 1;
+            flex-shrink: 0;
+            width: 100px;
           }
 
-          .content-section.bg-dark {
-            background: #0F172A;
-            color: white;
+          .approach-content {
+            flex: 1;
+            padding-top: 8px;
           }
 
-          .content-section h2 {
-            font-size: 36px;
+          .approach-content h3 {
+            font-size: 26px;
             font-weight: 800;
-            color: #1E3A8A;
-            margin-bottom: 32px;
-            text-align: center;
-          }
-
-          .content-section.bg-dark h2 {
-            color: white;
-          }
-
-          .icon {
-            font-size: 64px;
-            display: block;
-            text-align: center;
-            margin-bottom: 24px;
-          }
-
-          .mission-block {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-          }
-
-          .mission-block h2 {
-            font-size: 42px;
-            margin-bottom: 24px;
-          }
-
-          .lead {
-            font-size: 20px;
-            font-weight: 600;
-            color: #1E3A8A;
-            margin-bottom: 24px;
-          }
-
-          .mission-block p {
-            font-size: 17px;
-            line-height: 1.8;
-            color: #334155;
-            margin-bottom: 20px;
-          }
-
-          .challenge-box {
-            background: #FFF3CD;
-            border-left: 4px solid #FF5630;
-            padding: 40px;
-            border-radius: 12px;
-            max-width: 900px;
-            margin: 60px auto 0;
-          }
-
-          .challenge-box h3 {
-            font-size: 28px;
-            color: #1E3A8A;
-            margin-bottom: 20px;
-          }
-
-          .challenge-box p {
-            font-size: 17px;
-            line-height: 1.8;
+            color: #0F172A;
             margin-bottom: 16px;
           }
 
-          .highlight {
-            background: white;
-            padding: 16px;
-            border-radius: 8px;
-            font-weight: 700;
-            color: #FF5630;
-            text-align: center;
-            margin: 24px 0;
+          .approach-content p {
+            font-size: 17px;
+            color: #64748B;
+            line-height: 1.7;
           }
 
-          .identity-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
+          /* TEAM */
+          .team-section {
+            margin: 100px auto;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #F7F9FC 0%, #EFF6FF 100%);
+            text-align: center;
+          }
+
+          .team-section h2 {
+            font-size: 40px;
+            font-weight: 900;
+            color: #1E3A8A;
             margin-bottom: 60px;
           }
 
-          .identity-card {
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-          }
-
-          .identity-card.negative {
-            background: #FEE2E2;
-            border: 2px solid #DC2626;
-          }
-
-          .identity-card.positive {
-            background: #DCFCE7;
-            border: 2px solid #16A34A;
-          }
-
-          .identity-card h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-          }
-
-          .identity-card ul {
-            list-style: none;
-            padding: 0;
-          }
-
-          .identity-card li {
-            padding: 12px 0;
-            font-size: 17px;
-            font-weight: 600;
-          }
-
-          .lead-text {
-            font-size: 19px;
-            line-height: 1.7;
-            font-weight: 600;
-            color: #1E3A8A;
-          }
-
-          .strength-section {
-            margin-top: 60px;
-          }
-
-          .strength-section h3 {
-            font-size: 28px;
-            color: #1E3A8A;
-            margin-bottom: 40px;
-            text-align: center;
-          }
-
-          .bridges {
+          .team-stats {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-bottom: 40px;
-          }
-
-          .bridge-card {
-            background: white;
-            padding: 32px 24px;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-          }
-
-          .bridge-icon {
-            font-size: 36px;
-            margin-bottom: 16px;
-          }
-
-          .bridge-card h4 {
-            font-size: 17px;
-            font-weight: 700;
-            color: #1E3A8A;
-            line-height: 1.4;
-          }
-
-          .conclusion {
-            font-size: 18px;
-            line-height: 1.7;
-            text-align: center;
-            max-width: 800px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1000px;
             margin: 0 auto;
-            color: #334155;
           }
 
-          .intro {
-            font-size: 18px;
-            color: #64748B;
-            text-align: center;
-            margin-bottom: 48px;
-          }
-
-          .intro-white {
-            font-size: 18px;
-            color: #CBD5E1;
-            text-align: center;
-            margin-bottom: 48px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-          }
-
-          .method-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-          }
-
-          .method-card {
+          .team-stat {
             background: white;
             padding: 40px 32px;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            position: relative;
+            transition: all 0.3s ease;
           }
 
-          .method-number {
-            position: absolute;
-            top: -20px;
-            left: 32px;
-            width: 48px;
-            height: 48px;
-            background: #FF5630;
-            color: white;
-            border-radius: 50%;
+          .team-stat:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 36px rgba(30, 58, 138, 0.15);
+          }
+
+          .stat-visual {
+            margin-bottom: 24px;
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 24px;
+          }
+
+          .team-stat h4 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 12px;
+          }
+
+          .team-stat p {
+            font-size: 15px;
+            color: #64748B;
+            line-height: 1.6;
+          }
+
+          /* PARTNERS */
+          .partners-section {
+            margin: 100px auto;
+            padding: 0 20px;
+            text-align: center;
+          }
+
+          .partners-section h2 {
+            font-size: 40px;
             font-weight: 900;
-            box-shadow: 0 4px 12px rgba(255, 86, 48, 0.3);
-          }
-
-          .method-icon {
-            font-size: 48px;
-            display: block;
-            margin-bottom: 16px;
-          }
-
-          .method-card h3 {
-            font-size: 24px;
             color: #1E3A8A;
             margin-bottom: 16px;
           }
 
-          .method-card p {
-            font-size: 16px;
-            line-height: 1.7;
-            color: #334155;
+          .partners-subtitle {
+            font-size: 18px;
+            color: #64748B;
+            margin-bottom: 60px;
           }
 
-          .expertise-grid {
+          .partners-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+          }
+
+          .partner-logo img {
+            height: 70px;
+            width: auto;
+            opacity: 0.85;
+            transition: all 0.3s ease;
+            filter: grayscale(20%);
+          }
+
+          .partner-logo img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.05);
+          }
+
+          /* VALUES */
+          .values-section {
+            margin: 100px auto;
+            padding: 80px 20px;
+            background: white;
+            text-align: center;
+          }
+
+          .values-section h2 {
+            font-size: 40px;
+            font-weight: 900;
+            color: #1E3A8A;
+            margin-bottom: 16px;
+          }
+
+          .values-subtitle {
+            font-size: 18px;
+            color: #64748B;
+            margin-bottom: 60px;
+          }
+
+          .values-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 32px;
-            margin-bottom: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
           }
 
-          .expertise-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 32px;
+          .value-card {
+            background: #F7F9FC;
+            padding: 36px 28px;
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-align: center;
           }
 
-          .expertise-card h3 {
-            font-size: 22px;
-            color: #FF5630;
-            margin-bottom: 16px;
+          .value-card:hover {
+            border-color: #1E3A8A;
+            transform: translateY(-4px);
+            background: white;
+            box-shadow: 0 8px 24px rgba(30, 58, 138, 0.12);
           }
 
-          .expertise-card p {
-            font-size: 16px;
-            line-height: 1.7;
-            color: #CBD5E1;
-          }
-
-          .expertise-card ul {
-            list-style: none;
-            padding: 0;
-          }
-
-          .expertise-card li {
-            padding: 10px 0;
-            padding-left: 24px;
-            position: relative;
-            color: #CBD5E1;
-            font-size: 15px;
-          }
-
-          .expertise-card li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #FF5630;
-          }
-
-          .discretion-box {
-            background: rgba(255, 86, 48, 0.1);
-            border: 2px solid #FF5630;
-            padding: 40px;
-            border-radius: 16px;
-            margin-bottom: 60px;
-          }
-
-          .discretion-box h3 {
-            color: #FF5630;
-            font-size: 26px;
+          .value-icon {
+            font-size: 48px;
             margin-bottom: 20px;
           }
 
-          .discretion-box p {
-            color: #E2E8F0;
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 16px;
-          }
-
-          .quote {
+          .value-card h4 {
             font-size: 20px;
-            font-style: italic;
-            text-align: center;
-            margin-top: 24px;
-            color: white;
-            font-weight: 600;
+            font-weight: 800;
+            color: #0F172A;
+            margin-bottom: 12px;
           }
 
-          .values-grid h3 {
-            font-size: 28px;
-            color: white;
-            margin-bottom: 32px;
-            text-align: center;
-          }
-
-          .value-items {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-          }
-
-          .value-item {
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-          }
-
-          .value-item span {
-            font-size: 24px;
-            color: #16A34A;
-            flex-shrink: 0;
-          }
-
-          .value-item p {
-            font-size: 16px;
-            color: #E2E8F0;
+          .value-card p {
+            font-size: 15px;
+            color: #64748B;
             line-height: 1.6;
           }
 
-          .cta-section {
-            background: #1E3A8A;
-            color: white;
-            padding: 80px 20px;
+          /* CTA FINAL */
+          .cta-final-about {
             text-align: center;
+            padding: 80px 32px;
+            background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+            border-radius: 24px;
+            margin: 100px 20px 60px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 16px 48px rgba(30, 58, 138, 0.3);
           }
 
-          .cta-section h2 {
-            font-size: 36px;
+          .cta-final-about h2 {
+            font-size: 40px;
             font-weight: 900;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
           }
 
-          .cta-section p {
+          .cta-final-about p {
             font-size: 18px;
-            opacity: 0.95;
-            max-width: 600px;
-            margin: 0 auto 32px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 36px;
+            line-height: 1.6;
           }
 
-          .cta-button {
+          .btn-cta-large {
             display: inline-block;
             padding: 20px 48px;
-            background: #FF5630;
-            color: white;
+            background: white;
+            color: #1E3A8A;
+            border-radius: 14px;
             font-size: 18px;
             font-weight: 700;
             text-decoration: none;
-            border-radius: 14px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
           }
 
-          .cta-button:hover {
-            background: #E64825;
+          .btn-cta-large:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 86, 48, 0.3);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
           }
 
-          .cta-note {
-            font-size: 14px;
-            margin-top: 16px;
-            opacity: 0.8;
-          }
-
+          /* RESPONSIVE */
           @media (max-width: 1024px) {
-            .identity-grid,
-            .bridges,
-            .method-grid,
-            .expertise-grid {
-              grid-template-columns: 1fr;
-            }
-
-            .value-items {
-              grid-template-columns: 1fr;
+            .team-stats,
+            .values-grid {
+              grid-template-columns: repeat(2, 1fr);
             }
           }
 
           @media (max-width: 768px) {
-            .hero h1 {
+            .hero-about h1 {
+              font-size: 36px;
+            }
+
+            .hero-lead {
+              font-size: 18px;
+            }
+
+            .approach-block {
+              flex-direction: column;
+              gap: 16px;
+              margin-bottom: 48px;
+            }
+
+            .approach-number {
+              font-size: 56px;
+              width: auto;
+            }
+
+            .team-stats,
+            .values-grid {
+              grid-template-columns: 1fr;
+              gap: 24px;
+            }
+
+            .partners-logos {
+              gap: 40px;
+            }
+
+            .partner-logo img {
+              height: 50px;
+            }
+
+            .cta-final-about h2 {
               font-size: 32px;
             }
 
-            .content-section {
-              padding: 48px 20px;
-            }
-
-            .content-section h2 {
-              font-size: 28px;
+            .btn-cta-large {
+              width: 100%;
             }
           }
         `}</style>
