@@ -2,7 +2,8 @@ import Head from 'next/head';
 import PageLayout from '../components/PageLayout';
 
 const EXTERNAL_LINKS = {
-  videoYoutube: 'https://www.youtube.com/embed/example', // Remplacer par la vraie URL de la vidéo
+  videoYoutube: 'https://www.youtube.com/embed/461tWBUzrY8',
+  directiveOfficielle: 'https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32022L2555',
   anssi: 'https://cyber.gouv.fr',
   monespace: 'https://monespacenis2.cyber.gouv.fr'
 };
@@ -138,46 +139,12 @@ export default function ComprendreNIS2() {
           </div>
         </section>
 
-        {/* LES OBLIGATIONS */}
-        <section className="obligations-section">
-          <h2>📝 Quelles sont mes obligations ?</h2>
-          <p className="section-intro">
-            NIS2 impose <strong>10 mesures de sécurité</strong> et <strong>3 obligations administratives</strong>
-          </p>
-
-          <div className="obligations-grid">
-            {/* MESURES TECHNIQUES */}
-            <div className="obligation-block">
-              <h3>🛡️ Mesures de sécurité</h3>
-              <ul className="obligation-list">
-                <li>Gestion des risques cyber</li>
-                <li>Sécurisation des accès</li>
-                <li>Cryptographie des données</li>
-                <li>Sauvegardes régulières</li>
-                <li>Plan de continuité d'activité</li>
-                <li>Sécurité de la chaîne d'approvisionnement</li>
-                <li>Contrôle des fournisseurs</li>
-                <li>Formation des équipes</li>
-                <li>Tests de sécurité réguliers</li>
-                <li>Politique de divulgation des vulnérabilités</li>
-              </ul>
-            </div>
-
-            {/* OBLIGATIONS ADMINISTRATIVES */}
-            <div className="obligation-block">
-              <h3>📋 Obligations administratives</h3>
-              <ul className="obligation-list highlighted">
-                <li><strong>Enregistrement auprès de l'ANSSI</strong><br/>Déclarer votre entité sur MonEspaceNIS2</li>
-                <li><strong>Formation obligatoire des dirigeants</strong><br/>Responsabilité pénale du dirigeant en cas de manquement</li>
-                <li><strong>Notification des incidents sous 24h</strong><br/>Déclaration à l'ANSSI en cas de cyberattaque</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* LES SANCTIONS */}
+        {/* LES SANCTIONS - REPOSITIONNÉ ICI POUR CRÉER L'URGENCE */}
         <section className="sanctions-section">
           <h2>⚠️ Quelles sanctions en cas de non-conformité ?</h2>
+          <p className="sanctions-intro">
+            Les sanctions sont <strong>lourdes et immédiates</strong>. La responsabilité du dirigeant est engagée.
+          </p>
           
           <div className="sanctions-grid">
             <div className="sanction-card red">
@@ -226,6 +193,50 @@ export default function ComprendreNIS2() {
                 <strong>2027</strong>
                 <p>Premières sanctions<br/>Conformité obligatoire</p>
               </div>
+            </div>
+          </div>
+
+          <div className="sanctions-urgency">
+            <p>
+              <strong>⏰ Le temps presse :</strong> Les contrôles ANSSI ont déjà commencé. 
+              Un audit de conformité prend en moyenne 3 à 6 mois. <strong>Agissez maintenant.</strong>
+            </p>
+          </div>
+        </section>
+
+        {/* LES OBLIGATIONS */}
+        <section className="obligations-section">
+          <h2>📝 Quelles sont mes obligations ?</h2>
+          <p className="section-intro">
+            NIS2 impose <strong>10 mesures de sécurité</strong> et <strong>3 obligations administratives</strong>
+          </p>
+
+          <div className="obligations-grid">
+            {/* MESURES TECHNIQUES */}
+            <div className="obligation-block">
+              <h3>🛡️ Mesures de sécurité</h3>
+              <ul className="obligation-list">
+                <li>Gestion des risques cyber</li>
+                <li>Sécurisation des accès</li>
+                <li>Cryptographie des données</li>
+                <li>Sauvegardes régulières</li>
+                <li>Plan de continuité d'activité</li>
+                <li>Sécurité de la chaîne d'approvisionnement</li>
+                <li>Contrôle des fournisseurs</li>
+                <li>Formation des équipes</li>
+                <li>Tests de sécurité réguliers</li>
+                <li>Politique de divulgation des vulnérabilités</li>
+              </ul>
+            </div>
+
+            {/* OBLIGATIONS ADMINISTRATIVES */}
+            <div className="obligation-block">
+              <h3>📋 Obligations administratives</h3>
+              <ul className="obligation-list highlighted">
+                <li><strong>Enregistrement auprès de l'ANSSI</strong><br/>Déclarer votre entité sur MonEspaceNIS2</li>
+                <li><strong>Formation obligatoire des dirigeants</strong><br/>Responsabilité pénale du dirigeant en cas de manquement</li>
+                <li><strong>Notification des incidents sous 24h</strong><br/>Déclaration à l'ANSSI en cas de cyberattaque</li>
+              </ul>
             </div>
           </div>
         </section>
@@ -282,6 +293,13 @@ export default function ComprendreNIS2() {
           <p className="section-intro">Pour aller plus loin dans votre compréhension de NIS2</p>
 
           <div className="resources-grid">
+            <a href={EXTERNAL_LINKS.directiveOfficielle} target="_blank" rel="noopener noreferrer" className="resource-card featured">
+              <div className="resource-icon">📄</div>
+              <h4>Directive NIS2 - Texte officiel</h4>
+              <p>Directive (UE) 2022/2555 complète en français • EUR-Lex • Transparence totale</p>
+              <span className="resource-link">eur-lex.europa.eu →</span>
+            </a>
+
             <a href={EXTERNAL_LINKS.anssi} target="_blank" rel="noopener noreferrer" className="resource-card">
               <div className="resource-icon">🏛️</div>
               <h4>Site officiel ANSSI</h4>
@@ -701,7 +719,15 @@ export default function ComprendreNIS2() {
             font-weight: 900;
             color: #DC2626;
             text-align: center;
+            margin-bottom: 20px;
+          }
+
+          .sanctions-intro {
+            text-align: center;
+            font-size: 18px;
+            color: #991B1B;
             margin-bottom: 48px;
+            font-weight: 600;
           }
 
           .sanctions-grid {
@@ -765,6 +791,7 @@ export default function ComprendreNIS2() {
             background: white;
             padding: 32px;
             border-radius: 16px;
+            margin-bottom: 32px;
           }
 
           .sanctions-timeline h3 {
@@ -812,6 +839,20 @@ export default function ComprendreNIS2() {
             font-size: 14px;
             color: #64748B;
             line-height: 1.4;
+            margin: 0;
+          }
+
+          .sanctions-urgency {
+            background: white;
+            padding: 24px 28px;
+            border-radius: 16px;
+            border-left: 4px solid #DC2626;
+          }
+
+          .sanctions-urgency p {
+            font-size: 16px;
+            color: #991B1B;
+            line-height: 1.6;
             margin: 0;
           }
 
@@ -925,7 +966,7 @@ export default function ComprendreNIS2() {
 
           .resources-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 24px;
             margin-top: 48px;
           }
@@ -938,6 +979,12 @@ export default function ComprendreNIS2() {
             text-decoration: none;
             transition: all 0.3s ease;
             display: block;
+            border: 2px solid transparent;
+          }
+
+          .resource-card.featured {
+            border-color: #1E3A8A;
+            background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
           }
 
           .resource-card:hover {
@@ -1048,7 +1095,7 @@ export default function ComprendreNIS2() {
 
             .sanctions-grid,
             .resources-grid {
-              grid-template-columns: 1fr;
+              grid-template-columns: repeat(2, 1fr);
             }
           }
 
@@ -1068,6 +1115,11 @@ export default function ComprendreNIS2() {
             .resources-section h2,
             .cta-final-nis2 h2 {
               font-size: 32px;
+            }
+
+            .sanctions-grid,
+            .resources-grid {
+              grid-template-columns: 1fr;
             }
 
             .timeline-bar {
