@@ -1,1976 +1,1501 @@
-import { useEffect, useState } from 'react';
 import Head from 'next/head';
-import { useQuiz } from '../hooks/useQuiz';
-import { useLeadPopup } from '../hooks/useLeadPopup';
-import { QuizModal } from '../components/QuizModal';
-import MenuBurger from '../components/MenuBurger';
-import { 
-  PRICING_OFFERS, 
-  TESTIMONIALS, 
-  HERO_STATS, 
-  FAQ_ITEMS,
-  CONTACT_INFO,
-  EXTERNAL_LINKS,
-  EXPERTISE_TIMELINE,
-  IMPACT_STATS
-} from '../utils/constants';
+import { useState } from 'react';
 
 export default function Home() {
-  const [videoIsPlaying, setVideoIsPlaying] = useState(false);
-  const [showComparison, setShowComparison] = useState(false);
-  const quiz = useQuiz();
-  const popup = useLeadPopup({ 
-    quizIsOpen: quiz.isOpen, 
-    videoIsPlaying 
-  });
-
-  async function handleStripeCheckout() {
-    try {
-      const response = await fetch('/api/stripe/create-checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      });
-      
-      const data = await response.json();
-      
-      if (data.error) {
-        alert('Erreur: ' + data.error);
-        return;
-      }
-      
-      if (data.url) {
-        window.location.href = data.url;
-      }
-    } catch (error) {
-      console.error('Erreur:', error);
-    }
-  }
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const stickyHeader = document.getElementById('stickyHeader');
-      const heroSection = document.querySelector('.hero-minimal');
-      
-      if (heroSection && stickyHeader) {
-        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-        if (window.scrollY > heroBottom) {
-          stickyHeader.classList.add('visible');
-        } else {
-          stickyHeader.classList.remove('visible');
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    document.querySelectorAll('.faq-item').forEach(item => {
-      item.addEventListener('click', function() {
-        this.classList.toggle('active');
-      });
-    });
-
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.price-card, .testimonial, .impact-card, .expertise-card').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-      observer.observe(el);
-    });
-
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = function() {
-      const iframe = document.querySelector('.video-container iframe');
-      if (iframe) {
-        new window.YT.Player(iframe, {
-          events: {
-            'onStateChange': (event) => {
-              setVideoIsPlaying(event.data === window.YT.PlayerState.PLAYING);
-            }
-          }
-        });
-      }
-    };
-  }, []);
+  const [showVideo, setShowVideo] = useState(false);
 
   return (
     <>
       <Head>
-        <title>NIS2 Conformité | Expert Cybersécurité ISO 27001 | Accompagnement Stratégique PME</title>
+        <title>Conformité NIS2 Simplifiée | Cyber Solférino</title>
+        <meta name="description" content="Automatisez votre conformité NIS2 avec notre plateforme tout-en-un. Audits, formations, accompagnement - tout en un seul endroit." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      <div className="bg-gradient"></div>
-
-      <div className="alert-bar">
-        <span>⚠️ NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant</span>
-      </div>
-
-      <div className="sticky-header" id="stickyHeader">
-        <div className="sticky-header-content">
-          <div className="sticky-logo-img">
-            <img 
-              src="/logo.png" 
-              alt="Cyber Solférino" 
-              className="sticky-logo-large"
-            />
-          </div>
-          <div className="sticky-cta-group">
-            <MenuBurger />
-            <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-sticky primary">
-              📞 Échange gratuit
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div className="container">
-        {/* ✅ NOUVELLE SECTION HERO - PROPOSITION 3 MINIMALISTE PREMIUM */}
-        <section className="hero-minimal">
-          <img 
-            src="/logo.png" 
-            alt="Cyber Solférino" 
-            className="hero-logo"
-          />
-          
-          <p className="hero-baseline">
-            La plateforme d'audit et de conformité cyber<br />
-            pensée pour les PME et ETI européennes
-          </p>
-
-          <div className="hero-separator"></div>
-
-          <h1 className="hero-title">
-            Mesurez vos risques NIS2<br />
-            et priorisez vos actions
-          </h1>
-          
-          <p className="hero-subtitle">
-            Audit structuré • Selon référentiel ANSSI • Rapport détaillé • Recommandations priorisées
-          </p>
-
-          <div className="hero-stats-minimal">
-            <div className="stat-minimal">
-              <div className="stat-value-minimal">92%</div>
-              <div className="stat-label-minimal">PME et ETI<br />non prêtes</div>
-            </div>
-            <div className="stat-minimal">
-              <div className="stat-value-minimal">10M€</div>
-              <div className="stat-label-minimal">amende max<br />ou 2% du CA</div>
-            </div>
-            <div className="stat-minimal">
-              <div className="stat-value-minimal">70%</div>
-              <div className="stat-label-minimal">d'aides de l'état<br />possibles</div>
-            </div>
-            <div className="stat-minimal">
-              <div className="stat-value-minimal">65</div>
-              <div className="stat-label-minimal">questions<br />d'audit</div>
-            </div>
-          </div>
-
-          <a 
-            href={CONTACT_INFO.calendly} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="hero-cta-primary"
-          >
-            📞 Échange gratuit - Suis-je éligible ?
+      {/* NAVIGATION */}
+      <nav className="nav">
+        <div className="nav-container">
+          <a href="/" className="logo">
+            <span className="logo-text">Cyber Solférino</span>
           </a>
-
-          <p className="hero-reassurance">
-            ✓ Certifié ISO 27001 • ✓ Méthodologie ANSSI • ✓ Sans engagement
-          </p>
-        </section>
-
-        {/* Section liens informatifs */}
-        <section className="info-links-section">
-          <h3 className="info-links-title">Vous vous posez des questions ?</h3>
-          <div className="info-links-container">
-            <button onClick={quiz.openQuiz} className="info-link">
-              📋 Suis-je concerné par NIS2 ?
-            </button>
-            <a href="#video-section" className="info-link">
-              🎥 Comprendre NIS2 en 3min
-            </a>
+          <div className="nav-links">
+            <a href="#solutions">Solutions</a>
+            <a href="#fonctionnement">Comment ça marche</a>
+            <a href="/qui-sommes-nous">À propos</a>
+            <a href="/#pricing" className="btn-nav-primary">Nos tarifs</a>
           </div>
-          <p className="info-links-subtitle">Réponses claires et rapides</p>
-        </section>
+        </div>
+      </nav>
 
-        <div className="risk-opportunity-wrapper">
-          <section className="warning-card">
-            <h2>⚠️ Les enjeux de la<br />non-conformité</h2>
-            <ul className="warning-list">
-              <li><strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</li>
-              <li><strong>Responsabilité pénale du dirigeant</strong> — En cas de manquement aux obligations NIS2</li>
-              <li><strong>Exclusion des marchés</strong> — Impossibilité de répondre aux appels d'offres publics et privés</li>
-              <li><strong>Perte de confiance B2B</strong> — Vos clients exigent désormais la conformité</li>
-              <li><strong>Contrôles réglementaires</strong> — Audits de votre entreprise sur site sans préavis de l'ANSSI</li>
-            </ul>
-          </section>
+      {/* HERO */}
+      <section className="hero">
+        <div className="hero-badge">
+          🎉 150+ PME déjà conformes avec nous
+        </div>
+        
+        <h1 className="hero-title">
+          Automatisez Votre Conformité NIS2 
+          <br />
+          Avec Une Plateforme Tout-en-Un
+        </h1>
+        
+        <p className="hero-subtitle">
+          Équipez votre entreprise avec les meilleurs outils de conformité et notre équipe d'experts certifiés ISO 27001, 
+          qui automatisent l'intégralité de votre mise en conformité.
+        </p>
 
-          <section className="value-prop">
-            <h2>🏆 Transformez la contrainte en<br />levier stratégique</h2>
-            <ul className="value-list">
-              <li><strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection</li>
-              <li><strong>Différenciez-vous</strong> — Positionnez-vous comme le partenaire de confiance de votre secteur</li>
-              <li><strong>Rassurez vos clients</strong> — Montrez que vous protégez les données de vos clients</li>
-              <li><strong>Fidélisez vos partenaires</strong> — Consolidez votre réputation d'acteur stable et responsable</li>
-              <li><strong>Valorisez votre entreprise</strong> — Une organisation conforme vaut plus en cas de cession</li>
-            </ul>
-          </section>
+        <div className="hero-cta">
+          <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer" className="btn-hero-primary">
+            Réserver un audit gratuit
+          </a>
+          <a href="#fonctionnement" className="btn-hero-secondary">
+            Voir comment ça marche
+          </a>
         </div>
 
-        <section className="impact-section">
-          <div className="section-header">
-            <h2 style={{color: '#1E3A8A'}}>La prévention est plus rentable qu'une crise cyber</h2>
-            <p className="section-subtitle">Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber</p>
-          </div>
+        <div className="hero-image">
+          <img src="/dashboard-preview.png" alt="Dashboard Conformité NIS2" />
+        </div>
+      </section>
 
-          <div className="impact-cards-two">
-            <div className="impact-card-large">
-              <div className="impact-header-horizontal">
-                <div className="impact-icon">📈</div>
-                <div className="impact-stat">+38%</div>
-              </div>
-              <div className="impact-label-compact">Hausse attaques cyber</div>
-              <p className="impact-detail">Les attaques contre les PME ont explosé de 38% en 2024. Les cybercriminels ciblent les entreprises non protégées.</p>
-            </div>
+      {/* BEFORE / AFTER */}
+      <section className="before-after">
+        <div className="section-header-center">
+          <span className="section-badge">Le Futur est Simplifié</span>
+          <h2>Tous Les Outils Dont Vous Avez Besoin, Consolidés En Une Seule Plateforme</h2>
+          <p>Nous construisons le nouveau paradigme de la conformité – élégant, intuitif et facile à utiliser.</p>
+        </div>
 
-            <div className="impact-card-large">
-              <div className="impact-header-horizontal">
-                <div className="impact-icon">💸</div>
-                <div className="impact-stat">4,35M€</div>
-              </div>
-              <div className="impact-label-compact">Coût moyen cyber attaque</div>
-              <p className="impact-detail">60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne), perte de données, rançons.</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="pricing-section" id="pricing">
-          <div className="section-header">
-            <h2 style={{color: '#1E3A8A'}}>Investissement vs Amende</h2>
-            <p className="section-subtitle">Un audit coûte 200x moins cher qu'une sanction</p>
-          </div>
-
-          <div className="subsidy-banner">
-            <div className="subsidy-content">
-              <div className="subsidy-title">
-                💡 <strong>Aides de l'État disponibles</strong> 💡
-              </div>
-              <div className="subsidy-description">
-                Réduisez le coût de votre mise en conformité.
-              </div>
-            </div>
-            <button className="btn-simulator" onClick={() => alert('Simulateur en cours de développement')}>
-              📊 Simulateur aides État
-            </button>
-          </div>
-
-          <div className="pricing-cards-desktop">
-            <div className="price-card-desktop">
-              <div className="price-card-header">
-                <h3>Essentielle</h3>
-                <div className="price">3 490€</div>
-                <div className="price-sub">HT • Paiement unique</div>
-              </div>
-
-              <div className="ideal-for">
-                <strong>Idéal pour :</strong>
-                PME cherchant à évaluer leur positionnement
-              </div>
-
-              <ul className="features">
-                <li>Audit cyber NIS2 complet</li>
-                <li>Résultat immédiat en ligne</li>
-                <li>Score de conformité détaillé</li>
-                <li>Recommandations prioritaires</li>
-                <li>Support par email</li>
-              </ul>
-
-              <div className="price-card-footer">
-                <button onClick={handleStripeCheckout} className="btn btn-secondary btn-full">
-                  Démarrer l'audit
-                </button>
-              </div>
-            </div>
-
-            <div className="price-card-desktop featured">
-              <div className="popular-badge">⭐ POPULAIRE</div>
-              
-              <div className="price-card-header">
-                <h3>Sérénité</h3>
-                <div className="price">7 990€</div>
-                <div className="price-sub">HT • Paiement unique</div>
-              </div>
-
-              <div className="ideal-for">
-                <strong>Idéal pour :</strong>
-                Entreprises visant la conformité NIS2
-              </div>
-
-              <ul className="features">
-                <li>Audit cyber NIS2 complet</li>
-                <li>Rapport validé par experts</li>
-                <li>Analyse écarts de conformité</li>
-                <li>Plan de remédiation détaillé</li>
-                <li>Restitution avec expert (1h visio)</li>
-                <li>Accès plateforme 6 mois</li>
-                <li>Délai de livraison : 48H</li>
-              </ul>
-
-              <div className="price-card-footer">
-                <a 
-                  href={CONTACT_INFO.calendly} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn btn-primary btn-full"
-                >
-                  📅 Prendre rendez-vous
-                </a>
-              </div>
-            </div>
-
-            <div className="price-card-desktop">
-              <div className="price-card-header">
-                <h3>Expertise</h3>
-                <div className="price">14 900€</div>
-                <div className="price-sub">HT • Paiement unique</div>
-              </div>
-
-              <div className="ideal-for">
-                <strong>Idéal pour :</strong>
-                ETI et secteurs critiques
-              </div>
-
-              <ul className="features">
-                <li><strong>Tout de l'offre Sérénité</strong></li>
-                <li className="feature-plus">Entretien préalable expert</li>
-                <li className="feature-plus">Roadmap personnalisée</li>
-                <li className="feature-plus">Enregistrement ANSSI</li>
-                <li className="feature-plus">Dossier aides d'État</li>
-                <li className="feature-plus">Accès plateforme 12 mois</li>
-                <li className="feature-plus">MAJ évolutions législatives</li>
-              </ul>
-
-              <div className="price-card-footer">
-                <a 
-                  href={CONTACT_INFO.calendly} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn btn-secondary btn-full"
-                >
-                  📅 Prendre rendez-vous
-                </a>
+        <div className="comparison-container">
+          {/* BEFORE */}
+          <div className="comparison-side before">
+            <h3>Avant Cyber Solférino</h3>
+            <div className="comparison-visual">
+              <div className="chaos-tools">
+                <div className="tool-bubble">Cabinet d'avocats</div>
+                <div className="tool-bubble">Prestataire IT</div>
+                <div className="tool-bubble">Consultant indépendant</div>
+                <div className="tool-bubble">Organisme formation</div>
+                <div className="tool-bubble">Expert ANSSI</div>
+                <div className="tool-bubble">RSSI freelance</div>
               </div>
             </div>
           </div>
 
-          <div className="comparison-toggle">
-            <button 
-              className="btn-compare" 
-              onClick={() => setShowComparison(!showComparison)}
-            >
-              {showComparison ? '▼ Masquer le comparatif' : '▶ Comparer nos offres'}
-            </button>
-          </div>
-
-          {showComparison && (
-            <div className="comparison-accordion">
-              <div className="comparison-table-wrapper">
-                <table className="comparison-table">
-                  <thead>
-                    <tr>
-                      <th className="feature-column">Fonctionnalités</th>
-                      <th>Essentielle<br/><span className="price-small">3 490€</span></th>
-                      <th className="popular-column">Sérénité ⭐<br/><span className="price-small">7 990€</span></th>
-                      <th>Expertise<br/><span className="price-small">14 900€</span></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="feature-name">Audit cyber NIS2</td>
-                      <td className="check">✓</td>
-                      <td className="check">✓</td>
-                      <td className="check">✓</td>
-                    </tr>
-                    <tr>
-                      <td className="feature-name">Résultat immédiat</td>
-                      <td className="check">✓</td>
-                      <td className="cross">—</td>
-                      <td className="cross">—</td>
-                    </tr>
-                    <tr>
-                      <td className="feature-name">Rapport validé par experts</td>
-                      <td className="cross">—</td>
-                      <td className="check">✓</td>
-                      <td className="check">✓</td>
-                    </tr>
-                    <tr>
-                      <td className="feature-name">Analyse écarts de conformité</td>
-                      <td className="cross">—</td>
-                      <td className="check">✓</td>
-                      <td className="check">✓</td>
-                    </tr>
-                    <tr>
-                      <td className="feature-name">Plan de remédiation détaillé</td>
-                      <td className="cross">—</td>
-                      <td className="check">✓</td>
-                      <td className="check">✓</td>
-                    </tr>
-                    <tr>
-                      <td className="feature-name">Restitution avec expert</td>
-                      <td className="cross">—</td>
-                      <td className="check">✓</td>
-                      <td className="check">✓</td>
-                    </tr>
-                    <tr>
-                      <td className="feature-name">Entretien préalable expert</td>
-                      <td className="cross">—</td>
-                      <td className="cross">—</td>
-                      <td className="check">✓</td>
-                    </tr>
-                    <tr>
-                      <td className="feature-name">Roadmap personnalisée</td>
-                      <td className="cross">—</td>
-                      <td className="cross">—</td>
-                      <td className="check">✓</td>
-                    </tr>
-                    <tr>
-                      <td className="feature-name">Enregistrement ANSSI</td>
-                      <td className="cross">—</td>
-                      <td className="cross">—</td>
-                      <td className="check">✓</td>
-                    </tr>
-                    <tr>
-                      <td className="feature-name">Dossier aides d'État</td>
-                      <td className="cross">—</td>
-                      <td className="cross">—</td>
-                      <td className="check">✓</td>
-                    </tr>
-                    <tr>
-                      <td className="feature-name">Accès plateforme</td>
-                      <td className="cross">—</td>
-                      <td className="feature-detail">6 mois</td>
-                      <td className="feature-detail">12 mois</td>
-                    </tr>
-                    <tr>
-                      <td className="feature-name">Délai de livraison</td>
-                      <td className="feature-detail">Immédiat</td>
-                      <td className="feature-detail">48H</td>
-                      <td className="feature-detail">1 mois</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
-        </section>
-
-        <section className="complementary-services-v2">
-          <div className="section-header">
-            <h2 className="services-title" style={{color: '#1E3A8A'}}>Services complémentaires</h2>
-            <p className="services-subtitle">Découvrez nos services pour aller plus loin dans la conformité et la sécurité</p>
-          </div>
-
-          <div className="services-horizontal">
-            <div className="service-card-h">
-              <div className="service-header-h">
-                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%)'}}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                    <polyline points="10 9 9 9 8 9"></polyline>
-                  </svg>
+          {/* AFTER */}
+          <div className="comparison-side after">
+            <h3>Après Cyber Solférino</h3>
+            <div className="comparison-visual">
+              <div className="unified-platform">
+                <div className="platform-card">
+                  <span className="platform-icon">📊</span>
+                  <span>Audit NIS2</span>
                 </div>
-                <div className="service-title-h">
-                  <h3>Modèles de documents</h3>
-                  <p className="service-price">99€/mois</p>
+                <div className="platform-card">
+                  <span className="platform-icon">📚</span>
+                  <span>Formations</span>
+                </div>
+                <div className="platform-card">
+                  <span className="platform-icon">📋</span>
+                  <span>Documents</span>
+                </div>
+                <div className="platform-card">
+                  <span className="platform-icon">🎯</span>
+                  <span>Plan d'action</span>
+                </div>
+                <div className="platform-card">
+                  <span className="platform-icon">🏛️</span>
+                  <span>Déclaration ANSSI</span>
+                </div>
+                <div className="platform-card">
+                  <span className="platform-icon">💰</span>
+                  <span>Aides État</span>
                 </div>
               </div>
-              <ul className="service-list-h">
-                <li>Modèles pour mise en conformité</li>
-                <li>Mis à jour avec la réglementation</li>
-                <li>Accès illimité</li>
-              </ul>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="service-card-h">
-              <div className="service-header-h">
-                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%)'}}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                  </svg>
-                </div>
-                <div className="service-title-h">
-                  <h3>Formation</h3>
-                  <p className="service-price">149€/pers</p>
-                </div>
+      {/* NOTRE SOLUTION */}
+      <section className="our-solution" id="solutions">
+        <div className="section-header-center">
+          <span className="section-badge">Rencontrez Votre Futur Partenaire</span>
+          <h2>La Solution Complète Pour Votre Conformité NIS2</h2>
+        </div>
+
+        <div className="solution-grid">
+          <div className="solution-card">
+            <div className="solution-icon">
+              <img src="/icon-audit.svg" alt="Audit" style={{width: '80px', height: '80px'}} />
+            </div>
+            <h3>Audit Complet Automatisé</h3>
+            <p>Notre plateforme analyse votre conformité en 48h et génère automatiquement votre plan de remédiation personnalisé.</p>
+            <a href="/audit-nis2" className="solution-link">Découvrir l'audit →</a>
+          </div>
+
+          <div className="solution-card featured">
+            <div className="solution-icon">
+              <img src="/icon-expert.svg" alt="Expert" style={{width: '80px', height: '80px'}} />
+            </div>
+            <h3>Accompagnement Expert</h3>
+            <p>Nos experts certifiés ISO 27001 vous accompagnent de A à Z : audit, formation, déclaration ANSSI, dossier aides.</p>
+            <a href="/qui-sommes-nous" className="solution-link">Rencontrer l'équipe →</a>
+          </div>
+
+          <div className="solution-card">
+            <div className="solution-icon">
+              <img src="/icon-formation.svg" alt="Formation" style={{width: '80px', height: '80px'}} />
+            </div>
+            <h3>Formations Obligatoires</h3>
+            <p>Formation des dirigeants (obligatoire NIS2) et sensibilisation collaborateurs. OPCO accepté, plateforme 24/7.</p>
+            <a href="/formations" className="solution-link">Voir les formations →</a>
+          </div>
+        </div>
+      </section>
+
+      {/* VIDÉO DÉMO */}
+      <section className="video-demo">
+        <div className="video-intro">
+          <h2>Découvrez Comment Cyber Solférino Simplifie Votre Conformité</h2>
+          <p>3 minutes pour comprendre notre méthode et notre plateforme</p>
+        </div>
+
+        <div className="video-player">
+          {!showVideo ? (
+            <div className="video-thumbnail" onClick={() => setShowVideo(true)}>
+              <img src="/video-thumbnail.jpg" alt="Présentation Cyber Solférino" />
+              <div className="play-button">
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                  <circle cx="40" cy="40" r="40" fill="white" fillOpacity="0.9"/>
+                  <path d="M32 26L54 40L32 54V26Z" fill="#1E3A8A"/>
+                </svg>
               </div>
-              <ul className="service-list-h">
-                <li>Formation obligatoire des dirigeants</li>
-                <li>Formation en distanciel</li>
-                <li>Formation présentiel sur site possible</li>
-              </ul>
             </div>
-
-            <div className="service-card-h">
-              <div className="service-header-h">
-                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)'}}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                  </svg>
-                </div>
-                <div className="service-title-h">
-                  <h3>Montage dossiers<br />Subventions</h3>
-                  <p className="service-price">299€</p>
-                </div>
-              </div>
-              <ul className="service-list-h">
-                <li>Identification des aides</li>
-                <li>Constitution des dossiers</li>
-                <li>Maximisation des financements</li>
-              </ul>
-            </div>
-
-            <div className="service-card-h">
-              <div className="service-header-h">
-                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%)'}}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                    <line x1="12" y1="9" x2="12" y2="13"></line>
-                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                  </svg>
-                </div>
-                <div className="service-title-h">
-                  <h3>Notification<br />Incidents</h3>
-                  <p className="service-price">99€/mois</p>
-                </div>
-              </div>
-              <ul className="service-list-h">
-                <li>Déclaration incident en 24h à l'ANSSI</li>
-                <li>Conseil gestion de crise</li>
-                <li>Hotline téléphonique inclus</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section className="expertise-section">
-          <div className="section-header">
-            <h2 style={{color: '#1E3A8A'}}>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
-            <p className="section-subtitle">Notre accompagnement se base sur le référentiel officiel de l'ANSSI.</p>
-          </div>
-
-          <div className="timeline-container">
-            <div className="timeline-horizontal">
-              {EXPERTISE_TIMELINE.map((item, index) => (
-                <div key={index} className="timeline-item">
-                  <div className="timeline-number">{item.number}</div>
-                  <div className="timeline-content">
-                    <h3 className="timeline-title">{item.title}</h3>
-                    <p className="timeline-description">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="expertise-grid-horizontal">
-            <div className="expertise-card-horizontal">
-              <div className="expertise-header-horizontal">
-                <div className="expertise-number-large">15+</div>
-                <div className="expertise-text">
-                  <div className="expertise-title-bold">Années d'expérience terrain</div>
-                </div>
-              </div>
-              <p className="expertise-description">Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber.</p>
-            </div>
-
-            <div className="expertise-card-horizontal">
-              <div className="expertise-header-horizontal">
-                <div className="certification-icon-large">
-                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                </div>
-                <div className="expertise-text">
-                  <div className="expertise-title-bold">Une équipe d'experts en cyber défense</div>
-                </div>
-              </div>
-              <p className="expertise-description">Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
-            </div>
-          </div>
-
-          <div className="certification-logos">
-            <div className="certification-logos-container">
-              <img src="/logo_anssi.png" alt="ANSSI - Agence Nationale de la Sécurité des Systèmes d'Information" className="cert-logo" />
-              <img src="/Logo-cybermalveillance.PNG" alt="Cybermalveillance.gouv.fr" className="cert-logo" />
-              <img src="/logo_expertcyber.jpg" alt="Expert Cyber - Label Sécurité Numérique" className="cert-logo" />
-              <img src="/iso_27001_02-1024x704.png" alt="ISO 27001 Certified - Information Security Management" className="cert-logo" />
-            </div>
-          </div>
-        </section>
-
-        <section className="social-proof">
-          <div className="section-header">
-            <h2 style={{color: '#1E3A8A'}}>Dirigeants conformes, entreprises gagnantes</h2>
-            <p className="section-subtitle">Ils ont fait de NIS2 un levier de performance</p>
-          </div>
-
-          <div className="testimonials-grid">
-            {TESTIMONIALS.map((testimonial) => (
-              <div key={testimonial.id} className="testimonial">
-                <div className="testimonial-text">"{testimonial.text}"</div>
-                <div className="testimonial-author">
-                  <div className="author-avatar">{testimonial.author.avatar}</div>
-                  <div className="author-info">
-                    <div className="author-name">{testimonial.author.name}</div>
-                    <div className="author-role">{testimonial.author.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="carousel-hint">← Faites glisser pour voir plus →</div>
-        </section>
-
-        <section className="video-section" id="video-section">
-          <div className="video-header">
-            <div className="video-badge">🎥 Comprendre NIS2 en vidéo</div>
-          </div>
-          <div className="video-container">
+          ) : (
             <iframe 
-              src={EXTERNAL_LINKS.videoYoutube}
-              title="Directive NIS2 expliquée" 
+              src="https://www.youtube.com/embed/461tWBUzrY8?autoplay=1"
+              title="Cyber Solférino - Présentation" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               allowFullScreen>
             </iframe>
-          </div>
-        </section>
+          )}
+        </div>
+      </section>
 
-        <section className="faq">
-          <div className="section-header">
-            <h2 style={{color: '#1E3A8A'}}>Les questions que se posent les dirigeants</h2>
-          </div>
-          
-          {FAQ_ITEMS.map((item) => (
-            <div key={item.id} className="faq-item">
-              <div className="faq-question">
-                {item.icon} {item.question}
-                <span>↓</span>
-              </div>
-              <div className="faq-answer">{item.answer}</div>
+      {/* COMMENT ÇA MARCHE */}
+      <section className="how-it-works" id="fonctionnement">
+        <div className="section-header-center">
+          <span className="section-badge">Comment Ça Marche</span>
+          <h2>Obtenez de Meilleurs Résultats, Sans Augmenter Vos Effectifs</h2>
+        </div>
+
+        <div className="steps-container">
+          {/* STEP 1 */}
+          <div className="step-block">
+            <div className="step-number">1</div>
+            <div className="step-content">
+              <h3>Auto-Évaluation en Ligne</h3>
+              <p>Répondez à notre questionnaire intelligent qui s'adapte à votre secteur et votre taille. Résultat immédiat avec score de conformité.</p>
             </div>
-          ))}
-        </section>
+            <div className="step-visual">
+              <img src="/step-1-auto-evaluation.png" alt="Auto-évaluation" />
+            </div>
+          </div>
 
-        <section className="final-cta" style={{background: '#1E3A8A'}}>
-          <h2>Sécurisez votre avenir dès aujourd'hui</h2>
-          <p>Échange confidentiel avec un consultant certifié ISO 27001<br /><strong>Audit indépendant pour mesurer votre conformité</strong></p>
-          <a 
-            href={CONTACT_INFO.calendly} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="btn"
-            style={{
-              background: 'white',
-              color: '#1E3A8A',
-              border: 'none',
-              fontWeight: '700',
-              fontSize: '17px',
-              padding: '18px 48px',
-              borderRadius: '14px',
-              textDecoration: 'none',
-              display: 'inline-block',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 16px rgba(255, 255, 255, 0.2)'
-            }}
-          >
-            📅 Réserver un échange gratuit
+          {/* STEP 2 */}
+          <div className="step-block reverse">
+            <div className="step-number">2</div>
+            <div className="step-content">
+              <h3>Validation Expert</h3>
+              <p>Nos experts certifiés ISO 27001 analysent vos résultats, identifient les écarts critiques et priorisent les actions selon vos risques.</p>
+            </div>
+            <div className="step-visual">
+              <img src="/step-2-expert-validation.png" alt="Validation expert" />
+            </div>
+          </div>
+
+          {/* STEP 3 */}
+          <div className="step-block">
+            <div className="step-number">3</div>
+            <div className="step-content">
+              <h3>Plan de Remédiation</h3>
+              <p>Recevez votre roadmap personnalisée avec timeline, budget prévisionnel et dossier d'aides de l'État (jusqu'à 70%).</p>
+            </div>
+            <div className="step-visual">
+              <img src="/step-3-remediation-plan.png" alt="Plan de remédiation" />
+            </div>
+          </div>
+
+          {/* STEP 4 */}
+          <div className="step-block reverse">
+            <div className="step-number">4</div>
+            <div className="step-content">
+              <h3>Formation Obligatoire</h3>
+              <p>Formez vos dirigeants (obligation NIS2) et sensibilisez vos collaborateurs. MOOC 24/7 ou sessions sur site.</p>
+            </div>
+            <div className="step-visual">
+              <img src="/step-4-formation.png" alt="Formation" />
+            </div>
+          </div>
+
+          {/* STEP 5 */}
+          <div className="step-block">
+            <div className="step-number">5</div>
+            <div className="step-content">
+              <h3>Déclaration ANSSI</h3>
+              <p>Nous gérons votre enregistrement sur MonEspaceNIS2 et constituons votre dossier de conformité officiel.</p>
+            </div>
+            <div className="step-visual">
+              <img src="/step-5-declaration-anssi.png" alt="Déclaration ANSSI" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURES TABS */}
+      <section className="features-tabs">
+        <div className="section-header-center">
+          <span className="section-badge">Fonctionnalités</span>
+          <h2>Innovation À Chaque Étape Du Cycle de Conformité</h2>
+          <p>Consolidez et automatisez votre conformité NIS2 avec notre plateforme riche en fonctionnalités.</p>
+        </div>
+
+        <div className="tabs-container">
+          <div className="tabs-nav">
+            <button className="tab-btn active">Audit Automatisé</button>
+            <button className="tab-btn">Plan de Remédiation</button>
+            <button className="tab-btn">Formations OPCO</button>
+            <button className="tab-btn">Déclaration ANSSI</button>
+            <button className="tab-btn">Dossier Aides État</button>
+            <button className="tab-btn">Suivi Continu</button>
+          </div>
+
+          <div className="tab-content active">
+            <div className="tab-visual">
+              <img src="/feature-audit-automated.png" alt="Audit automatisé" />
+            </div>
+            <div className="tab-description">
+              <h3>Audit NIS2 Complet en 48H</h3>
+              <p>
+                Notre plateforme intelligente analyse votre conformité selon les 10 mesures de sécurité NIS2 
+                et génère automatiquement votre rapport détaillé. Plus de 150 critères analysés, priorisés par niveau de risque.
+              </p>
+              <a href="/audit-nis2" className="btn-feature">Démarrer l'audit →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="testimonials">
+        <div className="section-header-center">
+          <span className="section-badge">Témoignages</span>
+          <h2>Ce Que Nos Clients Aiment Chez Cyber Solférino</h2>
+        </div>
+
+        <div className="testimonials-grid">
+          <div className="testimonial-card featured">
+            <div className="testimonial-header">
+              <img src="/client-avatar-1.jpg" alt="Client" className="testimonial-avatar" />
+              <div className="testimonial-author">
+                <strong>Sophie Durand</strong>
+                <span>Directrice Générale, PME Industrie</span>
+              </div>
+            </div>
+            <p className="testimonial-text">
+              "Nous avons économisé 6 mois de travail et 40K€ grâce à Cyber Solférino. 
+              L'accompagnement était impeccable, de l'audit initial à la déclaration ANSSI."
+            </p>
+            <div className="testimonial-stats">
+              <div className="stat">
+                <strong>98%</strong>
+                <span>Conformité atteinte</span>
+              </div>
+              <div className="stat">
+                <strong>12K€</strong>
+                <span>Aides récupérées</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="testimonial-card">
+            <div className="testimonial-header">
+              <img src="/client-avatar-2.jpg" alt="Client" className="testimonial-avatar" />
+              <div className="testimonial-author">
+                <strong>Marc Lefebvre</strong>
+                <span>DSI, ETI Santé</span>
+              </div>
+            </div>
+            <p className="testimonial-text">
+              "Enfin un acteur qui parle notre langue ! Pas de jargon technique incompréhensible, 
+              juste des actions concrètes et un suivi au top."
+            </p>
+          </div>
+
+          <div className="testimonial-card">
+            <div className="testimonial-header">
+              <img src="/client-avatar-3.jpg" alt="Client" className="testimonial-avatar" />
+              <div className="testimonial-author">
+                <strong>Anne-Marie Petit</strong>
+                <span>CEO, Startup Fintech</span>
+              </div>
+            </div>
+            <p className="testimonial-text">
+              "Cyber Solférino nous a permis de décrocher des contrats avec de grands comptes 
+              qui exigeaient une certification de conformité NIS2."
+            </p>
+          </div>
+        </div>
+
+        <div className="clients-logos">
+          <p>Ils nous font confiance :</p>
+          <div className="logos-strip">
+            <img src="/client-logo-1.png" alt="Client" />
+            <img src="/client-logo-2.png" alt="Client" />
+            <img src="/client-logo-3.png" alt="Client" />
+            <img src="/client-logo-4.png" alt="Client" />
+            <img src="/client-logo-5.png" alt="Client" />
+          </div>
+        </div>
+      </section>
+
+      {/* PRICING */}
+      <section className="pricing" id="pricing">
+        <div className="section-header-center">
+          <span className="section-badge">Tarifs Transparents</span>
+          <h2>Choisissez L'Offre Adaptée À Votre Maturité Cyber</h2>
+          <p>3 formules, de l'auto-évaluation à l'accompagnement complet. Paiement unique, pas d'abonnement.</p>
+        </div>
+
+        <div className="pricing-grid">
+          {/* ESSENTIELLE */}
+          <div className="price-card">
+            <div className="price-header">
+              <h3>Essentielle</h3>
+              <div className="price">3 490€</div>
+              <div className="price-sub">HT • Paiement unique</div>
+            </div>
+            <p className="price-ideal">Idéal pour : PME cherchant à évaluer leur positionnement</p>
+            <ul className="price-features">
+              <li>✓ Audit cyber NIS2 complet</li>
+              <li>✓ Résultat immédiat en ligne</li>
+              <li>✓ Score de conformité détaillé</li>
+              <li>✓ Recommandations prioritaires</li>
+              <li>✓ Support par email</li>
+            </ul>
+            <button className="btn-price">Démarrer l'audit</button>
+          </div>
+
+          {/* SÉRÉNITÉ */}
+          <div className="price-card featured">
+            <div className="price-badge">⭐ POPULAIRE</div>
+            <div className="price-header">
+              <h3>Sérénité</h3>
+              <div className="price">7 990€</div>
+              <div className="price-sub">HT • Paiement unique</div>
+            </div>
+            <p className="price-ideal">Idéal pour : Entreprises visant la conformité NIS2</p>
+            <ul className="price-features">
+              <li>✓ Audit cyber NIS2 complet</li>
+              <li>✓ Rapport validé par experts</li>
+              <li>✓ Analyse écarts de conformité</li>
+              <li>✓ Plan de remédiation détaillé</li>
+              <li>✓ Restitution avec expert (1h visio)</li>
+              <li>✓ Accès plateforme 6 mois</li>
+              <li>✓ Délai de livraison : 48H</li>
+            </ul>
+            <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer" className="btn-price btn-price-primary">
+              Prendre rendez-vous
+            </a>
+          </div>
+
+          {/* EXPERTISE */}
+          <div className="price-card">
+            <div className="price-header">
+              <h3>Expertise</h3>
+              <div className="price">14 900€</div>
+              <div className="price-sub">HT • Paiement unique</div>
+            </div>
+            <p className="price-ideal">Idéal pour : ETI et secteurs critiques</p>
+            <ul className="price-features">
+              <li>✓ Tout de l'offre Sérénité</li>
+              <li className="plus">+ Entretien préalable expert</li>
+              <li className="plus">+ Roadmap personnalisée</li>
+              <li className="plus">+ Enregistrement ANSSI</li>
+              <li className="plus">+ Dossier aides d'État</li>
+              <li className="plus">+ Accès plateforme 12 mois</li>
+              <li className="plus">+ MAJ évolutions législatives</li>
+            </ul>
+            <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer" className="btn-price">
+              Prendre rendez-vous
+            </a>
+          </div>
+        </div>
+
+        <div className="pricing-footer">
+          <p>💡 <strong>Jusqu'à 70% d'aides de l'État</strong> • Financement OPCO • Subventions France Num, BPI, Régions</p>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="final-cta">
+        <div className="cta-content">
+          <h2>Prêt À Sécuriser Votre Conformité NIS2 ?</h2>
+          <p>
+            Notre équipe d'experts certifiés ISO 27001 est équipée des meilleurs outils pour automatiser 
+            votre conformité, vous libérant du temps pour vous concentrer sur votre cœur de métier.
+          </p>
+          <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer" className="btn-cta-final">
+            Réserver un audit gratuit
           </a>
-        </section>
+        </div>
+      </section>
 
-        <footer className="footer">
-          <p><strong>{CONTACT_INFO.company}</strong> • Mise en conformité NIS2 • Basé sur le referenciel ANSSI</p>
-          <p style={{marginTop: '10px'}}>{CONTACT_INFO.website}</p>
-          <p style={{marginTop: '8px', opacity: '0.6'}}>Mentions légales • CGV • Politique de confidentialité</p>
-        </footer>
-      </div>
+      {/* FOOTER */}
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-column">
+            <h4>Solutions</h4>
+            <a href="/audit-nis2">Audit NIS2</a>
+            <a href="/formations">Formations</a>
+            <a href="/offres-complementaires">Services complémentaires</a>
+            <a href="/accompagnement">Accompagnement</a>
+          </div>
 
-      <QuizModal quiz={quiz} />
+          <div className="footer-column">
+            <h4>Ressources</h4>
+            <a href="/comprendre-nis2">Comprendre NIS2</a>
+            <a href="/blog">Blog</a>
+            <a href="/faq">FAQ</a>
+            <a href="https://cyber.gouv.fr" target="_blank">ANSSI</a>
+          </div>
 
+          <div className="footer-column">
+            <h4>Entreprise</h4>
+            <a href="/qui-sommes-nous">Qui sommes-nous ?</a>
+            <a href="/contact">Contact</a>
+            <a href="/mentions-legales">Mentions légales</a>
+            <a href="/confidentialite">Confidentialité</a>
+          </div>
+
+          <div className="footer-column">
+            <div className="footer-logo">
+              <span>Cyber Solférino</span>
+            </div>
+            <p className="footer-tagline">
+              © 2025 Cyber Solférino. Tous droits réservés.
+            </p>
+            <div className="footer-certifs">
+              <img src="/logo_anssi.png" alt="ANSSI" />
+              <img src="/iso_27001_02-1024x704.png" alt="ISO 27001" />
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* STYLES */}
       <style jsx>{`
-        /* ═══════════════════════════════════════════════════════════
-           ✨ NOUVELLE SECTION HERO - MINIMALISTE PREMIUM (PROP 3)
-           ═══════════════════════════════════════════════════════════ */
-
-        .hero-minimal {
-          text-align: center;
-          padding: 0 20px 100px;
-          max-width: 1200px;
-          margin: 0 auto;
-          background: linear-gradient(to bottom, #FFFFFF 0%, #FAFAFA 100%);
-        }
-
-        .hero-logo {
-          max-width: 288px;
-          height: auto;
-          margin: 0 auto 34px;
-          display: block;
-        }
-
-        .hero-baseline {
-          font-size: 16px;
-          font-weight: 600;
-          color: #64748B;
-          line-height: 1.5;
-          max-width: 680px;
-          margin: 0 auto 20px;
-        }
-
-        .hero-separator {
-          width: 120px;
-          height: 3px;
-          background: linear-gradient(90deg, #FF5630 0%, #FFB199 100%);
-          margin: 12px auto;
-          border-radius: 2px;
-        }
-
-        .hero-title {
-          font-size: 52px;
-          font-weight: 900;
-          color: #FF5630;
-          line-height: 1.2;
-          max-width: 900px;
-          margin: 0 auto 12px;
-          letter-spacing: -0.02em;
-        }
-
-        .hero-subtitle {
-          font-size: 18px;
-          font-weight: 500;
-          color: #334155;
-          line-height: 1.75;
-          max-width: 820px;
-          margin: 0 auto 32px;
-        }
-
-        .hero-stats-minimal {
-          display: flex;
-          justify-content: center;
-          gap: 28px;
-          margin-bottom: 36px;
-          flex-wrap: wrap;
-        }
-
-        .stat-minimal {
-          text-align: center;
-          min-width: 140px;
-        }
-
-        .stat-value-minimal {
-          font-size: 48px;
-          font-weight: 900;
-          color: #1E3A8A;
-          line-height: 1;
-          margin-bottom: 8px;
-        }
-
-        .stat-label-minimal {
-          font-size: 13px;
-          font-weight: 600;
-          color: #64748B;
-          line-height: 1.4;
-        }
-
-        .hero-cta-primary {
-          display: inline-block;
-          background: #FF5630;
-          color: white;
-          padding: 18px 48px;
-          border-radius: 14px;
-          font-size: 17px;
-          font-weight: 700;
-          border: none;
-          cursor: pointer;
-          box-shadow: 0 6px 20px rgba(255, 86, 48, 0.25);
-          transition: all 0.3s ease;
-          max-width: 500px;
-          width: 100%;
-          margin-bottom: 20px;
-        }
-
-        .hero-cta-primary:hover {
-          background: #E64825;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 28px rgba(255, 86, 48, 0.35);
-        }
-
-        .hero-reassurance {
-          font-size: 14px;
-          font-weight: 600;
-          color: #64748B;
-          margin-top: 16px;
-          text-align: center;
-        }
-
-        .hero-cta-link {
-          display: block;
-          font-size: 16px;
-          font-weight: 600;
-          color: #1E3A8A;
-          text-decoration: none;
-          transition: all 0.3s ease;
-          margin-top: 8px;
-        }
-
-        .hero-cta-link:hover {
-          text-decoration: underline;
-          color: #1E40AF;
-        }
-
-        /* Section liens informatifs après hero */
-        .info-links-section {
-          background: #F7F8FC;
-          padding: 32px 20px;
-          text-align: center;
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-
-        .info-links-title {
-          font-size: 20px;
-          font-weight: 700;
-          color: #1E3A8A;
-          margin-bottom: 20px;
-        }
-
-        .info-links-container {
-          display: flex;
-          justify-content: center;
-          gap: 24px;
-          flex-wrap: wrap;
-          margin-bottom: 12px;
-        }
-
-        .info-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 12px 24px;
-          background: white;
-          border: 2px solid #1E3A8A;
-          border-radius: 10px;
-          color: #1E3A8A;
-          font-size: 15px;
-          font-weight: 600;
-          text-decoration: none;
-          transition: all 0.3s ease;
-          cursor: pointer;
-        }
-
-        .info-link:hover {
-          background: #1E3A8A;
-          color: white;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
-        }
-
-        .info-links-subtitle {
-          font-size: 14px;
-          color: #64748B;
+        /* GLOBAL RESET */
+        * {
           margin: 0;
+          padding: 0;
+          box-sizing: border-box;
         }
 
-        /* RESPONSIVE HERO */
-        @media (max-width: 768px) {
-          .hero-minimal {
-            padding: 0 20px 80px;
-          }
-
-          .hero-logo {
-            max-width: 192px;
-            margin-bottom: 12px;
-          }
-
-          .hero-baseline {
-            font-size: 14px;
-            margin-bottom: 20px;
-          }
-
-          .hero-title {
-            font-size: 34px;
-            margin-bottom: 14px;
-            line-height: 1.15;
-          }
-
-          .hero-subtitle {
-            font-size: 15px;
-            margin-bottom: 32px;
-            line-height: 1.6;
-          }
-
-          .hero-stats-minimal {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px 16px;
-            margin-bottom: 32px;
-            max-width: 360px;
-            margin-left: auto;
-            margin-right: auto;
-          }
-
-          .stat-minimal {
-            min-width: unset;
-          }
-
-          .stat-value-minimal {
-            font-size: 36px;
-          }
-
-          .stat-label-minimal {
-            font-size: 12px;
-          }
-
-          .hero-cta-primary {
-            font-size: 15px;
-            padding: 15px 32px;
-            margin-bottom: 20px;
-          }
-
-          .info-links-section {
-            padding: 24px 16px;
-          }
-
-          .info-links-title {
-            font-size: 18px;
-          }
-
-          .info-links-container {
-            flex-direction: column;
-            gap: 12px;
-          }
-
-          .info-link {
-            width: 100%;
-            justify-content: center;
-            font-size: 14px;
-          }
-
-          .hero-cta-link {
-            font-size: 14px;
-          }
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+          background: #FFFFFF;
+          color: #0F172A;
+          line-height: 1.6;
         }
 
-        @media (min-width: 769px) and (max-width: 1024px) {
-          .hero-stats-minimal {
-            gap: 32px;
-          }
-          
-          .hero-title {
-            font-size: 44px;
-          }
-        }
-
-        /* ═══════════════════════════════════════════════════════════
-           🔄 RESTE DU DESIGN INCHANGÉ
-           ═══════════════════════════════════════════════════════════ */
-
-        .sticky-header {
+        /* NAVIGATION */
+        .nav {
           position: fixed;
           top: 0;
           left: 0;
           right: 0;
-          background: white;
-          box-shadow: 0 2px 12px rgba(9, 30, 66, 0.08);
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          border-bottom: 1px solid #E2E8F0;
           z-index: 1000;
-          transform: translateY(-100%);
-          transition: transform 0.3s ease;
+          padding: 16px 0;
         }
 
-        .sticky-header.visible {
-          transform: translateY(0);
-        }
-
-        .sticky-header-content {
-          max-width: 1200px;
+        .nav-container {
+          max-width: 1400px;
           margin: 0 auto;
-          padding: 8px 20px;
+          padding: 0 40px;
           display: flex;
-          align-items: center;
           justify-content: space-between;
-        }
-
-        .sticky-logo-img {
-          display: flex;
           align-items: center;
         }
 
-        .sticky-logo-large {
-          height: 50px;
-          width: auto;
-        }
-
-        .sticky-cta-group {
-          display: flex;
-          gap: 12px;
-          align-items: center;
-        }
-
-        .btn-sticky {
-          padding: 10px 20px;
-          border-radius: 8px;
-          font-size: 14px;
-          font-weight: 700;
+        .logo-text {
+          font-size: 24px;
+          font-weight: 900;
+          color: #1E3A8A;
           text-decoration: none;
-          transition: all 0.3s ease;
-          white-space: nowrap;
         }
 
-        .btn-sticky.primary {
-          background: #FF5630;
-          color: white;
-          border: none;
+        .nav-links {
+          display: flex;
+          gap: 32px;
+          align-items: center;
         }
 
-        .btn-sticky.primary:hover {
-          background: #E64825;
+        .nav-links a {
+          font-size: 15px;
+          font-weight: 600;
+          color: #475569;
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+          color: #1E3A8A;
+        }
+
+        .btn-nav-primary {
+          background: #1E3A8A;
+          color: white !important;
+          padding: 10px 24px;
+          border-radius: 8px;
+          transition: all 0.3s;
+        }
+
+        .btn-nav-primary:hover {
+          background: #1E40AF;
           transform: translateY(-2px);
         }
 
-        .btn-sticky.secondary {
-          background: white;
-          color: #1E3A8A;
-          border: 2px solid #1E3A8A;
+        /* HERO */
+        .hero {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 140px 40px 80px;
+          text-align: center;
         }
 
-        .btn-sticky.secondary:hover {
+        .hero-badge {
+          display: inline-block;
+          background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+          color: #1E3A8A;
+          padding: 8px 20px;
+          border-radius: 24px;
+          font-size: 14px;
+          font-weight: 700;
+          margin-bottom: 32px;
+          border: 1px solid #BFDBFE;
+        }
+
+        .hero-title {
+          font-size: 64px;
+          font-weight: 900;
+          color: #0F172A;
+          line-height: 1.1;
+          margin-bottom: 24px;
+          letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+          font-size: 20px;
+          color: #64748B;
+          line-height: 1.6;
+          max-width: 800px;
+          margin: 0 auto 40px;
+        }
+
+        .hero-cta {
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+          margin-bottom: 60px;
+        }
+
+        .btn-hero-primary {
           background: #1E3A8A;
           color: white;
+          padding: 16px 36px;
+          border-radius: 12px;
+          font-size: 17px;
+          font-weight: 700;
+          text-decoration: none;
+          transition: all 0.3s;
+          box-shadow: 0 4px 16px rgba(30, 58, 138, 0.25);
         }
 
-        @media (max-width: 640px) {
-          .sticky-header-content {
-            padding: 6px 16px;
-          }
-
-          .sticky-logo-large {
-            height: 40px;
-          }
-
-          .btn-sticky {
-            padding: 8px 16px;
-            font-size: 13px;
-          }
-
-          .btn-sticky.secondary {
-            display: none;
-          }
+        .btn-hero-primary:hover {
+          background: #1E40AF;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(30, 58, 138, 0.35);
         }
 
-        .risk-opportunity-wrapper {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 32px;
-          margin: 48px 0;
-        }
-
-        .warning-card,
-        .value-prop {
+        .btn-hero-secondary {
           background: white;
+          color: #1E3A8A;
+          padding: 16px 36px;
+          border-radius: 12px;
+          font-size: 17px;
+          font-weight: 700;
+          text-decoration: none;
+          border: 2px solid #1E3A8A;
+          transition: all 0.3s;
+        }
+
+        .btn-hero-secondary:hover {
+          background: #F7F9FC;
+        }
+
+        .hero-image {
+          max-width: 1200px;
+          margin: 0 auto;
           border-radius: 20px;
-          padding: 32px;
-          box-shadow: 0 4px 20px rgba(9, 30, 66, 0.08);
+          overflow: hidden;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         }
 
-        .warning-card h2,
-        .value-prop h2 {
-          font-size: 22px;
+        .hero-image img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        /* BEFORE/AFTER */
+        .before-after {
+          max-width: 1400px;
+          margin: 120px auto;
+          padding: 0 40px;
+        }
+
+        .section-header-center {
+          text-align: center;
+          margin-bottom: 80px;
+        }
+
+        .section-badge {
+          display: inline-block;
+          background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+          color: #1E3A8A;
+          padding: 6px 16px;
+          border-radius: 20px;
+          font-size: 13px;
           font-weight: 800;
-          margin-bottom: 24px;
-          line-height: 1.3;
+          margin-bottom: 20px;
+          border: 1px solid #BFDBFE;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
         }
 
-        .warning-list,
-        .value-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
+        .section-header-center h2 {
+          font-size: 48px;
+          font-weight: 900;
+          color: #0F172A;
+          line-height: 1.2;
+          margin-bottom: 16px;
+        }
+
+        .section-header-center p {
+          font-size: 18px;
+          color: #64748B;
+          max-width: 700px;
+          margin: 0 auto;
+        }
+
+        .comparison-container {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 60px;
+        }
+
+        .comparison-side h3 {
+          font-size: 28px;
+          font-weight: 800;
+          color: #0F172A;
+          margin-bottom: 32px;
+          text-align: center;
+        }
+
+        .comparison-visual {
+          background: white;
+          border: 2px solid #E2E8F0;
+          border-radius: 20px;
+          padding: 40px;
+          min-height: 400px;
           display: flex;
-          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .chaos-tools {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
           gap: 16px;
         }
 
-        .warning-list li,
-        .value-list li {
+        .tool-bubble {
+          background: #F1F5F9;
+          padding: 16px 20px;
+          border-radius: 12px;
           font-size: 14px;
-          line-height: 1.6;
-          color: #505F79;
+          font-weight: 600;
+          color: #64748B;
+          text-align: center;
+          border: 1px dashed #CBD5E1;
         }
 
-        .warning-list li strong,
-        .value-list li strong {
-          color: #091E42;
-          display: inline;
-        }
-
-        .impact-cards-two {
+        .unified-platform {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+          width: 100%;
+        }
+
+        .platform-card {
+          background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+          color: white;
+          padding: 20px;
+          border-radius: 12px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+          font-size: 14px;
+          font-weight: 700;
+          box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+        }
+
+        .platform-icon {
+          font-size: 28px;
+        }
+
+        /* OUR SOLUTION */
+        .our-solution {
+          max-width: 1400px;
+          margin: 120px auto;
+          padding: 0 40px;
+        }
+
+        .solution-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
           gap: 32px;
-          margin-top: 40px;
-          max-width: 1000px;
-          margin-left: auto;
-          margin-right: auto;
         }
 
-        .impact-card-large {
+        .solution-card {
           background: white;
-          border: 2px solid #EFF1F5;
+          border: 2px solid #E2E8F0;
           border-radius: 20px;
-          padding: 24px 28px;
-          text-align: left;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 16px rgba(9, 30, 66, 0.08);
+          padding: 40px 32px;
+          text-align: center;
+          transition: all 0.3s;
         }
 
-        .impact-card-large:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 32px rgba(0, 82, 204, 0.12);
+        .solution-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
           border-color: #1E3A8A;
         }
 
-        .impact-header-horizontal {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          margin-bottom: 8px;
+        .solution-card.featured {
+          border-color: #1E3A8A;
+          border-width: 3px;
+          background: linear-gradient(135deg, #F7F9FC 0%, #EFF6FF 100%);
         }
 
-        .impact-icon {
-          font-size: 40px;
-          flex-shrink: 0;
+        .solution-icon {
+          margin-bottom: 24px;
         }
 
-        .impact-stat {
-          font-size: 36px;
-          font-weight: 800;
-          color: #FF5630;
-          line-height: 1;
-        }
-
-        .impact-label-compact {
-          font-size: 20px;
-          font-weight: 700;
-          color: #091E42;
-          margin-bottom: 8px;
-        }
-
-        .impact-detail {
-          font-size: 15px;
-          color: #505F79;
-          line-height: 1.6;
-        }
-
-        .expertise-grid-horizontal {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 32px;
-          margin-top: 48px;
-          max-width: 1200px;
-          margin-left: auto;
-          margin-right: auto;
-          align-items: start;
-        }
-
-        .expertise-card-horizontal {
-          background: white;
-          border: 3px solid #1E3A8A;
-          border-radius: 20px;
-          padding: 28px 32px;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 16px rgba(0, 82, 204, 0.12);
-          display: flex;
-          flex-direction: column;
-          min-height: 240px;
-        }
-
-        .expertise-card-horizontal:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 32px rgba(0, 82, 204, 0.18);
-        }
-
-        .expertise-header-horizontal {
-          display: flex;
-          align-items: center;
-          gap: 20px;
-          margin-bottom: 12px;
-          min-height: 70px;
-        }
-
-        .expertise-number-large {
-          font-size: 28px;
-          font-weight: 800;
-          color: #1E3A8A;
-          line-height: 1;
-          flex-shrink: 0;
-        }
-
-        .certification-icon-large {
-          width: 40px;
-          height: 40px;
-          background: #1E3A8A;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          flex-shrink: 0;
-        }
-
-        .certification-icon-large svg {
-          width: 24px;
-          height: 24px;
-        }
-
-        .expertise-text {
-          flex: 1;
-          display: flex;
-          align-items: center;
-        }
-
-        .expertise-title-bold {
-          font-size: 20px;
-          font-weight: 700;
-          color: #091E42;
-          line-height: 1.3;
-        }
-
-        .expertise-description {
-          font-size: 15px;
-          color: #505F79;
-          line-height: 1.6;
-          margin: 0;
-        }
-
-        .certification-logos {
-          margin-top: 48px;
-          padding: 32px 20px;
-          background: #F7F8FC;
-          border-radius: 16px;
-          max-width: 1200px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .certification-logos-container {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 48px;
-          flex-wrap: wrap;
-        }
-
-        .cert-logo {
-          height: 80px;
-          width: auto;
-          max-width: 200px;
-          object-fit: contain;
-          filter: grayscale(0%) opacity(0.9);
-          transition: all 0.3s ease;
-        }
-
-        .cert-logo:hover {
-          filter: grayscale(0%) opacity(1);
-          transform: scale(1.05);
-        }
-
-        .price-card-desktop .features li.feature-plus::before {
-          content: '+';
-          color: #1E3A8A;
-          font-size: 20px;
-        }
-
-        .sticky-logo-img {
-          display: flex;
-          align-items: center;
-        }
-
-        .subsidy-banner {
-          max-width: 1200px;
-          margin: 0 auto 40px auto;
-          padding: 24px 32px;
-          background: linear-gradient(90deg, rgba(76, 175, 80, 0.08) 0%, rgba(76, 175, 80, 0.12) 100%);
-          border-left: 4px solid #4caf50;
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 24px;
-        }
-
-        .subsidy-content {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-        }
-
-        .subsidy-title {
-          color: #1b5e20;
-          font-size: 17px;
-          font-weight: 700;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          white-space: nowrap;
-          justify-content: center;
-        }
-
-        .subsidy-title strong {
-          font-weight: 700;
-        }
-
-        .subsidy-description {
-          color: #2e7d32;
-          font-size: 15px;
-          line-height: 1.5;
-          text-align: center;
-        }
-
-        .btn-simulator {
-          background: white;
-          color: #1b5e20;
-          border: 2px solid #4caf50;
-          padding: 12px 24px;
-          border-radius: 10px;
-          font-size: 15px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          white-space: nowrap;
-          box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15);
-          flex-shrink: 0;
-        }
-
-        .btn-simulator:hover {
-          background: #4caf50;
-          color: white;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25);
-        }
-
-        .pricing-cards-desktop {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 24px;
-          margin-top: 32px;
-          max-width: 1200px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .price-card-desktop {
-          background: white;
-          border: 2px solid #DFE1E6;
-          border-radius: 20px;
-          padding: 0;
-          position: relative;
-          transition: all 0.4s ease;
-          display: flex;
-          flex-direction: column;
-          box-shadow: 0 2px 12px rgba(9, 30, 66, 0.08);
-        }
-
-        .price-card-desktop:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 16px 40px rgba(0, 82, 204, 0.15);
-        }
-
-        .price-card-desktop.featured {
-          border: 3px solid #1E3A8A;
-          box-shadow: 0 8px 32px rgba(0, 82, 204, 0.2);
-        }
-
-        .price-card-header {
-          padding: 32px 24px 24px;
-          text-align: center;
-          border-bottom: 2px solid #F7F8FC;
-          min-height: 160px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        .price-card-desktop h3 {
+        .solution-card h3 {
           font-size: 24px;
           font-weight: 800;
-          color: #091E42;
+          color: #0F172A;
           margin-bottom: 16px;
         }
 
-        .price-card-desktop .price {
-          font-size: 48px;
-          font-weight: 800;
-          color: #1E3A8A;
-          line-height: 1;
-          margin-bottom: 8px;
-        }
-
-        .price-card-desktop .price-sub {
-          font-size: 14px;
-          color: #8993A4;
-          font-weight: 600;
-        }
-
-        .price-card-desktop .ideal-for {
-          padding: 16px 24px;
-          background: #F7F8FC;
-          font-size: 13px;
-          color: #505F79;
-          border-bottom: 1px solid #EFF1F5;
-        }
-
-        .price-card-desktop .features {
-          padding: 24px;
-          flex: 1;
-          list-style: none;
-        }
-
-        .price-card-desktop .features li {
-          padding: 10px 0;
-          padding-left: 28px;
-          position: relative;
-          font-size: 14px;
-          color: #505F79;
-          line-height: 1.5;
-          border-bottom: 1px solid #F7F8FC;
-        }
-
-        .price-card-desktop .features li:last-child {
-          border-bottom: none;
-        }
-
-        .price-card-desktop .features li::before {
-          content: '✓';
-          position: absolute;
-          left: 0;
-          color: #1E3A8A;
-          font-weight: 800;
-          font-size: 18px;
-        }
-
-        .price-card-desktop .features li.feature-plus {
-          color: #505F79;
-          font-weight: 500;
-        }
-
-        .price-card-footer {
-          padding: 24px;
-          border-top: 2px solid #F7F8FC;
-        }
-
-        .btn-full {
-          width: 100%;
-          justify-content: center;
-        }
-
-        .comparison-toggle {
-          text-align: center;
-          margin-top: 32px;
-        }
-
-        .btn-compare {
-          background: white;
-          color: #1E3A8A;
-          border: 2px solid #1E3A8A;
-          padding: 14px 32px;
-          border-radius: 12px;
-          font-size: 15px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .btn-compare:hover {
-          background: #1E3A8A;
-          color: white;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(0, 82, 204, 0.3);
-        }
-
-        .comparison-accordion {
-          margin-top: 24px;
-          animation: slideDown 0.4s ease;
-          overflow: hidden;
-        }
-
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            max-height: 0;
-          }
-          to {
-            opacity: 1;
-            max-height: 2000px;
-          }
-        }
-
-        .comparison-table-wrapper {
-          overflow-x: auto;
-          border-radius: 16px;
-          box-shadow: 0 4px 20px rgba(9, 30, 66, 0.08);
-        }
-
-        .comparison-table {
-          width: 100%;
-          border-collapse: collapse;
-          background: white;
-          min-width: 700px;
-        }
-
-        .comparison-table thead {
-          background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
-          color: white;
-        }
-
-        .comparison-table th {
-          padding: 20px 16px;
-          text-align: center;
-          font-weight: 700;
+        .solution-card p {
           font-size: 16px;
+          color: #64748B;
+          line-height: 1.6;
+          margin-bottom: 24px;
         }
 
-        .comparison-table th:first-child {
-          text-align: left;
-          width: 35%;
-        }
-
-        .comparison-table th.popular-column {
-          background: linear-gradient(135deg, #FFAB00 0%, #FF9500 100%);
-        }
-
-        .price-small {
-          font-size: 13px;
-          font-weight: 600;
-          opacity: 0.9;
-          display: block;
-          margin-top: 4px;
-        }
-
-        .comparison-table tbody tr {
-          border-bottom: 1px solid #EFF1F5;
-        }
-
-        .comparison-table tbody tr:hover {
-          background: #F7F8FC;
-        }
-
-        .comparison-table td {
-          padding: 16px;
-          text-align: center;
-        }
-
-        .feature-name {
-          text-align: left !important;
-          font-weight: 600;
-          color: #091E42;
-          font-size: 14px;
-        }
-
-        .check {
+        .solution-link {
+          font-size: 16px;
           color: #1E3A8A;
-          font-size: 20px;
           font-weight: 700;
+          text-decoration: none;
+          transition: all 0.2s;
         }
 
-        .cross {
-          color: #8993A4;
-          font-size: 16px;
+        .solution-link:hover {
+          text-decoration: underline;
         }
 
-        .feature-detail {
-          font-size: 13px;
-          color: #505F79;
-          font-weight: 600;
+        /* VIDEO DEMO */
+        .video-demo {
+          max-width: 1200px;
+          margin: 120px auto;
+          padding: 0 40px;
         }
 
-        .complementary-services-v2 {
-          margin: 64px 0;
-        }
-
-        .services-title {
-          font-size: 32px;
-          font-weight: 800;
-          color: #1e3a8a;
-          text-align: center;
-          margin-bottom: 16px;
-        }
-
-        .services-subtitle {
-          font-size: 16px;
-          color: #64748b;
+        .video-intro {
           text-align: center;
           margin-bottom: 48px;
         }
 
-        .services-horizontal {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
+        .video-intro h2 {
+          font-size: 40px;
+          font-weight: 900;
+          color: #0F172A;
+          margin-bottom: 16px;
+        }
+
+        .video-intro p {
+          font-size: 18px;
+          color: #64748B;
+        }
+
+        .video-player {
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+          border-radius: 20px;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-player iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+        }
+
+        .video-thumbnail {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+          background: #000;
+        }
+
+        .video-thumbnail img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .play-button {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          transition: all 0.3s;
+        }
+
+        .video-thumbnail:hover .play-button {
+          transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* HOW IT WORKS */
+        .how-it-works {
           max-width: 1200px;
-          margin: 0 auto;
+          margin: 120px auto;
+          padding: 0 40px;
         }
 
-        .service-card-h {
-          background: white;
-          border: 2px solid #EFF1F5;
-          border-radius: 16px;
-          padding: 24px 20px;
-          transition: all 0.3s ease;
-          box-shadow: 0 2px 12px rgba(9, 30, 66, 0.06);
+        .steps-container {
+          margin-top: 80px;
+        }
+
+        .step-block {
+          display: grid;
+          grid-template-columns: 80px 1fr 1fr;
+          gap: 40px;
+          align-items: center;
+          margin-bottom: 100px;
+        }
+
+        .step-block.reverse {
+          grid-template-columns: 80px 1fr 1fr;
+        }
+
+        .step-block.reverse .step-content {
+          order: 3;
+        }
+
+        .step-block.reverse .step-visual {
+          order: 2;
+        }
+
+        .step-number {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+          color: white;
+          font-size: 32px;
+          font-weight: 900;
           display: flex;
-          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 8px 24px rgba(30, 58, 138, 0.3);
         }
 
-        .service-card-h:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 8px 28px rgba(0, 82, 204, 0.12);
+        .step-content h3 {
+          font-size: 28px;
+          font-weight: 800;
+          color: #0F172A;
+          margin-bottom: 16px;
+        }
+
+        .step-content p {
+          font-size: 17px;
+          color: #64748B;
+          line-height: 1.7;
+        }
+
+        .step-visual {
+          background: #F7F9FC;
+          border-radius: 16px;
+          padding: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 300px;
+        }
+
+        .step-visual img {
+          max-width: 100%;
+          height: auto;
+        }
+
+        /* FEATURES TABS */
+        .features-tabs {
+          max-width: 1400px;
+          margin: 120px auto;
+          padding: 0 40px;
+        }
+
+        .tabs-container {
+          margin-top: 60px;
+        }
+
+        .tabs-nav {
+          display: flex;
+          gap: 12px;
+          justify-content: center;
+          margin-bottom: 60px;
+          flex-wrap: wrap;
+        }
+
+        .tab-btn {
+          background: white;
+          color: #64748B;
+          border: 2px solid #E2E8F0;
+          padding: 12px 24px;
+          border-radius: 12px;
+          font-size: 15px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+          border-color: #1E3A8A;
+          color: #1E3A8A;
+        }
+
+        .tab-btn.active {
+          background: #1E3A8A;
+          color: white;
           border-color: #1E3A8A;
         }
 
-        .service-header-h {
-          display: flex;
-          flex-direction: column;
+        .tab-content {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 60px;
           align-items: center;
-          gap: 12px;
+        }
+
+        .tab-visual {
+          background: #F7F9FC;
+          border-radius: 20px;
+          padding: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .tab-visual img {
+          max-width: 100%;
+          height: auto;
+        }
+
+        .tab-description h3 {
+          font-size: 32px;
+          font-weight: 900;
+          color: #0F172A;
           margin-bottom: 20px;
-          padding-bottom: 20px;
-          border-bottom: 2px solid #F7F8FC;
-          text-align: center;
-          min-height: 160px;
         }
 
-        .service-icon-h {
-          width: 56px;
-          height: 56px;
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-        }
-
-        .service-title-h {
-          flex: 1;
-        }
-
-        .service-title-h h3 {
+        .tab-description p {
           font-size: 17px;
-          font-weight: 700;
-          color: #091E42;
-          margin-bottom: 6px;
-          line-height: 1.3;
-          min-height: 44px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          color: #64748B;
+          line-height: 1.7;
+          margin-bottom: 32px;
         }
 
-        .service-price {
-          font-size: 20px;
-          font-weight: 800;
-          color: #1E3A8A;
-          margin: 0;
-        }
-
-        .service-list-h {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          flex: 1;
-        }
-
-        .service-list-h li {
-          padding: 10px 0;
-          padding-left: 24px;
-          position: relative;
-          font-size: 13px;
-          color: #505F79;
-          line-height: 1.5;
-          border-bottom: 1px solid #F7F8FC;
-        }
-
-        .service-list-h li:last-child {
-          border-bottom: none;
-        }
-
-        .service-list-h li::before {
-          content: '→';
-          position: absolute;
-          left: 0;
-          color: #1E3A8A;
-          font-weight: 700;
+        .btn-feature {
+          display: inline-block;
+          background: #1E3A8A;
+          color: white;
+          padding: 14px 32px;
+          border-radius: 12px;
           font-size: 16px;
+          font-weight: 700;
+          text-decoration: none;
+          transition: all 0.3s;
         }
 
-        /* Responsive services */
-        @media (max-width: 1100px) {
-          .services-horizontal {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-          }
+        .btn-feature:hover {
+          background: #1E40AF;
+          transform: translateY(-2px);
         }
 
-        @media (max-width: 640px) {
-          .services-horizontal {
-            grid-template-columns: 1fr;
-            gap: 20px;
-          }
-
-          .service-card-h {
-            padding: 24px;
-          }
-
-          .service-title-h h3 {
-            font-size: 18px;
-          }
-
-          .service-price {
-            font-size: 22px;
-          }
+        /* TESTIMONIALS */
+        .testimonials {
+          max-width: 1400px;
+          margin: 120px auto;
+          padding: 0 40px;
         }
 
         .testimonials-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 24px;
-          margin-top: 40px;
+          gap: 32px;
+          margin-bottom: 60px;
         }
 
-        .testimonial {
+        .testimonial-card {
           background: white;
-          border: 2px solid #EFF1F5;
+          border: 2px solid #E2E8F0;
           border-radius: 20px;
-          padding: 32px 28px;
-          box-shadow: 0 4px 16px rgba(9, 30, 66, 0.08);
-          transition: all 0.3s ease;
-          display: flex;
-          flex-direction: column;
+          padding: 32px;
+          transition: all 0.3s;
         }
 
-        .testimonial:hover {
+        .testimonial-card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 12px 32px rgba(0, 82, 204, 0.12);
+          box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
           border-color: #1E3A8A;
         }
 
-        .testimonial-text {
-          font-size: 15px;
-          line-height: 1.7;
-          color: #505F79;
-          font-style: italic;
-          margin-bottom: 24px;
-          flex: 1;
+        .testimonial-card.featured {
+          border-color: #1E3A8A;
+          border-width: 3px;
+          background: linear-gradient(135deg, #F7F9FC 0%, #EFF6FF 100%);
         }
 
-        .testimonial-author {
+        .testimonial-header {
           display: flex;
+          gap: 16px;
           align-items: center;
-          gap: 12px;
-          padding-top: 20px;
-          border-top: 2px solid #F7F8FC;
-          margin-top: auto;
+          margin-bottom: 20px;
         }
 
-        .author-avatar {
-          width: 48px;
-          height: 48px;
+        .testimonial-avatar {
+          width: 56px;
+          height: 56px;
           border-radius: 50%;
-          background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          object-fit: cover;
+        }
+
+        .testimonial-author strong {
+          display: block;
+          font-size: 16px;
           font-weight: 800;
-          font-size: 18px;
-          flex-shrink: 0;
+          color: #0F172A;
+          margin-bottom: 4px;
         }
 
-        .author-name {
-          font-size: 15px;
-          font-weight: 700;
-          color: #091E42;
+        .testimonial-author span {
+          font-size: 14px;
+          color: #64748B;
         }
 
-        .author-role {
+        .testimonial-text {
+          font-size: 16px;
+          color: #475569;
+          line-height: 1.6;
+          margin-bottom: 20px;
+        }
+
+        .testimonial-stats {
+          display: flex;
+          gap: 24px;
+          padding-top: 20px;
+          border-top: 1px solid #E2E8F0;
+        }
+
+        .stat strong {
+          display: block;
+          font-size: 24px;
+          font-weight: 900;
+          color: #1E3A8A;
+          margin-bottom: 4px;
+        }
+
+        .stat span {
           font-size: 13px;
-          color: #505F79;
+          color: #64748B;
         }
 
-        .carousel-hint {
-          display: none;
+        .clients-logos {
+          text-align: center;
         }
 
-        /* Carousel mobile pour testimonials */
+        .clients-logos p {
+          font-size: 14px;
+          color: #64748B;
+          font-weight: 600;
+          margin-bottom: 32px;
+        }
+
+        .logos-strip {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 48px;
+          flex-wrap: wrap;
+        }
+
+        .logos-strip img {
+          height: 40px;
+          width: auto;
+          opacity: 0.6;
+          filter: grayscale(100%);
+          transition: all 0.3s;
+        }
+
+        .logos-strip img:hover {
+          opacity: 1;
+          filter: grayscale(0%);
+        }
+
+        /* PRICING */
+        .pricing {
+          max-width: 1400px;
+          margin: 120px auto;
+          padding: 0 40px;
+        }
+
+        .pricing-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 32px;
+          margin-bottom: 40px;
+        }
+
+        .price-card {
+          background: white;
+          border: 2px solid #E2E8F0;
+          border-radius: 20px;
+          padding: 40px 32px;
+          transition: all 0.3s;
+          position: relative;
+        }
+
+        .price-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+        }
+
+        .price-card.featured {
+          border-color: #1E3A8A;
+          border-width: 4px;
+          background: linear-gradient(135deg, #F7F9FC 0%, #EFF6FF 100%);
+        }
+
+        .price-badge {
+          position: absolute;
+          top: -12px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #FFAB00;
+          color: #091E42;
+          padding: 6px 16px;
+          border-radius: 20px;
+          font-size: 12px;
+          font-weight: 800;
+        }
+
+        .price-header {
+          text-align: center;
+          margin-bottom: 24px;
+          padding-bottom: 24px;
+          border-bottom: 1px solid #E2E8F0;
+        }
+
+        .price-header h3 {
+          font-size: 24px;
+          font-weight: 800;
+          color: #0F172A;
+          margin-bottom: 16px;
+        }
+
+        .price {
+          font-size: 48px;
+          font-weight: 900;
+          color: #1E3A8A;
+          line-height: 1;
+          margin-bottom: 8px;
+        }
+
+        .price-sub {
+          font-size: 14px;
+          color: #64748B;
+          font-weight: 600;
+        }
+
+        .price-ideal {
+          font-size: 14px;
+          color: #475569;
+          background: #F1F5F9;
+          padding: 12px 16px;
+          border-radius: 10px;
+          margin-bottom: 24px;
+          font-weight: 600;
+        }
+
+        .price-features {
+          list-style: none;
+          margin-bottom: 32px;
+        }
+
+        .price-features li {
+          padding: 10px 0;
+          font-size: 15px;
+          color: #475569;
+          border-bottom: 1px solid #F1F5F9;
+        }
+
+        .price-features li:last-child {
+          border-bottom: none;
+        }
+
+        .price-features li.plus {
+          color: #1E3A8A;
+          font-weight: 600;
+        }
+
+        .btn-price {
+          width: 100%;
+          background: white;
+          color: #1E3A8A;
+          border: 2px solid #1E3A8A;
+          padding: 14px 32px;
+          border-radius: 12px;
+          font-size: 16px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.3s;
+          text-decoration: none;
+          display: block;
+          text-align: center;
+        }
+
+        .btn-price:hover {
+          background: #1E3A8A;
+          color: white;
+        }
+
+        .btn-price-primary {
+          background: #1E3A8A;
+          color: white;
+        }
+
+        .btn-price-primary:hover {
+          background: #1E40AF;
+        }
+
+        .pricing-footer {
+          text-align: center;
+          background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+          padding: 24px 32px;
+          border-radius: 16px;
+          border: 2px solid #BFDBFE;
+        }
+
+        .pricing-footer p {
+          font-size: 16px;
+          color: #1E40AF;
+          margin: 0;
+        }
+
+        /* FINAL CTA */
+        .final-cta {
+          max-width: 1200px;
+          margin: 120px auto 80px;
+          padding: 80px 60px;
+          background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+          border-radius: 24px;
+          text-align: center;
+          box-shadow: 0 20px 60px rgba(30, 58, 138, 0.3);
+        }
+
+        .cta-content h2 {
+          font-size: 48px;
+          font-weight: 900;
+          color: white;
+          margin-bottom: 20px;
+        }
+
+        .cta-content p {
+          font-size: 18px;
+          color: rgba(255, 255, 255, 0.9);
+          line-height: 1.7;
+          max-width: 700px;
+          margin: 0 auto 40px;
+        }
+
+        .btn-cta-final {
+          display: inline-block;
+          background: white;
+          color: #1E3A8A;
+          padding: 18px 48px;
+          border-radius: 14px;
+          font-size: 18px;
+          font-weight: 700;
+          text-decoration: none;
+          transition: all 0.3s;
+          box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-cta-final:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 32px rgba(255, 255, 255, 0.4);
+        }
+
+        /* FOOTER */
+        .footer {
+          background: #0F172A;
+          color: white;
+          padding: 60px 40px 40px;
+        }
+
+        .footer-content {
+          max-width: 1400px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 60px;
+        }
+
+        .footer-column h4 {
+          font-size: 16px;
+          font-weight: 800;
+          margin-bottom: 20px;
+          color: white;
+        }
+
+        .footer-column a {
+          display: block;
+          font-size: 15px;
+          color: #94A3B8;
+          text-decoration: none;
+          margin-bottom: 12px;
+          transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+          color: white;
+        }
+
+        .footer-logo {
+          font-size: 24px;
+          font-weight: 900;
+          color: white;
+          margin-bottom: 16px;
+        }
+
+        .footer-tagline {
+          font-size: 14px;
+          color: #94A3B8;
+          margin-bottom: 24px;
+        }
+
+        .footer-certifs {
+          display: flex;
+          gap: 16px;
+          align-items: center;
+        }
+
+        .footer-certifs img {
+          height: 40px;
+          width: auto;
+          opacity: 0.7;
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
-          .testimonials-grid {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 16px;
-            padding-bottom: 20px;
-            margin-top: 32px;
-            -webkit-overflow-scrolling: touch;
-            position: relative;
+          .comparison-container,
+          .solution-grid,
+          .testimonials-grid,
+          .pricing-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
           }
 
-          .testimonial {
-            min-width: 85%;
-            scroll-snap-align: start;
-            flex-shrink: 0;
-          }
-
-          .testimonials-grid::-webkit-scrollbar {
-            height: 8px;
-          }
-
-          .testimonials-grid::-webkit-scrollbar-track {
-            background: #F7F8FC;
-            border-radius: 4px;
-          }
-
-          .testimonials-grid::-webkit-scrollbar-thumb {
-            background: #1E3A8A;
-            border-radius: 4px;
-          }
-
-          /* Indicateur de scroll avec pseudo-éléments */
-          .social-proof {
-            position: relative;
-          }
-
-          .carousel-hint {
-            display: block;
-            text-align: center;
-            margin-top: 16px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #1E3A8A;
-            opacity: 0.7;
-            animation: fadeInOut 3s ease-in-out infinite;
-          }
-
-          @keyframes fadeInOut {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-          }
-
-          .social-proof::after {
-            content: '→';
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 32px;
-            color: #1E3A8A;
-            opacity: 0.6;
-            pointer-events: none;
-            animation: slideHint 2s ease-in-out infinite;
-          }
-
-          @keyframes slideHint {
-            0%, 100% { transform: translateY(-50%) translateX(0); }
-            50% { transform: translateY(-50%) translateX(10px); }
-          }
-        }
-
-        @media (max-width: 1024px) {
-          .risk-opportunity-wrapper,
-          .pricing-cards-desktop,
-          .impact-cards-two,
-          .expertise-grid-horizontal {
+          .step-block {
             grid-template-columns: 1fr;
           }
 
-          .certification-logos {
-            margin-top: 32px;
-            padding: 24px 16px;
+          .step-block.reverse .step-content,
+          .step-block.reverse .step-visual {
+            order: initial;
           }
 
-          .certification-logos-container {
-            gap: 24px 32px;
+          .tab-content {
+            grid-template-columns: 1fr;
           }
 
-          .cert-logo {
-            height: 65px;
+          .footer-content {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .nav-links {
+            display: none;
           }
 
-          .subsidy-banner {
+          .hero-title {
+            font-size: 40px;
+          }
+
+          .hero-cta {
             flex-direction: column;
-            align-items: center;
-            gap: 12px;
           }
 
-          .subsidy-content {
-            width: 100%;
-            text-align: center;
+          .section-header-center h2 {
+            font-size: 32px;
           }
 
-          .subsidy-title {
-            justify-content: center;
-            font-size: 15px;
-            margin-bottom: 8px;
+          .cta-content h2 {
+            font-size: 32px;
           }
 
-          .subsidy-description {
-            font-size: 13px;
-            line-height: 1.4;
-            display: block;
-          }
-
-          .btn-simulator {
-            width: 100%;
-            font-size: 14px;
+          .footer-content {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>
