@@ -1,761 +1,1976 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Head from 'next/head';
+import { useQuiz } from '../hooks/useQuiz';
+import { useLeadPopup } from '../hooks/useLeadPopup';
+import { QuizModal } from '../components/QuizModal';
+import MenuBurger from '../components/MenuBurger';
+import { 
+  PRICING_OFFERS, 
+  TESTIMONIALS, 
+  HERO_STATS, 
+  FAQ_ITEMS,
+  CONTACT_INFO,
+  EXTERNAL_LINKS,
+  EXPERTISE_TIMELINE,
+  IMPACT_STATS
+} from '../utils/constants';
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState(0);
-  const [showVideo, setShowVideo] = useState(false);
+  const [videoIsPlaying, setVideoIsPlaying] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
+  const quiz = useQuiz();
+  const popup = useLeadPopup({ 
+    quizIsOpen: quiz.isOpen, 
+    videoIsPlaying 
+  });
+
+  async function handleStripeCheckout() {
+    try {
+      const response = await fetch('/api/stripe/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      
+      const data = await response.json();
+      
+      if (data.error) {
+        alert('Erreur: ' + data.error);
+        return;
+      }
+      
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+    }
+  }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const stickyHeader = document.getElementById('stickyHeader');
+      const heroSection = document.querySelector('.hero-minimal');
+      
+      if (heroSection && stickyHeader) {
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        if (window.scrollY > heroBottom) {
+          stickyHeader.classList.add('visible');
+        } else {
+          stickyHeader.classList.remove('visible');
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', function() {
+        this.classList.toggle('active');
+      });
+    });
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.price-card, .testimonial, .impact-card, .expertise-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      observer.observe(el);
+    });
+
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = function() {
+      const iframe = document.querySelector('.video-container iframe');
+      if (iframe) {
+        new window.YT.Player(iframe, {
+          events: {
+            'onStateChange': (event) => {
+              setVideoIsPlaying(event.data === window.YT.PlayerState.PLAYING);
+            }
+          }
+        });
+      }
+    };
+  }, []);
 
   return (
     <>
-      {/* TOP BANNER */}
-      <div style={{
-        background: 'linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)',
-        color: '#FFFFFF',
-        textAlign: 'center',
-        padding: '12px 20px',
-        fontSize: '14px',
-        fontWeight: 500
-      }}>
-        🎉 150+ PME déjà conformes avec nous. <a href="/cas-clients" style={{color: '#FFFFFF', textDecoration: 'underline', marginLeft: '8px'}}>En savoir plus →</a>
+      <Head>
+        <title>NIS2 Conformité | Expert Cybersécurité ISO 27001 | Accompagnement Stratégique PME</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+
+      <div className="bg-gradient"></div>
+
+      <div className="alert-bar">
+        <span>⚠️ NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant</span>
       </div>
 
-      {/* NAVIGATION */}
-      <nav style={{
-        position: 'sticky',
-        top: 0,
-        background: 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid #E5E7EB',
-        zIndex: 100,
-        padding: '16px 0'
-      }}>
-        <div style={{
-          maxWidth: '1280px',
-          margin: '0 auto',
-          padding: '0 32px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            fontSize: '22px',
-            fontWeight: 700,
-            color: '#1F2937'
-          }}>
-            🔒 Cyber Solférino
+      <div className="sticky-header" id="stickyHeader">
+        <div className="sticky-header-content">
+          <div className="sticky-logo-img">
+            <img 
+              src="/logo.png" 
+              alt="Cyber Solférino" 
+              className="sticky-logo-large"
+            />
           </div>
-
-          <div style={{display: 'flex', gap: '32px', alignItems: 'center'}}>
-            <button style={{fontSize: '15px', fontWeight: 500, color: '#1F2937', background: 'none', border: 'none', cursor: 'pointer'}}>Solutions</button>
-            <button style={{fontSize: '15px', fontWeight: 500, color: '#1F2937', background: 'none', border: 'none', cursor: 'pointer'}}>Ressources</button>
-            <a href="/qui-sommes-nous" style={{fontSize: '15px', fontWeight: 500, color: '#1F2937'}}>À propos</a>
-          </div>
-
-          <div style={{display: 'flex', gap: '16px', alignItems: 'center'}}>
-            <a href="/login" style={{fontSize: '15px', fontWeight: 500, color: '#1F2937'}}>Connexion</a>
-            <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer" style={{
-              background: '#8B5CF6',
-              color: '#FFFFFF',
-              padding: '10px 20px',
-              borderRadius: '10px',
-              fontSize: '14px',
-              fontWeight: 600,
-              transition: 'all 0.2s'
-            }}>
-              Prendre RDV →
+          <div className="sticky-cta-group">
+            <MenuBurger />
+            <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-sticky primary">
+              📞 Échange gratuit
             </a>
           </div>
         </div>
-      </nav>
+      </div>
 
-      {/* HERO */}
-      <section style={{
-        padding: '100px 32px 60px',
-        background: 'linear-gradient(180deg, #F9FAFB 0%, #FFFFFF 100%)',
-        textAlign: 'center'
-      }}>
-        <div style={{maxWidth: '1100px', margin: '0 auto'}}>
-          <h1 style={{
-            fontSize: '72px',
-            fontWeight: 800,
-            lineHeight: 1.1,
-            letterSpacing: '-0.02em',
-            marginBottom: '24px',
-            color: '#1F2937'
-          }}>
-            Automatisez Votre Conformité NIS2 Avec Une Plateforme{' '}
-            <span style={{
-              background: 'linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}>
-              Pilotée Par Des Experts
-            </span>
+      <div className="container">
+        {/* ✅ NOUVELLE SECTION HERO - PROPOSITION 3 MINIMALISTE PREMIUM */}
+        <section className="hero-minimal">
+          <img 
+            src="/logo.png" 
+            alt="Cyber Solférino" 
+            className="hero-logo"
+          />
+          
+          <p className="hero-baseline">
+            La plateforme d'audit et de conformité cyber<br />
+            pensée pour les PME et ETI européennes
+          </p>
+
+          <div className="hero-separator"></div>
+
+          <h1 className="hero-title">
+            Mesurez vos risques NIS2<br />
+            et priorisez vos actions
           </h1>
-
-          <p style={{
-            fontSize: '20px',
-            lineHeight: 1.6,
-            color: '#6B7280',
-            marginBottom: '40px',
-            maxWidth: '900px',
-            marginLeft: 'auto',
-            marginRight: 'auto'
-          }}>
-            Équipez votre équipe avec les meilleurs outils de conformité et notre équipe d'experts certifiés ISO 27001, 
-            qui automatisent l'intégralité de votre workflow de mise en conformité.
+          
+          <p className="hero-subtitle">
+            Audit structuré • Selon référentiel ANSSI • Rapport détaillé • Recommandations priorisées
           </p>
 
-          <div style={{display: 'flex', gap: '12px', maxWidth: '520px', margin: '0 auto 16px'}}>
-            <input 
-              type="email" 
-              placeholder="Email professionnel"
-              style={{
-                flex: 1,
-                padding: '14px 20px',
-                background: '#FFFFFF',
-                border: '2px solid #E5E7EB',
-                borderRadius: '10px',
-                fontSize: '15px',
-                fontFamily: 'inherit'
-              }}
-            />
-            <button style={{
-              padding: '14px 32px',
-              background: '#8B5CF6',
-              color: '#FFFFFF',
-              border: 'none',
-              borderRadius: '10px',
-              fontSize: '15px',
-              fontWeight: 600,
-              cursor: 'pointer'
-            }}>
-              Démarrer
+          <div className="hero-stats-minimal">
+            <div className="stat-minimal">
+              <div className="stat-value-minimal">92%</div>
+              <div className="stat-label-minimal">PME et ETI<br />non prêtes</div>
+            </div>
+            <div className="stat-minimal">
+              <div className="stat-value-minimal">10M€</div>
+              <div className="stat-label-minimal">amende max<br />ou 2% du CA</div>
+            </div>
+            <div className="stat-minimal">
+              <div className="stat-value-minimal">70%</div>
+              <div className="stat-label-minimal">d'aides de l'état<br />possibles</div>
+            </div>
+            <div className="stat-minimal">
+              <div className="stat-value-minimal">65</div>
+              <div className="stat-label-minimal">questions<br />d'audit</div>
+            </div>
+          </div>
+
+          <a 
+            href={CONTACT_INFO.calendly} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hero-cta-primary"
+          >
+            📞 Échange gratuit - Suis-je éligible ?
+          </a>
+
+          <p className="hero-reassurance">
+            ✓ Certifié ISO 27001 • ✓ Méthodologie ANSSI • ✓ Sans engagement
+          </p>
+        </section>
+
+        {/* Section liens informatifs */}
+        <section className="info-links-section">
+          <h3 className="info-links-title">Vous vous posez des questions ?</h3>
+          <div className="info-links-container">
+            <button onClick={quiz.openQuiz} className="info-link">
+              📋 Suis-je concerné par NIS2 ?
             </button>
-          </div>
-
-          <p style={{fontSize: '14px', color: '#9CA3AF', marginBottom: '60px'}}>
-            Audit gratuit • Résultat en 48h
-          </p>
-
-          {/* DASHBOARD MOCKUP IMAGE */}
-          <div style={{
-            background: '#FFFFFF',
-            borderRadius: '16px',
-            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
-            overflow: 'hidden',
-            border: '1px solid #E5E7EB',
-            marginTop: '60px'
-          }}>
-            <div style={{
-              background: '#F9FAFB',
-              padding: '12px 16px',
-              borderBottom: '1px solid #E5E7EB',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
-            }}>
-              <div style={{display: 'flex', gap: '6px'}}>
-                <div style={{width: '10px', height: '10px', borderRadius: '50%', background: '#EF4444'}}></div>
-                <div style={{width: '10px', height: '10px', borderRadius: '50%', background: '#F59E0B'}}></div>
-                <div style={{width: '10px', height: '10px', borderRadius: '50%', background: '#10B981'}}></div>
-              </div>
-              <div style={{
-                background: '#FFFFFF',
-                padding: '6px 12px',
-                borderRadius: '6px',
-                fontSize: '12px',
-                color: '#6B7280'
-              }}>
-                🔒 cyber-solferino.fr
-              </div>
-            </div>
-            <div style={{
-              display: 'flex',
-              minHeight: '400px',
-              background: '#FFFFFF'
-            }}>
-              <div style={{
-                width: '240px',
-                background: '#F9FAFB',
-                borderRight: '1px solid #E5E7EB',
-                padding: '20px'
-              }}>
-                <div style={{
-                  background: '#FFFFFF',
-                  padding: '12px',
-                  borderRadius: '8px',
-                  fontSize: '14px',
-                  color: '#8B5CF6',
-                  fontWeight: 600,
-                  marginBottom: '8px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  📊 Dashboard
-                </div>
-                <div style={{
-                  padding: '12px',
-                  borderRadius: '8px',
-                  fontSize: '14px',
-                  color: '#6B7280',
-                  marginBottom: '8px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  👥 Leads (1202)
-                </div>
-                <div style={{
-                  padding: '12px',
-                  borderRadius: '8px',
-                  fontSize: '14px',
-                  color: '#6B7280',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  ✅ Conformité
-                </div>
-              </div>
-              <div style={{flex: 1, padding: '24px'}}>
-                {[
-                  {name: 'Sophie Durand', email: 'sophie.durand@techworld.com', company: 'Techworld', progress: 78, status: 'Conforme', color: 'linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%)'},
-                  {name: 'Marc Lefebvre', email: 'marc.lefebvre@globaltech.com', company: 'Globaltech', progress: 45, status: 'En cours', color: 'linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)'},
-                  {name: 'Anne Petit', email: 'anne.petit@pinkus.io', company: 'Pinkus', progress: 92, status: 'Conforme', color: 'linear-gradient(135deg, #10B981 0%, #3B82F6 100%)'}
-                ].map((lead, i) => (
-                  <div key={i} style={{
-                    background: '#FFFFFF',
-                    border: '1px solid #E5E7EB',
-                    borderRadius: '12px',
-                    padding: '16px',
-                    display: 'grid',
-                    gridTemplateColumns: 'auto 1fr auto auto',
-                    gap: '16px',
-                    alignItems: 'center',
-                    marginBottom: '12px'
-                  }}>
-                    <div style={{
-                      width: '40px',
-                      height: '40px',
-                      borderRadius: '50%',
-                      background: lead.color
-                    }}></div>
-                    <div>
-                      <div style={{fontSize: '14px', fontWeight: 600, color: '#1F2937', marginBottom: '2px'}}>
-                        {lead.name}
-                      </div>
-                      <div style={{fontSize: '13px', color: '#6B7280'}}>
-                        {lead.email}
-                      </div>
-                    </div>
-                    <div style={{minWidth: '140px'}}>
-                      <div style={{
-                        width: '100%',
-                        height: '6px',
-                        background: '#E5E7EB',
-                        borderRadius: '3px',
-                        overflow: 'hidden',
-                        marginBottom: '4px'
-                      }}>
-                        <div style={{
-                          height: '100%',
-                          width: `${lead.progress}%`,
-                          background: '#8B5CF6',
-                          borderRadius: '3px'
-                        }}></div>
-                      </div>
-                      <div style={{fontSize: '12px', color: '#6B7280'}}>
-                        {lead.company}
-                      </div>
-                    </div>
-                    <div style={{
-                      padding: '6px 12px',
-                      borderRadius: '12px',
-                      fontSize: '12px',
-                      fontWeight: 600,
-                      background: lead.status === 'Conforme' ? '#D1FAE5' : '#FEF3C7',
-                      color: lead.status === 'Conforme' ? '#065F46' : '#92400E'
-                    }}>
-                      {lead.status}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* LOGOS MARQUEE */}
-      <section style={{padding: '60px 0', overflow: 'hidden', background: '#FFFFFF'}}>
-        <div style={{display: 'flex', gap: '80px', animation: 'scroll 30s linear infinite'}}>
-          {['SaaStr', 'COOK UNITY', 'sumup', 'arc', 'RAISE', 'SalesScreen', 'Snibbs', 'SaaStr', 'COOK UNITY', 'sumup'].map((logo, i) => (
-            <span key={i} style={{
-              fontSize: '24px',
-              fontWeight: 700,
-              color: '#D1D5DB',
-              whiteSpace: 'nowrap'
-            }}>
-              {logo}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      {/* BEFORE/AFTER */}
-      <section style={{padding: '120px 32px'}}>
-        <div style={{maxWidth: '1280px', margin: '0 auto'}}>
-          <p style={{
-            fontSize: '13px',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-            color: '#8B5CF6',
-            marginBottom: '16px',
-            textAlign: 'center'
-          }}>
-            Le Futur est Consolidé
-          </p>
-
-          <h2 style={{
-            fontSize: '56px',
-            fontWeight: 800,
-            lineHeight: 1.2,
-            letterSpacing: '-0.02em',
-            textAlign: 'center',
-            marginBottom: '16px',
-            color: '#1F2937'
-          }}>
-            Tous Les Outils Dont Vous Avez Besoin, Consolidés En{' '}
-            <span style={{
-              background: 'linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
-            }}>
-              Une Seule Plateforme Exceptionnelle
-            </span>
-          </h2>
-
-          <p style={{
-            fontSize: '18px',
-            lineHeight: 1.6,
-            color: '#6B7280',
-            textAlign: 'center',
-            maxWidth: '700px',
-            margin: '0 auto 80px'
-          }}>
-            Nous construisons le nouveau paradigme du logiciel – élégant, intuitif et facile à utiliser.
-          </p>
-
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '60px'}}>
-            {/* BEFORE */}
-            <div>
-              <h3 style={{
-                fontSize: '28px',
-                fontWeight: 700,
-                marginBottom: '32px',
-                textAlign: 'center',
-                color: '#1F2937'
-              }}>
-                Avant Cyber Solférino
-              </h3>
-              <div style={{
-                background: 'linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%)',
-                border: '2px solid #E5E7EB',
-                borderRadius: '20px',
-                padding: '60px 40px',
-                minHeight: '500px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <div style={{display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center'}}>
-                  {[
-                    {icon: '⚖️', name: "Cabinet d'avocats"},
-                    {icon: '💻', name: 'Prestataire IT'},
-                    {icon: '👤', name: 'Consultant'},
-                    {icon: '📚', name: 'Formation'},
-                    {icon: '🔐', name: 'Expert ANSSI'},
-                    {icon: '🛡️', name: 'RSSI'}
-                  ].map((tool, i) => (
-                    <div key={i} style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      gap: '8px',
-                      textAlign: 'center'
-                    }}>
-                      <div style={{fontSize: '40px'}}>{tool.icon}</div>
-                      <span style={{fontSize: '12px', color: '#6B7280', lineHeight: 1.3}}>
-                        {tool.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* AFTER */}
-            <div>
-              <h3 style={{
-                fontSize: '28px',
-                fontWeight: 700,
-                marginBottom: '32px',
-                textAlign: 'center',
-                background: 'linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}>
-                Après Cyber Solférino
-              </h3>
-              <div style={{
-                background: 'linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%)',
-                border: '2px solid #C4B5FD',
-                borderRadius: '20px',
-                padding: '60px 40px',
-                minHeight: '500px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <div style={{width: '100%', display: 'flex', flexDirection: 'column', gap: '12px'}}>
-                  {[
-                    {icon: '✅', name: 'Audit NIS2'},
-                    {icon: '📚', name: 'Formations'},
-                    {icon: '📄', name: 'Documents'},
-                    {icon: '📅', name: "Plan d'action"},
-                    {icon: '🔐', name: 'Déclaration ANSSI'},
-                    {icon: '💰', name: 'Aides État'}
-                  ].map((item, i) => (
-                    <div key={i} style={{
-                      background: 'linear-gradient(90deg, #8B5CF6 0%, #7C3AED 100%)',
-                      borderRadius: '12px',
-                      padding: '16px 20px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '16px',
-                      color: '#FFFFFF',
-                      fontSize: '15px',
-                      fontWeight: 600,
-                      transition: 'all 0.2s',
-                      cursor: 'pointer'
-                    }}>
-                      <div style={{
-                        width: '40px',
-                        height: '40px',
-                        background: 'rgba(255, 255, 255, 0.2)',
-                        borderRadius: '8px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '20px'
-                      }}>
-                        {item.icon}
-                      </div>
-                      <span>{item.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* EXPERTS */}
-      <section style={{padding: '120px 32px', background: '#F9FAFB'}}>
-        <div style={{maxWidth: '1280px', margin: '0 auto'}}>
-          <p style={{
-            fontSize: '13px',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-            color: '#8B5CF6',
-            marginBottom: '16px',
-            textAlign: 'center'
-          }}>
-            Le Futur est Consolidé
-          </p>
-
-          <h2 style={{
-            fontSize: '56px',
-            fontWeight: 800,
-            lineHeight: 1.2,
-            textAlign: 'center',
-            marginBottom: '16px',
-            color: '#1F2937'
-          }}>
-            Rencontrez Vos Futurs Collègues,{' '}
-            <span style={{
-              background: 'linear-gradient(90deg, #8B5CF6 0%, #EC4899 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
-            }}>
-              Les Experts
-            </span>
-          </h2>
-
-          <p style={{
-            fontSize: '18px',
-            lineHeight: 1.6,
-            color: '#6B7280',
-            textAlign: 'center',
-            maxWidth: '700px',
-            margin: '0 auto 80px'
-          }}>
-            Nos experts libèrent le plein potentiel de votre équipe en automatisant les tâches répétitives 
-            et chronophages qui les ralentissent.
-          </p>
-
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '32px'}}>
-            {[
-              {icon: '🔐', title: "L'Expert Conformité", role: 'Audit & Analyse NIS2', bg: 'linear-gradient(135deg, #E0F2FE 0%, #DBEAFE 100%)'},
-              {icon: '📚', title: 'Le Formateur', role: 'Formation & Sensibilisation', bg: 'linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%)'},
-              {icon: '💼', title: 'Le Consultant', role: 'Accompagnement ANSSI', bg: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)'}
-            ].map((expert, i) => (
-              <div key={i} style={{textAlign: 'center'}}>
-                <div style={{
-                  background: expert.bg,
-                  borderRadius: '20px',
-                  padding: '60px',
-                  marginBottom: '24px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  minHeight: '300px',
-                  fontSize: '120px'
-                }}>
-                  {expert.icon}
-                </div>
-                <h3 style={{fontSize: '24px', fontWeight: 700, marginBottom: '8px', color: '#1F2937'}}>
-                  {expert.title}
-                </h3>
-                <p style={{fontSize: '16px', color: '#6B7280'}}>
-                  {expert.role}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FINAL CTA */}
-      <section style={{
-        padding: '120px 32px',
-        background: 'linear-gradient(135deg, #1E1B4B 0%, #312E81 100%)'
-      }}>
-        <div style={{maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center'}}>
-          <div>
-            <h2 style={{
-              fontSize: '48px',
-              fontWeight: 800,
-              lineHeight: 1.2,
-              color: '#FFFFFF',
-              marginBottom: '24px'
-            }}>
-              Prêt À Recruter Nos Experts et Booster Votre Équipe ?
-            </h2>
-            <p style={{
-              fontSize: '18px',
-              lineHeight: 1.6,
-              color: 'rgba(255, 255, 255, 0.7)',
-              marginBottom: '40px'
-            }}>
-              Nos experts sont équipés des meilleurs outils de conformité pour automatiser votre mise en conformité, 
-              libérant le temps de vos équipes pour qu'elles se concentrent sur la conclusion de deals.
-            </p>
-            <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer" style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '16px 40px',
-              background: '#FFFFFF',
-              color: '#1E1B4B',
-              borderRadius: '10px',
-              fontSize: '16px',
-              fontWeight: 600
-            }}>
-              Prendre rendez-vous →
+            <a href="#video-section" className="info-link">
+              🎥 Comprendre NIS2 en 3min
             </a>
           </div>
+          <p className="info-links-subtitle">Réponses claires et rapides</p>
+        </section>
 
-          <div style={{
-            background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%)',
-            borderRadius: '20px',
-            padding: '60px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: '400px',
-            fontSize: '120px'
-          }}>
-            🚀
-          </div>
+        <div className="risk-opportunity-wrapper">
+          <section className="warning-card">
+            <h2>⚠️ Les enjeux de la<br />non-conformité</h2>
+            <ul className="warning-list">
+              <li><strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</li>
+              <li><strong>Responsabilité pénale du dirigeant</strong> — En cas de manquement aux obligations NIS2</li>
+              <li><strong>Exclusion des marchés</strong> — Impossibilité de répondre aux appels d'offres publics et privés</li>
+              <li><strong>Perte de confiance B2B</strong> — Vos clients exigent désormais la conformité</li>
+              <li><strong>Contrôles réglementaires</strong> — Audits de votre entreprise sur site sans préavis de l'ANSSI</li>
+            </ul>
+          </section>
+
+          <section className="value-prop">
+            <h2>🏆 Transformez la contrainte en<br />levier stratégique</h2>
+            <ul className="value-list">
+              <li><strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection</li>
+              <li><strong>Différenciez-vous</strong> — Positionnez-vous comme le partenaire de confiance de votre secteur</li>
+              <li><strong>Rassurez vos clients</strong> — Montrez que vous protégez les données de vos clients</li>
+              <li><strong>Fidélisez vos partenaires</strong> — Consolidez votre réputation d'acteur stable et responsable</li>
+              <li><strong>Valorisez votre entreprise</strong> — Une organisation conforme vaut plus en cas de cession</li>
+            </ul>
+          </section>
         </div>
-      </section>
 
-      {/* FOOTER */}
-      <footer style={{
-        padding: '80px 32px 40px',
-        background: '#1F2937',
-        color: '#FFFFFF'
-      }}>
-        <div style={{
-          maxWidth: '1280px',
-          margin: '0 auto',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '60px',
-          marginBottom: '40px'
-        }}>
-          <div>
-            <h4 style={{
-              fontSize: '14px',
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              marginBottom: '20px',
-              color: 'rgba(255, 255, 255, 0.5)'
-            }}>
-              Solutions
-            </h4>
-            {['Audit NIS2', 'Formations', 'Accompagnement', 'Services'].map(item => (
-              <a key={item} href="#" style={{
-                display: 'block',
-                fontSize: '15px',
-                color: 'rgba(255, 255, 255, 0.7)',
-                marginBottom: '12px'
-              }}>
-                {item}
-              </a>
-            ))}
+        <section className="impact-section">
+          <div className="section-header">
+            <h2 style={{color: '#1E3A8A'}}>La prévention est plus rentable qu'une crise cyber</h2>
+            <p className="section-subtitle">Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber</p>
           </div>
 
-          <div>
-            <h4 style={{
-              fontSize: '14px',
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              marginBottom: '20px',
-              color: 'rgba(255, 255, 255, 0.5)'
-            }}>
-              Ressources
-            </h4>
-            {['Comprendre NIS2', 'Blog', 'Cas clients', 'FAQ'].map(item => (
-              <a key={item} href="#" style={{
-                display: 'block',
-                fontSize: '15px',
-                color: 'rgba(255, 255, 255, 0.7)',
-                marginBottom: '12px'
-              }}>
-                {item}
-              </a>
-            ))}
-          </div>
-
-          <div>
-            <h4 style={{
-              fontSize: '14px',
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              marginBottom: '20px',
-              color: 'rgba(255, 255, 255, 0.5)'
-            }}>
-              Entreprise
-            </h4>
-            {['À propos', 'Carrières', 'Contact'].map(item => (
-              <a key={item} href="#" style={{
-                display: 'block',
-                fontSize: '15px',
-                color: 'rgba(255, 255, 255, 0.7)',
-                marginBottom: '12px'
-              }}>
-                {item}
-              </a>
-            ))}
-          </div>
-
-          <div>
-            <div style={{fontSize: '22px', fontWeight: 700, marginBottom: '16px'}}>
-              🔒 Cyber Solférino
+          <div className="impact-cards-two">
+            <div className="impact-card-large">
+              <div className="impact-header-horizontal">
+                <div className="impact-icon">📈</div>
+                <div className="impact-stat">+38%</div>
+              </div>
+              <div className="impact-label-compact">Hausse attaques cyber</div>
+              <p className="impact-detail">Les attaques contre les PME ont explosé de 38% en 2024. Les cybercriminels ciblent les entreprises non protégées.</p>
             </div>
-            <p style={{fontSize: '14px', color: 'rgba(255, 255, 255, 0.5)', marginBottom: '16px'}}>
-              © 2025 Cyber Solférino. Tous droits réservés.
-            </p>
-            <div style={{display: 'flex', gap: '16px'}}>
-              <a href="#" style={{fontSize: '14px', color: 'rgba(255, 255, 255, 0.5)'}}>CGU</a>
-              <a href="#" style={{fontSize: '14px', color: 'rgba(255, 255, 255, 0.5)'}}>Confidentialité</a>
+
+            <div className="impact-card-large">
+              <div className="impact-header-horizontal">
+                <div className="impact-icon">💸</div>
+                <div className="impact-stat">4,35M€</div>
+              </div>
+              <div className="impact-label-compact">Coût moyen cyber attaque</div>
+              <p className="impact-detail">60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne), perte de données, rançons.</p>
             </div>
           </div>
-        </div>
-      </footer>
+        </section>
 
-      {/* VIDEO MODAL */}
-      {showVideo && (
-        <div onClick={() => setShowVideo(false)} style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'rgba(0, 0, 0, 0.95)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1000,
-          padding: '20px'
-        }}>
-          <div onClick={(e) => e.stopPropagation()} style={{
-            position: 'relative',
-            width: '100%',
-            maxWidth: '1000px',
-            aspectRatio: '16/9'
-          }}>
-            <button onClick={() => setShowVideo(false)} style={{
-              position: 'absolute',
-              top: '-40px',
-              right: 0,
-              background: 'none',
-              border: 'none',
-              color: '#FFFFFF',
-              fontSize: '32px',
-              cursor: 'pointer'
-            }}>
-              ×
+        <section className="pricing-section" id="pricing">
+          <div className="section-header">
+            <h2 style={{color: '#1E3A8A'}}>Investissement vs Amende</h2>
+            <p className="section-subtitle">Un audit coûte 200x moins cher qu'une sanction</p>
+          </div>
+
+          <div className="subsidy-banner">
+            <div className="subsidy-content">
+              <div className="subsidy-title">
+                💡 <strong>Aides de l'État disponibles</strong> 💡
+              </div>
+              <div className="subsidy-description">
+                Réduisez le coût de votre mise en conformité.
+              </div>
+            </div>
+            <button className="btn-simulator" onClick={() => alert('Simulateur en cours de développement')}>
+              📊 Simulateur aides État
             </button>
-            <iframe
-              src="https://www.youtube.com/embed/461tWBUzrY8?autoplay=1"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{width: '100%', height: '100%', border: 'none', borderRadius: '12px'}}
-            />
           </div>
-        </div>
-      )}
+
+          <div className="pricing-cards-desktop">
+            <div className="price-card-desktop">
+              <div className="price-card-header">
+                <h3>Essentielle</h3>
+                <div className="price">3 490€</div>
+                <div className="price-sub">HT • Paiement unique</div>
+              </div>
+
+              <div className="ideal-for">
+                <strong>Idéal pour :</strong>
+                PME cherchant à évaluer leur positionnement
+              </div>
+
+              <ul className="features">
+                <li>Audit cyber NIS2 complet</li>
+                <li>Résultat immédiat en ligne</li>
+                <li>Score de conformité détaillé</li>
+                <li>Recommandations prioritaires</li>
+                <li>Support par email</li>
+              </ul>
+
+              <div className="price-card-footer">
+                <button onClick={handleStripeCheckout} className="btn btn-secondary btn-full">
+                  Démarrer l'audit
+                </button>
+              </div>
+            </div>
+
+            <div className="price-card-desktop featured">
+              <div className="popular-badge">⭐ POPULAIRE</div>
+              
+              <div className="price-card-header">
+                <h3>Sérénité</h3>
+                <div className="price">7 990€</div>
+                <div className="price-sub">HT • Paiement unique</div>
+              </div>
+
+              <div className="ideal-for">
+                <strong>Idéal pour :</strong>
+                Entreprises visant la conformité NIS2
+              </div>
+
+              <ul className="features">
+                <li>Audit cyber NIS2 complet</li>
+                <li>Rapport validé par experts</li>
+                <li>Analyse écarts de conformité</li>
+                <li>Plan de remédiation détaillé</li>
+                <li>Restitution avec expert (1h visio)</li>
+                <li>Accès plateforme 6 mois</li>
+                <li>Délai de livraison : 48H</li>
+              </ul>
+
+              <div className="price-card-footer">
+                <a 
+                  href={CONTACT_INFO.calendly} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-full"
+                >
+                  📅 Prendre rendez-vous
+                </a>
+              </div>
+            </div>
+
+            <div className="price-card-desktop">
+              <div className="price-card-header">
+                <h3>Expertise</h3>
+                <div className="price">14 900€</div>
+                <div className="price-sub">HT • Paiement unique</div>
+              </div>
+
+              <div className="ideal-for">
+                <strong>Idéal pour :</strong>
+                ETI et secteurs critiques
+              </div>
+
+              <ul className="features">
+                <li><strong>Tout de l'offre Sérénité</strong></li>
+                <li className="feature-plus">Entretien préalable expert</li>
+                <li className="feature-plus">Roadmap personnalisée</li>
+                <li className="feature-plus">Enregistrement ANSSI</li>
+                <li className="feature-plus">Dossier aides d'État</li>
+                <li className="feature-plus">Accès plateforme 12 mois</li>
+                <li className="feature-plus">MAJ évolutions législatives</li>
+              </ul>
+
+              <div className="price-card-footer">
+                <a 
+                  href={CONTACT_INFO.calendly} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary btn-full"
+                >
+                  📅 Prendre rendez-vous
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="comparison-toggle">
+            <button 
+              className="btn-compare" 
+              onClick={() => setShowComparison(!showComparison)}
+            >
+              {showComparison ? '▼ Masquer le comparatif' : '▶ Comparer nos offres'}
+            </button>
+          </div>
+
+          {showComparison && (
+            <div className="comparison-accordion">
+              <div className="comparison-table-wrapper">
+                <table className="comparison-table">
+                  <thead>
+                    <tr>
+                      <th className="feature-column">Fonctionnalités</th>
+                      <th>Essentielle<br/><span className="price-small">3 490€</span></th>
+                      <th className="popular-column">Sérénité ⭐<br/><span className="price-small">7 990€</span></th>
+                      <th>Expertise<br/><span className="price-small">14 900€</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="feature-name">Audit cyber NIS2</td>
+                      <td className="check">✓</td>
+                      <td className="check">✓</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Résultat immédiat</td>
+                      <td className="check">✓</td>
+                      <td className="cross">—</td>
+                      <td className="cross">—</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Rapport validé par experts</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Analyse écarts de conformité</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Plan de remédiation détaillé</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Restitution avec expert</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Entretien préalable expert</td>
+                      <td className="cross">—</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Roadmap personnalisée</td>
+                      <td className="cross">—</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Enregistrement ANSSI</td>
+                      <td className="cross">—</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Dossier aides d'État</td>
+                      <td className="cross">—</td>
+                      <td className="cross">—</td>
+                      <td className="check">✓</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Accès plateforme</td>
+                      <td className="cross">—</td>
+                      <td className="feature-detail">6 mois</td>
+                      <td className="feature-detail">12 mois</td>
+                    </tr>
+                    <tr>
+                      <td className="feature-name">Délai de livraison</td>
+                      <td className="feature-detail">Immédiat</td>
+                      <td className="feature-detail">48H</td>
+                      <td className="feature-detail">1 mois</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </section>
+
+        <section className="complementary-services-v2">
+          <div className="section-header">
+            <h2 className="services-title" style={{color: '#1E3A8A'}}>Services complémentaires</h2>
+            <p className="services-subtitle">Découvrez nos services pour aller plus loin dans la conformité et la sécurité</p>
+          </div>
+
+          <div className="services-horizontal">
+            <div className="service-card-h">
+              <div className="service-header-h">
+                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%)'}}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                </div>
+                <div className="service-title-h">
+                  <h3>Modèles de documents</h3>
+                  <p className="service-price">99€/mois</p>
+                </div>
+              </div>
+              <ul className="service-list-h">
+                <li>Modèles pour mise en conformité</li>
+                <li>Mis à jour avec la réglementation</li>
+                <li>Accès illimité</li>
+              </ul>
+            </div>
+
+            <div className="service-card-h">
+              <div className="service-header-h">
+                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%)'}}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                  </svg>
+                </div>
+                <div className="service-title-h">
+                  <h3>Formation</h3>
+                  <p className="service-price">149€/pers</p>
+                </div>
+              </div>
+              <ul className="service-list-h">
+                <li>Formation obligatoire des dirigeants</li>
+                <li>Formation en distanciel</li>
+                <li>Formation présentiel sur site possible</li>
+              </ul>
+            </div>
+
+            <div className="service-card-h">
+              <div className="service-header-h">
+                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)'}}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
+                <div className="service-title-h">
+                  <h3>Montage dossiers<br />Subventions</h3>
+                  <p className="service-price">299€</p>
+                </div>
+              </div>
+              <ul className="service-list-h">
+                <li>Identification des aides</li>
+                <li>Constitution des dossiers</li>
+                <li>Maximisation des financements</li>
+              </ul>
+            </div>
+
+            <div className="service-card-h">
+              <div className="service-header-h">
+                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%)'}}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg>
+                </div>
+                <div className="service-title-h">
+                  <h3>Notification<br />Incidents</h3>
+                  <p className="service-price">99€/mois</p>
+                </div>
+              </div>
+              <ul className="service-list-h">
+                <li>Déclaration incident en 24h à l'ANSSI</li>
+                <li>Conseil gestion de crise</li>
+                <li>Hotline téléphonique inclus</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="expertise-section">
+          <div className="section-header">
+            <h2 style={{color: '#1E3A8A'}}>Préparez-vous à NIS2 avec notre méthode éprouvée</h2>
+            <p className="section-subtitle">Notre accompagnement se base sur le référentiel officiel de l'ANSSI.</p>
+          </div>
+
+          <div className="timeline-container">
+            <div className="timeline-horizontal">
+              {EXPERTISE_TIMELINE.map((item, index) => (
+                <div key={index} className="timeline-item">
+                  <div className="timeline-number">{item.number}</div>
+                  <div className="timeline-content">
+                    <h3 className="timeline-title">{item.title}</h3>
+                    <p className="timeline-description">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="expertise-grid-horizontal">
+            <div className="expertise-card-horizontal">
+              <div className="expertise-header-horizontal">
+                <div className="expertise-number-large">15+</div>
+                <div className="expertise-text">
+                  <div className="expertise-title-bold">Années d'expérience terrain</div>
+                </div>
+              </div>
+              <p className="expertise-description">Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber.</p>
+            </div>
+
+            <div className="expertise-card-horizontal">
+              <div className="expertise-header-horizontal">
+                <div className="certification-icon-large">
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <div className="expertise-text">
+                  <div className="expertise-title-bold">Une équipe d'experts en cyber défense</div>
+                </div>
+              </div>
+              <p className="expertise-description">Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.</p>
+            </div>
+          </div>
+
+          <div className="certification-logos">
+            <div className="certification-logos-container">
+              <img src="/logo_anssi.png" alt="ANSSI - Agence Nationale de la Sécurité des Systèmes d'Information" className="cert-logo" />
+              <img src="/Logo-cybermalveillance.PNG" alt="Cybermalveillance.gouv.fr" className="cert-logo" />
+              <img src="/logo_expertcyber.jpg" alt="Expert Cyber - Label Sécurité Numérique" className="cert-logo" />
+              <img src="/iso_27001_02-1024x704.png" alt="ISO 27001 Certified - Information Security Management" className="cert-logo" />
+            </div>
+          </div>
+        </section>
+
+        <section className="social-proof">
+          <div className="section-header">
+            <h2 style={{color: '#1E3A8A'}}>Dirigeants conformes, entreprises gagnantes</h2>
+            <p className="section-subtitle">Ils ont fait de NIS2 un levier de performance</p>
+          </div>
+
+          <div className="testimonials-grid">
+            {TESTIMONIALS.map((testimonial) => (
+              <div key={testimonial.id} className="testimonial">
+                <div className="testimonial-text">"{testimonial.text}"</div>
+                <div className="testimonial-author">
+                  <div className="author-avatar">{testimonial.author.avatar}</div>
+                  <div className="author-info">
+                    <div className="author-name">{testimonial.author.name}</div>
+                    <div className="author-role">{testimonial.author.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="carousel-hint">← Faites glisser pour voir plus →</div>
+        </section>
+
+        <section className="video-section" id="video-section">
+          <div className="video-header">
+            <div className="video-badge">🎥 Comprendre NIS2 en vidéo</div>
+          </div>
+          <div className="video-container">
+            <iframe 
+              src={EXTERNAL_LINKS.videoYoutube}
+              title="Directive NIS2 expliquée" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowFullScreen>
+            </iframe>
+          </div>
+        </section>
+
+        <section className="faq">
+          <div className="section-header">
+            <h2 style={{color: '#1E3A8A'}}>Les questions que se posent les dirigeants</h2>
+          </div>
+          
+          {FAQ_ITEMS.map((item) => (
+            <div key={item.id} className="faq-item">
+              <div className="faq-question">
+                {item.icon} {item.question}
+                <span>↓</span>
+              </div>
+              <div className="faq-answer">{item.answer}</div>
+            </div>
+          ))}
+        </section>
+
+        <section className="final-cta" style={{background: '#1E3A8A'}}>
+          <h2>Sécurisez votre avenir dès aujourd'hui</h2>
+          <p>Échange confidentiel avec un consultant certifié ISO 27001<br /><strong>Audit indépendant pour mesurer votre conformité</strong></p>
+          <a 
+            href={CONTACT_INFO.calendly} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="btn"
+            style={{
+              background: 'white',
+              color: '#1E3A8A',
+              border: 'none',
+              fontWeight: '700',
+              fontSize: '17px',
+              padding: '18px 48px',
+              borderRadius: '14px',
+              textDecoration: 'none',
+              display: 'inline-block',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 16px rgba(255, 255, 255, 0.2)'
+            }}
+          >
+            📅 Réserver un échange gratuit
+          </a>
+        </section>
+
+        <footer className="footer">
+          <p><strong>{CONTACT_INFO.company}</strong> • Mise en conformité NIS2 • Basé sur le referenciel ANSSI</p>
+          <p style={{marginTop: '10px'}}>{CONTACT_INFO.website}</p>
+          <p style={{marginTop: '8px', opacity: '0.6'}}>Mentions légales • CGV • Politique de confidentialité</p>
+        </footer>
+      </div>
+
+      <QuizModal quiz={quiz} />
 
       <style jsx>{`
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+        /* ═══════════════════════════════════════════════════════════
+           ✨ NOUVELLE SECTION HERO - MINIMALISTE PREMIUM (PROP 3)
+           ═══════════════════════════════════════════════════════════ */
+
+        .hero-minimal {
+          text-align: center;
+          padding: 0 20px 100px;
+          max-width: 1200px;
+          margin: 0 auto;
+          background: linear-gradient(to bottom, #FFFFFF 0%, #FAFAFA 100%);
         }
 
+        .hero-logo {
+          max-width: 288px;
+          height: auto;
+          margin: 0 auto 34px;
+          display: block;
+        }
+
+        .hero-baseline {
+          font-size: 16px;
+          font-weight: 600;
+          color: #64748B;
+          line-height: 1.5;
+          max-width: 680px;
+          margin: 0 auto 20px;
+        }
+
+        .hero-separator {
+          width: 120px;
+          height: 3px;
+          background: linear-gradient(90deg, #FF5630 0%, #FFB199 100%);
+          margin: 12px auto;
+          border-radius: 2px;
+        }
+
+        .hero-title {
+          font-size: 52px;
+          font-weight: 900;
+          color: #FF5630;
+          line-height: 1.2;
+          max-width: 900px;
+          margin: 0 auto 12px;
+          letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+          font-size: 18px;
+          font-weight: 500;
+          color: #334155;
+          line-height: 1.75;
+          max-width: 820px;
+          margin: 0 auto 32px;
+        }
+
+        .hero-stats-minimal {
+          display: flex;
+          justify-content: center;
+          gap: 28px;
+          margin-bottom: 36px;
+          flex-wrap: wrap;
+        }
+
+        .stat-minimal {
+          text-align: center;
+          min-width: 140px;
+        }
+
+        .stat-value-minimal {
+          font-size: 48px;
+          font-weight: 900;
+          color: #1E3A8A;
+          line-height: 1;
+          margin-bottom: 8px;
+        }
+
+        .stat-label-minimal {
+          font-size: 13px;
+          font-weight: 600;
+          color: #64748B;
+          line-height: 1.4;
+        }
+
+        .hero-cta-primary {
+          display: inline-block;
+          background: #FF5630;
+          color: white;
+          padding: 18px 48px;
+          border-radius: 14px;
+          font-size: 17px;
+          font-weight: 700;
+          border: none;
+          cursor: pointer;
+          box-shadow: 0 6px 20px rgba(255, 86, 48, 0.25);
+          transition: all 0.3s ease;
+          max-width: 500px;
+          width: 100%;
+          margin-bottom: 20px;
+        }
+
+        .hero-cta-primary:hover {
+          background: #E64825;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 28px rgba(255, 86, 48, 0.35);
+        }
+
+        .hero-reassurance {
+          font-size: 14px;
+          font-weight: 600;
+          color: #64748B;
+          margin-top: 16px;
+          text-align: center;
+        }
+
+        .hero-cta-link {
+          display: block;
+          font-size: 16px;
+          font-weight: 600;
+          color: #1E3A8A;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          margin-top: 8px;
+        }
+
+        .hero-cta-link:hover {
+          text-decoration: underline;
+          color: #1E40AF;
+        }
+
+        /* Section liens informatifs après hero */
+        .info-links-section {
+          background: #F7F8FC;
+          padding: 32px 20px;
+          text-align: center;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .info-links-title {
+          font-size: 20px;
+          font-weight: 700;
+          color: #1E3A8A;
+          margin-bottom: 20px;
+        }
+
+        .info-links-container {
+          display: flex;
+          justify-content: center;
+          gap: 24px;
+          flex-wrap: wrap;
+          margin-bottom: 12px;
+        }
+
+        .info-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 12px 24px;
+          background: white;
+          border: 2px solid #1E3A8A;
+          border-radius: 10px;
+          color: #1E3A8A;
+          font-size: 15px;
+          font-weight: 600;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        .info-link:hover {
+          background: #1E3A8A;
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+        }
+
+        .info-links-subtitle {
+          font-size: 14px;
+          color: #64748B;
+          margin: 0;
+        }
+
+        /* RESPONSIVE HERO */
         @media (max-width: 768px) {
-          h1 { font-size: 36px !important; }
-          h2 { font-size: 32px !important; }
-          h3 { font-size: 20px !important; }
+          .hero-minimal {
+            padding: 0 20px 80px;
+          }
+
+          .hero-logo {
+            max-width: 192px;
+            margin-bottom: 12px;
+          }
+
+          .hero-baseline {
+            font-size: 14px;
+            margin-bottom: 20px;
+          }
+
+          .hero-title {
+            font-size: 34px;
+            margin-bottom: 14px;
+            line-height: 1.15;
+          }
+
+          .hero-subtitle {
+            font-size: 15px;
+            margin-bottom: 32px;
+            line-height: 1.6;
+          }
+
+          .hero-stats-minimal {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px 16px;
+            margin-bottom: 32px;
+            max-width: 360px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .stat-minimal {
+            min-width: unset;
+          }
+
+          .stat-value-minimal {
+            font-size: 36px;
+          }
+
+          .stat-label-minimal {
+            font-size: 12px;
+          }
+
+          .hero-cta-primary {
+            font-size: 15px;
+            padding: 15px 32px;
+            margin-bottom: 20px;
+          }
+
+          .info-links-section {
+            padding: 24px 16px;
+          }
+
+          .info-links-title {
+            font-size: 18px;
+          }
+
+          .info-links-container {
+            flex-direction: column;
+            gap: 12px;
+          }
+
+          .info-link {
+            width: 100%;
+            justify-content: center;
+            font-size: 14px;
+          }
+
+          .hero-cta-link {
+            font-size: 14px;
+          }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .hero-stats-minimal {
+            gap: 32px;
+          }
           
-          [style*="grid-template-columns: repeat(2, 1fr)"],
-          [style*="grid-template-columns: repeat(3, 1fr)"],
-          [style*="grid-template-columns: repeat(4, 1fr)"],
-          [style*="grid-template-columns: 1fr 1fr"] {
-            grid-template-columns: 1fr !important;
+          .hero-title {
+            font-size: 44px;
+          }
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           🔄 RESTE DU DESIGN INCHANGÉ
+           ═══════════════════════════════════════════════════════════ */
+
+        .sticky-header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          background: white;
+          box-shadow: 0 2px 12px rgba(9, 30, 66, 0.08);
+          z-index: 1000;
+          transform: translateY(-100%);
+          transition: transform 0.3s ease;
+        }
+
+        .sticky-header.visible {
+          transform: translateY(0);
+        }
+
+        .sticky-header-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 8px 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .sticky-logo-img {
+          display: flex;
+          align-items: center;
+        }
+
+        .sticky-logo-large {
+          height: 50px;
+          width: auto;
+        }
+
+        .sticky-cta-group {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+        }
+
+        .btn-sticky {
+          padding: 10px 20px;
+          border-radius: 8px;
+          font-size: 14px;
+          font-weight: 700;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+        }
+
+        .btn-sticky.primary {
+          background: #FF5630;
+          color: white;
+          border: none;
+        }
+
+        .btn-sticky.primary:hover {
+          background: #E64825;
+          transform: translateY(-2px);
+        }
+
+        .btn-sticky.secondary {
+          background: white;
+          color: #1E3A8A;
+          border: 2px solid #1E3A8A;
+        }
+
+        .btn-sticky.secondary:hover {
+          background: #1E3A8A;
+          color: white;
+        }
+
+        @media (max-width: 640px) {
+          .sticky-header-content {
+            padding: 6px 16px;
+          }
+
+          .sticky-logo-large {
+            height: 40px;
+          }
+
+          .btn-sticky {
+            padding: 8px 16px;
+            font-size: 13px;
+          }
+
+          .btn-sticky.secondary {
+            display: none;
+          }
+        }
+
+        .risk-opportunity-wrapper {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+          margin: 48px 0;
+        }
+
+        .warning-card,
+        .value-prop {
+          background: white;
+          border-radius: 20px;
+          padding: 32px;
+          box-shadow: 0 4px 20px rgba(9, 30, 66, 0.08);
+        }
+
+        .warning-card h2,
+        .value-prop h2 {
+          font-size: 22px;
+          font-weight: 800;
+          margin-bottom: 24px;
+          line-height: 1.3;
+        }
+
+        .warning-list,
+        .value-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .warning-list li,
+        .value-list li {
+          font-size: 14px;
+          line-height: 1.6;
+          color: #505F79;
+        }
+
+        .warning-list li strong,
+        .value-list li strong {
+          color: #091E42;
+          display: inline;
+        }
+
+        .impact-cards-two {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 32px;
+          margin-top: 40px;
+          max-width: 1000px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .impact-card-large {
+          background: white;
+          border: 2px solid #EFF1F5;
+          border-radius: 20px;
+          padding: 24px 28px;
+          text-align: left;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 16px rgba(9, 30, 66, 0.08);
+        }
+
+        .impact-card-large:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(0, 82, 204, 0.12);
+          border-color: #1E3A8A;
+        }
+
+        .impact-header-horizontal {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          margin-bottom: 8px;
+        }
+
+        .impact-icon {
+          font-size: 40px;
+          flex-shrink: 0;
+        }
+
+        .impact-stat {
+          font-size: 36px;
+          font-weight: 800;
+          color: #FF5630;
+          line-height: 1;
+        }
+
+        .impact-label-compact {
+          font-size: 20px;
+          font-weight: 700;
+          color: #091E42;
+          margin-bottom: 8px;
+        }
+
+        .impact-detail {
+          font-size: 15px;
+          color: #505F79;
+          line-height: 1.6;
+        }
+
+        .expertise-grid-horizontal {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 32px;
+          margin-top: 48px;
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
+          align-items: start;
+        }
+
+        .expertise-card-horizontal {
+          background: white;
+          border: 3px solid #1E3A8A;
+          border-radius: 20px;
+          padding: 28px 32px;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 16px rgba(0, 82, 204, 0.12);
+          display: flex;
+          flex-direction: column;
+          min-height: 240px;
+        }
+
+        .expertise-card-horizontal:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(0, 82, 204, 0.18);
+        }
+
+        .expertise-header-horizontal {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          margin-bottom: 12px;
+          min-height: 70px;
+        }
+
+        .expertise-number-large {
+          font-size: 28px;
+          font-weight: 800;
+          color: #1E3A8A;
+          line-height: 1;
+          flex-shrink: 0;
+        }
+
+        .certification-icon-large {
+          width: 40px;
+          height: 40px;
+          background: #1E3A8A;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          flex-shrink: 0;
+        }
+
+        .certification-icon-large svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        .expertise-text {
+          flex: 1;
+          display: flex;
+          align-items: center;
+        }
+
+        .expertise-title-bold {
+          font-size: 20px;
+          font-weight: 700;
+          color: #091E42;
+          line-height: 1.3;
+        }
+
+        .expertise-description {
+          font-size: 15px;
+          color: #505F79;
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        .certification-logos {
+          margin-top: 48px;
+          padding: 32px 20px;
+          background: #F7F8FC;
+          border-radius: 16px;
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .certification-logos-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 48px;
+          flex-wrap: wrap;
+        }
+
+        .cert-logo {
+          height: 80px;
+          width: auto;
+          max-width: 200px;
+          object-fit: contain;
+          filter: grayscale(0%) opacity(0.9);
+          transition: all 0.3s ease;
+        }
+
+        .cert-logo:hover {
+          filter: grayscale(0%) opacity(1);
+          transform: scale(1.05);
+        }
+
+        .price-card-desktop .features li.feature-plus::before {
+          content: '+';
+          color: #1E3A8A;
+          font-size: 20px;
+        }
+
+        .sticky-logo-img {
+          display: flex;
+          align-items: center;
+        }
+
+        .subsidy-banner {
+          max-width: 1200px;
+          margin: 0 auto 40px auto;
+          padding: 24px 32px;
+          background: linear-gradient(90deg, rgba(76, 175, 80, 0.08) 0%, rgba(76, 175, 80, 0.12) 100%);
+          border-left: 4px solid #4caf50;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 24px;
+        }
+
+        .subsidy-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .subsidy-title {
+          color: #1b5e20;
+          font-size: 17px;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          white-space: nowrap;
+          justify-content: center;
+        }
+
+        .subsidy-title strong {
+          font-weight: 700;
+        }
+
+        .subsidy-description {
+          color: #2e7d32;
+          font-size: 15px;
+          line-height: 1.5;
+          text-align: center;
+        }
+
+        .btn-simulator {
+          background: white;
+          color: #1b5e20;
+          border: 2px solid #4caf50;
+          padding: 12px 24px;
+          border-radius: 10px;
+          font-size: 15px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+          box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15);
+          flex-shrink: 0;
+        }
+
+        .btn-simulator:hover {
+          background: #4caf50;
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25);
+        }
+
+        .pricing-cards-desktop {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          margin-top: 32px;
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .price-card-desktop {
+          background: white;
+          border: 2px solid #DFE1E6;
+          border-radius: 20px;
+          padding: 0;
+          position: relative;
+          transition: all 0.4s ease;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 2px 12px rgba(9, 30, 66, 0.08);
+        }
+
+        .price-card-desktop:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 16px 40px rgba(0, 82, 204, 0.15);
+        }
+
+        .price-card-desktop.featured {
+          border: 3px solid #1E3A8A;
+          box-shadow: 0 8px 32px rgba(0, 82, 204, 0.2);
+        }
+
+        .price-card-header {
+          padding: 32px 24px 24px;
+          text-align: center;
+          border-bottom: 2px solid #F7F8FC;
+          min-height: 160px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .price-card-desktop h3 {
+          font-size: 24px;
+          font-weight: 800;
+          color: #091E42;
+          margin-bottom: 16px;
+        }
+
+        .price-card-desktop .price {
+          font-size: 48px;
+          font-weight: 800;
+          color: #1E3A8A;
+          line-height: 1;
+          margin-bottom: 8px;
+        }
+
+        .price-card-desktop .price-sub {
+          font-size: 14px;
+          color: #8993A4;
+          font-weight: 600;
+        }
+
+        .price-card-desktop .ideal-for {
+          padding: 16px 24px;
+          background: #F7F8FC;
+          font-size: 13px;
+          color: #505F79;
+          border-bottom: 1px solid #EFF1F5;
+        }
+
+        .price-card-desktop .features {
+          padding: 24px;
+          flex: 1;
+          list-style: none;
+        }
+
+        .price-card-desktop .features li {
+          padding: 10px 0;
+          padding-left: 28px;
+          position: relative;
+          font-size: 14px;
+          color: #505F79;
+          line-height: 1.5;
+          border-bottom: 1px solid #F7F8FC;
+        }
+
+        .price-card-desktop .features li:last-child {
+          border-bottom: none;
+        }
+
+        .price-card-desktop .features li::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: #1E3A8A;
+          font-weight: 800;
+          font-size: 18px;
+        }
+
+        .price-card-desktop .features li.feature-plus {
+          color: #505F79;
+          font-weight: 500;
+        }
+
+        .price-card-footer {
+          padding: 24px;
+          border-top: 2px solid #F7F8FC;
+        }
+
+        .btn-full {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .comparison-toggle {
+          text-align: center;
+          margin-top: 32px;
+        }
+
+        .btn-compare {
+          background: white;
+          color: #1E3A8A;
+          border: 2px solid #1E3A8A;
+          padding: 14px 32px;
+          border-radius: 12px;
+          font-size: 15px;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .btn-compare:hover {
+          background: #1E3A8A;
+          color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 82, 204, 0.3);
+        }
+
+        .comparison-accordion {
+          margin-top: 24px;
+          animation: slideDown 0.4s ease;
+          overflow: hidden;
+        }
+
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            max-height: 0;
+          }
+          to {
+            opacity: 1;
+            max-height: 2000px;
+          }
+        }
+
+        .comparison-table-wrapper {
+          overflow-x: auto;
+          border-radius: 16px;
+          box-shadow: 0 4px 20px rgba(9, 30, 66, 0.08);
+        }
+
+        .comparison-table {
+          width: 100%;
+          border-collapse: collapse;
+          background: white;
+          min-width: 700px;
+        }
+
+        .comparison-table thead {
+          background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+          color: white;
+        }
+
+        .comparison-table th {
+          padding: 20px 16px;
+          text-align: center;
+          font-weight: 700;
+          font-size: 16px;
+        }
+
+        .comparison-table th:first-child {
+          text-align: left;
+          width: 35%;
+        }
+
+        .comparison-table th.popular-column {
+          background: linear-gradient(135deg, #FFAB00 0%, #FF9500 100%);
+        }
+
+        .price-small {
+          font-size: 13px;
+          font-weight: 600;
+          opacity: 0.9;
+          display: block;
+          margin-top: 4px;
+        }
+
+        .comparison-table tbody tr {
+          border-bottom: 1px solid #EFF1F5;
+        }
+
+        .comparison-table tbody tr:hover {
+          background: #F7F8FC;
+        }
+
+        .comparison-table td {
+          padding: 16px;
+          text-align: center;
+        }
+
+        .feature-name {
+          text-align: left !important;
+          font-weight: 600;
+          color: #091E42;
+          font-size: 14px;
+        }
+
+        .check {
+          color: #1E3A8A;
+          font-size: 20px;
+          font-weight: 700;
+        }
+
+        .cross {
+          color: #8993A4;
+          font-size: 16px;
+        }
+
+        .feature-detail {
+          font-size: 13px;
+          color: #505F79;
+          font-weight: 600;
+        }
+
+        .complementary-services-v2 {
+          margin: 64px 0;
+        }
+
+        .services-title {
+          font-size: 32px;
+          font-weight: 800;
+          color: #1e3a8a;
+          text-align: center;
+          margin-bottom: 16px;
+        }
+
+        .services-subtitle {
+          font-size: 16px;
+          color: #64748b;
+          text-align: center;
+          margin-bottom: 48px;
+        }
+
+        .services-horizontal {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .service-card-h {
+          background: white;
+          border: 2px solid #EFF1F5;
+          border-radius: 16px;
+          padding: 24px 20px;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 12px rgba(9, 30, 66, 0.06);
+          display: flex;
+          flex-direction: column;
+        }
+
+        .service-card-h:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 28px rgba(0, 82, 204, 0.12);
+          border-color: #1E3A8A;
+        }
+
+        .service-header-h {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 20px;
+          padding-bottom: 20px;
+          border-bottom: 2px solid #F7F8FC;
+          text-align: center;
+          min-height: 160px;
+        }
+
+        .service-icon-h {
+          width: 56px;
+          height: 56px;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-title-h {
+          flex: 1;
+        }
+
+        .service-title-h h3 {
+          font-size: 17px;
+          font-weight: 700;
+          color: #091E42;
+          margin-bottom: 6px;
+          line-height: 1.3;
+          min-height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .service-price {
+          font-size: 20px;
+          font-weight: 800;
+          color: #1E3A8A;
+          margin: 0;
+        }
+
+        .service-list-h {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          flex: 1;
+        }
+
+        .service-list-h li {
+          padding: 10px 0;
+          padding-left: 24px;
+          position: relative;
+          font-size: 13px;
+          color: #505F79;
+          line-height: 1.5;
+          border-bottom: 1px solid #F7F8FC;
+        }
+
+        .service-list-h li:last-child {
+          border-bottom: none;
+        }
+
+        .service-list-h li::before {
+          content: '→';
+          position: absolute;
+          left: 0;
+          color: #1E3A8A;
+          font-weight: 700;
+          font-size: 16px;
+        }
+
+        /* Responsive services */
+        @media (max-width: 1100px) {
+          .services-horizontal {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .services-horizontal {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+
+          .service-card-h {
+            padding: 24px;
+          }
+
+          .service-title-h h3 {
+            font-size: 18px;
+          }
+
+          .service-price {
+            font-size: 22px;
+          }
+        }
+
+        .testimonials-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          margin-top: 40px;
+        }
+
+        .testimonial {
+          background: white;
+          border: 2px solid #EFF1F5;
+          border-radius: 20px;
+          padding: 32px 28px;
+          box-shadow: 0 4px 16px rgba(9, 30, 66, 0.08);
+          transition: all 0.3s ease;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .testimonial:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(0, 82, 204, 0.12);
+          border-color: #1E3A8A;
+        }
+
+        .testimonial-text {
+          font-size: 15px;
+          line-height: 1.7;
+          color: #505F79;
+          font-style: italic;
+          margin-bottom: 24px;
+          flex: 1;
+        }
+
+        .testimonial-author {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding-top: 20px;
+          border-top: 2px solid #F7F8FC;
+          margin-top: auto;
+        }
+
+        .author-avatar {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          font-size: 18px;
+          flex-shrink: 0;
+        }
+
+        .author-name {
+          font-size: 15px;
+          font-weight: 700;
+          color: #091E42;
+        }
+
+        .author-role {
+          font-size: 13px;
+          color: #505F79;
+        }
+
+        .carousel-hint {
+          display: none;
+        }
+
+        /* Carousel mobile pour testimonials */
+        @media (max-width: 1024px) {
+          .testimonials-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 16px;
+            padding-bottom: 20px;
+            margin-top: 32px;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+          }
+
+          .testimonial {
+            min-width: 85%;
+            scroll-snap-align: start;
+            flex-shrink: 0;
+          }
+
+          .testimonials-grid::-webkit-scrollbar {
+            height: 8px;
+          }
+
+          .testimonials-grid::-webkit-scrollbar-track {
+            background: #F7F8FC;
+            border-radius: 4px;
+          }
+
+          .testimonials-grid::-webkit-scrollbar-thumb {
+            background: #1E3A8A;
+            border-radius: 4px;
+          }
+
+          /* Indicateur de scroll avec pseudo-éléments */
+          .social-proof {
+            position: relative;
+          }
+
+          .carousel-hint {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1E3A8A;
+            opacity: 0.7;
+            animation: fadeInOut 3s ease-in-out infinite;
+          }
+
+          @keyframes fadeInOut {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+          }
+
+          .social-proof::after {
+            content: '→';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 32px;
+            color: #1E3A8A;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: slideHint 2s ease-in-out infinite;
+          }
+
+          @keyframes slideHint {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(10px); }
+          }
+        }
+
+        @media (max-width: 1024px) {
+          .risk-opportunity-wrapper,
+          .pricing-cards-desktop,
+          .impact-cards-two,
+          .expertise-grid-horizontal {
+            grid-template-columns: 1fr;
+          }
+
+          .certification-logos {
+            margin-top: 32px;
+            padding: 24px 16px;
+          }
+
+          .certification-logos-container {
+            gap: 24px 32px;
+          }
+
+          .cert-logo {
+            height: 65px;
+          }
+
+          .subsidy-banner {
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+          }
+
+          .subsidy-content {
+            width: 100%;
+            text-align: center;
+          }
+
+          .subsidy-title {
+            justify-content: center;
+            font-size: 15px;
+            margin-bottom: 8px;
+          }
+
+          .subsidy-description {
+            font-size: 13px;
+            line-height: 1.4;
+            display: block;
+          }
+
+          .btn-simulator {
+            width: 100%;
+            font-size: 14px;
           }
         }
       `}</style>
