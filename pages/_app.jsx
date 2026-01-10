@@ -1,5 +1,5 @@
-import '../styles/globals-artisan.css';
-import '../styles/home-artisan.css';
+import '../styles/globals.css';
+import '../styles/home.css';
 import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
