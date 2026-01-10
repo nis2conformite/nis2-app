@@ -1,12 +1,12 @@
-import '../styles/globals.css';
-import '../styles/home.css';
+import '../styles/globals-artisan.css';
+import '../styles/home-artisan.css';
 import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        {/* Google Fonts - Inter */}
+        {/* Google Fonts - Inter (Artisan.co style) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link 
@@ -16,6 +16,9 @@ function MyApp({ Component, pageProps }) {
         
         {/* Viewport meta */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       
       <Component {...pageProps} />
