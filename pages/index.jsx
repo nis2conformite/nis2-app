@@ -506,86 +506,79 @@ export default function Home() {
             <div className="service-card-h">
               <div className="service-header-h">
                 <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%)'}}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <polyline points="14 2 14 8 20 8"></polyline>
                     <line x1="16" y1="13" x2="8" y2="13"></line>
                     <line x1="16" y1="17" x2="8" y2="17"></line>
-                    <polyline points="10 9 9 9 8 9"></polyline>
                   </svg>
                 </div>
-                <div className="service-title-h">
-                  <h3>Modèles de documents</h3>
-                  <p className="service-price">99€/mois</p>
-                </div>
+                <h3>Modèles de documents NIS2</h3>
               </div>
-              <ul className="service-list-h">
-                <li>Modèles pour mise en conformité</li>
-                <li>Mis à jour avec la réglementation</li>
-                <li>Accès illimité</li>
-              </ul>
+              <p className="service-description">Templates prêts à l'emploi pour votre mise en conformité, mis à jour avec la réglementation</p>
             </div>
 
             <div className="service-card-h">
               <div className="service-header-h">
-                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%)'}}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #2563EB 0%, #1E3A8A 100())'}}>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                     <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
                   </svg>
                 </div>
-                <div className="service-title-h">
-                  <h3>Formation</h3>
-                  <p className="service-price">149€/pers</p>
-                </div>
+                <h3>Formations NIS2</h3>
               </div>
-              <ul className="service-list-h">
-                <li>Formation obligatoire des dirigeants</li>
-                <li>Formation en distanciel</li>
-                <li>Formation présentiel sur site possible</li>
-              </ul>
+              <p className="service-description">Formation obligatoire des dirigeants et sensibilisation des équipes, en distanciel ou sur site</p>
             </div>
 
             <div className="service-card-h">
               <div className="service-header-h">
                 <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)'}}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                     <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
                     <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                   </svg>
                 </div>
-                <div className="service-title-h">
-                  <h3>Montage dossiers<br />Subventions</h3>
-                  <p className="service-price">299€</p>
-                </div>
+                <h3>Montage dossiers Subventions</h3>
               </div>
-              <ul className="service-list-h">
-                <li>Identification des aides</li>
-                <li>Constitution des dossiers</li>
-                <li>Maximisation des financements</li>
-              </ul>
+              <p className="service-description">Identification et constitution des dossiers d'aides d'État pour maximiser vos financements</p>
             </div>
 
             <div className="service-card-h">
               <div className="service-header-h">
                 <div className="service-icon-h" style={{background: 'linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%)'}}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                     <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
                     <line x1="12" y1="9" x2="12" y2="13"></line>
                     <line x1="12" y1="17" x2="12.01" y2="17"></line>
                   </svg>
                 </div>
-                <div className="service-title-h">
-                  <h3>Notification<br />Incidents</h3>
-                  <p className="service-price">99€/mois</p>
-                </div>
+                <h3>Notification Incidents ANSSI</h3>
               </div>
-              <ul className="service-list-h">
-                <li>Déclaration incident en 24h à l'ANSSI</li>
-                <li>Conseil gestion de crise</li>
-                <li>Hotline téléphonique inclus</li>
-              </ul>
+              <p className="service-description">Déclaration des incidents en 24h à l'ANSSI avec conseil gestion de crise et hotline 24/7</p>
             </div>
+          </div>
+
+          <div className="services-cta" style={{textAlign: 'center', marginTop: '40px'}}>
+            <a
+              href="https://calendly.com/nis2conformite/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn"
+              style={{
+                display: 'inline-block',
+                padding: '14px 32px',
+                background: '#1E3A8A',
+                color: 'white',
+                borderRadius: '10px',
+                textDecoration: 'none',
+                fontWeight: '700',
+                fontSize: '15px',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              Découvrir nos services complémentaires
+            </a>
           </div>
         </section>
 
@@ -725,10 +718,60 @@ export default function Home() {
           </a>
         </section>
 
-        <footer className="footer">
-          <p><strong>{CONTACT_INFO.company}</strong> • Mise en conformité NIS2 • Basé sur le referenciel ANSSI</p>
-          <p style={{marginTop: '10px'}}>{CONTACT_INFO.website}</p>
-          <p style={{marginTop: '8px', opacity: '0.6'}}>Mentions légales • CGV • Politique de confidentialité</p>
+        <footer className="page-footer">
+          <div className="footer-container">
+            <div className="footer-logo-section">
+              <img src="/logo.png" alt="NIS2 Conformité" className="footer-logo" />
+              <p className="footer-tagline">
+                La plateforme d'audit et de conformité cyber<br />
+                pensée pour les PME et ETI européennes
+              </p>
+            </div>
+
+            <div className="footer-links">
+              <div className="footer-column">
+                <h4>Navigation</h4>
+                <ul>
+                  <li><a href="/">Accueil</a></li>
+                  <li><a href="/comprendre-nis2">Comprendre NIS2</a></li>
+                  <li><a href="/qui-sommes-nous">Qui sommes-nous ?</a></li>
+                </ul>
+              </div>
+
+              <div className="footer-column">
+                <h4>Nos services</h4>
+                <ul>
+                  <li><a href="/offres-complementaires">Offres complémentaires</a></li>
+                  <li><a href="/formations">Formations</a></li>
+                  <li><a href="/#pricing">Nos audits</a></li>
+                </ul>
+              </div>
+
+              <div className="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                  <li>
+                    <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer">
+                      Prendre rendez-vous
+                    </a>
+                  </li>
+                  <li>
+                    <a href="mailto:nis2conformite@gmail.com">
+                      nis2conformite@gmail.com
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="footer-bottom">
+            <p>© 2025 NIS2 Conformité • Tous droits réservés</p>
+            <div className="footer-certifications">
+              <span>✓ Certifié ISO 27001</span>
+              <span>✓ Méthodologie ANSSI</span>
+            </div>
+          </div>
         </footer>
       </div>
 

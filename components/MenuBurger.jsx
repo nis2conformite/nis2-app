@@ -17,9 +17,20 @@ export default function MenuBurger() {
 
   return (
     <>
-      {/* Bouton burger */}
-      <button 
-        className="burger-button" 
+      {/* Menu Desktop - Horizontal */}
+      <nav className="desktop-menu">
+        <ul className="desktop-menu-links">
+          {menuItems.map((item) => (
+            <li key={item.href}>
+              <Link href={item.href}>{item.label}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* Bouton burger - Mobile uniquement */}
+      <button
+        className="burger-button"
         onClick={toggleMenu}
         aria-label="Menu"
       >
@@ -69,8 +80,43 @@ export default function MenuBurger() {
       </nav>
 
       <style jsx>{`
-        .burger-button {
+        /* Menu Desktop - Horizontal */
+        .desktop-menu {
           display: flex;
+          align-items: center;
+        }
+
+        .desktop-menu-links {
+          display: flex;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          gap: 4px;
+        }
+
+        .desktop-menu-links li {
+          margin: 0;
+        }
+
+        .desktop-menu-links a {
+          display: block;
+          padding: 10px 16px;
+          font-size: 14px;
+          font-weight: 600;
+          color: #1E3A8A;
+          text-decoration: none;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+        }
+
+        .desktop-menu-links a:hover {
+          background: #EFF6FF;
+          color: #FF5630;
+        }
+
+        /* Bouton Burger - Mobile uniquement */
+        .burger-button {
+          display: none;
           align-items: center;
           justify-content: center;
           width: 44px;
@@ -191,7 +237,15 @@ export default function MenuBurger() {
           box-shadow: 0 4px 12px rgba(255, 86, 48, 0.3);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+          .desktop-menu {
+            display: none;
+          }
+
+          .burger-button {
+            display: flex;
+          }
+
           .burger-menu {
             width: 100%;
             max-width: 100vw;

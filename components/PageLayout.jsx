@@ -109,19 +109,19 @@ export default function PageLayout({ children }) {
           flex-direction: column;
         }
 
-        /* HEADER */
+        /* HEADER - Toujours visible */
         .page-header {
           position: sticky;
           top: 0;
           background: white;
-          border-bottom: 1px solid transparent;
+          border-bottom: 1px solid #E2E8F0;
           padding: 12px 0;
           transition: all 0.3s ease;
           z-index: 100;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
         .page-header.scrolled {
-          border-bottom-color: #E2E8F0;
           box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
           padding: 8px 0;
         }
