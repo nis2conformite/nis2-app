@@ -1,0 +1,376 @@
+/* ═══════════════════════════════════════════════════════════
+   🎓 STYLES - PAGE FORMATIONS
+   ═══════════════════════════════════════════════════════════ */
+
+@import url('./variables.css');
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.hero {
+  background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+  color: var(--color-white);
+  padding: var(--spacing-20) var(--spacing-5);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: var(--font-size-10xl);
+  font-weight: var(--font-weight-black);
+  margin-bottom: var(--spacing-5);
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-3xl);
+  opacity: 0.95;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-5);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   INTRO
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.intro-section {
+  padding: 60px var(--spacing-5);
+  background: #F7F8FC;
+}
+
+.intro-box {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.lead {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-6);
+  line-height: var(--line-height-relaxed);
+}
+
+.intro-box p {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-extra-loose);
+  color: #334155;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FORMATS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.formats-section {
+  padding: var(--spacing-20) var(--spacing-5);
+}
+
+.formats-section h2 {
+  font-size: var(--font-size-8xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-12);
+  text-align: center;
+}
+
+.format-card {
+  max-width: 1100px;
+  margin: 0 auto var(--spacing-12);
+  background: var(--color-white);
+  border-radius: var(--border-radius-3xl);
+  padding: var(--spacing-10);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.format-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+  padding-bottom: var(--spacing-6);
+  border-bottom: var(--border-width-base) solid #E2E8F0;
+}
+
+.format-icon {
+  font-size: 64px;
+  flex-shrink: 0;
+}
+
+.format-title-block h3 {
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-2);
+}
+
+.format-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-500);
+  font-style: italic;
+}
+
+.format-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-8);
+}
+
+.format-column h4 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-4);
+}
+
+.format-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.format-column li {
+  padding: var(--spacing-2) 0;
+  padding-left: var(--spacing-6);
+  position: relative;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: #334155;
+}
+
+.format-column li:before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TRAININGS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.trainings-section {
+  padding: var(--spacing-20) var(--spacing-5);
+  background: #F7F8FC;
+}
+
+.trainings-section h2 {
+  font-size: var(--font-size-8xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-6);
+  text-align: center;
+}
+
+.trainings-section .intro {
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-500);
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--spacing-12);
+}
+
+.trainings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-8);
+}
+
+.training-card {
+  background: var(--color-white);
+  padding: var(--spacing-8);
+  border-radius: var(--border-radius-2xl);
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.training-number {
+  position: absolute;
+  top: -16px;
+  left: var(--spacing-8);
+  width: 48px;
+  height: 48px;
+  background: var(--color-accent);
+  color: var(--color-white);
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-black);
+  box-shadow: 0 4px 12px rgba(255, 86, 48, 0.3);
+}
+
+.training-card h3 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-3);
+  padding-top: var(--spacing-4);
+}
+
+.training-desc {
+  font-size: var(--font-size-md);
+  color: var(--color-gray-500);
+  margin-bottom: var(--spacing-5);
+  line-height: var(--line-height-relaxed);
+}
+
+.training-topics {
+  list-style: none;
+  padding: 0;
+}
+
+.training-topics li {
+  padding: var(--spacing-2) 0;
+  padding-left: var(--spacing-6);
+  position: relative;
+  font-size: var(--font-size-sm);
+  color: #334155;
+}
+
+.training-topics li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #16A34A;
+  font-weight: var(--font-weight-bold);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   WHY TRAIN
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.why-train-section {
+  padding: var(--spacing-20) var(--spacing-5);
+}
+
+.why-train-section h2 {
+  font-size: var(--font-size-8xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-12);
+  text-align: center;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-8);
+}
+
+.why-card {
+  background: var(--color-white);
+  padding: var(--spacing-8);
+  border-radius: var(--border-radius-2xl);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.why-icon {
+  font-size: 56px;
+  display: block;
+  margin-bottom: var(--spacing-5);
+}
+
+.why-card h4 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-3);
+}
+
+.why-card p {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-loose);
+  color: var(--color-gray-500);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CTA
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.cta-section {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--spacing-20) var(--spacing-5);
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: var(--font-size-8xl);
+  font-weight: var(--font-weight-black);
+  margin-bottom: var(--spacing-5);
+}
+
+.cta-section p {
+  font-size: var(--font-size-2xl);
+  opacity: 0.95;
+  max-width: 600px;
+  margin: 0 auto var(--spacing-8);
+}
+
+.cta-button {
+  display: inline-block;
+  padding: var(--spacing-5) var(--spacing-12);
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  border-radius: var(--border-radius-xl);
+  transition: all var(--transition-base);
+}
+
+.cta-button:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 86, 48, 0.3);
+}
+
+.cta-note {
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-4);
+  opacity: 0.8;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 1024px) {
+  .format-content {
+    grid-template-columns: 1fr;
+  }
+
+  .trainings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: var(--font-size-7xl);
+  }
+
+  .formats-section,
+  .trainings-section,
+  .why-train-section,
+  .cta-section {
+    padding: var(--spacing-12) var(--spacing-5);
+  }
+
+  .format-card {
+    padding: var(--spacing-6);
+  }
+
+  .format-header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
