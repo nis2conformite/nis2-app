@@ -52,7 +52,7 @@ export default function OffresServices() {
         {/* OFFRES PRINCIPALES - FORMAT SIMPLIFIÉ */}
         <section className="main-offers">
           <div className="section-intro">
-            <h2>🎯 Nos Audits de Conformité NIS2</h2>
+            <h2>Nos Audits de Conformité NIS2</h2>
             <p>3 formules d'accompagnement adaptées à votre maturité cyber</p>
           </div>
 
@@ -67,7 +67,7 @@ export default function OffresServices() {
             </div>
 
             <div className="offer-simple featured">
-              <div className="popular-badge-simple">⭐ POPULAIRE</div>
+              <div className="popular-badge-simple">POPULAIRE</div>
               <div className="offer-simple-header">
                 <h3>Sérénité</h3>
                 <div className="offer-simple-price">7 990€ <span>HT</span></div>
@@ -92,14 +92,14 @@ export default function OffresServices() {
 
           {/* TABLEAU COMPARATIF - TOUJOURS AFFICHÉ */}
           <div className="comparison-section">
-            <h3 className="comparison-title">📊 Comparatif détaillé des offres</h3>
+            <h3 className="comparison-title">Comparatif détaillé des offres</h3>
             <div className="comparison-table-wrapper">
               <table className="comparison-table">
                 <thead>
                   <tr>
                     <th className="feature-column">Fonctionnalités</th>
                     <th>Essentielle<br/><span className="price-small">3 490€</span></th>
-                    <th className="popular-column">Sérénité ⭐<br/><span className="price-small">7 990€</span></th>
+                    <th className="popular-column">Sérénité<br/><span className="price-small">7 990€</span></th>
                     <th>Expertise<br/><span className="price-small">14 900€</span></th>
                   </tr>
                 </thead>
@@ -185,7 +185,7 @@ export default function OffresServices() {
         {/* SERVICES COMPLÉMENTAIRES */}
         <section className="complementary-section">
           <div className="section-intro">
-            <h2>🛠️ Services Complémentaires</h2>
+            <h2>Services Complémentaires</h2>
             <p>Renforcez votre conformité avec nos services additionnels</p>
           </div>
 
@@ -297,11 +297,11 @@ export default function OffresServices() {
           <p>Échangez gratuitement avec un expert certifié • Réponse en 24h</p>
           <a 
             href={CONTACT_INFO.calendly} 
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
             className="btn btn-primary btn-large btn-solo"
           >
-            📅 Réserver un échange gratuit
+            Réserver un échange gratuit
           </a>
         </section>
       </PageLayout>

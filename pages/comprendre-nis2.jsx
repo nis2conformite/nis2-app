@@ -53,7 +53,7 @@ export default function ComprendreNIS2() {
         {/* VIDÉO EXPLICATIVE */}
         <section className="video-section">
           <div className="video-header">
-            <span className="video-badge">🎥 Comprendre NIS2 en vidéo</span>
+            <span className="video-badge">Comprendre NIS2 en vidéo</span>
             <h2>La directive NIS2 expliquée simplement</h2>
             <p>5 minutes pour tout comprendre de cette nouvelle réglementation</p>
           </div>
@@ -69,7 +69,7 @@ export default function ComprendreNIS2() {
 
         {/* SUIS-JE CONCERNÉ */}
         <section className="concerned-section">
-          <h2>🎯 Suis-je concerné par NIS2 ?</h2>
+          <h2>Suis-je concerné par NIS2 ?</h2>
           <p className="section-intro">
             Vous êtes concerné si votre entreprise répond à <strong>2 critères</strong> :
           </p>
@@ -100,40 +100,40 @@ export default function ComprendreNIS2() {
               {/* ENTITÉS ESSENTIELLES */}
               <div className="sector-column essential">
                 <div className="sector-header">
-                  <span className="sector-badge essential-badge">🔴 Entités Essentielles</span>
+                  <span className="sector-badge essential-badge">Entités Essentielles</span>
                   <p className="sector-subtitle">Sanctions jusqu'à 10M€ ou 2% du CA mondial</p>
                 </div>
                 <ul className="sector-list">
-                  <li>⚡ Énergie (électricité, gaz, pétrole, hydrogène)</li>
-                  <li>🚂 Transports (ferroviaire, aérien, maritime, routier)</li>
-                  <li>🏦 Secteur bancaire</li>
-                  <li>💰 Infrastructures des marchés financiers</li>
-                  <li>🏥 Santé (hôpitaux, laboratoires, pharmacies)</li>
-                  <li>💧 Eau potable et eaux usées</li>
-                  <li>🌐 Infrastructures numériques (DNS, TLD, cloud, data centers)</li>
-                  <li>🛰️ Espace</li>
+                  <li>Énergie (électricité, gaz, pétrole, hydrogène)</li>
+                  <li>Transports (ferroviaire, aérien, maritime, routier)</li>
+                  <li>Secteur bancaire</li>
+                  <li>Infrastructures des marchés financiers</li>
+                  <li>Santé (hôpitaux, laboratoires, pharmacies)</li>
+                  <li>Eau potable et eaux usées</li>
+                  <li>Infrastructures numériques (DNS, TLD, cloud, data centers)</li>
+                  <li>Espace</li>
                 </ul>
               </div>
 
               {/* ENTITÉS IMPORTANTES */}
               <div className="sector-column important">
                 <div className="sector-header">
-                  <span className="sector-badge important-badge">🟠 Entités Importantes</span>
+                  <span className="sector-badge important-badge">Entités Importantes</span>
                   <p className="sector-subtitle">Sanctions jusqu'à 7M€ ou 1,4% du CA mondial</p>
                 </div>
                 <ul className="sector-list">
-                  <li>📮 Services postaux et de courrier</li>
-                  <li>🗑️ Gestion des déchets</li>
-                  <li>🏭 Industrie manufacturière (chimie, pharmacie, agroalimentaire, équipements)</li>
-                  <li>🌐 Fournisseurs de services numériques (réseaux sociaux, moteurs de recherche, marketplaces)</li>
-                  <li>🔬 Recherche</li>
-                  <li>🏛️ Administrations publiques (État, régions, départements)</li>
+                  <li>Services postaux et de courrier</li>
+                  <li>Gestion des déchets</li>
+                  <li>Industrie manufacturière (chimie, pharmacie, agroalimentaire, équipements)</li>
+                  <li>Fournisseurs de services numériques (réseaux sociaux, moteurs de recherche, marketplaces)</li>
+                  <li>Recherche</li>
+                  <li>Administrations publiques (État, régions, départements)</li>
                 </ul>
               </div>
             </div>
 
             <div className="sectors-note">
-              <strong>💡 Bon à savoir :</strong> Même si vous n'êtes pas directement concerné, vos clients peuvent vous demander 
+              <strong>Bon à savoir :</strong> Même si vous n'êtes pas directement concerné, vos clients peuvent vous demander
               de prouver votre conformité pour travailler avec eux (clause contractuelle).
             </div>
           </div>
@@ -141,7 +141,7 @@ export default function ComprendreNIS2() {
 
         {/* LES SANCTIONS - REPOSITIONNÉ ICI POUR CRÉER L'URGENCE */}
         <section className="sanctions-section">
-          <h2>⚠️ Quelles sanctions en cas de non-conformité ?</h2>
+          <h2>Quelles sanctions en cas de non-conformité ?</h2>
           <p className="sanctions-intro">
             Les sanctions sont <strong>lourdes et immédiates</strong>. La responsabilité du dirigeant est engagée.
           </p>
@@ -149,7 +149,6 @@ export default function ComprendreNIS2() {
           <div className="sanctions-grid">
             <div className="sanction-card red">
               <div className="sanction-header">
-                <span className="sanction-icon">💸</span>
                 <h3>Amendes financières</h3>
               </div>
               <div className="sanction-amount">Jusqu'à 10M€</div>
@@ -158,18 +157,16 @@ export default function ComprendreNIS2() {
 
             <div className="sanction-card orange">
               <div className="sanction-header">
-                <span className="sanction-icon">⚖️</span>
                 <h3>Responsabilité pénale</h3>
               </div>
               <p className="sanction-detail">
-                Les dirigeants peuvent être tenus <strong>personnellement responsables</strong> 
+                Les dirigeants peuvent être tenus <strong>personnellement responsables</strong>
                 en cas de manquement grave aux obligations NIS2
               </p>
             </div>
 
             <div className="sanction-card blue">
               <div className="sanction-header">
-                <span className="sanction-icon">🚫</span>
                 <h3>Exclusion des marchés</h3>
               </div>
               <p className="sanction-detail">
@@ -179,7 +176,7 @@ export default function ComprendreNIS2() {
           </div>
 
           <div className="sanctions-timeline">
-            <h3>📅 Calendrier des sanctions</h3>
+            <h3>Calendrier des sanctions</h3>
             <div className="timeline-bar">
               <div className="timeline-item past">
                 <strong>2023</strong>
@@ -198,7 +195,7 @@ export default function ComprendreNIS2() {
 
           <div className="sanctions-urgency">
             <p>
-              <strong>⏰ Le temps presse :</strong> Les contrôles ANSSI ont déjà commencé. 
+              <strong>Le temps presse :</strong> Les contrôles ANSSI ont déjà commencé.
               Un audit de conformité prend en moyenne 3 à 6 mois. <strong>Agissez maintenant.</strong>
             </p>
           </div>
@@ -206,7 +203,7 @@ export default function ComprendreNIS2() {
 
         {/* LES OBLIGATIONS */}
         <section className="obligations-section">
-          <h2>📝 Quelles sont mes obligations ?</h2>
+          <h2>Quelles sont mes obligations ?</h2>
           <p className="section-intro">
             NIS2 impose <strong>10 mesures de sécurité</strong> et <strong>3 obligations administratives</strong>
           </p>
@@ -214,7 +211,7 @@ export default function ComprendreNIS2() {
           <div className="obligations-grid">
             {/* MESURES TECHNIQUES */}
             <div className="obligation-block">
-              <h3>🛡️ Mesures de sécurité</h3>
+              <h3>Mesures de sécurité</h3>
               <ul className="obligation-list">
                 <li>Gestion des risques cyber</li>
                 <li>Sécurisation des accès</li>
@@ -231,7 +228,7 @@ export default function ComprendreNIS2() {
 
             {/* OBLIGATIONS ADMINISTRATIVES */}
             <div className="obligation-block">
-              <h3>📋 Obligations administratives</h3>
+              <h3>Obligations administratives</h3>
               <ul className="obligation-list highlighted">
                 <li><strong>Enregistrement auprès de l'ANSSI</strong><br/>Déclarer votre entité sur MonEspaceNIS2</li>
                 <li><strong>Formation obligatoire des dirigeants</strong><br/>Responsabilité pénale du dirigeant en cas de manquement</li>
@@ -243,7 +240,7 @@ export default function ComprendreNIS2() {
 
         {/* COMMENT SE METTRE EN CONFORMITÉ */}
         <section className="howto-section">
-          <h2>✅ Comment se mettre en conformité ?</h2>
+          <h2>Comment se mettre en conformité ?</h2>
           
           <div className="steps-grid">
             <div className="step-card">
@@ -280,7 +277,7 @@ export default function ComprendreNIS2() {
           </div>
 
           <div className="howto-cta">
-            <p><strong>💡 Bon à savoir :</strong> Jusqu'à 70% d'aides de l'État possibles pour financer votre mise en conformité</p>
+            <p><strong>Bon à savoir :</strong> Jusqu'à 70% d'aides de l'État possibles pour financer votre mise en conformité</p>
             <a href="/offres-complementaires" className="btn-secondary-large">
               Découvrir nos solutions d'accompagnement
             </a>
@@ -289,33 +286,29 @@ export default function ComprendreNIS2() {
 
         {/* RESSOURCES OFFICIELLES */}
         <section className="resources-section">
-          <h2>📚 Ressources officielles</h2>
+          <h2>Ressources officielles</h2>
           <p className="section-intro">Pour aller plus loin dans votre compréhension de NIS2</p>
 
           <div className="resources-grid">
             <a href={EXTERNAL_LINKS.directiveOfficielle} target="_blank" rel="noopener noreferrer" className="resource-card featured">
-              <div className="resource-icon">📄</div>
               <h4>Directive NIS2 - Texte officiel</h4>
               <p>Directive (UE) 2022/2555 complète en français • EUR-Lex • Transparence totale</p>
               <span className="resource-link">eur-lex.europa.eu →</span>
             </a>
 
             <a href={EXTERNAL_LINKS.anssi} target="_blank" rel="noopener noreferrer" className="resource-card">
-              <div className="resource-icon">🏛️</div>
               <h4>Site officiel ANSSI</h4>
               <p>Toute la réglementation et les guides pratiques</p>
               <span className="resource-link">cyber.gouv.fr →</span>
             </a>
 
             <a href={EXTERNAL_LINKS.monespace} target="_blank" rel="noopener noreferrer" className="resource-card">
-              <div className="resource-icon">📝</div>
               <h4>MonEspaceNIS2</h4>
               <p>Plateforme d'enregistrement des entités concernées</p>
               <span className="resource-link">monespacenis2.cyber.gouv.fr →</span>
             </a>
 
             <a href="https://aide.monespacenis2.cyber.gouv.fr/fr/" target="_blank" rel="noopener noreferrer" className="resource-card">
-              <div className="resource-icon">❓</div>
               <h4>FAQ Officielle</h4>
               <p>Réponses aux questions fréquentes sur NIS2</p>
               <span className="resource-link">aide.monespacenis2.cyber.gouv.fr →</span>
@@ -332,7 +325,7 @@ export default function ComprendreNIS2() {
               Découvrir nos audits
             </a>
             <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer" className="btn-secondary-large">
-              📅 Parler à un expert
+              Parler à un expert
             </a>
           </div>
         </section>

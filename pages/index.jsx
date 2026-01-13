@@ -132,7 +132,7 @@ export default function Home() {
       <div className="bg-gradient"></div>
 
       <div className="alert-bar">
-        <span>⚠️ NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant</span>
+        <span>NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant</span>
       </div>
 
       <div className="sticky-header" id="stickyHeader">
@@ -147,7 +147,7 @@ export default function Home() {
           <div className="sticky-cta-group">
             <MenuBurger />
             <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-sticky primary">
-              📞 Échange gratuit
+              Échange gratuit
             </a>
           </div>
         </div>
@@ -197,13 +197,13 @@ export default function Home() {
             </div>
           </div>
 
-          <a 
-            href={CONTACT_INFO.calendly} 
-            target="_blank" 
+          <a
+            href={CONTACT_INFO.calendly}
+            target="_blank"
             rel="noopener noreferrer"
             className="hero-cta-primary"
           >
-            📞 Échange gratuit - Suis-je éligible ?
+            Échange gratuit - Suis-je éligible ?
           </a>
 
           <p className="hero-reassurance">
@@ -216,10 +216,10 @@ export default function Home() {
           <h3 className="info-links-title">Vous vous posez des questions ?</h3>
           <div className="info-links-container">
             <button onClick={quiz.openQuiz} className="info-link">
-              📋 Suis-je concerné par NIS2 ?
+              Suis-je concerné par NIS2 ?
             </button>
             <a href="#video-section" className="info-link">
-              🎥 Comprendre NIS2 en 3min
+              Comprendre NIS2 en 3min
             </a>
           </div>
           <p className="info-links-subtitle">Réponses claires et rapides</p>
@@ -227,7 +227,7 @@ export default function Home() {
 
         <div className="risk-opportunity-wrapper">
           <section className="warning-card">
-            <h2>⚠️ Les enjeux de la<br />non-conformité</h2>
+            <h2>Les enjeux de la<br />non-conformité</h2>
             <ul className="warning-list">
               <li><strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</li>
               <li><strong>Responsabilité pénale du dirigeant</strong> — En cas de manquement aux obligations NIS2</li>
@@ -238,7 +238,7 @@ export default function Home() {
           </section>
 
           <section className="value-prop">
-            <h2>🏆 Transformez la contrainte en<br />levier stratégique</h2>
+            <h2>Transformez la contrainte en<br />levier stratégique</h2>
             <ul className="value-list">
               <li><strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection</li>
               <li><strong>Différenciez-vous</strong> — Positionnez-vous comme le partenaire de confiance de votre secteur</li>
@@ -267,7 +267,6 @@ export default function Home() {
 
             <div className="impact-card-large">
               <div className="impact-header-horizontal">
-                <div className="impact-icon">💸</div>
                 <div className="impact-stat">4,35M€</div>
               </div>
               <div className="impact-label-compact">Coût moyen cyber attaque</div>
@@ -285,14 +284,14 @@ export default function Home() {
           <div className="subsidy-banner">
             <div className="subsidy-content">
               <div className="subsidy-title">
-                💡 <strong>Aides de l'État disponibles</strong> 💡
+                <strong>Aides de l'État disponibles</strong>
               </div>
               <div className="subsidy-description">
                 Réduisez le coût de votre mise en conformité.
               </div>
             </div>
             <button className="btn-simulator" onClick={() => alert('Simulateur en cours de développement')}>
-              📊 Simulateur aides État
+              Simulateur aides État
             </button>
           </div>
 
@@ -349,13 +348,13 @@ export default function Home() {
               </ul>
 
               <div className="price-card-footer">
-                <a 
-                  href={CONTACT_INFO.calendly} 
-                  target="_blank" 
+                <a
+                  href={CONTACT_INFO.calendly}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary btn-full"
                 >
-                  📅 Prendre rendez-vous
+                  Prendre rendez-vous
                 </a>
               </div>
             </div>
@@ -383,13 +382,13 @@ export default function Home() {
               </ul>
 
               <div className="price-card-footer">
-                <a 
-                  href={CONTACT_INFO.calendly} 
-                  target="_blank" 
+                <a
+                  href={CONTACT_INFO.calendly}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-secondary btn-full"
                 >
-                  📅 Prendre rendez-vous
+                  Prendre rendez-vous
                 </a>
               </div>
             </div>
@@ -412,7 +411,7 @@ export default function Home() {
                     <tr>
                       <th className="feature-column">Fonctionnalités</th>
                       <th>Essentielle<br/><span className="price-small">3 490€</span></th>
-                      <th className="popular-column">Sérénité ⭐<br/><span className="price-small">7 990€</span></th>
+                      <th className="popular-column">Sérénité<br/><span className="price-small">7 990€</span></th>
                       <th>Expertise<br/><span className="price-small">14 900€</span></th>
                     </tr>
                   </thead>
@@ -664,7 +663,7 @@ export default function Home() {
 
         <section className="video-section" id="video-section">
           <div className="video-header">
-            <div className="video-badge">🎥 Comprendre NIS2 en vidéo</div>
+            <div className="video-badge">Comprendre NIS2 en vidéo</div>
           </div>
           <div className="video-container">
             <iframe 
@@ -714,7 +713,7 @@ export default function Home() {
               boxShadow: '0 4px 16px rgba(255, 255, 255, 0.2)'
             }}
           >
-            📅 Réserver un échange gratuit
+            Réserver un échange gratuit
           </a>
         </section>
 

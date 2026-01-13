@@ -246,7 +246,6 @@ export default function Formations() {
             
             <div className="why-grid">
               <div className="why-card">
-                <span className="why-icon">⚖️</span>
                 <h4>Obligation légale NIS2</h4>
                 <p>
                   La directive NIS2 impose la <strong>sensibilisation et formation obligatoire</strong> de
@@ -255,7 +254,6 @@ export default function Formations() {
               </div>
 
               <div className="why-card">
-                <span className="why-icon">🎯</span>
                 <h4>90% des incidents sont humains</h4>
                 <p>
                   La majorité des cyberattaques réussies exploitent une erreur humaine (phishing, mots
@@ -264,7 +262,6 @@ export default function Formations() {
               </div>
 
               <div className="why-card">
-                <span className="why-icon">💰</span>
                 <h4>ROI démontré</h4>
                 <p>
                   Une entreprise bien formée réduit de <strong>70% ses risques d'incidents</strong> et
@@ -273,7 +270,6 @@ export default function Formations() {
               </div>
 
               <div className="why-card">
-                <span className="why-icon">🛡️</span>
                 <h4>Culture de sécurité durable</h4>
                 <p>
                   La formation crée une culture cyber pérenne dans l'organisation, au-delà de la simple
@@ -292,13 +288,13 @@ export default function Formations() {
               Discutons de vos besoins en formation et construisons un programme sur-mesure pour
               votre organisation.
             </p>
-            <a 
-              href="https://calendly.com/nis2conformite/30min" 
-              target="_blank" 
+            <a
+              href="https://calendly.com/nis2conformite/30min"
+              target="_blank"
               rel="noopener noreferrer"
               className="cta-button"
             >
-              📞 Demander un devis formation
+              Demander un devis formation
             </a>
             <p className="cta-note">
               ✓ Tarifs dégressifs par volume • ✓ Financement jusqu'à 70% • ✓ Réponse sous 24h

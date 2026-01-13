@@ -28,13 +28,13 @@ export default function PageLayout({ children }) {
           
           <div className="header-actions">
             <MenuBurger />
-            <a 
-              href="https://calendly.com/nis2conformite/30min" 
-              target="_blank" 
+            <a
+              href="https://calendly.com/nis2conformite/30min"
+              target="_blank"
               rel="noopener noreferrer"
               className="header-cta"
             >
-              📞 Échange gratuit
+              Échange gratuit
             </a>
           </div>
         </div>
@@ -191,12 +191,12 @@ export default function PageLayout({ children }) {
           margin: 0 auto;
           padding: 0 20px 40px;
           display: grid;
-          grid-template-columns: 1.5fr 1fr 1fr 1fr;
-          gap: 40px;
+          grid-template-columns: 1fr 1.5fr;
+          gap: 60px;
         }
 
         .footer-logo {
-          height: 60px;
+          height: 50px;
           margin-bottom: 16px;
         }
 
@@ -206,10 +206,16 @@ export default function PageLayout({ children }) {
           line-height: 1.6;
         }
 
+        .footer-links {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 32px;
+        }
+
         .footer-column h4 {
-          font-size: 16px;
+          font-size: 15px;
           font-weight: 700;
-          margin-bottom: 16px;
+          margin-bottom: 14px;
           color: white;
         }
 
@@ -220,13 +226,13 @@ export default function PageLayout({ children }) {
         }
 
         .footer-column li {
-          margin-bottom: 12px;
+          margin-bottom: 10px;
         }
 
         .footer-column a {
           color: #94A3B8;
           text-decoration: none;
-          font-size: 14px;
+          font-size: 13px;
           transition: color 0.3s ease;
         }
 
@@ -253,12 +259,13 @@ export default function PageLayout({ children }) {
 
         @media (max-width: 1024px) {
           .footer-container {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 32px;
           }
 
-          .footer-logo-section {
-            grid-column: 1 / -1;
+          .footer-links {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
           }
         }
 
@@ -269,6 +276,11 @@ export default function PageLayout({ children }) {
 
           .footer-container {
             grid-template-columns: 1fr;
+          }
+
+          .footer-links {
+            grid-template-columns: 1fr;
+            gap: 24px;
           }
 
           .footer-bottom {

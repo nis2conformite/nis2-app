@@ -10,7 +10,7 @@
 
 .hero-nis2 {
   text-align: center;
-  padding: var(--spacing-20) var(--spacing-5) 100px;
+  padding: var(--spacing-16) var(--spacing-5) var(--spacing-12);
   max-width: 900px;
   margin: 0 auto;
   background: linear-gradient(180deg, rgba(30, 58, 138, 0.03) 0%, transparent 100%);
@@ -36,7 +36,7 @@
 
 .what-section {
   max-width: 900px;
-  margin: var(--spacing-20) auto;
+  margin: var(--spacing-12) auto;
   padding: 0 var(--spacing-5);
 }
 
@@ -48,9 +48,7 @@
 }
 
 .what-icon {
-  font-size: 64px;
-  display: block;
-  margin-bottom: var(--spacing-6);
+  display: none;
 }
 
 .what-content h2 {

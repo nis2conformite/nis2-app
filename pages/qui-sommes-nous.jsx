@@ -157,37 +157,31 @@ export default function QuiSommesNous() {
 
           <div className="values-grid">
             <div className="value-card">
-              <div className="value-icon">🎯</div>
               <h4>Pragmatisme</h4>
               <p>Solutions concrètes adaptées à votre réalité. Pas de théorie, que du terrain.</p>
             </div>
 
             <div className="value-card">
-              <div className="value-icon">🤝</div>
               <h4>Transparence</h4>
               <p>Prix clairs, méthodologie expliquée, pas de mauvaise surprise. Vous savez toujours où vous en êtes.</p>
             </div>
 
             <div className="value-card">
-              <div className="value-icon">⚡</div>
               <h4>Réactivité</h4>
               <p>Réponse en 24h, audit livré en 48h (offre Sérénité). Nous respectons vos délais.</p>
             </div>
 
             <div className="value-card">
-              <div className="value-icon">🛡️</div>
               <h4>Excellence</h4>
               <p>Méthodologie ANSSI, experts certifiés ISO 27001. Vous méritez le meilleur accompagnement.</p>
             </div>
 
             <div className="value-card">
-              <div className="value-icon">💼</div>
               <h4>Discrétion</h4>
               <p>Confidentialité absolue. Vos données et vos vulnérabilités restent entre nous.</p>
             </div>
 
             <div className="value-card">
-              <div className="value-icon">🚀</div>
               <h4>Impact</h4>
               <p>Résultats mesurables : 98% de conformité, 0 client sanctionné, 12 000€ d'aides récupérées en moyenne.</p>
             </div>
@@ -198,13 +192,13 @@ export default function QuiSommesNous() {
         <section className="cta-final-about">
           <h2>Prêt à sécuriser votre conformité ?</h2>
           <p>Échangez gratuitement avec un expert certifié ISO 27001 • Diagnostic personnalisé en 30 minutes</p>
-          <a 
-            href={CONTACT_INFO.calendly} 
-            target="_blank" 
+          <a
+            href={CONTACT_INFO.calendly}
+            target="_blank"
             rel="noopener noreferrer"
             className="btn-cta-large"
           >
-            📅 Réserver un échange gratuit
+            Réserver un échange gratuit
           </a>
         </section>
       </PageLayout>
