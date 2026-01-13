@@ -15,10 +15,6 @@ import {
   IMPACT_STATS
 } from '../utils/constants';
 
-// Import CSS
-import '../styles/global.css';
-import '../styles/index.css';
-
 export default function Home() {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
   const [showComparison, setShowComparison] = useState(false);

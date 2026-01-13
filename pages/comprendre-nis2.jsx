@@ -1,10 +1,6 @@
 import Head from 'next/head';
 import PageLayout from '../components/PageLayout';
 
-// Import CSS
-import '../styles/global.css';
-import '../styles/comprendre-nis2.css';
-
 const EXTERNAL_LINKS = {
   videoYoutube: 'https://www.youtube.com/embed/461tWBUzrY8',
   directiveOfficielle: 'https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32022L2555',

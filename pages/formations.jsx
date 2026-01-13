@@ -1,10 +1,6 @@
 import PageLayout from '../components/PageLayout';
 import Head from 'next/head';
 
-// Import CSS
-import '../styles/global.css';
-import '../styles/formations.css';
-
 export default function Formations() {
   const formats = [
     {

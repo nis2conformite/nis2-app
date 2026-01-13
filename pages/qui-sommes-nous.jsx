@@ -1,10 +1,6 @@
 import Head from 'next/head';
 import PageLayout from '../components/PageLayout';
 
-// Import CSS
-import '../styles/global.css';
-import '../styles/qui-sommes-nous.css';
-
 const CONTACT_INFO = {
   calendly: 'https://calendly.com/nis2conformite/30min',
   email: 'nis2conformite@gmail.com',
