@@ -1,6 +1,9 @@
+// Import Artisan.co exact design
+import '../styles/artisan-exact.css';
+
+// Import other styles
 import '../styles/globals.css';
 import '../styles/home.css';
-// Import global styles and page-specific styles
 import '../styles/variables.css';
 import '../styles/global.css';
 import '../styles/index.css';
