@@ -1107,15 +1107,22 @@ body {
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
+  border: 2px solid transparent;
 }
 
-.before-card-modern:hover,
+.before-card-modern:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
 .after-card-modern:hover {
   box-shadow: var(--shadow-xl);
   transform: translateY(-4px);
+  border-color: rgba(251, 146, 60, 0.3);
 }
 
-/* Icône moderne en haut */
+/* Icône moderne en haut - Violet et Orange */
 .card-icon-wrapper {
   width: 64px;
   height: 64px;
@@ -1127,13 +1134,13 @@ body {
 }
 
 .card-icon-wrapper.danger {
-  background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
-  color: #DC2626;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0.15) 100%);
+  color: var(--color-purple);
 }
 
 .card-icon-wrapper.success {
-  background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
-  color: #059669;
+  background: linear-gradient(135deg, rgba(251, 146, 60, 0.1) 0%, rgba(251, 146, 60, 0.15) 100%);
+  color: #FB923C;
 }
 
 .before-card-modern h3,
@@ -1169,7 +1176,7 @@ body {
   content: '×';
   position: absolute;
   left: 0;
-  color: #DC2626;
+  color: var(--color-purple);
   font-weight: 700;
   font-size: 20px;
 }
@@ -1178,7 +1185,7 @@ body {
   content: '✓';
   position: absolute;
   left: 0;
-  color: #059669;
+  color: #FB923C;
   font-weight: 700;
   font-size: 16px;
 }
@@ -1420,6 +1427,280 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO - LOGO + BOUTONS STYLE ARTISAN
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.hero-logo-wrapper {
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.hero-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.hero-buttons-group {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  margin: var(--space-xl) 0;
+  flex-wrap: wrap;
+}
+
+/* Bouton primaire - Filled gradient */
+.btn-hero-primary {
+  padding: 16px 32px;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-hero-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.3);
+}
+
+/* Bouton secondaire - Outline only */
+.btn-hero-secondary {
+  padding: 16px 32px;
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-hero-secondary:hover {
+  background: rgba(99, 102, 241, 0.05);
+  transform: translateY(-2px);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BADGES DE SECTIONS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.section-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  color: var(--color-purple);
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--space-md);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION CYBER - ENCART STYLE ARTISAN
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.cyber-encart {
+  background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-3xl) var(--space-2xl);
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.cyber-encart::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cyber-encart .section-title-artisan,
+.cyber-encart .section-subtitle-artisan,
+.cyber-encart .section-badge {
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.cyber-encart .section-badge {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.cyber-stats-grid-encart {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+  position: relative;
+  z-index: 1;
+}
+
+.cyber-stat-card-encart {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-2xl);
+  transition: all var(--transition-base);
+}
+
+.cyber-stat-card-encart:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(168, 85, 247, 0.3);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.cyber-stat-number-encart {
+  font-size: 72px;
+  font-weight: 900;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-sm);
+  line-height: 1;
+}
+
+.cyber-stat-card-encart h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  color: white;
+}
+
+.cyber-stat-card-encart p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FOOTER MODERNE STYLE ARTISAN
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.footer-artisan-modern {
+  background: #0F172A;
+  color: white;
+  padding: var(--space-3xl) 0 0;
+}
+
+.footer-main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+}
+
+.footer-brand-col {
+  padding-right: var(--space-lg);
+}
+
+.footer-logo {
+  height: 48px;
+  width: auto;
+  margin-bottom: var(--space-md);
+}
+
+.footer-brand-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: var(--space-md);
+}
+
+.footer-certifs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-col-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  color: white;
+}
+
+.footer-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links-list li {
+  margin-bottom: var(--space-sm);
+}
+
+.footer-links-list a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color var(--transition-fast);
+}
+
+.footer-links-list a:hover {
+  color: white;
+}
+
+.footer-bottom-modern {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-lg) 0;
+}
+
+.footer-bottom-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.footer-copyright {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.footer-legal-links a {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-legal-links a:hover {
+  color: white;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    RESPONSIVE
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 @media (max-width: 1024px) {
@@ -1453,9 +1734,27 @@ body {
   }
 
   .cyber-stats-grid,
+  .cyber-stats-grid-encart,
   .services-two-cols,
   .testimonials-case-study-grid {
     grid-template-columns: 1fr;
+  }
+
+  .footer-main-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-buttons-group {
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    width: 100%;
   }
 }
 
@@ -1494,5 +1793,18 @@ body {
     flex-direction: column;
     gap: var(--space-sm);
     text-align: center;
+  }
+
+  .footer-main-content {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-logo {
+    height: 60px;
   }
 }

@@ -104,9 +104,14 @@ export default function Home() {
         </div>
       </header>
 
-      {/* HERO SECTION - AVEC BADGE + FORM + STATS */}
+      {/* HERO SECTION - AVEC BADGE + LOGO + BOUTONS */}
       <section className="hero-artisan-exact">
         <div className="hero-artisan-container">
+          {/* Logo central */}
+          <div className="hero-logo-wrapper">
+            <img src="/logo.png" alt="NIS2 Conformité" className="hero-logo" />
+          </div>
+
           <div className="hero-badge-artisan">
             NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant
           </div>
@@ -145,19 +150,15 @@ export default function Home() {
             </div>
           </div>
 
-          <form onSubmit={handleEmailSubmit} className="hero-form-artisan">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Votre email professionnel"
-              className="hero-form-input"
-              required
-            />
-            <button type="submit" className="hero-form-submit">
-              Démarrer l'audit
+          {/* 2 boutons style Artisan */}
+          <div className="hero-buttons-group">
+            <button onClick={quiz.openQuiz} className="btn-hero-primary">
+              Suis-je concerné par NIS2 ?
             </button>
-          </form>
+            <a href="#video-section" className="btn-hero-secondary">
+              Comprendre NIS2 en 3min
+            </a>
+          </div>
 
           <div className="hero-trust-artisan">
             <span>✓ Certifié ISO 27001</span>
@@ -169,29 +170,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION LIENS INFORMATIFS - QUIZ + VIDÉO */}
-      <section className="content-section" style={{paddingTop: '48px', paddingBottom: '48px'}}>
-        <div className="content-container" style={{textAlign: 'center'}}>
-          <h3 className="section-subtitle-artisan" style={{fontSize: '20px', fontWeight: '700', marginBottom: '24px'}}>
-            Vous vous posez des questions ?
-          </h3>
-          <div style={{display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap'}}>
-            <button onClick={quiz.openQuiz} className="btn-artisan btn-artisan-secondary">
-              Suis-je concerné par NIS2 ?
-            </button>
-            <a href="#video-section" className="btn-artisan btn-artisan-secondary">
-              Comprendre NIS2 en 3min
-            </a>
-          </div>
-          <p style={{fontSize: '14px', color: 'var(--artisan-text-light)', marginTop: '16px'}}>
-            Réponses claires et rapides
-          </p>
-        </div>
-      </section>
-
       {/* SECTION AVANT/APRÈS */}
       <section className="before-after-section" id="solutions">
         <div className="before-after-container">
+          <div className="section-badge">L'enjeu stratégique</div>
+
           <h2 className="section-title-artisan">
             La conformité <span className="gradient">NIS2</span>, avant et après
           </h2>
@@ -238,6 +221,8 @@ export default function Home() {
       {/* 3 BULLES - NOTRE APPROCHE */}
       <section className="content-section">
         <div className="content-container">
+          <div className="section-badge" style={{margin: '0 auto'}}>Notre méthodologie</div>
+
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
             <span className="gradient">Notre approche</span> en 3 étapes
           </h2>
@@ -261,34 +246,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION AVEC FOND GRIS FONCÉ - CYBER STATS */}
-      <section className="dark-section-cyber">
+      {/* SECTION CYBER - ENCART */}
+      <section className="content-section">
         <div className="content-container">
-          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
-            La prévention est plus <span className="highlight">rentable</span> qu'une crise cyber
-          </h2>
-          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
-            Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber
-          </p>
+          <div className="cyber-encart">
+            <div className="section-badge" style={{margin: '0 auto'}}>Chiffres clés</div>
 
-          {/* 2 CARTES CYBER UNIQUEMENT */}
-          <div className="cyber-stats-grid">
-            <div className="cyber-stat-card">
-              <div className="cyber-stat-number">+38%</div>
-              <h3>Hausse des cyberattaques</h3>
-              <p>
-                Les attaques contre les PME ont explosé de 38% en 2024.
-                Les cybercriminels ciblent les entreprises non protégées.
-              </p>
-            </div>
+            <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+              La prévention est plus <span className="highlight">rentable</span> qu'une crise cyber
+            </h2>
+            <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
+              Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber
+            </p>
 
-            <div className="cyber-stat-card">
-              <div className="cyber-stat-number">4,35M€</div>
-              <h3>Coût moyen d'une cyberattaque</h3>
-              <p>
-                60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne),
-                perte de données, rançons.
-              </p>
+            {/* 2 CARTES CYBER UNIQUEMENT */}
+            <div className="cyber-stats-grid-encart">
+              <div className="cyber-stat-card-encart">
+                <div className="cyber-stat-number-encart">+38%</div>
+                <h3>Hausse des cyberattaques</h3>
+                <p>
+                  Les attaques contre les PME ont explosé de 38% en 2024.
+                  Les cybercriminels ciblent les entreprises non protégées.
+                </p>
+              </div>
+
+              <div className="cyber-stat-card-encart">
+                <div className="cyber-stat-number-encart">4,35M€</div>
+                <h3>Coût moyen d'une cyberattaque</h3>
+                <p>
+                  60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne),
+                  perte de données, rançons.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -297,6 +286,8 @@ export default function Home() {
       {/* SECTION PRICING */}
       <section className="pricing-section-artisan" id="pricing">
         <div className="before-after-container">
+          <div className="section-badge">Nos offres</div>
+
           <h2 className="section-title-artisan">
             Investissement vs <span className="gradient">Amende</span>
           </h2>
@@ -542,6 +533,8 @@ export default function Home() {
       {/* SECTION SERVICES COMPLÉMENTAIRES */}
       <section className="content-section">
         <div className="content-container">
+          <div className="section-badge" style={{margin: '0 auto'}}>Aller plus loin</div>
+
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
             Services <span className="gradient">complémentaires</span>
           </h2>
@@ -645,6 +638,8 @@ export default function Home() {
       {/* SECTION TÉMOIGNAGES - Style Case Study */}
       <section className="content-section testimonials-modern" id="temoignages">
         <div className="content-container">
+          <div className="section-badge" style={{margin: '0 auto'}}>Success Stories</div>
+
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
             Dirigeants conformes, <span className="gradient">entreprises gagnantes</span>
           </h2>
@@ -793,59 +788,66 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="footer-artisan">
-        <div className="footer-container">
-          <div className="footer-brand">
-            <img src="/logo.png" alt="NIS2 Conformité" style={{height: '48px', marginBottom: '16px'}} />
-            <p style={{fontSize: '14px', color: 'var(--artisan-footer-text)', lineHeight: '1.6'}}>
-              La plateforme d'audit et de conformité cyber<br />
-              pensée pour les PME et ETI européennes
+      {/* FOOTER STYLE ARTISAN */}
+      <footer className="footer-artisan-modern">
+        <div className="footer-main-content">
+          <div className="footer-brand-col">
+            <img src="/logo.png" alt="NIS2 Conformité" className="footer-logo" />
+            <p className="footer-brand-desc">
+              La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes
             </p>
+            <div className="footer-certifs">
+              <span>✓ Certifié ISO 27001</span>
+              <span>✓ Méthodologie ANSSI</span>
+            </div>
           </div>
 
-          <div className="footer-links">
-            <div>
-              <h4 style={{fontSize: '16px', fontWeight: '700', marginBottom: '16px', color: 'white'}}>Navigation</h4>
-              <ul style={{listStyle: 'none', padding: 0}}>
-                <li style={{marginBottom: '12px'}}><a href="/" style={{color: 'var(--artisan-footer-text)', textDecoration: 'none'}}>Accueil</a></li>
-                <li style={{marginBottom: '12px'}}><a href="/comprendre-nis2" style={{color: 'var(--artisan-footer-text)', textDecoration: 'none'}}>Comprendre NIS2</a></li>
-                <li style={{marginBottom: '12px'}}><a href="/qui-sommes-nous" style={{color: 'var(--artisan-footer-text)', textDecoration: 'none'}}>Qui sommes-nous ?</a></li>
-              </ul>
-            </div>
+          <div className="footer-col">
+            <h4 className="footer-col-title">Solutions</h4>
+            <ul className="footer-links-list">
+              <li><a href="/#pricing">Audit NIS2</a></li>
+              <li><a href="/formations">Formations</a></li>
+              <li><a href="/offres-complementaires">Services complémentaires</a></li>
+              <li><a href="#video-section">Comprendre NIS2</a></li>
+            </ul>
+          </div>
 
-            <div>
-              <h4 style={{fontSize: '16px', fontWeight: '700', marginBottom: '16px', color: 'white'}}>Nos services</h4>
-              <ul style={{listStyle: 'none', padding: 0}}>
-                <li style={{marginBottom: '12px'}}><a href="/offres-complementaires" style={{color: 'var(--artisan-footer-text)', textDecoration: 'none'}}>Offres complémentaires</a></li>
-                <li style={{marginBottom: '12px'}}><a href="/formations" style={{color: 'var(--artisan-footer-text)', textDecoration: 'none'}}>Formations</a></li>
-                <li style={{marginBottom: '12px'}}><a href="/#pricing" style={{color: 'var(--artisan-footer-text)', textDecoration: 'none'}}>Nos audits</a></li>
-              </ul>
-            </div>
+          <div className="footer-col">
+            <h4 className="footer-col-title">Entreprise</h4>
+            <ul className="footer-links-list">
+              <li><a href="/qui-sommes-nous">Qui sommes-nous ?</a></li>
+              <li><a href="/#expertise">Notre expertise</a></li>
+              <li><a href="/#temoignages">Témoignages</a></li>
+              <li><a href="/comprendre-nis2">À propos de NIS2</a></li>
+            </ul>
+          </div>
 
-            <div>
-              <h4 style={{fontSize: '16px', fontWeight: '700', marginBottom: '16px', color: 'white'}}>Contact</h4>
-              <ul style={{listStyle: 'none', padding: 0}}>
-                <li style={{marginBottom: '12px'}}>
-                  <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" style={{color: 'var(--artisan-footer-text)', textDecoration: 'none'}}>
-                    Prendre rendez-vous
-                  </a>
-                </li>
-                <li style={{marginBottom: '12px'}}>
-                  <a href="mailto:nis2conformite@gmail.com" style={{color: 'var(--artisan-footer-text)', textDecoration: 'none'}}>
-                    nis2conformite@gmail.com
-                  </a>
-                </li>
-              </ul>
-            </div>
+          <div className="footer-col">
+            <h4 className="footer-col-title">Contact</h4>
+            <ul className="footer-links-list">
+              <li>
+                <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer">
+                  Prendre rendez-vous
+                </a>
+              </li>
+              <li>
+                <a href="mailto:nis2conformite@gmail.com">
+                  nis2conformite@gmail.com
+                </a>
+              </li>
+              <li><a href="tel:+33000000000">+33 (0)0 00 00 00 00</a></li>
+            </ul>
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <p>© 2025 NIS2 Conformité • Tous droits réservés</p>
-          <div style={{display: 'flex', gap: '16px'}}>
-            <span>✓ Certifié ISO 27001</span>
-            <span>✓ Méthodologie ANSSI</span>
+        <div className="footer-bottom-modern">
+          <div className="footer-bottom-content">
+            <p className="footer-copyright">© 2025 NIS2 Conformité. Tous droits réservés</p>
+            <div className="footer-legal-links">
+              <a href="/mentions-legales">Mentions légales</a>
+              <a href="/politique-confidentialite">Politique de confidentialité</a>
+              <a href="/cgu">CGU</a>
+            </div>
           </div>
         </div>
       </footer>
