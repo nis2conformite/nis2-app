@@ -8,6 +8,9 @@ import {
   TESTIMONIALS,
   HERO_STATS,
   CONTACT_INFO,
+  FAQ_ITEMS,
+  EXTERNAL_LINKS,
+  EXPERTISE_TIMELINE,
 } from '../utils/constants';
 
 export default function Home() {
@@ -43,7 +46,6 @@ export default function Home() {
   function handleEmailSubmit(e) {
     e.preventDefault();
     if (email) {
-      // Redirection vers calendly avec email pré-rempli
       window.location.href = `${CONTACT_INFO.calendly}?email=${encodeURIComponent(email)}`;
     }
   }
@@ -57,9 +59,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* ═══════════════════════════════════════════════════════════
-          HEADER - STYLE ARTISAN.CO
-          ═══════════════════════════════════════════════════════════ */}
+      {/* HEADER - STYLE ARTISAN.CO AMÉLIORÉ */}
       <header className="header-artisan">
         <div className="header-container">
           <img src="/logo.png" alt="NIS2 Conformité" className="header-logo" />
@@ -79,9 +79,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ═══════════════════════════════════════════════════════════
-          HERO SECTION - STYLE ARTISAN.CO
-          ═══════════════════════════════════════════════════════════ */}
+      {/* HERO SECTION - AVEC DÉGRADÉ SUR TITRE */}
       <section className="hero-artisan-exact">
         <div className="hero-artisan-container">
           <div className="hero-badge-artisan">
@@ -97,7 +95,6 @@ export default function Home() {
             Audit structuré selon référentiel ANSSI • Rapport détaillé en 48H • Recommandations priorisées • Accompagnement expert certifié ISO 27001
           </p>
 
-          {/* Formulaire style Artisan.co */}
           <form onSubmit={handleEmailSubmit} className="hero-form-artisan">
             <input
               type="email"
@@ -122,18 +119,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION AVANT/APRÈS - STYLE ARTISAN.CO
-          ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION AVANT/APRÈS */}
       <section className="before-after-section" id="solutions">
         <div className="before-after-container">
-          <h2 className="section-title-artisan">La conformité NIS2, avant et après</h2>
+          <h2 className="section-title-artisan">
+            La conformité <span className="gradient">NIS2</span>, avant et après
+          </h2>
           <p className="section-subtitle-artisan">
             Transformez la contrainte réglementaire en levier stratégique pour votre entreprise
           </p>
 
           <div className="before-after-grid">
-            {/* AVANT */}
             <div className="before-card">
               <h3>❌ Avant (Non-conforme)</h3>
               <ul>
@@ -147,7 +143,6 @@ export default function Home() {
               </ul>
             </div>
 
-            {/* APRÈS */}
             <div className="after-card">
               <h3>✅ Après (Conforme NIS2)</h3>
               <ul>
@@ -164,22 +159,46 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION IMPACT - STATS & CHIFFRES
-          ═══════════════════════════════════════════════════════════ */}
+      {/* 3 BULLES - NOTRE APPROCHE (TIMELINE) */}
       <section className="content-section">
         <div className="content-container">
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
-            La prévention est plus rentable qu'une crise cyber
+            <span className="gradient">Notre approche</span> en 3 étapes
+          </h2>
+          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
+            Une méthodologie éprouvée pour votre conformité NIS2
+          </p>
+
+          <div className="timeline-container">
+            <div className="timeline-horizontal">
+              {EXPERTISE_TIMELINE.map((item, index) => (
+                <div key={index} className="timeline-item">
+                  <div className="timeline-number">{item.number}</div>
+                  <div className="timeline-content">
+                    <h3 className="timeline-title">{item.title}</h3>
+                    <p className="timeline-description">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION AVEC FOND NOIR - STATS & CHIFFRES */}
+      <section className="black-section-artisan">
+        <div className="content-container">
+          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+            La prévention est plus <span className="highlight">rentable</span> qu'une crise cyber
           </h2>
           <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
             Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber
           </p>
 
-          <div className="content-grid">
-            {/* Stat 1 */}
-            <div className="content-card-artisan">
-              <h3 style={{fontSize: '32px', color: '#4F46E5', marginBottom: '12px'}}>92%</h3>
+          {/* CARTES EN QUINCONCE AVEC VARIATIONS DE COULEURS */}
+          <div className="staggered-grid">
+            <div className="content-card-artisan card-purple">
+              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>92%</h3>
               <h3>PME et ETI non prêtes</h3>
               <p>
                 La majorité des entreprises concernées par NIS2 ne sont pas encore conformes.
@@ -187,9 +206,8 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Stat 2 */}
-            <div className="content-card-artisan">
-              <h3 style={{fontSize: '32px', color: '#4F46E5', marginBottom: '12px'}}>+38%</h3>
+            <div className="content-card-artisan card-pink">
+              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>+38%</h3>
               <h3>Hausse des cyberattaques</h3>
               <p>
                 Les attaques contre les PME ont explosé de 38% en 2024.
@@ -197,9 +215,8 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Stat 3 */}
-            <div className="content-card-artisan">
-              <h3 style={{fontSize: '32px', color: '#4F46E5', marginBottom: '12px'}}>4,35M€</h3>
+            <div className="content-card-artisan card-blue">
+              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>4,35M€</h3>
               <h3>Coût moyen d'une cyberattaque</h3>
               <p>
                 60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne),
@@ -207,18 +224,16 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Stat 4 */}
-            <div className="content-card-artisan">
-              <h3 style={{fontSize: '32px', color: '#4F46E5', marginBottom: '12px'}}>10M€</h3>
+            <div className="content-card-artisan card-purple">
+              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>10M€</h3>
               <h3>Amende maximale NIS2</h3>
               <p>
                 Ou 2% du chiffre d'affaires annuel mondial. La non-conformité coûte 200x plus cher qu'un audit préventif.
               </p>
             </div>
 
-            {/* Stat 5 */}
-            <div className="content-card-artisan">
-              <h3 style={{fontSize: '32px', color: '#4F46E5', marginBottom: '12px'}}>70%</h3>
+            <div className="content-card-artisan card-pink">
+              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>70%</h3>
               <h3>D'aides de l'État possibles</h3>
               <p>
                 Des dispositifs existent pour financer votre mise en conformité.
@@ -226,9 +241,8 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Stat 6 */}
-            <div className="content-card-artisan">
-              <h3 style={{fontSize: '32px', color: '#4F46E5', marginBottom: '12px'}}>65</h3>
+            <div className="content-card-artisan card-blue">
+              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>65</h3>
               <h3>Questions d'audit structurées</h3>
               <p>
                 Notre audit couvre les 10 catégories de sécurité définies par le référentiel ANSSI.
@@ -239,12 +253,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION PRICING - STYLE ARTISAN.CO
-          ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION PRICING */}
       <section className="pricing-section-artisan" id="pricing">
         <div className="before-after-container">
-          <h2 className="section-title-artisan">Investissement vs Amende</h2>
+          <h2 className="section-title-artisan">
+            Investissement vs <span className="gradient">Amende</span>
+          </h2>
           <p className="section-subtitle-artisan">
             Un audit coûte 200x moins cher qu'une sanction. Protégez votre entreprise dès maintenant.
           </p>
@@ -294,20 +308,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION COMMENT ÇA MARCHE
-          ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION COMMENT ÇA MARCHE */}
       <section className="content-section">
         <div className="content-container">
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
-            Comment ça marche
+            <span className="gradient">Comment</span> ça marche
           </h2>
           <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
             Un processus simple et structuré pour votre conformité NIS2
           </p>
 
           <div className="content-grid">
-            {/* Étape 1 */}
             <div className="content-card-artisan">
               <h3>01. Audit en ligne structuré</h3>
               <p>
@@ -316,7 +327,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Étape 2 */}
             <div className="content-card-artisan">
               <h3>02. Rapport de conformité détaillé</h3>
               <p>
@@ -325,7 +335,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Étape 3 */}
             <div className="content-card-artisan">
               <h3>03. Accompagnement expert</h3>
               <p>
@@ -337,31 +346,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION EXPERTISE
-          ═══════════════════════════════════════════════════════════ */}
+      {/* SECTION EXPERTISE */}
       <section className="before-after-section" id="expertise">
         <div className="before-after-container">
           <h2 className="section-title-artisan">
-            Préparez-vous à NIS2 avec notre méthode éprouvée
+            Préparez-vous à NIS2 avec notre <span className="gradient">méthode éprouvée</span>
           </h2>
           <p className="section-subtitle-artisan">
             Notre accompagnement se base sur le référentiel officiel de l'ANSSI
           </p>
 
           <div className="before-after-grid">
-            {/* Expertise 1 */}
             <div className="after-card">
-              <h3>Certification ISO 27001</h3>
+              <h3>✓ Certification ISO 27001</h3>
               <p>
                 Nos experts sont certifiés ISO 27001 et possèdent une expertise reconnue en cybersécurité.
                 Nous appliquons les meilleures pratiques internationales pour sécuriser votre entreprise.
               </p>
             </div>
 
-            {/* Expertise 2 */}
             <div className="after-card">
-              <h3>Méthodologie ANSSI</h3>
+              <h3>✓ Méthodologie ANSSI</h3>
               <p>
                 Notre audit suit le référentiel officiel de l'Agence Nationale de la Sécurité des Systèmes d'Information.
                 Conformité garantie avec les exigences réglementaires NIS2.
@@ -371,19 +376,105 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION TÉMOIGNAGES - STYLE ARTISAN.CO
-          ═══════════════════════════════════════════════════════════ */}
-      <section className="content-section" id="temoignages">
+      {/* SECTION VIDÉO YOUTUBE */}
+      <section className="content-section" style={{background: 'var(--artisan-bg-light)'}}>
+        <div className="content-container" style={{maxWidth: '900px'}}>
+          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+            Comprendre <span className="gradient">NIS2</span> en vidéo
+          </h2>
+          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
+            3 minutes pour tout comprendre de la directive NIS2
+          </p>
+
+          <div style={{
+            position: 'relative',
+            paddingBottom: '56.25%',
+            height: 0,
+            overflow: 'hidden',
+            borderRadius: '16px',
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
+            marginTop: '48px'
+          }}>
+            <iframe
+              src={EXTERNAL_LINKS.videoYoutube}
+              title="Directive NIS2 expliquée"
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                border: 0
+              }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION FAQ */}
+      <section className="content-section">
         <div className="content-container">
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
-            Dirigeants conformes, entreprises gagnantes
+            Les questions que se posent les <span className="gradient">dirigeants</span>
+          </h2>
+          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
+            Réponses claires et directes à vos interrogations
+          </p>
+
+          <div style={{maxWidth: '900px', margin: '48px auto 0'}}>
+            {FAQ_ITEMS.map((item) => (
+              <details
+                key={item.id}
+                style={{
+                  background: 'white',
+                  padding: '24px 32px',
+                  borderRadius: '12px',
+                  marginBottom: '16px',
+                  border: '1px solid rgba(0, 0, 0, 0.06)',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
+                  cursor: 'pointer'
+                }}
+              >
+                <summary style={{
+                  fontSize: '18px',
+                  fontWeight: '600',
+                  color: 'var(--artisan-text-dark)',
+                  listStyle: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px'
+                }}>
+                  <span style={{fontSize: '24px'}}>{item.icon}</span>
+                  {item.question}
+                </summary>
+                <p style={{
+                  marginTop: '16px',
+                  paddingLeft: '36px',
+                  fontSize: '15px',
+                  lineHeight: '1.6',
+                  color: 'var(--artisan-text-medium)'
+                }}>
+                  {item.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION TÉMOIGNAGES */}
+      <section className="before-after-section" id="temoignages">
+        <div className="before-after-container">
+          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+            Dirigeants <span className="gradient">conformes</span>, entreprises gagnantes
           </h2>
           <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
             Ils ont fait de NIS2 un levier de performance
           </p>
 
-          <div className="content-grid">
+          <div className="content-grid" style={{marginTop: '48px'}}>
             {TESTIMONIALS.map((testimonial, index) => (
               <div key={index} className="content-card-artisan">
                 <p style={{fontStyle: 'italic', marginBottom: '20px', color: '#64748B'}}>
@@ -399,13 +490,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION CTA FINAL
-          ═══════════════════════════════════════════════════════════ */}
-      <section className="before-after-section">
-        <div className="before-after-container" style={{textAlign: 'center'}}>
+      {/* SECTION CTA FINAL */}
+      <section className="content-section">
+        <div className="content-container" style={{textAlign: 'center', maxWidth: '800px'}}>
           <h2 className="section-title-artisan">
-            Prêt à sécuriser votre entreprise ?
+            Prêt à <span className="gradient">sécuriser</span> votre entreprise ?
           </h2>
           <p className="section-subtitle-artisan">
             Nos experts certifiés ISO 27001 vous accompagnent de l'audit à la déclaration ANSSI
@@ -432,12 +521,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          FOOTER - STYLE ARTISAN.CO
-          ═══════════════════════════════════════════════════════════ */}
+      {/* FOOTER */}
       <footer className="footer-artisan">
         <div className="footer-container">
-          {/* Colonne 1 - À propos */}
           <div className="footer-column">
             <img src="/logo.png" alt="NIS2 Conformité" style={{height: '32px', marginBottom: '16px'}} />
             <p style={{fontSize: '14px', lineHeight: '1.6', marginBottom: '20px'}}>
@@ -453,7 +539,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Colonne 2 - Solutions */}
           <div className="footer-column">
             <h4>Solutions</h4>
             <ul>
@@ -464,7 +549,6 @@ export default function Home() {
             </ul>
           </div>
 
-          {/* Colonne 3 - Ressources */}
           <div className="footer-column">
             <h4>Ressources</h4>
             <ul>
@@ -475,7 +559,6 @@ export default function Home() {
             </ul>
           </div>
 
-          {/* Colonne 4 - Légal */}
           <div className="footer-column">
             <h4>Légal</h4>
             <ul>

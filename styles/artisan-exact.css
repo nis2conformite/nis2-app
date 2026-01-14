@@ -1,17 +1,24 @@
 /* ═══════════════════════════════════════════════════════════
-   🎨 DESIGN ARTISAN.CO - COPIE EXACTE
+   🎨 DESIGN ARTISAN.CO - VERSION AMÉLIORÉE
+   Style avec cartes en quinconce, dégradés et section noire
    ═══════════════════════════════════════════════════════════ */
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   VARIABLES - COULEURS ARTISAN.CO EXACTES
+   VARIABLES - COULEURS ARTISAN.CO + DÉGRADÉS
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 :root {
   /* Couleurs principales Artisan.co */
   --artisan-white: #FFFFFF;
   --artisan-bg-light: #FAFBFC;
-  --artisan-primary: #4F46E5;      /* Indigo moderne */
-  --artisan-primary-dark: #4338CA;
+  --artisan-primary: #6366F1;      /* Indigo/violet moderne */
+  --artisan-primary-dark: #4F46E5;
   --artisan-primary-light: #818CF8;
+
+  /* Couleurs pour variations de cartes */
+  --artisan-purple: #A855F7;       /* Violet */
+  --artisan-pink: #EC4899;         /* Rose */
+  --artisan-blue: #3B82F6;         /* Bleu */
+  --artisan-cyan: #06B6D4;         /* Cyan */
 
   /* Textes */
   --artisan-text-dark: #0F172A;
@@ -19,9 +26,18 @@
   --artisan-text-light: #64748B;
   --artisan-text-muted: #94A3B8;
 
+  /* Section noire */
+  --artisan-black-section: #0F172A;
+  --artisan-black-text: #E2E8F0;
+
   /* Footer */
   --artisan-footer-bg: #0F172A;
   --artisan-footer-text: #94A3B8;
+
+  /* Dégradés */
+  --gradient-purple-pink: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  --gradient-blue-cyan: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
+  --gradient-indigo-purple: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
 
   /* Ombres Artisan (subtiles) */
   --shadow-artisan-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -29,11 +45,17 @@
   --shadow-artisan-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
   --shadow-artisan-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
 
+  /* Ombres colorées pour cartes */
+  --shadow-purple: 0 10px 25px -5px rgba(168, 85, 247, 0.15);
+  --shadow-pink: 0 10px 25px -5px rgba(236, 72, 153, 0.15);
+  --shadow-blue: 0 10px 25px -5px rgba(59, 130, 246, 0.15);
+
   /* Coins arrondis Artisan */
   --radius-artisan-sm: 6px;
   --radius-artisan-md: 8px;
   --radius-artisan-lg: 12px;
   --radius-artisan-xl: 16px;
+  --radius-artisan-2xl: 20px;
 
   /* Typographie */
   --font-artisan: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -58,22 +80,28 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HEADER - STYLE ARTISAN.CO
+   STICKY HEADER - STYLE ARTISAN.CO EXACT
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .header-artisan {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.80);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-artisan.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .header-container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 16px 24px;
+  padding: 14px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -82,6 +110,11 @@ body {
 .header-logo {
   height: 32px;
   width: auto;
+  transition: opacity 0.2s;
+}
+
+.header-logo:hover {
+  opacity: 0.8;
 }
 
 .header-nav {
@@ -96,10 +129,26 @@ body {
   color: var(--artisan-text-medium);
   text-decoration: none;
   transition: color 0.2s;
+  position: relative;
+}
+
+.header-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--artisan-primary);
+  transition: width 0.3s ease;
 }
 
 .header-nav a:hover {
   color: var(--artisan-text-dark);
+}
+
+.header-nav a:hover::after {
+  width: 100%;
 }
 
 .header-cta {
@@ -117,6 +166,9 @@ body {
   transition: all 0.2s;
   border: none;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .btn-artisan-primary {
@@ -143,10 +195,10 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HERO SECTION - STYLE ARTISAN.CO
+   HERO SECTION - AVEC TITRE DÉGRADÉ
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .hero-artisan-exact {
-  padding: 80px 24px 120px;
+  padding: 100px 24px 120px;
   background: var(--artisan-white);
   text-align: center;
 }
@@ -159,21 +211,21 @@ body {
 .hero-badge-artisan {
   display: inline-block;
   padding: 8px 16px;
-  background: var(--artisan-bg-light);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.2);
   border-radius: 999px;
   font-size: 13px;
-  font-weight: 500;
-  color: var(--artisan-text-medium);
+  font-weight: 600;
+  color: var(--artisan-purple);
   margin-bottom: 32px;
   letter-spacing: -0.01em;
 }
 
 .hero-title-artisan {
-  font-size: 64px;
-  font-weight: 700;
+  font-size: 72px;
+  font-weight: 800;
   line-height: 1.1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   color: var(--artisan-text-dark);
   margin: 0 0 24px;
   max-width: 900px;
@@ -181,8 +233,13 @@ body {
   margin-right: auto;
 }
 
+/* Effet dégradé sur une partie du titre */
 .hero-title-artisan .highlight {
-  color: var(--artisan-primary);
+  background: linear-gradient(135deg, #A855F7 0%, #EC4899 50%, #F97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
 }
 
 .hero-subtitle-artisan {
@@ -206,7 +263,7 @@ body {
   background: var(--artisan-white);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: var(--radius-artisan-lg);
-  box-shadow: var(--shadow-artisan-lg);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 
 .hero-form-input {
@@ -248,6 +305,7 @@ body {
   gap: 16px;
   font-size: 13px;
   color: var(--artisan-text-muted);
+  font-weight: 500;
 }
 
 .hero-trust-artisan span {
@@ -257,7 +315,123 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SECTION AVANT/APRÈS - STYLE ARTISAN.CO
+   SECTION AVEC FOND NOIR (DÉMARQUÉE)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.black-section-artisan {
+  padding: 96px 24px;
+  background: var(--artisan-black-section);
+  color: var(--artisan-black-text);
+  position: relative;
+  overflow: hidden;
+}
+
+.black-section-artisan::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.black-section-artisan .section-title-artisan {
+  color: white;
+}
+
+.black-section-artisan .section-subtitle-artisan {
+  color: var(--artisan-black-text);
+}
+
+.black-section-artisan .content-card-artisan {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.black-section-artisan .content-card-artisan:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(168, 85, 247, 0.3);
+  transform: translateY(-4px);
+}
+
+.black-section-artisan .content-card-artisan h3 {
+  color: white;
+}
+
+.black-section-artisan .content-card-artisan p {
+  color: var(--artisan-black-text);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CARTES EN QUINCONCE AVEC VARIATIONS DE COULEURS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.staggered-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 48px auto 0;
+}
+
+.staggered-grid .content-card-artisan:nth-child(3n+1) {
+  margin-top: 0;
+}
+
+.staggered-grid .content-card-artisan:nth-child(3n+2) {
+  margin-top: 40px;
+}
+
+.staggered-grid .content-card-artisan:nth-child(3n+3) {
+  margin-top: 80px;
+}
+
+/* Variations de couleurs pour les cartes */
+.content-card-artisan.card-purple {
+  border-left: 4px solid var(--artisan-purple);
+  box-shadow: var(--shadow-purple);
+}
+
+.content-card-artisan.card-purple:hover {
+  border-left-color: var(--artisan-purple);
+  box-shadow: 0 20px 40px -10px rgba(168, 85, 247, 0.25);
+}
+
+.content-card-artisan.card-purple h3 {
+  color: var(--artisan-purple);
+}
+
+.content-card-artisan.card-pink {
+  border-left: 4px solid var(--artisan-pink);
+  box-shadow: var(--shadow-pink);
+}
+
+.content-card-artisan.card-pink:hover {
+  border-left-color: var(--artisan-pink);
+  box-shadow: 0 20px 40px -10px rgba(236, 72, 153, 0.25);
+}
+
+.content-card-artisan.card-pink h3 {
+  color: var(--artisan-pink);
+}
+
+.content-card-artisan.card-blue {
+  border-left: 4px solid var(--artisan-blue);
+  box-shadow: var(--shadow-blue);
+}
+
+.content-card-artisan.card-blue:hover {
+  border-left-color: var(--artisan-blue);
+  box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.25);
+}
+
+.content-card-artisan.card-blue h3 {
+  color: var(--artisan-blue);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION AVANT/APRÈS
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .before-after-section {
   padding: 96px 24px;
@@ -271,18 +445,28 @@ body {
 }
 
 .section-title-artisan {
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
   color: var(--artisan-text-dark);
   margin: 0 0 16px;
+}
+
+/* Effet dégradé sur les titres de section */
+.section-title-artisan .gradient {
+  background: linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #EC4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline;
 }
 
 .section-subtitle-artisan {
   font-size: 18px;
   color: var(--artisan-text-light);
   margin: 0 0 64px;
+  font-weight: 500;
 }
 
 .before-after-grid {
@@ -295,14 +479,15 @@ body {
 .before-card, .after-card {
   background: var(--artisan-white);
   padding: 48px 40px;
-  border-radius: var(--radius-artisan-xl);
-  box-shadow: var(--shadow-artisan-md);
+  border-radius: var(--radius-artisan-2xl);
+  box-shadow: var(--shadow-artisan-lg);
   transition: all 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.06);
+  text-align: left;
 }
 
 .before-card:hover, .after-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   box-shadow: var(--shadow-artisan-xl);
 }
 
@@ -315,7 +500,6 @@ body {
 
 .before-card ul, .after-card ul {
   list-style: none;
-  text-align: left;
 }
 
 .before-card li, .after-card li {
@@ -350,7 +534,7 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CARTES DE CONTENU - STYLE ARTISAN.CO
+   CARTES DE CONTENU (BASE)
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .content-section {
   padding: 96px 24px;
@@ -372,16 +556,15 @@ body {
 .content-card-artisan {
   background: var(--artisan-white);
   padding: 40px 32px;
-  border-radius: var(--radius-artisan-lg);
+  border-radius: var(--radius-artisan-xl);
   box-shadow: var(--shadow-artisan-md);
   border: 1px solid rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
 }
 
 .content-card-artisan:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   box-shadow: var(--shadow-artisan-xl);
-  border-color: rgba(79, 70, 229, 0.2);
 }
 
 .content-card-artisan h3 {
@@ -395,6 +578,80 @@ body {
   font-size: 15px;
   line-height: 1.6;
   color: var(--artisan-text-medium);
+  margin: 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   3 BULLES - NOTRE APPROCHE (TIMELINE)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.timeline-container {
+  max-width: 1200px;
+  margin: 48px auto 0;
+}
+
+.timeline-horizontal {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  position: relative;
+}
+
+.timeline-horizontal::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--artisan-purple) 0%, var(--artisan-pink) 50%, var(--artisan-blue) 100%);
+  z-index: 0;
+}
+
+.timeline-item {
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-number {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--artisan-purple) 0%, var(--artisan-pink) 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 auto 24px;
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.3);
+}
+
+.timeline-item:nth-child(2) .timeline-number {
+  background: linear-gradient(135deg, var(--artisan-pink) 0%, var(--artisan-blue) 100%);
+  box-shadow: 0 8px 24px rgba(236, 72, 153, 0.3);
+}
+
+.timeline-item:nth-child(3) .timeline-number {
+  background: linear-gradient(135deg, var(--artisan-blue) 0%, var(--artisan-cyan) 100%);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+}
+
+.timeline-content {
+  text-align: center;
+}
+
+.timeline-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--artisan-text-dark);
+  margin: 0 0 12px;
+}
+
+.timeline-description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--artisan-text-light);
   margin: 0;
 }
 
@@ -417,7 +674,7 @@ body {
 .pricing-card-artisan {
   background: var(--artisan-white);
   padding: 40px 32px;
-  border-radius: var(--radius-artisan-xl);
+  border-radius: var(--radius-artisan-2xl);
   box-shadow: var(--shadow-artisan-md);
   border: 2px solid transparent;
   transition: all 0.3s ease;
@@ -425,28 +682,29 @@ body {
 }
 
 .pricing-card-artisan:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   box-shadow: var(--shadow-artisan-xl);
 }
 
 .pricing-card-artisan.featured {
   border-color: var(--artisan-primary);
-  box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.15);
+  box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.2);
 }
 
 .pricing-badge-featured {
   position: absolute;
-  top: -12px;
+  top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--artisan-primary);
+  background: linear-gradient(135deg, var(--artisan-purple) 0%, var(--artisan-pink) 100%);
   color: white;
-  padding: 6px 16px;
+  padding: 6px 18px;
   border-radius: 999px;
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
 }
 
 .pricing-name {
@@ -458,8 +716,11 @@ body {
 
 .pricing-price-artisan {
   font-size: 48px;
-  font-weight: 700;
-  color: var(--artisan-primary);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--artisan-primary) 0%, var(--artisan-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin: 0 0 8px;
   line-height: 1;
 }
@@ -610,13 +871,26 @@ body {
   }
 
   .section-title-artisan {
-    font-size: 36px;
+    font-size: 42px;
   }
 
   .before-after-grid,
   .pricing-grid-artisan {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  .timeline-horizontal {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .timeline-horizontal::before {
+    display: none;
+  }
+
+  .staggered-grid .content-card-artisan:nth-child(n) {
+    margin-top: 0;
   }
 
   .footer-container {
@@ -627,6 +901,10 @@ body {
 @media (max-width: 768px) {
   .header-nav {
     display: none;
+  }
+
+  .hero-artisan-exact {
+    padding: 60px 20px 80px;
   }
 
   .hero-title-artisan {
@@ -646,7 +924,12 @@ body {
   }
 
   .section-title-artisan {
-    font-size: 28px;
+    font-size: 32px;
+  }
+
+  .content-grid,
+  .staggered-grid {
+    grid-template-columns: 1fr;
   }
 
   .footer-container {
