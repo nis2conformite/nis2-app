@@ -3,29 +3,33 @@ import Head from 'next/head';
 import { useQuiz } from '../hooks/useQuiz';
 import { useLeadPopup } from '../hooks/useLeadPopup';
 import { QuizModal } from '../components/QuizModal';
+import MenuBurger from '../components/MenuBurger';
 import {
   PRICING_OFFERS,
   TESTIMONIALS,
   HERO_STATS,
-  CONTACT_INFO,
   FAQ_ITEMS,
+  CONTACT_INFO,
   EXTERNAL_LINKS,
   EXPERTISE_TIMELINE,
+  IMPACT_STATS
 } from '../utils/constants';
 
 export default function Home() {
+  const [videoIsPlaying, setVideoIsPlaying] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
   const [email, setEmail] = useState('');
   const quiz = useQuiz();
   const popup = useLeadPopup({
     quizIsOpen: quiz.isOpen,
+    videoIsPlaying
   });
 
-  async function handleStripeCheckout(offerId) {
+  async function handleStripeCheckout() {
     try {
       const response = await fetch('/api/stripe/create-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ offerId }),
       });
 
       const data = await response.json();
@@ -43,544 +47,804 @@ export default function Home() {
     }
   }
 
-  function handleEmailSubmit(e) {
+  async function handleNewsletterSubmit(e) {
     e.preventDefault();
     if (email) {
-      window.location.href = `${CONTACT_INFO.calendly}?email=${encodeURIComponent(email)}`;
+      alert(`Merci ${email} ! Vous allez recevoir notre guide NIS2.`);
+      setEmail('');
     }
   }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const stickyHeader = document.getElementById('stickyHeader');
+      const heroSection = document.querySelector('.hero-artisan');
+
+      if (heroSection && stickyHeader) {
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        if (window.scrollY > heroBottom) {
+          stickyHeader.classList.add('visible');
+        } else {
+          stickyHeader.classList.remove('visible');
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.content-card-artisan, .testimonial-card-artisan').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      observer.observe(el);
+    });
+
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = function() {
+      const iframe = document.querySelector('.video-container iframe');
+      if (iframe) {
+        new window.YT.Player(iframe, {
+          events: {
+            'onStateChange': (event) => {
+              setVideoIsPlaying(event.data === window.YT.PlayerState.PLAYING);
+            }
+          }
+        });
+      }
+    };
+  }, []);
 
   return (
     <>
       <Head>
-        <title>NIS2 Conformité | Mesurez vos risques et priorisez vos actions</title>
-        <meta name="description" content="Audit structuré selon référentiel ANSSI. Rapport détaillé. Recommandations priorisées. Conformité NIS2 pour PME et ETI." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>NIS2 Conformité | Expert Cybersécurité ISO 27001 | Accompagnement Stratégique PME</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      {/* HEADER - STYLE ARTISAN.CO AMÉLIORÉ */}
-      <header className="header-artisan">
-        <div className="header-container">
-          <img src="/logo.png" alt="NIS2 Conformité" className="header-logo" />
+      <div className="bg-gradient-artisan"></div>
 
-          <nav className="header-nav">
-            <a href="#solutions">Solutions</a>
-            <a href="#pricing">Tarifs</a>
-            <a href="#expertise">Expertise</a>
-            <a href="#temoignages">Témoignages</a>
-          </nav>
+      {/* Alert Bar */}
+      <div className="alert-bar-artisan">
+        <span>NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant</span>
+      </div>
 
-          <div className="header-cta">
-            <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-primary">
+      {/* Sticky Header */}
+      <header className="header-artisan" id="stickyHeader">
+        <div className="header-content-artisan">
+          <div className="header-logo-artisan">
+            <img
+              src="/logo.png"
+              alt="Cyber Solférino"
+            />
+          </div>
+          <div className="header-cta-artisan">
+            <MenuBurger />
+            <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-header-artisan">
               Échange gratuit
             </a>
           </div>
         </div>
       </header>
 
-      {/* HERO SECTION - AVEC DÉGRADÉ SUR TITRE */}
-      <section className="hero-artisan-exact">
-        <div className="hero-artisan-container">
-          <div className="hero-badge-artisan">
-            NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant
-          </div>
+      <div className="container-artisan">
+        {/* ═══════════════════════════════════════════════════════════
+            HERO SECTION - STRUCTURE HISTORIQUE + DESIGN ARTISAN
+            ═══════════════════════════════════════════════════════════ */}
+        <section className="hero-artisan">
+          <img
+            src="/logo.png"
+            alt="Cyber Solférino"
+            className="hero-logo-artisan"
+          />
+
+          <p className="hero-baseline-artisan">
+            La plateforme d'audit et de conformité cyber<br />
+            pensée pour les PME et ETI européennes
+          </p>
+
+          <div className="hero-separator-artisan"></div>
 
           <h1 className="hero-title-artisan">
-            Mesurez vos risques <span className="highlight">NIS2</span><br />
+            Mesurez vos risques <span className="gradient">NIS2</span><br />
             et priorisez vos actions
           </h1>
 
           <p className="hero-subtitle-artisan">
-            Audit structuré selon référentiel ANSSI • Rapport détaillé en 48H • Recommandations priorisées • Accompagnement expert certifié ISO 27001
+            Audit structuré • Selon référentiel ANSSI • Rapport détaillé • Recommandations priorisées
           </p>
 
-          <form onSubmit={handleEmailSubmit} className="hero-form-artisan">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Votre email professionnel"
-              className="hero-form-input"
-              required
-            />
-            <button type="submit" className="hero-form-submit">
-              Démarrer l'audit
+          {/* Stats dans le Hero - Structure historique */}
+          <div className="hero-stats-artisan">
+            <div className="stat-artisan">
+              <div className="stat-value-artisan">92%</div>
+              <div className="stat-label-artisan">PME et ETI<br />non prêtes</div>
+            </div>
+            <div className="stat-artisan">
+              <div className="stat-value-artisan">10M€</div>
+              <div className="stat-label-artisan">amende max<br />ou 2% du CA</div>
+            </div>
+            <div className="stat-artisan">
+              <div className="stat-value-artisan">70%</div>
+              <div className="stat-label-artisan">d'aides de l'état<br />possibles</div>
+            </div>
+            <div className="stat-artisan">
+              <div className="stat-value-artisan">65</div>
+              <div className="stat-label-artisan">questions<br />d'audit</div>
+            </div>
+          </div>
+
+          {/* CTA "Échange gratuit" */}
+          <a
+            href={CONTACT_INFO.calendly}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-cta-artisan"
+          >
+            Échange gratuit - Suis-je éligible ?
+          </a>
+
+          <p className="hero-reassurance-artisan">
+            ✓ Certifié ISO 27001 • ✓ Méthodologie ANSSI • ✓ Sans engagement
+          </p>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
+            SECTION LIENS INFORMATIFS - HISTORIQUE
+            ═══════════════════════════════════════════════════════════ */}
+        <section className="info-section-artisan">
+          <h3 className="info-title-artisan">Vous vous posez des questions ?</h3>
+          <div className="info-links-artisan">
+            <button onClick={quiz.openQuiz} className="info-link-artisan">
+              Suis-je concerné par NIS2 ?
             </button>
-          </form>
+            <a href="#video-section" className="info-link-artisan">
+              Comprendre NIS2 en 3min
+            </a>
+          </div>
+          <p className="info-subtitle-artisan">Réponses claires et rapides</p>
+        </section>
 
-          <div className="hero-trust-artisan">
-            <span>✓ Certifié ISO 27001</span>
-            <span>•</span>
-            <span>✓ Méthodologie ANSSI</span>
-            <span>•</span>
-            <span>✓ Sans engagement</span>
+        {/* ═══════════════════════════════════════════════════════════
+            AVANT / APRÈS - HISTORIQUE (Warning + Value Prop)
+            ═══════════════════════════════════════════════════════════ */}
+        <div className="cards-grid-artisan">
+          <div className="content-card-artisan">
+            <h2 className="card-title-artisan">
+              Les enjeux de la<br />non-conformité
+            </h2>
+            <ul className="card-list-artisan">
+              <li><strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</li>
+              <li><strong>Responsabilité pénale du dirigeant</strong> — En cas de manquement aux obligations NIS2</li>
+              <li><strong>Exclusion des marchés</strong> — Impossibilité de répondre aux appels d'offres publics et privés</li>
+              <li><strong>Perte de confiance B2B</strong> — Vos clients exigent désormais la conformité</li>
+              <li><strong>Contrôles réglementaires</strong> — Audits de votre entreprise sur site sans préavis de l'ANSSI</li>
+            </ul>
+          </div>
+
+          <div className="content-card-artisan">
+            <h2 className="card-title-artisan">
+              Transformez la contrainte en<br />levier stratégique
+            </h2>
+            <ul className="card-list-artisan">
+              <li><strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection</li>
+              <li><strong>Différenciez-vous</strong> — Positionnez-vous comme le partenaire de confiance de votre secteur</li>
+              <li><strong>Rassurez vos clients</strong> — Montrez que vous protégez les données de vos clients</li>
+              <li><strong>Fidélisez vos partenaires</strong> — Consolidez votre réputation d'acteur stable et responsable</li>
+              <li><strong>Valorisez votre entreprise</strong> — Une organisation conforme vaut plus en cas de cession</li>
+            </ul>
           </div>
         </div>
-      </section>
 
-      {/* SECTION AVANT/APRÈS */}
-      <section className="before-after-section" id="solutions">
-        <div className="before-after-container">
-          <h2 className="section-title-artisan">
-            La conformité <span className="gradient">NIS2</span>, avant et après
-          </h2>
-          <p className="section-subtitle-artisan">
-            Transformez la contrainte réglementaire en levier stratégique pour votre entreprise
-          </p>
-
-          <div className="before-after-grid">
-            <div className="before-card">
-              <h3>❌ Avant (Non-conforme)</h3>
-              <ul>
-                <li>Amendes jusqu'à 10M€ ou 2% du CA mondial</li>
-                <li>Risque de suspension d'activité</li>
-                <li>Vulnérabilité aux cyberattaques (60% ferment sous 12 mois)</li>
-                <li>Perte de confiance clients et partenaires</li>
-                <li>Coût moyen d'une attaque : 4,35M€</li>
-                <li>Stress juridique et responsabilité des dirigeants</li>
-                <li>Exclusion des appels d'offres publics</li>
-              </ul>
-            </div>
-
-            <div className="after-card">
-              <h3>✅ Après (Conforme NIS2)</h3>
-              <ul>
-                <li>Conformité réglementaire assurée</li>
-                <li>Protection renforcée contre les cyberattaques</li>
-                <li>Jusqu'à 70% d'aides de l'État pour financer</li>
-                <li>Avantage concurrentiel sur votre marché</li>
-                <li>Confiance accrue des clients et investisseurs</li>
-                <li>Réduction des primes d'assurance cyber</li>
-                <li>Éligibilité aux marchés publics</li>
-              </ul>
-            </div>
+        {/* ═══════════════════════════════════════════════════════════
+            SECTION IMPACT - HISTORIQUE (2 grandes cartes)
+            ═══════════════════════════════════════════════════════════ */}
+        <section className="section-artisan">
+          <div className="section-header-artisan">
+            <h2 className="section-title-artisan">
+              La prévention est plus rentable qu'une crise cyber
+            </h2>
+            <p className="section-subtitle-artisan">
+              Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* 3 BULLES - NOTRE APPROCHE (TIMELINE) */}
-      <section className="content-section">
-        <div className="content-container">
-          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
-            <span className="gradient">Notre approche</span> en 3 étapes
-          </h2>
-          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
-            Une méthodologie éprouvée pour votre conformité NIS2
-          </p>
-
-          <div className="timeline-container">
-            <div className="timeline-horizontal">
-              {EXPERTISE_TIMELINE.map((item, index) => (
-                <div key={index} className="timeline-item">
-                  <div className="timeline-number">{item.number}</div>
-                  <div className="timeline-content">
-                    <h3 className="timeline-title">{item.title}</h3>
-                    <p className="timeline-description">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION AVEC FOND NOIR - STATS & CHIFFRES */}
-      <section className="black-section-artisan">
-        <div className="content-container">
-          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
-            La prévention est plus <span className="highlight">rentable</span> qu'une crise cyber
-          </h2>
-          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
-            Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber
-          </p>
-
-          {/* CARTES EN QUINCONCE AVEC VARIATIONS DE COULEURS */}
-          <div className="staggered-grid">
+          <div className="cards-grid-artisan" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'}}>
             <div className="content-card-artisan card-purple">
-              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>92%</h3>
-              <h3>PME et ETI non prêtes</h3>
-              <p>
-                La majorité des entreprises concernées par NIS2 ne sont pas encore conformes.
-                Les premières sanctions arrivent en 2027.
-              </p>
-            </div>
-
-            <div className="content-card-artisan card-pink">
-              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>+38%</h3>
-              <h3>Hausse des cyberattaques</h3>
-              <p>
-                Les attaques contre les PME ont explosé de 38% en 2024.
-                Les cybercriminels ciblent les entreprises non protégées.
-              </p>
-            </div>
-
-            <div className="content-card-artisan card-blue">
-              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>4,35M€</h3>
-              <h3>Coût moyen d'une cyberattaque</h3>
-              <p>
-                60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne),
-                perte de données, rançons.
-              </p>
-            </div>
-
-            <div className="content-card-artisan card-purple">
-              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>10M€</h3>
-              <h3>Amende maximale NIS2</h3>
-              <p>
-                Ou 2% du chiffre d'affaires annuel mondial. La non-conformité coûte 200x plus cher qu'un audit préventif.
-              </p>
-            </div>
-
-            <div className="content-card-artisan card-pink">
-              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>70%</h3>
-              <h3>D'aides de l'État possibles</h3>
-              <p>
-                Des dispositifs existent pour financer votre mise en conformité.
-                Nous vous accompagnons dans les démarches.
-              </p>
-            </div>
-
-            <div className="content-card-artisan card-blue">
-              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>65</h3>
-              <h3>Questions d'audit structurées</h3>
-              <p>
-                Notre audit couvre les 10 catégories de sécurité définies par le référentiel ANSSI.
-                Rapport détaillé en 48H.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION PRICING */}
-      <section className="pricing-section-artisan" id="pricing">
-        <div className="before-after-container">
-          <h2 className="section-title-artisan">
-            Investissement vs <span className="gradient">Amende</span>
-          </h2>
-          <p className="section-subtitle-artisan">
-            Un audit coûte 200x moins cher qu'une sanction. Protégez votre entreprise dès maintenant.
-          </p>
-
-          <div className="pricing-grid-artisan">
-            {PRICING_OFFERS.map((offer, index) => (
-              <div
-                key={offer.id}
-                className={`pricing-card-artisan ${index === 1 ? 'featured' : ''}`}
-              >
-                {index === 1 && (
-                  <div className="pricing-badge-featured">Le plus populaire</div>
-                )}
-
-                <h3 className="pricing-name">{offer.name}</h3>
-                <div className="pricing-price-artisan">
-                  {(offer.price / 100).toLocaleString('fr-FR')}€
-                </div>
-                <p className="pricing-period">HT</p>
-
-                <ul className="pricing-features-artisan">
-                  {offer.features.map((feature, idx) => (
-                    <li key={idx}>{feature}</li>
-                  ))}
-                </ul>
-
-                {offer.cta.type === 'stripe' ? (
-                  <button
-                    onClick={() => handleStripeCheckout(offer.id)}
-                    className={`btn-pricing-artisan ${index !== 1 ? 'btn-pricing-secondary' : ''}`}
-                  >
-                    {offer.cta.text}
-                  </button>
-                ) : (
-                  <a
-                    href={offer.cta.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`btn-pricing-artisan ${index !== 1 ? 'btn-pricing-secondary' : ''}`}
-                  >
-                    {offer.cta.text}
-                  </a>
-                )}
+              <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px'}}>
+                <div style={{fontSize: '48px'}}>📈</div>
+                <div style={{fontSize: '48px', fontWeight: '800', color: 'var(--artisan-purple)'}}>+38%</div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION COMMENT ÇA MARCHE */}
-      <section className="content-section">
-        <div className="content-container">
-          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
-            <span className="gradient">Comment</span> ça marche
-          </h2>
-          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
-            Un processus simple et structuré pour votre conformité NIS2
-          </p>
-
-          <div className="content-grid">
-            <div className="content-card-artisan">
-              <h3>01. Audit en ligne structuré</h3>
-              <p>
-                Répondez à 65 questions basées sur le référentiel ANSSI. Interface intuitive et guidée.
-                Sauvegarde automatique. Complétez à votre rythme en 10 catégories de sécurité.
+              <h3 style={{fontSize: '24px', marginBottom: '12px', fontWeight: '700'}}>Hausse attaques cyber</h3>
+              <p style={{color: 'var(--artisan-text-medium)', lineHeight: '1.6'}}>
+                Les attaques contre les PME ont explosé de 38% en 2024. Les cybercriminels ciblent les entreprises non protégées.
               </p>
             </div>
 
-            <div className="content-card-artisan">
-              <h3>02. Rapport de conformité détaillé</h3>
-              <p>
-                Recevez sous 48H un rapport complet avec votre score de conformité NIS2,
-                analyse par catégorie et plan d'action priorisé avec roadmap.
-              </p>
-            </div>
-
-            <div className="content-card-artisan">
-              <h3>03. Accompagnement expert</h3>
-              <p>
-                Bénéficiez d'un échange avec un expert certifié ISO 27001 pour comprendre votre rapport,
-                prioriser vos actions et budgéter votre mise en conformité (session 1h en visio).
+            <div className="content-card-artisan card-pink">
+              <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px'}}>
+                <div style={{fontSize: '48px', fontWeight: '800', color: 'var(--artisan-pink)'}}>4,35M€</div>
+              </div>
+              <h3 style={{fontSize: '24px', marginBottom: '12px', fontWeight: '700'}}>Coût moyen cyber attaque</h3>
+              <p style={{color: 'var(--artisan-text-medium)', lineHeight: '1.6'}}>
+                60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne), perte de données, rançons.
               </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* SECTION EXPERTISE */}
-      <section className="before-after-section" id="expertise">
-        <div className="before-after-container">
-          <h2 className="section-title-artisan">
-            Préparez-vous à NIS2 avec notre <span className="gradient">méthode éprouvée</span>
-          </h2>
-          <p className="section-subtitle-artisan">
-            Notre accompagnement se base sur le référentiel officiel de l'ANSSI
-          </p>
+        {/* ═══════════════════════════════════════════════════════════
+            PRICING - STRUCTURE HISTORIQUE EXACTE
+            ═══════════════════════════════════════════════════════════ */}
+        <section className="section-artisan" id="pricing">
+          <div className="section-header-artisan">
+            <h2 className="section-title-artisan">
+              Investissement vs <span className="gradient">Amende</span>
+            </h2>
+            <p className="section-subtitle-artisan">
+              Un audit coûte 200x moins cher qu'une sanction
+            </p>
+          </div>
 
-          <div className="before-after-grid">
-            <div className="after-card">
-              <h3>✓ Certification ISO 27001</h3>
-              <p>
-                Nos experts sont certifiés ISO 27001 et possèdent une expertise reconnue en cybersécurité.
-                Nous appliquons les meilleures pratiques internationales pour sécuriser votre entreprise.
-              </p>
+          {/* Bandeau aides d'état */}
+          <div className="subsidy-banner-artisan">
+            <div>
+              <div style={{fontSize: '16px', fontWeight: '700', marginBottom: '4px'}}>
+                Aides de l'État disponibles
+              </div>
+              <div style={{fontSize: '14px', color: 'var(--artisan-text-light)'}}>
+                Réduisez le coût de votre mise en conformité.
+              </div>
+            </div>
+            <button className="btn-simulator-artisan" onClick={() => alert('Simulateur en cours de développement')}>
+              Simulateur aides État
+            </button>
+          </div>
+
+          {/* 3 cartes de pricing - Structure historique */}
+          <div className="pricing-grid-artisan">
+            {/* Offre 1: Essentielle */}
+            <div className="pricing-card-artisan">
+              <div className="pricing-header-artisan">
+                <h3>Essentielle</h3>
+                <div className="pricing-price-artisan">3 490€</div>
+                <div className="pricing-period-artisan">HT • Paiement unique</div>
+              </div>
+
+              <div className="pricing-ideal-artisan">
+                <strong>Idéal pour :</strong> PME cherchant à évaluer leur positionnement
+              </div>
+
+              <ul className="pricing-features-artisan">
+                <li>Audit cyber NIS2 complet</li>
+                <li>Résultat immédiat en ligne</li>
+                <li>Score de conformité détaillé</li>
+                <li>Recommandations prioritaires</li>
+                <li>Support par email</li>
+              </ul>
+
+              <button onClick={handleStripeCheckout} className="btn-pricing-artisan btn-secondary-artisan">
+                Démarrer l'audit
+              </button>
             </div>
 
-            <div className="after-card">
-              <h3>✓ Méthodologie ANSSI</h3>
-              <p>
-                Notre audit suit le référentiel officiel de l'Agence Nationale de la Sécurité des Systèmes d'Information.
-                Conformité garantie avec les exigences réglementaires NIS2.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+            {/* Offre 2: Sérénité (POPULAIRE) */}
+            <div className="pricing-card-artisan pricing-featured-artisan">
+              <div className="pricing-badge-artisan">⭐ POPULAIRE</div>
 
-      {/* SECTION VIDÉO YOUTUBE */}
-      <section className="content-section" style={{background: 'var(--artisan-bg-light)'}}>
-        <div className="content-container" style={{maxWidth: '900px'}}>
-          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
-            Comprendre <span className="gradient">NIS2</span> en vidéo
-          </h2>
-          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
-            3 minutes pour tout comprendre de la directive NIS2
-          </p>
+              <div className="pricing-header-artisan">
+                <h3>Sérénité</h3>
+                <div className="pricing-price-artisan">7 990€</div>
+                <div className="pricing-period-artisan">HT • Paiement unique</div>
+              </div>
 
-          <div style={{
-            position: 'relative',
-            paddingBottom: '56.25%',
-            height: 0,
-            overflow: 'hidden',
-            borderRadius: '16px',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
-            marginTop: '48px'
-          }}>
-            <iframe
-              src={EXTERNAL_LINKS.videoYoutube}
-              title="Directive NIS2 expliquée"
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                border: 0
-              }}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      </section>
+              <div className="pricing-ideal-artisan">
+                <strong>Idéal pour :</strong> Entreprises visant la conformité NIS2
+              </div>
 
-      {/* SECTION FAQ */}
-      <section className="content-section">
-        <div className="content-container">
-          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
-            Les questions que se posent les <span className="gradient">dirigeants</span>
-          </h2>
-          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
-            Réponses claires et directes à vos interrogations
-          </p>
+              <ul className="pricing-features-artisan">
+                <li>Audit cyber NIS2 complet</li>
+                <li>Rapport validé par experts</li>
+                <li>Analyse écarts de conformité</li>
+                <li>Plan de remédiation détaillé</li>
+                <li>Restitution avec expert (1h visio)</li>
+                <li>Accès plateforme 6 mois</li>
+                <li>Délai de livraison : 48H</li>
+              </ul>
 
-          <div style={{maxWidth: '900px', margin: '48px auto 0'}}>
-            {FAQ_ITEMS.map((item) => (
-              <details
-                key={item.id}
-                style={{
-                  background: 'white',
-                  padding: '24px 32px',
-                  borderRadius: '12px',
-                  marginBottom: '16px',
-                  border: '1px solid rgba(0, 0, 0, 0.06)',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
-                  cursor: 'pointer'
-                }}
+              <a
+                href={CONTACT_INFO.calendly}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-pricing-artisan btn-primary-artisan"
               >
-                <summary style={{
-                  fontSize: '18px',
-                  fontWeight: '600',
-                  color: 'var(--artisan-text-dark)',
-                  listStyle: 'none',
+                Prendre rendez-vous
+              </a>
+            </div>
+
+            {/* Offre 3: Expertise */}
+            <div className="pricing-card-artisan">
+              <div className="pricing-header-artisan">
+                <h3>Expertise</h3>
+                <div className="pricing-price-artisan">14 900€</div>
+                <div className="pricing-period-artisan">HT • Paiement unique</div>
+              </div>
+
+              <div className="pricing-ideal-artisan">
+                <strong>Idéal pour :</strong> ETI et secteurs critiques
+              </div>
+
+              <ul className="pricing-features-artisan">
+                <li><strong>Tout de l'offre Sérénité</strong></li>
+                <li className="feature-plus-artisan">Entretien préalable expert</li>
+                <li className="feature-plus-artisan">Roadmap personnalisée</li>
+                <li className="feature-plus-artisan">Enregistrement ANSSI</li>
+                <li className="feature-plus-artisan">Dossier aides d'État</li>
+                <li className="feature-plus-artisan">Accès plateforme 12 mois</li>
+                <li className="feature-plus-artisan">MAJ évolutions législatives</li>
+              </ul>
+
+              <a
+                href={CONTACT_INFO.calendly}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-pricing-artisan btn-secondary-artisan"
+              >
+                Prendre rendez-vous
+              </a>
+            </div>
+          </div>
+
+          {/* Comparatif accordéon - Structure historique */}
+          <div className="comparison-toggle-artisan">
+            <button
+              className="btn-compare-artisan"
+              onClick={() => setShowComparison(!showComparison)}
+            >
+              {showComparison ? '▼ Masquer le comparatif' : '▶ Comparer nos offres'}
+            </button>
+          </div>
+
+          {showComparison && (
+            <div className="comparison-table-artisan">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Fonctionnalités</th>
+                    <th>Essentielle<br/><span style={{fontSize: '14px', fontWeight: '400'}}>3 490€</span></th>
+                    <th>Sérénité<br/><span style={{fontSize: '14px', fontWeight: '400'}}>7 990€</span></th>
+                    <th>Expertise<br/><span style={{fontSize: '14px', fontWeight: '400'}}>14 900€</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Audit cyber NIS2</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Résultat immédiat</td>
+                    <td>✓</td>
+                    <td>—</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>Rapport validé par experts</td>
+                    <td>—</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Analyse écarts de conformité</td>
+                    <td>—</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Plan de remédiation détaillé</td>
+                    <td>—</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Restitution avec expert</td>
+                    <td>—</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Entretien préalable expert</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Roadmap personnalisée</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Enregistrement ANSSI</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Dossier aides d'État</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Accès plateforme</td>
+                    <td>—</td>
+                    <td>6 mois</td>
+                    <td>12 mois</td>
+                  </tr>
+                  <tr>
+                    <td>Délai de livraison</td>
+                    <td>Immédiat</td>
+                    <td>48H</td>
+                    <td>1 mois</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
+            SERVICES COMPLÉMENTAIRES - HISTORIQUE
+            ═══════════════════════════════════════════════════════════ */}
+        <section className="section-artisan">
+          <div className="section-header-artisan">
+            <h2 className="section-title-artisan">Services complémentaires</h2>
+            <p className="section-subtitle-artisan">
+              Découvrez nos services pour aller plus loin dans la conformité et la sécurité
+            </p>
+          </div>
+
+          <div className="cards-grid-artisan">
+            <div className="content-card-artisan">
+              <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px'}}>
+                <div style={{
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: '12px',
+                  background: 'linear-gradient(135deg, #6366F1 0%, #A855F7 100%)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px'
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '24px'
                 }}>
-                  <span style={{fontSize: '24px'}}>{item.icon}</span>
-                  {item.question}
-                </summary>
-                <p style={{
-                  marginTop: '16px',
-                  paddingLeft: '36px',
-                  fontSize: '15px',
-                  lineHeight: '1.6',
-                  color: 'var(--artisan-text-medium)'
-                }}>
-                  {item.answer}
-                </p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION TÉMOIGNAGES */}
-      <section className="before-after-section" id="temoignages">
-        <div className="before-after-container">
-          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
-            Dirigeants <span className="gradient">conformes</span>, entreprises gagnantes
-          </h2>
-          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
-            Ils ont fait de NIS2 un levier de performance
-          </p>
-
-          <div className="content-grid" style={{marginTop: '48px'}}>
-            {TESTIMONIALS.map((testimonial, index) => (
-              <div key={index} className="content-card-artisan">
-                <p style={{fontStyle: 'italic', marginBottom: '20px', color: '#64748B'}}>
-                  "{testimonial.text}"
-                </p>
-                <div style={{borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: '16px'}}>
-                  <h3 style={{fontSize: '16px', marginBottom: '4px'}}>{testimonial.author.name}</h3>
-                  <p style={{fontSize: '14px', color: '#94A3B8', margin: 0}}>{testimonial.author.role}</p>
+                  📄
                 </div>
+                <h3 style={{fontSize: '20px', fontWeight: '700'}}>Modèles de documents NIS2</h3>
               </div>
-            ))}
+              <p style={{color: 'var(--artisan-text-medium)', lineHeight: '1.6'}}>
+                Templates prêts à l'emploi pour votre mise en conformité, mis à jour avec la réglementation
+              </p>
+            </div>
+
+            <div className="content-card-artisan">
+              <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px'}}>
+                <div style={{
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: '12px',
+                  background: 'linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '24px'
+                }}>
+                  📚
+                </div>
+                <h3 style={{fontSize: '20px', fontWeight: '700'}}>Formations NIS2</h3>
+              </div>
+              <p style={{color: 'var(--artisan-text-medium)', lineHeight: '1.6'}}>
+                Formation obligatoire des dirigeants et sensibilisation des équipes, en distanciel ou sur site
+              </p>
+            </div>
+
+            <div className="content-card-artisan">
+              <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px'}}>
+                <div style={{
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: '12px',
+                  background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '24px'
+                }}>
+                  💼
+                </div>
+                <h3 style={{fontSize: '20px', fontWeight: '700'}}>Montage dossiers Subventions</h3>
+              </div>
+              <p style={{color: 'var(--artisan-text-medium)', lineHeight: '1.6'}}>
+                Identification et constitution des dossiers d'aides d'État pour maximiser vos financements
+              </p>
+            </div>
+
+            <div className="content-card-artisan">
+              <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px'}}>
+                <div style={{
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: '12px',
+                  background: 'linear-gradient(135deg, #EC4899 0%, #EF4444 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '24px'
+                }}>
+                  ⚠️
+                </div>
+                <h3 style={{fontSize: '20px', fontWeight: '700'}}>Notification Incidents ANSSI</h3>
+              </div>
+              <p style={{color: 'var(--artisan-text-medium)', lineHeight: '1.6'}}>
+                Déclaration des incidents en 24h à l'ANSSI avec conseil gestion de crise et hotline 24/7
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* SECTION CTA FINAL */}
-      <section className="content-section">
-        <div className="content-container" style={{textAlign: 'center', maxWidth: '800px'}}>
-          <h2 className="section-title-artisan">
-            Prêt à <span className="gradient">sécuriser</span> votre entreprise ?
-          </h2>
-          <p className="section-subtitle-artisan">
-            Nos experts certifiés ISO 27001 vous accompagnent de l'audit à la déclaration ANSSI
-          </p>
-
-          <div style={{display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '40px'}}>
-            <a
-              href="#pricing"
-              className="btn-artisan btn-artisan-primary"
-              style={{padding: '16px 32px', fontSize: '16px'}}
-            >
-              Découvrir nos audits
-            </a>
+          <div style={{textAlign: 'center', marginTop: '48px'}}>
             <a
               href={CONTACT_INFO.calendly}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-artisan btn-artisan-secondary"
-              style={{padding: '16px 32px', fontSize: '16px'}}
+              className="btn-cta-artisan"
             >
-              Parler à un expert
+              Découvrir nos services complémentaires
             </a>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* FOOTER */}
-      <footer className="footer-artisan">
-        <div className="footer-container">
-          <div className="footer-column">
-            <img src="/logo.png" alt="NIS2 Conformité" style={{height: '32px', marginBottom: '16px'}} />
-            <p style={{fontSize: '14px', lineHeight: '1.6', marginBottom: '20px'}}>
-              La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes.
+        {/* ═══════════════════════════════════════════════════════════
+            EXPERTISE + TIMELINE 3 BULLES - HISTORIQUE
+            ═══════════════════════════════════════════════════════════ */}
+        <section className="section-artisan">
+          <div className="section-header-artisan">
+            <h2 className="section-title-artisan">
+              Préparez-vous à NIS2 avec notre méthode éprouvée
+            </h2>
+            <p className="section-subtitle-artisan">
+              Notre accompagnement se base sur le référentiel officiel de l'ANSSI.
             </p>
-            <div style={{display: 'flex', gap: '12px'}}>
-              <span style={{width: '32px', height: '32px', background: 'rgba(255,255,255,0.1)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                ISO
-              </span>
-              <span style={{width: '32px', height: '32px', background: 'rgba(255,255,255,0.1)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                ANSSI
-              </span>
+          </div>
+
+          {/* Timeline 3 bulles */}
+          <div className="timeline-horizontal">
+            {EXPERTISE_TIMELINE.map((item, index) => (
+              <div key={index} className="timeline-item">
+                <div className="timeline-number">{item.number}</div>
+                <div className="timeline-content">
+                  <h3 className="timeline-title">{item.title}</h3>
+                  <p className="timeline-description">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Cartes expertise */}
+          <div className="cards-grid-artisan" style={{marginTop: '64px'}}>
+            <div className="content-card-artisan card-blue">
+              <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px'}}>
+                <div style={{fontSize: '48px', fontWeight: '800', color: 'var(--artisan-blue)'}}>15+</div>
+                <h3 style={{fontSize: '24px', fontWeight: '700'}}>Années d'expérience terrain</h3>
+              </div>
+              <p style={{color: 'var(--artisan-text-medium)', lineHeight: '1.6'}}>
+                Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber.
+              </p>
+            </div>
+
+            <div className="content-card-artisan card-purple">
+              <div style={{display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px'}}>
+                <div style={{fontSize: '56px'}}>✓</div>
+                <h3 style={{fontSize: '24px', fontWeight: '700'}}>Une équipe d'experts en cyber défense</h3>
+              </div>
+              <p style={{color: 'var(--artisan-text-medium)', lineHeight: '1.6'}}>
+                Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.
+              </p>
             </div>
           </div>
 
-          <div className="footer-column">
-            <h4>Solutions</h4>
-            <ul>
-              <li><a href="#pricing">Audit NIS2</a></li>
-              <li><a href="#expertise">Accompagnement</a></li>
-              <li><a href="/formations">Formations</a></li>
-              <li><a href="/offres-complementaires">Services complémentaires</a></li>
-            </ul>
+          {/* Logos certifications */}
+          <div className="certifications-artisan">
+            <img src="/logo_anssi.png" alt="ANSSI" />
+            <img src="/Logo-cybermalveillance.PNG" alt="Cybermalveillance" />
+            <img src="/logo_expertcyber.jpg" alt="Expert Cyber" />
+            <img src="/iso_27001_02-1024x704.png" alt="ISO 27001" />
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
+            TÉMOIGNAGES - HISTORIQUE
+            ═══════════════════════════════════════════════════════════ */}
+        <section className="section-artisan">
+          <div className="section-header-artisan">
+            <h2 className="section-title-artisan">
+              Dirigeants conformes, entreprises gagnantes
+            </h2>
+            <p className="section-subtitle-artisan">
+              Ils ont fait de NIS2 un levier de performance
+            </p>
           </div>
 
-          <div className="footer-column">
-            <h4>Ressources</h4>
-            <ul>
-              <li><a href="/comprendre-nis2">Comprendre NIS2</a></li>
-              <li><a href="#temoignages">Témoignages clients</a></li>
-              <li><a href="/qui-sommes-nous">Qui sommes-nous</a></li>
-              <li><a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer">Contact</a></li>
-            </ul>
+          <div className="testimonials-grid-artisan">
+            {TESTIMONIALS.map((testimonial) => (
+              <div key={testimonial.id} className="testimonial-card-artisan">
+                <div className="testimonial-text-artisan">"{testimonial.text}"</div>
+                <div className="testimonial-author-artisan">
+                  <div className="author-avatar-artisan">{testimonial.author.avatar}</div>
+                  <div>
+                    <div className="author-name-artisan">{testimonial.author.name}</div>
+                    <div className="author-role-artisan">{testimonial.author.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
+            VIDÉO - HISTORIQUE
+            ═══════════════════════════════════════════════════════════ */}
+        <section className="section-artisan" id="video-section">
+          <div className="section-header-artisan">
+            <div className="video-badge-artisan">Comprendre NIS2 en vidéo</div>
+          </div>
+          <div className="video-container-artisan">
+            <iframe
+              src={EXTERNAL_LINKS.videoYoutube}
+              title="Directive NIS2 expliquée"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen>
+            </iframe>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
+            FAQ - HISTORIQUE
+            ═══════════════════════════════════════════════════════════ */}
+        <section className="section-artisan">
+          <div className="section-header-artisan">
+            <h2 className="section-title-artisan">
+              Les questions que se posent les dirigeants
+            </h2>
           </div>
 
-          <div className="footer-column">
-            <h4>Légal</h4>
-            <ul>
-              <li><a href="/mentions-legales">Mentions légales</a></li>
-              <li><a href="/politique-confidentialite">Confidentialité</a></li>
-              <li><a href="/cgv">CGV</a></li>
-              <li><a href="/cookies">Cookies</a></li>
-            </ul>
+          <div className="faq-artisan">
+            {FAQ_ITEMS.map((item) => (
+              <details key={item.id} className="faq-item-artisan">
+                <summary className="faq-question-artisan">
+                  <span style={{fontSize: '24px', marginRight: '12px'}}>{item.icon}</span>
+                  {item.question}
+                </summary>
+                <p className="faq-answer-artisan">{item.answer}</p>
+              </details>
+            ))}
           </div>
-        </div>
+        </section>
 
-        <div className="footer-bottom">
-          <p>© 2025 NIS2 Conformité. Tous droits réservés.</p>
-          <div className="footer-social">
-            <a href="#">LinkedIn</a>
-            <a href="#">Twitter</a>
+        {/* ═══════════════════════════════════════════════════════════
+            CTA FINAL - HISTORIQUE
+            ═══════════════════════════════════════════════════════════ */}
+        <section className="cta-final-artisan">
+          <h2>Sécurisez votre avenir dès aujourd'hui</h2>
+          <p>
+            Échange confidentiel avec un consultant certifié ISO 27001<br />
+            <strong>Audit indépendant pour mesurer votre conformité</strong>
+          </p>
+          <a
+            href={CONTACT_INFO.calendly}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-cta-final-artisan"
+          >
+            Réserver un échange gratuit
+          </a>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
+            FOOTER - HISTORIQUE (4 colonnes)
+            ═══════════════════════════════════════════════════════════ */}
+        <footer className="footer-artisan">
+          <div className="footer-container-artisan">
+            <div className="footer-brand-artisan">
+              <img src="/logo.png" alt="NIS2 Conformité" className="footer-logo-artisan" />
+              <p className="footer-tagline-artisan">
+                La plateforme d'audit et de conformité cyber<br />
+                pensée pour les PME et ETI européennes
+              </p>
+            </div>
+
+            <div className="footer-links-artisan">
+              <div className="footer-column-artisan">
+                <h4>Navigation</h4>
+                <ul>
+                  <li><a href="/">Accueil</a></li>
+                  <li><a href="/comprendre-nis2">Comprendre NIS2</a></li>
+                  <li><a href="/qui-sommes-nous">Qui sommes-nous ?</a></li>
+                </ul>
+              </div>
+
+              <div className="footer-column-artisan">
+                <h4>Nos services</h4>
+                <ul>
+                  <li><a href="/offres-complementaires">Offres complémentaires</a></li>
+                  <li><a href="/formations">Formations</a></li>
+                  <li><a href="/#pricing">Nos audits</a></li>
+                </ul>
+              </div>
+
+              <div className="footer-column-artisan">
+                <h4>Contact</h4>
+                <ul>
+                  <li>
+                    <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer">
+                      Prendre rendez-vous
+                    </a>
+                  </li>
+                  <li>
+                    <a href="mailto:nis2conformite@gmail.com">
+                      nis2conformite@gmail.com
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-      </footer>
 
-      {/* Quiz Modal */}
-      {quiz.isOpen && <QuizModal onClose={quiz.close} />}
+          <div className="footer-bottom-artisan">
+            <p>© 2025 NIS2 Conformité • Tous droits réservés</p>
+            <div className="footer-certifications-artisan">
+              <span>✓ Certifié ISO 27001</span>
+              <span>✓ Méthodologie ANSSI</span>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+      <QuizModal quiz={quiz} />
     </>
   );
 }
