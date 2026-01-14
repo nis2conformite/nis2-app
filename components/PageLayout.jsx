@@ -109,21 +109,22 @@ export default function PageLayout({ children }) {
           flex-direction: column;
         }
 
-        /* HEADER - Toujours visible */
+        /* HEADER - Style Artisan minimaliste */
         .page-header {
           position: sticky;
           top: 0;
-          background: white;
-          border-bottom: 1px solid #E2E8F0;
-          padding: 12px 0;
-          transition: all 0.3s ease;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+          padding: 16px 0;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           z-index: 100;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         .page-header.scrolled {
-          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-          padding: 8px 0;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+          padding: 12px 0;
         }
 
         .header-container {
@@ -156,21 +157,22 @@ export default function PageLayout({ children }) {
         }
 
         .header-cta {
-          padding: 12px 24px;
-          background: #FF5630;
+          padding: 12px 28px;
+          background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
           color: white;
           font-size: 15px;
           font-weight: 700;
           text-decoration: none;
-          border-radius: 10px;
-          transition: all 0.3s ease;
+          border-radius: 14px;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           white-space: nowrap;
+          box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
         }
 
         .header-cta:hover {
-          background: #E64825;
+          background: linear-gradient(135deg, #6D28D9 0%, #5B21B6 100%);
           transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(255, 86, 48, 0.3);
+          box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
         }
 
         /* CONTENT */
@@ -237,7 +239,7 @@ export default function PageLayout({ children }) {
         }
 
         .footer-column a:hover {
-          color: #FF5630;
+          color: #A78BFA;
         }
 
         .footer-bottom {
