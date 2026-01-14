@@ -11,18 +11,19 @@
      COULEURS PRINCIPALES
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-  /* Couleurs primaires */
-  --color-primary: #1E3A8A;
-  --color-primary-dark: #1E40AF;
-  --color-primary-light: #3B82F6;
+  /* Couleurs primaires - Violet style Artisan */
+  --color-primary: #7C3AED;
+  --color-primary-dark: #6D28D9;
+  --color-primary-light: #A78BFA;
+  --color-primary-lighter: #C4B5FD;
 
-  /* Couleurs accent */
-  --color-accent: #FF5630;
-  --color-accent-hover: #E64825;
-  --color-accent-light: #FFB199;
+  /* Couleurs accent - Orange/Jaune */
+  --color-accent: #F59E0B;
+  --color-accent-hover: #D97706;
+  --color-accent-light: #FCD34D;
 
   /* Couleurs secondaires */
-  --color-secondary: #2563EB;
+  --color-secondary: #8B5CF6;
 
   /* Couleurs neutres */
   --color-white: #FFFFFF;
@@ -39,12 +40,17 @@
   --color-gray-900: #1a1a1a;
 
   /* Couleurs fonctionnelles */
-  --color-success: #4caf50;
-  --color-success-dark: #1b5e20;
-  --color-success-light: #2e7d32;
-  --color-warning: #FFAB00;
-  --color-warning-dark: #FF9500;
-  --color-error: #FF5630;
+  --color-success: #10B981;
+  --color-success-dark: #059669;
+  --color-success-light: #34D399;
+  --color-warning: #F59E0B;
+  --color-warning-dark: #D97706;
+  --color-error: #EF4444;
+
+  /* Gradients Artisan-style */
+  --gradient-primary: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+  --gradient-hero: linear-gradient(180deg, rgba(124, 58, 237, 0.05) 0%, transparent 100%);
+  --gradient-card: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%);
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      TYPOGRAPHIE
@@ -135,19 +141,19 @@
      OMBRES
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-  --shadow-xs: 0 2px 8px rgba(9, 30, 66, 0.06);
-  --shadow-sm: 0 2px 12px rgba(9, 30, 66, 0.08);
-  --shadow-md: 0 4px 16px rgba(9, 30, 66, 0.08);
-  --shadow-lg: 0 4px 20px rgba(9, 30, 66, 0.08);
-  --shadow-xl: 0 8px 28px rgba(0, 82, 204, 0.12);
-  --shadow-2xl: 0 12px 32px rgba(0, 82, 204, 0.12);
-  --shadow-3xl: 0 16px 40px rgba(0, 82, 204, 0.15);
+  --shadow-xs: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 8px 28px rgba(124, 58, 237, 0.12);
+  --shadow-2xl: 0 12px 32px rgba(124, 58, 237, 0.15);
+  --shadow-3xl: 0 16px 40px rgba(124, 58, 237, 0.18);
 
   /* Ombres spécifiques */
-  --shadow-accent: 0 6px 20px rgba(255, 86, 48, 0.25);
-  --shadow-accent-hover: 0 8px 28px rgba(255, 86, 48, 0.35);
-  --shadow-success: 0 2px 8px rgba(76, 175, 80, 0.15);
-  --shadow-success-hover: 0 4px 12px rgba(76, 175, 80, 0.25);
+  --shadow-accent: 0 6px 20px rgba(245, 158, 11, 0.25);
+  --shadow-accent-hover: 0 8px 28px rgba(245, 158, 11, 0.35);
+  --shadow-success: 0 2px 8px rgba(16, 185, 129, 0.15);
+  --shadow-success-hover: 0 4px 12px rgba(16, 185, 129, 0.25);
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      TRANSITIONS
