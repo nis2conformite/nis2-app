@@ -194,13 +194,13 @@ export function QuizModal({ quiz }) {
             <h3 className="quiz-result-title">{result.title}</h3>
             <p className="quiz-result-desc">{result.description}</p>
             <div className="quiz-result-actions">
-              <a 
-                href="https://calendly.com/adrien-ruggirello/30min" 
-                target="_blank" 
+              <a
+                href="https://calendly.com/nis2conformite/30min"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="quiz-result-btn primary"
               >
-                📅 Diagnostic cyber gratuit
+                Diagnostic cyber gratuit
               </a>
               <button 
                 onClick={handleClose} 

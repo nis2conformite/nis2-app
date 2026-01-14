@@ -149,7 +149,7 @@ export const PRICING_OFFERS = [
     cta: {
       text: 'Prendre rendez-vous',
       type: 'calendly',
-      link: 'https://calendly.com/adrien-ruggirello/30min'
+      link: 'https://calendly.com/nis2conformite/30min'
     }
   },
   {
@@ -177,7 +177,7 @@ export const PRICING_OFFERS = [
     cta: {
       text: 'Prendre rendez-vous',
       type: 'calendly',
-      link: 'https://calendly.com/adrien-ruggirello/30min'
+      link: 'https://calendly.com/nis2conformite/30min'
     }
   }
 ];
@@ -345,7 +345,7 @@ export const CONTACT_INFO = {
   website: "www.cyber-solferino.com",
   phone: "+33123456789",
   email: "contact@cyber-solferino.com",
-  calendly: "https://calendly.com/adrien-ruggirello/30min",
+  calendly: "https://calendly.com/nis2conformite/30min",
   social: {
     linkedin: "https://linkedin.com/company/cyber-solferino",
     twitter: "https://twitter.com/cybersolferino"

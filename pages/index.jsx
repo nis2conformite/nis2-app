@@ -258,7 +258,6 @@ export default function Home() {
           <div className="impact-cards-two">
             <div className="impact-card-large">
               <div className="impact-header-horizontal">
-                <div className="impact-icon">📈</div>
                 <div className="impact-stat">+38%</div>
               </div>
               <div className="impact-label-compact">Hausse attaques cyber</div>

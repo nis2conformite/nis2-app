@@ -5,7 +5,7 @@ export default function Formations() {
   const formats = [
     {
       id: 1,
-      icon: '📹',
+      icon: '01',
       title: 'Sessions en ligne (visioconférence)',
       subtitle: 'Pour qui ? Collaborateurs, dirigeants, équipes IT',
       features: [
@@ -27,7 +27,7 @@ export default function Formations() {
     },
     {
       id: 2,
-      icon: '🏢',
+      icon: '02',
       title: 'Interventions sur site',
       subtitle: 'Pour qui ? Structures souhaitant mobiliser une équipe entière',
       features: [
@@ -48,7 +48,7 @@ export default function Formations() {
     },
     {
       id: 3,
-      icon: '💻',
+      icon: '03',
       title: 'MOOC NIS2 (formation en ligne autonome)',
       subtitle: 'Pour qui ? Entreprises souhaitant former à large échelle',
       features: [
@@ -69,7 +69,7 @@ export default function Formations() {
     },
     {
       id: 4,
-      icon: '👔',
+      icon: '04',
       title: 'Packs dirigeants',
       subtitle: 'Pour qui ? Comités de direction, COMEX, responsables légaux',
       features: [
