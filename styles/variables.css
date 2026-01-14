@@ -11,23 +11,24 @@
      COULEURS PRINCIPALES
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-  /* Couleurs primaires - Violet style Artisan */
+  /* Couleurs primaires - Violet Tech */
   --color-primary: #7C3AED;
   --color-primary-dark: #6D28D9;
   --color-primary-light: #A78BFA;
   --color-primary-lighter: #C4B5FD;
+  --color-primary-faint: #EDE9FE;
 
-  /* Couleurs accent - Orange/Jaune */
-  --color-accent: #F59E0B;
-  --color-accent-hover: #D97706;
-  --color-accent-light: #FCD34D;
-
-  /* Couleurs secondaires */
+  /* Couleurs secondaires - Dégradé violet/rose */
   --color-secondary: #8B5CF6;
+  --color-rose: #EC4899;
+  --color-rose-light: #F9A8D4;
 
-  /* Couleurs neutres */
+  /* Couleurs neutres - Fond beige/crème Artisan */
   --color-white: #FFFFFF;
   --color-black: #000000;
+  --color-beige: #FAF8F5;
+  --color-beige-light: #FEFDFB;
+  --color-beige-dark: #F5F3EF;
   --color-gray-50: #FAFAFA;
   --color-gray-100: #F7F8FC;
   --color-gray-200: #EFF1F5;
@@ -37,20 +38,19 @@
   --color-gray-600: #505F79;
   --color-gray-700: #334155;
   --color-gray-800: #091E42;
-  --color-gray-900: #1a1a1a;
+  --color-gray-900: #0F172A;
 
   /* Couleurs fonctionnelles */
   --color-success: #10B981;
   --color-success-dark: #059669;
   --color-success-light: #34D399;
-  --color-warning: #F59E0B;
-  --color-warning-dark: #D97706;
   --color-error: #EF4444;
 
   /* Gradients Artisan-style */
-  --gradient-primary: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
-  --gradient-hero: linear-gradient(180deg, rgba(124, 58, 237, 0.05) 0%, transparent 100%);
-  --gradient-card: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%);
+  --gradient-primary: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+  --gradient-violet-rose: linear-gradient(90deg, #7C3AED 0%, #A78BFA 50%, #F9A8D4 100%);
+  --gradient-hero-bg: linear-gradient(180deg, rgba(250, 248, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  --gradient-card: linear-gradient(135deg, #FFFFFF 0%, #FAF8F5 100%);
 
   /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
      TYPOGRAPHIE
@@ -66,17 +66,19 @@
   --font-size-base: 14px;
   --font-size-md: 15px;
   --font-size-lg: 16px;
-  --font-size-xl: 17px;
-  --font-size-2xl: 18px;
-  --font-size-3xl: 20px;
-  --font-size-4xl: 22px;
-  --font-size-5xl: 24px;
-  --font-size-6xl: 28px;
-  --font-size-7xl: 32px;
-  --font-size-8xl: 36px;
-  --font-size-9xl: 44px;
-  --font-size-10xl: 48px;
-  --font-size-11xl: 52px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 28px;
+  --font-size-5xl: 32px;
+  --font-size-6xl: 36px;
+  --font-size-7xl: 40px;
+  --font-size-8xl: 48px;
+  --font-size-9xl: 56px;
+  --font-size-10xl: 64px;
+  --font-size-11xl: 72px;
+  --font-size-12xl: 80px;
+  --font-size-13xl: 96px;
 
   /* Poids de police */
   --font-weight-normal: 400;
@@ -142,16 +144,16 @@
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
   --shadow-xs: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 8px 28px rgba(124, 58, 237, 0.12);
-  --shadow-2xl: 0 12px 32px rgba(124, 58, 237, 0.15);
-  --shadow-3xl: 0 16px 40px rgba(124, 58, 237, 0.18);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 24px 48px rgba(0, 0, 0, 0.12);
+  --shadow-3xl: 0 32px 64px rgba(0, 0, 0, 0.15);
 
   /* Ombres spécifiques */
-  --shadow-accent: 0 6px 20px rgba(245, 158, 11, 0.25);
-  --shadow-accent-hover: 0 8px 28px rgba(245, 158, 11, 0.35);
+  --shadow-violet: 0 8px 32px rgba(124, 58, 237, 0.15);
+  --shadow-violet-hover: 0 12px 40px rgba(124, 58, 237, 0.25);
   --shadow-success: 0 2px 8px rgba(16, 185, 129, 0.15);
   --shadow-success-hover: 0 4px 12px rgba(16, 185, 129, 0.25);
 
