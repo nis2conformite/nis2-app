@@ -390,8 +390,8 @@ export default function Home() {
                   "{testimonial.text}"
                 </p>
                 <div style={{borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: '16px'}}>
-                  <h3 style={{fontSize: '16px', marginBottom: '4px'}}>{testimonial.author}</h3>
-                  <p style={{fontSize: '14px', color: '#94A3B8', margin: 0}}>{testimonial.role}</p>
+                  <h3 style={{fontSize: '16px', marginBottom: '4px'}}>{testimonial.author.name}</h3>
+                  <p style={{fontSize: '14px', color: '#94A3B8', margin: 0}}>{testimonial.author.role}</p>
                 </div>
               </div>
             ))}
