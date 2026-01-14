@@ -1836,24 +1836,24 @@ body {
   box-shadow: var(--shadow-xl);
 }
 
-/* Carte Danger - Theme rouge */
+/* Carte Danger - Theme orange/rose */
 .danger-card {
-  border-color: rgba(220, 38, 38, 0.15);
+  border-color: rgba(249, 115, 22, 0.15);
 }
 
 .danger-card:hover {
-  border-color: rgba(220, 38, 38, 0.3);
-  box-shadow: 0 20px 48px rgba(220, 38, 38, 0.15);
+  border-color: rgba(249, 115, 22, 0.3);
+  box-shadow: 0 20px 48px rgba(249, 115, 22, 0.15);
 }
 
-/* Carte Success - Theme vert */
+/* Carte Success - Theme violet/rose */
 .success-card {
-  border-color: rgba(16, 185, 129, 0.15);
+  border-color: rgba(168, 85, 247, 0.15);
 }
 
 .success-card:hover {
-  border-color: rgba(16, 185, 129, 0.3);
-  box-shadow: 0 20px 48px rgba(16, 185, 129, 0.15);
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 20px 48px rgba(168, 85, 247, 0.15);
 }
 
 /* Wrapper des icônes SVG avec gradient */
@@ -1875,9 +1875,9 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
-/* Icône danger - gradient rouge */
+/* Icône danger - gradient orange/doré */
 .danger-icon {
-  background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+  background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
   color: white;
 }
 
@@ -1886,14 +1886,14 @@ body {
   position: absolute;
   inset: -6px;
   border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+  background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
   opacity: 0.2;
   z-index: -1;
 }
 
-/* Icône success - gradient vert */
+/* Icône success - gradient violet/rose */
 .success-icon {
-  background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
   color: white;
 }
 
@@ -1902,7 +1902,7 @@ body {
   position: absolute;
   inset: -6px;
   border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
   opacity: 0.2;
   z-index: -1;
 }
@@ -1950,11 +1950,13 @@ body {
 }
 
 .danger-bullet {
-  background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(239, 68, 68, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(251, 146, 60, 0.1) 100%);
+  color: #F97316;
 }
 
 .success-bullet {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(52, 211, 153, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  color: #A855F7;
 }
 
 .impact-list li:hover .impact-bullet {

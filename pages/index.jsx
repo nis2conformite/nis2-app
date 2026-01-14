@@ -193,35 +193,55 @@ export default function Home() {
               <h3 className="impact-title">Les enjeux de la non-conformité</h3>
               <ul className="impact-list">
                 <li>
-                  <div className="impact-bullet danger-bullet">⚠</div>
+                  <div className="impact-bullet danger-bullet">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                   <div className="impact-content">
                     <strong>Sanctions financières lourdes</strong>
                     <span>Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</span>
                   </div>
                 </li>
                 <li>
-                  <div className="impact-bullet danger-bullet">⚖</div>
+                  <div className="impact-bullet danger-bullet">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                   <div className="impact-content">
                     <strong>Responsabilité pénale du dirigeant</strong>
                     <span>En cas de manquement aux obligations NIS2</span>
                   </div>
                 </li>
                 <li>
-                  <div className="impact-bullet danger-bullet">🚫</div>
+                  <div className="impact-bullet danger-bullet">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                   <div className="impact-content">
                     <strong>Exclusion des marchés</strong>
                     <span>Impossibilité de répondre aux appels d'offres publics et privés</span>
                   </div>
                 </li>
                 <li>
-                  <div className="impact-bullet danger-bullet">📉</div>
+                  <div className="impact-bullet danger-bullet">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                   <div className="impact-content">
                     <strong>Perte de confiance B2B</strong>
                     <span>Vos clients exigent désormais la conformité</span>
                   </div>
                 </li>
                 <li>
-                  <div className="impact-bullet danger-bullet">🔍</div>
+                  <div className="impact-bullet danger-bullet">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                   <div className="impact-content">
                     <strong>Contrôles réglementaires</strong>
                     <span>Audits de votre entreprise sur site sans préavis de l'ANSSI</span>
@@ -240,35 +260,55 @@ export default function Home() {
               <h3 className="impact-title">Transformez la contrainte en levier stratégique</h3>
               <ul className="impact-list">
                 <li>
-                  <div className="impact-bullet success-bullet">🏆</div>
+                  <div className="impact-bullet success-bullet">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                   <div className="impact-content">
                     <strong>Remportez les appels d'offres</strong>
                     <span>La conformité devient un critère obligatoire de sélection</span>
                   </div>
                 </li>
                 <li>
-                  <div className="impact-bullet success-bullet">🎯</div>
+                  <div className="impact-bullet success-bullet">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                   <div className="impact-content">
                     <strong>Différenciez-vous</strong>
                     <span>Positionnez-vous comme le partenaire de confiance de votre secteur</span>
                   </div>
                 </li>
                 <li>
-                  <div className="impact-bullet success-bullet">🛡️</div>
+                  <div className="impact-bullet success-bullet">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                   <div className="impact-content">
                     <strong>Rassurez vos clients</strong>
                     <span>Montrez que vous protégez les données de vos clients</span>
                   </div>
                 </li>
                 <li>
-                  <div className="impact-bullet success-bullet">🤝</div>
+                  <div className="impact-bullet success-bullet">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                   <div className="impact-content">
                     <strong>Fidélisez vos partenaires</strong>
                     <span>Consolidez votre réputation d'acteur stable et responsable</span>
                   </div>
                 </li>
                 <li>
-                  <div className="impact-bullet success-bullet">💼</div>
+                  <div className="impact-bullet success-bullet">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                   <div className="impact-content">
                     <strong>Valorisez votre entreprise</strong>
                     <span>Une organisation conforme vaut plus en cas de cession</span>
