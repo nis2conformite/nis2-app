@@ -170,41 +170,73 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION AVANT/APRÈS */}
-      <section className="before-after-section" id="solutions">
-        <div className="before-after-container">
+      {/* SECTION AVANT/APRÈS - STYLE ARTISAN */}
+      <section className="before-after-artisan" id="solutions">
+        <div className="before-after-artisan-container">
           <div className="section-badge-center">L'enjeu stratégique</div>
 
-          <h2 className="section-title-artisan">
+          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
             La conformité <span className="gradient">NIS2</span>, avant et après
           </h2>
-          <p className="section-subtitle-artisan">
+          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
             Transformez la contrainte réglementaire en levier stratégique pour votre entreprise
           </p>
 
-          <div className="before-after-grid">
-            <div className="before-card-modern">
-              <div className="card-icon-emoji">⚠️</div>
-              <h3>Les enjeux de la non-conformité</h3>
-              <ul>
-                <li><strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</li>
-                <li><strong>Responsabilité pénale du dirigeant</strong> — En cas de manquement aux obligations NIS2</li>
-                <li><strong>Exclusion des marchés</strong> — Impossibilité de répondre aux appels d'offres publics et privés</li>
-                <li><strong>Perte de confiance B2B</strong> — Vos clients exigent désormais la conformité</li>
-                <li><strong>Contrôles réglementaires</strong> — Audits de votre entreprise sur site sans préavis de l'ANSSI</li>
-              </ul>
+          <div className="before-after-split">
+            {/* Before - Côté gauche */}
+            <div className="before-after-column">
+              <h3 className="before-title">Before NIS2</h3>
+              <div className="before-after-card">
+                {/* Badges dispersés de façon chaotique */}
+                <div className="chaos-badges">
+                  <div className="danger-badge" style={{top: '15%', left: '10%'}}>
+                    ⚠️ Amendes 10M€
+                  </div>
+                  <div className="danger-badge" style={{top: '25%', right: '15%'}}>
+                    🚨 Sanctions pénales
+                  </div>
+                  <div className="danger-badge" style={{top: '40%', left: '20%'}}>
+                    ❌ Exclusion marchés
+                  </div>
+                  <div className="danger-badge" style={{top: '55%', right: '10%'}}>
+                    📉 Perte clients
+                  </div>
+                  <div className="danger-badge" style={{top: '70%', left: '15%'}}>
+                    🔍 Contrôles ANSSI
+                  </div>
+                  <div className="danger-badge" style={{top: '35%', left: '50%', transform: 'translateX(-50%)'}}>
+                    ⏰ Échéance 2027
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="after-card-modern">
-              <div className="card-icon-emoji">🎯</div>
-              <h3>Transformez la contrainte en levier stratégique</h3>
-              <ul>
-                <li><strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection</li>
-                <li><strong>Différenciez-vous</strong> — Positionnez-vous comme le partenaire de confiance de votre secteur</li>
-                <li><strong>Rassurez vos clients</strong> — Montrez que vous protégez les données de vos clients</li>
-                <li><strong>Fidélisez vos partenaires</strong> — Consolidez votre réputation d'acteur stable et responsable</li>
-                <li><strong>Valorisez votre entreprise</strong> — Une organisation conforme vaut plus en cas de cession</li>
-              </ul>
+            {/* After - Côté droit */}
+            <div className="before-after-column">
+              <h3 className="after-title">After NIS2</h3>
+              <div className="before-after-card">
+                {/* Badges organisés de façon structurée */}
+                <div className="organized-badges">
+                  <div className="success-badge" style={{top: '15%', right: '15%'}}>
+                    ✓ Conformité certifiée
+                  </div>
+                  <div className="success-badge" style={{top: '30%', left: '10%'}}>
+                    🎯 Audit structuré
+                  </div>
+                  <div className="success-badge" style={{top: '45%', right: '10%'}}>
+                    📊 Rapport ANSSI
+                  </div>
+                  <div className="success-badge" style={{top: '60%', left: '15%'}}>
+                    🏆 Appels d'offres
+                  </div>
+                  <div className="success-badge" style={{top: '75%', right: '20%'}}>
+                    💼 Valorisation
+                  </div>
+                  <div className="success-badge" style={{top: '25%', left: '50%', transform: 'translateX(-50%)'}}>
+                    🛡️ Protection données
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
