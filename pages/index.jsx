@@ -170,9 +170,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION AVANT/APRÈS - STYLE ARTISAN */}
-      <section className="before-after-artisan" id="solutions">
-        <div className="before-after-artisan-container">
+      {/* SECTION AVANT/APRÈS - DESIGN EXPERT */}
+      <section className="before-after-section-v2" id="solutions">
+        <div className="before-after-container-v2">
           <div className="section-badge-center">L'enjeu stratégique</div>
 
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
@@ -182,61 +182,99 @@ export default function Home() {
             Transformez la contrainte réglementaire en levier stratégique pour votre entreprise
           </p>
 
-          <div className="before-after-split">
-            {/* Before - Côté gauche */}
-            <div className="before-after-column">
-              <h3 className="before-title">Before NIS2</h3>
-              <div className="before-after-card">
-                {/* Badges dispersés de façon chaotique */}
-                <div className="chaos-badges">
-                  <div className="danger-badge" style={{top: '15%', left: '10%'}}>
-                    ⚠️ Amendes 10M€
-                  </div>
-                  <div className="danger-badge" style={{top: '25%', right: '15%'}}>
-                    🚨 Sanctions pénales
-                  </div>
-                  <div className="danger-badge" style={{top: '40%', left: '20%'}}>
-                    ❌ Exclusion marchés
-                  </div>
-                  <div className="danger-badge" style={{top: '55%', right: '10%'}}>
-                    📉 Perte clients
-                  </div>
-                  <div className="danger-badge" style={{top: '70%', left: '15%'}}>
-                    🔍 Contrôles ANSSI
-                  </div>
-                  <div className="danger-badge" style={{top: '35%', left: '50%', transform: 'translateX(-50%)'}}>
-                    ⏰ Échéance 2027
-                  </div>
-                </div>
+          <div className="before-after-cards-v2">
+            {/* Card AVANT - Risques */}
+            <div className="impact-card danger-card">
+              <div className="impact-icon-wrapper danger-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
+              <h3 className="impact-title">Les enjeux de la non-conformité</h3>
+              <ul className="impact-list">
+                <li>
+                  <div className="impact-bullet danger-bullet">⚠</div>
+                  <div className="impact-content">
+                    <strong>Sanctions financières lourdes</strong>
+                    <span>Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</span>
+                  </div>
+                </li>
+                <li>
+                  <div className="impact-bullet danger-bullet">⚖</div>
+                  <div className="impact-content">
+                    <strong>Responsabilité pénale du dirigeant</strong>
+                    <span>En cas de manquement aux obligations NIS2</span>
+                  </div>
+                </li>
+                <li>
+                  <div className="impact-bullet danger-bullet">🚫</div>
+                  <div className="impact-content">
+                    <strong>Exclusion des marchés</strong>
+                    <span>Impossibilité de répondre aux appels d'offres publics et privés</span>
+                  </div>
+                </li>
+                <li>
+                  <div className="impact-bullet danger-bullet">📉</div>
+                  <div className="impact-content">
+                    <strong>Perte de confiance B2B</strong>
+                    <span>Vos clients exigent désormais la conformité</span>
+                  </div>
+                </li>
+                <li>
+                  <div className="impact-bullet danger-bullet">🔍</div>
+                  <div className="impact-content">
+                    <strong>Contrôles réglementaires</strong>
+                    <span>Audits de votre entreprise sur site sans préavis de l'ANSSI</span>
+                  </div>
+                </li>
+              </ul>
             </div>
 
-            {/* After - Côté droit */}
-            <div className="before-after-column">
-              <h3 className="after-title">After NIS2</h3>
-              <div className="before-after-card">
-                {/* Badges organisés de façon structurée */}
-                <div className="organized-badges">
-                  <div className="success-badge" style={{top: '15%', right: '15%'}}>
-                    ✓ Conformité certifiée
-                  </div>
-                  <div className="success-badge" style={{top: '30%', left: '10%'}}>
-                    🎯 Audit structuré
-                  </div>
-                  <div className="success-badge" style={{top: '45%', right: '10%'}}>
-                    📊 Rapport ANSSI
-                  </div>
-                  <div className="success-badge" style={{top: '60%', left: '15%'}}>
-                    🏆 Appels d'offres
-                  </div>
-                  <div className="success-badge" style={{top: '75%', right: '20%'}}>
-                    💼 Valorisation
-                  </div>
-                  <div className="success-badge" style={{top: '25%', left: '50%', transform: 'translateX(-50%)'}}>
-                    🛡️ Protection données
-                  </div>
-                </div>
+            {/* Card APRÈS - Opportunités */}
+            <div className="impact-card success-card">
+              <div className="impact-icon-wrapper success-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
+              <h3 className="impact-title">Transformez la contrainte en levier stratégique</h3>
+              <ul className="impact-list">
+                <li>
+                  <div className="impact-bullet success-bullet">🏆</div>
+                  <div className="impact-content">
+                    <strong>Remportez les appels d'offres</strong>
+                    <span>La conformité devient un critère obligatoire de sélection</span>
+                  </div>
+                </li>
+                <li>
+                  <div className="impact-bullet success-bullet">🎯</div>
+                  <div className="impact-content">
+                    <strong>Différenciez-vous</strong>
+                    <span>Positionnez-vous comme le partenaire de confiance de votre secteur</span>
+                  </div>
+                </li>
+                <li>
+                  <div className="impact-bullet success-bullet">🛡️</div>
+                  <div className="impact-content">
+                    <strong>Rassurez vos clients</strong>
+                    <span>Montrez que vous protégez les données de vos clients</span>
+                  </div>
+                </li>
+                <li>
+                  <div className="impact-bullet success-bullet">🤝</div>
+                  <div className="impact-content">
+                    <strong>Fidélisez vos partenaires</strong>
+                    <span>Consolidez votre réputation d'acteur stable et responsable</span>
+                  </div>
+                </li>
+                <li>
+                  <div className="impact-bullet success-bullet">💼</div>
+                  <div className="impact-content">
+                    <strong>Valorisez votre entreprise</strong>
+                    <span>Une organisation conforme vaut plus en cas de cession</span>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
