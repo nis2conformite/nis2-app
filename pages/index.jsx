@@ -173,7 +173,7 @@ export default function Home() {
       {/* SECTION AVANT/APRÈS */}
       <section className="before-after-section" id="solutions">
         <div className="before-after-container">
-          <div className="section-badge">L'enjeu stratégique</div>
+          <div className="section-badge-center">L'enjeu stratégique</div>
 
           <h2 className="section-title-artisan">
             La conformité <span className="gradient">NIS2</span>, avant et après
@@ -184,11 +184,7 @@ export default function Home() {
 
           <div className="before-after-grid">
             <div className="before-card-modern">
-              <div className="card-icon-wrapper danger">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
+              <div className="card-icon-emoji">⚠️</div>
               <h3>Les enjeux de la non-conformité</h3>
               <ul>
                 <li><strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</li>
@@ -200,11 +196,7 @@ export default function Home() {
             </div>
 
             <div className="after-card-modern">
-              <div className="card-icon-wrapper success">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
+              <div className="card-icon-emoji">🎯</div>
               <h3>Transformez la contrainte en levier stratégique</h3>
               <ul>
                 <li><strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection</li>
@@ -221,7 +213,7 @@ export default function Home() {
       {/* 3 BULLES - NOTRE APPROCHE */}
       <section className="content-section">
         <div className="content-container">
-          <div className="section-badge" style={{margin: '0 auto'}}>Notre méthodologie</div>
+          <div className="section-badge-center">Notre méthodologie</div>
 
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
             <span className="gradient">Notre approche</span> en 3 étapes
@@ -250,7 +242,7 @@ export default function Home() {
       <section className="content-section">
         <div className="content-container">
           <div className="cyber-encart">
-            <div className="section-badge" style={{margin: '0 auto'}}>Chiffres clés</div>
+            <div className="section-badge-center">Chiffres clés</div>
 
             <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
               La prévention est plus <span className="highlight">rentable</span> qu'une crise cyber
@@ -286,7 +278,7 @@ export default function Home() {
       {/* SECTION PRICING */}
       <section className="pricing-section-artisan" id="pricing">
         <div className="before-after-container">
-          <div className="section-badge">Nos offres</div>
+          <div className="section-badge-center">Nos offres</div>
 
           <h2 className="section-title-artisan">
             Investissement vs <span className="gradient">Amende</span>
@@ -533,7 +525,7 @@ export default function Home() {
       {/* SECTION SERVICES COMPLÉMENTAIRES */}
       <section className="content-section">
         <div className="content-container">
-          <div className="section-badge" style={{margin: '0 auto'}}>Aller plus loin</div>
+          <div className="section-badge-center">Aller plus loin</div>
 
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
             Services <span className="gradient">complémentaires</span>
@@ -638,7 +630,7 @@ export default function Home() {
       {/* SECTION TÉMOIGNAGES - Style Case Study */}
       <section className="content-section testimonials-modern" id="temoignages">
         <div className="content-container">
-          <div className="section-badge" style={{margin: '0 auto'}}>Success Stories</div>
+          <div className="section-badge-center">Success Stories</div>
 
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
             Dirigeants conformes, <span className="gradient">entreprises gagnantes</span>
@@ -748,21 +740,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION FAQ */}
+      {/* SECTION FAQ COMPACTE */}
       <section className="content-section">
-        <div className="content-container" style={{maxWidth: '800px'}}>
+        <div className="content-container" style={{maxWidth: '900px'}}>
+          <div className="section-badge-center">FAQ</div>
+
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
             Les questions que se posent les <span className="gradient">dirigeants</span>
           </h2>
 
-          <div className="faq-container">
+          <div className="faq-grid-modern">
             {FAQ_ITEMS.map((item) => (
-              <details key={item.id} className="faq-item">
-                <summary className="faq-question">
-                  <span style={{fontSize: '24px', marginRight: '12px'}}>{item.icon}</span>
-                  {item.question}
+              <details key={item.id} className="faq-item-modern">
+                <summary className="faq-question-modern">
+                  <div className="faq-icon-modern">{item.icon}</div>
+                  <span className="faq-question-text">{item.question}</span>
+                  <svg className="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"/>
+                  </svg>
                 </summary>
-                <p className="faq-answer">{item.answer}</p>
+                <div className="faq-answer-modern">
+                  <p>{item.answer}</p>
+                </div>
               </details>
             ))}
           </div>
