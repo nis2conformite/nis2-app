@@ -200,8 +200,13 @@ export default function Home() {
           </p>
 
           <div className="before-after-grid">
-            <div className="before-card">
-              <h3>❌ Les enjeux de la non-conformité</h3>
+            <div className="before-card-modern">
+              <div className="card-icon-wrapper danger">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <h3>Les enjeux de la non-conformité</h3>
               <ul>
                 <li><strong>Sanctions financières lourdes</strong> — Jusqu'à 10M€ ou 2% du chiffre d'affaires mondial</li>
                 <li><strong>Responsabilité pénale du dirigeant</strong> — En cas de manquement aux obligations NIS2</li>
@@ -211,8 +216,13 @@ export default function Home() {
               </ul>
             </div>
 
-            <div className="after-card">
-              <h3>✅ Transformez la contrainte en levier stratégique</h3>
+            <div className="after-card-modern">
+              <div className="card-icon-wrapper success">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <h3>Transformez la contrainte en levier stratégique</h3>
               <ul>
                 <li><strong>Remportez les appels d'offres</strong> — La conformité devient un critère obligatoire de sélection</li>
                 <li><strong>Différenciez-vous</strong> — Positionnez-vous comme le partenaire de confiance de votre secteur</li>
@@ -251,8 +261,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION AVEC FOND NOIR - STATS & CHIFFRES */}
-      <section className="black-section-artisan">
+      {/* SECTION AVEC FOND GRIS FONCÉ - CYBER STATS */}
+      <section className="dark-section-cyber">
         <div className="content-container">
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
             La prévention est plus <span className="highlight">rentable</span> qu'une crise cyber
@@ -261,19 +271,10 @@ export default function Home() {
             Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber
           </p>
 
-          {/* CARTES EN QUINCONCE AVEC VARIATIONS DE COULEURS */}
-          <div className="staggered-grid">
-            <div className="content-card-artisan card-purple">
-              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>92%</h3>
-              <h3>PME et ETI non prêtes</h3>
-              <p>
-                La majorité des entreprises concernées par NIS2 ne sont pas encore conformes.
-                Les premières sanctions arrivent en 2027.
-              </p>
-            </div>
-
-            <div className="content-card-artisan card-pink">
-              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>+38%</h3>
+          {/* 2 CARTES CYBER UNIQUEMENT */}
+          <div className="cyber-stats-grid">
+            <div className="cyber-stat-card">
+              <div className="cyber-stat-number">+38%</div>
               <h3>Hausse des cyberattaques</h3>
               <p>
                 Les attaques contre les PME ont explosé de 38% en 2024.
@@ -281,38 +282,12 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="content-card-artisan card-blue">
-              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>4,35M€</h3>
+            <div className="cyber-stat-card">
+              <div className="cyber-stat-number">4,35M€</div>
               <h3>Coût moyen d'une cyberattaque</h3>
               <p>
                 60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne),
                 perte de données, rançons.
-              </p>
-            </div>
-
-            <div className="content-card-artisan card-purple">
-              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>10M€</h3>
-              <h3>Amende maximale NIS2</h3>
-              <p>
-                Ou 2% du chiffre d'affaires annuel mondial. La non-conformité coûte 200x plus cher qu'un audit préventif.
-              </p>
-            </div>
-
-            <div className="content-card-artisan card-pink">
-              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>70%</h3>
-              <h3>D'aides de l'État possibles</h3>
-              <p>
-                Des dispositifs existent pour financer votre mise en conformité.
-                Nous vous accompagnons dans les démarches.
-              </p>
-            </div>
-
-            <div className="content-card-artisan card-blue">
-              <h3 style={{fontSize: '36px', marginBottom: '12px'}}>65</h3>
-              <h3>Questions d'audit structurées</h3>
-              <p>
-                Notre audit couvre les 10 catégories de sécurité définies par le référentiel ANSSI.
-                Rapport détaillé en 48H.
               </p>
             </div>
           </div>
@@ -574,30 +549,34 @@ export default function Home() {
             Découvrez nos services pour aller plus loin dans la conformité et la sécurité
           </p>
 
-          <div className="content-grid">
-            <div className="content-card-artisan">
+          <div className="services-two-cols">
+            <div className="service-card-large">
+              <div className="service-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
               <h3>📄 Modèles de documents NIS2</h3>
               <p>
                 Templates prêts à l'emploi pour votre mise en conformité, mis à jour avec la réglementation
               </p>
-            </div>
-
-            <div className="content-card-artisan">
-              <h3>📚 Formations NIS2</h3>
+              <h3 style={{marginTop: '24px'}}>📚 Formations NIS2</h3>
               <p>
                 Formation obligatoire des dirigeants et sensibilisation des équipes, en distanciel ou sur site
               </p>
             </div>
 
-            <div className="content-card-artisan">
+            <div className="service-card-large">
+              <div className="service-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
               <h3>💼 Montage dossiers Subventions</h3>
               <p>
                 Identification et constitution des dossiers d'aides d'État pour maximiser vos financements
               </p>
-            </div>
-
-            <div className="content-card-artisan">
-              <h3>⚠️ Notification Incidents ANSSI</h3>
+              <h3 style={{marginTop: '24px'}}>⚠️ Notification Incidents ANSSI</h3>
               <p>
                 Déclaration des incidents en 24h à l'ANSSI avec conseil gestion de crise et hotline 24/7
               </p>
@@ -663,8 +642,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION TÉMOIGNAGES */}
-      <section className="content-section" id="temoignages">
+      {/* SECTION TÉMOIGNAGES - Style Case Study */}
+      <section className="content-section testimonials-modern" id="temoignages">
         <div className="content-container">
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
             Dirigeants conformes, <span className="gradient">entreprises gagnantes</span>
@@ -673,19 +652,66 @@ export default function Home() {
             Ils ont fait de NIS2 un levier de performance
           </p>
 
-          <div className="testimonial-grid-artisan">
-            {TESTIMONIALS.map((testimonial) => (
-              <div key={testimonial.id} className="testimonial-card">
-                <p className="testimonial-quote">"{testimonial.text}"</p>
-                <div className="testimonial-author-section">
-                  <div className="testimonial-avatar">{testimonial.author.avatar}</div>
-                  <div>
-                    <div className="testimonial-author-name">{testimonial.author.name}</div>
-                    <div className="testimonial-author-role">{testimonial.author.role}</div>
-                  </div>
+          <div className="testimonials-case-study-grid">
+            {/* Case Study 1 */}
+            <div className="case-study-card">
+              <div className="case-study-header">
+                <div className="case-study-badge">Case Study</div>
+              </div>
+              <h3 className="case-study-title">
+                PME industrielle conforme en 3 mois
+              </h3>
+              <p className="case-study-quote">
+                "L'audit NIS2 nous a permis d'identifier nos vulnérabilités critiques et de prioriser nos investissements cyber. Résultat : conformité obtenue et appel d'offres remporté."
+              </p>
+              <div className="case-study-author">
+                <div className="testimonial-avatar">👨‍💼</div>
+                <div>
+                  <div className="testimonial-author-name">Marc Dubois</div>
+                  <div className="testimonial-author-role">CEO, TechManufacture</div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Case Study 2 */}
+            <div className="case-study-card featured-case">
+              <div className="case-study-header">
+                <div className="case-study-badge gradient-badge">⭐ Success Story</div>
+              </div>
+              <h3 className="case-study-title">
+                ETI certifiée ISO 27001 + NIS2
+              </h3>
+              <p className="case-study-quote">
+                "Grâce à l'accompagnement expert, nous avons transformé notre conformité NIS2 en véritable avantage compétitif. Nos clients nous font confiance."
+              </p>
+              <div className="case-study-author">
+                <div className="testimonial-avatar">👩‍💼</div>
+                <div>
+                  <div className="testimonial-author-name">Sophie Martin</div>
+                  <div className="testimonial-author-role">RSSI, DataSecure</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Case Study 3 */}
+            <div className="case-study-card">
+              <div className="case-study-header">
+                <div className="case-study-badge">Case Study</div>
+              </div>
+              <h3 className="case-study-title">
+                Startup scale-up sécurisée
+              </h3>
+              <p className="case-study-quote">
+                "La méthodologie structurée nous a permis de passer de 12% à 87% de conformité en 6 mois. Le rapport détaillé a convaincu nos investisseurs."
+              </p>
+              <div className="case-study-author">
+                <div className="testimonial-avatar">🧑‍💼</div>
+                <div>
+                  <div className="testimonial-author-name">Thomas Leroy</div>
+                  <div className="testimonial-author-role">CTO, CloudVision</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
