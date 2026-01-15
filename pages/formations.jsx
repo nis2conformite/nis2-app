@@ -366,39 +366,63 @@ export default function Formations() {
 
         {/* FOOTER */}
         <footer className="footer-artisan-modern">
-          <div className="footer-container-modern">
-            <div className="footer-content-modern">
-              <div className="footer-column-modern">
-                <img src="/logo.png" alt="NIS2 Conformité" className="footer-logo-modern" />
-                <p className="footer-tagline-modern">
-                  La cyber sécurité : un impératif stratégique
-                </p>
-              </div>
-
-              <div className="footer-column-modern">
-                <h4 className="footer-title-modern">Navigation</h4>
-                <ul className="footer-links-modern">
-                  <li><a href="/comprendre-nis2">Comprendre NIS2</a></li>
-                  <li><a href="/qui-sommes-nous">Qui sommes-nous</a></li>
-                  <li><a href="/offres-complementaires">Nos tarifs</a></li>
-                  <li><a href="/formations">Formation</a></li>
-                </ul>
-              </div>
-
-              <div className="footer-column-modern">
-                <h4 className="footer-title-modern">Contact</h4>
-                <ul className="footer-links-modern">
-                  <li><a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer">Prendre rendez-vous</a></li>
-                  <li><a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a></li>
-                </ul>
+          <div className="footer-main-content">
+            <div className="footer-brand-col">
+              <img src="/logo.png" alt="NIS2 Conformité" className="footer-logo" />
+              <p className="footer-brand-desc">
+                La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes
+              </p>
+              <div className="footer-certifs">
+                <span>✓ Certifié ISO 27001</span>
+                <span>✓ Méthodologie ANSSI</span>
               </div>
             </div>
 
-            <div className="footer-bottom-modern">
-              <p>&copy; 2024 {CONTACT_INFO.company}. Tous droits réservés.</p>
-              <div className="footer-legal-modern">
+            <div className="footer-col">
+              <h4 className="footer-col-title">Solutions</h4>
+              <ul className="footer-links-list">
+                <li><a href="/#pricing">Audit NIS2</a></li>
+                <li><a href="/formations">Formations</a></li>
+                <li><a href="/offres-complementaires">Services complémentaires</a></li>
+                <li><a href="#video-section">Comprendre NIS2</a></li>
+              </ul>
+            </div>
+
+            <div className="footer-col">
+              <h4 className="footer-col-title">Entreprise</h4>
+              <ul className="footer-links-list">
+                <li><a href="/qui-sommes-nous">Qui sommes-nous ?</a></li>
+                <li><a href="/#expertise">Notre expertise</a></li>
+                <li><a href="/#temoignages">Témoignages</a></li>
+                <li><a href="/comprendre-nis2">À propos de NIS2</a></li>
+              </ul>
+            </div>
+
+            <div className="footer-col">
+              <h4 className="footer-col-title">Contact</h4>
+              <ul className="footer-links-list">
+                <li>
+                  <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer">
+                    Prendre rendez-vous
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:nis2conformite@gmail.com">
+                    nis2conformite@gmail.com
+                  </a>
+                </li>
+                <li><a href="tel:+33000000000">+33 (0)0 00 00 00 00</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="footer-bottom-modern">
+            <div className="footer-bottom-content">
+              <p className="footer-copyright">© 2025 NIS2 Conformité. Tous droits réservés</p>
+              <div className="footer-legal-links">
                 <a href="/mentions-legales">Mentions légales</a>
                 <a href="/politique-confidentialite">Politique de confidentialité</a>
+                <a href="/cgu">CGU</a>
               </div>
             </div>
           </div>
