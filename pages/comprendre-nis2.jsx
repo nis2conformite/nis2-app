@@ -1,12 +1,5 @@
 import Head from 'next/head';
-import PageLayout from '../components/PageLayout';
-
-const EXTERNAL_LINKS = {
-  videoYoutube: 'https://www.youtube.com/embed/461tWBUzrY8',
-  directiveOfficielle: 'https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32022L2555',
-  anssi: 'https://cyber.gouv.fr',
-  monespace: 'https://monespacenis2.cyber.gouv.fr'
-};
+import { CONTACT_INFO, EXTERNAL_LINKS } from '../utils/constants';
 
 export default function ComprendreNIS2() {
   return (
@@ -17,1126 +10,595 @@ export default function ComprendreNIS2() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      <PageLayout>
+      {/* HEADER STICKY */}
+      <header className="header-artisan-sticky">
+        <div className="header-container-modern">
+          <a href="/" className="header-logo-link">
+            <img src="/logo.png" alt="NIS2 Conformité" className="header-logo-modern" />
+          </a>
+
+          <nav className="header-nav-modern">
+            <a href="/comprendre-nis2" className="header-nav-link">Comprendre NIS2</a>
+            <a href="/qui-sommes-nous" className="header-nav-link">Qui sommes-nous</a>
+            <a href="/offres-complementaires" className="header-nav-link">Nos tarifs</a>
+            <a href="/formations" className="header-nav-link">Formation</a>
+          </nav>
+
+          <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-header-expert">
+            Parler à un expert
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </header>
+
+      <div style={{paddingTop: '66px'}}>
         {/* HERO */}
-        <section className="hero-nis2">
-          <h1>Comprendre NIS2 en 5 minutes</h1>
-          <p className="hero-lead">
-            La nouvelle réglementation européenne qui renforce la cybersécurité 
-            de milliers d'entreprises françaises.
-          </p>
+        <section className="hero-artisan-exact" style={{paddingTop: 'var(--space-3xl)', paddingBottom: 'var(--space-3xl)'}}>
+          <div className="hero-artisan-container">
+            <div className="hero-badge-artisan">
+              Directive Européenne • Conformité obligatoire 2027
+            </div>
+
+            <h1 className="hero-title-artisan">
+              Comprendre <span className="highlight">NIS2</span><br />
+              en 5 minutes
+            </h1>
+
+            <p className="hero-subtitle-artisan">
+              La nouvelle réglementation européenne qui renforce la cybersécurité<br />
+              de milliers d'entreprises françaises
+            </p>
+
+            <div className="hero-buttons-artisan" style={{display: 'flex', gap: 'var(--space-md)', justifyContent: 'center', marginTop: 'var(--space-xl)', flexWrap: 'wrap'}}>
+              <a href="#video-section" className="btn-hero-primary">
+                Voir la vidéo explicative
+              </a>
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-hero-secondary">
+                Parler à un expert
+              </a>
+            </div>
+          </div>
         </section>
 
         {/* C'EST QUOI NIS2 */}
-        <section className="what-section">
-          <div className="what-content">
-            <span className="what-icon">📋</span>
-            <h2>C'est quoi, NIS2 ?</h2>
-            <p className="what-lead">
-              NIS2 est une <strong>directive européenne</strong> entrée en vigueur en <strong>janvier 2023</strong>. 
-              Elle oblige des milliers d'entreprises à renforcer leur cybersécurité pour mieux protéger 
-              leurs activités et celles de leurs clients.
-            </p>
-            <div className="what-boxes">
-              <div className="info-box">
-                <strong>Objectif</strong>
-                <p>Protéger les infrastructures critiques européennes contre les cyberattaques</p>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
+          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+            <div className="before-after-wrapper-design">
+              <div style={{textAlign: 'center', marginBottom: 'var(--space-lg)'}}>
+                <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-md)'}}>
+                  C'est quoi, NIS2 ?
+                </h2>
+                <p style={{fontSize: '18px', lineHeight: '1.7', color: 'var(--color-text-secondary)', maxWidth: '800px', margin: '0 auto'}}>
+                  NIS2 est une <strong>directive européenne</strong> entrée en vigueur en <strong>janvier 2023</strong>.
+                  Elle oblige des milliers d'entreprises à renforcer leur cybersécurité pour mieux protéger
+                  leurs activités et celles de leurs clients.
+                </p>
               </div>
-              <div className="info-box">
-                <strong>Application</strong>
-                <p>Transposée en droit français • Contrôles ANSSI dès 2024 • Sanctions dès 2027</p>
+
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-lg)', marginTop: 'var(--space-xl)'}}>
+                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
+                  <strong style={{display: 'block', fontSize: '18px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-sm)'}}>Objectif</strong>
+                  <p style={{color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0}}>
+                    Protéger les infrastructures critiques européennes contre les cyberattaques
+                  </p>
+                </div>
+                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
+                  <strong style={{display: 'block', fontSize: '18px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-sm)'}}>Application</strong>
+                  <p style={{color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0}}>
+                    Transposée en droit français • Contrôles ANSSI dès 2024 • Sanctions dès 2027
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* VIDÉO EXPLICATIVE */}
-        <section className="video-section">
-          <div className="video-header">
-            <span className="video-badge">🎥 Comprendre NIS2 en vidéo</span>
-            <h2>La directive NIS2 expliquée simplement</h2>
-            <p>5 minutes pour tout comprendre de cette nouvelle réglementation</p>
-          </div>
-          <div className="video-container">
-            <iframe 
-              src={EXTERNAL_LINKS.videoYoutube}
-              title="Directive NIS2 expliquée" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              allowFullScreen>
-            </iframe>
+        <section id="video-section" style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
+          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+            <div className="video-wrapper-design">
+              <div style={{textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
+                <span style={{display: 'inline-block', padding: '8px 20px', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', borderRadius: '9999px', fontSize: '14px', fontWeight: '600', marginBottom: 'var(--space-md)'}}>
+                  Comprendre NIS2 en vidéo
+                </span>
+                <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-md)'}}>
+                  La directive NIS2 expliquée simplement
+                </h2>
+                <p style={{fontSize: '18px', color: 'var(--color-text-secondary)'}}>
+                  5 minutes pour tout comprendre de cette nouvelle réglementation
+                </p>
+              </div>
+              <div className="video-container">
+                <iframe
+                  src={EXTERNAL_LINKS.videoYoutube}
+                  title="Directive NIS2 expliquée"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  style={{border: 0, borderRadius: 'var(--radius-xl)'}}>
+                </iframe>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* SUIS-JE CONCERNÉ */}
-        <section className="concerned-section">
-          <h2>🎯 Suis-je concerné par NIS2 ?</h2>
-          <p className="section-intro">
-            Vous êtes concerné si votre entreprise répond à <strong>2 critères</strong> :
-          </p>
+        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
+          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
+              Suis-je concerné par NIS2 ?
+            </h2>
+            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)', maxWidth: '800px', margin: '0 auto var(--space-2xl)'}}>
+              Vous êtes concerné si votre entreprise répond à <strong>2 critères</strong> :
+            </p>
 
-          <div className="criteria-grid">
-            <div className="criterion-card">
-              <div className="criterion-number">1</div>
-              <div className="criterion-content">
-                <h3>Taille de l'entreprise</h3>
-                <p><strong>+50 salariés</strong> OU <strong>+10M€ de chiffre d'affaires</strong></p>
-              </div>
-            </div>
-
-            <div className="criterion-card">
-              <div className="criterion-number">2</div>
-              <div className="criterion-content">
-                <h3>Secteur d'activité</h3>
-                <p>Vous opérez dans l'un des <strong>18 secteurs critiques ou essentiels</strong></p>
-              </div>
-            </div>
-          </div>
-
-          {/* LISTE DES SECTEURS */}
-          <div className="sectors-block">
-            <h3>Les 18 secteurs concernés</h3>
-            
-            <div className="sectors-columns">
-              {/* ENTITÉS ESSENTIELLES */}
-              <div className="sector-column essential">
-                <div className="sector-header">
-                  <span className="sector-badge essential-badge">🔴 Entités Essentielles</span>
-                  <p className="sector-subtitle">Sanctions jusqu'à 10M€ ou 2% du CA mondial</p>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-xl)', marginBottom: 'var(--space-3xl)'}}>
+              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
+                <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '32px', fontWeight: '700', marginBottom: 'var(--space-md)'}}>
+                  1
                 </div>
-                <ul className="sector-list">
-                  <li>⚡ Énergie (électricité, gaz, pétrole, hydrogène)</li>
-                  <li>🚂 Transports (ferroviaire, aérien, maritime, routier)</li>
-                  <li>🏦 Secteur bancaire</li>
-                  <li>💰 Infrastructures des marchés financiers</li>
-                  <li>🏥 Santé (hôpitaux, laboratoires, pharmacies)</li>
-                  <li>💧 Eau potable et eaux usées</li>
-                  <li>🌐 Infrastructures numériques (DNS, TLD, cloud, data centers)</li>
-                  <li>🛰️ Espace</li>
-                </ul>
+                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+                  Taille de l'entreprise
+                </h3>
+                <p style={{fontSize: '16px', color: 'var(--color-text-secondary)', lineHeight: '1.6'}}>
+                  <strong>+50 salariés</strong> OU <strong>+10M€ de chiffre d'affaires</strong>
+                </p>
               </div>
 
-              {/* ENTITÉS IMPORTANTES */}
-              <div className="sector-column important">
-                <div className="sector-header">
-                  <span className="sector-badge important-badge">🟠 Entités Importantes</span>
-                  <p className="sector-subtitle">Sanctions jusqu'à 7M€ ou 1,4% du CA mondial</p>
+              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
+                <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #EC4899 0%, #F472B6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '32px', fontWeight: '700', marginBottom: 'var(--space-md)'}}>
+                  2
                 </div>
-                <ul className="sector-list">
-                  <li>📮 Services postaux et de courrier</li>
-                  <li>🗑️ Gestion des déchets</li>
-                  <li>🏭 Industrie manufacturière (chimie, pharmacie, agroalimentaire, équipements)</li>
-                  <li>🌐 Fournisseurs de services numériques (réseaux sociaux, moteurs de recherche, marketplaces)</li>
-                  <li>🔬 Recherche</li>
-                  <li>🏛️ Administrations publiques (État, régions, départements)</li>
-                </ul>
+                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+                  Secteur d'activité
+                </h3>
+                <p style={{fontSize: '16px', color: 'var(--color-text-secondary)', lineHeight: '1.6'}}>
+                  Vous opérez dans l'un des <strong>18 secteurs critiques ou essentiels</strong>
+                </p>
               </div>
             </div>
 
-            <div className="sectors-note">
-              <strong>💡 Bon à savoir :</strong> Même si vous n'êtes pas directement concerné, vos clients peuvent vous demander 
-              de prouver votre conformité pour travailler avec eux (clause contractuelle).
+            {/* LISTE DES SECTEURS */}
+            <div className="cyber-encart" style={{marginTop: 'var(--space-3xl)'}}>
+              <h3 style={{fontSize: '28px', fontWeight: '700', color: 'white', textAlign: 'center', marginBottom: 'var(--space-xl)', position: 'relative', zIndex: 1}}>
+                Les 18 secteurs concernés
+              </h3>
+
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: 'var(--space-xl)', position: 'relative', zIndex: 1}}>
+                {/* ENTITÉS ESSENTIELLES */}
+                <div>
+                  <div style={{marginBottom: 'var(--space-md)'}}>
+                    <span style={{display: 'inline-block', padding: '8px 16px', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 100%)', color: 'white', borderRadius: 'var(--radius-md)', fontSize: '14px', fontWeight: '600', marginBottom: 'var(--space-sm)'}}>
+                      Entités Essentielles
+                    </span>
+                    <p style={{color: 'rgba(255,255,255,0.7)', fontSize: '14px', marginTop: 'var(--space-xs)'}}>
+                      Sanctions jusqu'à 10M€ ou 2% du CA mondial
+                    </p>
+                  </div>
+                  <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                    {[
+                      { main: 'Énergie', details: 'électricité, gaz, pétrole, hydrogène' },
+                      { main: 'Transports', details: 'ferroviaire, aérien, maritime, routier' },
+                      { main: 'Secteur bancaire', details: '' },
+                      { main: 'Infrastructures des marchés financiers', details: '' },
+                      { main: 'Santé', details: 'hôpitaux, laboratoires, pharmacies' },
+                      { main: 'Eau potable et eaux usées', details: '' },
+                      { main: 'Infrastructures numériques', details: 'DNS, TLD, cloud, data centers' },
+                      { main: 'Espace', details: '' }
+                    ].map((item, idx) => (
+                      <li key={idx} style={{display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', padding: 'var(--space-md) 0', borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
+                        <span style={{width: '8px', height: '8px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 100%)', flexShrink: 0, marginTop: '6px'}}></span>
+                        <span style={{fontSize: '15px', lineHeight: '1.5'}}>
+                          <strong style={{color: 'white', fontWeight: '600'}}>{item.main}</strong>
+                          {item.details && <span style={{color: 'rgba(255,255,255,0.6)'}}> ({item.details})</span>}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* ENTITÉS IMPORTANTES */}
+                <div>
+                  <div style={{marginBottom: 'var(--space-md)'}}>
+                    <span style={{display: 'inline-block', padding: '8px 16px', background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', color: 'white', borderRadius: 'var(--radius-md)', fontSize: '14px', fontWeight: '600', marginBottom: 'var(--space-sm)'}}>
+                      Entités Importantes
+                    </span>
+                    <p style={{color: 'rgba(255,255,255,0.7)', fontSize: '14px', marginTop: 'var(--space-xs)'}}>
+                      Sanctions jusqu'à 7M€ ou 1,4% du CA mondial
+                    </p>
+                  </div>
+                  <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                    {[
+                      { main: 'Services postaux et de courrier', details: '' },
+                      { main: 'Gestion des déchets', details: '' },
+                      { main: 'Industrie manufacturière', details: 'chimie, pharmacie, agroalimentaire, équipements' },
+                      { main: 'Fournisseurs de services numériques', details: 'réseaux sociaux, moteurs de recherche, marketplaces' },
+                      { main: 'Recherche', details: '' },
+                      { main: 'Administrations publiques', details: 'État, régions, départements' }
+                    ].map((item, idx) => (
+                      <li key={idx} style={{display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', padding: 'var(--space-md) 0', borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
+                        <span style={{width: '8px', height: '8px', borderRadius: '50%', background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', flexShrink: 0, marginTop: '6px'}}></span>
+                        <span style={{fontSize: '15px', lineHeight: '1.5'}}>
+                          <strong style={{color: 'white', fontWeight: '600'}}>{item.main}</strong>
+                          {item.details && <span style={{color: 'rgba(255,255,255,0.6)'}}> ({item.details})</span>}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: 'var(--radius-md)', padding: 'var(--space-md)', marginTop: 'var(--space-xl)', border: '1px solid rgba(255,255,255,0.2)', position: 'relative', zIndex: 1}}>
+                <p style={{color: 'white', margin: 0, fontSize: '15px', lineHeight: '1.6'}}>
+                  <strong>Bon à savoir :</strong> Même si vous n'êtes pas directement concerné, vos clients peuvent vous demander
+                  de prouver votre conformité pour travailler avec eux (clause contractuelle).
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* LES SANCTIONS - REPOSITIONNÉ ICI POUR CRÉER L'URGENCE */}
-        <section className="sanctions-section">
-          <h2>⚠️ Quelles sanctions en cas de non-conformité ?</h2>
-          <p className="sanctions-intro">
-            Les sanctions sont <strong>lourdes et immédiates</strong>. La responsabilité du dirigeant est engagée.
-          </p>
-          
-          <div className="sanctions-grid">
-            <div className="sanction-card red">
-              <div className="sanction-header">
-                <span className="sanction-icon">💸</span>
-                <h3>Amendes financières</h3>
-              </div>
-              <div className="sanction-amount">Jusqu'à 10M€</div>
-              <p className="sanction-detail">ou 2% du chiffre d'affaires mondial (le montant le plus élevé)</p>
-            </div>
-
-            <div className="sanction-card orange">
-              <div className="sanction-header">
-                <span className="sanction-icon">⚖️</span>
-                <h3>Responsabilité pénale</h3>
-              </div>
-              <p className="sanction-detail">
-                Les dirigeants peuvent être tenus <strong>personnellement responsables</strong> 
-                en cas de manquement grave aux obligations NIS2
-              </p>
-            </div>
-
-            <div className="sanction-card blue">
-              <div className="sanction-header">
-                <span className="sanction-icon">🚫</span>
-                <h3>Exclusion des marchés</h3>
-              </div>
-              <p className="sanction-detail">
-                Impossibilité de répondre aux appels d'offres publics et privés sans certification de conformité
-              </p>
-            </div>
-          </div>
-
-          <div className="sanctions-timeline">
-            <h3>📅 Calendrier des sanctions</h3>
-            <div className="timeline-bar">
-              <div className="timeline-item past">
-                <strong>2023</strong>
-                <p>Entrée en vigueur</p>
-              </div>
-              <div className="timeline-item current">
-                <strong>2024-2026</strong>
-                <p>Période de transition<br/>Contrôles ANSSI</p>
-              </div>
-              <div className="timeline-item future">
-                <strong>2027</strong>
-                <p>Premières sanctions<br/>Conformité obligatoire</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="sanctions-urgency">
-            <p>
-              <strong>⏰ Le temps presse :</strong> Les contrôles ANSSI ont déjà commencé. 
-              Un audit de conformité prend en moyenne 3 à 6 mois. <strong>Agissez maintenant.</strong>
+        {/* LES SANCTIONS */}
+        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
+          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
+              Quelles sanctions en cas de non-conformité ?
+            </h2>
+            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)', maxWidth: '800px', margin: '0 auto var(--space-2xl)'}}>
+              Les sanctions sont <strong>lourdes et immédiates</strong>. La responsabilité du dirigeant est engagée.
             </p>
+
+            <div className="before-after-wrapper-design">
+              <style jsx>{`
+                .sanction-card {
+                  transition: all 0.3s ease;
+                }
+                .sanction-card:hover {
+                  transform: translateY(-4px);
+                }
+                .sanction-card-violet:hover {
+                  box-shadow: 0 12px 32px rgba(168, 85, 247, 0.25);
+                }
+                .sanction-card-rose:hover {
+                  box-shadow: 0 12px 32px rgba(236, 72, 153, 0.25);
+                }
+                .sanction-card-orange:hover {
+                  box-shadow: 0 12px 32px rgba(249, 115, 22, 0.25);
+                }
+              `}</style>
+
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)', marginBottom: 'var(--space-2xl)'}}>
+                <div className="sanction-card sanction-card-violet" style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(168, 85, 247, 0.12)', border: '2px solid #F3E8FF'}}>
+                  <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 'var(--space-md)'}}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 style={{fontSize: '18px', fontWeight: '700', color: '#A855F7', marginBottom: 'var(--space-sm)'}}>
+                    Amendes financières
+                  </h3>
+                  <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
+                    Jusqu'à <strong>10M€ ou 2% du CA mondial</strong> (le montant le plus élevé)
+                  </p>
+                </div>
+
+                <div className="sanction-card sanction-card-rose" style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(236, 72, 153, 0.12)', border: '2px solid #FCE7F3'}}>
+                  <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 'var(--space-md)'}}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6M23 11h-6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 style={{fontSize: '18px', fontWeight: '700', color: '#EC4899', marginBottom: 'var(--space-sm)'}}>
+                    Responsabilité pénale
+                  </h3>
+                  <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
+                    Les dirigeants peuvent être tenus <strong>personnellement responsables</strong> en cas de manquement grave
+                  </p>
+                </div>
+
+                <div className="sanction-card sanction-card-orange" style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(249, 115, 22, 0.12)', border: '2px solid #FFEDD5'}}>
+                  <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 'var(--space-md)'}}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M15 9l-6 6" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+                  <h3 style={{fontSize: '18px', fontWeight: '700', color: '#F97316', marginBottom: 'var(--space-sm)'}}>
+                    Exclusion des marchés
+                  </h3>
+                  <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
+                    Impossibilité de répondre aux <strong>appels d'offres publics et privés</strong> sans certification
+                  </p>
+                </div>
+              </div>
+
+              {/* TIMELINE */}
+              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-2xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
+                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
+                  Calendrier des sanctions
+                </h3>
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-lg)'}}>
+                  <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: '#F3F4F6', borderRadius: 'var(--radius-lg)'}}>
+                    <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#6B7280', marginBottom: 'var(--space-sm)'}}>2023</strong>
+                    <p style={{color: '#6B7280', fontSize: '15px', margin: 0}}>Entrée en vigueur</p>
+                  </div>
+                  <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: 'linear-gradient(135deg, #FFEDD5 0%, #FED7AA 100%)', borderRadius: 'var(--radius-lg)', border: '2px solid #F97316'}}>
+                    <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#F97316', marginBottom: 'var(--space-sm)'}}>2024-2026</strong>
+                    <p style={{color: '#C2410C', fontSize: '15px', fontWeight: '600', margin: 0}}>Période de transition<br />Contrôles ANSSI</p>
+                  </div>
+                  <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', borderRadius: 'var(--radius-lg)', border: '2px solid #EC4899'}}>
+                    <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#EC4899', marginBottom: 'var(--space-sm)'}}>2027</strong>
+                    <p style={{color: '#9D174D', fontSize: '15px', fontWeight: '600', margin: 0}}>Premières sanctions<br />Conformité obligatoire</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ESPACEMENT AVANT CARTOUCHE */}
+            <div style={{height: 'var(--space-xl)'}}></div>
+
+            {/* CARTOUCHE LE TEMPS PRESSE */}
+            <div className="aide-etat-banner" style={{background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 60%, #F472B6 100%)', marginBottom: 0}}>
+              <div className="aide-etat-content">
+                <div className="aide-etat-text">
+                  <div className="aide-etat-title">
+                    ⚠️ Le temps presse : Les contrôles ANSSI ont déjà commencé
+                  </div>
+                  <div className="aide-etat-subtitle">
+                    Un audit de conformité prend en moyenne 3 à 6 mois. Agissez maintenant pour éviter les sanctions.
+                  </div>
+                </div>
+              </div>
+              <a href="/#pricing" style={{display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 28px', background: 'white', color: '#A855F7', fontSize: '16px', fontWeight: '700', borderRadius: '9999px', border: 'none', textDecoration: 'none', cursor: 'pointer', transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', whiteSpace: 'nowrap', position: 'relative', zIndex: 1, flexShrink: 0}}>
+                Démarrer mon audit
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </section>
 
         {/* LES OBLIGATIONS */}
-        <section className="obligations-section">
-          <h2>📝 Quelles sont mes obligations ?</h2>
-          <p className="section-intro">
-            NIS2 impose <strong>10 mesures de sécurité</strong> et <strong>3 obligations administratives</strong>
-          </p>
+        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
+          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
+              Quelles sont mes obligations ?
+            </h2>
+            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)', maxWidth: '800px', margin: '0 auto var(--space-2xl)'}}>
+              NIS2 impose <strong>10 mesures de sécurité</strong> et <strong>3 obligations administratives</strong>
+            </p>
 
-          <div className="obligations-grid">
-            {/* MESURES TECHNIQUES */}
-            <div className="obligation-block">
-              <h3>🛡️ Mesures de sécurité</h3>
-              <ul className="obligation-list">
-                <li>Gestion des risques cyber</li>
-                <li>Sécurisation des accès</li>
-                <li>Cryptographie des données</li>
-                <li>Sauvegardes régulières</li>
-                <li>Plan de continuité d'activité</li>
-                <li>Sécurité de la chaîne d'approvisionnement</li>
-                <li>Contrôle des fournisseurs</li>
-                <li>Formation des équipes</li>
-                <li>Tests de sécurité réguliers</li>
-                <li>Politique de divulgation des vulnérabilités</li>
-              </ul>
-            </div>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: 'var(--space-xl)'}}>
+              {/* MESURES TECHNIQUES */}
+              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
+                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-lg)'}}>
+                  Mesures de sécurité
+                </h3>
+                <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                  {['Gestion des risques cyber', 'Sécurisation des accès', 'Cryptographie des données', 'Sauvegardes régulières', 'Plan de continuité d\'activité', 'Sécurité de la chaîne d\'approvisionnement', 'Contrôle des fournisseurs', 'Formation des équipes', 'Tests de sécurité réguliers', 'Politique de divulgation des vulnérabilités'].map((item, idx) => (
+                    <li key={idx} style={{padding: 'var(--space-sm) 0', borderBottom: '1px solid #E5E7EB', color: 'var(--color-text-secondary)', fontSize: '15px', display: 'flex', alignItems: 'center', gap: 'var(--space-sm)'}}>
+                      <span style={{color: 'var(--color-purple)', fontSize: '18px'}}>✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            {/* OBLIGATIONS ADMINISTRATIVES */}
-            <div className="obligation-block">
-              <h3>📋 Obligations administratives</h3>
-              <ul className="obligation-list highlighted">
-                <li><strong>Enregistrement auprès de l'ANSSI</strong><br/>Déclarer votre entité sur MonEspaceNIS2</li>
-                <li><strong>Formation obligatoire des dirigeants</strong><br/>Responsabilité pénale du dirigeant en cas de manquement</li>
-                <li><strong>Notification des incidents sous 24h</strong><br/>Déclaration à l'ANSSI en cas de cyberattaque</li>
-              </ul>
+              {/* OBLIGATIONS ADMINISTRATIVES */}
+              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
+                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-pink)', marginBottom: 'var(--space-lg)'}}>
+                  Obligations administratives
+                </h3>
+                <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                  <li style={{padding: 'var(--space-md)', background: '#FDEDF5', borderRadius: 'var(--radius-md)', marginBottom: 'var(--space-md)'}}>
+                    <strong style={{display: 'block', color: 'var(--color-pink)', fontSize: '16px', marginBottom: 'var(--space-xs)'}}>
+                      Enregistrement auprès de l'ANSSI
+                    </strong>
+                    <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', margin: 0}}>
+                      Déclarer votre entité sur MonEspaceNIS2
+                    </p>
+                  </li>
+                  <li style={{padding: 'var(--space-md)', background: '#FDEDF5', borderRadius: 'var(--radius-md)', marginBottom: 'var(--space-md)'}}>
+                    <strong style={{display: 'block', color: 'var(--color-pink)', fontSize: '16px', marginBottom: 'var(--space-xs)'}}>
+                      Formation obligatoire des dirigeants
+                    </strong>
+                    <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', margin: 0}}>
+                      Responsabilité pénale du dirigeant en cas de manquement
+                    </p>
+                  </li>
+                  <li style={{padding: 'var(--space-md)', background: '#FDEDF5', borderRadius: 'var(--radius-md)'}}>
+                    <strong style={{display: 'block', color: 'var(--color-pink)', fontSize: '16px', marginBottom: 'var(--space-xs)'}}>
+                      Notification des incidents sous 24h
+                    </strong>
+                    <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', margin: 0}}>
+                      Déclaration à l'ANSSI en cas de cyberattaque
+                    </p>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
 
         {/* COMMENT SE METTRE EN CONFORMITÉ */}
-        <section className="howto-section">
-          <h2>✅ Comment se mettre en conformité ?</h2>
-          
-          <div className="steps-grid">
-            <div className="step-card">
-              <div className="step-number">1</div>
-              <div className="step-content">
-                <h4>Réaliser un audit</h4>
-                <p>Évaluer votre niveau de conformité actuel et identifier les écarts</p>
-              </div>
+        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
+          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-2xl)'}}>
+              Comment se mettre en conformité ?
+            </h2>
+
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 'var(--space-lg)'}}>
+              {[
+                { num: '1', title: 'Réaliser un audit', desc: 'Évaluer votre niveau de conformité actuel et identifier les écarts' },
+                { num: '2', title: 'Obtenir un plan d\'action', desc: 'Prioriser les mesures à mettre en place selon vos risques' },
+                { num: '3', title: 'Former vos équipes', desc: 'Formation obligatoire des dirigeants + sensibilisation collaborateurs' },
+                { num: '4', title: 'S\'enregistrer auprès de l\'ANSSI', desc: 'Déclarer votre entité sur MonEspaceNIS2.cyber.gouv.fr' }
+              ].map((step) => (
+                <div key={step.num} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(168, 85, 247, 0.1)', textAlign: 'center'}}>
+                  <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '28px', fontWeight: '700', margin: '0 auto var(--space-md)'}}>
+                    {step.num}
+                  </div>
+                  <h4 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+                    {step.title}
+                  </h4>
+                  <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
+                    {step.desc}
+                  </p>
+                </div>
+              ))}
             </div>
 
-            <div className="step-card">
-              <div className="step-number">2</div>
-              <div className="step-content">
-                <h4>Obtenir un plan d'action</h4>
-                <p>Prioriser les mesures à mettre en place selon vos risques</p>
-              </div>
+            <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', marginTop: 'var(--space-2xl)', textAlign: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
+              <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-lg)'}}>
+                <strong style={{color: 'var(--color-purple)'}}>Bon à savoir :</strong> Jusqu'à 70% d'aides de l'État possibles pour financer votre mise en conformité
+              </p>
+              <a href="/offres-complementaires" className="btn-artisan btn-artisan-primary" style={{display: 'inline-block'}}>
+                Découvrir nos solutions d'accompagnement
+              </a>
             </div>
-
-            <div className="step-card">
-              <div className="step-number">3</div>
-              <div className="step-content">
-                <h4>Former vos équipes</h4>
-                <p>Formation obligatoire des dirigeants + sensibilisation collaborateurs</p>
-              </div>
-            </div>
-
-            <div className="step-card">
-              <div className="step-number">4</div>
-              <div className="step-content">
-                <h4>S'enregistrer auprès de l'ANSSI</h4>
-                <p>Déclarer votre entité sur MonEspaceNIS2.cyber.gouv.fr</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="howto-cta">
-            <p><strong>💡 Bon à savoir :</strong> Jusqu'à 70% d'aides de l'État possibles pour financer votre mise en conformité</p>
-            <a href="/offres-complementaires" className="btn-secondary-large">
-              Découvrir nos solutions d'accompagnement
-            </a>
           </div>
         </section>
 
         {/* RESSOURCES OFFICIELLES */}
-        <section className="resources-section">
-          <h2>📚 Ressources officielles</h2>
-          <p className="section-intro">Pour aller plus loin dans votre compréhension de NIS2</p>
+        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
+          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
+              Ressources officielles
+            </h2>
+            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)'}}>
+              Pour aller plus loin dans votre compréhension de NIS2
+            </p>
 
-          <div className="resources-grid">
-            <a href={EXTERNAL_LINKS.directiveOfficielle} target="_blank" rel="noopener noreferrer" className="resource-card featured">
-              <div className="resource-icon">📄</div>
-              <h4>Directive NIS2 - Texte officiel</h4>
-              <p>Directive (UE) 2022/2555 complète en français • EUR-Lex • Transparence totale</p>
-              <span className="resource-link">eur-lex.europa.eu →</span>
-            </a>
+            <style jsx>{`
+              .resource-card {
+                transition: all 0.3s ease;
+              }
+              .resource-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px rgba(168, 85, 247, 0.15) !important;
+              }
+            `}</style>
 
-            <a href={EXTERNAL_LINKS.anssi} target="_blank" rel="noopener noreferrer" className="resource-card">
-              <div className="resource-icon">🏛️</div>
-              <h4>Site officiel ANSSI</h4>
-              <p>Toute la réglementation et les guides pratiques</p>
-              <span className="resource-link">cyber.gouv.fr →</span>
-            </a>
-
-            <a href={EXTERNAL_LINKS.monespace} target="_blank" rel="noopener noreferrer" className="resource-card">
-              <div className="resource-icon">📝</div>
-              <h4>MonEspaceNIS2</h4>
-              <p>Plateforme d'enregistrement des entités concernées</p>
-              <span className="resource-link">monespacenis2.cyber.gouv.fr →</span>
-            </a>
-
-            <a href="https://aide.monespacenis2.cyber.gouv.fr/fr/" target="_blank" rel="noopener noreferrer" className="resource-card">
-              <div className="resource-icon">❓</div>
-              <h4>FAQ Officielle</h4>
-              <p>Réponses aux questions fréquentes sur NIS2</p>
-              <span className="resource-link">aide.monespacenis2.cyber.gouv.fr →</span>
-            </a>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-lg)'}}>
+              {[
+                { title: 'Directive NIS2 - Texte officiel', desc: 'Directive (UE) 2022/2555 complète en français', url: 'https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32022L2555', domain: 'eur-lex.europa.eu', icon: '📋', iconType: 'emoji' },
+                { title: 'Site officiel ANSSI', desc: 'Toute la réglementation et les guides pratiques', url: 'https://cyber.gouv.fr', domain: 'cyber.gouv.fr', icon: '🔒', iconType: 'emoji' },
+                { title: 'MonEspaceNIS2', desc: 'Plateforme d\'enregistrement des entités concernées', url: 'https://monespacenis2.cyber.gouv.fr', domain: 'monespacenis2.cyber.gouv.fr', icon: '🏛️', iconType: 'emoji' },
+                { title: 'FAQ Officielle', desc: 'Réponses aux questions fréquentes sur NIS2', url: 'https://aide.monespacenis2.cyber.gouv.fr/fr/', domain: 'aide.monespacenis2.cyber.gouv.fr', iconType: 'svg' }
+              ].map((resource, idx) => (
+                <a key={idx} href={resource.url} target="_blank" rel="noopener noreferrer" className="resource-card" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', textDecoration: 'none', display: 'flex', flexDirection: 'column', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF', height: '100%', boxSizing: 'border-box'}}>
+                  <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', marginBottom: 'var(--space-md)', flexShrink: 0}}>
+                    {resource.iconType === 'svg' ? (
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2"/>
+                        <path d="M12 16v.01M12 12a1 1 0 0 1 1-1 2 2 0 1 0-3.464-1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    ) : resource.icon}
+                  </div>
+                  <h4 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)', flexShrink: 0}}>
+                    {resource.title}
+                  </h4>
+                  <p style={{fontSize: '14px', color: 'var(--color-text-secondary)', lineHeight: '1.6', marginBottom: 'var(--space-md)', flex: 1}}>
+                    {resource.desc}
+                  </p>
+                  <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-xs)', color: 'var(--color-purple)', fontSize: '14px', fontWeight: '600', flexShrink: 0, wordBreak: 'break-all'}}>
+                    <span style={{flex: 1}}>{resource.domain}</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{flexShrink: 0}}>
+                      <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* CTA FINAL */}
-        <section className="cta-final-nis2">
-          <h2>Besoin d'aide pour votre conformité NIS2 ?</h2>
-          <p>Nos experts certifiés ISO 27001 vous accompagnent de l'audit à la déclaration ANSSI</p>
-          <div className="cta-buttons-group">
-            <a href="/#pricing" className="btn-primary-large">
-              Découvrir nos audits
-            </a>
-            <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer" className="btn-secondary-large">
-              📅 Parler à un expert
-            </a>
+        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', textAlign: 'center'}}>
+          <div style={{maxWidth: '800px', margin: '0 auto'}}>
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-md)'}}>
+              Besoin d'aide pour votre conformité NIS2 ?
+            </h2>
+            <p style={{fontSize: '18px', color: 'rgba(255,255,255,0.9)', marginBottom: 'var(--space-xl)'}}>
+              Nos experts certifiés ISO 27001 vous accompagnent de l'audit à la déclaration ANSSI
+            </p>
+            <div style={{display: 'flex', gap: 'var(--space-md)', justifyContent: 'center', flexWrap: 'wrap'}}>
+              <a href="/#pricing" style={{display: 'inline-block', padding: '16px 32px', background: 'white', color: 'var(--color-purple)', fontSize: '16px', fontWeight: '700', borderRadius: '9999px', textDecoration: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', transition: 'all 0.3s ease'}}>
+                Découvrir nos audits
+              </a>
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" style={{display: 'inline-block', padding: '16px 32px', background: 'transparent', color: 'white', fontSize: '16px', fontWeight: '700', borderRadius: '9999px', textDecoration: 'none', border: '2px solid white', transition: 'all 0.3s ease'}}>
+                Parler à un expert
+              </a>
+            </div>
           </div>
         </section>
 
-        <style jsx>{`
-          /* HERO */
-          .hero-nis2 {
-            text-align: center;
-            padding: 80px 20px 100px;
-            max-width: 900px;
-            margin: 0 auto;
-            background: linear-gradient(180deg, rgba(30, 58, 138, 0.03) 0%, transparent 100%);
-          }
-
-          .hero-nis2 h1 {
-            font-size: 52px;
-            font-weight: 900;
-            color: #0F172A;
-            line-height: 1.15;
-            margin-bottom: 24px;
-          }
-
-          .hero-lead {
-            font-size: 20px;
-            color: #64748B;
-            line-height: 1.6;
-          }
-
-          /* WHAT IS NIS2 */
-          .what-section {
-            max-width: 900px;
-            margin: 80px auto;
-            padding: 0 20px;
-          }
-
-          .what-content {
-            background: white;
-            padding: 48px 40px;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-          }
-
-          .what-icon {
-            font-size: 64px;
-            display: block;
-            margin-bottom: 24px;
-          }
-
-          .what-content h2 {
-            font-size: 36px;
-            font-weight: 900;
-            color: #1E3A8A;
-            margin-bottom: 20px;
-          }
-
-          .what-lead {
-            font-size: 18px;
-            color: #475569;
-            line-height: 1.7;
-            margin-bottom: 32px;
-          }
-
-          .what-boxes {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-          }
-
-          .info-box {
-            background: #F7F9FC;
-            padding: 24px;
-            border-radius: 12px;
-            border-left: 4px solid #1E3A8A;
-          }
-
-          .info-box strong {
-            display: block;
-            font-size: 16px;
-            font-weight: 800;
-            color: #1E3A8A;
-            margin-bottom: 8px;
-          }
-
-          .info-box p {
-            font-size: 15px;
-            color: #64748B;
-            line-height: 1.5;
-            margin: 0;
-          }
-
-          /* VIDEO */
-          .video-section {
-            margin: 100px auto;
-            padding: 0 20px;
-            max-width: 1000px;
-          }
-
-          .video-header {
-            text-align: center;
-            margin-bottom: 40px;
-          }
-
-          .video-badge {
-            display: inline-block;
-            background: #1E3A8A;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 24px;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 20px;
-          }
-
-          .video-header h2 {
-            font-size: 32px;
-            font-weight: 900;
-            color: #0F172A;
-            margin-bottom: 12px;
-          }
-
-          .video-header p {
-            font-size: 17px;
-            color: #64748B;
-          }
-
-          .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-          }
-
-          .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-          }
-
-          /* CONCERNED */
-          .concerned-section {
-            max-width: 1100px;
-            margin: 100px auto;
-            padding: 0 20px;
-          }
-
-          .concerned-section h2 {
-            font-size: 40px;
-            font-weight: 900;
-            color: #1E3A8A;
-            text-align: center;
-            margin-bottom: 20px;
-          }
-
-          .section-intro {
-            text-align: center;
-            font-size: 18px;
-            color: #64748B;
-            margin-bottom: 48px;
-          }
-
-          .criteria-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            margin-bottom: 60px;
-          }
-
-          .criterion-card {
-            background: white;
-            padding: 32px 28px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            display: flex;
-            gap: 24px;
-            align-items: flex-start;
-          }
-
-          .criterion-number {
-            font-size: 48px;
-            font-weight: 900;
-            color: #1E3A8A;
-            line-height: 1;
-            flex-shrink: 0;
-          }
-
-          .criterion-content h3 {
-            font-size: 20px;
-            font-weight: 800;
-            color: #0F172A;
-            margin-bottom: 12px;
-          }
-
-          .criterion-content p {
-            font-size: 16px;
-            color: #64748B;
-            line-height: 1.5;
-          }
-
-          /* SECTORS */
-          .sectors-block {
-            background: #F7F9FC;
-            padding: 48px 40px;
-            border-radius: 20px;
-            margin-top: 48px;
-          }
-
-          .sectors-block h3 {
-            font-size: 28px;
-            font-weight: 900;
-            color: #0F172A;
-            text-align: center;
-            margin-bottom: 40px;
-          }
-
-          .sectors-columns {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            margin-bottom: 32px;
-          }
-
-          .sector-column {
-            background: white;
-            padding: 32px;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-          }
-
-          .sector-column.essential {
-            border-top: 4px solid #DC2626;
-          }
-
-          .sector-column.important {
-            border-top: 4px solid #F59E0B;
-          }
-
-          .sector-header {
-            margin-bottom: 24px;
-          }
-
-          .sector-badge {
-            display: inline-block;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 800;
-            margin-bottom: 12px;
-          }
-
-          .essential-badge {
-            background: rgba(220, 38, 38, 0.1);
-            color: #DC2626;
-          }
-
-          .important-badge {
-            background: rgba(245, 158, 11, 0.1);
-            color: #F59E0B;
-          }
-
-          .sector-subtitle {
-            font-size: 13px;
-            color: #64748B;
-            font-weight: 600;
-          }
-
-          .sector-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-          }
-
-          .sector-list li {
-            padding: 12px 0;
-            font-size: 15px;
-            color: #475569;
-            line-height: 1.5;
-            border-bottom: 1px solid #F1F5F9;
-          }
-
-          .sector-list li:last-child {
-            border-bottom: none;
-          }
-
-          .sectors-note {
-            background: rgba(59, 130, 246, 0.1);
-            padding: 20px 24px;
-            border-radius: 12px;
-            border-left: 4px solid #3B82F6;
-            font-size: 15px;
-            color: #1E40AF;
-            line-height: 1.6;
-          }
-
-          /* OBLIGATIONS */
-          .obligations-section {
-            max-width: 1100px;
-            margin: 100px auto;
-            padding: 0 20px;
-          }
-
-          .obligations-section h2 {
-            font-size: 40px;
-            font-weight: 900;
-            color: #1E3A8A;
-            text-align: center;
-            margin-bottom: 20px;
-          }
-
-          .obligations-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            margin-top: 48px;
-          }
-
-          .obligation-block {
-            background: white;
-            padding: 36px 32px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-          }
-
-          .obligation-block h3 {
-            font-size: 22px;
-            font-weight: 800;
-            color: #0F172A;
-            margin-bottom: 24px;
-          }
-
-          .obligation-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-          }
-
-          .obligation-list li {
-            padding: 10px 0;
-            padding-left: 28px;
-            position: relative;
-            font-size: 15px;
-            color: #475569;
-            line-height: 1.5;
-            border-bottom: 1px solid #F1F5F9;
-          }
-
-          .obligation-list li:last-child {
-            border-bottom: none;
-          }
-
-          .obligation-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: #1E3A8A;
-            font-weight: 700;
-          }
-
-          .obligation-list.highlighted li {
-            padding: 16px 0 16px 28px;
-          }
-
-          .obligation-list.highlighted strong {
-            display: block;
-            color: #0F172A;
-            margin-bottom: 4px;
-          }
-
-          /* SANCTIONS */
-          .sanctions-section {
-            max-width: 1100px;
-            margin: 100px auto;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
-            border-radius: 24px;
-          }
-
-          .sanctions-section h2 {
-            font-size: 40px;
-            font-weight: 900;
-            color: #DC2626;
-            text-align: center;
-            margin-bottom: 20px;
-          }
-
-          .sanctions-intro {
-            text-align: center;
-            font-size: 18px;
-            color: #991B1B;
-            margin-bottom: 48px;
-            font-weight: 600;
-          }
-
-          .sanctions-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-bottom: 48px;
-          }
-
-          .sanction-card {
-            background: white;
-            padding: 32px 28px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-          }
-
-          .sanction-card.red {
-            border-top: 4px solid #DC2626;
-          }
-
-          .sanction-card.orange {
-            border-top: 4px solid #F59E0B;
-          }
-
-          .sanction-card.blue {
-            border-top: 4px solid #3B82F6;
-          }
-
-          .sanction-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-          }
-
-          .sanction-icon {
-            font-size: 32px;
-          }
-
-          .sanction-header h3 {
-            font-size: 18px;
-            font-weight: 800;
-            color: #0F172A;
-          }
-
-          .sanction-amount {
-            font-size: 36px;
-            font-weight: 900;
-            color: #DC2626;
-            margin-bottom: 12px;
-          }
-
-          .sanction-detail {
-            font-size: 15px;
-            color: #64748B;
-            line-height: 1.6;
-          }
-
-          /* TIMELINE */
-          .sanctions-timeline {
-            background: white;
-            padding: 32px;
-            border-radius: 16px;
-            margin-bottom: 32px;
-          }
-
-          .sanctions-timeline h3 {
-            font-size: 22px;
-            font-weight: 800;
-            color: #0F172A;
-            margin-bottom: 24px;
-            text-align: center;
-          }
-
-          .timeline-bar {
-            display: flex;
-            justify-content: space-between;
-            gap: 16px;
-          }
-
-          .timeline-item {
-            flex: 1;
-            text-align: center;
-            padding: 20px 16px;
-            background: #F7F9FC;
-            border-radius: 12px;
-            border: 2px solid #E2E8F0;
-          }
-
-          .timeline-item.current {
-            background: rgba(59, 130, 246, 0.1);
-            border-color: #3B82F6;
-          }
-
-          .timeline-item.future {
-            background: rgba(220, 38, 38, 0.05);
-            border-color: #DC2626;
-          }
-
-          .timeline-item strong {
-            display: block;
-            font-size: 24px;
-            font-weight: 900;
-            color: #1E3A8A;
-            margin-bottom: 8px;
-          }
-
-          .timeline-item p {
-            font-size: 14px;
-            color: #64748B;
-            line-height: 1.4;
-            margin: 0;
-          }
-
-          .sanctions-urgency {
-            background: white;
-            padding: 24px 28px;
-            border-radius: 16px;
-            border-left: 4px solid #DC2626;
-          }
-
-          .sanctions-urgency p {
-            font-size: 16px;
-            color: #991B1B;
-            line-height: 1.6;
-            margin: 0;
-          }
-
-          /* HOW TO */
-          .howto-section {
-            max-width: 1100px;
-            margin: 100px auto;
-            padding: 0 20px;
-          }
-
-          .howto-section h2 {
-            font-size: 40px;
-            font-weight: 900;
-            color: #1E3A8A;
-            text-align: center;
-            margin-bottom: 48px;
-          }
-
-          .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-bottom: 48px;
-          }
-
-          .step-card {
-            background: white;
-            padding: 28px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-          }
-
-          .step-number {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: #1E3A8A;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: 900;
-            flex-shrink: 0;
-          }
-
-          .step-content h4 {
-            font-size: 18px;
-            font-weight: 800;
-            color: #0F172A;
-            margin-bottom: 8px;
-          }
-
-          .step-content p {
-            font-size: 15px;
-            color: #64748B;
-            line-height: 1.5;
-            margin: 0;
-          }
-
-          .howto-cta {
-            background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
-            padding: 36px 32px;
-            border-radius: 16px;
-            text-align: center;
-            border: 2px solid #3B82F6;
-          }
-
-          .howto-cta p {
-            font-size: 16px;
-            color: #1E40AF;
-            margin-bottom: 20px;
-          }
-
-          .btn-secondary-large {
-            display: inline-block;
-            padding: 16px 36px;
-            background: white;
-            color: #1E3A8A;
-            border: 2px solid #1E3A8A;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-          }
-
-          .btn-secondary-large:hover {
-            background: #1E3A8A;
-            color: white;
-            transform: translateY(-2px);
-          }
-
-          /* RESOURCES */
-          .resources-section {
-            max-width: 1100px;
-            margin: 100px auto;
-            padding: 0 20px;
-          }
-
-          .resources-section h2 {
-            font-size: 40px;
-            font-weight: 900;
-            color: #1E3A8A;
-            text-align: center;
-            margin-bottom: 20px;
-          }
-
-          .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin-top: 48px;
-          }
-
-          .resource-card {
-            background: white;
-            padding: 32px 28px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: block;
-            border: 2px solid transparent;
-          }
-
-          .resource-card.featured {
-            border-color: #1E3A8A;
-            background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
-          }
-
-          .resource-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 36px rgba(30, 58, 138, 0.15);
-            border-color: #1E3A8A;
-          }
-
-          .resource-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            display: block;
-          }
-
-          .resource-card h4 {
-            font-size: 20px;
-            font-weight: 800;
-            color: #0F172A;
-            margin-bottom: 12px;
-          }
-
-          .resource-card p {
-            font-size: 15px;
-            color: #64748B;
-            line-height: 1.5;
-            margin-bottom: 16px;
-          }
-
-          .resource-link {
-            font-size: 14px;
-            color: #1E3A8A;
-            font-weight: 700;
-          }
-
-          /* CTA FINAL */
-          .cta-final-nis2 {
-            text-align: center;
-            padding: 80px 32px;
-            background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
-            border-radius: 24px;
-            margin: 100px 20px 60px;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 16px 48px rgba(30, 58, 138, 0.3);
-          }
-
-          .cta-final-nis2 h2 {
-            font-size: 40px;
-            font-weight: 900;
-            color: white;
-            margin-bottom: 16px;
-          }
-
-          .cta-final-nis2 p {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 36px;
-          }
-
-          .cta-buttons-group {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-          }
-
-          .btn-primary-large {
-            display: inline-block;
-            padding: 18px 40px;
-            background: #FF5630;
-            color: white;
-            border-radius: 14px;
-            font-size: 17px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(255, 86, 48, 0.3);
-          }
-
-          .btn-primary-large:hover {
-            background: #E64825;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 86, 48, 0.4);
-          }
-
-          .cta-buttons-group .btn-secondary-large {
-            background: white;
-            color: #1E3A8A;
-            padding: 18px 40px;
-            font-size: 17px;
-          }
-
-          .cta-buttons-group .btn-secondary-large:hover {
-            background: rgba(255, 255, 255, 0.9);
-            color: #1E3A8A;
-          }
-
-          /* RESPONSIVE */
-          @media (max-width: 1024px) {
-            .what-boxes,
-            .criteria-grid,
-            .sectors-columns,
-            .obligations-grid,
-            .steps-grid {
-              grid-template-columns: 1fr;
-            }
-
-            .sanctions-grid,
-            .resources-grid {
-              grid-template-columns: repeat(2, 1fr);
-            }
-          }
-
-          @media (max-width: 768px) {
-            .hero-nis2 h1 {
-              font-size: 36px;
-            }
-
-            .hero-lead {
-              font-size: 18px;
-            }
-
-            .concerned-section h2,
-            .obligations-section h2,
-            .sanctions-section h2,
-            .howto-section h2,
-            .resources-section h2,
-            .cta-final-nis2 h2 {
-              font-size: 32px;
-            }
-
-            .sanctions-grid,
-            .resources-grid {
-              grid-template-columns: 1fr;
-            }
-
-            .timeline-bar {
-              flex-direction: column;
-            }
-
-            .cta-buttons-group {
-              flex-direction: column;
-            }
-
-            .btn-primary-large,
-            .cta-buttons-group .btn-secondary-large {
-              width: 100%;
-            }
-          }
-        `}</style>
-      </PageLayout>
+        {/* FOOTER */}
+        <footer className="footer-artisan-modern">
+          <div className="footer-main-content">
+            <div className="footer-brand-col">
+              <img src="/logo.png" alt="NIS2 Conformité" className="footer-logo" />
+              <p className="footer-brand-desc">
+                La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes
+              </p>
+              <div className="footer-certifs">
+                <span>✓ Certifié ISO 27001</span>
+                <span>✓ Méthodologie ANSSI</span>
+              </div>
+            </div>
+
+            <div className="footer-col">
+              <h4 className="footer-col-title">Solutions</h4>
+              <ul className="footer-links-list">
+                <li><a href="/#pricing">Audit NIS2</a></li>
+                <li><a href="/formations">Formations</a></li>
+                <li><a href="/offres-complementaires">Services complémentaires</a></li>
+                <li><a href="#video-section">Comprendre NIS2</a></li>
+              </ul>
+            </div>
+
+            <div className="footer-col">
+              <h4 className="footer-col-title">Entreprise</h4>
+              <ul className="footer-links-list">
+                <li><a href="/qui-sommes-nous">Qui sommes-nous ?</a></li>
+                <li><a href="/#expertise">Notre expertise</a></li>
+                <li><a href="/#temoignages">Témoignages</a></li>
+                <li><a href="/comprendre-nis2">À propos de NIS2</a></li>
+              </ul>
+            </div>
+
+            <div className="footer-col">
+              <h4 className="footer-col-title">Contact</h4>
+              <ul className="footer-links-list">
+                <li>
+                  <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer">
+                    Prendre rendez-vous
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:nis2conformite@gmail.com">
+                    nis2conformite@gmail.com
+                  </a>
+                </li>
+                <li><a href="tel:+33000000000">+33 (0)0 00 00 00 00</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="footer-bottom-modern">
+            <div className="footer-bottom-content">
+              <p className="footer-copyright">© 2025 NIS2 Conformité. Tous droits réservés</p>
+              <div className="footer-legal-links">
+                <a href="/mentions-legales">Mentions légales</a>
+                <a href="/politique-confidentialite">Politique de confidentialité</a>
+                <a href="/cgu">CGU</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
     </>
   );
 }

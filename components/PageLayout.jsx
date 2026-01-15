@@ -28,13 +28,13 @@ export default function PageLayout({ children }) {
           
           <div className="header-actions">
             <MenuBurger />
-            <a 
-              href="https://calendly.com/nis2conformite/30min" 
-              target="_blank" 
+            <a
+              href="https://calendly.com/nis2conformite/30min"
+              target="_blank"
               rel="noopener noreferrer"
               className="header-cta"
             >
-              📞 Échange gratuit
+              Échange gratuit
             </a>
           </div>
         </div>
@@ -48,57 +48,47 @@ export default function PageLayout({ children }) {
       {/* Footer */}
       <footer className="page-footer">
         <div className="footer-container">
-          <div className="footer-logo-section">
+          <div className="footer-column">
             <img src="/logo.png" alt="NIS2 Conformité" className="footer-logo" />
             <p className="footer-tagline">
-              La plateforme d'audit et de conformité cyber<br />
-              pensée pour les PME et ETI européennes
+              La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes
             </p>
           </div>
 
-          <div className="footer-links">
-            <div className="footer-column">
-              <h4>Navigation</h4>
-              <ul>
-                <li><Link href="/">Accueil</Link></li>
-                <li><Link href="/comprendre-nis2">Comprendre NIS2</Link></li>
-                <li><Link href="/qui-sommes-nous">Qui sommes-nous ?</Link></li>
-              </ul>
-            </div>
+          <div className="footer-column">
+            <h4>Navigation</h4>
+            <ul>
+              <li><Link href="/">Accueil</Link></li>
+              <li><Link href="/comprendre-nis2">Comprendre NIS2</Link></li>
+              <li><Link href="/qui-sommes-nous">Qui sommes-nous ?</Link></li>
+              <li><Link href="/offres-complementaires">Offres complémentaires</Link></li>
+              <li><Link href="/formations">Formations</Link></li>
+            </ul>
+          </div>
 
-            <div className="footer-column">
-              <h4>Nos services</h4>
-              <ul>
-                <li><Link href="/offres-complementaires">Offres complémentaires</Link></li>
-                <li><Link href="/formations">Formations</Link></li>
-                <li><Link href="/#pricing">Nos audits</Link></li>
-              </ul>
-            </div>
-
-            <div className="footer-column">
-              <h4>Contact</h4>
-              <ul>
-                <li>
-                  <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer">
-                    Prendre rendez-vous
-                  </a>
-                </li>
-                <li>
-                  <a href="mailto:nis2conformite@gmail.com">
-                    nis2conformite@gmail.com
-                  </a>
-                </li>
-              </ul>
+          <div className="footer-column">
+            <h4>Contact</h4>
+            <ul>
+              <li>
+                <a href="https://calendly.com/nis2conformite/30min" target="_blank" rel="noopener noreferrer">
+                  Prendre rendez-vous
+                </a>
+              </li>
+              <li>
+                <a href="mailto:nis2conformite@gmail.com">
+                  nis2conformite@gmail.com
+                </a>
+              </li>
+            </ul>
+            <div className="footer-certifications">
+              <span>Certifié ISO 27001</span>
+              <span>Méthodologie ANSSI</span>
             </div>
           </div>
         </div>
 
         <div className="footer-bottom">
           <p>© 2025 NIS2 Conformité • Tous droits réservés</p>
-          <div className="footer-certifications">
-            <span>✓ Certifié ISO 27001</span>
-            <span>✓ Méthodologie ANSSI</span>
-          </div>
         </div>
       </footer>
 
@@ -109,21 +99,22 @@ export default function PageLayout({ children }) {
           flex-direction: column;
         }
 
-        /* HEADER */
+        /* HEADER - Style Artisan minimaliste */
         .page-header {
           position: sticky;
           top: 0;
-          background: white;
-          border-bottom: 1px solid transparent;
-          padding: 12px 0;
-          transition: all 0.3s ease;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+          padding: 16px 0;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           z-index: 100;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         .page-header.scrolled {
-          border-bottom-color: #E2E8F0;
-          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-          padding: 8px 0;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+          padding: 12px 0;
         }
 
         .header-container {
@@ -156,21 +147,22 @@ export default function PageLayout({ children }) {
         }
 
         .header-cta {
-          padding: 12px 24px;
-          background: #FF5630;
+          padding: 12px 28px;
+          background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
           color: white;
           font-size: 15px;
           font-weight: 700;
           text-decoration: none;
-          border-radius: 10px;
-          transition: all 0.3s ease;
+          border-radius: 14px;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           white-space: nowrap;
+          box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
         }
 
         .header-cta:hover {
-          background: #E64825;
+          background: linear-gradient(135deg, #6D28D9 0%, #5B21B6 100%);
           transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(255, 86, 48, 0.3);
+          box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
         }
 
         /* CONTENT */
@@ -191,23 +183,24 @@ export default function PageLayout({ children }) {
           margin: 0 auto;
           padding: 0 20px 40px;
           display: grid;
-          grid-template-columns: 1.5fr 1fr 1fr 1fr;
-          gap: 40px;
+          grid-template-columns: 1.2fr 1fr 1fr;
+          gap: 48px;
         }
 
         .footer-logo {
-          height: 60px;
+          height: 45px;
           margin-bottom: 16px;
         }
 
         .footer-tagline {
-          font-size: 14px;
+          font-size: 13px;
           color: #94A3B8;
           line-height: 1.6;
+          margin-top: 0;
         }
 
         .footer-column h4 {
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 700;
           margin-bottom: 16px;
           color: white;
@@ -226,12 +219,24 @@ export default function PageLayout({ children }) {
         .footer-column a {
           color: #94A3B8;
           text-decoration: none;
-          font-size: 14px;
+          font-size: 13px;
           transition: color 0.3s ease;
         }
 
         .footer-column a:hover {
-          color: #FF5630;
+          color: #A78BFA;
+        }
+
+        .footer-certifications {
+          margin-top: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .footer-certifications span {
+          font-size: 12px;
+          color: #64748B;
         }
 
         .footer-bottom {
@@ -239,26 +244,15 @@ export default function PageLayout({ children }) {
           padding: 24px 20px;
           max-width: 1200px;
           margin: 0 auto;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
+          text-align: center;
           font-size: 13px;
           color: #64748B;
         }
 
-        .footer-certifications {
-          display: flex;
-          gap: 24px;
-        }
-
         @media (max-width: 1024px) {
           .footer-container {
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-          }
-
-          .footer-logo-section {
-            grid-column: 1 / -1;
+            grid-template-columns: 1fr;
+            gap: 40px;
           }
         }
 
@@ -269,17 +263,7 @@ export default function PageLayout({ children }) {
 
           .footer-container {
             grid-template-columns: 1fr;
-          }
-
-          .footer-bottom {
-            flex-direction: column;
-            gap: 16px;
-            text-align: center;
-          }
-
-          .footer-certifications {
-            flex-direction: column;
-            gap: 8px;
+            gap: 32px;
           }
         }
       `}</style>
