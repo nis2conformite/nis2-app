@@ -1,0 +1,578 @@
+/* ═══════════════════════════════════════════════════════════
+   🎓 STYLES - PAGE FORMATIONS
+   ═══════════════════════════════════════════════════════════ */
+
+@import url('./variables.css');
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.hero {
+  background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+  color: var(--color-white);
+  padding: var(--spacing-20) var(--spacing-5);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: var(--font-size-10xl);
+  font-weight: var(--font-weight-black);
+  margin-bottom: var(--spacing-5);
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-3xl);
+  opacity: 0.95;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-5);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   INTRO
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.intro-section {
+  padding: 60px var(--spacing-5);
+  background: #F7F8FC;
+}
+
+.intro-box {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.lead {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-6);
+  line-height: var(--line-height-relaxed);
+}
+
+.intro-box p {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-extra-loose);
+  color: #334155;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FORMATS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.formats-section {
+  padding: var(--spacing-20) var(--spacing-5);
+}
+
+.formats-section h2 {
+  font-size: var(--font-size-8xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-12);
+  text-align: center;
+}
+
+.format-card {
+  max-width: 1100px;
+  margin: 0 auto var(--spacing-12);
+  background: var(--color-white);
+  border-radius: var(--border-radius-3xl);
+  padding: var(--spacing-10);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.format-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-8);
+  padding-bottom: var(--spacing-6);
+  border-bottom: var(--border-width-base) solid #E2E8F0;
+}
+
+.format-icon {
+  font-size: 64px;
+  flex-shrink: 0;
+}
+
+.format-title-block h3 {
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-2);
+}
+
+.format-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-500);
+  font-style: italic;
+}
+
+.format-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-8);
+}
+
+.format-column h4 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-4);
+}
+
+.format-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.format-column li {
+  padding: var(--spacing-2) 0;
+  padding-left: var(--spacing-6);
+  position: relative;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: #334155;
+}
+
+.format-column li:before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TRAININGS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.trainings-section {
+  padding: var(--spacing-20) var(--spacing-5);
+  background: #F7F8FC;
+}
+
+.trainings-section h2 {
+  font-size: var(--font-size-8xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-6);
+  text-align: center;
+}
+
+.trainings-section .intro {
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-500);
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--spacing-12);
+}
+
+.trainings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-8);
+}
+
+.training-card {
+  background: var(--color-white);
+  padding: var(--spacing-8);
+  border-radius: var(--border-radius-2xl);
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.training-number {
+  position: absolute;
+  top: -16px;
+  left: var(--spacing-8);
+  width: 48px;
+  height: 48px;
+  background: var(--color-accent);
+  color: var(--color-white);
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-black);
+  box-shadow: 0 4px 12px rgba(255, 86, 48, 0.3);
+}
+
+.training-card h3 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-3);
+  padding-top: var(--spacing-4);
+}
+
+.training-desc {
+  font-size: var(--font-size-md);
+  color: var(--color-gray-500);
+  margin-bottom: var(--spacing-5);
+  line-height: var(--line-height-relaxed);
+}
+
+.training-topics {
+  list-style: none;
+  padding: 0;
+}
+
+.training-topics li {
+  padding: var(--spacing-2) 0;
+  padding-left: var(--spacing-6);
+  position: relative;
+  font-size: var(--font-size-sm);
+  color: #334155;
+}
+
+.training-topics li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #16A34A;
+  font-weight: var(--font-weight-bold);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   WHY TRAIN
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.why-train-section {
+  padding: var(--spacing-20) var(--spacing-5);
+}
+
+.why-train-section h2 {
+  font-size: var(--font-size-8xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-12);
+  text-align: center;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-8);
+}
+
+.why-card {
+  background: var(--color-white);
+  padding: var(--spacing-8);
+  border-radius: var(--border-radius-2xl);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.why-icon {
+  font-size: 56px;
+  display: block;
+  margin-bottom: var(--spacing-5);
+}
+
+.why-card h4 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-3);
+}
+
+.why-card p {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-loose);
+  color: var(--color-gray-500);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CTA
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.cta-section {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--spacing-20) var(--spacing-5);
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: var(--font-size-8xl);
+  font-weight: var(--font-weight-black);
+  margin-bottom: var(--spacing-5);
+}
+
+.cta-section p {
+  font-size: var(--font-size-2xl);
+  opacity: 0.95;
+  max-width: 600px;
+  margin: 0 auto var(--spacing-8);
+}
+
+.cta-button {
+  display: inline-block;
+  padding: var(--spacing-5) var(--spacing-12);
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  border-radius: var(--border-radius-xl);
+  transition: all var(--transition-base);
+}
+
+.cta-button:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 86, 48, 0.3);
+}
+
+.cta-note {
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-4);
+  opacity: 0.8;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ANIMATIONS ET HOVER EFFECTS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Animations globales */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Section animations (au scroll) */
+.formats-asymmetric-section,
+.why-train-mixed-section,
+.trainings-alternating-section {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Hover effects pour cartes format compact */
+.format-card-compact:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(168, 85, 247, 0.2) !important;
+  border-color: var(--color-purple) !important;
+}
+
+/* Hover effect pour carte featured */
+.format-card-featured:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 48px rgba(168, 85, 247, 0.35) !important;
+}
+
+/* Hover effects pour why cards horizontal */
+.why-card-horizontal:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 28px rgba(168, 85, 247, 0.2) !important;
+  border-color: var(--color-purple) !important;
+}
+
+/* Hover effects pour why cards vertical */
+.why-card-vertical:hover {
+  transform: translateY(-12px) scale(1.05);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Hover effects pour training cards standard */
+.training-card-standard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.15) !important;
+  border-color: var(--color-purple) !important;
+}
+
+/* Hover effect pour training card highlighted */
+.training-card-highlighted:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 48px rgba(245, 158, 11, 0.35) !important;
+}
+
+/* Animation des icônes au hover */
+.format-card-compact:hover > div:first-child,
+.why-card-horizontal:hover > div:first-child {
+  transform: rotate(5deg) scale(1.1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.format-card-featured:hover > div:nth-child(2) {
+  transform: scale(1.1) rotate(-5deg);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.why-card-vertical:hover > div:first-child {
+  transform: scale(1.15) rotate(360deg);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transitions sur icônes */
+.format-card-compact > div:first-child,
+.format-card-featured > div:nth-child(2),
+.why-card-horizontal > div:first-child,
+.why-card-vertical > div:first-child {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animation progressive des cartes (staggered) */
+.format-card-compact:nth-child(1) {
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.format-card-featured {
+  animation: scaleIn 0.8s ease-out 0.2s both;
+}
+
+.format-card-compact:nth-child(3) {
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.why-card-horizontal:nth-child(1) {
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.why-card-horizontal:nth-child(2) {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.why-card-vertical:nth-child(1) {
+  animation: scaleIn 0.7s ease-out 0.3s both;
+}
+
+.why-card-vertical:nth-child(2) {
+  animation: scaleIn 0.7s ease-out 0.4s both;
+}
+
+.training-card-standard {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.training-card-standard:nth-child(1) { animation-delay: 0.1s; }
+.training-card-standard:nth-child(2) { animation-delay: 0.2s; }
+.training-card-standard:nth-child(3) { animation-delay: 0.3s; }
+
+.training-card-highlighted {
+  animation: scaleIn 0.8s ease-out 0.2s both;
+}
+
+/* Effet de brillance au hover (shimmer) */
+.format-card-featured::before,
+.training-card-highlighted::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.format-card-featured:hover::before,
+.training-card-highlighted:hover::before {
+  left: 100%;
+}
+
+/* Pulse animation pour badges */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+.format-card-featured > div:first-child,
+.training-card-highlighted > div:first-child {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 1024px) {
+  .format-content {
+    grid-template-columns: 1fr;
+  }
+
+  .trainings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Responsive pour layout asymétrique */
+  .formats-asymmetric-section > div > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Responsive pour why cards */
+  .why-train-mixed-section > div > div > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Responsive pour training highlighted */
+  .training-card-highlighted > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  .training-card-highlighted > div > div:last-child > div {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: var(--font-size-7xl);
+  }
+
+  .formats-section,
+  .trainings-section,
+  .why-train-section,
+  .cta-section {
+    padding: var(--spacing-12) var(--spacing-5);
+  }
+
+  .format-card {
+    padding: var(--spacing-6);
+  }
+
+  .format-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Désactiver certaines animations sur mobile */
+  .format-card-compact:hover,
+  .format-card-featured:hover,
+  .why-card-horizontal:hover,
+  .why-card-vertical:hover,
+  .training-card-standard:hover,
+  .training-card-highlighted:hover {
+    transform: none;
+  }
+}
