@@ -722,6 +722,130 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NOUVELLE SECTION APPROCHE - AVEC IMAGES
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.approach-container {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  margin-top: var(--space-xl);
+}
+
+.approach-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.approach-item-reverse {
+  direction: rtl;
+}
+
+.approach-item-reverse > * {
+  direction: ltr;
+}
+
+.approach-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.approach-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.approach-number {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+}
+
+.approach-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.approach-description {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.approach-image-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-artisan-xl);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.approach-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: var(--radius-artisan-xl);
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .approach-container {
+    gap: 48px;
+  }
+
+  .approach-item {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .approach-item-reverse {
+    direction: ltr;
+  }
+
+  .approach-header {
+    gap: 16px;
+  }
+
+  .approach-number {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    font-size: 24px;
+  }
+
+  .approach-title {
+    font-size: 22px;
+  }
+
+  .approach-description {
+    font-size: 15px;
+  }
+
+  .approach-image {
+    max-width: 100%;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    SECTION NOIRE - GLASSMORPHISM OPTIMISÉ
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .black-section-artisan {

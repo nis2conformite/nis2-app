@@ -336,63 +336,21 @@ export default function Home() {
             Une méthodologie éprouvée pour votre conformité NIS2
           </p>
 
-          <div className="approach-steps-vertical">
-            {/* Étape 1 - Texte à gauche, Image à droite */}
-            <div className="approach-step-row">
-              <div className="approach-step-content">
-                <div className="approach-step-number">01</div>
-                <h3 className="approach-step-title">Analyse de conformité</h3>
-                <p className="approach-step-description">
-                  Identification des écarts clés de conformité selon le référenciel de l'ANSSI. Notre audit complet permet de cartographier précisément votre niveau actuel et les points d'amélioration prioritaires.
-                </p>
-              </div>
-              <div className="approach-step-image">
+          <div className="approach-container">
+            {EXPERTISE_TIMELINE.map((item, index) => (
+              <div key={index} className={`approach-item ${index % 2 === 1 ? 'approach-item-reverse' : ''}`}>
+                <div className="approach-content">
+                  <div className="approach-header">
+                    <div className="approach-number">{item.number}</div>
+                    <h3 className="approach-title">{item.title}</h3>
+                  </div>
+                  <p className="approach-description">{item.description}</p>
+                </div>
                 <div className="approach-image-wrapper">
-                  <img
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
-                    alt="Analyse de conformité NIS2"
-                  />
+                  <img src={item.image} alt={item.title} className="approach-image" />
                 </div>
               </div>
-            </div>
-
-            {/* Étape 2 - Image à gauche, Texte à droite */}
-            <div className="approach-step-row reverse">
-              <div className="approach-step-image">
-                <div className="approach-image-wrapper">
-                  <img
-                    src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop"
-                    alt="Comprendre ses vulnérabilités"
-                  />
-                </div>
-              </div>
-              <div className="approach-step-content">
-                <div className="approach-step-number">02</div>
-                <h3 className="approach-step-title">Comprendre ses vulnérabilités</h3>
-                <p className="approach-step-description">
-                  Connaître son niveau de conformité aux obligations de sécurité NIS2. Nous vous aidons à identifier les risques critiques et à prioriser les actions correctives pour une mise en conformité efficace.
-                </p>
-              </div>
-            </div>
-
-            {/* Étape 3 - Texte à gauche, Image à droite */}
-            <div className="approach-step-row">
-              <div className="approach-step-content">
-                <div className="approach-step-number">03</div>
-                <h3 className="approach-step-title">Accompagnement adapté</h3>
-                <p className="approach-step-description">
-                  Choisissez l'offre adaptée en fonction de votre niveau global de maturité cyber. De l'audit initial à la certification complète, nous vous accompagnons à chaque étape de votre parcours de conformité.
-                </p>
-              </div>
-              <div className="approach-step-image">
-                <div className="approach-image-wrapper">
-                  <img
-                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop"
-                    alt="Accompagnement adapté NIS2"
-                  />
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

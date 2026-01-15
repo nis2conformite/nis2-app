@@ -370,17 +370,20 @@ export const EXPERTISE_TIMELINE = [
   {
     number: "01",
     title: "Analyse de conformité",
-    description: "Identification des écarts clés de conformité selon le référenciel de l'ANSSI."
+    description: "Identification des écarts clés de conformité selon le référenciel de l'ANSSI. Notre audit complet permet de cartographier précisément votre niveau actuel et les points d'amélioration prioritaires.",
+    image: "/approach-analytics.jpg"
   },
   {
     number: "02",
     title: "Comprendre ses vulnérabilités",
-    description: "Connaître son niveau de conformité aux obligations de sécurité NIS2"
+    description: "Connaître son niveau de conformité aux obligations de sécurité NIS2. Nous vous aidons à identifier les risques critiques et à prioriser les actions correctives pour une mise en conformité efficace.",
+    image: "/approach-security.jpg"
   },
   {
     number: "03",
     title: "Accompagnement adapté",
-    description: "Choisissez l'offre adaptée en fonction de votre niveau global de maturité cyber"
+    description: "Choisissez l'offre adaptée en fonction de votre niveau global de maturité cyber. Notre équipe vous accompagne dans la mise en œuvre de votre plan d'action personnalisé.",
+    image: "/approach-consulting.jpg"
   }
 ];
 
