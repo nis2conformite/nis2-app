@@ -190,34 +190,92 @@ export default function QuiSommesNous() {
           </div>
         </section>
 
-        {/* VALEURS - 6 CARDS */}
+        {/* VALEURS - 6 CARDS REDESIGN */}
         <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(180deg, #FFF 0%, #F3E8FF 100%)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
               Nos valeurs
             </h2>
-            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
+            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)'}}>
               Les principes qui guident notre accompagnement au quotidien
             </p>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-lg)'}}>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-lg)'}}>
               {[
-                { title: 'Pragmatisme', desc: 'Solutions concrètes adaptées à votre réalité. Pas de théorie, que du terrain.', gradient: '#A855F7' },
-                { title: 'Transparence', desc: 'Prix clairs, méthodologie expliquée, pas de mauvaise surprise. Vous savez toujours où vous en êtes.', gradient: '#EC4899' },
-                { title: 'Réactivité', desc: 'Réponse en 24h, audit livré en 48h (offre Sérénité). Nous respectons vos délais.', gradient: '#F472B6' },
-                { title: 'Excellence', desc: 'Méthodologie ANSSI, experts certifiés ISO 27001. Vous méritez le meilleur accompagnement.', gradient: '#FB923C' },
-                { title: 'Discrétion', desc: 'Confidentialité absolue. Vos données et vos vulnérabilités restent entre nous.', gradient: '#C084FC' },
-                { title: 'Impact', desc: 'Résultats mesurables : 98% de conformité, 0 client sanctionné, 12 000€ d\'aides récupérées en moyenne.', gradient: '#F9A8D4' }
+                {
+                  title: 'Pragmatisme',
+                  desc: 'Solutions concrètes adaptées à votre réalité. Pas de théorie, que du terrain.',
+                  icon: (
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A855F7" strokeWidth="2">
+                      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                  )
+                },
+                {
+                  title: 'Transparence',
+                  desc: 'Prix clairs, méthodologie expliquée, pas de mauvaise surprise. Vous savez toujours où vous en êtes.',
+                  icon: (
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#EC4899" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8"/>
+                      <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                  )
+                },
+                {
+                  title: 'Réactivité',
+                  desc: 'Réponse en 24h, audit livré en 48h (offre Sérénité). Nous respectons vos délais.',
+                  icon: (
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F472B6" strokeWidth="2">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                  )
+                },
+                {
+                  title: 'Excellence',
+                  desc: 'Méthodologie ANSSI, experts certifiés ISO 27001. Vous méritez le meilleur accompagnement.',
+                  icon: (
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FB923C" strokeWidth="2">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  )
+                },
+                {
+                  title: 'Discrétion',
+                  desc: 'Confidentialité absolue. Vos données et vos vulnérabilités restent entre nous.',
+                  icon: (
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C084FC" strokeWidth="2">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                  )
+                },
+                {
+                  title: 'Impact',
+                  desc: 'Résultats mesurables : 98% de conformité, 0 client sanctionné, 12 000€ d\'aides récupérées en moyenne.',
+                  icon: (
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F9A8D4" strokeWidth="2">
+                      <line x1="18" y1="20" x2="18" y2="10"/>
+                      <line x1="12" y1="20" x2="12" y2="4"/>
+                      <line x1="6" y1="20" x2="6" y2="14"/>
+                    </svg>
+                  )
+                }
               ].map((value, idx) => (
                 <div key={idx} style={{
                   background: 'white',
-                  borderRadius: 'var(--radius-lg)',
-                  padding: 'var(--space-lg)',
+                  borderRadius: 'var(--radius-xl)',
+                  padding: 'var(--space-xl)',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-                  borderLeft: `4px solid ${value.gradient}`,
-                  transition: 'all 0.3s ease'
+                  border: '1px solid #E5E7EB',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 'var(--space-md)'
                 }} className="value-card-hover">
-                  <h4 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+                  <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    {value.icon}
+                  </div>
+                  <h4 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
                     {value.title}
                   </h4>
                   <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
