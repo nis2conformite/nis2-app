@@ -447,40 +447,26 @@ export default function Home() {
           </p>
 
           {/* Bandeau aides d'état */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '24px 32px',
-            background: 'linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%)',
-            borderRadius: 'var(--radius-artisan-xl)',
-            border: '2px solid #93C5FD',
-            marginBottom: '48px',
-            flexWrap: 'wrap',
-            gap: '16px'
-          }}>
-            <div>
-              <div style={{fontSize: '16px', fontWeight: '700', marginBottom: '4px'}}>
-                Aides de l'État disponibles
-              </div>
-              <div style={{fontSize: '14px', color: 'var(--artisan-text-light)'}}>
-                Réduisez le coût de votre mise en conformité.
+          <div className="aide-etat-banner">
+            <div className="aide-etat-content">
+              <div className="aide-etat-icon">💰</div>
+              <div className="aide-etat-text">
+                <div className="aide-etat-title">
+                  Jusqu'à 70% d'aides de l'État • France 2030 • Investissements d'avenir
+                </div>
+                <div className="aide-etat-subtitle">
+                  Réduisez jusqu'à 70% le coût de votre mise en conformité NIS2 grâce aux aides publiques
+                </div>
               </div>
             </div>
             <button
               onClick={() => alert('Simulateur en cours de développement')}
-              style={{
-                padding: '12px 24px',
-                background: 'var(--artisan-primary)',
-                color: 'white',
-                border: 'none',
-                borderRadius: 'var(--radius-artisan-lg)',
-                fontWeight: '700',
-                fontSize: '14px',
-                cursor: 'pointer'
-              }}
+              className="btn-simulateur"
             >
-              Simulateur aides État
+              Calculer mes aides
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </button>
           </div>
 
