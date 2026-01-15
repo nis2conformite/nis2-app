@@ -338,7 +338,7 @@ export default function Home() {
 
           <div className="approach-container">
             {EXPERTISE_TIMELINE.map((item, index) => (
-              <div key={index} className={`approach-item ${index % 2 === 1 ? 'approach-item-reverse' : ''}`}>
+              <div key={index} className="approach-item">
                 <div className="approach-content">
                   <div className="approach-header">
                     <div className="approach-number">{item.number}</div>
