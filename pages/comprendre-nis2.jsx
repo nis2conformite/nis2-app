@@ -481,16 +481,21 @@ export default function ComprendreNIS2() {
               }
             `}</style>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)'}}>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-lg)'}}>
               {[
-                { title: 'Directive NIS2 - Texte officiel', desc: 'Directive (UE) 2022/2555 complète en français', url: 'https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32022L2555', domain: 'eur-lex.europa.eu', icon: '📋' },
-                { title: 'Site officiel ANSSI', desc: 'Toute la réglementation et les guides pratiques', url: 'https://cyber.gouv.fr', domain: 'cyber.gouv.fr', icon: '🔒' },
-                { title: 'MonEspaceNIS2', desc: 'Plateforme d\'enregistrement des entités concernées', url: 'https://monespacenis2.cyber.gouv.fr', domain: 'monespacenis2.cyber.gouv.fr', icon: '🏛️' },
-                { title: 'FAQ Officielle', desc: 'Réponses aux questions fréquentes sur NIS2', url: 'https://aide.monespacenis2.cyber.gouv.fr/fr/', domain: 'aide.monespacenis2.cyber.gouv.fr', icon: '❓' }
+                { title: 'Directive NIS2 - Texte officiel', desc: 'Directive (UE) 2022/2555 complète en français', url: 'https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32022L2555', domain: 'eur-lex.europa.eu', icon: '📋', iconType: 'emoji' },
+                { title: 'Site officiel ANSSI', desc: 'Toute la réglementation et les guides pratiques', url: 'https://cyber.gouv.fr', domain: 'cyber.gouv.fr', icon: '🔒', iconType: 'emoji' },
+                { title: 'MonEspaceNIS2', desc: 'Plateforme d\'enregistrement des entités concernées', url: 'https://monespacenis2.cyber.gouv.fr', domain: 'monespacenis2.cyber.gouv.fr', icon: '🏛️', iconType: 'emoji' },
+                { title: 'FAQ Officielle', desc: 'Réponses aux questions fréquentes sur NIS2', url: 'https://aide.monespacenis2.cyber.gouv.fr/fr/', domain: 'aide.monespacenis2.cyber.gouv.fr', iconType: 'svg' }
               ].map((resource, idx) => (
                 <a key={idx} href={resource.url} target="_blank" rel="noopener noreferrer" className="resource-card" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', textDecoration: 'none', display: 'flex', flexDirection: 'column', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
                   <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', marginBottom: 'var(--space-md)'}}>
-                    {resource.icon}
+                    {resource.iconType === 'svg' ? (
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2"/>
+                        <path d="M12 16v.01M12 12a1 1 0 0 1 1-1 2 2 0 1 0-3.464-1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    ) : resource.icon}
                   </div>
                   <h4 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)', minHeight: '48px'}}>
                     {resource.title}
