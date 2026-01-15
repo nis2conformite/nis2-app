@@ -221,7 +221,7 @@ export default function OffresServices() {
                   price: '99€',
                   period: '/mois',
                   features: ['Templates conformité NIS2', 'Mis à jour réglementairement', 'Accès illimité', 'Politiques ANSSI'],
-                  gradient: 'linear-gradient(135deg, #A855F7 0%, #9333EA 100%)',
+                  gradient: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)',
                   icon: (
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -236,7 +236,7 @@ export default function OffresServices() {
                   price: '349€',
                   period: '/pers',
                   features: ['Formation dirigeants (obligatoire)', 'Prise en charge OPCO', 'Plateforme en ligne', 'Formation sur site : nous consulter'],
-                  gradient: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)',
+                  gradient: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)',
                   badge: 'RECOMMANDÉ',
                   icon: (
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -250,7 +250,7 @@ export default function OffresServices() {
                   price: '299€',
                   period: '',
                   features: ['Identification des aides (70% max)', 'Constitution dossiers', 'France Num, BPI, Régions', '12 000€ récupérés en moyenne'],
-                  gradient: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)',
+                  gradient: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)',
                   icon: (
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                       <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
@@ -263,7 +263,7 @@ export default function OffresServices() {
                   price: '99€',
                   period: '/mois',
                   features: ['Déclaration ANSSI 24h', 'Gestion de crise', 'Hotline 24/7', 'Évitez les 10M€ d\'amende'],
-                  gradient: 'linear-gradient(135deg, #FB923C 0%, #F97316 100%)',
+                  gradient: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)',
                   icon: (
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                       <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
