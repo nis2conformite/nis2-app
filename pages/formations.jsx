@@ -161,7 +161,7 @@ export default function Formations() {
 
       <div style={{paddingTop: '66px'}}>
         {/* HERO */}
-        <section className="hero-artisan-exact" style={{paddingTop: 'var(--space-3xl)', paddingBottom: 'var(--space-3xl)'}}>
+        <section className="hero-artisan-exact" style={{paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)'}}>
           <div className="hero-artisan-container">
             <div className="hero-badge-artisan">
               Formation obligatoire NIS2 • Prise en charge OPCO
@@ -180,7 +180,7 @@ export default function Formations() {
         </section>
 
         {/* INTRODUCTION */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
           <div style={{maxWidth: '1000px', margin: '0 auto'}}>
             <div className="before-after-wrapper-design">
               <p style={{fontSize: '20px', lineHeight: '1.8', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-md)'}}>
@@ -194,9 +194,9 @@ export default function Formations() {
         </section>
 
         {/* 4 FORMATS */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-3xl)'}}>
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
               4 formats de formation adaptés à vos besoins
             </h2>
 
@@ -261,12 +261,12 @@ export default function Formations() {
         </section>
 
         {/* 6 FORMATIONS */}
-        <section className="cyber-encart" style={{margin: 'var(--space-3xl) var(--space-md)'}}>
+        <section className="cyber-encart" style={{margin: 'var(--space-xl) var(--space-md)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
               6 formations à fort impact pour accélérer votre conformité NIS2
             </h2>
-            <p style={{fontSize: '18px', color: 'rgba(255,255,255,0.8)', textAlign: 'center', marginBottom: 'var(--space-3xl)'}}>
+            <p style={{fontSize: '18px', color: 'rgba(255,255,255,0.8)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
               Chaque structure est différente. C'est pourquoi nous avons conçu une offre de formation modulaire, ciblée, et adaptée aux profils et aux besoins les plus variés.
             </p>
 
@@ -303,18 +303,18 @@ export default function Formations() {
         </section>
 
         {/* POURQUOI FORMER */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-3xl)'}}>
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
               Pourquoi former vos équipes est essentiel ?
             </h2>
 
             <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-xl)'}}>
               {[
-                { title: 'Obligation légale NIS2', desc: 'La directive NIS2 impose la sensibilisation et formation obligatoire de tous les collaborateurs, en particulier des dirigeants.', gradient: '#DC2626' },
-                { title: '90% des incidents sont humains', desc: 'La majorité des cyberattaques réussies exploitent une erreur humaine (phishing, mots de passe faibles, négligence).', gradient: '#EA580C' },
-                { title: 'ROI démontré', desc: 'Une entreprise bien formée réduit de 70% ses risques d\'incidents et économise en moyenne 240 000€ par an en coûts évités.', gradient: '#16A34A' },
-                { title: 'Culture de sécurité durable', desc: 'La formation crée une culture cyber pérenne dans l\'organisation, au-delà de la simple conformité réglementaire.', gradient: '#2563EB' }
+                { title: 'Obligation légale NIS2', desc: 'La directive NIS2 impose la sensibilisation et formation obligatoire de tous les collaborateurs, en particulier des dirigeants.', gradient: '#A855F7' },
+                { title: '90% des incidents sont humains', desc: 'La majorité des cyberattaques réussies exploitent une erreur humaine (phishing, mots de passe faibles, négligence).', gradient: '#EC4899' },
+                { title: 'ROI démontré', desc: 'Une entreprise bien formée réduit de 70% ses risques d\'incidents et économise en moyenne 240 000€ par an en coûts évités.', gradient: '#F97316' },
+                { title: 'Culture de sécurité durable', desc: 'La formation crée une culture cyber pérenne dans l\'organisation, au-delà de la simple conformité réglementaire.', gradient: '#FB923C' }
               ].map((item, idx) => (
                 <div key={idx} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', borderTop: `4px solid ${item.gradient}`}}>
                   <h4 style={{fontSize: '20px', fontWeight: '700', color: item.gradient, marginBottom: 'var(--space-sm)'}}>
@@ -330,7 +330,7 @@ export default function Formations() {
         </section>
 
         {/* CTA FINAL */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', textAlign: 'center'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', textAlign: 'center'}}>
           <div style={{maxWidth: '800px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-md)'}}>
               Formez vos équipes dès aujourd'hui

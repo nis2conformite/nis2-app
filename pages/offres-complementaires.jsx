@@ -57,7 +57,7 @@ export default function OffresServices() {
 
       <div style={{paddingTop: '66px'}}>
         {/* HERO */}
-        <section className="hero-artisan-exact" style={{paddingTop: 'var(--space-3xl)', paddingBottom: 'var(--space-3xl)'}}>
+        <section className="hero-artisan-exact" style={{paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)'}}>
           <div className="hero-artisan-container">
             <div className="hero-badge-artisan">
               Solutions complètes • Prix transparents • Accompagnement expert
@@ -76,9 +76,9 @@ export default function OffresServices() {
         </section>
 
         {/* OFFRES PRINCIPALES - FORMAT SIMPLIFIÉ */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <div style={{textAlign: 'center', marginBottom: 'var(--space-3xl)'}}>
+            <div style={{textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
               <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-md)'}}>
                 Nos Audits de Conformité NIS2
               </h2>
@@ -87,7 +87,7 @@ export default function OffresServices() {
               </p>
             </div>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-xl)', marginBottom: 'var(--space-3xl)'}}>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-lg)', marginBottom: 'var(--space-xl)'}}>
               {/* Offre Essentielle */}
               <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column'}}>
                 <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
@@ -191,9 +191,9 @@ export default function OffresServices() {
         </section>
 
         {/* SERVICES COMPLÉMENTAIRES */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <div style={{textAlign: 'center', marginBottom: 'var(--space-3xl)'}}>
+            <div style={{textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
               <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-md)'}}>
                 Services Complémentaires
               </h2>
@@ -209,7 +209,7 @@ export default function OffresServices() {
                   price: '99€',
                   period: '/mois',
                   features: ['Templates conformité NIS2', 'Mis à jour réglementairement', 'Accès illimité', 'Politiques ANSSI'],
-                  gradient: 'linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%)',
+                  gradient: 'linear-gradient(135deg, #A855F7 0%, #9333EA 100%)',
                   icon: (
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -224,7 +224,7 @@ export default function OffresServices() {
                   price: '349€',
                   period: '/pers',
                   features: ['Formation dirigeants (obligatoire)', 'Prise en charge OPCO', 'Plateforme en ligne', 'Formation sur site : nous consulter'],
-                  gradient: 'linear-gradient(135deg, #FF5630 0%, #E64825 100%)',
+                  gradient: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)',
                   badge: 'RECOMMANDÉ',
                   icon: (
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -238,7 +238,7 @@ export default function OffresServices() {
                   price: '299€',
                   period: '',
                   features: ['Identification des aides (70% max)', 'Constitution dossiers', 'France Num, BPI, Régions', '12 000€ récupérés en moyenne'],
-                  gradient: 'linear-gradient(135deg, #16A34A 0%, #15803D 100%)',
+                  gradient: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)',
                   icon: (
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                       <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
@@ -251,7 +251,7 @@ export default function OffresServices() {
                   price: '99€',
                   period: '/mois',
                   features: ['Déclaration ANSSI 24h', 'Gestion de crise', 'Hotline 24/7', 'Évitez les 10M€ d\'amende'],
-                  gradient: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
+                  gradient: 'linear-gradient(135deg, #FB923C 0%, #F97316 100%)',
                   icon: (
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                       <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
@@ -261,9 +261,9 @@ export default function OffresServices() {
                   )
                 }
               ].map((service, idx) => (
-                <div key={idx} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', position: 'relative', display: 'flex', flexDirection: 'column', border: service.badge ? '2px solid #FF5630' : '1px solid #E5E7EB'}}>
+                <div key={idx} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', position: 'relative', display: 'flex', flexDirection: 'column', border: service.badge ? '2px solid #EC4899' : '1px solid #E5E7EB'}}>
                   {service.badge && (
-                    <div style={{position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)', padding: '6px 16px', background: '#FF5630', color: 'white', borderRadius: '9999px', fontSize: '12px', fontWeight: '700'}}>
+                    <div style={{position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)', padding: '6px 16px', background: '#EC4899', color: 'white', borderRadius: '9999px', fontSize: '12px', fontWeight: '700'}}>
                       {service.badge}
                     </div>
                   )}
@@ -292,7 +292,7 @@ export default function OffresServices() {
             </div>
 
             {/* BANNIÈRE AIDES */}
-            <div className="aide-etat-banner" style={{marginTop: 'var(--space-3xl)'}}>
+            <div className="aide-etat-banner" style={{marginTop: 'var(--space-xl)'}}>
               <div className="aide-etat-content">
                 <div className="aide-etat-text">
                   <div className="aide-etat-title">
@@ -314,7 +314,7 @@ export default function OffresServices() {
         </section>
 
         {/* CTA FINAL */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', textAlign: 'center'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', textAlign: 'center'}}>
           <div style={{maxWidth: '800px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-md)'}}>
               Prêt à sécuriser votre conformité NIS2 ?

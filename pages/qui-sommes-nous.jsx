@@ -35,7 +35,7 @@ export default function QuiSommesNous() {
 
       <div style={{paddingTop: '66px'}}>
         {/* HERO */}
-        <section className="hero-artisan-exact" style={{paddingTop: 'var(--space-3xl)', paddingBottom: 'var(--space-3xl)'}}>
+        <section className="hero-artisan-exact" style={{paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)'}}>
           <div className="hero-artisan-container">
             <div className="hero-badge-artisan">
               Experts conformité cyber • Depuis 2009
@@ -54,7 +54,7 @@ export default function QuiSommesNous() {
         </section>
 
         {/* CROYANCE */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
           <div style={{maxWidth: '1000px', margin: '0 auto', textAlign: 'center'}}>
             <div className="before-after-wrapper-design">
               <h2 style={{fontSize: '32px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-lg)'}}>
@@ -70,9 +70,9 @@ export default function QuiSommesNous() {
         </section>
 
         {/* NOTRE APPROCHE - 3 BLOCS */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-3xl)'}}>
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
               Notre approche
             </h2>
 
@@ -121,9 +121,9 @@ export default function QuiSommesNous() {
         </section>
 
         {/* L'ÉQUIPE - 4 STATS */}
-        <section className="cyber-encart" style={{margin: 'var(--space-3xl) var(--space-md)'}}>
+        <section className="cyber-encart" style={{margin: 'var(--space-xl) var(--space-md)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', textAlign: 'center', marginBottom: 'var(--space-3xl)'}}>
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
               L'équipe derrière Cyber Solférino
             </h2>
 
@@ -198,12 +198,12 @@ export default function QuiSommesNous() {
         </section>
 
         {/* PARTENAIRES - LOGOS CERTIFICATIONS */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
               Reconnus par les meilleurs
             </h2>
-            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-3xl)'}}>
+            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
               Nos accréditations et partenariats garantissent la qualité de notre accompagnement
             </p>
 
@@ -233,12 +233,12 @@ export default function QuiSommesNous() {
         </section>
 
         {/* VALEURS - 6 CARDS */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(180deg, #FFF 0%, #F3E8FF 100%)'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(180deg, #FFF 0%, #F3E8FF 100%)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
               Nos valeurs
             </h2>
-            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-3xl)'}}>
+            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
               Les principes qui guident notre accompagnement au quotidien
             </p>
 
@@ -272,7 +272,7 @@ export default function QuiSommesNous() {
         </section>
 
         {/* CTA FINAL */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', textAlign: 'center'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', textAlign: 'center'}}>
           <div style={{maxWidth: '800px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-md)'}}>
               Prêt à sécuriser votre conformité ?
