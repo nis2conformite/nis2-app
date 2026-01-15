@@ -477,30 +477,31 @@ export default function Formations() {
                   boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
                   border: '1px solid #E5E7EB',
                   display: 'flex',
-                  flexDirection: 'column',
-                  gap: 'var(--space-md)',
-                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                  flexDirection: 'row',
+                  gap: 'var(--space-lg)',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  alignItems: 'flex-start'
                 }}>
                   <div style={{width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '20px', fontWeight: '700', flexShrink: 0}}>
                     {training.id}
                   </div>
-                  <div>
+                  <div style={{flex: 1}}>
                     <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
                       {training.title}
                     </h3>
                     <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', lineHeight: '1.6', marginBottom: 'var(--space-md)'}}>
                       {training.description}
                     </p>
-                  </div>
-                  <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-md)'}}>
-                    <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                      {training.topics.map((topic, idx) => (
-                        <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
-                          <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
-                          {topic}
-                        </li>
-                      ))}
-                    </ul>
+                    <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-md)', marginTop: 'var(--space-md)'}}>
+                      <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                        {training.topics.map((topic, idx) => (
+                          <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
+                            <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
+                            {topic}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -556,30 +557,31 @@ export default function Formations() {
                   boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
                   border: '1px solid #E5E7EB',
                   display: 'flex',
-                  flexDirection: 'column',
-                  gap: 'var(--space-md)',
-                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                  flexDirection: 'row',
+                  gap: 'var(--space-lg)',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  alignItems: 'flex-start'
                 }}>
                   <div style={{width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '20px', fontWeight: '700', flexShrink: 0}}>
                     {training.id}
                   </div>
-                  <div>
+                  <div style={{flex: 1}}>
                     <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
                       {training.title}
                     </h3>
                     <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', lineHeight: '1.6', marginBottom: 'var(--space-md)'}}>
                       {training.description}
                     </p>
-                  </div>
-                  <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-md)'}}>
-                    <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                      {training.topics.map((topic, idx) => (
-                        <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
-                          <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
-                          {topic}
-                        </li>
-                      ))}
-                    </ul>
+                    <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-md)', marginTop: 'var(--space-md)'}}>
+                      <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                        {training.topics.map((topic, idx) => (
+                          <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
+                            <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
+                            {topic}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               ))}

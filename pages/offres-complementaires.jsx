@@ -293,41 +293,43 @@ export default function OffresServices() {
                   )
                 }
               ].map((service, idx) => (
-                <div key={idx} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', position: 'relative', display: 'flex', flexDirection: 'column', border: service.badge ? '2px solid #EC4899' : '1px solid #E5E7EB', gap: 'var(--space-md)', transition: 'all 0.3s ease'}} className="value-card-hover">
+                <div key={idx} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', position: 'relative', display: 'flex', flexDirection: 'row', border: service.badge ? '2px solid #EC4899' : '1px solid #E5E7EB', gap: 'var(--space-lg)', transition: 'all 0.3s ease', alignItems: 'flex-start'}} className="value-card-hover">
                   {service.badge && (
                     <div style={{position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)', padding: '6px 16px', background: '#EC4899', color: 'white', borderRadius: '9999px', fontSize: '12px', fontWeight: '700'}}>
                       {service.badge}
                     </div>
                   )}
-                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: service.badge ? 'var(--space-sm)' : 0}}>
-                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: service.gradient, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-                      {service.icon}
-                    </div>
-                    <div style={{textAlign: 'right'}}>
-                      <div style={{fontSize: '28px', fontWeight: '700', color: 'var(--color-purple)', lineHeight: '1'}}>
-                        {service.price}
-                      </div>
-                      {service.period && (
-                        <div style={{fontSize: '14px', fontWeight: '400', color: 'var(--color-text-tertiary)'}}>
-                          {service.period}
-                        </div>
-                      )}
-                    </div>
+                  <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: service.gradient, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: service.badge ? 'var(--space-sm)' : 0}}>
+                    {service.icon}
                   </div>
-                  <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
-                    {service.title}
-                  </h3>
-                  <ul style={{listStyle: 'none', padding: 0, margin: 0, flexGrow: 1}}>
-                    {service.features.map((feature, fidx) => (
-                      <li key={fidx} style={{padding: 'var(--space-sm) 0', borderBottom: fidx < service.features.length - 1 ? '1px solid #E5E7EB' : 'none', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', lineHeight: '1.5'}}>
-                        <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary" style={{textDecoration: 'none', textAlign: 'center', marginTop: 'auto'}}>
-                    En savoir plus
-                  </a>
+                  <div style={{flex: 1, display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', marginTop: service.badge ? 'var(--space-sm)' : 0}}>
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                      <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
+                        {service.title}
+                      </h3>
+                      <div style={{textAlign: 'right'}}>
+                        <div style={{fontSize: '28px', fontWeight: '700', color: 'var(--color-purple)', lineHeight: '1'}}>
+                          {service.price}
+                        </div>
+                        {service.period && (
+                          <div style={{fontSize: '14px', fontWeight: '400', color: 'var(--color-text-tertiary)'}}>
+                            {service.period}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <ul style={{listStyle: 'none', padding: 0, margin: 0, flexGrow: 1}}>
+                      {service.features.map((feature, fidx) => (
+                        <li key={fidx} style={{padding: 'var(--space-sm) 0', borderBottom: fidx < service.features.length - 1 ? '1px solid #E5E7EB' : 'none', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', lineHeight: '1.5'}}>
+                          <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary" style={{textDecoration: 'none', textAlign: 'center', marginTop: 'auto'}}>
+                      En savoir plus
+                    </a>
+                  </div>
                 </div>
               ))}
             </div>

@@ -1592,6 +1592,9 @@ body {
   border: 2px solid transparent;
   transition: all var(--transition-base);
   position: relative;
+  display: flex;
+  gap: var(--space-lg);
+  align-items: flex-start;
 }
 
 .service-card-large:hover {
@@ -1609,7 +1612,7 @@ body {
   align-items: center;
   justify-content: center;
   color: #A855F7;
-  margin-bottom: var(--space-md);
+  flex-shrink: 0;
 }
 
 .service-card-large h3 {
