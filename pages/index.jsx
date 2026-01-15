@@ -83,19 +83,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* HEADER - STICKY MODERNE STYLE ARTISAN */}
+      {/* HEADER - STICKY SIMPLE */}
       <header className="header-artisan-sticky">
         <div className="header-container-modern">
           <a href="/" className="header-logo-link">
             <img src="/logo.png" alt="NIS2 Conformité" className="header-logo-modern" />
           </a>
-
-          <nav className="header-nav-modern">
-            <a href="/comprendre-nis2" className="header-nav-link">Comprendre NIS2</a>
-            <a href="/qui-sommes-nous" className="header-nav-link">Qui sommes-nous</a>
-            <a href="#pricing" className="header-nav-link">Nos tarifs</a>
-            <a href="/formations" className="header-nav-link">Formation</a>
-          </nav>
 
           <div className="header-cta-modern">
             <MenuBurger />
