@@ -377,81 +377,81 @@ export default function Formations() {
             {/* LAYOUT UNIFORME: 4 cartes blanches horizontales */}
             <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-lg)'}}>
               {/* Carte 1 - OBLIGATION LÉGALE NIS2 (MISE EN AVANT) */}
-              <div className="why-card-horizontal" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 28px rgba(168, 85, 247, 0.2)', border: '3px solid #A855F7', display: 'flex', gap: 'var(--space-lg)', alignItems: 'flex-start', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)', position: 'relative'}}>
+              <div className="why-card-horizontal" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 28px rgba(168, 85, 247, 0.2)', border: '3px solid #A855F7', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)', position: 'relative'}}>
                 <div style={{position: 'absolute', top: '-12px', right: '20px', padding: '6px 14px', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', borderRadius: '9999px', fontSize: '12px', fontWeight: '700', color: 'white', boxShadow: '0 4px 12px rgba(168, 85, 247, 0.3)'}}>
                   ⭐ IMPORTANT
                 </div>
-                <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.08)'}}>
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#A855F7" strokeWidth="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                    <polyline points="10 9 9 9 8 9"></polyline>
-                  </svg>
-                </div>
-                <div style={{flex: 1}}>
-                  <h4 style={{fontSize: '22px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+                <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
+                  <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.08)'}}>
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#A855F7" strokeWidth="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" y1="13" x2="8" y2="13"></line>
+                      <line x1="16" y1="17" x2="8" y2="17"></line>
+                      <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                  </div>
+                  <h4 style={{fontSize: '22px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
                     Obligation légale NIS2
                   </h4>
-                  <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
-                    La directive NIS2 impose la sensibilisation et formation obligatoire de tous les collaborateurs, en particulier des dirigeants.
-                  </p>
                 </div>
+                <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
+                  La directive NIS2 impose la sensibilisation et formation obligatoire de tous les collaborateurs, en particulier des dirigeants.
+                </p>
               </div>
 
               {/* Carte 2 - 90% DES INCIDENTS SONT HUMAINS */}
-              <div className="why-card-horizontal" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 6px 20px rgba(168, 85, 247, 0.12)', border: '2px solid #F3E8FF', display: 'flex', gap: 'var(--space-lg)', alignItems: 'flex-start', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
-                <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.08)'}}>
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#EC4899" strokeWidth="2">
-                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                    <line x1="12" y1="9" x2="12" y2="13"></line>
-                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                  </svg>
-                </div>
-                <div style={{flex: 1}}>
-                  <h4 style={{fontSize: '22px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+              <div className="why-card-horizontal" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 6px 20px rgba(168, 85, 247, 0.12)', border: '2px solid #F3E8FF', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
+                <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
+                  <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.08)'}}>
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#EC4899" strokeWidth="2">
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                      <line x1="12" y1="9" x2="12" y2="13"></line>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                  </div>
+                  <h4 style={{fontSize: '22px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
                     90% des incidents sont humains
                   </h4>
-                  <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
-                    La majorité des cyberattaques réussies exploitent une erreur humaine (phishing, mots de passe faibles, négligence).
-                  </p>
                 </div>
+                <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
+                  La majorité des cyberattaques réussies exploitent une erreur humaine (phishing, mots de passe faibles, négligence).
+                </p>
               </div>
 
               {/* Carte 3 - ROI DÉMONTRÉ */}
-              <div className="why-card-horizontal" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 6px 20px rgba(168, 85, 247, 0.12)', border: '2px solid #F3E8FF', display: 'flex', gap: 'var(--space-lg)', alignItems: 'flex-start', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
-                <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.08)'}}>
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FB923C" strokeWidth="2.5">
-                    <line x1="12" y1="1" x2="12" y2="23"></line>
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                  </svg>
-                </div>
-                <div style={{flex: 1}}>
-                  <h4 style={{fontSize: '22px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+              <div className="why-card-horizontal" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 6px 20px rgba(168, 85, 247, 0.12)', border: '2px solid #F3E8FF', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
+                <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
+                  <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.08)'}}>
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FB923C" strokeWidth="2.5">
+                      <line x1="12" y1="1" x2="12" y2="23"></line>
+                      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                  </div>
+                  <h4 style={{fontSize: '22px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
                     ROI démontré
                   </h4>
-                  <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
-                    Une entreprise bien formée réduit de 70% ses risques d'incidents et économise en moyenne 240 000€ par an en coûts évités.
-                  </p>
                 </div>
+                <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
+                  Une entreprise bien formée réduit de 70% ses risques d'incidents et économise en moyenne 240 000€ par an en coûts évités.
+                </p>
               </div>
 
               {/* Carte 4 - CULTURE DE SÉCURITÉ DURABLE */}
-              <div className="why-card-horizontal" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 6px 20px rgba(168, 85, 247, 0.12)', border: '2px solid #F3E8FF', display: 'flex', gap: 'var(--space-lg)', alignItems: 'flex-start', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
-                <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.08)'}}>
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#F472B6" strokeWidth="2.5">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  </svg>
-                </div>
-                <div style={{flex: 1}}>
-                  <h4 style={{fontSize: '22px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+              <div className="why-card-horizontal" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 6px 20px rgba(168, 85, 247, 0.12)', border: '2px solid #F3E8FF', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
+                <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
+                  <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.08)'}}>
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#F472B6" strokeWidth="2.5">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                  </div>
+                  <h4 style={{fontSize: '22px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
                     Culture de sécurité durable
                   </h4>
-                  <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
-                    La formation crée une culture cyber pérenne dans l'organisation, au-delà de la simple conformité réglementaire.
-                  </p>
                 </div>
+                <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
+                  La formation crée une culture cyber pérenne dans l'organisation, au-delà de la simple conformité réglementaire.
+                </p>
               </div>
             </div>
           </div>
@@ -476,32 +476,28 @@ export default function Formations() {
                   padding: 'var(--space-xl)',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
                   border: '1px solid #E5E7EB',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  gap: 'var(--space-lg)',
-                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                  alignItems: 'flex-start'
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
                 }}>
-                  <div style={{width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '20px', fontWeight: '700', flexShrink: 0}}>
-                    {training.id}
-                  </div>
-                  <div style={{flex: 1}}>
-                    <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+                  <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
+                    <div style={{width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '20px', fontWeight: '700', flexShrink: 0}}>
+                      {training.id}
+                    </div>
+                    <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
                       {training.title}
                     </h3>
-                    <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', lineHeight: '1.6', marginBottom: 'var(--space-md)'}}>
-                      {training.description}
-                    </p>
-                    <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-md)', marginTop: 'var(--space-md)'}}>
-                      <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                        {training.topics.map((topic, idx) => (
-                          <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
-                            <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
-                            {topic}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  </div>
+                  <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', lineHeight: '1.6', marginBottom: 'var(--space-md)'}}>
+                    {training.description}
+                  </p>
+                  <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-md)', marginTop: 'var(--space-md)'}}>
+                    <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                      {training.topics.map((topic, idx) => (
+                        <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
+                          <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
+                          {topic}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               ))}
@@ -556,32 +552,28 @@ export default function Formations() {
                   padding: 'var(--space-xl)',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
                   border: '1px solid #E5E7EB',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  gap: 'var(--space-lg)',
-                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                  alignItems: 'flex-start'
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
                 }}>
-                  <div style={{width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '20px', fontWeight: '700', flexShrink: 0}}>
-                    {training.id}
-                  </div>
-                  <div style={{flex: 1}}>
-                    <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+                  <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
+                    <div style={{width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '20px', fontWeight: '700', flexShrink: 0}}>
+                      {training.id}
+                    </div>
+                    <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
                       {training.title}
                     </h3>
-                    <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', lineHeight: '1.6', marginBottom: 'var(--space-md)'}}>
-                      {training.description}
-                    </p>
-                    <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-md)', marginTop: 'var(--space-md)'}}>
-                      <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                        {training.topics.map((topic, idx) => (
-                          <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
-                            <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
-                            {topic}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  </div>
+                  <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', lineHeight: '1.6', marginBottom: 'var(--space-md)'}}>
+                    {training.description}
+                  </p>
+                  <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-md)', marginTop: 'var(--space-md)'}}>
+                    <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                      {training.topics.map((topic, idx) => (
+                        <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
+                          <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
+                          {topic}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               ))}

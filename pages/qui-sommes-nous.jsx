@@ -267,23 +267,19 @@ export default function QuiSommesNous() {
                   padding: 'var(--space-xl)',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
                   border: '1px solid #E5E7EB',
-                  transition: 'all 0.3s ease',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  gap: 'var(--space-lg)',
-                  alignItems: 'flex-start'
+                  transition: 'all 0.3s ease'
                 }} className="value-card-hover">
-                  <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-                    {value.icon}
-                  </div>
-                  <div style={{flex: 1}}>
-                    <h4 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0, marginBottom: 'var(--space-sm)'}}>
+                  <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
+                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      {value.icon}
+                    </div>
+                    <h4 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
                       {value.title}
                     </h4>
-                    <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
-                      {value.desc}
-                    </p>
                   </div>
+                  <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
+                    {value.desc}
+                  </p>
                 </div>
               ))}
             </div>
