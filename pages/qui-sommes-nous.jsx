@@ -120,79 +120,37 @@ export default function QuiSommesNous() {
           </div>
         </section>
 
-        {/* L'ÉQUIPE - 4 STATS */}
-        <section className="cyber-encart" style={{margin: 'var(--space-xl) var(--space-md)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
-              L'équipe derrière Cyber Solférino
-            </h2>
+        {/* L'ÉQUIPE - SECTION REDESIGN */}
+        <section className="content-section">
+          <div className="content-container">
+            <div className="cyber-encart">
+              <div className="section-badge-center">Notre équipe</div>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 'var(--space-xl)'}}>
-              {[
-                {
-                  icon: (
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                      <path d="M2 17l10 5 10-5"></path>
-                      <path d="M2 12l10 5 10-5"></path>
-                    </svg>
-                  ),
-                  title: '15+ années d\'expérience',
-                  desc: 'Depuis 2009 dans l\'accompagnement cyber des PME et ETI'
-                },
-                {
-                  icon: (
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                  ),
-                  title: 'Experts certifiés ISO 27001',
-                  desc: 'Consultants accrédités • Méthodologie validée par l\'ANSSI'
-                },
-                {
-                  icon: (
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="9" cy="7" r="4"></circle>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
-                  ),
-                  title: '150+ PME accompagnées',
-                  desc: '98% de conformité • 0 client sanctionné • Secteurs critiques et essentiels'
-                },
-                {
-                  icon: (
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                      <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                      <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                    </svg>
-                  ),
-                  title: 'Basés en France, portée européenne',
-                  desc: 'Implantés à Paris • Interventions dans toute l\'Europe'
-                }
-              ].map((stat, idx) => (
-                <div key={idx} style={{
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  backdropFilter: 'blur(10px)',
-                  borderRadius: 'var(--radius-lg)',
-                  padding: 'var(--space-lg)',
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  textAlign: 'center'
-                }}>
-                  <div style={{color: 'rgba(255,255,255,0.9)', marginBottom: 'var(--space-md)', display: 'flex', justifyContent: 'center'}}>
-                    {stat.icon}
-                  </div>
-                  <h4 style={{fontSize: '18px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-sm)'}}>
-                    {stat.title}
-                  </h4>
-                  <p style={{fontSize: '14px', color: 'rgba(255,255,255,0.8)', lineHeight: '1.6', margin: 0}}>
-                    {stat.desc}
+              <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+                Une équipe d'experts <span className="highlight">certifiés</span> à votre service
+              </h2>
+              <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
+                Consultants ISO 27001 • Méthodologie ANSSI • 15+ années d'expérience
+              </p>
+
+              {/* 2 CARTES PRINCIPALES */}
+              <div className="cyber-stats-grid-encart">
+                <div className="cyber-stat-card-encart">
+                  <div className="cyber-stat-number-encart">+15 ans</div>
+                  <h3>D'expérience dans la cyber</h3>
+                  <p>
+                    Depuis 2009 dans l'accompagnement cyber des PME et ETI. Expertise reconnue sur les secteurs critiques et essentiels.
                   </p>
                 </div>
-              ))}
+
+                <div className="cyber-stat-card-encart">
+                  <div className="cyber-stat-number-encart">ISO 27001</div>
+                  <h3>Experts certifiés</h3>
+                  <p>
+                    Consultants accrédités ISO 27001. Méthodologie validée par l'ANSSI pour garantir votre conformité NIS2.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
