@@ -159,7 +159,7 @@ export default function QuiSommesNous() {
         <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
-              Reconnus par les meilleurs
+              Reconnus par les Institutions d'état
             </h2>
             <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
               Nos accréditations et partenariats garantissent la qualité de notre accompagnement
