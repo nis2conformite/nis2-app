@@ -51,7 +51,7 @@ export default function ComprendreNIS2() {
               de milliers d'entreprises françaises
             </p>
 
-            <div className="hero-buttons-artisan" style={{marginTop: 'var(--space-xl)'}}>
+            <div className="hero-buttons-artisan" style={{marginTop: 'var(--space-xl)', gap: 'var(--space-md)'}}>
               <a href="#video-section" className="btn-hero-primary">
                 Voir la vidéo explicative
               </a>
