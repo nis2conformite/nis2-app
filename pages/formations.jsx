@@ -5,9 +5,38 @@ export default function Formations() {
   const formats = [
     {
       id: 1,
-      icon: '01',
-      title: 'Sessions en ligne (visioconférence)',
-      subtitle: 'Pour qui ? Collaborateurs, dirigeants, équipes IT',
+      title: 'MOOC NIS2',
+      subtitle: 'Formation en ligne autonome',
+      description: 'Pour qui ? Entreprises souhaitant former à large échelle',
+      features: [
+        'Plateforme en ligne 24h/24',
+        'Vidéos courtes + quiz',
+        'Suivi des apprenants',
+        'Certificat de formation',
+      ],
+      objectives: [
+        'Former massivement sans mobiliser de formateur',
+        'Structurer une montée en compétence sur 4 semaines',
+        'Obtenir une traçabilité de la sensibilisation',
+      ],
+      advantages: [
+        'Efficacité logistique maximale',
+        'Coût réduit par collaborateur',
+        'Formation continue accessible',
+      ],
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+      )
+    },
+    {
+      id: 2,
+      title: 'Formation en Visio',
+      subtitle: 'Sessions en ligne interactives',
+      description: 'Pour qui ? Collaborateurs, dirigeants, équipes IT',
       features: [
         'Format court (1h à 2h)',
         'Modules interactifs',
@@ -22,14 +51,20 @@ export default function Formations() {
       advantages: [
         'Souplesse et accessibilité',
         'Convient aux multi-sites',
-        'Idéal pour un premier pas sans logistique lourde',
+        'Idéal sans logistique lourde',
       ],
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+          <polygon points="23 7 16 12 23 17 23 7"></polygon>
+          <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+        </svg>
+      )
     },
     {
-      id: 2,
-      icon: '02',
-      title: 'Interventions sur site',
-      subtitle: 'Pour qui ? Structures souhaitant mobiliser une équipe entière',
+      id: 3,
+      title: 'Formation sur site',
+      subtitle: 'Interventions en présentiel',
+      description: 'Pour qui ? Structures souhaitant mobiliser une équipe entière',
       features: [
         'Présence d\'un formateur qualifié',
         'Ateliers pratiques et mises en situation',
@@ -45,48 +80,14 @@ export default function Formations() {
         'Mobilisation collective',
         'Personnalisation maximale',
       ],
-    },
-    {
-      id: 3,
-      icon: '03',
-      title: 'MOOC NIS2 (formation en ligne autonome)',
-      subtitle: 'Pour qui ? Entreprises souhaitant former à large échelle',
-      features: [
-        'Plateforme en ligne accessible 24h/24',
-        'Vidéos courtes + quiz',
-        'Suivi des apprenants',
-      ],
-      objectives: [
-        'Former massivement sans mobiliser de formateur',
-        'Structurer une montée en compétence sur 4 semaines',
-        'Obtenir une traçabilité de la sensibilisation',
-      ],
-      advantages: [
-        'Efficacité logistique',
-        'Coût réduit par collaborateur',
-        'Formation continue accessible',
-      ],
-    },
-    {
-      id: 4,
-      icon: '04',
-      title: 'Packs dirigeants',
-      subtitle: 'Pour qui ? Comités de direction, COMEX, responsables légaux',
-      features: [
-        'Format 90 minutes',
-        'Focus sur les responsabilités juridiques',
-        'Dossier de synthèse + recommandations personnalisées',
-      ],
-      objectives: [
-        'Comprendre la responsabilité du dirigeant',
-        'Identifier les points critiques à piloter',
-        'Décider des prochaines étapes',
-      ],
-      advantages: [
-        'Gain de temps',
-        'Pédagogie orientée décisions',
-        'Crédibilité renforcée auprès des équipes',
-      ],
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+      )
     },
   ];
 
@@ -179,66 +180,69 @@ export default function Formations() {
           </div>
         </section>
 
-        {/* 4 FORMATS */}
+        {/* 3 FORMATS */}
         <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
-              4 formats de formation adaptés à vos besoins
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
+              3 formats de formation adaptés à vos besoins
             </h2>
+            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)'}}>
+              Choisissez le format le plus adapté à votre organisation et vos contraintes
+            </p>
 
-            <div style={{display: 'flex', flexDirection: 'column', gap: 'var(--space-2xl)'}}>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-lg)'}}>
               {formats.map((format) => (
-                <div key={format.id} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB'}}>
-                  <div style={{display: 'flex', alignItems: 'flex-start', gap: 'var(--space-lg)', marginBottom: 'var(--space-lg)', flexWrap: 'wrap'}}>
-                    <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '24px', fontWeight: '700', flexShrink: 0}}>
-                      {format.icon}
-                    </div>
-                    <div style={{flex: 1, minWidth: '250px'}}>
-                      <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)'}}>
-                        {format.title}
-                      </h3>
-                      <p style={{fontSize: '15px', color: 'var(--color-text-tertiary)', margin: 0}}>
-                        {format.subtitle}
-                      </p>
-                    </div>
+                <div key={format.id} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', transition: 'all 0.3s ease'}} className="value-card-hover">
+                  <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                    {format.icon}
                   </div>
 
-                  <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 'var(--space-xl)', paddingTop: 'var(--space-lg)', borderTop: '1px solid #E5E7EB'}}>
-                    <div>
-                      <h4 style={{fontSize: '16px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-sm)'}}>Caractéristiques</h4>
-                      <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                        {format.features.map((feature, idx) => (
-                          <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)'}}>
-                            <span style={{color: 'var(--color-purple)', flexShrink: 0}}>•</span>
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  <div>
+                    <h3 style={{fontSize: '22px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)'}}>
+                      {format.title}
+                    </h3>
+                    <p style={{fontSize: '14px', color: 'var(--color-purple)', fontWeight: '600', marginBottom: 'var(--space-xs)'}}>
+                      {format.subtitle}
+                    </p>
+                    <p style={{fontSize: '14px', color: 'var(--color-text-tertiary)', margin: 0}}>
+                      {format.description}
+                    </p>
+                  </div>
 
-                    <div>
-                      <h4 style={{fontSize: '16px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-sm)'}}>Objectifs</h4>
-                      <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                        {format.objectives.map((obj, idx) => (
-                          <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)'}}>
-                            <span style={{color: 'var(--color-purple)', flexShrink: 0}}>•</span>
-                            {obj}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-md)'}}>
+                    <h4 style={{fontSize: '14px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-sm)', textTransform: 'uppercase', letterSpacing: '0.5px'}}>Caractéristiques</h4>
+                    <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                      {format.features.map((feature, idx) => (
+                        <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
+                          <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                    <div>
-                      <h4 style={{fontSize: '16px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-sm)'}}>Avantages</h4>
-                      <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                        {format.advantages.map((adv, idx) => (
-                          <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)'}}>
-                            <span style={{color: 'var(--color-purple)', flexShrink: 0}}>•</span>
-                            {adv}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-md)'}}>
+                    <h4 style={{fontSize: '14px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-sm)', textTransform: 'uppercase', letterSpacing: '0.5px'}}>Objectifs</h4>
+                    <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                      {format.objectives.map((obj, idx) => (
+                        <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
+                          <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
+                          {obj}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-md)'}}>
+                    <h4 style={{fontSize: '14px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-sm)', textTransform: 'uppercase', letterSpacing: '0.5px'}}>Avantages</h4>
+                    <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                      {format.advantages.map((adv, idx) => (
+                        <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
+                          <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
+                          {adv}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               ))}
