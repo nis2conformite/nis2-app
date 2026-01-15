@@ -195,8 +195,11 @@ export default function Formations() {
             <div style={{display: 'grid', gridTemplateColumns: '1fr 1.5fr 1fr', gap: 'var(--space-lg)', alignItems: 'stretch', marginBottom: 'var(--space-2xl)'}}>
               {/* VISIO - Format Compact (gauche) */}
               <div className="format-card-compact" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
-                <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-                  {formats[0].icon}
+                <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A855F7" strokeWidth="2">
+                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                  </svg>
                 </div>
                 <div>
                   <h3 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)'}}>
@@ -249,8 +252,12 @@ export default function Formations() {
                 <div style={{position: 'absolute', top: '10px', right: '10px', padding: '6px 14px', background: 'rgba(255,255,255,0.25)', backdropFilter: 'blur(10px)', borderRadius: '9999px', fontSize: '12px', fontWeight: '700', color: 'white', border: '1px solid rgba(255,255,255,0.3)'}}>
                   ⭐ RECOMMANDÉ
                 </div>
-                <div style={{width: '64px', height: '64px', borderRadius: 'var(--radius-md)', background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, border: '2px solid rgba(255,255,255,0.3)'}}>
-                  {formats[1].icon}
+                <div style={{width: '64px', height: '64px', borderRadius: 'var(--radius-md)', background: 'rgba(255,255,255,0.3)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, border: '2px solid rgba(255,255,255,0.3)'}}>
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
                 </div>
                 <div>
                   <h3 style={{fontSize: '28px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-xs)'}}>
@@ -300,8 +307,13 @@ export default function Formations() {
 
               {/* SUR SITE - Format Compact (droite) */}
               <div className="format-card-compact" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
-                <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-                  {formats[2].icon}
+                <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#EC4899" strokeWidth="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
                 </div>
                 <div>
                   <h3 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)'}}>
@@ -369,8 +381,8 @@ export default function Formations() {
                 <div style={{position: 'absolute', top: '-12px', right: '20px', padding: '6px 14px', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', borderRadius: '9999px', fontSize: '12px', fontWeight: '700', color: 'white', boxShadow: '0 4px 12px rgba(168, 85, 247, 0.3)'}}>
                   ⭐ IMPORTANT
                 </div>
-                <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.3)'}}>
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.08)'}}>
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#A855F7" strokeWidth="2">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <polyline points="14 2 14 8 20 8"></polyline>
                     <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -390,8 +402,8 @@ export default function Formations() {
 
               {/* Carte 2 - 90% DES INCIDENTS SONT HUMAINS */}
               <div className="why-card-horizontal" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 6px 20px rgba(168, 85, 247, 0.12)', border: '2px solid #F3E8FF', display: 'flex', gap: 'var(--space-lg)', alignItems: 'flex-start', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
-                <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(236, 72, 153, 0.3)'}}>
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.08)'}}>
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#EC4899" strokeWidth="2">
                     <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
                     <line x1="12" y1="9" x2="12" y2="13"></line>
                     <line x1="12" y1="17" x2="12.01" y2="17"></line>
@@ -409,8 +421,8 @@ export default function Formations() {
 
               {/* Carte 3 - ROI DÉMONTRÉ */}
               <div className="why-card-horizontal" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 6px 20px rgba(168, 85, 247, 0.12)', border: '2px solid #F3E8FF', display: 'flex', gap: 'var(--space-lg)', alignItems: 'flex-start', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
-                <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.3)'}}>
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.08)'}}>
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FB923C" strokeWidth="2.5">
                     <line x1="12" y1="1" x2="12" y2="23"></line>
                     <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                   </svg>
@@ -427,8 +439,8 @@ export default function Formations() {
 
               {/* Carte 4 - CULTURE DE SÉCURITÉ DURABLE */}
               <div className="why-card-horizontal" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 6px 20px rgba(168, 85, 247, 0.12)', border: '2px solid #F3E8FF', display: 'flex', gap: 'var(--space-lg)', alignItems: 'flex-start', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
-                <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, #EC4899 0%, #F472B6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(236, 72, 153, 0.3)'}}>
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
+                <div style={{width: '72px', height: '72px', borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(168, 85, 247, 0.08)'}}>
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#F472B6" strokeWidth="2.5">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                   </svg>
                 </div>

@@ -1603,12 +1603,12 @@ body {
 .service-icon {
   width: 64px;
   height: 64px;
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #A855F7;
   margin-bottom: var(--space-md);
 }
 
@@ -2330,10 +2330,10 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
-/* Icône danger - gradient orange/doré */
+/* Icône danger - fond pastel */
 .danger-icon {
-  background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
-  color: white;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  color: #F97316;
 }
 
 .danger-icon::after {
@@ -2341,15 +2341,15 @@ body {
   position: absolute;
   inset: -6px;
   border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
-  opacity: 0.2;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(251, 146, 60, 0.1) 100%);
+  opacity: 0.5;
   z-index: -1;
 }
 
-/* Icône success - gradient violet/rose */
+/* Icône success - fond pastel */
 .success-icon {
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
-  color: white;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  color: #A855F7;
 }
 
 .success-icon::after {
@@ -2357,8 +2357,8 @@ body {
   position: absolute;
   inset: -6px;
   border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
-  opacity: 0.2;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  opacity: 0.5;
   z-index: -1;
 }
 
