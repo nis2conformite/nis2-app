@@ -140,6 +140,26 @@ export default function OffresServices() {
               </div>
             </div>
 
+            {/* BANNIÈRE AIDES */}
+            <div className="aide-etat-banner" style={{marginTop: 'var(--space-xl)', marginBottom: 'var(--space-xl)'}}>
+              <div className="aide-etat-content">
+                <div className="aide-etat-text">
+                  <div className="aide-etat-title">
+                    Jusqu'à 70% d'aides de l'État • France 2030 • Investissements d'avenir
+                  </div>
+                  <div className="aide-etat-subtitle">
+                    Réduisez jusqu'à 70% le coût de votre mise en conformité NIS2 grâce aux aides publiques
+                  </div>
+                </div>
+              </div>
+              <button onClick={() => alert('Simulateur en cours de développement')} className="btn-simulateur">
+                Calculer mes aides
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
             {/* TABLEAU COMPARATIF */}
             <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
               <h3 style={{fontSize: '28px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
@@ -310,26 +330,6 @@ export default function OffresServices() {
                   </a>
                 </div>
               ))}
-            </div>
-
-            {/* BANNIÈRE AIDES */}
-            <div className="aide-etat-banner" style={{marginTop: 'var(--space-xl)'}}>
-              <div className="aide-etat-content">
-                <div className="aide-etat-text">
-                  <div className="aide-etat-title">
-                    Jusqu'à 70% d'aides de l'État • France 2030 • Investissements d'avenir
-                  </div>
-                  <div className="aide-etat-subtitle">
-                    Réduisez jusqu'à 70% le coût de votre mise en conformité NIS2 grâce aux aides publiques
-                  </div>
-                </div>
-              </div>
-              <button onClick={() => alert('Simulateur en cours de développement')} className="btn-simulateur">
-                Calculer mes aides
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
             </div>
           </div>
         </section>
