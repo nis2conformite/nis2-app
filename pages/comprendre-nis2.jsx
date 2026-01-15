@@ -268,34 +268,47 @@ export default function ComprendreNIS2() {
                 }
               `}</style>
 
-              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-xl)', marginBottom: 'var(--space-2xl)'}}>
-                <div className="sanction-card sanction-card-violet" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(168, 85, 247, 0.15)', border: '2px solid #F3E8FF'}}>
-                  <h3 style={{fontSize: '20px', fontWeight: '700', color: '#A855F7', marginBottom: 'var(--space-md)'}}>
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)', marginBottom: 'var(--space-2xl)'}}>
+                <div className="sanction-card sanction-card-violet" style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(168, 85, 247, 0.12)', border: '2px solid #F3E8FF'}}>
+                  <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 'var(--space-md)'}}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 style={{fontSize: '18px', fontWeight: '700', color: '#A855F7', marginBottom: 'var(--space-sm)'}}>
                     Amendes financières
                   </h3>
-                  <div style={{fontSize: '42px', fontWeight: '700', color: '#A855F7', marginBottom: 'var(--space-sm)'}}>
-                    Jusqu'à 10M€
-                  </div>
-                  <p style={{color: 'var(--color-text-secondary)', fontSize: '15px'}}>
-                    ou 2% du chiffre d'affaires mondial (le montant le plus élevé)
+                  <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
+                    Jusqu'à <strong>10M€ ou 2% du CA mondial</strong> (le montant le plus élevé)
                   </p>
                 </div>
 
-                <div className="sanction-card sanction-card-rose" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(236, 72, 153, 0.15)', border: '2px solid #FCE7F3'}}>
-                  <h3 style={{fontSize: '20px', fontWeight: '700', color: '#EC4899', marginBottom: 'var(--space-md)'}}>
+                <div className="sanction-card sanction-card-rose" style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(236, 72, 153, 0.12)', border: '2px solid #FCE7F3'}}>
+                  <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 'var(--space-md)'}}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6M23 11h-6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 style={{fontSize: '18px', fontWeight: '700', color: '#EC4899', marginBottom: 'var(--space-sm)'}}>
                     Responsabilité pénale
                   </h3>
-                  <p style={{color: 'var(--color-text-secondary)', fontSize: '15px', lineHeight: '1.6'}}>
-                    Les dirigeants peuvent être tenus <strong>personnellement responsables</strong> en cas de manquement grave aux obligations NIS2
+                  <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
+                    Les dirigeants peuvent être tenus <strong>personnellement responsables</strong> en cas de manquement grave
                   </p>
                 </div>
 
-                <div className="sanction-card sanction-card-orange" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(249, 115, 22, 0.15)', border: '2px solid #FFEDD5'}}>
-                  <h3 style={{fontSize: '20px', fontWeight: '700', color: '#F97316', marginBottom: 'var(--space-md)'}}>
+                <div className="sanction-card sanction-card-orange" style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(249, 115, 22, 0.12)', border: '2px solid #FFEDD5'}}>
+                  <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 'var(--space-md)'}}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M15 9l-6 6" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+                  <h3 style={{fontSize: '18px', fontWeight: '700', color: '#F97316', marginBottom: 'var(--space-sm)'}}>
                     Exclusion des marchés
                   </h3>
-                  <p style={{color: 'var(--color-text-secondary)', fontSize: '15px', lineHeight: '1.6'}}>
-                    Impossibilité de répondre aux appels d'offres publics et privés sans certification de conformité
+                  <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
+                    Impossibilité de répondre aux <strong>appels d'offres publics et privés</strong> sans certification
                   </p>
                 </div>
               </div>
@@ -326,7 +339,7 @@ export default function ComprendreNIS2() {
             <div style={{height: 'var(--space-xl)'}}></div>
 
             {/* CARTOUCHE LE TEMPS PRESSE */}
-            <div className="aide-etat-banner" style={{background: 'linear-gradient(135deg, #DC2626 0%, #EF4444 60%, #F87171 100%)', marginBottom: 0}}>
+            <div className="aide-etat-banner" style={{background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 60%, #F472B6 100%)', marginBottom: 0}}>
               <div className="aide-etat-content">
                 <div className="aide-etat-text">
                   <div className="aide-etat-title">
@@ -337,7 +350,7 @@ export default function ComprendreNIS2() {
                   </div>
                 </div>
               </div>
-              <a href="/#pricing" style={{display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 28px', background: 'white', color: '#DC2626', fontSize: '16px', fontWeight: '700', borderRadius: '9999px', border: 'none', textDecoration: 'none', cursor: 'pointer', transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', whiteSpace: 'nowrap', position: 'relative', zIndex: 1, flexShrink: 0}}>
+              <a href="/#pricing" style={{display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 28px', background: 'white', color: '#A855F7', fontSize: '16px', fontWeight: '700', borderRadius: '9999px', border: 'none', textDecoration: 'none', cursor: 'pointer', transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', whiteSpace: 'nowrap', position: 'relative', zIndex: 1, flexShrink: 0}}>
                 Démarrer mon audit
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
