@@ -323,41 +323,49 @@ export default function Formations() {
         </section>
 
         {/* 6 FORMATIONS */}
-        <section className="cyber-encart" style={{margin: 'var(--space-xl) var(--space-md)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
+          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
               6 formations à fort impact pour accélérer votre conformité NIS2
             </h2>
-            <p style={{fontSize: '18px', color: 'rgba(255,255,255,0.8)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
+            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)'}}>
               Chaque structure est différente. C'est pourquoi nous avons conçu une offre de formation modulaire, ciblée, et adaptée aux profils et aux besoins les plus variés.
             </p>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: 'var(--space-xl)'}}>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-lg)'}}>
               {trainings.map((training) => (
                 <div key={training.id} style={{
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  backdropFilter: 'blur(10px)',
-                  borderRadius: 'var(--radius-lg)',
-                  padding: 'var(--space-lg)',
-                  border: '1px solid rgba(255,255,255,0.2)'
-                }}>
-                  <div style={{width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '18px', fontWeight: '700', marginBottom: 'var(--space-md)'}}>
+                  background: 'white',
+                  borderRadius: 'var(--radius-xl)',
+                  padding: 'var(--space-xl)',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                  border: '1px solid #E5E7EB',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 'var(--space-md)',
+                  transition: 'all 0.3s ease'
+                }} className="value-card-hover">
+                  <div style={{width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '20px', fontWeight: '700', flexShrink: 0}}>
                     {training.id}
                   </div>
-                  <h3 style={{fontSize: '20px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-sm)'}}>
-                    {training.title}
-                  </h3>
-                  <p style={{fontSize: '15px', color: 'rgba(255,255,255,0.8)', lineHeight: '1.6', marginBottom: 'var(--space-md)'}}>
-                    {training.description}
-                  </p>
-                  <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                    {training.topics.map((topic, idx) => (
-                      <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'rgba(255,255,255,0.9)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', borderTop: idx === 0 ? '1px solid rgba(255,255,255,0.2)' : 'none', paddingTop: idx === 0 ? 'var(--space-sm)' : 'var(--space-xs)'}}>
-                        <span style={{color: 'rgba(255,255,255,0.6)', flexShrink: 0}}>→</span>
-                        {topic}
-                      </li>
-                    ))}
-                  </ul>
+                  <div>
+                    <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+                      {training.title}
+                    </h3>
+                    <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', lineHeight: '1.6', marginBottom: 'var(--space-md)'}}>
+                      {training.description}
+                    </p>
+                  </div>
+                  <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-md)'}}>
+                    <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                      {training.topics.map((topic, idx) => (
+                        <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
+                          <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
+                          {topic}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               ))}
             </div>
