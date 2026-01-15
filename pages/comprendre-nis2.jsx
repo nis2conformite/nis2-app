@@ -62,11 +62,12 @@ export default function ComprendreNIS2() {
           </div>
         </section>
 
-        {/* C'EST QUOI NIS2 */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
+        {/* C'EST QUOI NIS2 - SECTION FUSIONNÉE */}
+        <section id="video-section" style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
             <div className="before-after-wrapper-design">
-              <div style={{textAlign: 'center', marginBottom: 'var(--space-lg)'}}>
+              {/* EN-TÊTE */}
+              <div style={{textAlign: 'center', marginBottom: 'var(--space-2xl)'}}>
                 <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-md)'}}>
                   C'est quoi, NIS2 ?
                 </h2>
@@ -77,47 +78,58 @@ export default function ComprendreNIS2() {
                 </p>
               </div>
 
-              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-lg)', marginTop: 'var(--space-xl)'}}>
-                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
-                  <strong style={{display: 'block', fontSize: '18px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-sm)'}}>Objectif</strong>
-                  <p style={{color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0}}>
+              {/* GRILLE : 2 CARTES + VIDÉO */}
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-xl)', alignItems: 'start'}}>
+
+                {/* CARTE OBJECTIF */}
+                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF', height: '100%'}}>
+                  <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', marginBottom: 'var(--space-md)'}}>
+                    <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <strong style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-purple)'}}>Objectif</strong>
+                  </div>
+                  <p style={{color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0, fontSize: '15px'}}>
                     Protéger les infrastructures critiques européennes contre les cyberattaques
                   </p>
                 </div>
-                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
-                  <strong style={{display: 'block', fontSize: '18px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-sm)'}}>Application</strong>
-                  <p style={{color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0}}>
+
+                {/* CARTE APPLICATION */}
+                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #FCE7F3', height: '100%'}}>
+                  <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', marginBottom: 'var(--space-md)'}}>
+                    <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #EC4899 0%, #F472B6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <strong style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-pink)'}}>Application</strong>
+                  </div>
+                  <p style={{color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0, fontSize: '15px'}}>
                     Transposée en droit français • Contrôles ANSSI dès 2024 • Sanctions dès 2027
                   </p>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* VIDÉO EXPLICATIVE */}
-        <section id="video-section" style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <div className="video-wrapper-design">
-              <div style={{textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
-                <span style={{display: 'inline-block', padding: '8px 20px', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', borderRadius: '9999px', fontSize: '14px', fontWeight: '600', marginBottom: 'var(--space-md)'}}>
-                  Comprendre NIS2 en vidéo
-                </span>
-                <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-md)'}}>
-                  La directive NIS2 expliquée simplement
-                </h2>
-                <p style={{fontSize: '18px', color: 'var(--color-text-secondary)'}}>
-                  5 minutes pour tout comprendre de cette nouvelle réglementation
-                </p>
-              </div>
-              <div className="video-container">
-                <iframe
-                  src={EXTERNAL_LINKS.videoYoutube}
-                  title="Directive NIS2 expliquée"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  style={{border: 0, borderRadius: 'var(--radius-xl)'}}>
-                </iframe>
+                {/* VIDÉO */}
+                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-md)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF', position: 'relative', height: '100%', display: 'flex', flexDirection: 'column'}}>
+                  <div style={{position: 'absolute', top: 'var(--space-md)', left: 'var(--space-md)', zIndex: 2}}>
+                    <span style={{display: 'inline-block', padding: '6px 14px', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', borderRadius: '9999px', fontSize: '12px', fontWeight: '600', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)'}}>
+                      📺 Comprendre en 5 minutes
+                    </span>
+                  </div>
+                  <div className="video-container" style={{flex: 1}}>
+                    <iframe
+                      src={EXTERNAL_LINKS.videoYoutube}
+                      title="Directive NIS2 expliquée"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      style={{border: 0, borderRadius: 'var(--radius-md)'}}>
+                    </iframe>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
