@@ -179,20 +179,6 @@ export default function Formations() {
           </div>
         </section>
 
-        {/* INTRODUCTION */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
-          <div style={{maxWidth: '1000px', margin: '0 auto'}}>
-            <div className="before-after-wrapper-design">
-              <p style={{fontSize: '20px', lineHeight: '1.8', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-md)'}}>
-                Se conformer à la directive NIS2 ne se résume pas à un audit. <strong>L'humain est au cœur du processus.</strong> Sans sensibilisation, sans formation, sans montée en compétences, la cybersécurité reste une coquille vide.
-              </p>
-              <p style={{fontSize: '18px', lineHeight: '1.7', color: 'var(--color-text-tertiary)', margin: 0}}>
-                C'est pourquoi nous proposons plusieurs formats de formation adaptés à votre organisation, à votre niveau de maturité, et à vos contraintes logistiques. Chaque session est conçue pour être <strong>pédagogique, concrète et immédiatement activable.</strong>
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* 4 FORMATS */}
         <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
@@ -260,6 +246,78 @@ export default function Formations() {
           </div>
         </section>
 
+        {/* POURQUOI SE FORMER */}
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
+          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
+              Pourquoi se former et former vos équipes ?
+            </h2>
+            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)'}}>
+              La formation est au cœur de la conformité NIS2 et de votre sécurité
+            </p>
+
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-lg)'}}>
+              {[
+                {
+                  title: 'Obligation légale NIS2',
+                  desc: 'La directive NIS2 impose la sensibilisation et formation obligatoire de tous les collaborateurs, en particulier des dirigeants.',
+                  icon: (
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" y1="13" x2="8" y2="13"></line>
+                      <line x1="16" y1="17" x2="8" y2="17"></line>
+                      <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                  )
+                },
+                {
+                  title: '90% des incidents sont humains',
+                  desc: 'La majorité des cyberattaques réussies exploitent une erreur humaine (phishing, mots de passe faibles, négligence).',
+                  icon: (
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                      <line x1="12" y1="9" x2="12" y2="13"></line>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                  )
+                },
+                {
+                  title: 'ROI démontré',
+                  desc: 'Une entreprise bien formée réduit de 70% ses risques d\'incidents et économise en moyenne 240 000€ par an en coûts évités.',
+                  icon: (
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                      <line x1="12" y1="1" x2="12" y2="23"></line>
+                      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                  )
+                },
+                {
+                  title: 'Culture de sécurité durable',
+                  desc: 'La formation crée une culture cyber pérenne dans l\'organisation, au-delà de la simple conformité réglementaire.',
+                  icon: (
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                  )
+                }
+              ].map((item, idx) => (
+                <div key={idx} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB', gap: 'var(--space-md)', transition: 'all 0.3s ease', display: 'flex', flexDirection: 'column'}} className="value-card-hover">
+                  <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                    {item.icon}
+                  </div>
+                  <h4 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
+                    {item.title}
+                  </h4>
+                  <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* 6 FORMATIONS */}
         <section className="cyber-encart" style={{margin: 'var(--space-xl) var(--space-md)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1}}>
@@ -296,33 +354,6 @@ export default function Formations() {
                       </li>
                     ))}
                   </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* POURQUOI FORMER */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
-              Pourquoi former vos équipes est essentiel ?
-            </h2>
-
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-xl)'}}>
-              {[
-                { title: 'Obligation légale NIS2', desc: 'La directive NIS2 impose la sensibilisation et formation obligatoire de tous les collaborateurs, en particulier des dirigeants.', gradient: '#A855F7' },
-                { title: '90% des incidents sont humains', desc: 'La majorité des cyberattaques réussies exploitent une erreur humaine (phishing, mots de passe faibles, négligence).', gradient: '#EC4899' },
-                { title: 'ROI démontré', desc: 'Une entreprise bien formée réduit de 70% ses risques d\'incidents et économise en moyenne 240 000€ par an en coûts évités.', gradient: '#F97316' },
-                { title: 'Culture de sécurité durable', desc: 'La formation crée une culture cyber pérenne dans l\'organisation, au-delà de la simple conformité réglementaire.', gradient: '#FB923C' }
-              ].map((item, idx) => (
-                <div key={idx} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', borderTop: `4px solid ${item.gradient}`}}>
-                  <h4 style={{fontSize: '20px', fontWeight: '700', color: item.gradient, marginBottom: 'var(--space-sm)'}}>
-                    {item.title}
-                  </h4>
-                  <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
-                    {item.desc}
-                  </p>
                 </div>
               ))}
             </div>
