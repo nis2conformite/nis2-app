@@ -463,7 +463,7 @@ export default function ComprendreNIS2() {
 
         {/* RESSOURCES OFFICIELLES */}
         <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
-          <div style={{maxWidth: '1400px', margin: '0 auto'}}>
+          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
               Ressources officielles
             </h2>
@@ -471,23 +471,39 @@ export default function ComprendreNIS2() {
               Pour aller plus loin dans votre compréhension de NIS2
             </p>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-lg)'}}>
+            <style jsx>{`
+              .resource-card {
+                transition: all 0.3s ease;
+              }
+              .resource-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 8px 24px rgba(168, 85, 247, 0.15) !important;
+              }
+            `}</style>
+
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)'}}>
               {[
-                { title: 'Directive NIS2 - Texte officiel', desc: 'Directive (UE) 2022/2555 complète en français', url: 'https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32022L2555', domain: 'eur-lex.europa.eu' },
-                { title: 'Site officiel ANSSI', desc: 'Toute la réglementation et les guides pratiques', url: 'https://cyber.gouv.fr', domain: 'cyber.gouv.fr' },
-                { title: 'MonEspaceNIS2', desc: 'Plateforme d\'enregistrement des entités concernées', url: 'https://monespacenis2.cyber.gouv.fr', domain: 'monespacenis2.cyber.gouv.fr' },
-                { title: 'FAQ Officielle', desc: 'Réponses aux questions fréquentes sur NIS2', url: 'https://aide.monespacenis2.cyber.gouv.fr/fr/', domain: 'aide.monespacenis2.cyber.gouv.fr' }
+                { title: 'Directive NIS2 - Texte officiel', desc: 'Directive (UE) 2022/2555 complète en français', url: 'https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32022L2555', domain: 'eur-lex.europa.eu', icon: '📋' },
+                { title: 'Site officiel ANSSI', desc: 'Toute la réglementation et les guides pratiques', url: 'https://cyber.gouv.fr', domain: 'cyber.gouv.fr', icon: '🔒' },
+                { title: 'MonEspaceNIS2', desc: 'Plateforme d\'enregistrement des entités concernées', url: 'https://monespacenis2.cyber.gouv.fr', domain: 'monespacenis2.cyber.gouv.fr', icon: '🏛️' },
+                { title: 'FAQ Officielle', desc: 'Réponses aux questions fréquentes sur NIS2', url: 'https://aide.monespacenis2.cyber.gouv.fr/fr/', domain: 'aide.monespacenis2.cyber.gouv.fr', icon: '❓' }
               ].map((resource, idx) => (
-                <a key={idx} href={resource.url} target="_blank" rel="noopener noreferrer" style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', textDecoration: 'none', display: 'block', transition: 'all 0.3s ease', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', border: '1px solid #E5E7EB'}} className="resource-card-hover">
-                  <h4 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+                <a key={idx} href={resource.url} target="_blank" rel="noopener noreferrer" className="resource-card" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', textDecoration: 'none', display: 'flex', flexDirection: 'column', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
+                  <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', marginBottom: 'var(--space-md)'}}>
+                    {resource.icon}
+                  </div>
+                  <h4 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)', minHeight: '48px'}}>
                     {resource.title}
                   </h4>
-                  <p style={{fontSize: '14px', color: 'var(--color-text-secondary)', lineHeight: '1.6', marginBottom: 'var(--space-md)'}}>
+                  <p style={{fontSize: '14px', color: 'var(--color-text-secondary)', lineHeight: '1.6', marginBottom: 'var(--space-md)', flex: 1}}>
                     {resource.desc}
                   </p>
-                  <span style={{fontSize: '14px', color: 'var(--color-purple)', fontWeight: '600'}}>
-                    {resource.domain} →
-                  </span>
+                  <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-xs)', color: 'var(--color-purple)', fontSize: '14px', fontWeight: '600'}}>
+                    <span>{resource.domain}</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                 </a>
               ))}
             </div>
