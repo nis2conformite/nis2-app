@@ -175,21 +175,21 @@ export default function OffresServices() {
                         <td style={{padding: 'var(--space-md)', textAlign: 'center', fontSize: '18px', borderLeft: '2px solid #E5E7EB'}}>
                           {typeof row.essential === 'boolean' ? (
                             row.essential ?
-                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
+                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
                               <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#F3F4F6', color: '#9CA3AF', fontWeight: '700', fontSize: '18px'}}>—</span>
                           ) : <span style={{color: 'var(--color-text-primary)', fontWeight: '600', fontSize: '14px'}}>{row.essential}</span>}
                         </td>
                         <td style={{padding: 'var(--space-md)', textAlign: 'center', fontSize: '18px', borderLeft: '2px solid #E5E7EB'}}>
                           {typeof row.serenity === 'boolean' ? (
                             row.serenity ?
-                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
+                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
                               <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#F3F4F6', color: '#9CA3AF', fontWeight: '700', fontSize: '18px'}}>—</span>
                           ) : <span style={{color: 'var(--color-text-primary)', fontWeight: '600', fontSize: '14px'}}>{row.serenity}</span>}
                         </td>
                         <td style={{padding: 'var(--space-md)', textAlign: 'center', fontSize: '18px', borderLeft: '2px solid #E5E7EB'}}>
                           {typeof row.expertise === 'boolean' ? (
                             row.expertise ?
-                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
+                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
                               <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#F3F4F6', color: '#9CA3AF', fontWeight: '700', fontSize: '18px'}}>—</span>
                           ) : <span style={{color: 'var(--color-text-primary)', fontWeight: '600', fontSize: '14px'}}>{row.expertise}</span>}
                         </td>
