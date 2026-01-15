@@ -50,15 +50,15 @@
   --shadow-pink: 0 8px 24px rgba(236, 72, 153, 0.20);
   --shadow-primary: 0 8px 24px rgba(99, 102, 241, 0.20);
 
-  /* Espacements (système 8px) */
-  --space-xs: 8px;
-  --space-sm: 16px;
-  --space-md: 24px;
-  --space-lg: 32px;
-  --space-xl: 48px;
-  --space-2xl: 64px;
-  --space-3xl: 96px;
-  --space-4xl: 128px;
+  /* Espacements (système 8px) - RÉDUITS pour compacité */
+  --space-xs: 6px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 28px;
+  --space-xl: 40px;
+  --space-2xl: 56px;
+  --space-3xl: 80px;
+  --space-4xl: 100px;
 
   /* Border radius moderne */
   --radius-sm: 8px;
@@ -1405,83 +1405,96 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   TESTIMONIALS - STYLE DÉCALÉ MODERNE (STAGGERED)
+   TESTIMONIALS - STYLE ORGANIQUE DÉCALÉ (ARTISAN)
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.testimonials-staggered-grid {
+.testimonials-organic-layout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-2xl);
-  margin-top: var(--space-3xl);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
   position: relative;
 }
 
-/* Effet décalé progressif - comme Artisan.co */
-.testimonials-staggered-grid .testimonial-card-staggered:nth-child(1) {
-  margin-top: 0;
-}
-
-.testimonials-staggered-grid .testimonial-card-staggered:nth-child(2) {
-  margin-top: 60px;
-}
-
-.testimonials-staggered-grid .testimonial-card-staggered:nth-child(3) {
-  margin-top: 120px;
-}
-
-.testimonial-card-staggered {
+.testimonial-card-organic {
   background: white;
-  border-radius: var(--radius-2xl);
-  padding: var(--space-2xl);
-  box-shadow: var(--shadow-md);
-  border: 2px solid rgba(0, 0, 0, 0.04);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   transition: all var(--transition-base);
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-sm);
 }
 
-.testimonial-card-staggered:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-  border-color: rgba(168, 85, 247, 0.2);
+/* Différentes tailles selon le contenu */
+.testimonial-small {
+  grid-column: span 1;
+  margin-top: 80px;
 }
 
-.testimonial-quote-large {
-  font-size: 18px;
-  line-height: 1.7;
+.testimonial-medium {
+  grid-column: span 1;
+  margin-top: 20px;
+}
+
+.testimonial-large {
+  grid-column: span 2;
+  margin-top: 0;
+}
+
+/* Décalages aléatoires pour effet organique */
+.testimonial-card-organic:nth-child(1) {
+  margin-top: 0;
+}
+
+.testimonial-card-organic:nth-child(2) {
+  margin-top: 40px;
+}
+
+.testimonial-card-organic:nth-child(3) {
+  margin-top: 80px;
+}
+
+.testimonial-card-organic:nth-child(4) {
+  margin-top: 20px;
+}
+
+.testimonial-card-organic:nth-child(5) {
+  margin-top: 60px;
+}
+
+.testimonial-card-organic:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(168, 85, 247, 0.15);
+}
+
+.testimonial-quote-compact {
+  font-size: 15px;
+  line-height: 1.6;
   color: var(--color-text-secondary);
   font-style: italic;
   font-weight: 500;
 }
 
-.testimonial-company-badge {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-sm);
-  padding: var(--space-sm) 0;
-}
-
-.testimonial-author-bottom {
-  margin-top: auto;
-  padding-top: var(--space-md);
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.testimonial-author-info {
+.testimonial-author-compact {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .testimonial-author-name {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-text-primary);
 }
 
 .testimonial-author-role {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--color-text-tertiary);
   font-weight: 500;
 }
@@ -2107,15 +2120,21 @@ body {
   .cyber-stats-grid-encart,
   .services-two-cols,
   .testimonials-case-study-grid,
-  .testimonials-staggered-grid,
+  .testimonials-organic-layout,
   .faq-grid-modern,
   .before-after-cards-v2 {
     grid-template-columns: 1fr;
   }
 
   /* Reset des décalages en mobile */
-  .testimonials-staggered-grid .testimonial-card-staggered:nth-child(n) {
+  .testimonials-organic-layout .testimonial-card-organic:nth-child(n) {
     margin-top: 0 !important;
+  }
+
+  .testimonial-small,
+  .testimonial-medium,
+  .testimonial-large {
+    grid-column: span 1 !important;
   }
 
   .footer-main-content {
