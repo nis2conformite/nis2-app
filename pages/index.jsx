@@ -900,14 +900,10 @@ export default function Home() {
           </h2>
 
           <div className="faq-grid-modern">
-            {FAQ_ITEMS.map((item) => (
-              <details key={item.id} className="faq-item-modern">
+            {FAQ_ITEMS.map((item, index) => (
+              <details key={item.id} className="faq-item-modern" open>
                 <summary className="faq-question-modern">
-                  <div className="faq-icon-modern">{item.icon}</div>
                   <span className="faq-question-text">{item.question}</span>
-                  <svg className="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"/>
-                  </svg>
                 </summary>
                 <div className="faq-answer-modern">
                   <p>{item.answer}</p>
