@@ -513,18 +513,17 @@ body {
 }
 
 .approach-step-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: var(--space-2xl);
   align-items: center;
 }
 
-.approach-step-row.reverse {
-  direction: rtl;
+.approach-step-row > * {
+  flex: 1;
 }
 
-.approach-step-row.reverse > * {
-  direction: ltr;
+.approach-step-row.reverse {
+  flex-direction: row-reverse;
 }
 
 .approach-step-content {
@@ -2206,9 +2205,8 @@ body {
   /* Approche en colonne sur tablette */
   .approach-step-row,
   .approach-step-row.reverse {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: var(--space-xl);
-    direction: ltr;
   }
 
   .approach-image-wrapper img {
