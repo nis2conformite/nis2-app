@@ -737,7 +737,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION TÉMOIGNAGES - Style Case Study */}
+      {/* SECTION TÉMOIGNAGES - Style Décalé Moderne */}
       <section className="content-section testimonials-modern" id="temoignages">
         <div className="content-container">
           <div className="section-badge-center">Success Stories</div>
@@ -746,66 +746,49 @@ export default function Home() {
             Dirigeants conformes, <span className="gradient">entreprises gagnantes</span>
           </h2>
           <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
-            Ils ont fait de NIS2 un levier de performance
+            Découvrez comment nos clients transforment la contrainte en opportunité
           </p>
 
-          <div className="testimonials-case-study-grid">
-            {/* Case Study 1 */}
-            <div className="case-study-card">
-              <div className="case-study-header">
-                <div className="case-study-badge">Case Study</div>
+          <div className="testimonials-staggered-grid">
+            {/* Testimonial 1 */}
+            <div className="testimonial-card-staggered">
+              <div className="testimonial-quote-large">
+                "Nous avons multiplié par 20 notre investissement. Le ROI n'est pas seulement prouvé, il est indéniable."
               </div>
-              <h3 className="case-study-title">
-                PME industrielle conforme en 3 mois
-              </h3>
-              <p className="case-study-quote">
-                "L'audit NIS2 nous a permis d'identifier nos vulnérabilités critiques et de prioriser nos investissements cyber. Résultat : conformité obtenue et appel d'offres remporté."
-              </p>
-              <div className="case-study-author">
-                <div className="testimonial-avatar">👨‍💼</div>
-                <div>
-                  <div className="testimonial-author-name">Marc Dubois</div>
-                  <div className="testimonial-author-role">CEO, TechManufacture</div>
+              <div className="testimonial-author-bottom">
+                <div className="testimonial-author-info">
+                  <div className="testimonial-author-name">Henri Delahaye</div>
+                  <div className="testimonial-author-role">Founder, RAISE Summit</div>
                 </div>
               </div>
             </div>
 
-            {/* Case Study 2 */}
-            <div className="case-study-card featured-case">
-              <div className="case-study-header">
-                <div className="case-study-badge gradient-badge">⭐ Success Story</div>
+            {/* Testimonial 2 - Décalé vers le bas */}
+            <div className="testimonial-card-staggered">
+              <div className="testimonial-company-badge">
+                <span style={{fontSize: '28px'}}>🍳</span>
+                <span style={{fontWeight: '700', fontSize: '18px', color: 'var(--color-text-primary)'}}>Cook Unity</span>
               </div>
-              <h3 className="case-study-title">
-                ETI certifiée ISO 27001 + NIS2
-              </h3>
-              <p className="case-study-quote">
-                "Grâce à l'accompagnement expert, nous avons transformé notre conformité NIS2 en véritable avantage compétitif. Nos clients nous font confiance."
-              </p>
-              <div className="case-study-author">
-                <div className="testimonial-avatar">👩‍💼</div>
-                <div>
-                  <div className="testimonial-author-name">Sophie Martin</div>
-                  <div className="testimonial-author-role">RSSI, DataSecure</div>
+              <div className="testimonial-quote-large">
+                "Avant NIS2, notre équipe passait trop de temps sur le démarchage. La conformité a considérablement libéré la bande passante de l'équipe."
+              </div>
+              <div className="testimonial-author-bottom">
+                <div className="testimonial-author-info">
+                  <div className="testimonial-author-name">Bruno Didier</div>
+                  <div className="testimonial-author-role">Head of B2B</div>
                 </div>
               </div>
             </div>
 
-            {/* Case Study 3 */}
-            <div className="case-study-card">
-              <div className="case-study-header">
-                <div className="case-study-badge">Case Study</div>
+            {/* Testimonial 3 - Décalé encore plus bas */}
+            <div className="testimonial-card-staggered">
+              <div className="testimonial-quote-large">
+                "NIS2 nous a permis de décrocher plusieurs de nos meilleurs partenariats fournisseurs !"
               </div>
-              <h3 className="case-study-title">
-                Startup scale-up sécurisée
-              </h3>
-              <p className="case-study-quote">
-                "La méthodologie structurée nous a permis de passer de 12% à 87% de conformité en 6 mois. Le rapport détaillé a convaincu nos investisseurs."
-              </p>
-              <div className="case-study-author">
-                <div className="testimonial-avatar">🧑‍💼</div>
-                <div>
-                  <div className="testimonial-author-name">Thomas Leroy</div>
-                  <div className="testimonial-author-role">CTO, CloudVision</div>
+              <div className="testimonial-author-bottom">
+                <div className="testimonial-author-info">
+                  <div className="testimonial-author-name">Sarah Chen</div>
+                  <div className="testimonial-author-role">CEO, YC-backed startup</div>
                 </div>
               </div>
             </div>
