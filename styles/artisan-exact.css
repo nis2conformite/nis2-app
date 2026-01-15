@@ -1897,12 +1897,43 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FOOTER MODERNE STYLE ARTISAN
+   FOOTER MODERNE STYLE ARTISAN (FOND NOIR + DÉGRADÉS)
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .footer-artisan-modern {
-  background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
   color: white;
   padding: var(--space-3xl) 0 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Dégradé violet en haut à droite */
+.footer-artisan-modern::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(168, 85, 247, 0.04) 40%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* Dégradé orange en bas à gauche */
+.footer-artisan-modern::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, rgba(251, 146, 60, 0.05) 40%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
 }
 
 .footer-main-content {
@@ -1913,6 +1944,8 @@ body {
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: var(--space-2xl);
   padding-bottom: var(--space-2xl);
+  position: relative;
+  z-index: 1;
 }
 
 .footer-brand-col {
@@ -1961,16 +1994,37 @@ body {
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: 14px;
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
+  position: relative;
 }
 
 .footer-links-list a:hover {
   color: white;
+  padding-left: 4px;
+}
+
+.footer-links-list a::before {
+  content: '→';
+  position: absolute;
+  left: -12px;
+  opacity: 0;
+  transition: all var(--transition-fast);
+  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-links-list a:hover::before {
+  opacity: 1;
+  left: -16px;
 }
 
 .footer-bottom-modern {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding: var(--space-lg) 0;
+  position: relative;
+  z-index: 1;
 }
 
 .footer-bottom-content {
@@ -1998,11 +2052,27 @@ body {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
+  position: relative;
 }
 
 .footer-legal-links a:hover {
   color: white;
+}
+
+.footer-legal-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  transition: width var(--transition-fast);
+}
+
+.footer-legal-links a:hover::after {
+  width: 100%;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
