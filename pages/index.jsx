@@ -93,7 +93,7 @@ export default function Home() {
           <nav className="header-nav-modern">
             <a href="/comprendre-nis2" className="header-nav-link">Comprendre NIS2</a>
             <a href="/qui-sommes-nous" className="header-nav-link">Qui sommes-nous</a>
-            <a href="#pricing" className="header-nav-link">Nos tarifs</a>
+            <a href="/offres-complementaires" className="header-nav-link">Nos tarifs</a>
             <a href="/formations" className="header-nav-link">Formation</a>
           </nav>
 
@@ -158,7 +158,7 @@ export default function Home() {
               Suis-je concerné par NIS2 ?
             </button>
             <a href="#video-section" className="btn-hero-secondary">
-              Comprendre NIS2 en 3min
+              Comprendre NIS2 en vidéo
             </a>
           </div>
 
@@ -714,9 +714,7 @@ export default function Home() {
 
           <div style={{textAlign: 'center', marginTop: '48px'}}>
             <a
-              href={CONTACT_INFO.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/offres-complementaires"
               className="btn-artisan btn-artisan-primary"
             >
               Découvrir nos services complémentaires
