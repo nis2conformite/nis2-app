@@ -857,26 +857,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION FAQ COMPACTE */}
+      {/* SECTION FAQ REDESIGN MODERNE */}
       <section className="content-section">
-        <div className="content-container" style={{maxWidth: '900px'}}>
+        <div className="content-container" style={{maxWidth: '1000px'}}>
           <div className="section-badge-center">FAQ</div>
 
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
             Les questions que se posent les <span className="gradient">dirigeants</span>
           </h2>
 
-          <div className="faq-grid-modern">
-            {FAQ_ITEMS.map((item, index) => (
-              <details key={item.id} className="faq-item-modern" open>
-                <summary className="faq-question-modern">
-                  <span className="faq-question-text">{item.question}</span>
-                </summary>
-                <div className="faq-answer-modern">
-                  <p>{item.answer}</p>
-                </div>
-              </details>
-            ))}
+          <div className="faq-grid-redesign">
+            {FAQ_ITEMS.map((item, index) => {
+              // Couleurs alternées pour les cartes
+              const colorClass = index % 3 === 0 ? 'faq-purple' : index % 3 === 1 ? 'faq-pink' : 'faq-blue';
+
+              return (
+                <details key={item.id} className={`faq-item-redesign ${colorClass}`}>
+                  <summary className="faq-question-redesign">
+                    <div className="faq-icon-circle">
+                      <span className="faq-emoji">{item.icon}</span>
+                    </div>
+                    <span className="faq-question-text-redesign">{item.question}</span>
+                    <div className="faq-toggle-icon">
+                      <svg className="faq-plus" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 4V16M4 10H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      </svg>
+                      <svg className="faq-minus" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="faq-answer-redesign">
+                    <p>{item.answer}</p>
+                  </div>
+                </details>
+              );
+            })}
           </div>
         </div>
       </section>
