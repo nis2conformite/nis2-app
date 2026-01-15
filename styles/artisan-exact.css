@@ -179,6 +179,37 @@ body {
   width: 100%;
 }
 
+.btn-header-expert {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.btn-header-expert:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+}
+
+.btn-header-expert svg {
+  transition: transform 0.3s ease;
+}
+
+.btn-header-expert:hover svg {
+  transform: translateX(3px);
+}
+
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    HERO SECTION - AVEC DÉGRADÉ & STATS OPTIMISÉES
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -2379,6 +2410,11 @@ body {
   .header-nav-link {
     font-size: 14px;
   }
+
+  .btn-header-expert {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -2393,6 +2429,11 @@ body {
 
   .header-nav-modern {
     display: none;
+  }
+
+  .btn-header-expert {
+    padding: 8px 16px;
+    font-size: 13px;
   }
 
   .hero-artisan-exact {

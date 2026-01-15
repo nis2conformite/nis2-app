@@ -96,6 +96,13 @@ export default function Home() {
             <a href="#pricing" className="header-nav-link">Nos tarifs</a>
             <a href="/formations" className="header-nav-link">Formation</a>
           </nav>
+
+          <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-header-expert">
+            Parler à un expert
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
         </div>
       </header>
 
