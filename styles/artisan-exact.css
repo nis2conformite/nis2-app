@@ -814,10 +814,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 28px 40px;
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 50%, #F97316 100%);
+  padding: 22px 40px;
+  background: linear-gradient(135deg, #A855F7 0%, #EC4899 60%, #F472B6 100%);
   border-radius: 9999px;
-  margin-bottom: 48px;
+  margin-bottom: 72px;
   gap: 24px;
   box-shadow: 0 8px 32px rgba(168, 85, 247, 0.3);
   position: relative;
@@ -845,21 +845,10 @@ body {
 .aide-etat-content {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 0;
   flex: 1;
   position: relative;
   z-index: 1;
-}
-
-.aide-etat-icon {
-  font-size: 40px;
-  flex-shrink: 0;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
 }
 
 .aide-etat-text {
@@ -2559,15 +2548,11 @@ body {
   }
 
   .aide-etat-banner {
-    padding: 24px 32px;
+    padding: 19px 32px;
   }
 
   .aide-etat-title {
     font-size: 16px;
-  }
-
-  .aide-etat-icon {
-    font-size: 32px;
   }
 }
 
@@ -2641,7 +2626,7 @@ body {
   }
 
   .aide-etat-banner {
-    padding: 20px 24px;
+    padding: 16px 24px;
     flex-direction: column;
     text-align: center;
     border-radius: 24px;
@@ -2650,11 +2635,7 @@ body {
   .aide-etat-content {
     flex-direction: column;
     text-align: center;
-    gap: 12px;
-  }
-
-  .aide-etat-icon {
-    font-size: 36px;
+    gap: 0;
   }
 
   .aide-etat-title {

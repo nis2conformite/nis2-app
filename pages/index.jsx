@@ -449,7 +449,6 @@ export default function Home() {
           {/* Bandeau aides d'état */}
           <div className="aide-etat-banner">
             <div className="aide-etat-content">
-              <div className="aide-etat-icon">💰</div>
               <div className="aide-etat-text">
                 <div className="aide-etat-title">
                   Jusqu'à 70% d'aides de l'État • France 2030 • Investissements d'avenir
