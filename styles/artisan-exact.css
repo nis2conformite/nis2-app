@@ -101,7 +101,7 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HEADER - STICKY SIMPLE (LOGO + CTA)
+   HEADER - STICKY AVEC NAVIGATION
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .header-artisan-sticky {
   position: fixed;
@@ -123,7 +123,7 @@ body {
   padding: 14px 32px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 48px;
 }
 
 .header-logo-link {
@@ -142,40 +142,41 @@ body {
   opacity: 0.85;
 }
 
-.header-cta-modern {
+.header-nav-modern {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
-  flex-shrink: 0;
+  gap: 36px;
+  flex: 1;
 }
 
-.btn-header-expert {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
-  color: white;
+.header-nav-link {
   font-size: 15px;
-  font-weight: 600;
-  border-radius: 9999px;
+  font-weight: 500;
+  color: #374151;
   text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
+  transition: all 0.2s ease;
+  position: relative;
   white-space: nowrap;
 }
 
-.btn-header-expert:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+.header-nav-link:hover {
+  color: #A855F7;
 }
 
-.btn-header-expert svg {
-  transition: transform 0.3s ease;
+.header-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  transition: width 0.3s ease;
+  border-radius: 2px;
 }
 
-.btn-header-expert:hover svg {
-  transform: translateX(3px);
+.header-nav-link:hover::after {
+  width: 100%;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -2371,8 +2372,11 @@ body {
 }
 
 @media (max-width: 1024px) {
-  .btn-header-expert {
-    padding: 10px 20px;
+  .header-nav-modern {
+    gap: 24px;
+  }
+
+  .header-nav-link {
     font-size: 14px;
   }
 }
@@ -2380,15 +2384,15 @@ body {
 @media (max-width: 768px) {
   .header-container-modern {
     padding: 12px 20px;
+    gap: 20px;
   }
 
   .header-logo-modern {
     height: 32px;
   }
 
-  .btn-header-expert {
-    padding: 8px 16px;
-    font-size: 13px;
+  .header-nav-modern {
+    display: none;
   }
 
   .hero-artisan-exact {

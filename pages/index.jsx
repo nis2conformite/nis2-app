@@ -83,22 +83,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* HEADER - STICKY SIMPLE */}
+      {/* HEADER - STICKY AVEC NAVIGATION */}
       <header className="header-artisan-sticky">
         <div className="header-container-modern">
           <a href="/" className="header-logo-link">
             <img src="/logo.png" alt="NIS2 Conformité" className="header-logo-modern" />
           </a>
 
-          <div className="header-cta-modern">
-            <MenuBurger />
-            <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-header-expert">
-              Parler à un expert
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
-          </div>
+          <nav className="header-nav-modern">
+            <a href="/comprendre-nis2" className="header-nav-link">Comprendre NIS2</a>
+            <a href="/qui-sommes-nous" className="header-nav-link">Qui sommes-nous</a>
+            <a href="#pricing" className="header-nav-link">Nos tarifs</a>
+            <a href="/formations" className="header-nav-link">Formation</a>
+          </nav>
         </div>
       </header>
 
