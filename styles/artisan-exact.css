@@ -2142,13 +2142,33 @@ body {
 
 /* Wrapper design avec fond dégradé */
 .before-after-wrapper-design {
-  background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 50%, #FEF3C7 100%);
-  border-radius: var(--radius-3xl);
+  background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 60%, #FDEDF5 100%);
+  border-radius: 32px;
   padding: var(--space-3xl);
   margin-top: var(--space-2xl);
   box-shadow: 0 4px 24px rgba(168, 85, 247, 0.08);
   position: relative;
   overflow: hidden;
+}
+
+/* Wrapper vidéo avec fond dégradé */
+.video-wrapper-design {
+  background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 60%, #FDEDF5 100%);
+  border-radius: 32px;
+  padding: var(--space-3xl);
+  margin-top: var(--space-2xl);
+  box-shadow: 0 4px 24px rgba(168, 85, 247, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 /* Grid 2 colonnes pour les cartes */
@@ -2372,7 +2392,8 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .before-after-wrapper-design {
+  .before-after-wrapper-design,
+  .video-wrapper-design {
     padding: var(--space-xl);
   }
 
@@ -2490,7 +2511,8 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .before-after-wrapper-design {
+  .before-after-wrapper-design,
+  .video-wrapper-design {
     padding: var(--space-lg);
   }
 

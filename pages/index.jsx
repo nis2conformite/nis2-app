@@ -867,29 +867,23 @@ export default function Home() {
             3 minutes pour tout comprendre de la directive NIS2
           </p>
 
-          <div style={{
-            position: 'relative',
-            paddingBottom: '56.25%',
-            height: 0,
-            overflow: 'hidden',
-            borderRadius: '16px',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
-            marginTop: '48px'
-          }}>
-            <iframe
-              src={EXTERNAL_LINKS.videoYoutube}
-              title="Directive NIS2 expliquée"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                border: 'none'
-              }}
-            />
+          <div className="video-wrapper-design">
+            <div className="video-container">
+              <iframe
+                src={EXTERNAL_LINKS.videoYoutube}
+                title="Directive NIS2 expliquée"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  border: 'none'
+                }}
+              />
+            </div>
           </div>
         </div>
       </section>
