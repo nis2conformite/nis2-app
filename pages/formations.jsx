@@ -5,6 +5,34 @@ export default function Formations() {
   const formats = [
     {
       id: 1,
+      title: 'Formation en Visio',
+      subtitle: 'Sessions en ligne interactives',
+      description: 'Pour qui ? Collaborateurs, dirigeants, équipes IT',
+      features: [
+        'Format court (1h à 2h)',
+        'Modules interactifs',
+        'Questions/réponses en direct',
+        'Replays disponibles',
+      ],
+      objectives: [
+        'Comprendre les grands principes de NIS2',
+        'Savoir détecter les signaux faibles d\'un incident',
+        'Adopter les bons réflexes cyber au quotidien',
+      ],
+      advantages: [
+        'Souplesse et accessibilité',
+        'Convient aux multi-sites',
+        'Idéal sans logistique lourde',
+      ],
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+          <polygon points="23 7 16 12 23 17 23 7"></polygon>
+          <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+        </svg>
+      )
+    },
+    {
+      id: 2,
       title: 'MOOC NIS2',
       subtitle: 'Formation en ligne autonome',
       description: 'Pour qui ? Entreprises souhaitant former à large échelle',
@@ -29,34 +57,6 @@ export default function Formations() {
           <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
           <line x1="8" y1="21" x2="16" y2="21"></line>
           <line x1="12" y1="17" x2="12" y2="21"></line>
-        </svg>
-      )
-    },
-    {
-      id: 2,
-      title: 'Formation en Visio',
-      subtitle: 'Sessions en ligne interactives',
-      description: 'Pour qui ? Collaborateurs, dirigeants, équipes IT',
-      features: [
-        'Format court (1h à 2h)',
-        'Modules interactifs',
-        'Questions/réponses en direct',
-        'Replays disponibles',
-      ],
-      objectives: [
-        'Comprendre les grands principes de NIS2',
-        'Savoir détecter les signaux faibles d\'un incident',
-        'Adopter les bons réflexes cyber au quotidien',
-      ],
-      advantages: [
-        'Souplesse et accessibilité',
-        'Convient aux multi-sites',
-        'Idéal sans logistique lourde',
-      ],
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-          <polygon points="23 7 16 12 23 17 23 7"></polygon>
-          <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
         </svg>
       )
     },
@@ -100,15 +100,16 @@ export default function Formations() {
     },
     {
       id: 2,
-      title: 'Formation des cadres dirigeants',
-      description: 'Leur faire comprendre leur responsabilité personnelle (risque pénal !) et les décisions stratégiques à prendre.',
-      topics: ['NIS 2: les fondations', 'Responsabilité du dirigeant', 'Gouvernance de la cybersécurité'],
-    },
-    {
-      id: 3,
       title: 'Formation technique pour les équipes IT / SI',
       description: 'Comprendre NIS2 en pratique et savoir mettre en œuvre les mesures techniques.',
       topics: ['Sécurisation des SI', 'Gestion des incidents', 'Audits de conformité', 'Surveillance et détection'],
+    },
+    {
+      id: 3,
+      title: 'Formation des cadres dirigeants',
+      description: 'Leur faire comprendre leur responsabilité personnelle (risque pénal !) et les décisions stratégiques à prendre.',
+      topics: ['NIS 2: les fondations', 'Responsabilité du dirigeant', 'Gouvernance de la cybersécurité'],
+      isObligatory: true,
     },
     {
       id: 4,
@@ -192,33 +193,58 @@ export default function Formations() {
 
             {/* LAYOUT ASYMÉTRIQUE : Featured au centre, 2 compacts sur les côtés */}
             <div style={{display: 'grid', gridTemplateColumns: '1fr 1.5fr 1fr', gap: 'var(--space-lg)', alignItems: 'stretch', marginBottom: 'var(--space-2xl)'}}>
-              {/* MOOC - Format Compact */}
-              <div className="format-card-compact" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
+              {/* VISIO - Format Compact (gauche) */}
+              <div className="format-card-compact" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
                 <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
                   {formats[0].icon}
                 </div>
                 <div>
-                  <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)'}}>
+                  <h3 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)'}}>
                     {formats[0].title}
                   </h3>
-                  <p style={{fontSize: '13px', color: 'var(--color-purple)', fontWeight: '600', marginBottom: 'var(--space-xs)'}}>
+                  <p style={{fontSize: '12px', color: 'var(--color-purple)', fontWeight: '600', marginBottom: 'var(--space-xs)'}}>
                     {formats[0].subtitle}
                   </p>
-                  <p style={{fontSize: '13px', color: 'var(--color-text-tertiary)', margin: 0, lineHeight: '1.5'}}>
+                  <p style={{fontSize: '12px', color: 'var(--color-text-tertiary)', margin: 0, lineHeight: '1.5'}}>
                     {formats[0].description}
                   </p>
                 </div>
-                <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                  {formats[0].features.slice(0, 3).map((feature, idx) => (
-                    <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '13px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.4'}}>
-                      <span style={{color: 'var(--color-purple)', fontSize: '14px', flexShrink: 0}}>✓</span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-sm)'}}>
+                  <h4 style={{fontSize: '11px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)', textTransform: 'uppercase', letterSpacing: '0.5px'}}>Caractéristiques</h4>
+                  <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                    {formats[0].features.map((feature, idx) => (
+                      <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '12px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.4'}}>
+                        <span style={{color: 'var(--color-purple)', fontSize: '14px', flexShrink: 0}}>✓</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-sm)'}}>
+                  <h4 style={{fontSize: '11px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)', textTransform: 'uppercase', letterSpacing: '0.5px'}}>Objectifs</h4>
+                  <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                    {formats[0].objectives.map((obj, idx) => (
+                      <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '12px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.4'}}>
+                        <span style={{color: 'var(--color-purple)', fontSize: '14px', flexShrink: 0}}>✓</span>
+                        {obj}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-sm)'}}>
+                  <h4 style={{fontSize: '11px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)', textTransform: 'uppercase', letterSpacing: '0.5px'}}>Avantages</h4>
+                  <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                    {formats[0].advantages.map((adv, idx) => (
+                      <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '12px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.4'}}>
+                        <span style={{color: 'var(--color-purple)', fontSize: '14px', flexShrink: 0}}>✓</span>
+                        {adv}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
-              {/* VISIO - Featured (Plus grand, design distinctif) */}
+              {/* MOOC - Featured (Plus grand, design distinctif) - RECOMMANDÉ (centre) */}
               <div className="format-card-featured" style={{background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 12px 32px rgba(168, 85, 247, 0.25)', border: '2px solid rgba(255,255,255,0.3)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', position: 'relative', overflow: 'hidden', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
                 <div style={{position: 'absolute', top: '10px', right: '10px', padding: '6px 14px', background: 'rgba(255,255,255,0.25)', backdropFilter: 'blur(10px)', borderRadius: '9999px', fontSize: '12px', fontWeight: '700', color: 'white', border: '1px solid rgba(255,255,255,0.3)'}}>
                   ⭐ RECOMMANDÉ
@@ -259,32 +285,68 @@ export default function Formations() {
                     ))}
                   </ul>
                 </div>
+                <div style={{borderTop: '1px solid rgba(255,255,255,0.2)', paddingTop: 'var(--space-md)'}}>
+                  <h4 style={{fontSize: '13px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-sm)', textTransform: 'uppercase', letterSpacing: '0.5px'}}>Avantages</h4>
+                  <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                    {formats[1].advantages.map((adv, idx) => (
+                      <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'rgba(255,255,255,0.95)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
+                        <span style={{color: 'white', fontSize: '16px', flexShrink: 0}}>✓</span>
+                        {adv}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
-              {/* SUR SITE - Format Compact */}
-              <div className="format-card-compact" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
+              {/* SUR SITE - Format Compact (droite) */}
+              <div className="format-card-compact" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
                 <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
                   {formats[2].icon}
                 </div>
                 <div>
-                  <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)'}}>
+                  <h3 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)'}}>
                     {formats[2].title}
                   </h3>
-                  <p style={{fontSize: '13px', color: 'var(--color-purple)', fontWeight: '600', marginBottom: 'var(--space-xs)'}}>
+                  <p style={{fontSize: '12px', color: 'var(--color-purple)', fontWeight: '600', marginBottom: 'var(--space-xs)'}}>
                     {formats[2].subtitle}
                   </p>
-                  <p style={{fontSize: '13px', color: 'var(--color-text-tertiary)', margin: 0, lineHeight: '1.5'}}>
+                  <p style={{fontSize: '12px', color: 'var(--color-text-tertiary)', margin: 0, lineHeight: '1.5'}}>
                     {formats[2].description}
                   </p>
                 </div>
-                <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                  {formats[2].features.map((feature, idx) => (
-                    <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '13px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.4'}}>
-                      <span style={{color: 'var(--color-purple)', fontSize: '14px', flexShrink: 0}}>✓</span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-sm)'}}>
+                  <h4 style={{fontSize: '11px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)', textTransform: 'uppercase', letterSpacing: '0.5px'}}>Caractéristiques</h4>
+                  <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                    {formats[2].features.map((feature, idx) => (
+                      <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '12px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.4'}}>
+                        <span style={{color: 'var(--color-purple)', fontSize: '14px', flexShrink: 0}}>✓</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-sm)'}}>
+                  <h4 style={{fontSize: '11px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)', textTransform: 'uppercase', letterSpacing: '0.5px'}}>Objectifs</h4>
+                  <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                    {formats[2].objectives.map((obj, idx) => (
+                      <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '12px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.4'}}>
+                        <span style={{color: 'var(--color-purple)', fontSize: '14px', flexShrink: 0}}>✓</span>
+                        {obj}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-sm)'}}>
+                  <h4 style={{fontSize: '11px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-xs)', textTransform: 'uppercase', letterSpacing: '0.5px'}}>Avantages</h4>
+                  <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                    {formats[2].advantages.map((adv, idx) => (
+                      <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '12px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.4'}}>
+                        <span style={{color: 'var(--color-purple)', fontSize: '14px', flexShrink: 0}}>✓</span>
+                        {adv}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -364,7 +426,7 @@ export default function Formations() {
                 </div>
 
                 {/* Carte Verticale 2 */}
-                <div className="why-card-vertical" style={{background: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(59, 130, 246, 0.2)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
+                <div className="why-card-vertical" style={{background: 'linear-gradient(135deg, #FB923C 0%, #F472B6 100%)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(251, 146, 60, 0.25)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
                   <div style={{width: '64px', height: '64px', borderRadius: 'var(--radius-md)', background: 'rgba(255,255,255,0.25)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, border: '2px solid rgba(255,255,255,0.3)'}}>
                     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -431,19 +493,20 @@ export default function Formations() {
               ))}
             </div>
 
-            {/* FORMATION 3: Highlighted Full-Width (Format horizontal unique) */}
+            {/* FORMATION 3: Highlighted Full-Width (Format horizontal unique) - OBLIGATOIRE */}
             <div className="training-card-highlighted" style={{
-              background: 'linear-gradient(135deg, #F59E0B 0%, #F97316 100%)',
+              background: 'linear-gradient(135deg, #EC4899 0%, #F59E0B 100%)',
               borderRadius: 'var(--radius-xl)',
               padding: 'var(--space-2xl)',
-              boxShadow: '0 12px 32px rgba(245, 158, 11, 0.25)',
+              boxShadow: '0 12px 32px rgba(236, 72, 153, 0.3)',
               marginBottom: 'var(--space-lg)',
               position: 'relative',
               overflow: 'hidden',
-              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              border: '3px solid rgba(255,255,255,0.4)'
             }}>
-              <div style={{position: 'absolute', top: '20px', right: '20px', padding: '8px 16px', background: 'rgba(255,255,255,0.25)', backdropFilter: 'blur(10px)', borderRadius: '9999px', fontSize: '13px', fontWeight: '700', color: 'white', border: '1px solid rgba(255,255,255,0.3)'}}>
-                🔥 FORTEMENT RECOMMANDÉ
+              <div style={{position: 'absolute', top: '20px', right: '20px', padding: '8px 16px', background: 'rgba(255,255,255,0.3)', backdropFilter: 'blur(10px)', borderRadius: '9999px', fontSize: '13px', fontWeight: '700', color: 'white', border: '2px solid rgba(255,255,255,0.4)', boxShadow: '0 4px 12px rgba(0,0,0,0.15)'}}>
+                ⚠️ FORMATION OBLIGATOIRE
               </div>
               <div style={{display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 'var(--space-xl)', alignItems: 'flex-start'}}>
                 <div style={{width: '72px', height: '72px', borderRadius: '50%', background: 'rgba(255,255,255,0.25)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '32px', fontWeight: '700', flexShrink: 0, border: '2px solid rgba(255,255,255,0.3)'}}>
@@ -456,7 +519,7 @@ export default function Formations() {
                   <p style={{fontSize: '17px', color: 'rgba(255,255,255,0.95)', lineHeight: '1.6', marginBottom: 'var(--space-lg)', maxWidth: '800px'}}>
                     {trainings[2].description}
                   </p>
-                  <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-md)'}}>
+                  <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-md)'}}>
                     {trainings[2].topics.map((topic, idx) => (
                       <div key={idx} style={{padding: 'var(--space-md)', background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(10px)', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(255,255,255,0.2)'}}>
                         <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-xs)'}}>
