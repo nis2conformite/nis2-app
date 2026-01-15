@@ -2140,12 +2140,22 @@ body {
   margin: 0 auto;
 }
 
+/* Wrapper design avec fond dégradé */
+.before-after-wrapper-design {
+  background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 50%, #FEF3C7 100%);
+  border-radius: var(--radius-3xl);
+  padding: var(--space-3xl);
+  margin-top: var(--space-2xl);
+  box-shadow: 0 4px 24px rgba(168, 85, 247, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
 /* Grid 2 colonnes pour les cartes */
 .before-after-cards-v2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-2xl);
-  margin-top: var(--space-2xl);
 }
 
 /* Cartes Avant/Après - Base */
@@ -2362,6 +2372,10 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .before-after-wrapper-design {
+    padding: var(--space-xl);
+  }
+
   /* Approche en colonne sur tablette */
   .approach-step-row,
   .approach-step-row.reverse {
@@ -2474,6 +2488,10 @@ body {
 
   .footer-main-content {
     grid-template-columns: 1fr;
+  }
+
+  .before-after-wrapper-design {
+    padding: var(--space-lg);
   }
 
   .footer-bottom-content {

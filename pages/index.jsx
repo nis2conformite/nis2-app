@@ -184,15 +184,16 @@ export default function Home() {
             Transformez la contrainte réglementaire en levier stratégique pour votre entreprise
           </p>
 
-          <div className="before-after-cards-v2">
-            {/* Card AVANT - Risques */}
-            <div className="impact-card danger-card">
-              <div className="impact-icon-wrapper danger-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <h3 className="impact-title">Les enjeux de la non-conformité</h3>
+          <div className="before-after-wrapper-design">
+            <div className="before-after-cards-v2">
+              {/* Card AVANT - Risques */}
+              <div className="impact-card danger-card">
+                <div className="impact-icon-wrapper danger-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <h3 className="impact-title">Les enjeux de la non-conformité</h3>
               <ul className="impact-list">
                 <li>
                   <div className="impact-bullet danger-bullet">
@@ -317,6 +318,7 @@ export default function Home() {
                   </div>
                 </li>
               </ul>
+            </div>
             </div>
           </div>
         </div>
