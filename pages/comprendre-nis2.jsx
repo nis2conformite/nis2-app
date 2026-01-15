@@ -177,9 +177,22 @@ export default function ComprendreNIS2() {
                     </p>
                   </div>
                   <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                    {['Énergie (électricité, gaz, pétrole, hydrogène)', 'Transports (ferroviaire, aérien, maritime, routier)', 'Secteur bancaire', 'Infrastructures des marchés financiers', 'Santé (hôpitaux, laboratoires, pharmacies)', 'Eau potable et eaux usées', 'Infrastructures numériques (DNS, TLD, cloud, data centers)', 'Espace'].map((item, idx) => (
-                      <li key={idx} style={{color: 'rgba(255,255,255,0.9)', padding: 'var(--space-sm) 0', borderBottom: '1px solid rgba(255,255,255,0.1)', fontSize: '15px'}}>
-                        {item}
+                    {[
+                      { main: 'Énergie', details: 'électricité, gaz, pétrole, hydrogène' },
+                      { main: 'Transports', details: 'ferroviaire, aérien, maritime, routier' },
+                      { main: 'Secteur bancaire', details: '' },
+                      { main: 'Infrastructures des marchés financiers', details: '' },
+                      { main: 'Santé', details: 'hôpitaux, laboratoires, pharmacies' },
+                      { main: 'Eau potable et eaux usées', details: '' },
+                      { main: 'Infrastructures numériques', details: 'DNS, TLD, cloud, data centers' },
+                      { main: 'Espace', details: '' }
+                    ].map((item, idx) => (
+                      <li key={idx} style={{display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', padding: 'var(--space-md) 0', borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
+                        <span style={{width: '8px', height: '8px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 100%)', flexShrink: 0, marginTop: '6px'}}></span>
+                        <span style={{fontSize: '15px', lineHeight: '1.5'}}>
+                          <strong style={{color: 'white', fontWeight: '600'}}>{item.main}</strong>
+                          {item.details && <span style={{color: 'rgba(255,255,255,0.6)'}}> ({item.details})</span>}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -196,9 +209,20 @@ export default function ComprendreNIS2() {
                     </p>
                   </div>
                   <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                    {['Services postaux et de courrier', 'Gestion des déchets', 'Industrie manufacturière (chimie, pharmacie, agroalimentaire, équipements)', 'Fournisseurs de services numériques (réseaux sociaux, moteurs de recherche, marketplaces)', 'Recherche', 'Administrations publiques (État, régions, départements)'].map((item, idx) => (
-                      <li key={idx} style={{color: 'rgba(255,255,255,0.9)', padding: 'var(--space-sm) 0', borderBottom: '1px solid rgba(255,255,255,0.1)', fontSize: '15px'}}>
-                        {item}
+                    {[
+                      { main: 'Services postaux et de courrier', details: '' },
+                      { main: 'Gestion des déchets', details: '' },
+                      { main: 'Industrie manufacturière', details: 'chimie, pharmacie, agroalimentaire, équipements' },
+                      { main: 'Fournisseurs de services numériques', details: 'réseaux sociaux, moteurs de recherche, marketplaces' },
+                      { main: 'Recherche', details: '' },
+                      { main: 'Administrations publiques', details: 'État, régions, départements' }
+                    ].map((item, idx) => (
+                      <li key={idx} style={{display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', padding: 'var(--space-md) 0', borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
+                        <span style={{width: '8px', height: '8px', borderRadius: '50%', background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', flexShrink: 0, marginTop: '6px'}}></span>
+                        <span style={{fontSize: '15px', lineHeight: '1.5'}}>
+                          <strong style={{color: 'white', fontWeight: '600'}}>{item.main}</strong>
+                          {item.details && <span style={{color: 'rgba(255,255,255,0.6)'}}> ({item.details})</span>}
+                        </span>
                       </li>
                     ))}
                   </ul>
