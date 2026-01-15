@@ -576,14 +576,14 @@ export default function Home() {
           </div>
 
           {showComparison && (
-            <div style={{marginTop: '32px', overflowX: 'auto', borderRadius: 'var(--radius-artisan-xl)', boxShadow: 'var(--shadow-artisan-lg)'}}>
+            <div style={{marginTop: '32px', overflowX: 'auto', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)'}}>
               <table style={{width: '100%', borderCollapse: 'collapse', background: 'white'}}>
                 <thead>
                   <tr>
-                    <th style={{background: 'var(--artisan-text-dark)', color: 'white', padding: '20px 16px', textAlign: 'left'}}>Fonctionnalités</th>
-                    <th style={{background: 'var(--artisan-primary)', color: 'white', padding: '20px 16px', textAlign: 'center'}}>Essentielle<br/><span style={{fontSize: '14px', fontWeight: '400'}}>3 490€</span></th>
-                    <th style={{background: 'var(--artisan-primary)', color: 'white', padding: '20px 16px', textAlign: 'center'}}>Sérénité<br/><span style={{fontSize: '14px', fontWeight: '400'}}>7 990€</span></th>
-                    <th style={{background: 'var(--artisan-primary)', color: 'white', padding: '20px 16px', textAlign: 'center'}}>Expertise<br/><span style={{fontSize: '14px', fontWeight: '400'}}>14 900€</span></th>
+                    <th style={{background: 'var(--color-text-primary)', color: 'white', padding: '20px 16px', textAlign: 'left'}}>Fonctionnalités</th>
+                    <th style={{background: 'var(--color-purple)', color: 'white', padding: '20px 16px', textAlign: 'center'}}>Essentielle<br/><span style={{fontSize: '14px', fontWeight: '400'}}>3 490€</span></th>
+                    <th style={{background: 'var(--color-purple)', color: 'white', padding: '20px 16px', textAlign: 'center'}}>Sérénité<br/><span style={{fontSize: '14px', fontWeight: '400'}}>7 990€</span></th>
+                    <th style={{background: 'var(--color-purple)', color: 'white', padding: '20px 16px', textAlign: 'center'}}>Expertise<br/><span style={{fontSize: '14px', fontWeight: '400'}}>14 900€</span></th>
                   </tr>
                 </thead>
                 <tbody>
