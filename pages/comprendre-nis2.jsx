@@ -63,11 +63,10 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* C'EST QUOI NIS2 */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
             <div className="before-after-wrapper-design">
-              <div style={{textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
-                <div style={{fontSize: '48px', marginBottom: 'var(--space-md)'}}>📋</div>
+              <div style={{textAlign: 'center', marginBottom: 'var(--space-lg)'}}>
                 <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-md)'}}>
                   C'est quoi, NIS2 ?
                 </h2>
@@ -170,7 +169,7 @@ export default function ComprendreNIS2() {
                 {/* ENTITÉS ESSENTIELLES */}
                 <div>
                   <div style={{marginBottom: 'var(--space-md)'}}>
-                    <span style={{display: 'inline-block', padding: '8px 16px', background: 'rgba(239, 68, 68, 0.9)', color: 'white', borderRadius: 'var(--radius-md)', fontSize: '14px', fontWeight: '600', marginBottom: 'var(--space-sm)'}}>
+                    <span style={{display: 'inline-block', padding: '8px 16px', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 100%)', color: 'white', borderRadius: 'var(--radius-md)', fontSize: '14px', fontWeight: '600', marginBottom: 'var(--space-sm)'}}>
                       Entités Essentielles
                     </span>
                     <p style={{color: 'rgba(255,255,255,0.7)', fontSize: '14px', marginTop: 'var(--space-xs)'}}>
@@ -189,7 +188,7 @@ export default function ComprendreNIS2() {
                 {/* ENTITÉS IMPORTANTES */}
                 <div>
                   <div style={{marginBottom: 'var(--space-md)'}}>
-                    <span style={{display: 'inline-block', padding: '8px 16px', background: 'rgba(249, 115, 22, 0.9)', color: 'white', borderRadius: 'var(--radius-md)', fontSize: '14px', fontWeight: '600', marginBottom: 'var(--space-sm)'}}>
+                    <span style={{display: 'inline-block', padding: '8px 16px', background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', color: 'white', borderRadius: 'var(--radius-md)', fontSize: '14px', fontWeight: '600', marginBottom: 'var(--space-sm)'}}>
                       Entités Importantes
                     </span>
                     <p style={{color: 'rgba(255,255,255,0.7)', fontSize: '14px', marginTop: 'var(--space-xs)'}}>
@@ -217,7 +216,7 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* LES SANCTIONS */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(180deg, #FEF2F2 0%, #FFF 100%)'}}>
+        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
               Quelles sanctions en cas de non-conformité ?
@@ -226,63 +225,79 @@ export default function ComprendreNIS2() {
               Les sanctions sont <strong>lourdes et immédiates</strong>. La responsabilité du dirigeant est engagée.
             </p>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-xl)', marginBottom: 'var(--space-3xl)'}}>
-              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(239, 68, 68, 0.15)', border: '2px solid #FEE2E2'}}>
-                <h3 style={{fontSize: '20px', fontWeight: '700', color: '#DC2626', marginBottom: 'var(--space-md)'}}>
-                  Amendes financières
-                </h3>
-                <div style={{fontSize: '42px', fontWeight: '700', color: '#DC2626', marginBottom: 'var(--space-sm)'}}>
-                  Jusqu'à 10M€
+            <div className="before-after-wrapper-design">
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-xl)', marginBottom: 'var(--space-2xl)'}}>
+                <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(239, 68, 68, 0.15)', border: '2px solid #FEE2E2'}}>
+                  <h3 style={{fontSize: '20px', fontWeight: '700', color: '#DC2626', marginBottom: 'var(--space-md)'}}>
+                    Amendes financières
+                  </h3>
+                  <div style={{fontSize: '42px', fontWeight: '700', color: '#DC2626', marginBottom: 'var(--space-sm)'}}>
+                    Jusqu'à 10M€
+                  </div>
+                  <p style={{color: 'var(--color-text-secondary)', fontSize: '15px'}}>
+                    ou 2% du chiffre d'affaires mondial (le montant le plus élevé)
+                  </p>
                 </div>
-                <p style={{color: 'var(--color-text-secondary)', fontSize: '15px'}}>
-                  ou 2% du chiffre d'affaires mondial (le montant le plus élevé)
-                </p>
+
+                <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(249, 115, 22, 0.15)', border: '2px solid #FED7AA'}}>
+                  <h3 style={{fontSize: '20px', fontWeight: '700', color: '#EA580C', marginBottom: 'var(--space-md)'}}>
+                    Responsabilité pénale
+                  </h3>
+                  <p style={{color: 'var(--color-text-secondary)', fontSize: '15px', lineHeight: '1.6'}}>
+                    Les dirigeants peuvent être tenus <strong>personnellement responsables</strong> en cas de manquement grave aux obligations NIS2
+                  </p>
+                </div>
+
+                <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(168, 85, 247, 0.15)', border: '2px solid #F3E8FF'}}>
+                  <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-md)'}}>
+                    Exclusion des marchés
+                  </h3>
+                  <p style={{color: 'var(--color-text-secondary)', fontSize: '15px', lineHeight: '1.6'}}>
+                    Impossibilité de répondre aux appels d'offres publics et privés sans certification de conformité
+                  </p>
+                </div>
               </div>
 
-              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(249, 115, 22, 0.15)', border: '2px solid #FED7AA'}}>
-                <h3 style={{fontSize: '20px', fontWeight: '700', color: '#EA580C', marginBottom: 'var(--space-md)'}}>
-                  Responsabilité pénale
+              {/* TIMELINE */}
+              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-2xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', marginBottom: 'var(--space-xl)'}}>
+                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
+                  Calendrier des sanctions
                 </h3>
-                <p style={{color: 'var(--color-text-secondary)', fontSize: '15px', lineHeight: '1.6'}}>
-                  Les dirigeants peuvent être tenus <strong>personnellement responsables</strong> en cas de manquement grave aux obligations NIS2
-                </p>
-              </div>
-
-              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(59, 130, 246, 0.15)', border: '2px solid #DBEAFE'}}>
-                <h3 style={{fontSize: '20px', fontWeight: '700', color: '#2563EB', marginBottom: 'var(--space-md)'}}>
-                  Exclusion des marchés
-                </h3>
-                <p style={{color: 'var(--color-text-secondary)', fontSize: '15px', lineHeight: '1.6'}}>
-                  Impossibilité de répondre aux appels d'offres publics et privés sans certification de conformité
-                </p>
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-lg)'}}>
+                  <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: '#F3F4F6', borderRadius: 'var(--radius-lg)'}}>
+                    <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#6B7280', marginBottom: 'var(--space-sm)'}}>2023</strong>
+                    <p style={{color: '#6B7280', fontSize: '15px', margin: 0}}>Entrée en vigueur</p>
+                  </div>
+                  <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)', borderRadius: 'var(--radius-lg)', border: '2px solid #FBBF24'}}>
+                    <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#D97706', marginBottom: 'var(--space-sm)'}}>2024-2026</strong>
+                    <p style={{color: '#92400E', fontSize: '15px', fontWeight: '600', margin: 0}}>Période de transition<br />Contrôles ANSSI</p>
+                  </div>
+                  <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: 'linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%)', borderRadius: 'var(--radius-lg)', border: '2px solid #EF4444'}}>
+                    <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#DC2626', marginBottom: 'var(--space-sm)'}}>2027</strong>
+                    <p style={{color: '#991B1B', fontSize: '15px', fontWeight: '600', margin: 0}}>Premières sanctions<br />Conformité obligatoire</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* TIMELINE */}
-            <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-2xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
-              <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
-                Calendrier des sanctions
-              </h3>
-              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-lg)'}}>
-                <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: '#F3F4F6', borderRadius: 'var(--radius-lg)'}}>
-                  <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#6B7280', marginBottom: 'var(--space-sm)'}}>2023</strong>
-                  <p style={{color: '#6B7280', fontSize: '15px', margin: 0}}>Entrée en vigueur</p>
-                </div>
-                <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)', borderRadius: 'var(--radius-lg)', border: '2px solid #FBBF24'}}>
-                  <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#D97706', marginBottom: 'var(--space-sm)'}}>2024-2026</strong>
-                  <p style={{color: '#92400E', fontSize: '15px', fontWeight: '600', margin: 0}}>Période de transition<br />Contrôles ANSSI</p>
-                </div>
-                <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: 'linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%)', borderRadius: 'var(--radius-lg)', border: '2px solid #EF4444'}}>
-                  <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#DC2626', marginBottom: 'var(--space-sm)'}}>2027</strong>
-                  <p style={{color: '#991B1B', fontSize: '15px', fontWeight: '600', margin: 0}}>Premières sanctions<br />Conformité obligatoire</p>
+            {/* CARTOUCHE LE TEMPS PRESSE */}
+            <div className="aide-etat-banner" style={{background: 'linear-gradient(135deg, #DC2626 0%, #EF4444 60%, #F87171 100%)', marginBottom: 0}}>
+              <div className="aide-etat-content">
+                <div className="aide-etat-text">
+                  <div className="aide-etat-title">
+                    ⚠️ Le temps presse : Les contrôles ANSSI ont déjà commencé
+                  </div>
+                  <div className="aide-etat-subtitle">
+                    Un audit de conformité prend en moyenne 3 à 6 mois. Agissez maintenant pour éviter les sanctions.
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div style={{background: '#FEF2F2', border: '2px solid #FEE2E2', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', marginTop: 'var(--space-xl)', textAlign: 'center'}}>
-              <p style={{color: '#991B1B', fontSize: '16px', fontWeight: '600', margin: 0}}>
-                <strong>Le temps presse :</strong> Les contrôles ANSSI ont déjà commencé. Un audit de conformité prend en moyenne 3 à 6 mois. <strong>Agissez maintenant.</strong>
-              </p>
+              <a href="/#pricing" style={{display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 28px', background: 'white', color: '#DC2626', fontSize: '16px', fontWeight: '700', borderRadius: '9999px', border: 'none', textDecoration: 'none', cursor: 'pointer', transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', whiteSpace: 'nowrap', position: 'relative', zIndex: 1, flexShrink: 0}}>
+                Démarrer mon audit
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
             </div>
           </div>
         </section>
@@ -390,7 +405,7 @@ export default function ComprendreNIS2() {
 
         {/* RESSOURCES OFFICIELLES */}
         <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+          <div style={{maxWidth: '1400px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
               Ressources officielles
             </h2>
@@ -398,7 +413,7 @@ export default function ComprendreNIS2() {
               Pour aller plus loin dans votre compréhension de NIS2
             </p>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)'}}>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-lg)'}}>
               {[
                 { title: 'Directive NIS2 - Texte officiel', desc: 'Directive (UE) 2022/2555 complète en français', url: 'https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32022L2555', domain: 'eur-lex.europa.eu' },
                 { title: 'Site officiel ANSSI', desc: 'Toute la réglementation et les guides pratiques', url: 'https://cyber.gouv.fr', domain: 'cyber.gouv.fr' },
