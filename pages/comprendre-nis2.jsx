@@ -250,12 +250,30 @@ export default function ComprendreNIS2() {
             </p>
 
             <div className="before-after-wrapper-design">
+              <style jsx>{`
+                .sanction-card {
+                  transition: all 0.3s ease;
+                }
+                .sanction-card:hover {
+                  transform: translateY(-4px);
+                }
+                .sanction-card-violet:hover {
+                  box-shadow: 0 12px 32px rgba(168, 85, 247, 0.25);
+                }
+                .sanction-card-rose:hover {
+                  box-shadow: 0 12px 32px rgba(236, 72, 153, 0.25);
+                }
+                .sanction-card-orange:hover {
+                  box-shadow: 0 12px 32px rgba(249, 115, 22, 0.25);
+                }
+              `}</style>
+
               <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-xl)', marginBottom: 'var(--space-2xl)'}}>
-                <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(239, 68, 68, 0.15)', border: '2px solid #FEE2E2'}}>
-                  <h3 style={{fontSize: '20px', fontWeight: '700', color: '#DC2626', marginBottom: 'var(--space-md)'}}>
+                <div className="sanction-card sanction-card-violet" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(168, 85, 247, 0.15)', border: '2px solid #F3E8FF'}}>
+                  <h3 style={{fontSize: '20px', fontWeight: '700', color: '#A855F7', marginBottom: 'var(--space-md)'}}>
                     Amendes financières
                   </h3>
-                  <div style={{fontSize: '42px', fontWeight: '700', color: '#DC2626', marginBottom: 'var(--space-sm)'}}>
+                  <div style={{fontSize: '42px', fontWeight: '700', color: '#A855F7', marginBottom: 'var(--space-sm)'}}>
                     Jusqu'à 10M€
                   </div>
                   <p style={{color: 'var(--color-text-secondary)', fontSize: '15px'}}>
@@ -263,8 +281,8 @@ export default function ComprendreNIS2() {
                   </p>
                 </div>
 
-                <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(249, 115, 22, 0.15)', border: '2px solid #FED7AA'}}>
-                  <h3 style={{fontSize: '20px', fontWeight: '700', color: '#EA580C', marginBottom: 'var(--space-md)'}}>
+                <div className="sanction-card sanction-card-rose" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(236, 72, 153, 0.15)', border: '2px solid #FCE7F3'}}>
+                  <h3 style={{fontSize: '20px', fontWeight: '700', color: '#EC4899', marginBottom: 'var(--space-md)'}}>
                     Responsabilité pénale
                   </h3>
                   <p style={{color: 'var(--color-text-secondary)', fontSize: '15px', lineHeight: '1.6'}}>
@@ -272,8 +290,8 @@ export default function ComprendreNIS2() {
                   </p>
                 </div>
 
-                <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(168, 85, 247, 0.15)', border: '2px solid #F3E8FF'}}>
-                  <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-md)'}}>
+                <div className="sanction-card sanction-card-orange" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(249, 115, 22, 0.15)', border: '2px solid #FFEDD5'}}>
+                  <h3 style={{fontSize: '20px', fontWeight: '700', color: '#F97316', marginBottom: 'var(--space-md)'}}>
                     Exclusion des marchés
                   </h3>
                   <p style={{color: 'var(--color-text-secondary)', fontSize: '15px', lineHeight: '1.6'}}>
@@ -283,7 +301,7 @@ export default function ComprendreNIS2() {
               </div>
 
               {/* TIMELINE */}
-              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-2xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', marginBottom: 'var(--space-xl)'}}>
+              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-2xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
                 <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
                   Calendrier des sanctions
                 </h3>
@@ -292,17 +310,20 @@ export default function ComprendreNIS2() {
                     <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#6B7280', marginBottom: 'var(--space-sm)'}}>2023</strong>
                     <p style={{color: '#6B7280', fontSize: '15px', margin: 0}}>Entrée en vigueur</p>
                   </div>
-                  <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)', borderRadius: 'var(--radius-lg)', border: '2px solid #FBBF24'}}>
-                    <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#D97706', marginBottom: 'var(--space-sm)'}}>2024-2026</strong>
-                    <p style={{color: '#92400E', fontSize: '15px', fontWeight: '600', margin: 0}}>Période de transition<br />Contrôles ANSSI</p>
+                  <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: 'linear-gradient(135deg, #FFEDD5 0%, #FED7AA 100%)', borderRadius: 'var(--radius-lg)', border: '2px solid #F97316'}}>
+                    <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#F97316', marginBottom: 'var(--space-sm)'}}>2024-2026</strong>
+                    <p style={{color: '#C2410C', fontSize: '15px', fontWeight: '600', margin: 0}}>Période de transition<br />Contrôles ANSSI</p>
                   </div>
-                  <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: 'linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%)', borderRadius: 'var(--radius-lg)', border: '2px solid #EF4444'}}>
-                    <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#DC2626', marginBottom: 'var(--space-sm)'}}>2027</strong>
-                    <p style={{color: '#991B1B', fontSize: '15px', fontWeight: '600', margin: 0}}>Premières sanctions<br />Conformité obligatoire</p>
+                  <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', borderRadius: 'var(--radius-lg)', border: '2px solid #EC4899'}}>
+                    <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#EC4899', marginBottom: 'var(--space-sm)'}}>2027</strong>
+                    <p style={{color: '#9D174D', fontSize: '15px', fontWeight: '600', margin: 0}}>Premières sanctions<br />Conformité obligatoire</p>
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* ESPACEMENT AVANT CARTOUCHE */}
+            <div style={{height: 'var(--space-xl)'}}></div>
 
             {/* CARTOUCHE LE TEMPS PRESSE */}
             <div className="aide-etat-banner" style={{background: 'linear-gradient(135deg, #DC2626 0%, #EF4444 60%, #F87171 100%)', marginBottom: 0}}>
