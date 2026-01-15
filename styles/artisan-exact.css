@@ -1430,41 +1430,17 @@ body {
   min-height: 220px;
 }
 
-/* Largeurs différentes - hauteur identique */
+/* Largeurs différentes - hauteur identique - TOUTES SUR LA MÊME LIGNE */
 .testimonial-small {
   grid-column: span 3;
-  margin-top: 80px;
 }
 
 .testimonial-medium {
   grid-column: span 4;
-  margin-top: 20px;
 }
 
 .testimonial-large {
   grid-column: span 5;
-  margin-top: 0;
-}
-
-/* Décalages aléatoires pour effet organique */
-.testimonial-card-organic:nth-child(1) {
-  margin-top: 0;
-}
-
-.testimonial-card-organic:nth-child(2) {
-  margin-top: 40px;
-}
-
-.testimonial-card-organic:nth-child(3) {
-  margin-top: 80px;
-}
-
-.testimonial-card-organic:nth-child(4) {
-  margin-top: 20px;
-}
-
-.testimonial-card-organic:nth-child(5) {
-  margin-top: 60px;
 }
 
 .testimonial-card-organic:hover {
