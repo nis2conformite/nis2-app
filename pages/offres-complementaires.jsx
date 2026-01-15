@@ -141,18 +141,18 @@ export default function OffresServices() {
             </div>
 
             {/* TABLEAU COMPARATIF */}
-            <div className="cyber-encart">
-              <h3 style={{fontSize: '28px', fontWeight: '700', color: 'white', textAlign: 'center', marginBottom: 'var(--space-xl)', position: 'relative', zIndex: 1}}>
+            <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
+              <h3 style={{fontSize: '28px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
                 Comparatif détaillé des offres
               </h3>
-              <div style={{overflowX: 'auto', position: 'relative', zIndex: 1}}>
+              <div style={{overflowX: 'auto'}}>
                 <table style={{width: '100%', borderCollapse: 'collapse'}}>
                   <thead>
                     <tr>
-                      <th style={{background: 'rgba(255,255,255,0.1)', color: 'white', padding: 'var(--space-md)', textAlign: 'left', borderBottom: '2px solid rgba(255,255,255,0.2)'}}>Fonctionnalités</th>
-                      <th style={{background: 'rgba(168, 85, 247, 0.2)', color: 'white', padding: 'var(--space-md)', textAlign: 'center', borderBottom: '2px solid rgba(255,255,255,0.2)'}}>Essentielle<br/><span style={{fontSize: '14px', fontWeight: '400'}}>3 490€</span></th>
-                      <th style={{background: 'rgba(236, 72, 153, 0.2)', color: 'white', padding: 'var(--space-md)', textAlign: 'center', borderBottom: '2px solid rgba(255,255,255,0.2)'}}>Sérénité<br/><span style={{fontSize: '14px', fontWeight: '400'}}>7 990€</span></th>
-                      <th style={{background: 'rgba(168, 85, 247, 0.2)', color: 'white', padding: 'var(--space-md)', textAlign: 'center', borderBottom: '2px solid rgba(255,255,255,0.2)'}}>Expertise<br/><span style={{fontSize: '14px', fontWeight: '400'}}>14 900€</span></th>
+                      <th style={{background: '#F3F4F6', color: 'var(--color-text-primary)', padding: 'var(--space-lg)', textAlign: 'left', fontWeight: '700', fontSize: '16px', borderBottom: '3px solid #E5E7EB'}}>Fonctionnalités</th>
+                      <th style={{background: 'linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%)', color: 'var(--color-purple)', padding: 'var(--space-lg)', textAlign: 'center', fontWeight: '700', fontSize: '16px', borderBottom: '3px solid var(--color-purple)', borderLeft: '2px solid #E5E7EB'}}>Essentielle<br/><span style={{fontSize: '14px', fontWeight: '400', color: 'var(--color-text-secondary)'}}>3 490€</span></th>
+                      <th style={{background: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', color: 'var(--color-pink)', padding: 'var(--space-lg)', textAlign: 'center', fontWeight: '700', fontSize: '16px', borderBottom: '3px solid var(--color-pink)', borderLeft: '2px solid #E5E7EB'}}>Sérénité<br/><span style={{fontSize: '14px', fontWeight: '400', color: 'var(--color-text-secondary)'}}>7 990€</span></th>
+                      <th style={{background: 'linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%)', color: 'var(--color-purple)', padding: 'var(--space-lg)', textAlign: 'center', fontWeight: '700', fontSize: '16px', borderBottom: '3px solid var(--color-purple)', borderLeft: '2px solid #E5E7EB'}}>Expertise<br/><span style={{fontSize: '14px', fontWeight: '400', color: 'var(--color-text-secondary)'}}>14 900€</span></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -170,16 +170,28 @@ export default function OffresServices() {
                       { name: 'Accès plateforme', essential: '—', serenity: '6 mois', expertise: '12 mois' },
                       { name: 'Délai de livraison', essential: 'Immédiat', serenity: '48H', expertise: '1 mois' }
                     ].map((row, idx) => (
-                      <tr key={idx} style={{borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
-                        <td style={{padding: 'var(--space-md)', color: 'white', fontWeight: '600', fontSize: '15px'}}>{row.name}</td>
-                        <td style={{padding: 'var(--space-md)', textAlign: 'center', color: 'rgba(255,255,255,0.9)', fontSize: '18px'}}>
-                          {typeof row.essential === 'boolean' ? (row.essential ? '✓' : '—') : row.essential}
+                      <tr key={idx} style={{borderBottom: '1px solid #E5E7EB', background: idx % 2 === 0 ? '#FAFAFA' : 'white'}}>
+                        <td style={{padding: 'var(--space-md)', color: 'var(--color-text-primary)', fontWeight: '700', fontSize: '15px'}}>{row.name}</td>
+                        <td style={{padding: 'var(--space-md)', textAlign: 'center', fontSize: '18px', borderLeft: '2px solid #E5E7EB'}}>
+                          {typeof row.essential === 'boolean' ? (
+                            row.essential ?
+                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
+                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#F3F4F6', color: '#9CA3AF', fontWeight: '700', fontSize: '18px'}}>—</span>
+                          ) : <span style={{color: 'var(--color-text-primary)', fontWeight: '600', fontSize: '14px'}}>{row.essential}</span>}
                         </td>
-                        <td style={{padding: 'var(--space-md)', textAlign: 'center', color: 'rgba(255,255,255,0.9)', fontSize: '18px'}}>
-                          {typeof row.serenity === 'boolean' ? (row.serenity ? '✓' : '—') : row.serenity}
+                        <td style={{padding: 'var(--space-md)', textAlign: 'center', fontSize: '18px', borderLeft: '2px solid #E5E7EB'}}>
+                          {typeof row.serenity === 'boolean' ? (
+                            row.serenity ?
+                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
+                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#F3F4F6', color: '#9CA3AF', fontWeight: '700', fontSize: '18px'}}>—</span>
+                          ) : <span style={{color: 'var(--color-text-primary)', fontWeight: '600', fontSize: '14px'}}>{row.serenity}</span>}
                         </td>
-                        <td style={{padding: 'var(--space-md)', textAlign: 'center', color: 'rgba(255,255,255,0.9)', fontSize: '18px'}}>
-                          {typeof row.expertise === 'boolean' ? (row.expertise ? '✓' : '—') : row.expertise}
+                        <td style={{padding: 'var(--space-md)', textAlign: 'center', fontSize: '18px', borderLeft: '2px solid #E5E7EB'}}>
+                          {typeof row.expertise === 'boolean' ? (
+                            row.expertise ?
+                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
+                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#F3F4F6', color: '#9CA3AF', fontWeight: '700', fontSize: '18px'}}>—</span>
+                          ) : <span style={{color: 'var(--color-text-primary)', fontWeight: '600', fontSize: '14px'}}>{row.expertise}</span>}
                         </td>
                       </tr>
                     ))}
