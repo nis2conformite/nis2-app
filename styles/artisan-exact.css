@@ -722,6 +722,186 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NOUVELLE SECTION APPROCHE - AVEC IMAGES
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.approach-container {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  margin-top: var(--space-xl);
+}
+
+.approach-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.approach-item-reverse {
+  direction: rtl;
+}
+
+.approach-item-reverse > * {
+  direction: ltr;
+}
+
+.approach-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.approach-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.approach-number {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+}
+
+.approach-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.approach-description {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.approach-image-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-artisan-xl);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.approach-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: var(--radius-artisan-xl);
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .approach-container {
+    gap: 48px;
+  }
+
+  .approach-item {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .approach-item-reverse {
+    direction: ltr;
+  }
+
+  .approach-header {
+    gap: 16px;
+  }
+
+  .approach-number {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    font-size: 24px;
+  }
+
+  .approach-title {
+    font-size: 22px;
+  }
+
+  .approach-description {
+    font-size: 15px;
+  }
+
+  .approach-image {
+    max-width: 100%;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NOUVEAU DESIGN APPROCHE - CARTES EN COLONNES
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.approach-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+.approach-card {
+  background: white;
+  border-radius: var(--radius-2xl);
+  padding: var(--space-2xl);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  border: 2px solid transparent;
+}
+
+.approach-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(168, 85, 247, 0.2);
+}
+
+.approach-number-circle {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-lg);
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+}
+
+.approach-card-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+  line-height: 1.3;
+}
+
+.approach-card-description {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    SECTION NOIRE - GLASSMORPHISM OPTIMISÉ
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .black-section-artisan {
@@ -1088,66 +1268,219 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FAQ - STYLE MINIMALISTE COMPACT (TOUJOURS OUVERT)
+   FAQ - REDESIGN MODERNE AVEC ICÔNES ET ANIMATIONS
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.faq-grid-modern {
+.faq-grid-redesign {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   margin-top: var(--space-xl);
 }
 
-.faq-item-modern {
-  background: #F9FAFB;
-  border-radius: var(--radius-md);
+.faq-item-redesign {
+  background: white;
+  border-radius: var(--radius-lg);
   border: 1px solid #E5E7EB;
   overflow: hidden;
-  transition: all 0.2s ease;
-}
-
-.faq-item-modern:nth-child(even) {
-  background: #F3F4F6;
-}
-
-.faq-item-modern:hover {
-  background: #FFFFFF;
-  border-color: rgba(168, 85, 247, 0.2);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.faq-question-modern {
-  padding: var(--space-sm) var(--space-md);
-  cursor: pointer;
-  display: block;
-  list-style: none;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   position: relative;
 }
 
-.faq-question-modern::-webkit-details-marker {
+/* Bordure gauche colorée selon la catégorie */
+.faq-item-redesign.faq-purple {
+  border-left: 4px solid #A855F7;
+}
+
+.faq-item-redesign.faq-pink {
+  border-left: 4px solid #EC4899;
+}
+
+.faq-item-redesign.faq-blue {
+  border-left: 4px solid #3B82F6;
+}
+
+.faq-item-redesign:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* Question / Summary */
+.faq-question-redesign {
+  padding: var(--space-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  list-style: none;
+  transition: all 0.2s ease;
+  position: relative;
+  user-select: none;
+}
+
+.faq-question-redesign::-webkit-details-marker {
   display: none;
 }
 
-.faq-question-text {
-  font-size: 15px;
+.faq-question-redesign:hover {
+  background: rgba(168, 85, 247, 0.02);
+}
+
+/* Icône circulaire avec gradient */
+.faq-icon-circle {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.faq-item-redesign:hover .faq-icon-circle {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+}
+
+.faq-emoji {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Texte de la question */
+.faq-question-text-redesign {
+  flex: 1;
+  font-size: 17px;
   font-weight: 700;
   color: var(--color-text-primary);
   line-height: 1.4;
-  display: block;
 }
 
-.faq-answer-modern {
-  padding: 0 var(--space-md) var(--space-sm);
-  border-top: 1px solid rgba(0, 0, 0, 0.04);
-  margin-top: var(--space-xs);
+/* Indicateur + / - */
+.faq-toggle-icon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #F3F4F6;
+  color: #6366F1;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.faq-answer-modern p {
-  font-size: 14px;
-  line-height: 1.6;
+.faq-item-redesign:hover .faq-toggle-icon {
+  background: rgba(99, 102, 241, 0.1);
+  color: #A855F7;
+}
+
+/* Icônes SVG */
+.faq-plus,
+.faq-minus {
+  position: absolute;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-plus {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+.faq-minus {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+
+/* État ouvert */
+.faq-item-redesign[open] .faq-plus {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+
+.faq-item-redesign[open] .faq-minus {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+.faq-item-redesign[open] .faq-toggle-icon {
+  background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
+  color: white;
+}
+
+/* Réponse */
+.faq-answer-redesign {
+  padding: 0 var(--space-md) var(--space-md);
+  padding-left: calc(52px + var(--space-md) + 16px);
+  animation: faqSlideDown 0.3s ease-out;
+}
+
+@keyframes faqSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq-answer-redesign p {
+  font-size: 15px;
+  line-height: 1.7;
   color: var(--color-text-secondary);
   margin: 0;
-  padding-top: var(--space-sm);
+  border-top: 1px solid #F3F4F6;
+  padding-top: var(--space-md);
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .faq-grid-redesign {
+    gap: 12px;
+  }
+
+  .faq-question-redesign {
+    padding: var(--space-sm);
+    gap: 12px;
+  }
+
+  .faq-icon-circle {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    font-size: 20px;
+  }
+
+  .faq-question-text-redesign {
+    font-size: 15px;
+  }
+
+  .faq-toggle-icon {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+  }
+
+  .faq-toggle-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .faq-answer-redesign {
+    padding: 0 var(--space-sm) var(--space-sm);
+    padding-left: calc(44px + var(--space-sm) + 12px);
+  }
+
+  .faq-answer-redesign p {
+    font-size: 14px;
+  }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1272,13 +1605,13 @@ body {
   box-shadow: var(--shadow-primary);
 }
 
-.btn-pricing-secondary {
+.btn-pricing-artisan.btn-pricing-secondary {
   background: white;
   color: var(--color-primary);
   border: 2px solid var(--color-primary);
 }
 
-.btn-pricing-secondary:hover {
+.btn-pricing-artisan.btn-pricing-secondary:hover {
   background: var(--color-primary);
   color: white;
 }
@@ -1592,6 +1925,9 @@ body {
   border: 2px solid transparent;
   transition: all var(--transition-base);
   position: relative;
+  display: flex;
+  gap: var(--space-lg);
+  align-items: flex-start;
 }
 
 .service-card-large:hover {
@@ -1603,13 +1939,13 @@ body {
 .service-icon {
   width: 64px;
   height: 64px;
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  margin-bottom: var(--space-md);
+  color: #A855F7;
+  flex-shrink: 0;
 }
 
 .service-card-large h3 {
@@ -2330,10 +2666,10 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
-/* Icône danger - gradient orange/doré */
+/* Icône danger - fond pastel */
 .danger-icon {
-  background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
-  color: white;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  color: #F97316;
 }
 
 .danger-icon::after {
@@ -2341,15 +2677,15 @@ body {
   position: absolute;
   inset: -6px;
   border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
-  opacity: 0.2;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(251, 146, 60, 0.1) 100%);
+  opacity: 0.5;
   z-index: -1;
 }
 
-/* Icône success - gradient violet/rose */
+/* Icône success - fond pastel */
 .success-icon {
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
-  color: white;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  color: #A855F7;
 }
 
 .success-icon::after {
@@ -2357,8 +2693,8 @@ body {
   position: absolute;
   inset: -6px;
   border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
-  opacity: 0.2;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  opacity: 0.5;
   z-index: -1;
 }
 
@@ -2440,6 +2776,113 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SERVICES COMPLÉMENTAIRES - 4 CARTES
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.services-complementaires-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.service-card-comp {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.service-card-comp:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(98, 84, 243, 0.15);
+  border-color: var(--artisan-primary);
+}
+
+.service-header-comp {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.service-icon-comp {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 12px;
+}
+
+.service-icon-comp svg {
+  width: 32px;
+  height: 32px;
+}
+
+.service-title-comp {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--artisan-text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.service-description-comp {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--artisan-text-medium);
+  margin: 0;
+  text-align: left;
+}
+
+/* Grille 4 colonnes pour les services complémentaires */
+.services-grid-4cols {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-lg);
+  width: 100%;
+}
+
+/* Hover effect for value cards */
+.value-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.2) !important;
+}
+
+/* Cartes services complémentaires - uniformisation */
+.service-card-comp {
+  min-height: 300px;
+}
+
+.service-card-comp .btn-artisan {
+  margin-top: auto;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .services-grid-4cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .service-card-comp {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-grid-4cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    RESPONSIVE
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 @media (max-width: 1024px) {
@@ -2481,11 +2924,27 @@ body {
   .cyber-stats-grid,
   .cyber-stats-grid-encart,
   .services-two-cols,
+  .services-complementaires-grid,
   .testimonials-case-study-grid,
   .testimonials-organic-layout,
   .faq-grid-modern,
-  .before-after-cards-v2 {
+  .before-after-cards-v2,
+  .approach-cards-grid {
     grid-template-columns: 1fr;
+  }
+
+  .approach-number-circle {
+    width: 64px;
+    height: 64px;
+    font-size: 28px;
+  }
+
+  .approach-card-title {
+    font-size: 20px;
+  }
+
+  .approach-card-description {
+    font-size: 15px;
   }
 
   .before-after-wrapper-design,
