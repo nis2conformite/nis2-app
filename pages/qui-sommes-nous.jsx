@@ -163,7 +163,7 @@ export default function QuiSommesNous() {
                       width: '100%',
                       border: '1px solid rgba(255,255,255,0.2)'
                     }}>
-                      <img src={logo.src} alt={logo.alt} style={{maxWidth: '120px', maxHeight: '60px', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: '0.9'}} />
+                      <img src={logo.src} alt={logo.alt} style={{maxWidth: '120px', maxHeight: '60px', objectFit: 'contain', opacity: '0.9'}} />
                     </div>
                   ))}
                 </div>
