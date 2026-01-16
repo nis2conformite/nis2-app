@@ -145,10 +145,10 @@ export default function OffresServices() {
               <div className="aide-etat-content">
                 <div className="aide-etat-text">
                   <div className="aide-etat-title">
-                    Jusqu'à 70% d'aides de l'État • France 2030 • Investissements d'avenir
+                    Jusqu'à 70% d'aides de l'État • Valable sur toutes nos offres
                   </div>
                   <div className="aide-etat-subtitle">
-                    Réduisez jusqu'à 70% le coût de votre mise en conformité NIS2 grâce aux aides publiques
+                    Réduisez le coût de votre mise en conformité NIS2
                   </div>
                 </div>
               </div>
