@@ -234,63 +234,32 @@ export default function OffresServices() {
               </p>
             </div>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)'}}>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-lg)'}}>
               {[
                 {
                   title: 'Modèles de documents',
                   price: '99€',
                   period: '/mois',
-                  features: ['Templates conformité NIS2', 'Mis à jour réglementairement', 'Accès illimité', 'Politiques ANSSI'],
-                  gradient: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)',
-                  icon: (
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A855F7" strokeWidth="2">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                      <polyline points="14 2 14 8 20 8"></polyline>
-                      <line x1="16" y1="13" x2="8" y2="13"></line>
-                      <line x1="16" y1="17" x2="8" y2="17"></line>
-                    </svg>
-                  )
+                  features: ['Templates conformité NIS2', 'Mis à jour réglementairement', 'Accès illimité', 'Politiques ANSSI']
                 },
                 {
                   title: 'Formations NIS2',
                   price: '349€',
                   period: '/pers',
                   features: ['Formation dirigeants (obligatoire)', 'Prise en charge OPCO', 'Plateforme en ligne', 'Formation sur site : nous consulter'],
-                  gradient: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)',
-                  badge: 'RECOMMANDÉ',
-                  icon: (
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#EC4899" strokeWidth="2">
-                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg>
-                  )
+                  badge: 'RECOMMANDÉ'
                 },
                 {
                   title: 'Montage Subventions',
                   price: '299€',
                   period: '',
-                  features: ['Identification des aides (70% max)', 'Constitution dossiers', 'France Num, BPI, Régions', '12 000€ récupérés en moyenne'],
-                  gradient: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)',
-                  icon: (
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FB923C" strokeWidth="2">
-                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                  )
+                  features: ['Identification des aides (70% max)', 'Constitution dossiers', 'France Num, BPI, Régions', '12 000€ récupérés en moyenne']
                 },
                 {
                   title: 'Notification Incidents',
                   price: '99€',
                   period: '/mois',
-                  features: ['Déclaration ANSSI 24h', 'Gestion de crise', 'Hotline 24/7', 'Évitez les 10M€ d\'amende'],
-                  gradient: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)',
-                  icon: (
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F472B6" strokeWidth="2">
-                      <path d="M10.29 3.86L1.82 18a2 4 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                      <line x1="12" y1="9" x2="12" y2="13"></line>
-                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                    </svg>
-                  )
+                  features: ['Déclaration ANSSI 24h', 'Gestion de crise', 'Hotline 24/7', 'Évitez les 10M€ d\'amende']
                 }
               ].map((service, idx) => (
                 <div key={idx} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', position: 'relative', border: service.badge ? '2px solid #EC4899' : '1px solid #E5E7EB', transition: 'all 0.3s ease', display: 'flex', flexDirection: 'column'}} className="value-card-hover">
@@ -300,23 +269,19 @@ export default function OffresServices() {
                     </div>
                   )}
 
-                  {/* Badge Prix en haut à droite */}
-                  <div style={{position: 'absolute', top: 'var(--space-lg)', right: 'var(--space-lg)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', padding: '8px 16px', borderRadius: 'var(--radius-md)', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)'}}>
-                    <div style={{fontSize: '24px', fontWeight: '700', lineHeight: '1', textAlign: 'center'}}>
-                      {service.price}
-                    </div>
-                    {service.period && (
-                      <div style={{fontSize: '12px', fontWeight: '500', opacity: 0.9, textAlign: 'center', marginTop: '2px'}}>
-                        {service.period}
+                  {/* Badge Prix à gauche */}
+                  <div style={{display: 'flex', gap: 'var(--space-md)', alignItems: 'center', marginBottom: 'var(--space-md)', marginTop: service.badge ? 'var(--space-sm)' : 0}}>
+                    <div style={{background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', padding: '12px 16px', borderRadius: 'var(--radius-md)', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)', flexShrink: 0}}>
+                      <div style={{fontSize: '24px', fontWeight: '700', lineHeight: '1', textAlign: 'center'}}>
+                        {service.price}
                       </div>
-                    )}
-                  </div>
-
-                  <div style={{display: 'flex', gap: 'var(--space-md)', alignItems: 'center', marginBottom: 'var(--space-md)', marginTop: service.badge ? 'var(--space-sm)' : 0, paddingRight: '100px'}}>
-                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: service.gradient, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-                      {service.icon}
+                      {service.period && (
+                        <div style={{fontSize: '11px', fontWeight: '500', opacity: 0.9, textAlign: 'center', marginTop: '4px'}}>
+                          {service.period}
+                        </div>
+                      )}
                     </div>
-                    <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0, lineHeight: '1.3'}}>
+                    <h3 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0, lineHeight: '1.3'}}>
                       {service.title}
                     </h3>
                   </div>
