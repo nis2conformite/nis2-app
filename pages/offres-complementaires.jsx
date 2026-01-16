@@ -240,61 +240,59 @@ export default function OffresServices() {
                   title: 'Modèles de documents',
                   price: '99€',
                   period: '/mois',
-                  features: ['Templates conformité NIS2', 'Mis à jour réglementairement', 'Accès illimité', 'Politiques ANSSI']
+                  features: ['Templates conformité NIS2', 'Mises à jour régulières', 'Accès illimité', 'Politiques ANSSI']
                 },
                 {
                   title: 'Formations NIS2',
                   price: '349€',
                   period: '/pers',
-                  features: ['Formation dirigeants (obligatoire)', 'Prise en charge OPCO', 'Plateforme en ligne', 'Formation sur site : nous consulter'],
+                  features: ['Formation dirigeants', 'Prise en charge OPCO', 'Plateforme en ligne', 'Sur site : nous consulter'],
                   badge: 'RECOMMANDÉ'
                 },
                 {
                   title: 'Montage Subventions',
                   price: '299€',
                   period: '',
-                  features: ['Identification des aides (70% max)', 'Constitution dossiers', 'France Num, BPI, Régions', '12 000€ récupérés en moyenne']
+                  features: ['Identification aides (70%)', 'Constitution dossiers', 'France Num, BPI, Régions', '12 000€ récupérés / moy.']
                 },
                 {
                   title: 'Accompagnement incident',
                   price: '99€',
                   period: '/mois',
-                  features: ['Accompagnement déclaration incident', 'Conseil gestion de crise', 'Veille législative', 'ligne expert dédié pour vos questions']
+                  features: ['Déclaration incident', 'Conseil gestion de crise', 'Veille législative', 'Ligne expert dédiée']
                 }
               ].map((service, idx) => (
-                <div key={idx} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', position: 'relative', border: service.badge ? '2px solid #EC4899' : '1px solid #E5E7EB', transition: 'all 0.3s ease', display: 'flex', flexDirection: 'column'}} className="value-card-hover">
+                <div key={idx} className="service-card-comp value-card-hover" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', position: 'relative', border: service.badge ? '2px solid #EC4899' : '1px solid #E5E7EB', transition: 'all 0.3s ease', display: 'flex', flexDirection: 'column'}}>
                   {service.badge && (
-                    <div style={{position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)', padding: '6px 16px', background: '#EC4899', color: 'white', borderRadius: '9999px', fontSize: '12px', fontWeight: '700'}}>
+                    <div style={{position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)', padding: '6px 16px', background: '#EC4899', color: 'white', borderRadius: '9999px', fontSize: '11px', fontWeight: '700', whiteSpace: 'nowrap'}}>
                       {service.badge}
                     </div>
                   )}
 
-                  {/* Badge Prix à gauche */}
-                  <div style={{display: 'flex', gap: 'var(--space-md)', alignItems: 'center', marginBottom: 'var(--space-md)', marginTop: service.badge ? 'var(--space-sm)' : 0}}>
-                    <div style={{background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', padding: '12px 16px', borderRadius: 'var(--radius-md)', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)', flexShrink: 0}}>
-                      <div style={{fontSize: '24px', fontWeight: '700', lineHeight: '1', textAlign: 'center'}}>
+                  {/* Zone Prix + Titre - hauteur fixe */}
+                  <div style={{display: 'flex', gap: 'var(--space-sm)', alignItems: 'flex-start', marginBottom: 'var(--space-md)', marginTop: service.badge ? 'var(--space-sm)' : 0, minHeight: '70px'}}>
+                    <div style={{background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', padding: '10px 14px', borderRadius: 'var(--radius-md)', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)', flexShrink: 0, minHeight: '52px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+                      <div style={{fontSize: '22px', fontWeight: '700', lineHeight: '1', textAlign: 'center'}}>
                         {service.price}
                       </div>
-                      {service.period && (
-                        <div style={{fontSize: '11px', fontWeight: '500', opacity: 0.9, textAlign: 'center', marginTop: '4px'}}>
-                          {service.period}
-                        </div>
-                      )}
+                      <div style={{fontSize: '10px', fontWeight: '500', opacity: 0.9, textAlign: 'center', marginTop: '3px', minHeight: '12px'}}>
+                        {service.period || '\u00A0'}
+                      </div>
                     </div>
-                    <h3 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0, lineHeight: '1.3'}}>
+                    <h3 style={{fontSize: '16px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0, lineHeight: '1.3', paddingTop: '4px'}}>
                       {service.title}
                     </h3>
                   </div>
 
                   <ul style={{listStyle: 'none', padding: 0, margin: 0, flexGrow: 1}}>
                     {service.features.map((feature, fidx) => (
-                      <li key={fidx} style={{padding: 'var(--space-sm) 0', borderBottom: fidx < service.features.length - 1 ? '1px solid #E5E7EB' : 'none', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', lineHeight: '1.5'}}>
-                        <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
+                      <li key={fidx} style={{padding: '6px 0', borderBottom: fidx < service.features.length - 1 ? '1px solid #E5E7EB' : 'none', color: 'var(--color-text-secondary)', fontSize: '13px', display: 'flex', alignItems: 'flex-start', gap: '6px', lineHeight: '1.4'}}>
+                        <span style={{color: 'var(--color-purple)', fontSize: '14px', flexShrink: 0}}>✓</span>
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary" style={{textDecoration: 'none', textAlign: 'center', marginTop: 'var(--space-md)'}}>
+                  <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary" style={{textDecoration: 'none', textAlign: 'center', marginTop: 'var(--space-md)', padding: '10px 16px', fontSize: '14px'}}>
                     En savoir plus
                   </a>
                 </div>

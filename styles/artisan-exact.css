@@ -2855,9 +2855,24 @@ body {
   box-shadow: 0 8px 24px rgba(168, 85, 247, 0.2) !important;
 }
 
+/* Cartes services complémentaires - uniformisation */
+.service-card-comp {
+  min-height: 300px;
+}
+
+.service-card-comp .btn-artisan {
+  margin-top: auto;
+  width: 100%;
+  justify-content: center;
+}
+
 @media (max-width: 1200px) {
   .services-grid-4cols {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .service-card-comp {
+    min-height: auto;
   }
 }
 
