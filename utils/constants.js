@@ -368,19 +368,22 @@ export const EXTERNAL_LINKS = {
 
 export const EXPERTISE_TIMELINE = [
   {
-    number: "01",
-    title: "Analyse de conformité",
-    description: "Identification des écarts clés de conformité selon le référenciel de l'ANSSI."
+    number: "1",
+    title: "Réaliser un audit",
+    description: "Évaluer votre niveau de conformité actuel et identifier les écarts",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
   },
   {
-    number: "02",
-    title: "Comprendre ses vulnérabilités",
-    description: "Connaître son niveau de conformité aux obligations de sécurité NIS2"
+    number: "2",
+    title: "Obtenir un plan d'action",
+    description: "Prioriser les mesures à mettre en place selon vos risques",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
   },
   {
-    number: "03",
-    title: "Accompagnement adapté",
-    description: "Choisissez l'offre adaptée en fonction de votre niveau global de maturité cyber"
+    number: "3",
+    title: "Former vos équipes",
+    description: "Formation obligatoire des dirigeants + sensibilisation collaborateurs",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80"
   }
 ];
 

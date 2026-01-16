@@ -99,7 +99,7 @@ export default function OffresServices() {
                 <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-lg)', paddingBottom: 'var(--space-lg)', borderBottom: '1px solid #E5E7EB'}}>
                   Auto-évaluation guidée • Résultat immédiat • Score de conformité
                 </p>
-                <button onClick={handleStripeCheckout} className="btn-artisan btn-artisan-primary" style={{marginTop: 'auto'}}>
+                <button onClick={handleStripeCheckout} className="btn-artisan btn-artisan-secondary" style={{marginTop: 'auto'}}>
                   Démarrer l'audit
                 </button>
               </div>
@@ -118,7 +118,7 @@ export default function OffresServices() {
                 <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-lg)', paddingBottom: 'var(--space-lg)', borderBottom: '1px solid #E5E7EB'}}>
                   Audit complet + Expert • Plan de remédiation • Livraison 48H
                 </p>
-                <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-primary" style={{marginTop: 'auto', textDecoration: 'none', textAlign: 'center'}}>
+                <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary" style={{marginTop: 'auto', textDecoration: 'none', textAlign: 'center'}}>
                   Prendre RDV
                 </a>
               </div>
@@ -145,10 +145,10 @@ export default function OffresServices() {
               <div className="aide-etat-content">
                 <div className="aide-etat-text">
                   <div className="aide-etat-title">
-                    Jusqu'à 70% d'aides de l'État • France 2030 • Investissements d'avenir
+                    Jusqu'à 70% d'aides de l'État • Valable sur toutes nos offres
                   </div>
                   <div className="aide-etat-subtitle">
-                    Réduisez jusqu'à 70% le coût de votre mise en conformité NIS2 grâce aux aides publiques
+                    Réduisez le coût de votre mise en conformité NIS2
                   </div>
                 </div>
               </div>
@@ -234,98 +234,65 @@ export default function OffresServices() {
               </p>
             </div>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-lg)'}}>
+            <div className="services-grid-4cols">
               {[
                 {
                   title: 'Modèles de documents',
                   price: '99€',
                   period: '/mois',
-                  features: ['Templates conformité NIS2', 'Mis à jour réglementairement', 'Accès illimité', 'Politiques ANSSI'],
-                  gradient: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)',
-                  icon: (
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                      <polyline points="14 2 14 8 20 8"></polyline>
-                      <line x1="16" y1="13" x2="8" y2="13"></line>
-                      <line x1="16" y1="17" x2="8" y2="17"></line>
-                    </svg>
-                  )
+                  features: ['Templates conformité NIS2', 'Mises à jour régulières', 'Accès illimité', 'Politiques ANSSI']
                 },
                 {
                   title: 'Formations NIS2',
                   price: '349€',
                   period: '/pers',
-                  features: ['Formation dirigeants (obligatoire)', 'Prise en charge OPCO', 'Plateforme en ligne', 'Formation sur site : nous consulter'],
-                  gradient: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)',
-                  badge: 'RECOMMANDÉ',
-                  icon: (
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg>
-                  )
+                  features: ['Formation dirigeants', 'Prise en charge OPCO', 'Plateforme en ligne', 'Sur site : nous consulter'],
+                  badge: 'RECOMMANDÉ'
                 },
                 {
                   title: 'Montage Subventions',
                   price: '299€',
                   period: '',
-                  features: ['Identification des aides (70% max)', 'Constitution dossiers', 'France Num, BPI, Régions', '12 000€ récupérés en moyenne'],
-                  gradient: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)',
-                  icon: (
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                  )
+                  features: ['Identification aides (70%)', 'Constitution dossiers', 'France Num, BPI, Régions', '12 000€ récupérés / moy.']
                 },
                 {
-                  title: 'Notification Incidents',
+                  title: 'Accompagnement incident',
                   price: '99€',
                   period: '/mois',
-                  features: ['Déclaration ANSSI 24h', 'Gestion de crise', 'Hotline 24/7', 'Évitez les 10M€ d\'amende'],
-                  gradient: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)',
-                  icon: (
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                      <line x1="12" y1="9" x2="12" y2="13"></line>
-                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                    </svg>
-                  )
+                  features: ['Déclaration incident', 'Conseil gestion de crise', 'Veille législative', 'Ligne expert dédiée']
                 }
               ].map((service, idx) => (
-                <div key={idx} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', position: 'relative', display: 'flex', flexDirection: 'column', border: service.badge ? '2px solid #EC4899' : '1px solid #E5E7EB', gap: 'var(--space-md)', transition: 'all 0.3s ease'}} className="value-card-hover">
+                <div key={idx} className="service-card-comp value-card-hover" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', position: 'relative', border: service.badge ? '2px solid #EC4899' : '1px solid #E5E7EB', transition: 'all 0.3s ease', display: 'flex', flexDirection: 'column'}}>
                   {service.badge && (
-                    <div style={{position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)', padding: '6px 16px', background: '#EC4899', color: 'white', borderRadius: '9999px', fontSize: '12px', fontWeight: '700'}}>
+                    <div style={{position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)', padding: '6px 16px', background: '#EC4899', color: 'white', borderRadius: '9999px', fontSize: '11px', fontWeight: '700', whiteSpace: 'nowrap'}}>
                       {service.badge}
                     </div>
                   )}
-                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: service.badge ? 'var(--space-sm)' : 0}}>
-                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: service.gradient, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-                      {service.icon}
-                    </div>
-                    <div style={{textAlign: 'right'}}>
-                      <div style={{fontSize: '28px', fontWeight: '700', color: 'var(--color-purple)', lineHeight: '1'}}>
+
+                  {/* Zone Prix + Titre - hauteur fixe */}
+                  <div style={{display: 'flex', gap: 'var(--space-sm)', alignItems: 'flex-start', marginBottom: 'var(--space-md)', marginTop: service.badge ? 'var(--space-sm)' : 0, minHeight: '70px'}}>
+                    <div style={{background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', padding: '10px 14px', borderRadius: 'var(--radius-md)', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)', flexShrink: 0, minHeight: '52px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+                      <div style={{fontSize: '22px', fontWeight: '700', lineHeight: '1', textAlign: 'center'}}>
                         {service.price}
                       </div>
-                      {service.period && (
-                        <div style={{fontSize: '14px', fontWeight: '400', color: 'var(--color-text-tertiary)'}}>
-                          {service.period}
-                        </div>
-                      )}
+                      <div style={{fontSize: '10px', fontWeight: '500', opacity: 0.9, textAlign: 'center', marginTop: '3px', minHeight: '12px'}}>
+                        {service.period || '\u00A0'}
+                      </div>
                     </div>
+                    <h3 style={{fontSize: '16px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0, lineHeight: '1.3', paddingTop: '4px'}}>
+                      {service.title}
+                    </h3>
                   </div>
-                  <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
-                    {service.title}
-                  </h3>
+
                   <ul style={{listStyle: 'none', padding: 0, margin: 0, flexGrow: 1}}>
                     {service.features.map((feature, fidx) => (
-                      <li key={fidx} style={{padding: 'var(--space-sm) 0', borderBottom: fidx < service.features.length - 1 ? '1px solid #E5E7EB' : 'none', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', lineHeight: '1.5'}}>
-                        <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
+                      <li key={fidx} style={{padding: '6px 0', borderBottom: fidx < service.features.length - 1 ? '1px solid #E5E7EB' : 'none', color: 'var(--color-text-secondary)', fontSize: '13px', display: 'flex', alignItems: 'flex-start', gap: '6px', lineHeight: '1.4'}}>
+                        <span style={{color: 'var(--color-purple)', fontSize: '14px', flexShrink: 0}}>✓</span>
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary" style={{textDecoration: 'none', textAlign: 'center', marginTop: 'auto'}}>
+                  <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary" style={{textDecoration: 'none', textAlign: 'center', marginTop: 'var(--space-md)', padding: '10px 16px', fontSize: '14px'}}>
                     En savoir plus
                   </a>
                 </div>

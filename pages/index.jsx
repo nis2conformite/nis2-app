@@ -336,63 +336,14 @@ export default function Home() {
             Une méthodologie éprouvée pour votre conformité NIS2
           </p>
 
-          <div className="approach-steps-vertical">
-            {/* Étape 1 - Texte à gauche, Image à droite */}
-            <div className="approach-step-row">
-              <div className="approach-step-content">
-                <div className="approach-step-number">01</div>
-                <h3 className="approach-step-title">Analyse de conformité</h3>
-                <p className="approach-step-description">
-                  Identification des écarts clés de conformité selon le référenciel de l'ANSSI. Notre audit complet permet de cartographier précisément votre niveau actuel et les points d'amélioration prioritaires.
-                </p>
+          <div className="approach-cards-grid">
+            {EXPERTISE_TIMELINE.map((item, index) => (
+              <div key={index} className="approach-card">
+                <div className="approach-number-circle">{item.number}</div>
+                <h3 className="approach-card-title">{item.title}</h3>
+                <p className="approach-card-description">{item.description}</p>
               </div>
-              <div className="approach-step-image">
-                <div className="approach-image-wrapper">
-                  <img
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
-                    alt="Analyse de conformité NIS2"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Étape 2 - Image à gauche, Texte à droite */}
-            <div className="approach-step-row reverse">
-              <div className="approach-step-image">
-                <div className="approach-image-wrapper">
-                  <img
-                    src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop"
-                    alt="Comprendre ses vulnérabilités"
-                  />
-                </div>
-              </div>
-              <div className="approach-step-content">
-                <div className="approach-step-number">02</div>
-                <h3 className="approach-step-title">Comprendre ses vulnérabilités</h3>
-                <p className="approach-step-description">
-                  Connaître son niveau de conformité aux obligations de sécurité NIS2. Nous vous aidons à identifier les risques critiques et à prioriser les actions correctives pour une mise en conformité efficace.
-                </p>
-              </div>
-            </div>
-
-            {/* Étape 3 - Texte à gauche, Image à droite */}
-            <div className="approach-step-row">
-              <div className="approach-step-content">
-                <div className="approach-step-number">03</div>
-                <h3 className="approach-step-title">Accompagnement adapté</h3>
-                <p className="approach-step-description">
-                  Choisissez l'offre adaptée en fonction de votre niveau global de maturité cyber. De l'audit initial à la certification complète, nous vous accompagnons à chaque étape de votre parcours de conformité.
-                </p>
-              </div>
-              <div className="approach-step-image">
-                <div className="approach-image-wrapper">
-                  <img
-                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop"
-                    alt="Accompagnement adapté NIS2"
-                  />
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -451,10 +402,10 @@ export default function Home() {
             <div className="aide-etat-content">
               <div className="aide-etat-text">
                 <div className="aide-etat-title">
-                  Jusqu'à 70% d'aides de l'État • France 2030 • Investissements d'avenir
+                  Jusqu'à 70% d'aides de l'État • Valable sur toutes nos offres
                 </div>
                 <div className="aide-etat-subtitle">
-                  Réduisez jusqu'à 70% le coût de votre mise en conformité NIS2 grâce aux aides publiques
+                  Réduisez le coût de votre mise en conformité NIS2
                 </div>
               </div>
             </div>
@@ -519,7 +470,7 @@ export default function Home() {
                 href={CONTACT_INFO.calendly}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-pricing-artisan"
+                className="btn-pricing-artisan btn-pricing-secondary"
               >
                 Prendre rendez-vous
               </a>
@@ -678,36 +629,71 @@ export default function Home() {
             Découvrez nos services pour aller plus loin dans la conformité et la sécurité
           </p>
 
-          <div className="services-two-cols">
-            <div className="service-card-large">
-              <div className="service-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+          <div className="services-complementaires-grid">
+            {/* Carte 1: Modèles de documents NIS2 */}
+            <div className="service-card-comp">
+              <div className="service-header-comp">
+                <div className="service-icon-comp">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A855F7" strokeWidth="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                  </svg>
+                </div>
+                <h3 className="service-title-comp">Modèles de documents NIS2</h3>
               </div>
-              <h3>📄 Modèles de documents NIS2</h3>
-              <p>
+              <p className="service-description-comp">
                 Templates prêts à l'emploi pour votre mise en conformité, mis à jour avec la réglementation
               </p>
-              <h3 style={{marginTop: '24px'}}>📚 Formations NIS2</h3>
-              <p>
+            </div>
+
+            {/* Carte 2: Formations NIS2 */}
+            <div className="service-card-comp">
+              <div className="service-header-comp">
+                <div className="service-icon-comp">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EC4899" strokeWidth="2">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                  </svg>
+                </div>
+                <h3 className="service-title-comp">Formations NIS2</h3>
+              </div>
+              <p className="service-description-comp">
                 Formation obligatoire des dirigeants et sensibilisation des équipes, en distanciel ou sur site
               </p>
             </div>
 
-            <div className="service-card-large">
-              <div className="service-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+            {/* Carte 3: Montage dossiers Subventions */}
+            <div className="service-card-comp">
+              <div className="service-header-comp">
+                <div className="service-icon-comp">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FB923C" strokeWidth="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
+                <h3 className="service-title-comp">Montage dossiers Subventions</h3>
               </div>
-              <h3>💼 Montage dossiers Subventions</h3>
-              <p>
+              <p className="service-description-comp">
                 Identification et constitution des dossiers d'aides d'État pour maximiser vos financements
               </p>
-              <h3 style={{marginTop: '24px'}}>⚠️ Notification Incidents ANSSI</h3>
-              <p>
-                Déclaration des incidents en 24h à l'ANSSI avec conseil gestion de crise et hotline 24/7
+            </div>
+
+            {/* Carte 4: Accompagnement incident */}
+            <div className="service-card-comp">
+              <div className="service-header-comp">
+                <div className="service-icon-comp">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F472B6" strokeWidth="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg>
+                </div>
+                <h3 className="service-title-comp">Accompagnement incident</h3>
+              </div>
+              <p className="service-description-comp">
+                Accompagnement déclaration incident avec conseil gestion de crise, veille législative et ligne expert dédiée pour vos questions
               </p>
             </div>
           </div>
@@ -871,26 +857,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION FAQ COMPACTE */}
+      {/* SECTION FAQ REDESIGN MODERNE */}
       <section className="content-section">
-        <div className="content-container" style={{maxWidth: '900px'}}>
+        <div className="content-container" style={{maxWidth: '1000px'}}>
           <div className="section-badge-center">FAQ</div>
 
           <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
             Les questions que se posent les <span className="gradient">dirigeants</span>
           </h2>
 
-          <div className="faq-grid-modern">
-            {FAQ_ITEMS.map((item, index) => (
-              <details key={item.id} className="faq-item-modern" open>
-                <summary className="faq-question-modern">
-                  <span className="faq-question-text">{item.question}</span>
-                </summary>
-                <div className="faq-answer-modern">
-                  <p>{item.answer}</p>
-                </div>
-              </details>
-            ))}
+          <div className="faq-grid-redesign">
+            {FAQ_ITEMS.map((item, index) => {
+              // Couleurs alternées pour les cartes
+              const colorClass = index % 3 === 0 ? 'faq-purple' : index % 3 === 1 ? 'faq-pink' : 'faq-blue';
+
+              return (
+                <details key={item.id} className={`faq-item-redesign ${colorClass}`}>
+                  <summary className="faq-question-redesign">
+                    <div className="faq-icon-circle">
+                      <span className="faq-emoji">{item.icon}</span>
+                    </div>
+                    <span className="faq-question-text-redesign">{item.question}</span>
+                    <div className="faq-toggle-icon">
+                      <svg className="faq-plus" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 4V16M4 10H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      </svg>
+                      <svg className="faq-minus" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="faq-answer-redesign">
+                    <p>{item.answer}</p>
+                  </div>
+                </details>
+              );
+            })}
           </div>
         </div>
       </section>

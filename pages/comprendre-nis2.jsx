@@ -62,62 +62,60 @@ export default function ComprendreNIS2() {
           </div>
         </section>
 
-        {/* C'EST QUOI NIS2 */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
+        {/* C'EST QUOI NIS2 - SECTION FUSIONNÉE */}
+        <section id="video-section" style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
             <div className="before-after-wrapper-design">
-              <div style={{textAlign: 'center', marginBottom: 'var(--space-lg)'}}>
-                <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-md)'}}>
-                  C'est quoi, NIS2 ?
-                </h2>
-                <p style={{fontSize: '18px', lineHeight: '1.7', color: 'var(--color-text-secondary)', maxWidth: '800px', margin: '0 auto'}}>
-                  NIS2 est une <strong>directive européenne</strong> entrée en vigueur en <strong>janvier 2023</strong>.
-                  Elle oblige des milliers d'entreprises à renforcer leur cybersécurité pour mieux protéger
-                  leurs activités et celles de leurs clients.
-                </p>
-              </div>
-
-              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-lg)', marginTop: 'var(--space-xl)'}}>
-                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
-                  <strong style={{display: 'block', fontSize: '18px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-sm)'}}>Objectif</strong>
-                  <p style={{color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0}}>
+              {/* GRILLE : 2 CARTES SUR UNE LIGNE */}
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-xl)', marginBottom: 'var(--space-xl)'}}>
+                {/* CARTE OBJECTIF */}
+                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
+                  <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', marginBottom: 'var(--space-md)'}}>
+                    <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <strong style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-purple)'}}>Objectif</strong>
+                  </div>
+                  <p style={{color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0, fontSize: '15px'}}>
                     Protéger les infrastructures critiques européennes contre les cyberattaques
                   </p>
                 </div>
-                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
-                  <strong style={{display: 'block', fontSize: '18px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-sm)'}}>Application</strong>
-                  <p style={{color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0}}>
+
+                {/* CARTE APPLICATION */}
+                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #FCE7F3'}}>
+                  <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', marginBottom: 'var(--space-md)'}}>
+                    <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #EC4899 0%, #F472B6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <strong style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-pink)'}}>Application</strong>
+                  </div>
+                  <p style={{color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0, fontSize: '15px'}}>
                     Transposée en droit français • Contrôles ANSSI dès 2024 • Sanctions dès 2027
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
 
-        {/* VIDÉO EXPLICATIVE */}
-        <section id="video-section" style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <div className="video-wrapper-design">
-              <div style={{textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
-                <span style={{display: 'inline-block', padding: '8px 20px', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', borderRadius: '9999px', fontSize: '14px', fontWeight: '600', marginBottom: 'var(--space-md)'}}>
-                  Comprendre NIS2 en vidéo
-                </span>
-                <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-md)'}}>
-                  La directive NIS2 expliquée simplement
-                </h2>
-                <p style={{fontSize: '18px', color: 'var(--color-text-secondary)'}}>
-                  5 minutes pour tout comprendre de cette nouvelle réglementation
-                </p>
-              </div>
-              <div className="video-container">
-                <iframe
-                  src={EXTERNAL_LINKS.videoYoutube}
-                  title="Directive NIS2 expliquée"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  style={{border: 0, borderRadius: 'var(--radius-xl)'}}>
-                </iframe>
+              {/* VIDÉO EN DESSOUS, PLEINE LARGEUR */}
+              <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-md)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF', position: 'relative'}}>
+                <div style={{position: 'absolute', top: 'var(--space-md)', left: 'var(--space-md)', zIndex: 2}}>
+                  <span style={{display: 'inline-block', padding: '6px 14px', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', borderRadius: '9999px', fontSize: '12px', fontWeight: '600', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)'}}>
+                    📺 Comprendre en 5 minutes
+                  </span>
+                </div>
+                <div className="video-container">
+                  <iframe
+                    src={EXTERNAL_LINKS.videoYoutube}
+                    title="Directive NIS2 expliquée"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    style={{border: 0, borderRadius: 'var(--radius-md)'}}>
+                  </iframe>
+                </div>
               </div>
             </div>
           </div>
@@ -135,25 +133,29 @@ export default function ComprendreNIS2() {
 
             <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-xl)', marginBottom: 'var(--space-3xl)'}}>
               <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
-                <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '32px', fontWeight: '700', marginBottom: 'var(--space-md)'}}>
-                  1
+                <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
+                  <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '32px', fontWeight: '700', flexShrink: 0}}>
+                    1
+                  </div>
+                  <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
+                    Taille de l'entreprise
+                  </h3>
                 </div>
-                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
-                  Taille de l'entreprise
-                </h3>
-                <p style={{fontSize: '16px', color: 'var(--color-text-secondary)', lineHeight: '1.6'}}>
+                <p style={{fontSize: '16px', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0}}>
                   <strong>+50 salariés</strong> OU <strong>+10M€ de chiffre d'affaires</strong>
                 </p>
               </div>
 
               <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
-                <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #EC4899 0%, #F472B6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '32px', fontWeight: '700', marginBottom: 'var(--space-md)'}}>
-                  2
+                <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
+                  <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #EC4899 0%, #F472B6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '32px', fontWeight: '700', flexShrink: 0}}>
+                    2
+                  </div>
+                  <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
+                    Secteur d'activité
+                  </h3>
                 </div>
-                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
-                  Secteur d'activité
-                </h3>
-                <p style={{fontSize: '16px', color: 'var(--color-text-secondary)', lineHeight: '1.6'}}>
+                <p style={{fontSize: '16px', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0}}>
                   Vous opérez dans l'un des <strong>18 secteurs critiques ou essentiels</strong>
                 </p>
               </div>
@@ -270,43 +272,49 @@ export default function ComprendreNIS2() {
 
               <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)', marginBottom: 'var(--space-2xl)'}}>
                 <div className="sanction-card sanction-card-violet" style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(168, 85, 247, 0.12)', border: '2px solid #F3E8FF'}}>
-                  <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 'var(--space-md)'}}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                  <div style={{display: 'flex', gap: 'var(--space-md)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
+                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="#A855F7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <h3 style={{fontSize: '18px', fontWeight: '700', color: '#A855F7', margin: 0}}>
+                      Amendes financières
+                    </h3>
                   </div>
-                  <h3 style={{fontSize: '18px', fontWeight: '700', color: '#A855F7', marginBottom: 'var(--space-sm)'}}>
-                    Amendes financières
-                  </h3>
                   <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
                     Jusqu'à <strong>10M€ ou 2% du CA mondial</strong> (le montant le plus élevé)
                   </p>
                 </div>
 
                 <div className="sanction-card sanction-card-rose" style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(236, 72, 153, 0.12)', border: '2px solid #FCE7F3'}}>
-                  <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 'var(--space-md)'}}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6M23 11h-6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                  <div style={{display: 'flex', gap: 'var(--space-md)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
+                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6M23 11h-6" stroke="#EC4899" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <h3 style={{fontSize: '18px', fontWeight: '700', color: '#EC4899', margin: 0}}>
+                      Responsabilité pénale
+                    </h3>
                   </div>
-                  <h3 style={{fontSize: '18px', fontWeight: '700', color: '#EC4899', marginBottom: 'var(--space-sm)'}}>
-                    Responsabilité pénale
-                  </h3>
                   <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
                     Les dirigeants peuvent être tenus <strong>personnellement responsables</strong> en cas de manquement grave
                   </p>
                 </div>
 
                 <div className="sanction-card sanction-card-orange" style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(249, 115, 22, 0.12)', border: '2px solid #FFEDD5'}}>
-                  <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 'var(--space-md)'}}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M15 9l-6 6" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
+                  <div style={{display: 'flex', gap: 'var(--space-md)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
+                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="#F97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M15 9l-6 6" stroke="#F97316" strokeWidth="2" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <h3 style={{fontSize: '18px', fontWeight: '700', color: '#F97316', margin: 0}}>
+                      Exclusion des marchés
+                    </h3>
                   </div>
-                  <h3 style={{fontSize: '18px', fontWeight: '700', color: '#F97316', marginBottom: 'var(--space-sm)'}}>
-                    Exclusion des marchés
-                  </h3>
                   <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
                     Impossibilité de répondre aux <strong>appels d'offres publics et privés</strong> sans certification
                   </p>
@@ -489,17 +497,19 @@ export default function ComprendreNIS2() {
                 { title: 'FAQ Officielle', desc: 'Réponses aux questions fréquentes sur NIS2', url: 'https://aide.monespacenis2.cyber.gouv.fr/fr/', domain: 'aide.monespacenis2.cyber.gouv.fr', iconType: 'svg' }
               ].map((resource, idx) => (
                 <a key={idx} href={resource.url} target="_blank" rel="noopener noreferrer" className="resource-card" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', textDecoration: 'none', display: 'flex', flexDirection: 'column', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF', height: '100%', boxSizing: 'border-box'}}>
-                  <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', marginBottom: 'var(--space-md)', flexShrink: 0}}>
-                    {resource.iconType === 'svg' ? (
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2"/>
-                        <path d="M12 16v.01M12 12a1 1 0 0 1 1-1 2 2 0 1 0-3.464-1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    ) : resource.icon}
+                  <div style={{display: 'flex', gap: 'var(--space-md)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
+                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', flexShrink: 0}}>
+                      {resource.iconType === 'svg' ? (
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="10" stroke="#A855F7" strokeWidth="2"/>
+                          <path d="M12 16v.01M12 12a1 1 0 0 1 1-1 2 2 0 1 0-3.464-1.5" stroke="#A855F7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      ) : resource.icon}
+                    </div>
+                    <h4 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
+                      {resource.title}
+                    </h4>
                   </div>
-                  <h4 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)', flexShrink: 0}}>
-                    {resource.title}
-                  </h4>
                   <p style={{fontSize: '14px', color: 'var(--color-text-secondary)', lineHeight: '1.6', marginBottom: 'var(--space-md)', flex: 1}}>
                     {resource.desc}
                   </p>
