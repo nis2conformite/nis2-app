@@ -102,7 +102,7 @@ export default function Formations() {
       id: 2,
       title: 'Formations spécifiques par métier',
       description: 'Adapter la sensibilisation aux enjeux de chaque fonction.',
-      topics: ['RH : protection des données personnelles', 'Finance : sécurité des transactions', 'Commercial : confidentialité client'],
+      topics: ['IT : Sécurisation, Gestion des incidents, ...', 'RH : protection des données personnelles', 'Finance : sécurité des transactions', 'Commercial : confidentialité client'],
     },
     {
       id: 3,
