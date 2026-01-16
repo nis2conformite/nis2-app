@@ -680,7 +680,7 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Carte 4: Notification Incidents ANSSI */}
+            {/* Carte 4: Accompagnement incident */}
             <div className="service-card-comp">
               <div className="service-header-comp">
                 <div className="service-icon-comp">
@@ -690,10 +690,10 @@ export default function Home() {
                     <line x1="12" y1="17" x2="12.01" y2="17"></line>
                   </svg>
                 </div>
-                <h3 className="service-title-comp">Notification Incidents ANSSI</h3>
+                <h3 className="service-title-comp">Accompagnement incident</h3>
               </div>
               <p className="service-description-comp">
-                Déclaration des incidents en 24h à l'ANSSI avec conseil gestion de crise et hotline 24/7
+                Accompagnement déclaration incident avec conseil gestion de crise, veille législative et ligne expert dédiée pour vos questions
               </p>
             </div>
           </div>

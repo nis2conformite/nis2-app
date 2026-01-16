@@ -256,10 +256,10 @@ export default function OffresServices() {
                   features: ['Identification des aides (70% max)', 'Constitution dossiers', 'France Num, BPI, Régions', '12 000€ récupérés en moyenne']
                 },
                 {
-                  title: 'Notification Incidents',
+                  title: 'Accompagnement incident',
                   price: '99€',
                   period: '/mois',
-                  features: ['Déclaration ANSSI 24h', 'Gestion de crise', 'Hotline 24/7', 'Évitez les 10M€ d\'amende']
+                  features: ['Accompagnement déclaration incident', 'Conseil gestion de crise', 'Veille législative', 'ligne expert dédié pour vos questions']
                 }
               ].map((service, idx) => (
                 <div key={idx} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', position: 'relative', border: service.badge ? '2px solid #EC4899' : '1px solid #E5E7EB', transition: 'all 0.3s ease', display: 'flex', flexDirection: 'column'}} className="value-card-hover">
