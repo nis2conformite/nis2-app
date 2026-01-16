@@ -2841,6 +2841,31 @@ body {
   text-align: left;
 }
 
+/* Grille 4 colonnes pour les services complémentaires */
+.services-grid-4cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+/* Hover effect for value cards */
+.value-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.2) !important;
+}
+
+@media (max-width: 1200px) {
+  .services-grid-4cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .services-grid-4cols {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    RESPONSIVE
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

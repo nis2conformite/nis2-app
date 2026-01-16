@@ -234,7 +234,7 @@ export default function OffresServices() {
               </p>
             </div>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-lg)'}}>
+            <div className="services-grid-4cols">
               {[
                 {
                   title: 'Modèles de documents',
