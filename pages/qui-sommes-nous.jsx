@@ -53,28 +53,15 @@ export default function QuiSommesNous() {
           </div>
         </section>
 
-        {/* CROYANCE */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
-          <div style={{maxWidth: '1000px', margin: '0 auto', textAlign: 'center'}}>
-            <div className="before-after-wrapper-design">
-              <h2 style={{fontSize: '32px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-lg)'}}>
-                Nous croyons que la cybersécurité doit être accessible à tous
-              </h2>
-              <p style={{fontSize: '18px', lineHeight: '1.8', color: 'var(--color-text-secondary)'}}>
-                Trop d'entreprises voient la conformité NIS2 comme une contrainte coûteuse et complexe.
-                Pourtant, avec le bon accompagnement, elle devient un atout stratégique : protection contre les cyber-attaques,
-                différenciation commerciale, et accès aux marchés publics et privés.
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* NOTRE APPROCHE - 3 BLOCS */}
         <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
+            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
               Notre approche
             </h2>
+            <p style={{fontSize: '18px', lineHeight: '1.8', color: 'var(--color-text-secondary)', textAlign: 'center', maxWidth: '900px', margin: '0 auto var(--space-xl) auto'}}>
+              Nous travaillons spécifiquement avec les PME et ETI qui ne disposent pas d'équipe cybersécurité dédiée. Notre outil a été conçu pour être simple, rapide et accessible, permettant à ces entreprises de gérer efficacement leur conformité NIS2 sans complexité technique.
+            </p>
 
             <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-xl)'}}>
               {[
@@ -127,7 +114,7 @@ export default function QuiSommesNous() {
               <div className="section-badge-center">Notre équipe</div>
 
               <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
-                Une équipe d'experts <span className="highlight">certifiés</span> à votre service
+                Une équipe de <span className="highlight">cyber experts</span> à votre service
               </h2>
               <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
                 Consultants ISO 27001 • Méthodologie ANSSI • 15+ années d'expérience
@@ -151,41 +138,36 @@ export default function QuiSommesNous() {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
 
-        {/* PARTENAIRES - LOGOS CERTIFICATIONS */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
-              Reconnus par les Institutions d'état
-            </h2>
-            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
-              Nos accréditations et partenariats garantissent la qualité de notre accompagnement
-            </p>
+              {/* ACCRÉDITATIONS ET LOGOS */}
+              <div style={{marginTop: 'var(--space-2xl)', textAlign: 'center'}}>
+                <p style={{fontSize: '16px', color: 'rgba(255,255,255,0.9)', marginBottom: 'var(--space-xl)', fontWeight: '500'}}>
+                  Nos accréditations et partenariats garantissent la qualité de notre accompagnement
+                </p>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-xl)', alignItems: 'center', justifyItems: 'center'}}>
-              {[
-                { src: '/logo_anssi.png', alt: 'ANSSI - Agence Nationale de la Sécurité des Systèmes d\'Information' },
-                { src: '/Logo-cybermalveillance.PNG', alt: 'Cybermalveillance.gouv.fr' },
-                { src: '/logo_expertcyber.jpg', alt: 'Expert Cyber' },
-                { src: '/iso_27001_02-1024x704.png', alt: 'ISO 27001 Certified' }
-              ].map((logo, idx) => (
-                <div key={idx} style={{
-                  background: 'white',
-                  padding: 'var(--space-lg)',
-                  borderRadius: 'var(--radius-lg)',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  minHeight: '120px',
-                  width: '100%'
-                }}>
-                  <img src={logo.src} alt={logo.alt} style={{maxWidth: '150px', maxHeight: '80px', objectFit: 'contain'}} />
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 'var(--space-lg)', alignItems: 'center', justifyItems: 'center'}}>
+                  {[
+                    { src: '/logo_anssi.png', alt: 'ANSSI - Agence Nationale de la Sécurité des Systèmes d\'Information' },
+                    { src: '/Logo-cybermalveillance.PNG', alt: 'Cybermalveillance.gouv.fr' },
+                    { src: '/logo_expertcyber.jpg', alt: 'Expert Cyber' },
+                    { src: '/iso_27001_02-1024x704.png', alt: 'ISO 27001 Certified' }
+                  ].map((logo, idx) => (
+                    <div key={idx} style={{
+                      background: 'rgba(255,255,255,0.1)',
+                      padding: 'var(--space-md)',
+                      borderRadius: 'var(--radius-md)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      minHeight: '100px',
+                      width: '100%',
+                      border: '1px solid rgba(255,255,255,0.2)'
+                    }}>
+                      <img src={logo.src} alt={logo.alt} style={{maxWidth: '120px', maxHeight: '60px', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: '0.9'}} />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </section>
