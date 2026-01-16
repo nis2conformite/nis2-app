@@ -100,9 +100,9 @@ export default function Formations() {
     },
     {
       id: 2,
-      title: 'Formation technique pour les équipes IT / SI',
-      description: 'Comprendre NIS2 en pratique et savoir mettre en œuvre les mesures techniques.',
-      topics: ['Sécurisation des SI', 'Gestion des incidents', 'Audits de conformité', 'Surveillance et détection'],
+      title: 'Formations spécifiques par métier',
+      description: 'Adapter la sensibilisation aux enjeux de chaque fonction.',
+      topics: ['RH : protection des données personnelles', 'Finance : sécurité des transactions', 'Commercial : confidentialité client'],
     },
     {
       id: 3,
@@ -110,24 +110,6 @@ export default function Formations() {
       description: 'Leur faire comprendre leur responsabilité personnelle (risque pénal !) et les décisions stratégiques à prendre.',
       topics: ['NIS 2: les fondations', 'Responsabilité du dirigeant', 'Gouvernance de la cybersécurité'],
       isObligatory: true,
-    },
-    {
-      id: 4,
-      title: 'Formations spécifiques par métier',
-      description: 'Adapter la sensibilisation aux enjeux de chaque fonction.',
-      topics: ['RH : protection des données personnelles', 'Finance : sécurité des transactions', 'Commercial : confidentialité client'],
-    },
-    {
-      id: 5,
-      title: 'Exercices pratiques et simulations',
-      description: 'Très recommandé par NIS 2 pour s\'assurer que la théorie est intégrée.',
-      topics: ['Simulation de cyberattaque', 'Gestion de crise en temps réel', 'Plan de continuité d\'activité (PCA)', 'Exercices de table-top'],
-    },
-    {
-      id: 6,
-      title: 'Pack onboarding cybersécurité',
-      description: 'Intégrer la cybersécurité dès l\'arrivée des nouveaux employés.',
-      topics: ['Formation initiale obligatoire', 'Charte informatique', 'Bonnes pratiques dès le premier jour'],
     },
   ];
 
@@ -461,7 +443,7 @@ export default function Formations() {
         <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}} className="trainings-alternating-section">
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
-              6 formations à fort impact pour accélérer votre conformité NIS2
+              3 formations à fort impact pour accélérer votre conformité NIS2
             </h2>
             <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)'}}>
               Chaque structure est différente. C'est pourquoi nous avons conçu une offre de formation modulaire, ciblée, et adaptée aux profils et aux besoins les plus variés.
@@ -541,42 +523,6 @@ export default function Formations() {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* GROUPE 2: 3 dernières formations (layout 3 colonnes) */}
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-lg)'}}>
-              {trainings.slice(3, 6).map((training) => (
-                <div key={training.id} className="training-card-standard" style={{
-                  background: 'white',
-                  borderRadius: 'var(--radius-xl)',
-                  padding: 'var(--space-xl)',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-                  border: '1px solid #E5E7EB',
-                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
-                }}>
-                  <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
-                    <div style={{width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '20px', fontWeight: '700', flexShrink: 0}}>
-                      {training.id}
-                    </div>
-                    <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
-                      {training.title}
-                    </h3>
-                  </div>
-                  <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', lineHeight: '1.6', marginBottom: 'var(--space-md)'}}>
-                    {training.description}
-                  </p>
-                  <div style={{borderTop: '1px solid #E5E7EB', paddingTop: 'var(--space-md)', marginTop: 'var(--space-md)'}}>
-                    <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                      {training.topics.map((topic, idx) => (
-                        <li key={idx} style={{padding: 'var(--space-xs) 0', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-xs)', lineHeight: '1.5'}}>
-                          <span style={{color: 'var(--color-purple)', fontSize: '16px', flexShrink: 0}}>✓</span>
-                          {topic}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </section>
