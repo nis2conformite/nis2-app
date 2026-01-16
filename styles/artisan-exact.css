@@ -1605,13 +1605,13 @@ body {
   box-shadow: var(--shadow-primary);
 }
 
-.btn-pricing-secondary {
+.btn-pricing-artisan.btn-pricing-secondary {
   background: white;
   color: var(--color-primary);
   border: 2px solid var(--color-primary);
 }
 
-.btn-pricing-secondary:hover {
+.btn-pricing-artisan.btn-pricing-secondary:hover {
   background: var(--color-primary);
   color: white;
 }
