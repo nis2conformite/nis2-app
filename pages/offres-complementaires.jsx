@@ -234,7 +234,7 @@ export default function OffresServices() {
               </p>
             </div>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-lg)'}}>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)'}}>
               {[
                 {
                   title: 'Modèles de documents',
@@ -286,7 +286,7 @@ export default function OffresServices() {
                   gradient: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)',
                   icon: (
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F472B6" strokeWidth="2">
-                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                      <path d="M10.29 3.86L1.82 18a2 4 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
                       <line x1="12" y1="9" x2="12" y2="13"></line>
                       <line x1="12" y1="17" x2="12.01" y2="17"></line>
                     </svg>
@@ -299,26 +299,28 @@ export default function OffresServices() {
                       {service.badge}
                     </div>
                   )}
-                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 'var(--space-md)', marginTop: service.badge ? 'var(--space-sm)' : 0}}>
-                    <div style={{display: 'flex', gap: 'var(--space-md)', alignItems: 'center'}}>
-                      <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: service.gradient, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-                        {service.icon}
-                      </div>
-                      <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
-                        {service.title}
-                      </h3>
+
+                  {/* Badge Prix en haut à droite */}
+                  <div style={{position: 'absolute', top: 'var(--space-lg)', right: 'var(--space-lg)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', padding: '8px 16px', borderRadius: 'var(--radius-md)', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)'}}>
+                    <div style={{fontSize: '24px', fontWeight: '700', lineHeight: '1', textAlign: 'center'}}>
+                      {service.price}
                     </div>
-                    <div style={{textAlign: 'right'}}>
-                      <div style={{fontSize: '28px', fontWeight: '700', color: 'var(--color-purple)', lineHeight: '1'}}>
-                        {service.price}
+                    {service.period && (
+                      <div style={{fontSize: '12px', fontWeight: '500', opacity: 0.9, textAlign: 'center', marginTop: '2px'}}>
+                        {service.period}
                       </div>
-                      {service.period && (
-                        <div style={{fontSize: '14px', fontWeight: '400', color: 'var(--color-text-tertiary)'}}>
-                          {service.period}
-                        </div>
-                      )}
-                    </div>
+                    )}
                   </div>
+
+                  <div style={{display: 'flex', gap: 'var(--space-md)', alignItems: 'center', marginBottom: 'var(--space-md)', marginTop: service.badge ? 'var(--space-sm)' : 0, paddingRight: '100px'}}>
+                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: service.gradient, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      {service.icon}
+                    </div>
+                    <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0, lineHeight: '1.3'}}>
+                      {service.title}
+                    </h3>
+                  </div>
+
                   <ul style={{listStyle: 'none', padding: 0, margin: 0, flexGrow: 1}}>
                     {service.features.map((feature, fidx) => (
                       <li key={fidx} style={{padding: 'var(--space-sm) 0', borderBottom: fidx < service.features.length - 1 ? '1px solid #E5E7EB' : 'none', color: 'var(--color-text-secondary)', fontSize: '14px', display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', lineHeight: '1.5'}}>
