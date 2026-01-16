@@ -99,7 +99,7 @@ export default function OffresServices() {
                 <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-lg)', paddingBottom: 'var(--space-lg)', borderBottom: '1px solid #E5E7EB'}}>
                   Auto-évaluation guidée • Résultat immédiat • Score de conformité
                 </p>
-                <button onClick={handleStripeCheckout} className="btn-artisan btn-artisan-primary" style={{marginTop: 'auto'}}>
+                <button onClick={handleStripeCheckout} className="btn-artisan btn-artisan-secondary" style={{marginTop: 'auto'}}>
                   Démarrer l'audit
                 </button>
               </div>
@@ -118,7 +118,7 @@ export default function OffresServices() {
                 <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-lg)', paddingBottom: 'var(--space-lg)', borderBottom: '1px solid #E5E7EB'}}>
                   Audit complet + Expert • Plan de remédiation • Livraison 48H
                 </p>
-                <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-primary" style={{marginTop: 'auto', textDecoration: 'none', textAlign: 'center'}}>
+                <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary" style={{marginTop: 'auto', textDecoration: 'none', textAlign: 'center'}}>
                   Prendre RDV
                 </a>
               </div>
