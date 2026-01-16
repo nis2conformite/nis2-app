@@ -470,7 +470,7 @@ export default function Home() {
                 href={CONTACT_INFO.calendly}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-pricing-artisan"
+                className="btn-pricing-artisan btn-pricing-secondary"
               >
                 Prendre rendez-vous
               </a>
