@@ -66,23 +66,10 @@ export default function ComprendreNIS2() {
         <section id="video-section" style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
           <div style={{maxWidth: '1200px', margin: '0 auto'}}>
             <div className="before-after-wrapper-design">
-              {/* EN-TÊTE */}
-              <div style={{textAlign: 'center', marginBottom: 'var(--space-2xl)'}}>
-                <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-md)'}}>
-                  C'est quoi, NIS2 ?
-                </h2>
-                <p style={{fontSize: '18px', lineHeight: '1.7', color: 'var(--color-text-secondary)', maxWidth: '800px', margin: '0 auto'}}>
-                  NIS2 est une <strong>directive européenne</strong> entrée en vigueur en <strong>janvier 2023</strong>.
-                  Elle oblige des milliers d'entreprises à renforcer leur cybersécurité pour mieux protéger
-                  leurs activités et celles de leurs clients.
-                </p>
-              </div>
-
-              {/* GRILLE : 2 CARTES + VIDÉO */}
-              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-xl)', alignItems: 'start'}}>
-
+              {/* GRILLE : 2 CARTES SUR UNE LIGNE */}
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-xl)', marginBottom: 'var(--space-xl)'}}>
                 {/* CARTE OBJECTIF */}
-                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF', height: '100%'}}>
+                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
                   <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', marginBottom: 'var(--space-md)'}}>
                     <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +84,7 @@ export default function ComprendreNIS2() {
                 </div>
 
                 {/* CARTE APPLICATION */}
-                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #FCE7F3', height: '100%'}}>
+                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #FCE7F3'}}>
                   <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', marginBottom: 'var(--space-md)'}}>
                     <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #EC4899 0%, #F472B6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,25 +98,24 @@ export default function ComprendreNIS2() {
                     Transposée en droit français • Contrôles ANSSI dès 2024 • Sanctions dès 2027
                   </p>
                 </div>
+              </div>
 
-                {/* VIDÉO */}
-                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-md)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF', position: 'relative', height: '100%', display: 'flex', flexDirection: 'column'}}>
-                  <div style={{position: 'absolute', top: 'var(--space-md)', left: 'var(--space-md)', zIndex: 2}}>
-                    <span style={{display: 'inline-block', padding: '6px 14px', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', borderRadius: '9999px', fontSize: '12px', fontWeight: '600', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)'}}>
-                      📺 Comprendre en 5 minutes
-                    </span>
-                  </div>
-                  <div className="video-container" style={{flex: 1}}>
-                    <iframe
-                      src={EXTERNAL_LINKS.videoYoutube}
-                      title="Directive NIS2 expliquée"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      style={{border: 0, borderRadius: 'var(--radius-md)'}}>
-                    </iframe>
-                  </div>
+              {/* VIDÉO EN DESSOUS, PLEINE LARGEUR */}
+              <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-md)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF', position: 'relative'}}>
+                <div style={{position: 'absolute', top: 'var(--space-md)', left: 'var(--space-md)', zIndex: 2}}>
+                  <span style={{display: 'inline-block', padding: '6px 14px', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', borderRadius: '9999px', fontSize: '12px', fontWeight: '600', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)'}}>
+                    📺 Comprendre en 5 minutes
+                  </span>
                 </div>
-
+                <div className="video-container">
+                  <iframe
+                    src={EXTERNAL_LINKS.videoYoutube}
+                    title="Directive NIS2 expliquée"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    style={{border: 0, borderRadius: 'var(--radius-md)'}}>
+                  </iframe>
+                </div>
               </div>
             </div>
           </div>
