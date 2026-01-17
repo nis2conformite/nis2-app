@@ -1,6 +1,10 @@
 /* ═══════════════════════════════════════════════════════════
-   🎨 DESIGN ARTISAN.CO - VERSION EXPERTE
-   Refonte complète avec niveau professionnel
+   🎨 DESIGN ARTISAN.CO - COMPOSANTS ET LAYOUTS
+   ═══════════════════════════════════════════════════════════
+
+   Ce fichier contient les composants et layouts du design Artisan.
+   Les variables CSS sont centralisées dans variables.css
+
    ═══════════════════════════════════════════════════════════ */
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -9,83 +13,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   VARIABLES - SYSTÈME DE DESIGN MODERNE
+   BASE STYLES
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-:root {
-  /* Couleurs principales */
-  --color-white: #FFFFFF;
-  --color-bg: #FAFBFC;
-  --color-primary: #6366F1;
-  --color-primary-dark: #4F46E5;
-  --color-primary-light: #818CF8;
-
-  /* Couleurs accent */
-  --color-purple: #A855F7;
-  --color-pink: #EC4899;
-  --color-blue: #3B82F6;
-  --color-cyan: #06B6D4;
-
-  /* Textes */
-  --color-text-primary: #0F172A;
-  --color-text-secondary: #334155;
-  --color-text-tertiary: #64748B;
-  --color-text-muted: #94A3B8;
-
-  /* Dégradés modernes */
-  --gradient-purple: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%);
-  --gradient-blue: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
-  --gradient-primary: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
-  --gradient-hero: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(250,251,252,1) 100%);
-
-  /* Ombres subtiles (Artisan style) */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.10);
-  --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.12);
-
-  /* Ombres colorées pour impact */
-  --shadow-purple: 0 8px 24px rgba(168, 85, 247, 0.20);
-  --shadow-blue: 0 8px 24px rgba(59, 130, 246, 0.20);
-  --shadow-pink: 0 8px 24px rgba(236, 72, 153, 0.20);
-  --shadow-primary: 0 8px 24px rgba(99, 102, 241, 0.20);
-
-  /* Espacements (système 8px) - RÉDUITS pour compacité */
-  --space-xs: 6px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 28px;
-  --space-xl: 40px;
-  --space-2xl: 56px;
-  --space-3xl: 80px;
-  --space-4xl: 100px;
-
-  /* Border radius moderne */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --radius-2xl: 24px;
-  --radius-full: 9999px;
-
-  /* Transitions fluides */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Typography */
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   RESET & BASE
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 html {
   scroll-behavior: smooth;
 }
