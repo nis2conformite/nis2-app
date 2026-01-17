@@ -709,6 +709,7 @@
 
 /* Listes */
 .list-check { list-style: none; padding: 0; margin: 0; }
+.list-check li::before { display: none; content: none; } /* Override global.css */
 .list-check-item { padding: var(--space-xs) 0; color: var(--color-text-secondary); font-size: 12px; display: flex; align-items: flex-start; gap: var(--space-xs); line-height: 1.4; }
 .list-check-item-md { padding: var(--space-xs) 0; color: var(--color-text-secondary); font-size: 14px; display: flex; align-items: flex-start; gap: var(--space-xs); line-height: 1.5; }
 .list-check-item-white { padding: var(--space-xs) 0; color: rgba(255,255,255,0.95); font-size: 14px; display: flex; align-items: flex-start; gap: var(--space-xs); line-height: 1.5; }
