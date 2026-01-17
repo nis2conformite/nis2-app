@@ -401,7 +401,7 @@
 
 .section-violet-gradient {
   padding: var(--space-xl) var(--space-md);
-  background: linear-gradient(180deg, #FFF 0%, #F3E8FF 100%);
+  background: linear-gradient(180deg, #FFF 0%, #EDE9FE 100%);
 }
 
 .section-cta-gradient {

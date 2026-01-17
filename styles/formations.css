@@ -522,7 +522,7 @@
 
 /* Sections */
 .section-standard { padding: var(--space-xl) var(--space-md); background: var(--color-bg); }
-.section-purple-gradient { padding: var(--space-xl) var(--space-md); background: linear-gradient(180deg, #F3E8FF 0%, #FFF 100%); }
+.section-purple-gradient { padding: var(--space-xl) var(--space-md); background: linear-gradient(180deg, #EDE9FE 0%, #FFF 100%); }
 .section-cta-gradient { padding: var(--space-xl) var(--space-md); background: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%); text-align: center; }
 
 /* Containers */
