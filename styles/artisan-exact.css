@@ -144,7 +144,7 @@ body {
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .hero-artisan-exact {
   position: relative;
-  padding: calc(var(--space-4xl) + 66px) var(--space-md) var(--space-3xl);
+  padding: calc(var(--space-xl) + 66px) var(--space-md) var(--space-3xl);
   text-align: center;
   overflow: hidden;
 }
@@ -2371,11 +2371,12 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: var(--space-md);
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-lg);
 }
 
 .hero-logo {
-  height: 80px;
+  height: 104px;
   width: auto;
   object-fit: contain;
   display: block;
