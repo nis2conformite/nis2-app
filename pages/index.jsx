@@ -180,7 +180,7 @@ export default function Home() {
           <div className="section-badge-center">L'enjeu stratégique</div>
 
           <h2 className="section-title-artisan">
-            La conformité <span className="gradient">NIS2</span>, avant et après
+            Votre conformité <span className="gradient">NIS2</span> avec Cyber Solferino
           </h2>
           <p className="section-subtitle-artisan">
             Transformez la contrainte réglementaire en levier stratégique pour votre entreprise
@@ -190,11 +190,7 @@ export default function Home() {
             <div className="before-after-cards-v2">
               {/* Card AVANT - Risques */}
               <div className="impact-card danger-card">
-                <div className="impact-icon-wrapper danger-icon">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
+                <div className="card-label-before">Avant</div>
                 <h3 className="impact-title">Les enjeux de la non-conformité</h3>
               <ul className="impact-list">
                 <li>
@@ -257,11 +253,7 @@ export default function Home() {
 
             {/* Card APRÈS - Opportunités */}
             <div className="impact-card success-card">
-              <div className="impact-icon-wrapper success-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
+              <div className="card-label-after">Après</div>
               <h3 className="impact-title">Transformez la contrainte en levier stratégique</h3>
               <ul className="impact-list">
                 <li>
