@@ -36,9 +36,9 @@ export default function QuiSommesNous() {
         </div>
       </header>
 
-      <div style={{paddingTop: '66px'}}>
+      <div className="page-wrapper">
         {/* HERO */}
-        <section className="hero-artisan-exact" style={{paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)'}}>
+        <section className="hero-artisan-exact hero-compact">
           <div className="hero-artisan-container">
             <div className="hero-badge-artisan">
               Experts conformité cyber • Depuis 2009
@@ -57,16 +57,16 @@ export default function QuiSommesNous() {
         </section>
 
         {/* NOTRE APPROCHE - 3 BLOCS */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
+        <section className="section-standard">
+          <div className="container-lg">
+            <h2 className="section-title-center">
               Notre approche
             </h2>
-            <p style={{fontSize: '18px', lineHeight: '1.8', color: 'var(--color-text-secondary)', textAlign: 'center', maxWidth: '900px', margin: '0 auto var(--space-xl) auto'}}>
+            <p className="section-subtitle-lg">
               Nous travaillons spécifiquement avec les PME et ETI qui ne disposent pas d'équipe cybersécurité dédiée. Notre outil a été conçu pour être simple, rapide et accessible, permettant à ces entreprises de gérer efficacement leur conformité NIS2 sans complexité technique.
             </p>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-xl)'}}>
+            <div className="grid-auto-fit">
               {[
                 {
                   num: '01',
@@ -87,21 +87,19 @@ export default function QuiSommesNous() {
                   color: '#F472B6'
                 }
               ].map((block) => (
-                <div key={block.num} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
-                  <div style={{
-                    fontSize: '48px',
-                    fontWeight: '700',
+                <div key={block.num} className="approach-card">
+                  <div className="approach-number" style={{
                     background: `linear-gradient(135deg, ${block.color} 0%, ${block.color}99 100%)`,
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
-                    marginBottom: 'var(--space-md)'
+                    backgroundClip: 'text'
                   }}>
                     {block.num}
                   </div>
-                  <h3 style={{fontSize: '22px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+                  <h3 className="approach-title">
                     {block.title}
                   </h3>
-                  <p style={{fontSize: '16px', lineHeight: '1.7', color: 'var(--color-text-secondary)', margin: 0}}>
+                  <p className="approach-desc">
                     {block.desc}
                   </p>
                 </div>
@@ -143,30 +141,20 @@ export default function QuiSommesNous() {
               </div>
 
               {/* ACCRÉDITATIONS ET LOGOS */}
-              <div style={{marginTop: 'var(--space-2xl)', textAlign: 'center'}}>
-                <p style={{fontSize: '16px', color: 'rgba(255,255,255,0.9)', marginBottom: 'var(--space-xl)', fontWeight: '500'}}>
+              <div className="accreditations-wrapper">
+                <p className="accreditations-text">
                   Nos accréditations et partenariats garantissent la qualité de notre accompagnement
                 </p>
 
-                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 'var(--space-lg)', alignItems: 'center', justifyItems: 'center'}}>
+                <div className="accreditations-grid">
                   {[
                     { src: '/logo_anssi.png', alt: 'ANSSI - Agence Nationale de la Sécurité des Systèmes d\'Information' },
                     { src: '/Logo-cybermalveillance.PNG', alt: 'Cybermalveillance.gouv.fr' },
                     { src: '/logo_expertcyber.jpg', alt: 'Expert Cyber' },
                     { src: '/iso_27001_02-1024x704.png', alt: 'ISO 27001 Certified' }
                   ].map((logo, idx) => (
-                    <div key={idx} style={{
-                      background: 'rgba(255,255,255,0.1)',
-                      padding: 'var(--space-md)',
-                      borderRadius: 'var(--radius-md)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      minHeight: '100px',
-                      width: '100%',
-                      border: '1px solid rgba(255,255,255,0.2)'
-                    }}>
-                      <img src={logo.src} alt={logo.alt} style={{maxWidth: '120px', maxHeight: '60px', objectFit: 'contain', opacity: '0.9'}} />
+                    <div key={idx} className="accreditation-item">
+                      <img src={logo.src} alt={logo.alt} className="accreditation-img" />
                     </div>
                   ))}
                 </div>
@@ -176,16 +164,16 @@ export default function QuiSommesNous() {
         </section>
 
         {/* VALEURS - 6 CARDS REDESIGN */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(180deg, #FFF 0%, #F3E8FF 100%)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
+        <section className="section-violet-gradient">
+          <div className="container-lg">
+            <h2 className="section-title-center">
               Nos valeurs
             </h2>
-            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)'}}>
+            <p className="section-subtitle-center">
               Les principes qui guident notre accompagnement au quotidien
             </p>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-lg)'}}>
+            <div className="grid-auto-fit-lg">
               {[
                 {
                   title: 'Pragmatisme',
@@ -246,23 +234,16 @@ export default function QuiSommesNous() {
                   )
                 }
               ].map((value, idx) => (
-                <div key={idx} style={{
-                  background: 'white',
-                  borderRadius: 'var(--radius-xl)',
-                  padding: 'var(--space-xl)',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-                  border: '1px solid #E5E7EB',
-                  transition: 'all 0.3s ease'
-                }} className="value-card-hover">
-                  <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
-                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                <div key={idx} className="value-card-about value-card-hover">
+                  <div className="value-header">
+                    <div className="value-icon-box">
                       {value.icon}
                     </div>
-                    <h4 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
+                    <h4 className="value-title">
                       {value.title}
                     </h4>
                   </div>
-                  <p style={{fontSize: '15px', lineHeight: '1.6', color: 'var(--color-text-secondary)', margin: 0}}>
+                  <p className="value-desc">
                     {value.desc}
                   </p>
                 </div>
@@ -272,30 +253,19 @@ export default function QuiSommesNous() {
         </section>
 
         {/* CTA FINAL */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', textAlign: 'center'}}>
-          <div style={{maxWidth: '800px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-md)'}}>
+        <section className="section-cta-gradient">
+          <div className="container-md">
+            <h2 className="section-title-white">
               Prêt à sécuriser votre conformité ?
             </h2>
-            <p style={{fontSize: '18px', color: 'rgba(255,255,255,0.9)', marginBottom: 'var(--space-xl)'}}>
+            <p className="section-subtitle-white">
               Échangez gratuitement avec un expert certifié ISO 27001 • Diagnostic personnalisé en 30 minutes
             </p>
             <a
               href={CONTACT_INFO.calendly}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                display: 'inline-block',
-                padding: '16px 40px',
-                background: 'white',
-                color: 'var(--color-purple)',
-                fontSize: '18px',
-                fontWeight: '700',
-                borderRadius: '9999px',
-                textDecoration: 'none',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                transition: 'all 0.3s ease'
-              }}
+              className="btn-cta-white-lg"
             >
               Réserver un échange gratuit
             </a>

@@ -36,9 +36,9 @@ export default function ComprendreNIS2() {
         </div>
       </header>
 
-      <div style={{paddingTop: '66px'}}>
+      <div className="page-wrapper">
         {/* HERO */}
-        <section className="hero-artisan-exact" style={{paddingTop: 'var(--space-3xl)', paddingBottom: 'var(--space-3xl)'}}>
+        <section className="hero-artisan-exact hero-compact">
           <div className="hero-artisan-container">
             <div className="hero-badge-artisan">
               Directive Européenne • Conformité obligatoire 2027
@@ -54,7 +54,7 @@ export default function ComprendreNIS2() {
               de milliers d'entreprises françaises
             </p>
 
-            <div className="hero-buttons-artisan" style={{display: 'flex', gap: 'var(--space-md)', justifyContent: 'center', marginTop: 'var(--space-xl)', flexWrap: 'wrap'}}>
+            <div className="hero-buttons-row">
               <a href="#video-section" className="btn-hero-primary">
                 Voir la vidéo explicative
               </a>
@@ -66,47 +66,47 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* C'EST QUOI NIS2 - SECTION FUSIONNÉE */}
-        <section id="video-section" style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
+        <section id="video-section" className="section-standard">
+          <div className="container-lg">
             <div className="before-after-wrapper-design">
               {/* GRILLE : 2 CARTES SUR UNE LIGNE */}
-              <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-xl)', marginBottom: 'var(--space-xl)'}}>
+              <div className="grid-auto-2">
                 {/* CARTE OBJECTIF */}
-                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
-                  <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', marginBottom: 'var(--space-md)'}}>
-                    <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                <div className="card-white-violet">
+                  <div className="card-header-flex">
+                    <div className="icon-circle-48 icon-gradient-violet">
                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <strong style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-purple)'}}>Objectif</strong>
+                    <strong className="title-20-violet">Objectif</strong>
                   </div>
-                  <p style={{color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0, fontSize: '15px'}}>
+                  <p className="text-secondary">
                     Protéger les infrastructures critiques européennes contre les cyberattaques
                   </p>
                 </div>
 
                 {/* CARTE APPLICATION */}
-                <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #FCE7F3'}}>
-                  <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', marginBottom: 'var(--space-md)'}}>
-                    <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 60%, #F472B6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                <div className="card-white-rose">
+                  <div className="card-header-flex">
+                    <div className="icon-circle-48 icon-gradient-rose">
                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <strong style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-pink)'}}>Application</strong>
+                    <strong className="title-20-rose">Application</strong>
                   </div>
-                  <p style={{color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0, fontSize: '15px'}}>
+                  <p className="text-secondary">
                     Transposée en droit français • Contrôles ANSSI dès 2024 • Sanctions dès 2027
                   </p>
                 </div>
               </div>
 
               {/* VIDÉO EN DESSOUS, PLEINE LARGEUR */}
-              <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-md)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF', position: 'relative'}}>
-                <div style={{position: 'absolute', top: 'var(--space-md)', left: 'var(--space-md)', zIndex: 2}}>
-                  <span style={{display: 'inline-block', padding: '6px 14px', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', color: 'white', borderRadius: '9999px', fontSize: '12px', fontWeight: '600', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)'}}>
+              <div className="video-card-container">
+                <div className="video-badge-absolute">
+                  <span className="badge-video">
                     📺 Comprendre en 5 minutes
                   </span>
                 </div>
@@ -115,8 +115,7 @@ export default function ComprendreNIS2() {
                     src={EXTERNAL_LINKS.videoYoutube}
                     title="Directive NIS2 expliquée"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    style={{border: 0, borderRadius: 'var(--radius-md)'}}>
+                    allowFullScreen>
                   </iframe>
                 </div>
               </div>
@@ -125,63 +124,63 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* SUIS-JE CONCERNÉ */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
+        <section className="section-standard">
+          <div className="container-lg">
+            <h2 className="section-title-center">
               Suis-je concerné par NIS2 ?
             </h2>
-            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)', maxWidth: '800px', margin: '0 auto var(--space-2xl)'}}>
+            <p className="section-subtitle-center">
               Vous êtes concerné si votre entreprise répond à <strong>2 critères</strong> :
             </p>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-xl)', marginBottom: 'var(--space-3xl)'}}>
-              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
-                <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
-                  <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '32px', fontWeight: '700', flexShrink: 0}}>
+            <div className="grid-auto-fit mb-3xl">
+              <div className="card-white-xl">
+                <div className="card-header-flex-lg">
+                  <div className="icon-circle-60 icon-gradient-violet">
                     1
                   </div>
-                  <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
+                  <h3 className="title-24">
                     Taille de l'entreprise
                   </h3>
                 </div>
-                <p style={{fontSize: '16px', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0}}>
+                <p className="text-16-secondary">
                   <strong>+50 salariés</strong> OU <strong>+10M€ de chiffre d'affaires</strong>
                 </p>
               </div>
 
-              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
-                <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
-                  <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 60%, #F472B6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '32px', fontWeight: '700', flexShrink: 0}}>
+              <div className="card-white-xl">
+                <div className="card-header-flex-lg">
+                  <div className="icon-circle-60 icon-gradient-rose">
                     2
                   </div>
-                  <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
+                  <h3 className="title-24">
                     Secteur d'activité
                   </h3>
                 </div>
-                <p style={{fontSize: '16px', color: 'var(--color-text-secondary)', lineHeight: '1.6', margin: 0}}>
+                <p className="text-16-secondary">
                   Vous opérez dans l'un des <strong>18 secteurs critiques ou essentiels</strong>
                 </p>
               </div>
             </div>
 
             {/* LISTE DES SECTEURS */}
-            <div className="cyber-encart" style={{marginTop: 'var(--space-3xl)'}}>
-              <h3 style={{fontSize: '28px', fontWeight: '700', color: 'white', textAlign: 'center', marginBottom: 'var(--space-xl)', position: 'relative', zIndex: 1}}>
+            <div className="cyber-encart">
+              <h3 className="title-28-white" style={{position: 'relative', zIndex: 1}}>
                 Les 18 secteurs concernés
               </h3>
 
-              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: 'var(--space-xl)', position: 'relative', zIndex: 1}}>
+              <div className="grid-auto-fit-md" style={{position: 'relative', zIndex: 1}}>
                 {/* ENTITÉS ESSENTIELLES */}
                 <div>
                   <div style={{marginBottom: 'var(--space-md)'}}>
-                    <span style={{display: 'inline-block', padding: '8px 16px', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 100%)', color: 'white', borderRadius: 'var(--radius-md)', fontSize: '14px', fontWeight: '600', marginBottom: 'var(--space-sm)'}}>
+                    <span className="badge-entity-violet">
                       Entités Essentielles
                     </span>
                     <p style={{color: 'rgba(255,255,255,0.7)', fontSize: '14px', marginTop: 'var(--space-xs)'}}>
                       Sanctions jusqu'à 10M€ ou 2% du CA mondial
                     </p>
                   </div>
-                  <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                  <ul className="list-sectors">
                     {[
                       { main: 'Énergie', details: 'électricité, gaz, pétrole, hydrogène' },
                       { main: 'Transports', details: 'ferroviaire, aérien, maritime, routier' },
@@ -192,8 +191,8 @@ export default function ComprendreNIS2() {
                       { main: 'Infrastructures numériques', details: 'DNS, TLD, cloud, data centers' },
                       { main: 'Espace', details: '' }
                     ].map((item, idx) => (
-                      <li key={idx} style={{display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', padding: 'var(--space-md) 0', borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
-                        <span style={{width: '8px', height: '8px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 100%)', flexShrink: 0, marginTop: '6px'}}></span>
+                      <li key={idx}>
+                        <span className="bullet-violet"></span>
                         <span style={{fontSize: '15px', lineHeight: '1.5'}}>
                           <strong style={{color: 'white', fontWeight: '600'}}>{item.main}</strong>
                           {item.details && <span style={{color: 'rgba(255,255,255,0.6)'}}> ({item.details})</span>}
@@ -206,14 +205,14 @@ export default function ComprendreNIS2() {
                 {/* ENTITÉS IMPORTANTES */}
                 <div>
                   <div style={{marginBottom: 'var(--space-md)'}}>
-                    <span style={{display: 'inline-block', padding: '8px 16px', background: 'linear-gradient(135deg, #9333EA 0%, #EC4899 60%, #DB2777 100%)', color: 'white', borderRadius: 'var(--radius-md)', fontSize: '14px', fontWeight: '600', marginBottom: 'var(--space-sm)'}}>
+                    <span className="badge-entity-rose">
                       Entités Importantes
                     </span>
                     <p style={{color: 'rgba(255,255,255,0.7)', fontSize: '14px', marginTop: 'var(--space-xs)'}}>
                       Sanctions jusqu'à 7M€ ou 1,4% du CA mondial
                     </p>
                   </div>
-                  <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                  <ul className="list-sectors">
                     {[
                       { main: 'Services postaux et de courrier', details: '' },
                       { main: 'Gestion des déchets', details: '' },
@@ -222,8 +221,8 @@ export default function ComprendreNIS2() {
                       { main: 'Recherche', details: '' },
                       { main: 'Administrations publiques', details: 'État, régions, départements' }
                     ].map((item, idx) => (
-                      <li key={idx} style={{display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', padding: 'var(--space-md) 0', borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
-                        <span style={{width: '8px', height: '8px', borderRadius: '50%', background: 'linear-gradient(135deg, #9333EA 0%, #EC4899 60%, #DB2777 100%)', flexShrink: 0, marginTop: '6px'}}></span>
+                      <li key={idx}>
+                        <span className="bullet-rose"></span>
                         <span style={{fontSize: '15px', lineHeight: '1.5'}}>
                           <strong style={{color: 'white', fontWeight: '600'}}>{item.main}</strong>
                           {item.details && <span style={{color: 'rgba(255,255,255,0.6)'}}> ({item.details})</span>}
@@ -234,8 +233,8 @@ export default function ComprendreNIS2() {
                 </div>
               </div>
 
-              <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: 'var(--radius-md)', padding: 'var(--space-md)', marginTop: 'var(--space-xl)', border: '1px solid rgba(255,255,255,0.2)', position: 'relative', zIndex: 1}}>
-                <p style={{color: 'white', margin: 0, fontSize: '15px', lineHeight: '1.6'}}>
+              <div className="note-encart">
+                <p className="note-encart-text">
                   <strong>Bon à savoir :</strong> Même si vous n'êtes pas directement concerné, vos clients peuvent vous demander
                   de prouver votre conformité pour travailler avec eux (clause contractuelle).
                 </p>
@@ -245,109 +244,91 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* LES SANCTIONS */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
+        <section className="section-standard">
+          <div className="container-lg">
+            <h2 className="section-title-center">
               Quelles sanctions en cas de non-conformité ?
             </h2>
-            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)', maxWidth: '800px', margin: '0 auto var(--space-2xl)'}}>
+            <p className="section-subtitle-center">
               Les sanctions sont <strong>lourdes et immédiates</strong>. La responsabilité du dirigeant est engagée.
             </p>
 
             <div className="before-after-wrapper-design">
-              <style jsx>{`
-                .sanction-card {
-                  transition: all 0.3s ease;
-                }
-                .sanction-card:hover {
-                  transform: translateY(-4px);
-                }
-                .sanction-card-violet:hover {
-                  box-shadow: 0 12px 32px rgba(168, 85, 247, 0.25);
-                }
-                .sanction-card-rose:hover {
-                  box-shadow: 0 12px 32px rgba(236, 72, 153, 0.25);
-                }
-                .sanction-card-orange:hover {
-                  box-shadow: 0 12px 32px rgba(249, 115, 22, 0.25);
-                }
-              `}</style>
-
-              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-lg)', marginBottom: 'var(--space-2xl)'}}>
-                <div className="sanction-card sanction-card-violet" style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(168, 85, 247, 0.12)', border: '2px solid #F3E8FF'}}>
-                  <div style={{display: 'flex', gap: 'var(--space-md)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
-                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+              <div className="grid-auto-fit-sm">
+                <div className="sanction-card-base sanction-card-violet">
+                  <div className="card-header-flex-md">
+                    <div className="icon-circle-56 icon-bg-light">
                       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="#A855F7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <h3 style={{fontSize: '18px', fontWeight: '700', color: '#A855F7', margin: 0}}>
+                    <h3 className="title-18-violet">
                       Amendes financières
                     </h3>
                   </div>
-                  <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
+                  <p className="text-14-secondary">
                     Jusqu'à <strong>10M€ ou 2% du CA mondial</strong> (le montant le plus élevé)
                   </p>
                 </div>
 
-                <div className="sanction-card sanction-card-rose" style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(236, 72, 153, 0.12)', border: '2px solid #FCE7F3'}}>
-                  <div style={{display: 'flex', gap: 'var(--space-md)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
-                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                <div className="sanction-card-base sanction-card-rose">
+                  <div className="card-header-flex-md">
+                    <div className="icon-circle-56 icon-bg-light">
                       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6M23 11h-6" stroke="#EC4899" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <h3 style={{fontSize: '18px', fontWeight: '700', color: '#EC4899', margin: 0}}>
+                    <h3 className="title-18-rose">
                       Responsabilité pénale
                     </h3>
                   </div>
-                  <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
+                  <p className="text-14-secondary">
                     Les dirigeants peuvent être tenus <strong>personnellement responsables</strong> en cas de manquement grave
                   </p>
                 </div>
 
-                <div className="sanction-card sanction-card-orange" style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(249, 115, 22, 0.12)', border: '2px solid #FFEDD5'}}>
-                  <div style={{display: 'flex', gap: 'var(--space-md)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
-                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                <div className="sanction-card-base sanction-card-orange">
+                  <div className="card-header-flex-md">
+                    <div className="icon-circle-56 icon-bg-light">
                       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="#F97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M15 9l-6 6" stroke="#F97316" strokeWidth="2" strokeLinecap="round"/>
                       </svg>
                     </div>
-                    <h3 style={{fontSize: '18px', fontWeight: '700', color: '#F97316', margin: 0}}>
+                    <h3 className="title-18-orange">
                       Exclusion des marchés
                     </h3>
                   </div>
-                  <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
+                  <p className="text-14-secondary">
                     Impossibilité de répondre aux <strong>appels d'offres publics et privés</strong> sans certification
                   </p>
                 </div>
               </div>
 
               {/* TIMELINE */}
-              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-2xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
-                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
+              <div className="card-white-2xl">
+                <h3 className="section-title-center" style={{marginBottom: 'var(--space-xl)'}}>
                   Calendrier des sanctions
                 </h3>
-                <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--space-lg)'}}>
-                  <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: '#F3F4F6', borderRadius: 'var(--radius-lg)'}}>
-                    <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#6B7280', marginBottom: 'var(--space-sm)'}}>2023</strong>
-                    <p style={{color: '#6B7280', fontSize: '15px', margin: 0}}>Entrée en vigueur</p>
+                <div className="grid-timeline">
+                  <div className="timeline-item-base timeline-gray">
+                    <strong className="timeline-year timeline-year-gray">2023</strong>
+                    <p className="timeline-text timeline-text-gray">Entrée en vigueur</p>
                   </div>
-                  <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: 'linear-gradient(135deg, #FFEDD5 0%, #FED7AA 100%)', borderRadius: 'var(--radius-lg)', border: '2px solid #F97316'}}>
-                    <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#F97316', marginBottom: 'var(--space-sm)'}}>2024-2026</strong>
-                    <p style={{color: '#C2410C', fontSize: '15px', fontWeight: '600', margin: 0}}>Période de transition<br />Contrôles ANSSI</p>
+                  <div className="timeline-item-base timeline-orange">
+                    <strong className="timeline-year timeline-year-orange">2024-2026</strong>
+                    <p className="timeline-text timeline-text-orange">Période de transition<br />Contrôles ANSSI</p>
                   </div>
-                  <div style={{textAlign: 'center', padding: 'var(--space-lg)', background: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', borderRadius: 'var(--radius-lg)', border: '2px solid #EC4899'}}>
-                    <strong style={{display: 'block', fontSize: '32px', fontWeight: '700', color: '#EC4899', marginBottom: 'var(--space-sm)'}}>2027</strong>
-                    <p style={{color: '#9D174D', fontSize: '15px', fontWeight: '600', margin: 0}}>Premières sanctions<br />Conformité obligatoire</p>
+                  <div className="timeline-item-base timeline-rose">
+                    <strong className="timeline-year timeline-year-rose">2027</strong>
+                    <p className="timeline-text timeline-text-rose">Premières sanctions<br />Conformité obligatoire</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* ESPACEMENT AVANT CARTOUCHE */}
-            <div style={{height: 'var(--space-xl)'}}></div>
+            <div className="spacer-xl"></div>
 
             {/* CARTOUCHE LE TEMPS PRESSE */}
             <div className="aide-etat-banner" style={{background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 40%, #EC4899 80%, #F472B6 100%)', marginBottom: 0}}>
@@ -361,7 +342,7 @@ export default function ComprendreNIS2() {
                   </div>
                 </div>
               </div>
-              <a href="/#pricing" style={{display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 28px', background: 'white', color: '#A855F7', fontSize: '16px', fontWeight: '700', borderRadius: '9999px', border: 'none', textDecoration: 'none', cursor: 'pointer', transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)', whiteSpace: 'nowrap', position: 'relative', zIndex: 1, flexShrink: 0}}>
+              <a href="/#pricing" className="btn-cta-banner">
                 Démarrer mon audit
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -372,25 +353,25 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* LES OBLIGATIONS */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
+        <section className="section-standard">
+          <div className="container-lg">
+            <h2 className="section-title-center">
               Quelles sont mes obligations ?
             </h2>
-            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)', maxWidth: '800px', margin: '0 auto var(--space-2xl)'}}>
+            <p className="section-subtitle-center">
               NIS2 impose <strong>10 mesures de sécurité</strong> et <strong>3 obligations administratives</strong>
             </p>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: 'var(--space-xl)'}}>
+            <div className="grid-auto-fit-card">
               {/* MESURES TECHNIQUES */}
-              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
-                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-lg)'}}>
+              <div className="card-white">
+                <h3 className="title-24-violet">
                   Mesures de sécurité
                 </h3>
-                <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
+                <ul className="list-check-simple">
                   {['Gestion des risques cyber', 'Sécurisation des accès', 'Cryptographie des données', 'Sauvegardes régulières', 'Plan de continuité d\'activité', 'Sécurité de la chaîne d\'approvisionnement', 'Contrôle des fournisseurs', 'Formation des équipes', 'Tests de sécurité réguliers', 'Politique de divulgation des vulnérabilités'].map((item, idx) => (
-                    <li key={idx} style={{padding: 'var(--space-sm) 0', borderBottom: '1px solid #E5E7EB', color: 'var(--color-text-secondary)', fontSize: '15px', display: 'flex', alignItems: 'center', gap: 'var(--space-sm)'}}>
-                      <span style={{color: 'var(--color-purple)', fontSize: '18px'}}>✓</span>
+                    <li key={idx}>
+                      <span className="check-violet">✓</span>
                       {item}
                     </li>
                   ))}
@@ -398,32 +379,32 @@ export default function ComprendreNIS2() {
               </div>
 
               {/* OBLIGATIONS ADMINISTRATIVES */}
-              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
-                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-pink)', marginBottom: 'var(--space-lg)'}}>
+              <div className="card-white-violet">
+                <h3 className="title-24-rose">
                   Obligations administratives
                 </h3>
                 <ul style={{listStyle: 'none', padding: 0, margin: 0}}>
-                  <li style={{padding: 'var(--space-md)', background: '#FDEDF5', borderRadius: 'var(--radius-md)', marginBottom: 'var(--space-md)'}}>
-                    <strong style={{display: 'block', color: 'var(--color-pink)', fontSize: '16px', marginBottom: 'var(--space-xs)'}}>
+                  <li className="obligation-item">
+                    <strong className="obligation-title">
                       Enregistrement auprès de l'ANSSI
                     </strong>
-                    <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', margin: 0}}>
+                    <p className="text-14-secondary">
                       Déclarer votre entité sur MonEspaceNIS2
                     </p>
                   </li>
-                  <li style={{padding: 'var(--space-md)', background: '#FDEDF5', borderRadius: 'var(--radius-md)', marginBottom: 'var(--space-md)'}}>
-                    <strong style={{display: 'block', color: 'var(--color-pink)', fontSize: '16px', marginBottom: 'var(--space-xs)'}}>
+                  <li className="obligation-item">
+                    <strong className="obligation-title">
                       Formation obligatoire des dirigeants
                     </strong>
-                    <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', margin: 0}}>
+                    <p className="text-14-secondary">
                       Responsabilité pénale du dirigeant en cas de manquement
                     </p>
                   </li>
-                  <li style={{padding: 'var(--space-md)', background: '#FDEDF5', borderRadius: 'var(--radius-md)'}}>
-                    <strong style={{display: 'block', color: 'var(--color-pink)', fontSize: '16px', marginBottom: 'var(--space-xs)'}}>
+                  <li className="obligation-item">
+                    <strong className="obligation-title">
                       Notification des incidents sous 24h
                     </strong>
-                    <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', margin: 0}}>
+                    <p className="text-14-secondary">
                       Déclaration à l'ANSSI en cas de cyberattaque
                     </p>
                   </li>
@@ -434,38 +415,38 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* COMMENT SE METTRE EN CONFORMITÉ */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-2xl)'}}>
+        <section className="section-violet-gradient">
+          <div className="container-lg">
+            <h2 className="section-title-center" style={{marginBottom: 'var(--space-2xl)'}}>
               Comment se mettre en conformité ?
             </h2>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 'var(--space-lg)'}}>
+            <div className="grid-steps">
               {[
                 { num: '1', title: 'Réaliser un audit', desc: 'Évaluer votre niveau de conformité actuel et identifier les écarts' },
                 { num: '2', title: 'Obtenir un plan d\'action', desc: 'Prioriser les mesures à mettre en place selon vos risques' },
                 { num: '3', title: 'Former vos équipes', desc: 'Formation obligatoire des dirigeants + sensibilisation collaborateurs' },
                 { num: '4', title: 'S\'enregistrer auprès de l\'ANSSI', desc: 'Déclarer votre entité sur MonEspaceNIS2.cyber.gouv.fr' }
               ].map((step) => (
-                <div key={step.num} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(168, 85, 247, 0.1)', textAlign: 'center'}}>
-                  <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '28px', fontWeight: '700', margin: '0 auto var(--space-md)'}}>
+                <div key={step.num} className="step-card-center">
+                  <div className="step-number-circle">
                     {step.num}
                   </div>
-                  <h4 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+                  <h4 className="step-title">
                     {step.title}
                   </h4>
-                  <p style={{color: 'var(--color-text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0}}>
+                  <p className="step-desc">
                     {step.desc}
                   </p>
                 </div>
               ))}
             </div>
 
-            <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', marginTop: 'var(--space-2xl)', textAlign: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
-              <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-lg)'}}>
-                <strong style={{color: 'var(--color-purple)'}}>Bon à savoir :</strong> Jusqu'à 70% d'aides de l'État possibles pour financer votre mise en conformité
+            <div className="info-box-white">
+              <p className="info-box-text">
+                <strong className="info-box-highlight">Bon à savoir :</strong> Jusqu'à 70% d'aides de l'État possibles pour financer votre mise en conformité
               </p>
-              <a href="/offres-complementaires" className="btn-artisan btn-artisan-primary" style={{display: 'inline-block'}}>
+              <a href="/offres-complementaires" className="btn-artisan btn-artisan-primary">
                 Découvrir nos solutions d'accompagnement
               </a>
             </div>
@@ -473,35 +454,25 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* RESSOURCES OFFICIELLES */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'var(--color-bg)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-md)'}}>
+        <section className="section-standard">
+          <div className="container-lg">
+            <h2 className="section-title-center">
               Ressources officielles
             </h2>
-            <p style={{fontSize: '18px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: 'var(--space-2xl)'}}>
+            <p className="section-subtitle-center">
               Pour aller plus loin dans votre compréhension de NIS2
             </p>
 
-            <style jsx>{`
-              .resource-card {
-                transition: all 0.3s ease;
-              }
-              .resource-card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 8px 24px rgba(168, 85, 247, 0.15) !important;
-              }
-            `}</style>
-
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-lg)'}}>
+            <div className="grid-4-cols">
               {[
                 { title: 'Directive NIS2 - Texte officiel', desc: 'Directive (UE) 2022/2555 complète en français', url: 'https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32022L2555', domain: 'eur-lex.europa.eu', icon: '📋', iconType: 'emoji' },
                 { title: 'Site officiel ANSSI', desc: 'Toute la réglementation et les guides pratiques', url: 'https://cyber.gouv.fr', domain: 'cyber.gouv.fr', icon: '🔒', iconType: 'emoji' },
                 { title: 'MonEspaceNIS2', desc: 'Plateforme d\'enregistrement des entités concernées', url: 'https://monespacenis2.cyber.gouv.fr', domain: 'monespacenis2.cyber.gouv.fr', icon: '🏛️', iconType: 'emoji' },
                 { title: 'FAQ Officielle', desc: 'Réponses aux questions fréquentes sur NIS2', url: 'https://aide.monespacenis2.cyber.gouv.fr/fr/', domain: 'aide.monespacenis2.cyber.gouv.fr', iconType: 'svg' }
               ].map((resource, idx) => (
-                <a key={idx} href={resource.url} target="_blank" rel="noopener noreferrer" className="resource-card" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', textDecoration: 'none', display: 'flex', flexDirection: 'column', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF', height: '100%', boxSizing: 'border-box'}}>
-                  <div style={{display: 'flex', gap: 'var(--space-md)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
-                    <div style={{width: '56px', height: '56px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px', flexShrink: 0}}>
+                <a key={idx} href={resource.url} target="_blank" rel="noopener noreferrer" className="resource-card-link">
+                  <div className="card-header-flex-md">
+                    <div className="resource-icon-box">
                       {resource.iconType === 'svg' ? (
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="10" stroke="#A855F7" strokeWidth="2"/>
@@ -509,14 +480,14 @@ export default function ComprendreNIS2() {
                         </svg>
                       ) : resource.icon}
                     </div>
-                    <h4 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
+                    <h4 className="resource-title">
                       {resource.title}
                     </h4>
                   </div>
-                  <p style={{fontSize: '14px', color: 'var(--color-text-secondary)', lineHeight: '1.6', marginBottom: 'var(--space-md)', flex: 1}}>
+                  <p className="resource-desc">
                     {resource.desc}
                   </p>
-                  <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-xs)', color: 'var(--color-purple)', fontSize: '14px', fontWeight: '600', flexShrink: 0, wordBreak: 'break-all'}}>
+                  <div className="resource-link-text">
                     <span style={{flex: 1}}>{resource.domain}</span>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{flexShrink: 0}}>
                       <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -529,19 +500,19 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* CTA FINAL */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', textAlign: 'center'}}>
-          <div style={{maxWidth: '800px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-md)'}}>
+        <section className="section-cta-gradient">
+          <div className="container-md">
+            <h2 className="section-title-white">
               Besoin d'aide pour votre conformité NIS2 ?
             </h2>
-            <p style={{fontSize: '18px', color: 'rgba(255,255,255,0.9)', marginBottom: 'var(--space-xl)'}}>
+            <p className="section-subtitle-white">
               Nos experts certifiés ISO 27001 vous accompagnent de l'audit à la déclaration ANSSI
             </p>
-            <div style={{display: 'flex', gap: 'var(--space-md)', justifyContent: 'center', flexWrap: 'wrap'}}>
-              <a href="/#pricing" style={{display: 'inline-block', padding: '16px 32px', background: 'white', color: 'var(--color-purple)', fontSize: '16px', fontWeight: '700', borderRadius: '9999px', textDecoration: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', transition: 'all 0.3s ease'}}>
+            <div className="cta-buttons-row">
+              <a href="/#pricing" className="btn-cta-white">
                 Découvrir nos audits
               </a>
-              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" style={{display: 'inline-block', padding: '16px 32px', background: 'transparent', color: 'white', fontSize: '16px', fontWeight: '700', borderRadius: '9999px', textDecoration: 'none', border: '2px solid white', transition: 'all 0.3s ease'}}>
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-cta-outline-white">
                 Parler à un expert
               </a>
             </div>
