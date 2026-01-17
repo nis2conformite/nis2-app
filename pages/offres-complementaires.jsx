@@ -106,7 +106,7 @@ export default function OffresServices() {
 
               {/* Offre Sérénité (Featured) */}
               <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(168, 85, 247, 0.15)', border: '2px solid var(--color-purple)', position: 'relative', display: 'flex', flexDirection: 'column'}}>
-                <div style={{position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)', padding: '6px 20px', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', borderRadius: '9999px', fontSize: '14px', fontWeight: '700'}}>
+                <div style={{position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)', padding: '6px 20px', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', color: 'white', borderRadius: '9999px', fontSize: '14px', fontWeight: '700'}}>
                   ⭐ LE PLUS POPULAIRE
                 </div>
                 <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)', marginTop: 'var(--space-sm)'}}>
@@ -195,21 +195,21 @@ export default function OffresServices() {
                         <td style={{padding: 'var(--space-md)', textAlign: 'center', fontSize: '18px', borderLeft: '2px solid #E5E7EB'}}>
                           {typeof row.essential === 'boolean' ? (
                             row.essential ?
-                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
+                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
                               <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#F3F4F6', color: '#9CA3AF', fontWeight: '700', fontSize: '18px'}}>—</span>
                           ) : <span style={{color: 'var(--color-text-primary)', fontWeight: '600', fontSize: '14px'}}>{row.essential}</span>}
                         </td>
                         <td style={{padding: 'var(--space-md)', textAlign: 'center', fontSize: '18px', borderLeft: '2px solid #E5E7EB'}}>
                           {typeof row.serenity === 'boolean' ? (
                             row.serenity ?
-                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
+                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
                               <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#F3F4F6', color: '#9CA3AF', fontWeight: '700', fontSize: '18px'}}>—</span>
                           ) : <span style={{color: 'var(--color-text-primary)', fontWeight: '600', fontSize: '14px'}}>{row.serenity}</span>}
                         </td>
                         <td style={{padding: 'var(--space-md)', textAlign: 'center', fontSize: '18px', borderLeft: '2px solid #E5E7EB'}}>
                           {typeof row.expertise === 'boolean' ? (
                             row.expertise ?
-                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
+                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
                               <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#F3F4F6', color: '#9CA3AF', fontWeight: '700', fontSize: '18px'}}>—</span>
                           ) : <span style={{color: 'var(--color-text-primary)', fontWeight: '600', fontSize: '14px'}}>{row.expertise}</span>}
                         </td>
@@ -271,7 +271,7 @@ export default function OffresServices() {
 
                   {/* Zone Prix + Titre - hauteur fixe */}
                   <div style={{display: 'flex', gap: 'var(--space-sm)', alignItems: 'flex-start', marginBottom: 'var(--space-md)', marginTop: service.badge ? 'var(--space-sm)' : 0, minHeight: '70px'}}>
-                    <div style={{background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', padding: '10px 14px', borderRadius: 'var(--radius-md)', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)', flexShrink: 0, minHeight: '52px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+                    <div style={{background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', color: 'white', padding: '10px 14px', borderRadius: 'var(--radius-md)', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)', flexShrink: 0, minHeight: '52px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
                       <div style={{fontSize: '22px', fontWeight: '700', lineHeight: '1', textAlign: 'center'}}>
                         {service.price}
                       </div>
@@ -302,7 +302,7 @@ export default function OffresServices() {
         </section>
 
         {/* CTA FINAL */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', textAlign: 'center'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', textAlign: 'center'}}>
           <div style={{maxWidth: '800px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-md)'}}>
               Prêt à sécuriser votre conformité NIS2 ?

@@ -269,7 +269,7 @@ export default function QuiSommesNous() {
         </section>
 
         {/* CTA FINAL */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', textAlign: 'center'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', textAlign: 'center'}}>
           <div style={{maxWidth: '800px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-md)'}}>
               Prêt à sécuriser votre conformité ?
