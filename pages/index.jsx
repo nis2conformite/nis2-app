@@ -117,7 +117,7 @@ export default function Home() {
           </div>
 
           {/* Logo central sous le badge */}
-          <div className="hero-logo-wrapper" style={{textAlign: 'center', margin: 'var(--space-lg) auto'}}>
+          <div className="hero-logo-wrapper">
             <img src="/logo.png" alt="Cyber Solferino" className="hero-logo" />
           </div>
 

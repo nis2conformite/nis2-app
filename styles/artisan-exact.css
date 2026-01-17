@@ -2367,7 +2367,10 @@ body {
    HERO - LOGO + BOUTONS STYLE ARTISAN
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .hero-logo-wrapper {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   margin-bottom: var(--space-md);
 }
 
@@ -2375,6 +2378,8 @@ body {
   height: 80px;
   width: auto;
   object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 .hero-buttons-group {
