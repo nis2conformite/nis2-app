@@ -144,7 +144,7 @@ body {
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .hero-artisan-exact {
   position: relative;
-  padding: calc(var(--space-3xl) + 66px) var(--space-md) var(--space-3xl);
+  padding: calc(var(--space-xl) + 66px) var(--space-md) var(--space-3xl);
   text-align: center;
   overflow: hidden;
 }
