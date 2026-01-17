@@ -180,7 +180,8 @@ export default function Home() {
           <div className="section-badge-center">L'enjeu stratégique</div>
 
           <h2 className="section-title-artisan">
-            Votre conformité <span className="gradient">NIS2</span> avec Cyber Solferino
+            Votre conformité NIS2 avec<br />
+            <span className="gradient">Cyber Solferino</span>
           </h2>
           <p className="section-subtitle-artisan">
             Transformez la contrainte réglementaire en levier stratégique pour votre entreprise
@@ -189,9 +190,10 @@ export default function Home() {
           <div className="before-after-wrapper-design">
             <div className="before-after-cards-v2">
               {/* Card AVANT - Risques */}
-              <div className="impact-card danger-card">
+              <div className="card-column">
                 <div className="card-label-before">Avant</div>
-                <h3 className="impact-title">Les enjeux de la non-conformité</h3>
+                <div className="impact-card danger-card">
+                  <h3 className="impact-title">Les enjeux de la non-conformité</h3>
               <ul className="impact-list">
                 <li>
                   <div className="impact-bullet danger-bullet">
@@ -249,12 +251,14 @@ export default function Home() {
                   </div>
                 </li>
               </ul>
-            </div>
+                </div>
+              </div>
 
-            {/* Card APRÈS - Opportunités */}
-            <div className="impact-card success-card">
-              <div className="card-label-after">Après</div>
-              <h3 className="impact-title">Transformez la contrainte en levier stratégique</h3>
+              {/* Card APRÈS - Opportunités */}
+              <div className="card-column">
+                <div className="card-label-after">Après</div>
+                <div className="impact-card success-card">
+                  <h3 className="impact-title">Transformez la contrainte en levier stratégique</h3>
               <ul className="impact-list">
                 <li>
                   <div className="impact-bullet success-bullet">
@@ -312,7 +316,8 @@ export default function Home() {
                   </div>
                 </li>
               </ul>
-            </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
