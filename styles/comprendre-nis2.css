@@ -1774,4 +1774,26 @@
     width: 100%;
     text-align: center;
   }
+
+  /* FIX MOBILE: Liste des secteurs - éviter le débordement du texte */
+  .list-sectors li {
+    flex-wrap: wrap;
+  }
+
+  .list-sectors li span:last-child {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    width: calc(100% - 20px);
+  }
+
+  .grid-auto-fit-md {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .badge-entity-violet,
+  .badge-entity-rose {
+    font-size: 13px;
+    padding: 6px 14px;
+  }
 }

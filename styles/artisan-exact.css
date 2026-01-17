@@ -3441,4 +3441,40 @@ body {
   .hero-logo {
     height: 60px;
   }
+
+  /* FIX MOBILE: Réduction taille des icônes check/cross dans avant/après */
+  .impact-bullet {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+  }
+
+  .impact-bullet svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .impact-content strong {
+    font-size: 15px;
+  }
+
+  .impact-content span {
+    font-size: 13px;
+  }
+
+  /* FIX MOBILE: Grille 2x2 pour les logos accréditations */
+  .accreditations-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .accreditation-item {
+    padding: var(--space-sm);
+    min-height: 80px;
+  }
+
+  .accreditation-img {
+    max-width: 100px;
+    max-height: 50px;
+  }
 }
