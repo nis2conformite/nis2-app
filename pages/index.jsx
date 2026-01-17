@@ -179,10 +179,10 @@ export default function Home() {
         <div className="before-after-container-v2">
           <div className="section-badge-center">L'enjeu stratégique</div>
 
-          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+          <h2 className="section-title-artisan">
             La conformité <span className="gradient">NIS2</span>, avant et après
           </h2>
-          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
+          <p className="section-subtitle-artisan">
             Transformez la contrainte réglementaire en levier stratégique pour votre entreprise
           </p>
 
@@ -331,10 +331,10 @@ export default function Home() {
         <div className="content-container">
           <div className="section-badge-center">Notre méthodologie</div>
 
-          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+          <h2 className="section-title-artisan">
             <span className="gradient">Notre approche</span> en 3 étapes
           </h2>
-          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
+          <p className="section-subtitle-artisan">
             Une méthodologie éprouvée pour votre conformité NIS2
           </p>
 
@@ -356,10 +356,10 @@ export default function Home() {
           <div className="cyber-encart">
             <div className="section-badge-center">Chiffres clés</div>
 
-            <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+            <h2 className="section-title-artisan">
               La prévention est plus <span className="highlight">rentable</span> qu'une crise cyber
             </h2>
-            <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
+            <p className="section-subtitle-artisan">
               Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber
             </p>
 
@@ -429,7 +429,7 @@ export default function Home() {
               <div className="pricing-price-artisan">3 490€</div>
               <p className="pricing-period">HT • Paiement unique</p>
 
-              <div className="pricing-ideal" style={{fontSize: '14px', color: 'var(--artisan-text-medium)', marginBottom: '24px'}}>
+              <div className="pricing-ideal">
                 <strong>Idéal pour :</strong> PME cherchant à évaluer leur positionnement
               </div>
 
@@ -454,7 +454,7 @@ export default function Home() {
               <div className="pricing-price-artisan">7 990€</div>
               <p className="pricing-period">HT • Paiement unique</p>
 
-              <div className="pricing-ideal" style={{fontSize: '14px', color: 'var(--artisan-text-medium)', marginBottom: '24px'}}>
+              <div className="pricing-ideal">
                 <strong>Idéal pour :</strong> Entreprises visant la conformité NIS2
               </div>
 
@@ -484,18 +484,18 @@ export default function Home() {
               <div className="pricing-price-artisan">14 900€</div>
               <p className="pricing-period">HT • Paiement unique</p>
 
-              <div className="pricing-ideal" style={{fontSize: '14px', color: 'var(--artisan-text-medium)', marginBottom: '24px'}}>
+              <div className="pricing-ideal">
                 <strong>Idéal pour :</strong> ETI et secteurs critiques
               </div>
 
               <ul className="pricing-features-artisan">
                 <li><strong>Tout de l'offre Sérénité</strong></li>
-                <li style={{color: 'var(--artisan-primary)', fontWeight: '600'}}>+ Entretien préalable expert</li>
-                <li style={{color: 'var(--artisan-primary)', fontWeight: '600'}}>+ Roadmap personnalisée</li>
-                <li style={{color: 'var(--artisan-primary)', fontWeight: '600'}}>+ Enregistrement ANSSI</li>
-                <li style={{color: 'var(--artisan-primary)', fontWeight: '600'}}>+ Dossier aides d'État</li>
-                <li style={{color: 'var(--artisan-primary)', fontWeight: '600'}}>+ Accès plateforme 12 mois</li>
-                <li style={{color: 'var(--artisan-primary)', fontWeight: '600'}}>+ MAJ évolutions législatives</li>
+                <li className="feature-highlight">+ Entretien préalable expert</li>
+                <li className="feature-highlight">+ Roadmap personnalisée</li>
+                <li className="feature-highlight">+ Enregistrement ANSSI</li>
+                <li className="feature-highlight">+ Dossier aides d'État</li>
+                <li className="feature-highlight">+ Accès plateforme 12 mois</li>
+                <li className="feature-highlight">+ MAJ évolutions législatives</li>
               </ul>
 
               <a
@@ -510,107 +510,98 @@ export default function Home() {
           </div>
 
           {/* Comparatif accordéon */}
-          <div style={{textAlign: 'center', marginTop: '48px'}}>
+          <div className="pricing-cta-wrapper">
             <button
               onClick={() => setShowComparison(!showComparison)}
-              style={{
-                padding: '14px 32px',
-                background: 'white',
-                border: '2px solid var(--artisan-primary)',
-                color: 'var(--artisan-primary)',
-                borderRadius: 'var(--radius-artisan-lg)',
-                fontWeight: '700',
-                fontSize: '15px',
-                cursor: 'pointer'
-              }}
+              className="btn-compare-toggle"
             >
               {showComparison ? '▼ Masquer le comparatif' : '▶ Comparer nos offres'}
             </button>
           </div>
 
           {showComparison && (
-            <div style={{marginTop: '32px', overflowX: 'auto', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)'}}>
-              <table style={{width: '100%', borderCollapse: 'collapse', background: 'white'}}>
+            <div className="comparison-wrapper">
+              <table className="comparison-table">
                 <thead>
                   <tr>
-                    <th style={{background: 'var(--color-text-primary)', color: 'white', padding: '20px 16px', textAlign: 'left'}}>Fonctionnalités</th>
-                    <th style={{background: 'var(--color-purple)', color: 'white', padding: '20px 16px', textAlign: 'center'}}>Essentielle<br/><span style={{fontSize: '14px', fontWeight: '400'}}>3 490€</span></th>
-                    <th style={{background: 'var(--color-purple)', color: 'white', padding: '20px 16px', textAlign: 'center'}}>Sérénité<br/><span style={{fontSize: '14px', fontWeight: '400'}}>7 990€</span></th>
-                    <th style={{background: 'var(--color-purple)', color: 'white', padding: '20px 16px', textAlign: 'center'}}>Expertise<br/><span style={{fontSize: '14px', fontWeight: '400'}}>14 900€</span></th>
+                    <th>Fonctionnalités</th>
+                    <th>Essentielle<br/><span className="price-sub">3 490€</span></th>
+                    <th>Sérénité<br/><span className="price-sub">7 990€</span></th>
+                    <th>Expertise<br/><span className="price-sub">14 900€</span></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style={{borderBottom: '1px solid #E5E7EB'}}>
-                    <td style={{padding: '16px', fontWeight: '600'}}>Audit cyber NIS2</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                  </tr>
-                  <tr style={{borderBottom: '1px solid #E5E7EB'}}>
-                    <td style={{padding: '16px', fontWeight: '600'}}>Résultat immédiat</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                  </tr>
-                  <tr style={{borderBottom: '1px solid #E5E7EB'}}>
-                    <td style={{padding: '16px', fontWeight: '600'}}>Rapport validé par experts</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                  </tr>
-                  <tr style={{borderBottom: '1px solid #E5E7EB'}}>
-                    <td style={{padding: '16px', fontWeight: '600'}}>Analyse écarts de conformité</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                  </tr>
-                  <tr style={{borderBottom: '1px solid #E5E7EB'}}>
-                    <td style={{padding: '16px', fontWeight: '600'}}>Plan de remédiation détaillé</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                  </tr>
-                  <tr style={{borderBottom: '1px solid #E5E7EB'}}>
-                    <td style={{padding: '16px', fontWeight: '600'}}>Restitution avec expert</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                  </tr>
-                  <tr style={{borderBottom: '1px solid #E5E7EB'}}>
-                    <td style={{padding: '16px', fontWeight: '600'}}>Entretien préalable expert</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                  </tr>
-                  <tr style={{borderBottom: '1px solid #E5E7EB'}}>
-                    <td style={{padding: '16px', fontWeight: '600'}}>Roadmap personnalisée</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                  </tr>
-                  <tr style={{borderBottom: '1px solid #E5E7EB'}}>
-                    <td style={{padding: '16px', fontWeight: '600'}}>Enregistrement ANSSI</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                  </tr>
-                  <tr style={{borderBottom: '1px solid #E5E7EB'}}>
-                    <td style={{padding: '16px', fontWeight: '600'}}>Dossier aides d'État</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>✓</td>
-                  </tr>
-                  <tr style={{borderBottom: '1px solid #E5E7EB'}}>
-                    <td style={{padding: '16px', fontWeight: '600'}}>Accès plateforme</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>—</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>6 mois</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>12 mois</td>
+                  <tr>
+                    <td>Audit cyber NIS2</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                    <td>✓</td>
                   </tr>
                   <tr>
-                    <td style={{padding: '16px', fontWeight: '600'}}>Délai de livraison</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>Immédiat</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>48H</td>
-                    <td style={{padding: '16px', textAlign: 'center'}}>1 mois</td>
+                    <td>Résultat immédiat</td>
+                    <td>✓</td>
+                    <td>—</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>Rapport validé par experts</td>
+                    <td>—</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Analyse écarts de conformité</td>
+                    <td>—</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Plan de remédiation détaillé</td>
+                    <td>—</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Restitution avec expert</td>
+                    <td>—</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Entretien préalable expert</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Roadmap personnalisée</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Enregistrement ANSSI</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Dossier aides d'État</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td>Accès plateforme</td>
+                    <td>—</td>
+                    <td>6 mois</td>
+                    <td>12 mois</td>
+                  </tr>
+                  <tr>
+                    <td>Délai de livraison</td>
+                    <td>Immédiat</td>
+                    <td>48H</td>
+                    <td>1 mois</td>
                   </tr>
                 </tbody>
               </table>
@@ -624,10 +615,10 @@ export default function Home() {
         <div className="content-container">
           <div className="section-badge-center">Aller plus loin</div>
 
-          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+          <h2 className="section-title-artisan">
             Services <span className="gradient">complémentaires</span>
           </h2>
-          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
+          <p className="section-subtitle-artisan">
             Découvrez nos services pour aller plus loin dans la conformité et la sécurité
           </p>
 
@@ -700,7 +691,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{textAlign: 'center', marginTop: '48px'}}>
+          <div className="pricing-cta-wrapper">
             <a
               href="/offres-complementaires"
               className="btn-artisan btn-artisan-primary"
@@ -738,21 +729,11 @@ export default function Home() {
           </div>
 
           {/* Logos certifications */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '48px',
-            flexWrap: 'wrap',
-            marginTop: '48px',
-            padding: '32px',
-            background: 'var(--artisan-bg-light)',
-            borderRadius: 'var(--radius-artisan-xl)'
-          }}>
-            <img src="/logo_anssi.png" alt="ANSSI" style={{height: '60px', width: 'auto', objectFit: 'contain', opacity: '0.8'}} />
-            <img src="/Logo-cybermalveillance.PNG" alt="Cybermalveillance" style={{height: '60px', width: 'auto', objectFit: 'contain', opacity: '0.8'}} />
-            <img src="/logo_expertcyber.jpg" alt="Expert Cyber" style={{height: '60px', width: 'auto', objectFit: 'contain', opacity: '0.8'}} />
-            <img src="/iso_27001_02-1024x704.png" alt="ISO 27001" style={{height: '60px', width: 'auto', objectFit: 'contain', opacity: '0.8'}} />
+          <div className="trust-section">
+            <img src="/logo_anssi.png" alt="ANSSI" className="trust-logo-img" />
+            <img src="/Logo-cybermalveillance.PNG" alt="Cybermalveillance" className="trust-logo-img" />
+            <img src="/logo_expertcyber.jpg" alt="Expert Cyber" className="trust-logo-img" />
+            <img src="/iso_27001_02-1024x704.png" alt="ISO 27001" className="trust-logo-img" />
           </div>
         </div>
       </section>
@@ -762,10 +743,10 @@ export default function Home() {
         <div className="content-container">
           <div className="section-badge-center">Success Stories</div>
 
-          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+          <h2 className="section-title-artisan">
             Dirigeants conformes, <span className="gradient">entreprises gagnantes</span>
           </h2>
-          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
+          <p className="section-subtitle-artisan">
             Ils ont fait de NIS2 un levier de performance
           </p>
 
@@ -829,30 +810,22 @@ export default function Home() {
       </section>
 
       {/* SECTION VIDÉO YOUTUBE */}
-      <section className="content-section" id="video-section" style={{background: 'var(--artisan-bg-light)'}}>
-        <div className="content-container" style={{maxWidth: '900px'}}>
-          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+      <section className="content-section video-section" id="video-section">
+        <div className="content-container video-container">
+          <h2 className="section-title-artisan">
             Comprendre <span className="gradient">NIS2</span> en vidéo
           </h2>
-          <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
+          <p className="section-subtitle-artisan">
             3 minutes pour tout comprendre de la directive NIS2
           </p>
 
           <div className="video-wrapper-design">
-            <div className="video-container">
+            <div className="video-wrapper">
               <iframe
                 src={EXTERNAL_LINKS.videoYoutube}
                 title="Directive NIS2 expliquée"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  border: 'none'
-                }}
               />
             </div>
           </div>
@@ -861,10 +834,10 @@ export default function Home() {
 
       {/* SECTION FAQ REDESIGN MODERNE */}
       <section className="content-section">
-        <div className="content-container" style={{maxWidth: '1000px'}}>
+        <div className="content-container faq-container">
           <div className="section-badge-center">FAQ</div>
 
-          <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+          <h2 className="section-title-artisan">
             Les questions que se posent les <span className="gradient">dirigeants</span>
           </h2>
 
