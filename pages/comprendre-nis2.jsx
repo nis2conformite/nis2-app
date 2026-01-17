@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { CONTACT_INFO, EXTERNAL_LINKS } from '../utils/constants';
+import MenuBurger from '../components/MenuBurger';
 
 export default function ComprendreNIS2() {
   return (
@@ -30,6 +31,8 @@ export default function ComprendreNIS2() {
               <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </a>
+
+          <MenuBurger />
         </div>
       </header>
 

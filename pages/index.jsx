@@ -103,6 +103,8 @@ export default function Home() {
               <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </a>
+
+          <MenuBurger />
         </div>
       </header>
 
