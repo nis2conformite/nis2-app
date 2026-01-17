@@ -66,7 +66,7 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* C'EST QUOI NIS2 - SECTION FUSIONNÉE */}
-        <section id="video-section" className="section-standard">
+        <section className="section-standard">
           <div className="container-lg">
             <div className="before-after-wrapper-design">
               {/* GRILLE : 2 CARTES SUR UNE LIGNE */}
@@ -121,21 +121,91 @@ export default function ComprendreNIS2() {
                 </div>
               </div>
 
-              {/* VIDÉO EN DESSOUS, PLEINE LARGEUR */}
-              <div className="video-card-container">
-                <div className="video-badge-absolute">
-                  <span className="badge-video">
-                    📺 Comprendre en 5 minutes
-                  </span>
+              {/* 3 CARTES SANCTIONS */}
+              <div className="grid-auto-fit-sm" style={{marginTop: 'var(--space-lg)'}}>
+                <div className="sanction-card-base sanction-card-violet">
+                  <div className="card-header-flex-md">
+                    <div className="icon-circle-56 icon-bg-light">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="#A855F7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <h3 className="title-18-violet">
+                      Amendes financières
+                    </h3>
+                  </div>
+                  <p className="text-14-secondary">
+                    Jusqu'à <strong>10M€ ou 2% du CA mondial</strong> (le montant le plus élevé)
+                  </p>
                 </div>
-                <div className="video-container">
-                  <iframe
-                    src={EXTERNAL_LINKS.videoYoutube}
-                    title="Directive NIS2 expliquée"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen>
-                  </iframe>
+
+                <div className="sanction-card-base sanction-card-rose">
+                  <div className="card-header-flex-md">
+                    <div className="icon-circle-56 icon-bg-light">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6M23 11h-6" stroke="#EC4899" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <h3 className="title-18-rose">
+                      Responsabilité pénale
+                    </h3>
+                  </div>
+                  <p className="text-14-secondary">
+                    Les dirigeants peuvent être tenus <strong>personnellement responsables</strong> en cas de manquement grave
+                  </p>
                 </div>
+
+                <div className="sanction-card-base sanction-card-orange">
+                  <div className="card-header-flex-md">
+                    <div className="icon-circle-56 icon-bg-light">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="#F97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M15 9l-6 6" stroke="#F97316" strokeWidth="2" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <h3 className="title-18-orange">
+                      Exclusion des marchés
+                    </h3>
+                  </div>
+                  <p className="text-14-secondary">
+                    Impossibilité de répondre aux <strong>appels d'offres publics et privés</strong> sans certification
+                  </p>
+                </div>
+              </div>
+
+              {/* BANDEAU LE TEMPS PRESSE */}
+              <div className="aide-etat-banner" style={{background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 40%, #EC4899 80%, #F472B6 100%)', marginTop: 'var(--space-lg)', marginBottom: 0, borderRadius: 'var(--radius-lg)'}}>
+                <div className="aide-etat-content">
+                  <div className="aide-etat-text">
+                    <div className="aide-etat-title">
+                      ⚠️ Le temps presse : Les contrôles ANSSI ont déjà commencé
+                    </div>
+                    <div className="aide-etat-subtitle">
+                      Un audit de conformité prend en moyenne 3 à 6 mois. Agissez maintenant pour éviter les sanctions.
+                    </div>
+                  </div>
+                </div>
+                <a href="/#pricing" className="btn-cta-banner">
+                  Démarrer mon audit
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            {/* VIDÉO AVEC HALO - EN DEHORS DU WRAPPER */}
+            <div className="video-section-standalone" id="video-section">
+              <h3 className="section-title-center" style={{marginTop: 'var(--space-2xl)', marginBottom: 'var(--space-lg)'}}>
+                Comprendre NIS2 en vidéo
+              </h3>
+              <div className="video-wrapper video-halo">
+                <iframe
+                  src={EXTERNAL_LINKS.videoYoutube}
+                  title="Directive NIS2 expliquée"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen>
+                </iframe>
               </div>
             </div>
           </div>
@@ -261,91 +331,6 @@ export default function ComprendreNIS2() {
           </div>
         </section>
 
-        {/* LES SANCTIONS */}
-        <section className="section-standard">
-          <div className="container-lg">
-            <h2 className="section-title-center">
-              Quelles sanctions en cas de non-conformité ?
-            </h2>
-            <p className="section-subtitle-center">
-              Les sanctions sont <strong>lourdes et immédiates</strong>. La responsabilité du dirigeant est engagée.
-            </p>
-
-            <div className="before-after-wrapper-design">
-              <div className="grid-auto-fit-sm">
-                <div className="sanction-card-base sanction-card-violet">
-                  <div className="card-header-flex-md">
-                    <div className="icon-circle-56 icon-bg-light">
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="#A855F7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <h3 className="title-18-violet">
-                      Amendes financières
-                    </h3>
-                  </div>
-                  <p className="text-14-secondary">
-                    Jusqu'à <strong>10M€ ou 2% du CA mondial</strong> (le montant le plus élevé)
-                  </p>
-                </div>
-
-                <div className="sanction-card-base sanction-card-rose">
-                  <div className="card-header-flex-md">
-                    <div className="icon-circle-56 icon-bg-light">
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6M23 11h-6" stroke="#EC4899" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <h3 className="title-18-rose">
-                      Responsabilité pénale
-                    </h3>
-                  </div>
-                  <p className="text-14-secondary">
-                    Les dirigeants peuvent être tenus <strong>personnellement responsables</strong> en cas de manquement grave
-                  </p>
-                </div>
-
-                <div className="sanction-card-base sanction-card-orange">
-                  <div className="card-header-flex-md">
-                    <div className="icon-circle-56 icon-bg-light">
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="#F97316" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M15 9l-6 6" stroke="#F97316" strokeWidth="2" strokeLinecap="round"/>
-                      </svg>
-                    </div>
-                    <h3 className="title-18-orange">
-                      Exclusion des marchés
-                    </h3>
-                  </div>
-                  <p className="text-14-secondary">
-                    Impossibilité de répondre aux <strong>appels d'offres publics et privés</strong> sans certification
-                  </p>
-                </div>
-              </div>
-
-            </div>
-
-            {/* CARTOUCHE LE TEMPS PRESSE */}
-            <div className="aide-etat-banner" style={{background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 40%, #EC4899 80%, #F472B6 100%)', marginBottom: 0}}>
-              <div className="aide-etat-content">
-                <div className="aide-etat-text">
-                  <div className="aide-etat-title">
-                    ⚠️ Le temps presse : Les contrôles ANSSI ont déjà commencé
-                  </div>
-                  <div className="aide-etat-subtitle">
-                    Un audit de conformité prend en moyenne 3 à 6 mois. Agissez maintenant pour éviter les sanctions.
-                  </div>
-                </div>
-              </div>
-              <a href="/#pricing" className="btn-cta-banner">
-                Démarrer mon audit
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </section>
 
         {/* LES OBLIGATIONS */}
         <section className="section-standard">
