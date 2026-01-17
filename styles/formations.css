@@ -557,7 +557,7 @@
 
 /* Carte Format Featured */
 .card-format-featured {
-  background: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%);
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 70%, #C026D3 100%);
   border-radius: var(--radius-xl);
   padding: var(--space-xl);
   box-shadow: 0 12px 32px rgba(168, 85, 247, 0.25);
@@ -568,6 +568,21 @@
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: white;
+}
+
+/* Forcer tous les textes en blanc dans la carte featured */
+.card-format-featured,
+.card-format-featured h3,
+.card-format-featured h4,
+.card-format-featured p,
+.card-format-featured li,
+.card-format-featured span {
+  color: white !important;
+}
+
+.card-format-featured li {
+  color: rgba(255,255,255,0.95) !important;
 }
 
 /* Badge Recommandé */
