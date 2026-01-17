@@ -2569,6 +2569,14 @@ body {
   overflow: hidden;
 }
 
+/* Video wrapper sans le fond violet */
+.video-section .video-wrapper {
+  margin-top: var(--space-xl);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
