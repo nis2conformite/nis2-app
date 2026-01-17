@@ -112,13 +112,13 @@ export default function Home() {
       {/* HERO SECTION - AVEC BADGE + LOGO + BOUTONS */}
       <section className="hero-artisan-exact">
         <div className="hero-artisan-container">
-          {/* Logo central */}
-          <div className="hero-logo-wrapper">
-            <img src="/logo.png" alt="NIS2 Conformité" className="hero-logo" />
-          </div>
-
           <div className="hero-badge-artisan">
             NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant
+          </div>
+
+          {/* Logo central sous le badge */}
+          <div className="hero-logo-wrapper" style={{textAlign: 'center', margin: 'var(--space-lg) auto'}}>
+            <img src="/logo.png" alt="Cyber Solferino" className="hero-logo" />
           </div>
 
           <p className="hero-baseline-small">

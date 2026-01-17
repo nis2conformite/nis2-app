@@ -44,6 +44,11 @@ export default function QuiSommesNous() {
               Experts conformité cyber • Depuis 2009
             </div>
 
+            {/* Logo central sous le badge */}
+            <div className="hero-logo-wrapper" style={{textAlign: 'center', margin: 'var(--space-lg) auto'}}>
+              <img src="/logo.png" alt="Cyber Solferino" className="hero-logo" />
+            </div>
+
             <h1 className="hero-title-artisan">
               Votre partenaire de confiance<br />
               pour la <span className="highlight">conformité NIS2</span>
