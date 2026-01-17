@@ -4,6 +4,7 @@ import { useQuiz } from '../hooks/useQuiz';
 import { useLeadPopup } from '../hooks/useLeadPopup';
 import { QuizModal } from '../components/QuizModal';
 import MenuBurger from '../components/MenuBurger';
+import TestimonialsCarousel from '../components/TestimonialsCarousel';
 import {
   PRICING_OFFERS,
   TESTIMONIALS,
@@ -754,8 +755,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION TÉMOIGNAGES - Style Décalé Organique */}
-      <section className="content-section testimonials-modern" id="temoignages">
+      {/* SECTION TÉMOIGNAGES - CARROUSEL */}
+      <section className="content-section testimonials-carousel-section" id="temoignages">
         <div className="content-container">
           <div className="section-badge-center">Success Stories</div>
 
@@ -766,62 +767,7 @@ export default function Home() {
             Ils ont fait de NIS2 un levier de performance
           </p>
 
-          <div className="testimonials-organic-layout">
-            {/* Testimonial 1 - Court */}
-            <div className="testimonial-card-organic testimonial-small">
-              <div className="testimonial-quote-compact">
-                "L'audit NIS2 nous a permis d'identifier nos vulnérabilités critiques. Résultat : conformité obtenue et appel d'offres remporté."
-              </div>
-              <div className="testimonial-author-compact">
-                <div className="testimonial-author-name">Marc Dubois</div>
-                <div className="testimonial-author-role">CEO, TechManufacture</div>
-              </div>
-            </div>
-
-            {/* Testimonial 2 - Large */}
-            <div className="testimonial-card-organic testimonial-large">
-              <div className="testimonial-quote-compact">
-                "Grâce à l'accompagnement expert, nous avons transformé notre conformité NIS2 en véritable avantage compétitif. Nos clients nous font confiance."
-              </div>
-              <div className="testimonial-author-compact">
-                <div className="testimonial-author-name">Sophie Martin</div>
-                <div className="testimonial-author-role">RSSI, DataSecure</div>
-              </div>
-            </div>
-
-            {/* Testimonial 3 - Medium */}
-            <div className="testimonial-card-organic testimonial-medium">
-              <div className="testimonial-quote-compact">
-                "La méthodologie structurée nous a permis de passer de 12% à 87% de conformité en 6 mois."
-              </div>
-              <div className="testimonial-author-compact">
-                <div className="testimonial-author-name">Thomas Leroy</div>
-                <div className="testimonial-author-role">CTO, CloudVision</div>
-              </div>
-            </div>
-
-            {/* Testimonial 4 - Small */}
-            <div className="testimonial-card-organic testimonial-small">
-              <div className="testimonial-quote-compact">
-                "Le rapport détaillé a convaincu nos investisseurs."
-              </div>
-              <div className="testimonial-author-compact">
-                <div className="testimonial-author-name">Laurent P.</div>
-                <div className="testimonial-author-role">CEO, Startup Tech</div>
-              </div>
-            </div>
-
-            {/* Testimonial 5 - Medium */}
-            <div className="testimonial-card-organic testimonial-medium">
-              <div className="testimonial-quote-compact">
-                "NIS2 nous a ouvert les portes de nouveaux marchés. +30% de clients B2B en 6 mois."
-              </div>
-              <div className="testimonial-author-compact">
-                <div className="testimonial-author-name">Isabelle R.</div>
-                <div className="testimonial-author-role">Directrice, PME Industrielle</div>
-              </div>
-            </div>
-          </div>
+          <TestimonialsCarousel />
         </div>
       </section>
 
