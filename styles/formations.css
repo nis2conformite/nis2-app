@@ -887,4 +887,45 @@
   .training-card-highlighted:hover {
     transform: none;
   }
+
+  /* FIX MOBILE: Badge obligatoire et numéro - meilleur layout */
+  .training-card-highlighted {
+    position: relative;
+    padding-top: 70px;
+  }
+
+  .badge-obligatory {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: auto;
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .grid-auto-1fr {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    text-align: center;
+  }
+
+  .icon-circle-72 {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+    margin: 0 auto var(--space-md);
+  }
+
+  .card-title-white-2xl {
+    font-size: 22px;
+  }
+
+  .grid-3-cols {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .topic-box-glass {
+    padding: var(--space-sm) var(--space-md);
+  }
 }
