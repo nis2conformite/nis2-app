@@ -230,7 +230,7 @@ export default function Formations() {
               </div>
 
               {/* MOOC - Featured (Plus grand, design distinctif) - RECOMMANDÉ (centre) */}
-              <div className="format-card-featured" style={{background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 12px 32px rgba(168, 85, 247, 0.25)', border: '2px solid rgba(255,255,255,0.3)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', position: 'relative', overflow: 'hidden', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
+              <div className="format-card-featured" style={{background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 12px 32px rgba(168, 85, 247, 0.25)', border: '2px solid rgba(255,255,255,0.3)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', position: 'relative', overflow: 'hidden', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'}}>
                 <div style={{position: 'absolute', top: '10px', right: '10px', padding: '6px 14px', background: 'rgba(255,255,255,0.25)', backdropFilter: 'blur(10px)', borderRadius: '9999px', fontSize: '12px', fontWeight: '700', color: 'white', border: '1px solid rgba(255,255,255,0.3)'}}>
                   ⭐ RECOMMANDÉ
                 </div>
@@ -360,7 +360,7 @@ export default function Formations() {
             <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-lg)'}}>
               {/* Carte 1 - OBLIGATION LÉGALE NIS2 (MISE EN AVANT) */}
               <div className="why-card-horizontal" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 28px rgba(168, 85, 247, 0.2)', border: '3px solid #A855F7', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)', position: 'relative'}}>
-                <div style={{position: 'absolute', top: '-12px', right: '20px', padding: '6px 14px', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', borderRadius: '9999px', fontSize: '12px', fontWeight: '700', color: 'white', boxShadow: '0 4px 12px rgba(168, 85, 247, 0.3)'}}>
+                <div style={{position: 'absolute', top: '-12px', right: '20px', padding: '6px 14px', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', borderRadius: '9999px', fontSize: '12px', fontWeight: '700', color: 'white', boxShadow: '0 4px 12px rgba(168, 85, 247, 0.3)'}}>
                   ⭐ IMPORTANT
                 </div>
                 <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
@@ -461,7 +461,7 @@ export default function Formations() {
                   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
                 }}>
                   <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
-                    <div style={{width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '20px', fontWeight: '700', flexShrink: 0}}>
+                    <div style={{width: '48px', height: '48px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '20px', fontWeight: '700', flexShrink: 0}}>
                       {training.id}
                     </div>
                     <h3 style={{fontSize: '20px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
@@ -487,7 +487,7 @@ export default function Formations() {
 
             {/* FORMATION 3: Highlighted Full-Width (Format horizontal unique) - OBLIGATOIRE */}
             <div className="training-card-highlighted" style={{
-              background: 'linear-gradient(135deg, #EC4899 0%, #F59E0B 100%)',
+              background: 'linear-gradient(135deg, #9333EA 0%, #EC4899 50%, #F59E0B 100%)',
               borderRadius: 'var(--radius-xl)',
               padding: 'var(--space-2xl)',
               boxShadow: '0 12px 32px rgba(236, 72, 153, 0.3)',
@@ -528,7 +528,7 @@ export default function Formations() {
         </section>
 
         {/* CTA FINAL */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', textAlign: 'center'}}>
+        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', textAlign: 'center'}}>
           <div style={{maxWidth: '800px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-md)'}}>
               Formez vos équipes dès aujourd'hui

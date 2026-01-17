@@ -103,7 +103,7 @@
 
 .btn-hero-primary {
   display: inline-block;
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%);
   color: white;
   padding: 18px 36px;
   border-radius: 9999px;

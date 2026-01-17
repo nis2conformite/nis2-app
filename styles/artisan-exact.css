@@ -32,7 +32,7 @@
   --color-text-muted: #94A3B8;
 
   /* Dégradés modernes */
-  --gradient-purple: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  --gradient-purple: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%);
   --gradient-blue: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
   --gradient-primary: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
   --gradient-hero: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(250,251,252,1) 100%);
@@ -170,7 +170,7 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%);
   transition: width 0.3s ease;
   border-radius: 2px;
 }
@@ -184,7 +184,7 @@ body {
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%);
   color: white;
   font-size: 15px;
   font-weight: 600;
@@ -937,7 +937,7 @@ body {
 }
 
 .black-section-artisan .highlight {
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -995,7 +995,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 22px 40px;
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 60%, #F472B6 100%);
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 40%, #EC4899 80%, #F472B6 100%);
   border-radius: 9999px;
   margin-bottom: 72px;
   gap: 24px;
@@ -2162,7 +2162,7 @@ body {
 /* Bouton primaire - Filled gradient violet/rose Artisan */
 .btn-hero-primary {
   padding: 18px 36px;
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%) !important;
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%) !important;
   color: white !important;
   border: none;
   border-radius: var(--radius-full);
@@ -2343,7 +2343,7 @@ body {
 .cyber-stat-number-encart {
   font-size: 64px;
   font-weight: 900;
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 50%, #FB923C 100%);
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 35%, #EC4899 70%, #FB923C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2492,7 +2492,7 @@ body {
   left: -12px;
   opacity: 0;
   transition: all var(--transition-fast);
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2550,7 +2550,7 @@ body {
   left: 0;
   width: 0;
   height: 1px;
-  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%);
   transition: width var(--transition-fast);
 }
 

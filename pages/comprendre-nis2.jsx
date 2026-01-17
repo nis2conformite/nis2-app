@@ -71,7 +71,7 @@ export default function ComprendreNIS2() {
                 {/* CARTE OBJECTIF */}
                 <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
                   <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', marginBottom: 'var(--space-md)'}}>
-                    <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                    <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
@@ -86,7 +86,7 @@ export default function ComprendreNIS2() {
                 {/* CARTE APPLICATION */}
                 <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #FCE7F3'}}>
                   <div style={{display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', marginBottom: 'var(--space-md)'}}>
-                    <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #EC4899 0%, #F472B6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                    <div style={{width: '48px', height: '48px', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 60%, #F472B6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -103,7 +103,7 @@ export default function ComprendreNIS2() {
               {/* VIDÉO EN DESSOUS, PLEINE LARGEUR */}
               <div style={{background: 'white', borderRadius: 'var(--radius-lg)', padding: 'var(--space-md)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF', position: 'relative'}}>
                 <div style={{position: 'absolute', top: 'var(--space-md)', left: 'var(--space-md)', zIndex: 2}}>
-                  <span style={{display: 'inline-block', padding: '6px 14px', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', color: 'white', borderRadius: '9999px', fontSize: '12px', fontWeight: '600', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)'}}>
+                  <span style={{display: 'inline-block', padding: '6px 14px', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', color: 'white', borderRadius: '9999px', fontSize: '12px', fontWeight: '600', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)'}}>
                     📺 Comprendre en 5 minutes
                   </span>
                 </div>
@@ -134,7 +134,7 @@ export default function ComprendreNIS2() {
             <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'var(--space-xl)', marginBottom: 'var(--space-3xl)'}}>
               <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
                 <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
-                  <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '32px', fontWeight: '700', flexShrink: 0}}>
+                  <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '32px', fontWeight: '700', flexShrink: 0}}>
                     1
                   </div>
                   <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
@@ -148,7 +148,7 @@ export default function ComprendreNIS2() {
 
               <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(0,0,0,0.08)', border: '2px solid #F3E8FF'}}>
                 <div style={{display: 'flex', gap: 'var(--space-lg)', alignItems: 'center', marginBottom: 'var(--space-sm)'}}>
-                  <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #EC4899 0%, #F472B6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '32px', fontWeight: '700', flexShrink: 0}}>
+                  <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 60%, #F472B6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '32px', fontWeight: '700', flexShrink: 0}}>
                     2
                   </div>
                   <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0}}>
@@ -203,7 +203,7 @@ export default function ComprendreNIS2() {
                 {/* ENTITÉS IMPORTANTES */}
                 <div>
                   <div style={{marginBottom: 'var(--space-md)'}}>
-                    <span style={{display: 'inline-block', padding: '8px 16px', background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', color: 'white', borderRadius: 'var(--radius-md)', fontSize: '14px', fontWeight: '600', marginBottom: 'var(--space-sm)'}}>
+                    <span style={{display: 'inline-block', padding: '8px 16px', background: 'linear-gradient(135deg, #9333EA 0%, #EC4899 60%, #DB2777 100%)', color: 'white', borderRadius: 'var(--radius-md)', fontSize: '14px', fontWeight: '600', marginBottom: 'var(--space-sm)'}}>
                       Entités Importantes
                     </span>
                     <p style={{color: 'rgba(255,255,255,0.7)', fontSize: '14px', marginTop: 'var(--space-xs)'}}>
@@ -220,7 +220,7 @@ export default function ComprendreNIS2() {
                       { main: 'Administrations publiques', details: 'État, régions, départements' }
                     ].map((item, idx) => (
                       <li key={idx} style={{display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', padding: 'var(--space-md) 0', borderBottom: '1px solid rgba(255,255,255,0.1)'}}>
-                        <span style={{width: '8px', height: '8px', borderRadius: '50%', background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', flexShrink: 0, marginTop: '6px'}}></span>
+                        <span style={{width: '8px', height: '8px', borderRadius: '50%', background: 'linear-gradient(135deg, #9333EA 0%, #EC4899 60%, #DB2777 100%)', flexShrink: 0, marginTop: '6px'}}></span>
                         <span style={{fontSize: '15px', lineHeight: '1.5'}}>
                           <strong style={{color: 'white', fontWeight: '600'}}>{item.main}</strong>
                           {item.details && <span style={{color: 'rgba(255,255,255,0.6)'}}> ({item.details})</span>}
@@ -347,7 +347,7 @@ export default function ComprendreNIS2() {
             <div style={{height: 'var(--space-xl)'}}></div>
 
             {/* CARTOUCHE LE TEMPS PRESSE */}
-            <div className="aide-etat-banner" style={{background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 60%, #F472B6 100%)', marginBottom: 0}}>
+            <div className="aide-etat-banner" style={{background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 40%, #EC4899 80%, #F472B6 100%)', marginBottom: 0}}>
               <div className="aide-etat-content">
                 <div className="aide-etat-text">
                   <div className="aide-etat-title">
@@ -445,7 +445,7 @@ export default function ComprendreNIS2() {
                 { num: '4', title: 'S\'enregistrer auprès de l\'ANSSI', desc: 'Déclarer votre entité sur MonEspaceNIS2.cyber.gouv.fr' }
               ].map((step) => (
                 <div key={step.num} style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(168, 85, 247, 0.1)', textAlign: 'center'}}>
-                  <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '28px', fontWeight: '700', margin: '0 auto var(--space-md)'}}>
+                  <div style={{width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '28px', fontWeight: '700', margin: '0 auto var(--space-md)'}}>
                     {step.num}
                   </div>
                   <h4 style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
@@ -526,7 +526,7 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* CTA FINAL */}
-        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #EC4899 100%)', textAlign: 'center'}}>
+        <section style={{padding: 'var(--space-3xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', textAlign: 'center'}}>
           <div style={{maxWidth: '800px', margin: '0 auto'}}>
             <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-md)'}}>
               Besoin d'aide pour votre conformité NIS2 ?
