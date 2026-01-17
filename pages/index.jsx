@@ -699,38 +699,57 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION EXPERTISE */}
-      <section className="before-after-section" id="expertise">
-        <div className="before-after-container">
-          <h2 className="section-title-artisan">
-            Préparez-vous à NIS2 avec notre <span className="gradient">méthode éprouvée</span>
-          </h2>
-          <p className="section-subtitle-artisan">
-            Notre accompagnement se base sur le référentiel officiel de l'ANSSI
-          </p>
+      {/* SECTION EXPERTISE - NOTRE ÉQUIPE */}
+      <section className="content-section" id="expertise">
+        <div className="content-container">
+          <div className="cyber-encart">
+            <div className="section-badge-center">Notre équipe</div>
 
-          <div className="before-after-grid">
-            <div className="after-card">
-              <h3>✓ 15+ Années d'expérience terrain</h3>
-              <p>
-                Depuis 2009, nous accompagnons les dirigeants dans leur démarche de sécurisation et de conformité Cyber.
-              </p>
+            <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+              Une équipe de <span className="highlight">cyber experts</span> à votre service
+            </h2>
+            <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
+              Consultants ISO 27001 • Méthodologie ANSSI • 15+ années d'expérience
+            </p>
+
+            {/* 2 CARTES PRINCIPALES */}
+            <div className="cyber-stats-grid-encart">
+              <div className="cyber-stat-card-encart">
+                <div className="cyber-stat-number-encart">+15 ans</div>
+                <h3>D'expérience dans la cyber</h3>
+                <p>
+                  Depuis 2009 dans l'accompagnement cyber des PME et ETI. Expertise reconnue sur les secteurs critiques et essentiels.
+                </p>
+              </div>
+
+              <div className="cyber-stat-card-encart">
+                <div className="cyber-stat-number-encart">ISO 27001</div>
+                <h3>Experts certifiés</h3>
+                <p>
+                  Consultants accrédités ISO 27001. Méthodologie validée par l'ANSSI pour garantir votre conformité NIS2.
+                </p>
+              </div>
             </div>
 
-            <div className="after-card">
-              <h3>✓ Une équipe d'experts en cyber défense</h3>
-              <p>
-                Consultants accrédités aux normes internationales ISO 27001. Méthodologie validée et reconnue par l'ANSSI.
+            {/* ACCRÉDITATIONS ET LOGOS */}
+            <div className="accreditations-wrapper">
+              <p className="accreditations-text">
+                Nos accréditations et partenariats garantissent la qualité de notre accompagnement
               </p>
-            </div>
-          </div>
 
-          {/* Logos certifications */}
-          <div className="trust-section">
-            <img src="/logo_anssi.png" alt="ANSSI" className="trust-logo-img" />
-            <img src="/Logo-cybermalveillance.PNG" alt="Cybermalveillance" className="trust-logo-img" />
-            <img src="/logo_expertcyber.jpg" alt="Expert Cyber" className="trust-logo-img" />
-            <img src="/iso_27001_02-1024x704.png" alt="ISO 27001" className="trust-logo-img" />
+              <div className="accreditations-grid">
+                {[
+                  { src: '/logo_anssi.png', alt: 'ANSSI - Agence Nationale de la Sécurité des Systèmes d\'Information' },
+                  { src: '/Logo-cybermalveillance.PNG', alt: 'Cybermalveillance.gouv.fr' },
+                  { src: '/logo_expertcyber.jpg', alt: 'Expert Cyber' },
+                  { src: '/iso_27001_02-1024x704.png', alt: 'ISO 27001 Certified' }
+                ].map((logo, idx) => (
+                  <div key={idx} className="accreditation-item">
+                    <img src={logo.src} alt={logo.alt} className="accreditation-img" />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -808,7 +827,7 @@ export default function Home() {
 
       {/* SECTION VIDÉO YOUTUBE */}
       <section className="content-section video-section" id="video-section">
-        <div className="content-container video-container">
+        <div className="content-container">
           <h2 className="section-title-artisan">
             Comprendre <span className="gradient">NIS2</span> en vidéo
           </h2>
@@ -816,15 +835,13 @@ export default function Home() {
             3 minutes pour tout comprendre de la directive NIS2
           </p>
 
-          <div className="video-wrapper-design">
-            <div className="video-wrapper">
-              <iframe
-                src={EXTERNAL_LINKS.videoYoutube}
-                title="Directive NIS2 expliquée"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
+          <div className="video-wrapper">
+            <iframe
+              src={EXTERNAL_LINKS.videoYoutube}
+              title="Directive NIS2 expliquée"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>
