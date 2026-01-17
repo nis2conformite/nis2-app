@@ -482,13 +482,20 @@
 }
 
 .approach-number {
-  font-size: 48px;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--color-purple) 0%, rgba(168, 85, 247, 0.6) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: var(--space-md);
+  font-size: 36px !important;
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, var(--color-purple) 0%, rgba(168, 85, 247, 0.6) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  margin-bottom: var(--space-sm) !important;
+  /* Reset circle styles from artisan-exact.css */
+  width: auto !important;
+  height: auto !important;
+  min-width: auto !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  display: block !important;
 }
 
 .approach-title {
