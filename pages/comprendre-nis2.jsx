@@ -97,9 +97,6 @@ export default function ComprendreNIS2() {
                     </div>
                     <strong className="title-20-rose">Application</strong>
                   </div>
-                  <p className="text-secondary" style={{marginBottom: 'var(--space-md)'}}>
-                    Transposée en droit français • Contrôles ANSSI dès 2024
-                  </p>
 
                   {/* Mini Timeline intégrée */}
                   <div className="mini-timeline">
