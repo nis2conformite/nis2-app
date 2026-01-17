@@ -87,7 +87,7 @@ export default function ComprendreNIS2() {
                 </div>
 
                 {/* CARTE APPLICATION */}
-                <div className="card-white-rose">
+                <div className="card-white-rose card-application-extended">
                   <div className="card-header-flex">
                     <div className="icon-circle-48 icon-gradient-rose">
                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,9 +97,27 @@ export default function ComprendreNIS2() {
                     </div>
                     <strong className="title-20-rose">Application</strong>
                   </div>
-                  <p className="text-secondary">
-                    Transposée en droit français • Contrôles ANSSI dès 2024 • Sanctions dès 2027
+                  <p className="text-secondary" style={{marginBottom: 'var(--space-md)'}}>
+                    Transposée en droit français • Contrôles ANSSI dès 2024
                   </p>
+
+                  {/* Mini Timeline intégrée */}
+                  <div className="mini-timeline">
+                    <div className="mini-timeline-item">
+                      <span className="mini-timeline-year mini-timeline-gray">2023</span>
+                      <span className="mini-timeline-label">Entrée en vigueur</span>
+                    </div>
+                    <div className="mini-timeline-arrow">→</div>
+                    <div className="mini-timeline-item">
+                      <span className="mini-timeline-year mini-timeline-orange">2024-2026</span>
+                      <span className="mini-timeline-label">Contrôles ANSSI</span>
+                    </div>
+                    <div className="mini-timeline-arrow">→</div>
+                    <div className="mini-timeline-item mini-timeline-highlight">
+                      <span className="mini-timeline-year mini-timeline-rose">2027</span>
+                      <span className="mini-timeline-label">Sanctions</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -305,30 +323,7 @@ export default function ComprendreNIS2() {
                 </div>
               </div>
 
-              {/* TIMELINE */}
-              <div className="card-white-2xl">
-                <h3 className="section-title-center" style={{marginBottom: 'var(--space-xl)'}}>
-                  Calendrier des sanctions
-                </h3>
-                <div className="grid-timeline">
-                  <div className="timeline-item-base timeline-gray">
-                    <strong className="timeline-year timeline-year-gray">2023</strong>
-                    <p className="timeline-text timeline-text-gray">Entrée en vigueur</p>
-                  </div>
-                  <div className="timeline-item-base timeline-orange">
-                    <strong className="timeline-year timeline-year-orange">2024-2026</strong>
-                    <p className="timeline-text timeline-text-orange">Période de transition<br />Contrôles ANSSI</p>
-                  </div>
-                  <div className="timeline-item-base timeline-rose">
-                    <strong className="timeline-year timeline-year-rose">2027</strong>
-                    <p className="timeline-text timeline-text-rose">Premières sanctions<br />Conformité obligatoire</p>
-                  </div>
-                </div>
-              </div>
             </div>
-
-            {/* ESPACEMENT AVANT CARTOUCHE */}
-            <div className="spacer-xl"></div>
 
             {/* CARTOUCHE LE TEMPS PRESSE */}
             <div className="aide-etat-banner" style={{background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 40%, #EC4899 80%, #F472B6 100%)', marginBottom: 0}}>

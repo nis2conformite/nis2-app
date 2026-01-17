@@ -992,6 +992,105 @@
   border: 2px solid #FCE7F3;
 }
 
+/* Carte Application étendue avec timeline */
+.card-application-extended {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mini Timeline intégrée */
+.mini-timeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  background: linear-gradient(135deg, #FAFAFA 0%, #F5F5F5 100%);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-sm);
+}
+
+.mini-timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.mini-timeline-year {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.mini-timeline-gray {
+  background: #E5E7EB;
+  color: #6B7280;
+}
+
+.mini-timeline-orange {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.mini-timeline-rose {
+  background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+  color: #DB2777;
+}
+
+.mini-timeline-label {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  text-align: center;
+  font-weight: 500;
+}
+
+.mini-timeline-arrow {
+  color: #D1D5DB;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.mini-timeline-highlight {
+  position: relative;
+}
+
+.mini-timeline-highlight::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--radius-md);
+  border: 2px solid rgba(219, 39, 119, 0.3);
+  pointer-events: none;
+}
+
+/* Responsive mini timeline */
+@media (max-width: 480px) {
+  .mini-timeline {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .mini-timeline-item {
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .mini-timeline-arrow {
+    display: none;
+  }
+
+  .mini-timeline-year {
+    min-width: 80px;
+    text-align: center;
+  }
+}
+
 .card-white-xl {
   background: white;
   border-radius: var(--radius-xl);
