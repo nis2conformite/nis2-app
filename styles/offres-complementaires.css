@@ -529,12 +529,237 @@
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CLASSES UTILITAIRES (migration inline styles)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Structure de page */
+.page-wrapper { padding-top: 66px; }
+.hero-compact { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
+
+/* Sections */
+.section-standard { padding: var(--space-xl) var(--space-md); background: var(--color-bg); }
+.section-purple-gradient { padding: var(--space-xl) var(--space-md); background: linear-gradient(180deg, #F3E8FF 0%, #FFF 100%); }
+.section-cta-gradient { padding: var(--space-xl) var(--space-md); background: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%); text-align: center; }
+
+/* Containers */
+.container-lg { max-width: 1200px; margin: 0 auto; }
+.container-md { max-width: 800px; margin: 0 auto; }
+
+/* Titres de section */
+.section-header-center { text-align: center; margin-bottom: var(--space-xl); }
+.section-title-lg { font-size: 36px; font-weight: 700; color: var(--color-text-primary); margin-bottom: var(--space-md); }
+.section-title-white { font-size: 36px; font-weight: 700; color: white; margin-bottom: var(--space-md); }
+.section-subtitle { font-size: 18px; color: var(--color-text-secondary); }
+.section-subtitle-white { font-size: 18px; color: rgba(255,255,255,0.9); margin-bottom: var(--space-xl); }
+
+/* Grilles */
+.grid-offers { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-xl); }
+.services-grid-4cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
+
+/* Cartes d'offres */
+.card-offer {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid #E5E7EB;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-offer-featured {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.15);
+  border: 2px solid var(--color-purple);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Titres cartes offres */
+.offer-title { font-size: 24px; font-weight: 700; color: var(--color-text-primary); margin-bottom: var(--space-sm); }
+.offer-title-mt { font-size: 24px; font-weight: 700; color: var(--color-text-primary); margin-bottom: var(--space-sm); margin-top: var(--space-sm); }
+
+/* Prix */
+.offer-price { font-size: 42px; font-weight: 700; color: var(--color-purple); margin-bottom: var(--space-xs); }
+.offer-price-suffix { font-size: 18px; font-weight: 400; color: var(--color-text-tertiary); }
+
+/* Descriptions offres */
+.offer-desc { font-size: 15px; color: var(--color-text-secondary); margin-bottom: var(--space-lg); padding-bottom: var(--space-lg); border-bottom: 1px solid #E5E7EB; }
+
+/* Badges */
+.badge-popular {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 20px;
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%);
+  color: white;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.badge-service {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 16px;
+  background: #EC4899;
+  color: white;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Boutons */
+.btn-margin-auto { margin-top: auto; }
+.btn-link-center { text-decoration: none; text-align: center; }
+.btn-link-sm { text-decoration: none; text-align: center; margin-top: var(--space-md); padding: 10px 16px; font-size: 14px; }
+
+/* Bannière aides */
+.aide-banner-margins { margin-top: var(--space-xl); margin-bottom: var(--space-xl); }
+
+/* Tableau comparatif */
+.card-table {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.table-title { font-size: 28px; font-weight: 700; color: var(--color-text-primary); text-align: center; margin-bottom: var(--space-xl); }
+.table-wrapper { overflow-x: auto; }
+.table-compare { width: 100%; border-collapse: collapse; }
+
+/* Entêtes tableau */
+.th-feature { background: #F3F4F6; color: var(--color-text-primary); padding: var(--space-lg); text-align: left; font-weight: 700; font-size: 16px; border-bottom: 3px solid #E5E7EB; }
+.th-offer-purple { background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%); color: var(--color-purple); padding: var(--space-lg); text-align: center; font-weight: 700; font-size: 16px; border-bottom: 3px solid var(--color-purple); border-left: 2px solid #E5E7EB; }
+.th-offer-pink { background: linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%); color: var(--color-pink); padding: var(--space-lg); text-align: center; font-weight: 700; font-size: 16px; border-bottom: 3px solid var(--color-pink); border-left: 2px solid #E5E7EB; }
+.th-price { font-size: 18px; font-weight: 700; color: var(--color-text-primary); }
+
+/* Lignes tableau */
+.tr-even { border-bottom: 1px solid #E5E7EB; background: #FAFAFA; }
+.tr-odd { border-bottom: 1px solid #E5E7EB; background: white; }
+.td-feature { padding: var(--space-md); color: var(--color-text-primary); font-weight: 700; font-size: 15px; }
+.td-value { padding: var(--space-md); text-align: center; font-size: 18px; border-left: 2px solid #E5E7EB; }
+
+/* Icônes check/cross tableau */
+.check-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.cross-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #F3F4F6;
+  color: #9CA3AF;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.td-text { color: var(--color-text-primary); font-weight: 600; font-size: 14px; }
+
+/* Cartes services complémentaires */
+.card-service {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  position: relative;
+  border: 1px solid #E5E7EB;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-service-featured {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  position: relative;
+  border: 2px solid #EC4899;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Service header */
+.service-header { display: flex; gap: var(--space-sm); align-items: flex-start; margin-bottom: var(--space-md); min-height: 70px; }
+.service-header-mt { display: flex; gap: var(--space-sm); align-items: flex-start; margin-bottom: var(--space-md); margin-top: var(--space-sm); min-height: 70px; }
+
+/* Service price box */
+.service-price-box {
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%);
+  color: white;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px rgba(168, 85, 247, 0.3);
+  flex-shrink: 0;
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.service-price-value { font-size: 22px; font-weight: 700; line-height: 1; text-align: center; }
+.service-price-period { font-size: 10px; font-weight: 500; opacity: 0.9; text-align: center; margin-top: 3px; min-height: 12px; }
+
+/* Service title */
+.service-title { font-size: 16px; font-weight: 700; color: var(--color-text-primary); margin: 0; line-height: 1.3; padding-top: 4px; }
+
+/* Service features list */
+.service-features-list { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
+.service-feature-item { padding: 6px 0; color: var(--color-text-secondary); font-size: 13px; display: flex; align-items: flex-start; gap: 6px; line-height: 1.4; }
+.service-feature-item-border { padding: 6px 0; border-bottom: 1px solid #E5E7EB; color: var(--color-text-secondary); font-size: 13px; display: flex; align-items: flex-start; gap: 6px; line-height: 1.4; }
+.check-sm { color: var(--color-purple); font-size: 14px; flex-shrink: 0; }
+
+/* CTA Button */
+.btn-cta-white-lg {
+  display: inline-block;
+  padding: 16px 40px;
+  background: white;
+  color: var(--color-purple);
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+.btn-cta-white-lg:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    RESPONSIVE
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 @media (max-width: 1024px) {
   .offers-simplified,
-  .services-grid {
+  .services-grid,
+  .services-grid-4cols {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -563,7 +788,8 @@
   }
 
   .offers-simplified,
-  .services-grid {
+  .services-grid,
+  .services-grid-4cols {
     grid-template-columns: 1fr;
   }
 

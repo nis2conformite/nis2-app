@@ -58,9 +58,9 @@ export default function OffresServices() {
         </div>
       </header>
 
-      <div style={{paddingTop: '66px'}}>
+      <div className="page-wrapper">
         {/* HERO */}
-        <section className="hero-artisan-exact" style={{paddingTop: 'var(--space-xl)', paddingBottom: 'var(--space-xl)'}}>
+        <section className="hero-artisan-exact hero-compact">
           <div className="hero-artisan-container">
             <div className="hero-badge-artisan">
               Solutions complètes • Prix transparents • Accompagnement expert
@@ -79,72 +79,72 @@ export default function OffresServices() {
         </section>
 
         {/* OFFRES PRINCIPALES - FORMAT SIMPLIFIÉ */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'var(--color-bg)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <div style={{textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
-              <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-md)'}}>
+        <section className="section-standard">
+          <div className="container-lg">
+            <div className="section-header-center">
+              <h2 className="section-title-lg">
                 Nos Audits de Conformité NIS2
               </h2>
-              <p style={{fontSize: '18px', color: 'var(--color-text-secondary)'}}>
+              <p className="section-subtitle">
                 3 formules d'accompagnement adaptées à votre maturité cyber
               </p>
             </div>
 
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-lg)', marginBottom: 'var(--space-xl)'}}>
+            <div className="grid-offers">
               {/* Offre Essentielle */}
-              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column'}}>
-                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+              <div className="card-offer">
+                <h3 className="offer-title">
                   Essentielle
                 </h3>
-                <div style={{fontSize: '42px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-xs)'}}>
-                  3 490€ <span style={{fontSize: '18px', fontWeight: '400', color: 'var(--color-text-tertiary)'}}>HT</span>
+                <div className="offer-price">
+                  3 490€ <span className="offer-price-suffix">HT</span>
                 </div>
-                <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-lg)', paddingBottom: 'var(--space-lg)', borderBottom: '1px solid #E5E7EB'}}>
+                <p className="offer-desc">
                   Auto-évaluation guidée • Résultat immédiat • Score de conformité
                 </p>
-                <button onClick={handleStripeCheckout} className="btn-artisan btn-artisan-secondary" style={{marginTop: 'auto'}}>
+                <button onClick={handleStripeCheckout} className="btn-artisan btn-artisan-secondary btn-margin-auto">
                   Démarrer l'audit
                 </button>
               </div>
 
               {/* Offre Sérénité (Featured) */}
-              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 8px 24px rgba(168, 85, 247, 0.15)', border: '2px solid var(--color-purple)', position: 'relative', display: 'flex', flexDirection: 'column'}}>
-                <div style={{position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)', padding: '6px 20px', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', color: 'white', borderRadius: '9999px', fontSize: '14px', fontWeight: '700'}}>
+              <div className="card-offer-featured">
+                <div className="badge-popular">
                   ⭐ LE PLUS POPULAIRE
                 </div>
-                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)', marginTop: 'var(--space-sm)'}}>
+                <h3 className="offer-title-mt">
                   Sérénité
                 </h3>
-                <div style={{fontSize: '42px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-xs)'}}>
-                  7 990€ <span style={{fontSize: '18px', fontWeight: '400', color: 'var(--color-text-tertiary)'}}>HT</span>
+                <div className="offer-price">
+                  7 990€ <span className="offer-price-suffix">HT</span>
                 </div>
-                <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-lg)', paddingBottom: 'var(--space-lg)', borderBottom: '1px solid #E5E7EB'}}>
+                <p className="offer-desc">
                   Audit complet + Expert • Plan de remédiation • Livraison 48H
                 </p>
-                <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary" style={{marginTop: 'auto', textDecoration: 'none', textAlign: 'center'}}>
+                <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary btn-margin-auto btn-link-center">
                   Prendre RDV
                 </a>
               </div>
 
               {/* Offre Expertise */}
-              <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column'}}>
-                <h3 style={{fontSize: '24px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-sm)'}}>
+              <div className="card-offer">
+                <h3 className="offer-title">
                   Expertise
                 </h3>
-                <div style={{fontSize: '42px', fontWeight: '700', color: 'var(--color-purple)', marginBottom: 'var(--space-xs)'}}>
-                  14 900€ <span style={{fontSize: '18px', fontWeight: '400', color: 'var(--color-text-tertiary)'}}>HT</span>
+                <div className="offer-price">
+                  14 900€ <span className="offer-price-suffix">HT</span>
                 </div>
-                <p style={{fontSize: '15px', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-lg)', paddingBottom: 'var(--space-lg)', borderBottom: '1px solid #E5E7EB'}}>
+                <p className="offer-desc">
                   Accompagnement complet • Roadmap personnalisée • 12 mois de suivi
                 </p>
-                <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary" style={{marginTop: 'auto', textDecoration: 'none', textAlign: 'center'}}>
+                <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary btn-margin-auto btn-link-center">
                   Prendre RDV
                 </a>
               </div>
             </div>
 
             {/* BANNIÈRE AIDES */}
-            <div className="aide-etat-banner" style={{marginTop: 'var(--space-xl)', marginBottom: 'var(--space-xl)'}}>
+            <div className="aide-etat-banner aide-banner-margins">
               <div className="aide-etat-content">
                 <div className="aide-etat-text">
                   <div className="aide-etat-title">
@@ -164,18 +164,18 @@ export default function OffresServices() {
             </div>
 
             {/* TABLEAU COMPARATIF */}
-            <div style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-xl)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)'}}>
-              <h3 style={{fontSize: '28px', fontWeight: '700', color: 'var(--color-text-primary)', textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
+            <div className="card-table">
+              <h3 className="table-title">
                 Comparatif détaillé des offres
               </h3>
-              <div style={{overflowX: 'auto'}}>
-                <table style={{width: '100%', borderCollapse: 'collapse'}}>
+              <div className="table-wrapper">
+                <table className="table-compare">
                   <thead>
                     <tr>
-                      <th style={{background: '#F3F4F6', color: 'var(--color-text-primary)', padding: 'var(--space-lg)', textAlign: 'left', fontWeight: '700', fontSize: '16px', borderBottom: '3px solid #E5E7EB'}}>Fonctionnalités</th>
-                      <th style={{background: 'linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%)', color: 'var(--color-purple)', padding: 'var(--space-lg)', textAlign: 'center', fontWeight: '700', fontSize: '16px', borderBottom: '3px solid var(--color-purple)', borderLeft: '2px solid #E5E7EB'}}>Essentielle<br/><span style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)'}}>3 490€</span></th>
-                      <th style={{background: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%)', color: 'var(--color-pink)', padding: 'var(--space-lg)', textAlign: 'center', fontWeight: '700', fontSize: '16px', borderBottom: '3px solid var(--color-pink)', borderLeft: '2px solid #E5E7EB'}}>Sérénité<br/><span style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)'}}>7 990€</span></th>
-                      <th style={{background: 'linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%)', color: 'var(--color-purple)', padding: 'var(--space-lg)', textAlign: 'center', fontWeight: '700', fontSize: '16px', borderBottom: '3px solid var(--color-purple)', borderLeft: '2px solid #E5E7EB'}}>Expertise<br/><span style={{fontSize: '18px', fontWeight: '700', color: 'var(--color-text-primary)'}}>14 900€</span></th>
+                      <th className="th-feature">Fonctionnalités</th>
+                      <th className="th-offer-purple">Essentielle<br/><span className="th-price">3 490€</span></th>
+                      <th className="th-offer-pink">Sérénité<br/><span className="th-price">7 990€</span></th>
+                      <th className="th-offer-purple">Expertise<br/><span className="th-price">14 900€</span></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -193,28 +193,28 @@ export default function OffresServices() {
                       { name: 'Accès plateforme', essential: '—', serenity: '6 mois', expertise: '12 mois' },
                       { name: 'Délai de livraison', essential: 'Immédiat', serenity: '48H', expertise: '1 mois' }
                     ].map((row, idx) => (
-                      <tr key={idx} style={{borderBottom: '1px solid #E5E7EB', background: idx % 2 === 0 ? '#FAFAFA' : 'white'}}>
-                        <td style={{padding: 'var(--space-md)', color: 'var(--color-text-primary)', fontWeight: '700', fontSize: '15px'}}>{row.name}</td>
-                        <td style={{padding: 'var(--space-md)', textAlign: 'center', fontSize: '18px', borderLeft: '2px solid #E5E7EB'}}>
+                      <tr key={idx} className={idx % 2 === 0 ? 'tr-even' : 'tr-odd'}>
+                        <td className="td-feature">{row.name}</td>
+                        <td className="td-value">
                           {typeof row.essential === 'boolean' ? (
                             row.essential ?
-                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
-                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#F3F4F6', color: '#9CA3AF', fontWeight: '700', fontSize: '18px'}}>—</span>
-                          ) : <span style={{color: 'var(--color-text-primary)', fontWeight: '600', fontSize: '14px'}}>{row.essential}</span>}
+                              <span className="check-circle">✓</span> :
+                              <span className="cross-circle">—</span>
+                          ) : <span className="td-text">{row.essential}</span>}
                         </td>
-                        <td style={{padding: 'var(--space-md)', textAlign: 'center', fontSize: '18px', borderLeft: '2px solid #E5E7EB'}}>
+                        <td className="td-value">
                           {typeof row.serenity === 'boolean' ? (
                             row.serenity ?
-                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
-                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#F3F4F6', color: '#9CA3AF', fontWeight: '700', fontSize: '18px'}}>—</span>
-                          ) : <span style={{color: 'var(--color-text-primary)', fontWeight: '600', fontSize: '14px'}}>{row.serenity}</span>}
+                              <span className="check-circle">✓</span> :
+                              <span className="cross-circle">—</span>
+                          ) : <span className="td-text">{row.serenity}</span>}
                         </td>
-                        <td style={{padding: 'var(--space-md)', textAlign: 'center', fontSize: '18px', borderLeft: '2px solid #E5E7EB'}}>
+                        <td className="td-value">
                           {typeof row.expertise === 'boolean' ? (
                             row.expertise ?
-                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', color: 'white', fontWeight: '700', fontSize: '16px'}}>✓</span> :
-                              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#F3F4F6', color: '#9CA3AF', fontWeight: '700', fontSize: '18px'}}>—</span>
-                          ) : <span style={{color: 'var(--color-text-primary)', fontWeight: '600', fontSize: '14px'}}>{row.expertise}</span>}
+                              <span className="check-circle">✓</span> :
+                              <span className="cross-circle">—</span>
+                          ) : <span className="td-text">{row.expertise}</span>}
                         </td>
                       </tr>
                     ))}
@@ -226,13 +226,13 @@ export default function OffresServices() {
         </section>
 
         {/* SERVICES COMPLÉMENTAIRES */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)'}}>
-          <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-            <div style={{textAlign: 'center', marginBottom: 'var(--space-xl)'}}>
-              <h2 style={{fontSize: '36px', fontWeight: '700', color: 'var(--color-text-primary)', marginBottom: 'var(--space-md)'}}>
+        <section className="section-purple-gradient">
+          <div className="container-lg">
+            <div className="section-header-center">
+              <h2 className="section-title-lg">
                 Services Complémentaires
               </h2>
-              <p style={{fontSize: '18px', color: 'var(--color-text-secondary)'}}>
+              <p className="section-subtitle">
                 Renforcez votre conformité avec nos services additionnels
               </p>
             </div>
@@ -265,37 +265,37 @@ export default function OffresServices() {
                   features: ['Déclaration incident', 'Conseil gestion de crise', 'Veille législative', 'Ligne expert dédiée']
                 }
               ].map((service, idx) => (
-                <div key={idx} className="service-card-comp value-card-hover" style={{background: 'white', borderRadius: 'var(--radius-xl)', padding: 'var(--space-lg)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', position: 'relative', border: service.badge ? '2px solid #EC4899' : '1px solid #E5E7EB', transition: 'all 0.3s ease', display: 'flex', flexDirection: 'column'}}>
+                <div key={idx} className={`service-card-comp value-card-hover ${service.badge ? 'card-service-featured' : 'card-service'}`}>
                   {service.badge && (
-                    <div style={{position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)', padding: '6px 16px', background: '#EC4899', color: 'white', borderRadius: '9999px', fontSize: '11px', fontWeight: '700', whiteSpace: 'nowrap'}}>
+                    <div className="badge-service">
                       {service.badge}
                     </div>
                   )}
 
                   {/* Zone Prix + Titre - hauteur fixe */}
-                  <div style={{display: 'flex', gap: 'var(--space-sm)', alignItems: 'flex-start', marginBottom: 'var(--space-md)', marginTop: service.badge ? 'var(--space-sm)' : 0, minHeight: '70px'}}>
-                    <div style={{background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', color: 'white', padding: '10px 14px', borderRadius: 'var(--radius-md)', boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)', flexShrink: 0, minHeight: '52px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-                      <div style={{fontSize: '22px', fontWeight: '700', lineHeight: '1', textAlign: 'center'}}>
+                  <div className={service.badge ? 'service-header-mt' : 'service-header'}>
+                    <div className="service-price-box">
+                      <div className="service-price-value">
                         {service.price}
                       </div>
-                      <div style={{fontSize: '10px', fontWeight: '500', opacity: 0.9, textAlign: 'center', marginTop: '3px', minHeight: '12px'}}>
+                      <div className="service-price-period">
                         {service.period || '\u00A0'}
                       </div>
                     </div>
-                    <h3 style={{fontSize: '16px', fontWeight: '700', color: 'var(--color-text-primary)', margin: 0, lineHeight: '1.3', paddingTop: '4px'}}>
+                    <h3 className="service-title">
                       {service.title}
                     </h3>
                   </div>
 
-                  <ul style={{listStyle: 'none', padding: 0, margin: 0, flexGrow: 1}}>
+                  <ul className="service-features-list">
                     {service.features.map((feature, fidx) => (
-                      <li key={fidx} style={{padding: '6px 0', borderBottom: fidx < service.features.length - 1 ? '1px solid #E5E7EB' : 'none', color: 'var(--color-text-secondary)', fontSize: '13px', display: 'flex', alignItems: 'flex-start', gap: '6px', lineHeight: '1.4'}}>
-                        <span style={{color: 'var(--color-purple)', fontSize: '14px', flexShrink: 0}}>✓</span>
+                      <li key={fidx} className={fidx < service.features.length - 1 ? 'service-feature-item-border' : 'service-feature-item'}>
+                        <span className="check-sm">✓</span>
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary" style={{textDecoration: 'none', textAlign: 'center', marginTop: 'var(--space-md)', padding: '10px 16px', fontSize: '14px'}}>
+                  <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary btn-link-sm">
                     En savoir plus
                   </a>
                 </div>
@@ -305,30 +305,19 @@ export default function OffresServices() {
         </section>
 
         {/* CTA FINAL */}
-        <section style={{padding: 'var(--space-xl) var(--space-md)', background: 'linear-gradient(135deg, #A855F7 0%, #9333EA 50%, #EC4899 100%)', textAlign: 'center'}}>
-          <div style={{maxWidth: '800px', margin: '0 auto'}}>
-            <h2 style={{fontSize: '36px', fontWeight: '700', color: 'white', marginBottom: 'var(--space-md)'}}>
+        <section className="section-cta-gradient">
+          <div className="container-md">
+            <h2 className="section-title-white">
               Prêt à sécuriser votre conformité NIS2 ?
             </h2>
-            <p style={{fontSize: '18px', color: 'rgba(255,255,255,0.9)', marginBottom: 'var(--space-xl)'}}>
+            <p className="section-subtitle-white">
               Échangez gratuitement avec un expert certifié • Réponse en 24h
             </p>
             <a
               href={CONTACT_INFO.calendly}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                display: 'inline-block',
-                padding: '16px 40px',
-                background: 'white',
-                color: 'var(--color-purple)',
-                fontSize: '18px',
-                fontWeight: '700',
-                borderRadius: '9999px',
-                textDecoration: 'none',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                transition: 'all 0.3s ease'
-              }}
+              className="btn-cta-white-lg"
             >
               Réserver un échange gratuit
             </a>
