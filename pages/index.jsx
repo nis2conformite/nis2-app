@@ -109,32 +109,32 @@ export default function Home() {
         </div>
       </header>
 
-      {/* HERO SECTION - NOUVEAU DESIGN AVEC FORMULAIRE QUALIFICATION */}
+      {/* HERO SECTION - NOUVEAU DESIGN AVEC VIDÉO INTÉGRÉE */}
       <section className="hero-artisan-exact">
         <div className="hero-artisan-container">
-          {/* Bandeau urgence */}
-          <div className="hero-badge-artisan">
-            ⚠️ NIS2 Conformité obligatoire • Premières sanctions en 2027 • Contrôles ANSSI dès octobre 2025
+
+          {/* Titres centrés */}
+          <div className="hero-header-centered">
+            <h1 className="hero-title-artisan">
+              <span className="text-danger">NIS2 : Jusqu'à 10M€ d'amende en 2027</span>
+            </h1>
+            <h2 className="hero-subtitle-large">
+              Évaluez votre conformité en 15 minutes
+            </h2>
           </div>
 
-          {/* Logo central */}
-          <div className="hero-logo-wrapper">
-            <img src="/logo.png" alt="Cyber Solferino" className="hero-logo" />
+          {/* Vidéo centrée */}
+          <div className="hero-video-wrapper">
+            <div className="hero-video-container">
+              <iframe
+                src={EXTERNAL_LINKS.videoYoutube}
+                title="Comprenez NIS2 en 60 secondes"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <p className="hero-video-caption">Comprenez NIS2 en 60 secondes</p>
           </div>
-
-          <p className="hero-baseline-small">
-            La plateforme d'audit et de conformité cyber<br />
-            pensée pour les PME et ETI européennes
-          </p>
-
-          <h1 className="hero-title-artisan">
-            <span className="text-danger">NIS2 : Jusqu'à 10M€ d'amende</span><br />
-            <span>Évaluez votre conformité en 15 minutes</span>
-          </h1>
-
-          <p className="hero-subtitle-artisan">
-            Audit structuré • Référentiel ANSSI • Rapport détaillé • Recommandations priorisées
-          </p>
 
           {/* FORMULAIRE DE QUALIFICATION INLINE */}
           <div className="qualification-form">
@@ -191,33 +191,13 @@ export default function Home() {
               </select>
 
               <button type="submit" className="btn-hero-primary qualification-btn">
-                Vérifier mon éligibilité NIS2 →
+                Vérifier mon éligibilité →
               </button>
             </form>
 
             <p className="qualification-disclaimer">
               Résultat immédiat • Gratuit • Sans engagement
             </p>
-          </div>
-
-          {/* Stats dans le Hero */}
-          <div className="hero-stats-grid">
-            <div className="hero-stat">
-              <div className="hero-stat-value violet">92%</div>
-              <div className="hero-stat-label">PME et ETI non prêtes</div>
-            </div>
-            <div className="hero-stat">
-              <div className="hero-stat-value danger">10M€</div>
-              <div className="hero-stat-label">amende max ou 2% CA</div>
-            </div>
-            <div className="hero-stat">
-              <div className="hero-stat-value success">70%</div>
-              <div className="hero-stat-label">d'aides d'État possibles</div>
-            </div>
-            <div className="hero-stat">
-              <div className="hero-stat-value violet">65</div>
-              <div className="hero-stat-label">questions d'audit</div>
-            </div>
           </div>
 
           {/* CTAs */}
@@ -1109,27 +1089,6 @@ export default function Home() {
                 <span className="client-name">DataServices<br/>Pro</span>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION VIDÉO YOUTUBE */}
-      <section className="content-section video-section" id="video-section">
-        <div className="content-container">
-          <h2 className="section-title-artisan">
-            Comprendre <span className="gradient">NIS2</span> en vidéo
-          </h2>
-          <p className="section-subtitle-artisan">
-            3 minutes pour tout comprendre de la directive NIS2
-          </p>
-
-          <div className="video-wrapper">
-            <iframe
-              src={EXTERNAL_LINKS.videoYoutube}
-              title="Directive NIS2 expliquée"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
           </div>
         </div>
       </section>
