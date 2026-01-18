@@ -338,15 +338,17 @@ export default function Home() {
 
           <div className="approach-steps-modern">
             {EXPERTISE_TIMELINE.map((item, index) => (
-              <div key={index} className={`approach-step-row ${index % 2 === 1 ? 'reverse' : ''}`}>
+              <div key={index} className={`approach-step-row ${index % 2 === 0 ? 'reverse' : ''}`}>
                 <div className="approach-step-image">
                   <div className="approach-image-wrapper">
                     <img src={item.image} alt={item.title} loading="lazy" />
-                    <div className="approach-step-badge">{item.number}</div>
                   </div>
                 </div>
                 <div className="approach-step-content">
-                  <h3 className="approach-step-title">{item.title}</h3>
+                  <div className="approach-step-header">
+                    <span className="approach-step-number">{item.number}</span>
+                    <h3 className="approach-step-title">{item.title}</h3>
+                  </div>
                   <p className="approach-step-description">{item.description}</p>
                 </div>
               </div>
