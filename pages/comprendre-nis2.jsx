@@ -41,17 +41,17 @@ export default function ComprendreNIS2() {
         <section className="hero-artisan-exact hero-compact">
           <div className="hero-artisan-container">
             <div className="hero-badge-artisan">
-              Directive Européenne • Conformité obligatoire 2027
+              Guide complet NIS2 pour dirigeants de PME et ETI
             </div>
 
             <h1 className="hero-title-artisan">
-              Comprendre <span className="highlight">NIS2</span><br />
-              en 5 minutes
+              Tout comprendre sur la<br />
+              <span className="highlight">directive NIS2</span>
             </h1>
 
             <p className="hero-subtitle-artisan">
-              La nouvelle réglementation européenne qui renforce la cybersécurité<br />
-              de milliers d'entreprises françaises
+              La réglementation européenne qui impose de nouvelles obligations<br />
+              de cybersécurité à des milliers d'entreprises françaises dès 2025
             </p>
 
             <div className="hero-buttons-row">
@@ -65,8 +65,39 @@ export default function ComprendreNIS2() {
           </div>
         </section>
 
+        {/* SOMMAIRE INTERACTIF */}
+        <section className="section-sommaire">
+          <div className="container-lg">
+            <div className="sommaire-card">
+              <h3 className="sommaire-title">Dans ce guide</h3>
+              <div className="sommaire-grid">
+                <a href="#quest-ce-que-nis2" className="sommaire-item">
+                  <span className="sommaire-num">01</span>
+                  <span className="sommaire-text">C'est quoi NIS2 ?</span>
+                </a>
+                <a href="#suis-je-concerne" className="sommaire-item">
+                  <span className="sommaire-num">02</span>
+                  <span className="sommaire-text">Suis-je concerné ?</span>
+                </a>
+                <a href="#obligations" className="sommaire-item">
+                  <span className="sommaire-num">03</span>
+                  <span className="sommaire-text">Mes obligations</span>
+                </a>
+                <a href="#mise-en-conformite" className="sommaire-item">
+                  <span className="sommaire-num">04</span>
+                  <span className="sommaire-text">Comment se conformer</span>
+                </a>
+                <a href="#ressources" className="sommaire-item">
+                  <span className="sommaire-num">05</span>
+                  <span className="sommaire-text">Ressources officielles</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* C'EST QUOI NIS2 - SECTION FUSIONNÉE */}
-        <section className="section-standard">
+        <section className="section-standard" id="quest-ce-que-nis2">
           <div className="container-lg">
             <div className="before-after-wrapper-design">
               {/* GRILLE : 2 CARTES SUR UNE LIGNE */}
@@ -209,7 +240,7 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* SUIS-JE CONCERNÉ */}
-        <section className="section-standard">
+        <section className="section-standard" id="suis-je-concerne">
           <div className="container-lg">
             <h2 className="section-title-center">
               Suis-je concerné par NIS2 ?
@@ -330,7 +361,7 @@ export default function ComprendreNIS2() {
 
 
         {/* LES OBLIGATIONS */}
-        <section className="section-standard">
+        <section className="section-standard" id="obligations">
           <div className="container-lg">
             <h2 className="section-title-center">
               Quelles sont mes obligations ?
@@ -392,7 +423,7 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* COMMENT SE METTRE EN CONFORMITÉ */}
-        <section className="section-violet-gradient">
+        <section className="section-violet-gradient" id="mise-en-conformite">
           <div className="container-lg">
             <h2 className="section-title-center" style={{marginBottom: 'var(--space-2xl)'}}>
               Comment se mettre en conformité ?
@@ -431,7 +462,7 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* RESSOURCES OFFICIELLES */}
-        <section className="section-standard">
+        <section className="section-standard" id="ressources">
           <div className="container-lg">
             <h2 className="section-title-center">
               Ressources officielles
@@ -539,11 +570,11 @@ export default function ComprendreNIS2() {
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:nis2conformite@gmail.com">
-                    nis2conformite@gmail.com
+                  <a href="mailto:contact@cyber-solferino.com">
+                    contact@cyber-solferino.com
                   </a>
                 </li>
-                <li><a href="tel:+33000000000">+33 (0)0 00 00 00 00</a></li>
+                <li><a href="tel:+33649432092">06 49 43 20 92</a></li>
               </ul>
             </div>
           </div>

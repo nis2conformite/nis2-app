@@ -7,7 +7,7 @@ export default function QuiSommesNous() {
     <>
       <Head>
         <title>Qui sommes-nous ? | Experts Conformité NIS2</title>
-        <meta name="description" content="Depuis 2009, nous accompagnons les PME et ETI dans leur conformité cyber. Équipe certifiée ISO 27001, méthodologie ANSSI, 150+ entreprises accompagnées." />
+        <meta name="description" content="Depuis 2009, nous accompagnons les PME et ETI dans leur conformité cyber. Équipe certifiée ISO 27001, méthodologie ANSSI, 120+ entreprises accompagnées." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
@@ -41,34 +41,46 @@ export default function QuiSommesNous() {
         <section className="hero-artisan-exact hero-compact">
           <div className="hero-artisan-container">
             <div className="hero-badge-artisan">
-              Experts conformité cyber • Depuis 2009
-            </div>
-
-            {/* Logo central sous le badge */}
-            <div className="hero-logo-wrapper">
-              <img src="/logo.png" alt="Cyber Solferino" className="hero-logo" />
+              Experts conformité NIS2 • Certifiés ISO 27001 • Depuis 2009
             </div>
 
             <h1 className="hero-title-artisan">
-              Votre partenaire de confiance<br />
-              pour la <span className="highlight">conformité NIS2</span>
+              Une équipe d'experts<br />
+              <span className="highlight">à votre service</span>
             </h1>
 
             <p className="hero-subtitle-artisan">
-              Depuis 2009, nous transformons la conformité cyber en levier de performance<br />
-              pour les PME et ETI européennes
+              Nous accompagnons les PME et ETI dans leur mise en conformité NIS2<br />
+              avec pragmatisme, expertise et résultats mesurables
             </p>
           </div>
         </section>
 
-        {/* NOTRE APPROCHE - 3 BLOCS */}
+        {/* NOTRE MISSION */}
         <section className="section-standard">
           <div className="container-lg">
+            <div className="mission-card">
+              <div className="mission-badge">Notre mission</div>
+              <h2 className="mission-title">
+                Rendre la conformité <span className="highlight">cyber accessible</span> à toutes les PME et ETI
+              </h2>
+              <p className="mission-text">
+                Face à la complexité croissante des réglementations cyber (NIS2, DORA, RGPD), nous avons développé une approche pragmatique
+                et accessible. Notre objectif : permettre à chaque entreprise de se protéger efficacement, sans expertise technique interne,
+                et de transformer cette obligation réglementaire en véritable avantage concurrentiel.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* NOTRE APPROCHE - 3 BLOCS */}
+        <section className="section-standard" style={{paddingTop: 0}}>
+          <div className="container-lg">
             <h2 className="section-title-center">
-              Notre approche
+              Notre approche en 3 piliers
             </h2>
             <p className="section-subtitle-lg">
-              Nous travaillons spécifiquement avec les PME et ETI qui ne disposent pas d'équipe cybersécurité dédiée. Notre outil a été conçu pour être simple, rapide et accessible, permettant à ces entreprises de gérer efficacement leur conformité NIS2 sans complexité technique.
+              Nous travaillons spécifiquement avec les PME et ETI qui ne disposent pas d'équipe cybersécurité dédiée. Notre méthodologie a été conçue pour être simple, rapide et accessible.
             </p>
 
             <div className="grid-auto-fit">
@@ -88,7 +100,7 @@ export default function QuiSommesNous() {
                 {
                   num: '03',
                   title: 'Résultats mesurables',
-                  desc: '150+ entreprises accompagnées, 98% de conformité atteinte, 0 client sanctionné. Notre méthodologie ANSSI a fait ses preuves et vous protège contre les risques financiers et réputationnels.',
+                  desc: '120+ entreprises accompagnées, 98% de conformité atteinte, 0 client sanctionné. Notre méthodologie ANSSI a fait ses preuves et vous protège contre les risques financiers et réputationnels.',
                   color: '#F472B6'
                 }
               ].map((block) => (
@@ -116,17 +128,63 @@ export default function QuiSommesNous() {
         {/* L'ÉQUIPE - SECTION REDESIGN */}
         <section className="content-section">
           <div className="content-container">
-            <div className="cyber-encart">
-              <div className="section-badge-center">Notre équipe</div>
+            <div className="section-badge-center">Notre équipe</div>
 
-              <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
-                Une équipe de <span className="highlight">cyber experts</span> à votre service
-              </h2>
-              <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
-                Consultants ISO 27001 • Méthodologie ANSSI • 15+ années d'expérience
-              </p>
+            <h2 className="section-title-artisan" style={{textAlign: 'center'}}>
+              Une équipe de <span className="highlight">cyber experts</span> à votre service
+            </h2>
+            <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
+              Consultants certifiés ISO 27001 • Méthodologie ANSSI • 15+ années d'expérience
+            </p>
 
-              {/* 2 CARTES PRINCIPALES */}
+            {/* PROFILS ÉQUIPE */}
+            <div className="team-grid">
+              {[
+                {
+                  name: 'Jean Dupont',
+                  role: 'Directeur Conformité',
+                  photo: '/assets/images/team/jean-dupont.jpg',
+                  bio: 'Expert en conformité réglementaire avec plus de 15 ans d\'expérience dans l\'accompagnement des PME et ETI. Certifié ISO 27001 Lead Auditor.',
+                  certifications: ['ISO 27001 Lead Auditor', 'CISSP']
+                },
+                {
+                  name: 'Marie Martin',
+                  role: 'Consultante Senior',
+                  photo: '/assets/images/team/marie-martin.jpg',
+                  bio: 'Spécialiste de l\'analyse de risques et de la mise en conformité NIS2. Accompagne les entreprises des secteurs santé et industrie depuis 10 ans.',
+                  certifications: ['ISO 27005 Risk Manager', 'CISM']
+                },
+                {
+                  name: 'Thomas Bernard',
+                  role: 'Expert Cybersécurité',
+                  photo: '/assets/images/team/thomas-bernard.jpg',
+                  bio: 'Expert technique en sécurité des systèmes d\'information. Spécialisé dans les audits techniques et les plans de remédiation.',
+                  certifications: ['CEH', 'OSCP']
+                }
+              ].map((member, idx) => (
+                <div key={idx} className="team-member-card">
+                  <div className="team-member-photo">
+                    <img src={member.photo} alt={member.name} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }} />
+                    <div className="team-member-placeholder" style={{display: 'none'}}>
+                      {member.name.split(' ').map(n => n[0]).join('')}
+                    </div>
+                  </div>
+                  <div className="team-member-info">
+                    <h3 className="team-member-name">{member.name}</h3>
+                    <p className="team-member-role">{member.role}</p>
+                    <p className="team-member-bio">{member.bio}</p>
+                    <div className="team-member-certifs">
+                      {member.certifications.map((cert, cidx) => (
+                        <span key={cidx} className="certif-badge">{cert}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* STATS ÉQUIPE */}
+            <div className="cyber-encart" style={{marginTop: 'var(--space-2xl)'}}>
               <div className="cyber-stats-grid-encart">
                 <div className="cyber-stat-card-encart">
                   <div className="cyber-stat-number-encart">+15 ans</div>
@@ -320,11 +378,11 @@ export default function QuiSommesNous() {
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:nis2conformite@gmail.com">
-                    nis2conformite@gmail.com
+                  <a href="mailto:contact@cyber-solferino.com">
+                    contact@cyber-solferino.com
                   </a>
                 </li>
-                <li><a href="tel:+33000000000">+33 (0)0 00 00 00 00</a></li>
+                <li><a href="tel:+33649432092">06 49 43 20 92</a></li>
               </ul>
             </div>
           </div>

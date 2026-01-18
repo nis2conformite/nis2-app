@@ -63,18 +63,67 @@ export default function OffresServices() {
         <section className="hero-artisan-exact hero-compact">
           <div className="hero-artisan-container">
             <div className="hero-badge-artisan">
-              Solutions complètes • Prix transparents • Accompagnement expert
+              Prix transparents • Jusqu'à 70% d'aides • Sans engagement
             </div>
 
             <h1 className="hero-title-artisan">
-              Tout pour votre<br />
+              Nos solutions pour votre<br />
               <span className="highlight">conformité NIS2</span>
             </h1>
 
             <p className="hero-subtitle-artisan">
-              Des audits complets aux formations en passant par les services complémentaires<br />
-              Choisissez la solution adaptée à votre maturité cyber
+              Audits, formations, accompagnement : des solutions adaptées à chaque entreprise<br />
+              et à chaque budget, avec des prix clairs et sans surprise
             </p>
+          </div>
+        </section>
+
+        {/* POURQUOI INVESTIR - COMPARAISON COÛTS */}
+        <section className="section-standard">
+          <div className="container-lg">
+            <h2 className="section-title-center">
+              Pourquoi investir dans la conformité ?
+            </h2>
+            <p className="section-subtitle-center">
+              Le coût de la non-conformité est bien plus élevé que celui de la conformité
+            </p>
+
+            <div className="comparison-grid">
+              <div className="comparison-card comparison-bad">
+                <div className="comparison-icon-bad">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#EF4444" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="15" y1="9" x2="9" y2="15"/>
+                    <line x1="9" y1="9" x2="15" y2="15"/>
+                  </svg>
+                </div>
+                <h3 className="comparison-title-bad">Coût de la non-conformité</h3>
+                <ul className="comparison-list">
+                  <li><strong>Jusqu'à 10M€</strong> d'amende ou 2% du CA mondial</li>
+                  <li><strong>Responsabilité pénale</strong> du dirigeant</li>
+                  <li><strong>Exclusion</strong> des marchés publics et privés</li>
+                  <li><strong>Perte de confiance</strong> clients et partenaires</li>
+                  <li><strong>Coût moyen d'une cyberattaque :</strong> 240 000€</li>
+                </ul>
+              </div>
+
+              <div className="comparison-card comparison-good">
+                <div className="comparison-icon-good">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                </div>
+                <h3 className="comparison-title-good">Coût de la conformité</h3>
+                <ul className="comparison-list">
+                  <li><strong>À partir de 3 490€</strong> pour un audit complet</li>
+                  <li><strong>Jusqu'à 70%</strong> pris en charge par les aides</li>
+                  <li><strong>Avantage concurrentiel</strong> sur les marchés</li>
+                  <li><strong>Protection juridique</strong> du dirigeant</li>
+                  <li><strong>Réduction de 70%</strong> du risque d'incident</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -304,14 +353,58 @@ export default function OffresServices() {
           </div>
         </section>
 
-        {/* CTA FINAL */}
+        {/* FAQ TARIFS */}
+        <section className="section-standard">
+          <div className="container-lg">
+            <h2 className="section-title-center">
+              Questions fréquentes sur nos tarifs
+            </h2>
+
+            <div className="faq-grid">
+              {[
+                {
+                  question: 'Comment bénéficier des aides de l\'État ?',
+                  answer: 'Plusieurs dispositifs existent : France Num (jusqu\'à 50%), BPI France, aides régionales... Nous vous accompagnons gratuitement dans le montage de vos dossiers et avons récupéré en moyenne 12 000€ par client.'
+                },
+                {
+                  question: 'Puis-je payer en plusieurs fois ?',
+                  answer: 'Oui, nous proposons un paiement en 3 fois sans frais pour toutes nos offres. Contactez-nous pour en discuter.'
+                },
+                {
+                  question: 'Quelle offre choisir pour commencer ?',
+                  answer: 'L\'offre Essentielle est idéale pour une première évaluation. Si vous avez besoin d\'un accompagnement plus poussé, l\'offre Sérénité inclut un expert dédié et un plan de remédiation complet.'
+                },
+                {
+                  question: 'Les formations sont-elles finançables par mon OPCO ?',
+                  answer: 'Oui, nos formations sont éligibles au financement OPCO. Nous pouvons vous fournir les documents nécessaires pour votre demande de prise en charge.'
+                },
+                {
+                  question: 'Y a-t-il des frais cachés ?',
+                  answer: 'Non. Tous nos prix sont affichés clairement et incluent l\'ensemble des prestations décrites. Aucune surprise à la facturation.'
+                },
+                {
+                  question: 'Proposez-vous des tarifs groupe ?',
+                  answer: 'Oui, nous proposons des tarifs dégressifs pour les groupes d\'entreprises ou les fédérations professionnelles. Contactez-nous pour un devis personnalisé.'
+                }
+              ].map((faq, idx) => (
+                <div key={idx} className="faq-item">
+                  <h4 className="faq-question">{faq.question}</h4>
+                  <p className="faq-answer">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA FINAL - OFFRE GROUPE */}
         <section className="section-cta-gradient">
           <div className="container-md">
+            <div className="cta-badge-white">Tarif groupe disponible</div>
             <h2 className="section-title-white">
-              Prêt à sécuriser votre conformité NIS2 ?
+              Vous êtes une fédération ou un groupement d'entreprises ?
             </h2>
             <p className="section-subtitle-white">
-              Échangez gratuitement avec un expert certifié • Réponse en 24h
+              Bénéficiez de tarifs préférentiels et d'un accompagnement dédié pour vos membres
             </p>
             <a
               href={CONTACT_INFO.calendly}
@@ -319,7 +412,7 @@ export default function OffresServices() {
               rel="noopener noreferrer"
               className="btn-cta-white-lg"
             >
-              Réserver un échange gratuit
+              Demander un devis groupe
             </a>
           </div>
         </section>
@@ -367,11 +460,11 @@ export default function OffresServices() {
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:nis2conformite@gmail.com">
-                    nis2conformite@gmail.com
+                  <a href="mailto:contact@cyber-solferino.com">
+                    contact@cyber-solferino.com
                   </a>
                 </li>
-                <li><a href="tel:+33000000000">+33 (0)0 00 00 00 00</a></li>
+                <li><a href="tel:+33649432092">06 49 43 20 92</a></li>
               </ul>
             </div>
           </div>

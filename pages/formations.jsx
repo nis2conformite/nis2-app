@@ -151,18 +151,27 @@ export default function Formations() {
         <section className="hero-artisan-exact hero-compact">
           <div className="hero-artisan-container">
             <div className="hero-badge-artisan">
-              Formation obligatoire NIS2 • Prise en charge OPCO
+              Formation obligatoire NIS2 • Finançable OPCO jusqu'à 100%
             </div>
 
             <h1 className="hero-title-artisan">
-              <span className="highlight">Formations NIS2</span><br />
-              & Cybersécurité
+              <span className="highlight">Formez vos équipes</span><br />
+              à la cybersécurité NIS2
             </h1>
 
             <p className="hero-subtitle-artisan">
-              Des formations pensées pour chaque profil, chaque enjeu, chaque contrainte<br />
-              Sensibilisation, formation technique, simulations
+              La formation des dirigeants et collaborateurs est une obligation légale NIS2<br />
+              Nos formations sont éligibles au financement OPCO et certifiantes
             </p>
+
+            <div className="hero-buttons-row">
+              <a href="#calendrier" className="btn-hero-primary">
+                Voir le calendrier
+              </a>
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-hero-secondary">
+                Demander un devis
+              </a>
+            </div>
           </div>
         </section>
 
@@ -513,6 +522,168 @@ export default function Formations() {
           </div>
         </section>
 
+        {/* CALENDRIER DES FORMATIONS */}
+        <section className="section-standard" id="calendrier">
+          <div className="container-lg">
+            <h2 className="section-title-center">
+              Prochaines sessions de formation
+            </h2>
+            <p className="section-subtitle-center">
+              Sessions inter-entreprises ouvertes à tous • Formations intra sur demande
+            </p>
+
+            <div className="calendar-grid">
+              {[
+                {
+                  date: '15 Février 2025',
+                  title: 'Formation Dirigeants NIS2',
+                  duration: '1 journée (7h)',
+                  format: 'Visio',
+                  places: 8,
+                  price: '890€ HT'
+                },
+                {
+                  date: '22 Février 2025',
+                  title: 'Sensibilisation Cybersécurité',
+                  duration: '½ journée (3h30)',
+                  format: 'Visio',
+                  places: 15,
+                  price: '290€ HT'
+                },
+                {
+                  date: '8 Mars 2025',
+                  title: 'Formation Dirigeants NIS2',
+                  duration: '1 journée (7h)',
+                  format: 'Présentiel Paris',
+                  places: 12,
+                  price: '990€ HT'
+                },
+                {
+                  date: '15 Mars 2025',
+                  title: 'Culture Cybersécurité Équipes',
+                  duration: '1 journée (7h)',
+                  format: 'Visio',
+                  places: 20,
+                  price: '490€ HT'
+                }
+              ].map((session, idx) => (
+                <div key={idx} className="calendar-card">
+                  <div className="calendar-date">{session.date}</div>
+                  <h4 className="calendar-title">{session.title}</h4>
+                  <div className="calendar-details">
+                    <span className="calendar-detail">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                      </svg>
+                      {session.duration}
+                    </span>
+                    <span className="calendar-detail">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                      </svg>
+                      {session.format}
+                    </span>
+                    <span className="calendar-detail">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                      </svg>
+                      {session.places} places
+                    </span>
+                  </div>
+                  <div className="calendar-footer">
+                    <span className="calendar-price">{session.price}</span>
+                    <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-calendar-book">
+                      S'inscrire
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FINANCEMENT OPCO */}
+        <section className="section-violet-gradient">
+          <div className="container-lg">
+            <h2 className="section-title-center">
+              Financement OPCO : jusqu'à 100% pris en charge
+            </h2>
+            <p className="section-subtitle-center">
+              Nos formations sont éligibles au financement par votre OPCO
+            </p>
+
+            <div className="opco-grid">
+              <div className="opco-card">
+                <div className="opco-step">1</div>
+                <h4>Identifiez votre OPCO</h4>
+                <p>Chaque entreprise est rattachée à un OPCO selon sa convention collective. Nous pouvons vous aider à l'identifier.</p>
+              </div>
+              <div className="opco-card">
+                <div className="opco-step">2</div>
+                <h4>Nous préparons le dossier</h4>
+                <p>Nous vous fournissons tous les documents nécessaires : programme, convention, feuilles de présence, évaluation.</p>
+              </div>
+              <div className="opco-card">
+                <div className="opco-step">3</div>
+                <h4>Vous déposez la demande</h4>
+                <p>Vous transmettez le dossier à votre OPCO qui valide la prise en charge (généralement sous 2 semaines).</p>
+              </div>
+              <div className="opco-card">
+                <div className="opco-step">4</div>
+                <h4>Formation financée</h4>
+                <p>Selon votre OPCO et votre enveloppe formation, la prise en charge peut aller jusqu'à 100% du coût.</p>
+              </div>
+            </div>
+
+            <div className="opco-note">
+              <strong>Besoin d'aide ?</strong> Nous vous accompagnons gratuitement dans vos démarches de financement OPCO.
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="opco-link">
+                Contactez-nous
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ FORMATIONS */}
+        <section className="section-standard">
+          <div className="container-lg">
+            <h2 className="section-title-center">
+              Questions fréquentes sur nos formations
+            </h2>
+
+            <div className="faq-grid">
+              {[
+                {
+                  question: 'Les formations sont-elles certifiantes ?',
+                  answer: 'Oui, toutes nos formations donnent lieu à une attestation de formation valide pour justifier de votre conformité NIS2 auprès de l\'ANSSI.'
+                },
+                {
+                  question: 'Puis-je former tous mes collaborateurs en une seule session ?',
+                  answer: 'Oui, nous proposons des formations intra-entreprise sur mesure. Contactez-nous pour un devis adapté à vos effectifs.'
+                },
+                {
+                  question: 'Quels sont les prérequis pour la formation dirigeants ?',
+                  answer: 'Aucun prérequis technique. La formation est conçue pour des profils non-techniques (dirigeants, DAF, DRH, etc.).'
+                },
+                {
+                  question: 'Proposez-vous des formations en présentiel ?',
+                  answer: 'Oui, nous proposons des formations en visio, en présentiel à Paris, et sur site dans vos locaux pour les formations intra.'
+                }
+              ].map((faq, idx) => (
+                <div key={idx} className="faq-item">
+                  <h4 className="faq-question">{faq.question}</h4>
+                  <p className="faq-answer">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* CTA FINAL */}
         <section className="section-cta-gradient">
           <div className="container-md">
@@ -531,7 +702,7 @@ export default function Formations() {
               Demander un devis formation
             </a>
             <p className="cta-note-white">
-              ✓ Tarifs dégressifs par volume • ✓ Financement jusqu'à 70% • ✓ Réponse sous 24h
+              ✓ Tarifs dégressifs par volume • ✓ Financement OPCO jusqu'à 100% • ✓ Réponse sous 24h
             </p>
           </div>
         </section>
@@ -579,11 +750,11 @@ export default function Formations() {
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:nis2conformite@gmail.com">
-                    nis2conformite@gmail.com
+                  <a href="mailto:contact@cyber-solferino.com">
+                    contact@cyber-solferino.com
                   </a>
                 </li>
-                <li><a href="tel:+33000000000">+33 (0)0 00 00 00 00</a></li>
+                <li><a href="tel:+33649432092">06 49 43 20 92</a></li>
               </ul>
             </div>
           </div>

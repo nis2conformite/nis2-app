@@ -4193,3 +4193,561 @@ body {
     max-height: 50px;
   }
 }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SOMMAIRE INTERACTIF - Page Comprendre NIS2
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.section-sommaire {
+  padding: var(--space-xl) 0;
+  background: var(--gray-50);
+}
+
+.sommaire-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg) var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-100);
+}
+
+.sommaire-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sommaire-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.sommaire-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  background: var(--gray-50);
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.sommaire-item:hover {
+  background: var(--color-primary-faint);
+  border-color: var(--violet-primary);
+  transform: translateY(-2px);
+}
+
+.sommaire-num {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--violet-primary);
+  background: var(--color-primary-faint);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.sommaire-text {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+.sommaire-item:hover .sommaire-text {
+  color: var(--violet-primary);
+}
+
+@media (max-width: 768px) {
+  .sommaire-card {
+    padding: var(--space-md);
+  }
+
+  .sommaire-grid {
+    flex-direction: column;
+  }
+
+  .sommaire-item {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MISSION CARD - Page Qui sommes-nous
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.mission-card {
+  background: linear-gradient(135deg, #F5F3FF 0%, #FCE7F3 100%);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-2xl) var(--space-xl);
+  text-align: center;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.mission-badge {
+  display: inline-block;
+  background: white;
+  color: var(--violet-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mission-title {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-lg);
+  line-height: 1.2;
+}
+
+.mission-text {
+  font-size: var(--font-size-lg);
+  color: var(--gray-600);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TEAM GRID - Page Qui sommes-nous
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+.team-member-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-100);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.team-member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.team-member-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto var(--space-lg);
+  border: 4px solid var(--color-primary-faint);
+}
+
+.team-member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-member-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--violet-primary) 0%, var(--color-rose) 100%);
+  color: white;
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-member-name {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-xs);
+}
+
+.team-member-role {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--violet-primary);
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.team-member-bio {
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
+}
+
+.team-member-certifs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  justify-content: center;
+}
+
+.certif-badge {
+  background: var(--color-primary-faint);
+  color: var(--violet-primary);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+@media (max-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-card {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .mission-title {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   COMPARISON GRID - Page Offres
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+.comparison-card {
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  text-align: center;
+}
+
+.comparison-bad {
+  background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
+  border: 2px solid #FECACA;
+}
+
+.comparison-good {
+  background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+  border: 2px solid #A7F3D0;
+}
+
+.comparison-icon-bad,
+.comparison-icon-good {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-lg);
+}
+
+.comparison-icon-bad {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.comparison-icon-good {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.comparison-title-bad,
+.comparison-title-good {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin-bottom: var(--space-lg);
+}
+
+.comparison-title-bad {
+  color: #DC2626;
+}
+
+.comparison-title-good {
+  color: #059669;
+}
+
+.comparison-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.comparison-list li {
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: var(--font-size-sm);
+  color: var(--gray-700);
+}
+
+.comparison-list li:last-child {
+  border-bottom: none;
+}
+
+.comparison-list li strong {
+  color: var(--gray-900);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FAQ GRID - Page Offres
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+  margin-top: var(--space-2xl);
+}
+
+.faq-item {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-100);
+}
+
+.faq-question {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: var(--space-sm);
+}
+
+.faq-answer {
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.cta-badge-white {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .comparison-grid,
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CALENDAR GRID - Page Formations
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+  margin-top: var(--space-2xl);
+}
+
+.calendar-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-100);
+  transition: all 0.3s ease;
+}
+
+.calendar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--violet-primary);
+}
+
+.calendar-date {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--violet-primary) 0%, var(--color-rose) 100%);
+  color: white;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-md);
+}
+
+.calendar-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-md);
+}
+
+.calendar-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.calendar-detail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+}
+
+.calendar-detail svg {
+  color: var(--violet-primary);
+}
+
+.calendar-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--gray-100);
+}
+
+.calendar-price {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--violet-primary);
+}
+
+.btn-calendar-book {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--violet-primary);
+  color: white;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-calendar-book:hover {
+  background: var(--violet-dark);
+  transform: translateY(-2px);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   OPCO GRID - Page Formations
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.opco-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  margin-top: var(--space-2xl);
+}
+
+.opco-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.opco-step {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--violet-primary) 0%, var(--color-rose) 100%);
+  color: white;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-md);
+}
+
+.opco-card h4 {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-sm);
+}
+
+.opco-card p {
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.opco-note {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  text-align: center;
+  margin-top: var(--space-xl);
+  font-size: var(--font-size-md);
+  color: var(--gray-700);
+}
+
+.opco-note strong {
+  color: var(--gray-900);
+}
+
+.opco-link {
+  display: inline-block;
+  margin-left: var(--space-sm);
+  color: var(--violet-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.opco-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  .opco-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .opco-grid {
+    grid-template-columns: 1fr;
+  }
+}
