@@ -67,7 +67,7 @@ export default function AdminDashboard() {
   return (
     <>
       <Head>
-        <title>Dashboard Admin | NIS2 Conformité</title>
+        <title>Dashboard Admin | Cyber Solferino</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 

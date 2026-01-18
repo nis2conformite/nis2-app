@@ -36,7 +36,7 @@ export default function DashboardLayout({ children, onLogout }) {
       <footer className="bg-white border-t border-gray-200 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <p className="text-center text-sm text-gray-600">
-            © 2025 NIS2 Conformité • Dashboard Administrateur
+            © 2025 Cyber Solferino • Dashboard Administrateur
           </p>
         </div>
       </footer>

@@ -64,7 +64,7 @@ export default function ClientAuditPage() {
     return (
       <>
         <Head>
-          <title>Chargement de l'audit | NIS2 Conformité</title>
+          <title>Chargement de l'audit | Cyber Solferino</title>
         </Head>
         <div className="loading-screen">
           <div className="loading-content">
@@ -114,7 +114,7 @@ export default function ClientAuditPage() {
     return (
       <>
         <Head>
-          <title>Audit introuvable | NIS2 Conformité</title>
+          <title>Audit introuvable | Cyber Solferino</title>
         </Head>
         <div className="error-screen">
           <div className="error-card">
@@ -215,7 +215,7 @@ export default function ClientAuditPage() {
   return (
     <>
       <Head>
-        <title>Audit NIS2 - {audit.entity_name || 'En cours'} | NIS2 Conformité</title>
+        <title>Audit NIS2 - {audit.entity_name || 'En cours'} | Cyber Solferino</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 

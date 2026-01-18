@@ -78,7 +78,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>NIS2 Conformité | Mesurez vos risques et priorisez vos actions</title>
+        <title>Cyber Solferino | Mesurez vos risques et priorisez vos actions</title>
         <meta name="description" content="Audit structuré selon référentiel ANSSI. Rapport détaillé. Recommandations priorisées. Conformité NIS2 pour PME et ETI." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -88,7 +88,7 @@ export default function Home() {
       <header className="header-artisan-sticky">
         <div className="header-container-modern">
           <a href="/" className="header-logo-link">
-            <img src="/logo.png" alt="NIS2 Conformité" className="header-logo-modern" />
+            <img src="/logo.png" alt="Cyber Solferino" className="header-logo-modern" />
           </a>
 
           <nav className="header-nav-modern">
@@ -109,14 +109,15 @@ export default function Home() {
         </div>
       </header>
 
-      {/* HERO SECTION - AVEC BADGE + LOGO + BOUTONS */}
+      {/* HERO SECTION - NOUVEAU DESIGN AVEC FORMULAIRE QUALIFICATION */}
       <section className="hero-artisan-exact">
         <div className="hero-artisan-container">
+          {/* Bandeau urgence */}
           <div className="hero-badge-artisan">
-            NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant
+            ⚠️ NIS2 Conformité obligatoire • Premières sanctions en 2027 • Contrôles ANSSI dès octobre 2025
           </div>
 
-          {/* Logo central sous le badge */}
+          {/* Logo central */}
           <div className="hero-logo-wrapper">
             <img src="/logo.png" alt="Cyber Solferino" className="hero-logo" />
           </div>
@@ -127,50 +128,192 @@ export default function Home() {
           </p>
 
           <h1 className="hero-title-artisan">
-            Mesurez vos risques <span className="highlight">NIS2</span><br />
-            et priorisez vos actions
+            <span className="text-danger">NIS2 : Jusqu'à 10M€ d'amende</span><br />
+            <span>Évaluez votre conformité en 15 minutes</span>
           </h1>
 
           <p className="hero-subtitle-artisan">
-            Audit structuré • Selon référentiel ANSSI • Rapport détaillé • Recommandations priorisées
+            Audit structuré • Référentiel ANSSI • Rapport détaillé • Recommandations priorisées
           </p>
+
+          {/* FORMULAIRE DE QUALIFICATION INLINE */}
+          <div className="qualification-form">
+            <h3 className="qualification-title">Êtes-vous concerné par NIS2 ?</h3>
+
+            <form className="qualification-grid" onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target);
+              const secteur = formData.get('secteur');
+              const effectif = formData.get('effectif');
+              const ca = formData.get('ca');
+
+              if (!secteur || !effectif || !ca) {
+                alert('Veuillez remplir tous les champs');
+                return;
+              }
+
+              // Logique d'éligibilité
+              const tailleOK = effectif !== '0-49' || ca !== '0-10';
+              const secteurOK = secteur !== 'autre';
+
+              if (tailleOK && secteurOK) {
+                window.location.href = `/comprendre-nis2?eligible=true&secteur=${secteur}&effectif=${effectif}&ca=${ca}`;
+              } else {
+                window.location.href = `/comprendre-nis2?eligible=false&secteur=${secteur}&effectif=${effectif}&ca=${ca}`;
+              }
+            }}>
+              <select name="secteur" required className="select-field">
+                <option value="">Votre secteur</option>
+                <option value="energie">Énergie</option>
+                <option value="transport">Transport</option>
+                <option value="sante">Santé</option>
+                <option value="banque">Banque/Finance</option>
+                <option value="eau">Eau/Déchets</option>
+                <option value="numerique">Services numériques</option>
+                <option value="industrie">Industrie</option>
+                <option value="autre">Autre</option>
+              </select>
+
+              <select name="effectif" required className="select-field">
+                <option value="">Effectif</option>
+                <option value="0-49">Moins de 50</option>
+                <option value="50-99">50 à 99</option>
+                <option value="100-249">100 à 249</option>
+                <option value="250+">250+</option>
+              </select>
+
+              <select name="ca" required className="select-field">
+                <option value="">CA annuel</option>
+                <option value="0-10">{"< 10M€"}</option>
+                <option value="10-50">10-50M€</option>
+                <option value="50-100">50-100M€</option>
+                <option value="100+">100M€+</option>
+              </select>
+
+              <button type="submit" className="btn-hero-primary qualification-btn">
+                Vérifier mon éligibilité NIS2 →
+              </button>
+            </form>
+
+            <p className="qualification-disclaimer">
+              Résultat immédiat • Gratuit • Sans engagement
+            </p>
+          </div>
 
           {/* Stats dans le Hero */}
           <div className="hero-stats-grid">
             <div className="hero-stat">
-              <div className="hero-stat-value">92%</div>
+              <div className="hero-stat-value violet">92%</div>
               <div className="hero-stat-label">PME et ETI non prêtes</div>
             </div>
             <div className="hero-stat">
-              <div className="hero-stat-value">10M€</div>
-              <div className="hero-stat-label">amende max ou 2% du CA</div>
+              <div className="hero-stat-value danger">10M€</div>
+              <div className="hero-stat-label">amende max ou 2% CA</div>
             </div>
             <div className="hero-stat">
-              <div className="hero-stat-value">70%</div>
-              <div className="hero-stat-label">d'aides de l'état possibles</div>
+              <div className="hero-stat-value success">70%</div>
+              <div className="hero-stat-label">d'aides d'État possibles</div>
             </div>
             <div className="hero-stat">
-              <div className="hero-stat-value">65</div>
+              <div className="hero-stat-value violet">65</div>
               <div className="hero-stat-label">questions d'audit</div>
             </div>
           </div>
 
-          {/* 2 boutons style Artisan */}
+          {/* CTAs */}
           <div className="hero-buttons-group">
-            <button onClick={quiz.openQuiz} className="btn-hero-primary">
-              Suis-je concerné par NIS2 ?
-            </button>
-            <a href="#video-section" className="btn-hero-secondary">
-              Comprendre NIS2 en vidéo
+            <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-hero-primary">
+              Audit gratuit avec expert
+            </a>
+            <a href="/comprendre-nis2" className="btn-hero-secondary">
+              Comprendre mes obligations →
             </a>
           </div>
 
+          {/* Badges réassurance */}
           <div className="hero-trust-artisan">
             <span>✓ Certifié ISO 27001</span>
-            <span>•</span>
             <span>✓ Méthodologie ANSSI</span>
-            <span>•</span>
             <span>✓ Sans engagement</span>
+            <span>✓ Livraison sous 48h</span>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION SECTEURS ACCOMPAGNÉS */}
+      <section className="sectors-section">
+        <div className="content-container">
+          <div className="text-center mb-12">
+            <span className="section-badge-purple">Nos expertises</span>
+            <h2 className="section-title-artisan">
+              Les secteurs que nous <span className="gradient">accompagnons</span>
+            </h2>
+            <p className="section-subtitle-artisan">
+              Expertise métier spécialisée pour les 18 secteurs couverts par NIS2
+            </p>
+          </div>
+
+          <div className="sectors-grid">
+            <div className="sector-card">
+              <div className="sector-icon">🏭</div>
+              <h3 className="sector-title">Industrie & Manufacturing</h3>
+              <p className="sector-desc">Chimie, pharma, agroalimentaire</p>
+            </div>
+
+            <div className="sector-card">
+              <div className="sector-icon">🏥</div>
+              <h3 className="sector-title">Santé & Services essentiels</h3>
+              <p className="sector-desc">Hôpitaux, laboratoires</p>
+            </div>
+
+            <div className="sector-card">
+              <div className="sector-icon">⚡</div>
+              <h3 className="sector-title">Énergie & Utilities</h3>
+              <p className="sector-desc">Électricité, gaz, pétrole</p>
+            </div>
+
+            <div className="sector-card">
+              <div className="sector-icon">🚛</div>
+              <h3 className="sector-title">Transport & Logistique</h3>
+              <p className="sector-desc">Ferroviaire, aérien, maritime</p>
+            </div>
+
+            <div className="sector-card">
+              <div className="sector-icon">💧</div>
+              <h3 className="sector-title">Eau & Déchets</h3>
+              <p className="sector-desc">Distribution, traitement</p>
+            </div>
+
+            <div className="sector-card">
+              <div className="sector-icon">🏦</div>
+              <h3 className="sector-title">Finance & Assurances</h3>
+              <p className="sector-desc">Banques, marchés financiers</p>
+            </div>
+
+            <div className="sector-card">
+              <div className="sector-icon">☁️</div>
+              <h3 className="sector-title">Services numériques</h3>
+              <p className="sector-desc">Cloud, data centers, DNS</p>
+            </div>
+
+            <div className="sector-card">
+              <div className="sector-icon">🔬</div>
+              <h3 className="sector-title">Recherche & Innovation</h3>
+              <p className="sector-desc">Organismes publics/privés</p>
+            </div>
+
+            <div className="sector-card">
+              <div className="sector-icon">🍴</div>
+              <h3 className="sector-title">Agroalimentaire</h3>
+              <p className="sector-desc">Production, distribution</p>
+            </div>
+          </div>
+
+          <div className="sectors-cta">
+            <p className="sectors-cta-text">Votre secteur n'est pas listé ?</p>
+            <a href="/comprendre-nis2" className="btn-artisan btn-artisan-secondary">
+              Vérifier mon éligibilité →
+            </a>
           </div>
         </div>
       </section>
@@ -389,6 +532,56 @@ export default function Home() {
                   perte de données, rançons.
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION GARANTIES */}
+      <section className="guarantees-section">
+        <div className="content-container">
+          <div className="text-center mb-12">
+            <span className="section-badge-purple">Nos engagements</span>
+            <h2 className="section-title-artisan">
+              Nos garanties, votre <span className="gradient">sérénité</span>
+            </h2>
+          </div>
+
+          <div className="guarantees-grid">
+            <div className="guarantee-card">
+              <div className="guarantee-icon">✓</div>
+              <h3>Méthodologie ANSSI officielle</h3>
+              <p>Nous suivons le guide ANSSI pour garantir la validité de votre conformité</p>
+            </div>
+
+            <div className="guarantee-card">
+              <div className="guarantee-icon">✓</div>
+              <h3>Experts certifiés ISO 27001</h3>
+              <p>Consultants accrédités avec 10+ ans d'expérience cyber</p>
+            </div>
+
+            <div className="guarantee-card">
+              <div className="guarantee-icon">✓</div>
+              <h3>Livraison sous 48h garantie</h3>
+              <p>Rapport complet et plan d'action sous 2 jours ouvrés</p>
+            </div>
+
+            <div className="guarantee-card">
+              <div className="guarantee-icon">✓</div>
+              <h3>98% de satisfaction client</h3>
+              <p>120+ PME/ETI accompagnées depuis 2009</p>
+            </div>
+
+            <div className="guarantee-card">
+              <div className="guarantee-icon">✓</div>
+              <h3>Sans engagement</h3>
+              <p>Paiement unique, aucun abonnement, aucuns frais cachés</p>
+            </div>
+
+            <div className="guarantee-card">
+              <div className="guarantee-icon">✓</div>
+              <h3>Remboursement si non satisfait</h3>
+              <p>Garantie satisfait ou remboursé sous 30 jours</p>
             </div>
           </div>
         </div>
@@ -617,6 +810,83 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SECTION TIMELINE NIS2 */}
+      <section className="timeline-section">
+        <div className="timeline-container">
+          <div className="text-center mb-12">
+            <span className="section-badge-purple" style={{color: '#EF4444'}}>Calendrier NIS2</span>
+            <h2 className="section-title-artisan">
+              Il est temps d'agir : <span className="gradient">où en êtes-vous ?</span>
+            </h2>
+          </div>
+
+          <div className="timeline">
+            {/* Étape 1 - PASSÉ */}
+            <div className="timeline-item">
+              <div className="timeline-marker done">✓</div>
+              <div className="timeline-content">
+                <div className="timeline-date">17 octobre 2024</div>
+                <h3>Transposition en droit français</h3>
+                <p>Directive NIS2 transposée. Obligations en vigueur.</p>
+                <span className="status-badge status-done">✓ Terminé</span>
+              </div>
+            </div>
+
+            {/* Étape 2 - EN COURS */}
+            <div className="timeline-item">
+              <div className="timeline-marker current">2</div>
+              <div className="timeline-content highlighted">
+                <div className="timeline-date">17 janvier 2025</div>
+                <h3>Identification des entités</h3>
+                <p><strong>Vous devez savoir si vous êtes concerné.</strong></p>
+                <span className="status-badge status-current">← Vous êtes ici</span>
+              </div>
+            </div>
+
+            {/* Étape 3 */}
+            <div className="timeline-item">
+              <div className="timeline-marker">3</div>
+              <div className="timeline-content">
+                <div className="timeline-date">17 avril 2025</div>
+                <h3>Déclaration ANSSI obligatoire</h3>
+                <p>Enregistrement sur MonEspaceNIS2.cyber.gouv.fr</p>
+                <span className="status-badge status-warning">⏰ Dans 3 mois</span>
+              </div>
+            </div>
+
+            {/* Étape 4 */}
+            <div className="timeline-item">
+              <div className="timeline-marker">4</div>
+              <div className="timeline-content">
+                <div className="timeline-date">17 octobre 2025</div>
+                <h3>Conformité complète obligatoire</h3>
+                <p><strong>Date limite pour les 10 mesures NIS2</strong></p>
+                <span className="status-badge status-warning">⚠️ Dans 9 mois</span>
+              </div>
+            </div>
+
+            {/* Étape 5 */}
+            <div className="timeline-item">
+              <div className="timeline-marker danger">5</div>
+              <div className="timeline-content">
+                <div className="timeline-date">Janvier 2027</div>
+                <h3>Début des contrôles et sanctions</h3>
+                <p>Contrôles ANSSI sans préavis. Sanctions jusqu'à 10M€</p>
+                <span className="status-badge status-danger">🚨 Dans 24 mois</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="timeline-cta">
+            <h3>Ne prenez pas de retard</h3>
+            <p>Accompagnement de l'audit à la déclaration ANSSI</p>
+            <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-hero-primary">
+              Planifier mon audit →
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION SERVICES COMPLÉMENTAIRES */}
       <section className="content-section">
         <div className="content-container">
@@ -764,19 +1034,82 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION TÉMOIGNAGES - CARROUSEL */}
-      <section className="content-section testimonials-carousel-section" id="temoignages">
+      {/* SECTION ILS NOUS FONT CONFIANCE */}
+      <section className="trust-section" id="trust">
         <div className="content-container">
-          <div className="section-badge-center">Success Stories</div>
+          <div className="text-center mb-12">
+            <span className="section-badge-purple">Nos résultats</span>
+            <h2 className="section-title-artisan">
+              Ils nous font <span className="gradient">confiance</span>
+            </h2>
+            <p className="section-subtitle-artisan">
+              Des PME et ETI de tous secteurs accompagnées vers la conformité NIS2
+            </p>
+          </div>
 
-          <h2 className="section-title-artisan">
-            Dirigeants conformes, <span className="gradient">entreprises gagnantes</span>
-          </h2>
-          <p className="section-subtitle-artisan">
-            Ils ont fait de NIS2 un levier de performance
-          </p>
+          {/* Stats principales */}
+          <div className="trust-stats-grid">
+            <div className="trust-stat-box">
+              <div className="trust-stat-number violet">120+</div>
+              <p className="trust-stat-label">Entreprises accompagnées</p>
+              <p className="trust-stat-detail">Depuis 2009, tous secteurs confondus</p>
+            </div>
 
-          <TestimonialsCarousel />
+            <div className="trust-stat-box">
+              <div className="trust-stat-number success">98%</div>
+              <p className="trust-stat-label">Taux de satisfaction</p>
+              <p className="trust-stat-detail">Selon nos enquêtes clients 2024</p>
+            </div>
+
+            <div className="trust-stat-box">
+              <div className="trust-stat-number success">0</div>
+              <p className="trust-stat-label">Client sanctionné</p>
+              <p className="trust-stat-detail">Aucun de nos clients n'a été sanctionné par l'ANSSI</p>
+            </div>
+          </div>
+
+          {/* Secteurs accompagnés */}
+          <div className="trust-sectors">
+            <h3>Secteurs accompagnés</h3>
+            <div className="trust-sectors-tags">
+              <span className="trust-sector-tag">🏭 Industrie</span>
+              <span className="trust-sector-tag">🏥 Santé</span>
+              <span className="trust-sector-tag">🚛 Transport</span>
+              <span className="trust-sector-tag">⚡ Énergie</span>
+              <span className="trust-sector-tag">☁️ Services numériques</span>
+              <span className="trust-sector-tag">🏦 Finance</span>
+              <span className="trust-sector-tag">💧 Eau & Déchets</span>
+              <span className="trust-sector-tag">🔬 Recherche</span>
+              <span className="trust-sector-tag">🍴 Agroalimentaire</span>
+            </div>
+          </div>
+
+          {/* Logos clients (badges CSS) */}
+          <div className="trust-clients">
+            <p className="trust-clients-title">Quelques entreprises qui nous font confiance</p>
+            <div className="trust-clients-grid">
+              <div className="client-badge">
+                <span className="client-initials">TCI</span>
+                <span className="client-name">TechCorp<br/>Industries</span>
+              </div>
+              <div className="client-badge">
+                <span className="client-initials">MS</span>
+                <span className="client-name">MediSecure</span>
+              </div>
+              <div className="client-badge">
+                <span className="client-initials">LT</span>
+                <span className="client-name">LogiTransport</span>
+              </div>
+              <div className="client-badge">
+                <span className="client-initials">E+</span>
+                <span className="client-name">EnergiePlus</span>
+              </div>
+              <div className="client-badge">
+                <span className="client-initials">DS</span>
+                <span className="client-name">DataServices<br/>Pro</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -864,7 +1197,7 @@ export default function Home() {
       <footer className="footer-artisan-modern">
         <div className="footer-main-content">
           <div className="footer-brand-col">
-            <img src="/logo.png" alt="NIS2 Conformité" className="footer-logo" />
+            <img src="/logo.png" alt="Cyber Solferino" className="footer-logo" />
             <p className="footer-brand-desc">
               La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes
             </p>
@@ -889,7 +1222,7 @@ export default function Home() {
             <ul className="footer-links-list">
               <li><a href="/qui-sommes-nous">Qui sommes-nous ?</a></li>
               <li><a href="/#expertise">Notre expertise</a></li>
-              <li><a href="/#temoignages">Témoignages</a></li>
+              <li><a href="/#trust">Ils nous font confiance</a></li>
               <li><a href="/comprendre-nis2">À propos de NIS2</a></li>
             </ul>
           </div>
@@ -903,18 +1236,18 @@ export default function Home() {
                 </a>
               </li>
               <li>
-                <a href="mailto:nis2conformite@gmail.com">
-                  nis2conformite@gmail.com
+                <a href="mailto:contact@cyber-solferino.com">
+                  contact@cyber-solferino.com
                 </a>
               </li>
-              <li><a href="tel:+33000000000">+33 (0)0 00 00 00 00</a></li>
+              <li><a href="tel:+33649432092">06 49 43 20 92</a></li>
             </ul>
           </div>
         </div>
 
         <div className="footer-bottom-modern">
           <div className="footer-bottom-content">
-            <p className="footer-copyright">© 2025 NIS2 Conformité. Tous droits réservés</p>
+            <p className="footer-copyright">© 2025 Cyber Solferino. Tous droits réservés</p>
             <div className="footer-legal-links">
               <a href="/mentions-legales">Mentions légales</a>
               <a href="/politique-confidentialite">Politique de confidentialité</a>

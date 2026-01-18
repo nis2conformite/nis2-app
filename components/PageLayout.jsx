@@ -21,7 +21,7 @@ export default function PageLayout({ children }) {
           <Link href="/">
             <img 
               src="/logo.png" 
-              alt="NIS2 Conformité" 
+              alt="Cyber Solferino" 
               className="header-logo"
             />
           </Link>
@@ -49,7 +49,7 @@ export default function PageLayout({ children }) {
       <footer className="page-footer">
         <div className="footer-container">
           <div className="footer-column">
-            <img src="/logo.png" alt="NIS2 Conformité" className="footer-logo" />
+            <img src="/logo.png" alt="Cyber Solferino" className="footer-logo" />
             <p className="footer-tagline">
               La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes
             </p>
@@ -88,7 +88,7 @@ export default function PageLayout({ children }) {
         </div>
 
         <div className="footer-bottom">
-          <p>© 2025 NIS2 Conformité • Tous droits réservés</p>
+          <p>© 2025 Cyber Solferino • Tous droits réservés</p>
         </div>
       </footer>
 

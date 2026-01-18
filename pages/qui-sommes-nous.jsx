@@ -15,7 +15,7 @@ export default function QuiSommesNous() {
       <header className="header-artisan-sticky">
         <div className="header-container-modern">
           <a href="/" className="header-logo-link">
-            <img src="/logo.png" alt="NIS2 Conformité" className="header-logo-modern" />
+            <img src="/logo.png" alt="Cyber Solferino" className="header-logo-modern" />
           </a>
 
           <nav className="header-nav-modern">
@@ -281,7 +281,7 @@ export default function QuiSommesNous() {
         <footer className="footer-artisan-modern">
           <div className="footer-main-content">
             <div className="footer-brand-col">
-              <img src="/logo.png" alt="NIS2 Conformité" className="footer-logo" />
+              <img src="/logo.png" alt="Cyber Solferino" className="footer-logo" />
               <p className="footer-brand-desc">
                 La plateforme d'audit et de conformité cyber pensée pour les PME et ETI européennes
               </p>
@@ -331,7 +331,7 @@ export default function QuiSommesNous() {
 
           <div className="footer-bottom-modern">
             <div className="footer-bottom-content">
-              <p className="footer-copyright">© 2025 NIS2 Conformité. Tous droits réservés</p>
+              <p className="footer-copyright">© 2025 Cyber Solferino. Tous droits réservés</p>
               <div className="footer-legal-links">
                 <a href="/mentions-legales">Mentions légales</a>
                 <a href="/politique-confidentialite">Politique de confidentialité</a>

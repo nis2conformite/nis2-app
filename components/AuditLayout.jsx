@@ -6,7 +6,7 @@ export default function AuditLayout({ children }) {
         <div className="audit-header-container">
           <img 
             src="/logo.png" 
-            alt="NIS2 Conformité" 
+            alt="Cyber Solferino" 
             className="audit-logo"
           />
           <div className="audit-header-title">
@@ -23,7 +23,7 @@ export default function AuditLayout({ children }) {
 
       {/* Footer minimal */}
       <footer className="audit-footer">
-        <p>© 2025 NIS2 Conformité • Confidentiel</p>
+        <p>© 2025 Cyber Solferino • Confidentiel</p>
       </footer>
 
       <style jsx>{`
