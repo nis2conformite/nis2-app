@@ -336,12 +336,21 @@ export default function Home() {
             Une méthodologie éprouvée pour votre conformité NIS2
           </p>
 
-          <div className="approach-cards-grid">
+          <div className="approach-steps-modern">
             {EXPERTISE_TIMELINE.map((item, index) => (
-              <div key={index} className="approach-card">
-                <div className="approach-number-circle">{item.number}</div>
-                <h3 className="approach-card-title">{item.title}</h3>
-                <p className="approach-card-description">{item.description}</p>
+              <div key={index} className={`approach-step-row ${index % 2 === 0 ? 'reverse' : ''}`}>
+                <div className="approach-step-image">
+                  <div className="approach-image-wrapper">
+                    <img src={item.image} alt={item.title} loading="lazy" />
+                  </div>
+                </div>
+                <div className="approach-step-content">
+                  <div className="approach-step-header">
+                    <span className="approach-step-number">{item.number}</span>
+                    <h3 className="approach-step-title">{item.title}</h3>
+                  </div>
+                  <p className="approach-step-description">{item.description}</p>
+                </div>
               </div>
             ))}
           </div>

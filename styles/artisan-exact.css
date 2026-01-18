@@ -775,55 +775,104 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   NOUVEAU DESIGN APPROCHE - CARTES EN COLONNES
+   NOUVEAU DESIGN APPROCHE - LAYOUT AVEC IMAGES
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.approach-cards-grid {
+.approach-steps-modern {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.approach-step-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: var(--space-xl);
-  margin-top: var(--space-2xl);
+  align-items: center;
 }
 
-.approach-card {
-  background: white;
-  border-radius: var(--radius-2xl);
-  padding: var(--space-2xl);
-  text-align: center;
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-base);
-  border: 2px solid transparent;
+.approach-step-row.reverse {
+  direction: rtl;
 }
 
-.approach-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-  border-color: rgba(168, 85, 247, 0.2);
+.approach-step-row.reverse > * {
+  direction: ltr;
 }
 
-.approach-number-circle {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto var(--space-lg);
-  border-radius: 50%;
-  background: var(--gradient-primary);
-  color: white;
+/* Image côté */
+.approach-step-image {
+  position: relative;
+}
+
+.approach-image-wrapper {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(168, 85, 247, 0.12);
+  transition: all 0.4s ease;
+}
+
+.approach-image-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(217, 70, 239, 0.1) 100%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.approach-step-row:hover .approach-image-wrapper::before {
+  opacity: 1;
+}
+
+.approach-step-row:hover .approach-image-wrapper {
+  transform: scale(1.02);
+  box-shadow: 0 20px 50px rgba(168, 85, 247, 0.2);
+}
+
+.approach-image-wrapper img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Contenu côté */
+.approach-step-content {
+  padding: var(--space-md);
+}
+
+.approach-step-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.approach-step-number {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 36px;
+  width: 44px;
+  height: 44px;
+  background: var(--gradient-primary);
+  border-radius: 12px;
+  font-size: 20px;
   font-weight: 800;
-  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.3);
+  color: white;
+  flex-shrink: 0;
 }
 
-.approach-card-title {
-  font-size: 24px;
-  font-weight: 700;
+.approach-step-title {
+  font-size: 26px;
+  font-weight: 800;
   color: var(--color-text-primary);
-  margin-bottom: var(--space-md);
-  line-height: 1.3;
+  margin: 0;
+  line-height: 1.2;
 }
 
-.approach-card-description {
+.approach-step-description {
   font-size: 16px;
   color: var(--color-text-secondary);
   line-height: 1.6;
@@ -3254,39 +3303,56 @@ body {
   .testimonials-case-study-grid,
   .testimonials-organic-layout,
   .faq-grid-modern,
-  .before-after-cards-v2,
-  .approach-cards-grid {
+  .before-after-cards-v2 {
     grid-template-columns: 1fr;
   }
 
-  .approach-number-circle {
-    width: 64px;
-    height: 64px;
-    font-size: 28px;
+  /* RESPONSIVE: Nouvelle approche avec images */
+  .approach-steps-modern {
+    gap: var(--space-md);
   }
 
-  .approach-card-title {
+  .approach-step-row {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .approach-step-row.reverse {
+    direction: ltr;
+  }
+
+  .approach-image-wrapper img {
+    height: 180px;
+  }
+
+  .approach-step-content {
+    padding: var(--space-sm) 0;
+  }
+
+  .approach-step-header {
+    justify-content: center;
+    gap: var(--space-sm);
+  }
+
+  .approach-step-number {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  .approach-step-title {
     font-size: 20px;
   }
 
-  .approach-card-description {
+  .approach-step-description {
+    text-align: center;
     font-size: 15px;
   }
 
   .before-after-wrapper-design,
   .video-wrapper-design {
     padding: var(--space-xl);
-  }
-
-  /* Approche en colonne sur tablette */
-  .approach-step-row,
-  .approach-step-row.reverse {
-    flex-direction: column;
-    gap: var(--space-xl);
-  }
-
-  .approach-image-wrapper img {
-    height: 240px;
   }
 
   /* Reset des décalages en mobile */
