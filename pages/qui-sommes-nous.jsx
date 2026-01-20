@@ -126,6 +126,15 @@ export default function QuiSommesNous() {
                 Consultants ISO 27001 • Méthodologie ANSSI • 15+ années d'expérience
               </p>
 
+              {/* PHOTO ÉQUIPE */}
+              <div className="equipe-photo-wrapper">
+                <img
+                  src="/equipe-photo.jpg"
+                  alt="Notre équipe d'experts cybersécurité"
+                  className="equipe-photo"
+                />
+              </div>
+
               {/* 2 CARTES PRINCIPALES */}
               <div className="cyber-stats-grid-encart">
                 <div className="cyber-stat-card-encart">
