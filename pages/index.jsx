@@ -881,6 +881,66 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SECTION NOS RÉFÉRENCES - BANDEAU DÉFILANT */}
+      <section className="references-section">
+        <div className="content-container">
+          <div className="section-badge-center">Nos références</div>
+          <h2 className="section-title-artisan">
+            Ils nous font <span className="gradient">confiance</span>
+          </h2>
+          <p className="section-subtitle-artisan">
+            PME et ETI de tous secteurs qui ont choisi notre accompagnement
+          </p>
+        </div>
+
+        <div className="logo-banner-wrapper">
+          <div className="logo-banner-track">
+            {/* Première série de logos */}
+            <div className="logo-banner-slide">
+              <div className="logo-item">
+                <img src="/references/logo-1.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-2.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-3.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-4.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-5.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-6.png" alt="Référence client" />
+              </div>
+            </div>
+            {/* Deuxième série (duplication pour boucle infinie) */}
+            <div className="logo-banner-slide">
+              <div className="logo-item">
+                <img src="/references/logo-1.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-2.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-3.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-4.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-5.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-6.png" alt="Référence client" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION FAQ REDESIGN MODERNE */}
       <section className="content-section">
         <div className="content-container faq-container">

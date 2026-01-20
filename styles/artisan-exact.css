@@ -3666,3 +3666,127 @@ body {
     padding: var(--space-2xl) 0;
   }
 }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION NOS RÉFÉRENCES - BANDEAU LOGOS DÉFILANT
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.references-section {
+  padding: var(--space-3xl) 0;
+  background: var(--gray-50);
+  overflow: hidden;
+}
+
+.references-section .content-container {
+  margin-bottom: var(--space-2xl);
+}
+
+.logo-banner-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: var(--space-xl) 0;
+}
+
+/* Effet de fondu sur les côtés */
+.logo-banner-wrapper::before,
+.logo-banner-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logo-banner-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--gray-50) 0%, transparent 100%);
+}
+
+.logo-banner-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--gray-50) 0%, transparent 100%);
+}
+
+.logo-banner-track {
+  display: flex;
+  width: fit-content;
+  animation: scroll-logos 30s linear infinite;
+}
+
+.logo-banner-slide {
+  display: flex;
+  gap: var(--space-2xl);
+  padding: 0 var(--space-xl);
+}
+
+.logo-item {
+  flex-shrink: 0;
+  width: 160px;
+  height: 80px;
+  background: white;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  border: 1px solid var(--gray-200);
+  transition: all 0.3s ease;
+}
+
+.logo-item:hover {
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.15);
+  transform: translateY(-2px);
+}
+
+.logo-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.logo-item:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+@keyframes scroll-logos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause animation on hover */
+.logo-banner-wrapper:hover .logo-banner-track {
+  animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+  .references-section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .logo-banner-wrapper::before,
+  .logo-banner-wrapper::after {
+    width: 50px;
+  }
+
+  .logo-item {
+    width: 120px;
+    height: 60px;
+    padding: var(--space-sm);
+  }
+
+  .logo-banner-slide {
+    gap: var(--space-lg);
+  }
+}
