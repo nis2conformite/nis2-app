@@ -1,8 +1,42 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import { CONTACT_INFO } from '../utils/constants';
 import MenuBurger from '../components/MenuBurger';
 
 export default function OffresServices() {
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const faqItems = [
+    {
+      question: "Comment bénéficier des aides de l'État ?",
+      answer: "Plusieurs dispositifs permettent de financer jusqu'à 70% de votre mise en conformité NIS2. Les principaux sont France Num (jusqu'à 12 000€), les aides régionales, et le crédit d'impôt innovation. Avec notre offre Expertise, nous constituons votre dossier de demande d'aides et vous accompagnons dans toutes les démarches administratives."
+    },
+    {
+      question: "Puis-je payer en plusieurs fois ?",
+      answer: "Oui, nous proposons des facilités de paiement pour toutes nos offres. Vous pouvez régler en 2, 3 ou 4 fois sans frais. Pour les offres Sérénité et Expertise, un paiement échelonné sur la durée de l'accompagnement est également possible. Contactez-nous pour définir ensemble les modalités adaptées à votre situation."
+    },
+    {
+      question: "Quelle offre choisir pour commencer ?",
+      answer: "Le choix dépend de votre maturité cyber actuelle. L'offre Essentielle convient si vous avez déjà une bonne connaissance de votre SI et souhaitez une évaluation rapide. L'offre Sérénité est idéale pour la plupart des PME qui veulent un accompagnement expert avec un plan d'action concret. L'offre Expertise s'adresse aux entreprises ayant besoin d'un suivi complet sur 12 mois."
+    },
+    {
+      question: "Les formations sont-elles finançables par mon OPCO ?",
+      answer: "Oui, nos formations sont certifiées Qualiopi et donc éligibles à la prise en charge par votre OPCO. La formation dirigeants NIS2 peut être intégralement financée. Nous nous occupons de toutes les démarches administratives : devis, convention de formation, et facturation directe à votre OPCO si vous le souhaitez."
+    },
+    {
+      question: "Y a-t-il des frais cachés ?",
+      answer: "Non, nos prix sont 100% transparents. Le tarif affiché inclut l'ensemble des prestations mentionnées. Aucun frais supplémentaire ne vous sera demandé. Les seuls coûts additionnels éventuels concernent les services complémentaires que vous choisiriez d'ajouter à votre offre de base."
+    },
+    {
+      question: "Proposez-vous des tarifs groupe ?",
+      answer: "Oui, nous proposons des tarifs dégressifs pour les fédérations, groupements d'entreprises et réseaux de franchises. À partir de 5 entreprises, bénéficiez de -15% sur l'ensemble des prestations. Contactez-nous pour obtenir un devis personnalisé adapté à votre groupement."
+    }
+  ];
+
   const handleStripeCheckout = async () => {
     try {
       const response = await fetch('/api/stripe/create-checkout', {
@@ -298,6 +332,37 @@ export default function OffresServices() {
                   <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-artisan btn-artisan-secondary btn-link-sm">
                     En savoir plus
                   </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ TARIFS */}
+        <section className="section-standard">
+          <div className="container-lg">
+            <h2 className="section-title-center">
+              Questions fréquentes sur nos tarifs
+            </h2>
+
+            <div className="faq-grid-tarifs">
+              {faqItems.map((item, index) => (
+                <div
+                  key={index}
+                  className={`faq-card-tarif ${openFaq === index ? 'faq-card-open' : ''}`}
+                  onClick={() => toggleFaq(index)}
+                >
+                  <div className="faq-question-row">
+                    <span className="faq-question-text">{item.question}</span>
+                    <span className={`faq-chevron ${openFaq === index ? 'faq-chevron-open' : ''}`}>
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </span>
+                  </div>
+                  <div className={`faq-answer-wrapper ${openFaq === index ? 'faq-answer-visible' : ''}`}>
+                    <p className="faq-answer-text">{item.answer}</p>
+                  </div>
                 </div>
               ))}
             </div>

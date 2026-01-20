@@ -4,10 +4,8 @@ import { useQuiz } from '../hooks/useQuiz';
 import { useLeadPopup } from '../hooks/useLeadPopup';
 import { QuizModal } from '../components/QuizModal';
 import MenuBurger from '../components/MenuBurger';
-import TestimonialsCarousel from '../components/TestimonialsCarousel';
 import {
   PRICING_OFFERS,
-  TESTIMONIALS,
   HERO_STATS,
   FAQ_ITEMS,
   CONTACT_INFO,
@@ -20,7 +18,12 @@ export default function Home() {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
   const [email, setEmail] = useState('');
+  const [openFaq, setOpenFaq] = useState(null);
   const quiz = useQuiz();
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
   const popup = useLeadPopup({
     quizIsOpen: quiz.isOpen,
     videoIsPlaying
@@ -171,6 +174,27 @@ export default function Home() {
             <span>✓ Méthodologie ANSSI</span>
             <span>•</span>
             <span>✓ Sans engagement</span>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION VIDÉO YOUTUBE - APRÈS LE HERO */}
+      <section className="content-section video-section" id="video-section">
+        <div className="content-container">
+          <h2 className="section-title-artisan">
+            Comprendre <span className="gradient">NIS2</span> en vidéo
+          </h2>
+          <p className="section-subtitle-artisan">
+            3 minutes pour tout comprendre de la directive NIS2
+          </p>
+
+          <div className="video-wrapper">
+            <iframe
+              src={EXTERNAL_LINKS.videoYoutube}
+              title="Directive NIS2 expliquée"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>
@@ -353,6 +377,48 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Séparateur + Garanties intégrées */}
+          <div className="approach-guarantees-wrapper">
+            <div className="approach-guarantees-divider">
+              <span>Nos engagements</span>
+            </div>
+            <div className="approach-guarantees-row">
+              <div className="approach-guarantee-item">
+                <div className="guarantee-check-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div className="approach-guarantee-text">
+                  <strong>Méthodologie ANSSI</strong>
+                  <span>Guide officiel de conformité</span>
+                </div>
+              </div>
+              <div className="approach-guarantee-item">
+                <div className="guarantee-check-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div className="approach-guarantee-text">
+                  <strong>Experts ISO 27001</strong>
+                  <span>10+ ans d'expérience cyber</span>
+                </div>
+              </div>
+              <div className="approach-guarantee-item">
+                <div className="guarantee-check-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div className="approach-guarantee-text">
+                  <strong>Sans engagement</strong>
+                  <span>Paiement unique, sans frais cachés</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -719,16 +785,16 @@ export default function Home() {
               Une équipe de <span className="highlight">cyber experts</span> à votre service
             </h2>
             <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
-              Consultants ISO 27001 • Méthodologie ANSSI • 15+ années d'expérience
+              Consultants ISO 27001 • Méthodologie ANSSI • 10 années d'expérience
             </p>
 
             {/* 2 CARTES PRINCIPALES */}
             <div className="cyber-stats-grid-encart">
               <div className="cyber-stat-card-encart">
-                <div className="cyber-stat-number-encart">+15 ans</div>
+                <div className="cyber-stat-number-encart">+10 ans</div>
                 <h3>D'expérience dans la cyber</h3>
                 <p>
-                  Depuis 2009 dans l'accompagnement cyber des PME et ETI. Expertise reconnue sur les secteurs critiques et essentiels.
+                  Depuis 2016 dans l'accompagnement cyber des PME et ETI. Expertise reconnue sur les secteurs critiques et essentiels.
                 </p>
               </div>
 
@@ -764,44 +830,67 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION TÉMOIGNAGES - CARROUSEL */}
-      <section className="content-section testimonials-carousel-section" id="temoignages">
+      {/* SECTION NOS RÉFÉRENCES - BANDEAU DÉFILANT */}
+      <section className="references-section">
         <div className="content-container">
-          <div className="section-badge-center">Success Stories</div>
-
+          <div className="section-badge-center">Nos références</div>
           <h2 className="section-title-artisan">
-            Dirigeants conformes, <span className="gradient">entreprises gagnantes</span>
+            Ils nous font <span className="gradient">confiance</span>
           </h2>
           <p className="section-subtitle-artisan">
-            Ils ont fait de NIS2 un levier de performance
+            PME et ETI de tous secteurs qui ont choisi notre accompagnement
           </p>
-
-          <TestimonialsCarousel />
         </div>
-      </section>
 
-      {/* SECTION VIDÉO YOUTUBE */}
-      <section className="content-section video-section" id="video-section">
-        <div className="content-container">
-          <h2 className="section-title-artisan">
-            Comprendre <span className="gradient">NIS2</span> en vidéo
-          </h2>
-          <p className="section-subtitle-artisan">
-            3 minutes pour tout comprendre de la directive NIS2
-          </p>
-
-          <div className="video-wrapper">
-            <iframe
-              src={EXTERNAL_LINKS.videoYoutube}
-              title="Directive NIS2 expliquée"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
+        <div className="logo-banner-wrapper">
+          <div className="logo-banner-track">
+            {/* Première série de logos */}
+            <div className="logo-banner-slide">
+              <div className="logo-item">
+                <img src="/references/logo-1.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-2.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-3.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-4.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-5.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-6.png" alt="Référence client" />
+              </div>
+            </div>
+            {/* Deuxième série (duplication pour boucle infinie) */}
+            <div className="logo-banner-slide">
+              <div className="logo-item">
+                <img src="/references/logo-1.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-2.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-3.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-4.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-5.png" alt="Référence client" />
+              </div>
+              <div className="logo-item">
+                <img src="/references/logo-6.png" alt="Référence client" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION FAQ REDESIGN MODERNE */}
+      {/* SECTION FAQ - FORMAT ACCORDÉON */}
       <section className="content-section">
         <div className="content-container faq-container">
           <div className="section-badge-center">FAQ</div>
@@ -810,33 +899,26 @@ export default function Home() {
             Les questions que se posent les <span className="gradient">dirigeants</span>
           </h2>
 
-          <div className="faq-grid-redesign">
-            {FAQ_ITEMS.map((item, index) => {
-              // Couleurs alternées pour les cartes
-              const colorClass = index % 3 === 0 ? 'faq-purple' : index % 3 === 1 ? 'faq-pink' : 'faq-blue';
-
-              return (
-                <details key={item.id} className={`faq-item-redesign ${colorClass}`}>
-                  <summary className="faq-question-redesign">
-                    <div className="faq-icon-circle">
-                      <span className="faq-emoji">{item.icon}</span>
-                    </div>
-                    <span className="faq-question-text-redesign">{item.question}</span>
-                    <div className="faq-toggle-icon">
-                      <svg className="faq-plus" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M10 4V16M4 10H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                      </svg>
-                      <svg className="faq-minus" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M4 10H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                      </svg>
-                    </div>
-                  </summary>
-                  <div className="faq-answer-redesign">
-                    <p>{item.answer}</p>
-                  </div>
-                </details>
-              );
-            })}
+          <div className="faq-grid-tarifs">
+            {FAQ_ITEMS.map((item, index) => (
+              <div
+                key={item.id}
+                className={`faq-card-tarif ${openFaq === index ? 'faq-card-open' : ''}`}
+                onClick={() => toggleFaq(index)}
+              >
+                <div className="faq-question-row">
+                  <span className="faq-question-text">{item.question}</span>
+                  <span className={`faq-chevron ${openFaq === index ? 'faq-chevron-open' : ''}`}>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
+                <div className={`faq-answer-wrapper ${openFaq === index ? 'faq-answer-visible' : ''}`}>
+                  <p className="faq-answer-text">{item.answer}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

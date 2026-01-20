@@ -220,32 +220,29 @@ export const POPUP_OPTIONS = [
 export const TESTIMONIALS = [
   {
     id: 1,
-    text: "L'accompagnement NIS2 nous a permis de structurer clairement nos obligations et de prioriser les actions essentielles. La démarche est pragmatique, pédagogique et parfaitement adaptée à une PME.",
+    text: "On partait de zéro sur la cyber, aucune documentation, aucun process. En 2 mois on avait un plan clair et nos premières mesures en place. Aujourd'hui on répond sereinement aux questionnaires sécurité de nos clients.",
     author: {
-      name: "Alex Martin",
-      role: "CEO • Services Numériques • 65 sal.",
-      avatar: "AM",
-      company: "Tech Services"
+      name: "Thibault Vasseur",
+      role: "Gérant • Éditeur SaaS • 52 salariés",
+      avatar: "TV"
     }
   },
   {
     id: 2,
-    text: "Accompagnement précis, méthodique, sans jargon inutile. L'équipe a su traduire les exigences réglementaires en plan d'action opérationnel. Aujourd'hui, la conformité est devenue un argument de différenciation face à nos clients grands comptes.",
+    text: "Le rapport d'audit a mis en lumière des failles qu'on ignorait totalement. La roadmap est réaliste, adaptée à notre budget. On a enfin une vision claire de ce qu'il faut faire et dans quel ordre.",
     author: {
-      name: "Marc Dubois",
-      role: "Directeur Général • Transport • 120 sal.",
-      avatar: "MD",
-      company: "Transport Solutions"
+      name: "Nathalie Bergeret",
+      role: "DAF • Logistique & Transport • CA 18M€",
+      avatar: "NB"
     }
   },
   {
     id: 3,
-    text: "L'approche pédagogique m'a permis de mobiliser mes équipes efficacement. En 3 mois, nous avons structuré notre gouvernance cybersécurité et obtenu la conformité. C'est désormais un atout commercial majeur dans nos négociations.",
+    text: "Nos grands comptes nous demandaient des garanties cyber qu'on ne pouvait pas fournir. Maintenant on a les documents, les process, et surtout la crédibilité. On a signé 3 nouveaux contrats depuis.",
     author: {
-      name: "Sophie Lemaire",
-      role: "Directrice Administrative et Financière • Santé • 85 sal.",
-      avatar: "SL",
-      company: "Health Systems"
+      name: "Frédéric Molinaro",
+      role: "DG • Industrie manufacturière • 78 salariés",
+      avatar: "FM"
     }
   }
 ];
@@ -331,7 +328,7 @@ export const FAQ_ITEMS = [
     id: 6,
     icon: "🏆",
     question: "Pourquoi nous choisir ?",
-    answer: "15 ans d'expertise, équipe ISO 27001, experts ANSSI, 150+ PME accompagnées, 98% conformité, 0 client sanctionné. Nous parlons votre langage, pas du jargon."
+    answer: "10 ans d'expertise, équipe ISO 27001, experts ANSSI, 150+ PME accompagnées, 98% conformité, 0 client sanctionné. Nous parlons votre langage, pas du jargon."
   }
 ];
 

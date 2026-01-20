@@ -65,8 +65,39 @@ export default function ComprendreNIS2() {
           </div>
         </section>
 
+        {/* NIS2 EN DÉTAILS - NAVIGATION */}
+        <section className="guide-nav-section">
+          <div className="container-lg">
+            <div className="guide-nav-card">
+              <div className="guide-nav-label">NIS2 EN DÉTAILS</div>
+              <div className="guide-nav-items">
+                <a href="#cest-quoi-nis2" className="guide-nav-item">
+                  <span className="guide-nav-number">01</span>
+                  <span className="guide-nav-text">C'est quoi NIS2 ?</span>
+                </a>
+                <a href="#suis-je-concerne" className="guide-nav-item">
+                  <span className="guide-nav-number">02</span>
+                  <span className="guide-nav-text">Suis-je concerné ?</span>
+                </a>
+                <a href="#mes-obligations" className="guide-nav-item">
+                  <span className="guide-nav-number">03</span>
+                  <span className="guide-nav-text">Mes obligations</span>
+                </a>
+                <a href="#comment-se-conformer" className="guide-nav-item">
+                  <span className="guide-nav-number">04</span>
+                  <span className="guide-nav-text">Comment se conformer</span>
+                </a>
+                <a href="#ressources-officielles" className="guide-nav-item">
+                  <span className="guide-nav-number">05</span>
+                  <span className="guide-nav-text">Ressources officielles</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* C'EST QUOI NIS2 - SECTION FUSIONNÉE */}
-        <section className="section-standard">
+        <section className="section-standard" id="cest-quoi-nis2">
           <div className="container-lg">
             <div className="before-after-wrapper-design">
               {/* GRILLE : 2 CARTES SUR UNE LIGNE */}
@@ -209,7 +240,7 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* SUIS-JE CONCERNÉ */}
-        <section className="section-standard">
+        <section className="section-standard" id="suis-je-concerne">
           <div className="container-lg">
             <h2 className="section-title-center">
               Suis-je concerné par NIS2 ?
@@ -330,7 +361,7 @@ export default function ComprendreNIS2() {
 
 
         {/* LES OBLIGATIONS */}
-        <section className="section-standard">
+        <section className="section-standard" id="mes-obligations">
           <div className="container-lg">
             <h2 className="section-title-center">
               Quelles sont mes obligations ?
@@ -392,7 +423,7 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* COMMENT SE METTRE EN CONFORMITÉ */}
-        <section className="section-violet-gradient">
+        <section className="section-violet-gradient" id="comment-se-conformer">
           <div className="container-lg">
             <h2 className="section-title-center" style={{marginBottom: 'var(--space-2xl)'}}>
               Comment se mettre en conformité ?
@@ -431,7 +462,7 @@ export default function ComprendreNIS2() {
         </section>
 
         {/* RESSOURCES OFFICIELLES */}
-        <section className="section-standard">
+        <section className="section-standard" id="ressources-officielles">
           <div className="container-lg">
             <h2 className="section-title-center">
               Ressources officielles

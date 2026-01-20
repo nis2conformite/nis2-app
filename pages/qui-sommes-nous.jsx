@@ -7,7 +7,7 @@ export default function QuiSommesNous() {
     <>
       <Head>
         <title>Qui sommes-nous ? | Experts Conformité NIS2</title>
-        <meta name="description" content="Depuis 2009, nous accompagnons les PME et ETI dans leur conformité cyber. Équipe certifiée ISO 27001, méthodologie ANSSI, 150+ entreprises accompagnées." />
+        <meta name="description" content="Depuis 2016, nous accompagnons les PME et ETI dans leur conformité cyber. Équipe certifiée ISO 27001, méthodologie ANSSI, 150+ entreprises accompagnées." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
@@ -41,7 +41,7 @@ export default function QuiSommesNous() {
         <section className="hero-artisan-exact hero-compact">
           <div className="hero-artisan-container">
             <div className="hero-badge-artisan">
-              Experts conformité cyber • Depuis 2009
+              Experts conformité cyber • Depuis 2016
             </div>
 
             {/* Logo central sous le badge */}
@@ -55,7 +55,7 @@ export default function QuiSommesNous() {
             </h1>
 
             <p className="hero-subtitle-artisan">
-              Depuis 2009, nous transformons la conformité cyber en levier de performance<br />
+              Depuis 2016, nous transformons la conformité cyber en levier de performance<br />
               pour les PME et ETI européennes
             </p>
           </div>
@@ -123,16 +123,119 @@ export default function QuiSommesNous() {
                 Une équipe de <span className="highlight">cyber experts</span> à votre service
               </h2>
               <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
-                Consultants ISO 27001 • Méthodologie ANSSI • 15+ années d'expérience
+                Consultants ISO 27001 • Méthodologie ANSSI • 10 années d'expérience
               </p>
+
+              {/* SECTION ÉQUIPE AVEC PROFILS */}
+              <div className="equipe-profiles-section">
+                {/* Profil Adrien - Gauche */}
+                <div className="expert-profile profile-left">
+                  <div className="profile-badge">Co-fondateur</div>
+                  <h3 className="profile-name">Adrien</h3>
+                  <p className="profile-role">Expert Tech & Innovation</p>
+                  <ul className="profile-skills">
+                    <li>
+                      <span className="skill-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <rect x="2" y="3" width="20" height="14" rx="2"/>
+                          <path d="M8 21h8M12 17v4"/>
+                        </svg>
+                      </span>
+                      SAAS & Plateformes
+                    </li>
+                    <li>
+                      <span className="skill-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                      </span>
+                      Automation & Process
+                    </li>
+                    <li>
+                      <span className="skill-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                          <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                          <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                      </span>
+                      Intelligence Artificielle
+                    </li>
+                    <li>
+                      <span className="skill-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <polyline points="16 18 22 12 16 6"/>
+                          <polyline points="8 6 2 12 8 18"/>
+                        </svg>
+                      </span>
+                      Architecture technique
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Photo Équipe - Centre */}
+                <div className="equipe-photo-wrapper">
+                  <img
+                    src="/equipe-photo.png"
+                    alt="Adrien et Eugénie - Fondateurs"
+                    className="equipe-photo"
+                  />
+                </div>
+
+                {/* Profil Eugénie - Droite */}
+                <div className="expert-profile profile-right">
+                  <div className="profile-badge">Co-fondatrice</div>
+                  <h3 className="profile-name">Eugénie</h3>
+                  <p className="profile-role">Expert Cybersécurité</p>
+                  <ul className="profile-skills">
+                    <li>
+                      <span className="skill-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                      </span>
+                      Cybersécurité NIS2
+                    </li>
+                    <li>
+                      <span className="skill-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                      </span>
+                      Protection des données
+                    </li>
+                    <li>
+                      <span className="skill-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                          <polyline points="14 2 14 8 20 8"/>
+                          <line x1="16" y1="13" x2="8" y2="13"/>
+                          <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                      </span>
+                      Conformité RGPD
+                    </li>
+                    <li>
+                      <span className="skill-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="12" cy="12" r="10"/>
+                          <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                      </span>
+                      Audit & Certification ISO
+                    </li>
+                  </ul>
+                </div>
+              </div>
 
               {/* 2 CARTES PRINCIPALES */}
               <div className="cyber-stats-grid-encart">
                 <div className="cyber-stat-card-encart">
-                  <div className="cyber-stat-number-encart">+15 ans</div>
+                  <div className="cyber-stat-number-encart">+10 ans</div>
                   <h3>D'expérience dans la cyber</h3>
                   <p>
-                    Depuis 2009 dans l'accompagnement cyber des PME et ETI. Expertise reconnue sur les secteurs critiques et essentiels.
+                    Depuis 2016 dans l'accompagnement cyber des PME et ETI. Expertise reconnue sur les secteurs critiques et essentiels.
                   </p>
                 </div>
 
