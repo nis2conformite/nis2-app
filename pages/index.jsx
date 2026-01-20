@@ -196,6 +196,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SECTION SECTEURS ACCOMPAGNÉS - IMAGE INFOGRAPHIQUE */}
+      <section className="sectors-section">
+        <div className="content-container">
+          <div className="text-center mb-12">
+            <span className="section-badge-purple">Nos expertises</span>
+            <h2 className="section-title-artisan">
+              Les secteurs que nous <span className="gradient">accompagnons</span>
+            </h2>
+            <p className="section-subtitle-artisan">
+              Expertise métier spécialisée pour les 18 secteurs couverts par NIS2
+            </p>
+          </div>
+
+          <div className="sectors-image-wrapper">
+            <img
+              src="/secteurs-nis2.png"
+              alt="Les 9 secteurs NIS2 accompagnés : Industrie, Santé, Énergie, Transport, Eau, Finance, Services numériques, Recherche, Agroalimentaire"
+              className="sectors-infographic"
+            />
+          </div>
+
+          <div className="sectors-cta">
+            <p className="sectors-cta-text">Votre secteur n'est pas listé ?</p>
+            <a href="/comprendre-nis2" className="btn-artisan btn-artisan-secondary">
+              Vérifier mon éligibilité →
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION AVANT/APRÈS - DESIGN EXPERT */}
       <section className="before-after-section-v2" id="solutions">
         <div className="before-after-container-v2">

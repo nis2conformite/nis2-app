@@ -3544,3 +3544,52 @@ body {
     max-height: 50px;
   }
 }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION SECTEURS - IMAGE INFOGRAPHIQUE
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.sectors-section {
+  padding: var(--space-3xl) 0;
+  background: var(--gray-50);
+}
+
+.sectors-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--space-2xl) auto;
+  max-width: 900px;
+}
+
+.sectors-infographic {
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  border-radius: var(--radius-xl);
+}
+
+.sectors-cta {
+  text-align: center;
+  margin-top: var(--space-xl);
+}
+
+.sectors-cta-text {
+  font-size: var(--font-size-md);
+  color: var(--gray-600);
+  margin-bottom: var(--space-md);
+}
+
+@media (max-width: 768px) {
+  .sectors-section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .sectors-image-wrapper {
+    padding: 0 var(--space-md);
+  }
+
+  .sectors-infographic {
+    max-width: 100%;
+  }
+}
