@@ -2924,7 +2924,7 @@ body {
 /* Video wrapper avec halo violet */
 .video-section .video-wrapper {
   margin-top: var(--space-xl);
-  max-width: 900px;
+  max-width: 720px;
   margin-left: auto;
   margin-right: auto;
   border-radius: var(--radius-2xl);
@@ -3768,6 +3768,110 @@ body {
 /* Pause animation on hover */
 .logo-banner-wrapper:hover .logo-banner-track {
   animation-play-state: paused;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GARANTIES INTÉGRÉES DANS NOTRE APPROCHE
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.approach-guarantees-wrapper {
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-2xl);
+}
+
+.approach-guarantees-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.approach-guarantees-divider::before,
+.approach-guarantees-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gray-300), transparent);
+  max-width: 200px;
+}
+
+.approach-guarantees-divider span {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-purple);
+  white-space: nowrap;
+}
+
+.approach-guarantees-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+.approach-guarantee-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--gray-50);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-100);
+  transition: all 0.3s ease;
+}
+
+.approach-guarantee-item:hover {
+  background: white;
+  border-color: rgba(168, 85, 247, 0.2);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.1);
+  transform: translateY(-2px);
+}
+
+.approach-guarantee-item .guarantee-check-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+}
+
+.approach-guarantee-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.approach-guarantee-text strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.approach-guarantee-text span {
+  font-size: 13px;
+  color: var(--gray-600);
+}
+
+@media (max-width: 1024px) {
+  .approach-guarantees-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .approach-guarantees-row {
+    grid-template-columns: 1fr;
+  }
+
+  .approach-guarantee-item {
+    padding: var(--space-md);
+  }
+
+  .approach-guarantees-divider::before,
+  .approach-guarantees-divider::after {
+    max-width: 60px;
+  }
 }
 
 @media (max-width: 768px) {

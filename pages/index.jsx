@@ -4,10 +4,8 @@ import { useQuiz } from '../hooks/useQuiz';
 import { useLeadPopup } from '../hooks/useLeadPopup';
 import { QuizModal } from '../components/QuizModal';
 import MenuBurger from '../components/MenuBurger';
-import TestimonialsCarousel from '../components/TestimonialsCarousel';
 import {
   PRICING_OFFERS,
-  TESTIMONIALS,
   HERO_STATS,
   FAQ_ITEMS,
   CONTACT_INFO,
@@ -196,36 +194,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION SECTEURS ACCOMPAGNÉS - IMAGE INFOGRAPHIQUE */}
-      <section className="sectors-section">
-        <div className="content-container">
-          <div className="text-center mb-12">
-            <span className="section-badge-purple">Nos expertises</span>
-            <h2 className="section-title-artisan">
-              Les secteurs que nous <span className="gradient">accompagnons</span>
-            </h2>
-            <p className="section-subtitle-artisan">
-              Expertise métier spécialisée pour les 18 secteurs couverts par NIS2
-            </p>
-          </div>
-
-          <div className="sectors-image-wrapper">
-            <img
-              src="/secteurs-nis2.png"
-              alt="Les 9 secteurs NIS2 accompagnés : Industrie, Santé, Énergie, Transport, Eau, Finance, Services numériques, Recherche, Agroalimentaire"
-              className="sectors-infographic"
-            />
-          </div>
-
-          <div className="sectors-cta">
-            <p className="sectors-cta-text">Votre secteur n'est pas listé ?</p>
-            <a href="/comprendre-nis2" className="btn-artisan btn-artisan-secondary">
-              Vérifier mon éligibilité →
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* SECTION AVANT/APRÈS - DESIGN EXPERT */}
       <section className="before-after-section-v2" id="solutions">
         <div className="before-after-container-v2">
@@ -405,6 +373,48 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          {/* Séparateur + Garanties intégrées */}
+          <div className="approach-guarantees-wrapper">
+            <div className="approach-guarantees-divider">
+              <span>Nos engagements</span>
+            </div>
+            <div className="approach-guarantees-row">
+              <div className="approach-guarantee-item">
+                <div className="guarantee-check-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div className="approach-guarantee-text">
+                  <strong>Méthodologie ANSSI</strong>
+                  <span>Guide officiel de conformité</span>
+                </div>
+              </div>
+              <div className="approach-guarantee-item">
+                <div className="guarantee-check-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div className="approach-guarantee-text">
+                  <strong>Experts ISO 27001</strong>
+                  <span>10+ ans d'expérience cyber</span>
+                </div>
+              </div>
+              <div className="approach-guarantee-item">
+                <div className="guarantee-check-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div className="approach-guarantee-text">
+                  <strong>Sans engagement</strong>
+                  <span>Paiement unique, sans frais cachés</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -440,56 +450,6 @@ export default function Home() {
                   perte de données, rançons.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION GARANTIES */}
-      <section className="guarantees-section-v2">
-        <div className="content-container">
-          <div className="text-center mb-12">
-            <span className="section-badge-purple">Nos engagements</span>
-            <h2 className="section-title-artisan">
-              Nos garanties, votre <span className="gradient">sérénité</span>
-            </h2>
-          </div>
-
-          <div className="guarantees-grid-v2">
-            <div className="guarantee-card-v2">
-              <div className="guarantee-check-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <h3 className="guarantee-title-v2">Méthodologie ANSSI officielle</h3>
-              <p className="guarantee-desc-v2">
-                Nous suivons le guide ANSSI pour garantir la validité de votre conformité
-              </p>
-            </div>
-
-            <div className="guarantee-card-v2">
-              <div className="guarantee-check-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <h3 className="guarantee-title-v2">Experts certifiés ISO 27001</h3>
-              <p className="guarantee-desc-v2">
-                Consultants accrédités avec 10+ ans d'expérience cyber
-              </p>
-            </div>
-
-            <div className="guarantee-card-v2">
-              <div className="guarantee-check-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <h3 className="guarantee-title-v2">Sans engagement</h3>
-              <p className="guarantee-desc-v2">
-                Paiement unique, aucun abonnement, aucuns frais cachés
-              </p>
             </div>
           </div>
         </div>
@@ -859,82 +819,6 @@ export default function Home() {
                     <img src={logo.src} alt={logo.alt} className="accreditation-img" />
                   </div>
                 ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION TÉMOIGNAGES - CARROUSEL */}
-      <section className="content-section testimonials-carousel-section" id="temoignages">
-        <div className="content-container">
-          <div className="section-badge-center">Success Stories</div>
-
-          <h2 className="section-title-artisan">
-            Dirigeants conformes, <span className="gradient">entreprises gagnantes</span>
-          </h2>
-          <p className="section-subtitle-artisan">
-            Ils ont fait de NIS2 un levier de performance
-          </p>
-
-          <TestimonialsCarousel />
-        </div>
-      </section>
-
-      {/* SECTION NOS RÉFÉRENCES - BANDEAU DÉFILANT */}
-      <section className="references-section">
-        <div className="content-container">
-          <div className="section-badge-center">Nos références</div>
-          <h2 className="section-title-artisan">
-            Ils nous font <span className="gradient">confiance</span>
-          </h2>
-          <p className="section-subtitle-artisan">
-            PME et ETI de tous secteurs qui ont choisi notre accompagnement
-          </p>
-        </div>
-
-        <div className="logo-banner-wrapper">
-          <div className="logo-banner-track">
-            {/* Première série de logos */}
-            <div className="logo-banner-slide">
-              <div className="logo-item">
-                <img src="/references/logo-1.png" alt="Référence client" />
-              </div>
-              <div className="logo-item">
-                <img src="/references/logo-2.png" alt="Référence client" />
-              </div>
-              <div className="logo-item">
-                <img src="/references/logo-3.png" alt="Référence client" />
-              </div>
-              <div className="logo-item">
-                <img src="/references/logo-4.png" alt="Référence client" />
-              </div>
-              <div className="logo-item">
-                <img src="/references/logo-5.png" alt="Référence client" />
-              </div>
-              <div className="logo-item">
-                <img src="/references/logo-6.png" alt="Référence client" />
-              </div>
-            </div>
-            {/* Deuxième série (duplication pour boucle infinie) */}
-            <div className="logo-banner-slide">
-              <div className="logo-item">
-                <img src="/references/logo-1.png" alt="Référence client" />
-              </div>
-              <div className="logo-item">
-                <img src="/references/logo-2.png" alt="Référence client" />
-              </div>
-              <div className="logo-item">
-                <img src="/references/logo-3.png" alt="Référence client" />
-              </div>
-              <div className="logo-item">
-                <img src="/references/logo-4.png" alt="Référence client" />
-              </div>
-              <div className="logo-item">
-                <img src="/references/logo-5.png" alt="Référence client" />
-              </div>
-              <div className="logo-item">
-                <img src="/references/logo-6.png" alt="Référence client" />
               </div>
             </div>
           </div>
