@@ -369,22 +369,6 @@ export default function OffresServices() {
           </div>
         </section>
 
-        {/* SECTION TARIF GROUPE */}
-        <section className="section-groupe-gradient">
-          <div className="container-md">
-            <div className="badge-groupe">TARIF GROUPE DISPONIBLE</div>
-            <h2 className="section-title-white-lg">
-              Vous êtes une fédération ou un groupement
-            </h2>
-            <p className="section-subtitle-white">
-              Bénéficiez de tarifs dégressifs à partir de 5 entreprises
-            </p>
-            <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-cta-white-lg">
-              Demander un devis groupe
-            </a>
-          </div>
-        </section>
-
         {/* CTA FINAL */}
         <section className="section-cta-gradient">
           <div className="container-md">
