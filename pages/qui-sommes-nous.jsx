@@ -129,7 +129,7 @@ export default function QuiSommesNous() {
               {/* PHOTO ÉQUIPE */}
               <div className="equipe-photo-wrapper">
                 <img
-                  src="/equipe-photo.jpg"
+                  src="/equipe-photo.png"
                   alt="Notre équipe d'experts cybersécurité"
                   className="equipe-photo"
                 />
