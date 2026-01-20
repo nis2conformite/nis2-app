@@ -1,8 +1,69 @@
+import { useState } from 'react';
 import Head from 'next/head';
 import { CONTACT_INFO } from '../utils/constants';
 import MenuBurger from '../components/MenuBurger';
 
 export default function Formations() {
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const sessions = [
+    {
+      date: '15 Février 2025',
+      title: 'Formation Dirigeants NIS2',
+      duration: '1 journée (7h)',
+      location: 'Visio',
+      places: 8,
+      price: '890€ HT'
+    },
+    {
+      date: '22 Février 2025',
+      title: 'Sensibilisation Cybersécurité',
+      duration: '½ journée (3h30)',
+      location: 'Visio',
+      places: 15,
+      price: '290€ HT'
+    },
+    {
+      date: '8 Mars 2025',
+      title: 'Formation Dirigeants NIS2',
+      duration: '1 journée (7h)',
+      location: 'Présentiel Paris',
+      places: 12,
+      price: '990€ HT'
+    },
+    {
+      date: '15 Mars 2025',
+      title: 'Culture Cybersécurité Équipes',
+      duration: '1 journée (7h)',
+      location: 'Visio',
+      places: 20,
+      price: '490€ HT'
+    }
+  ];
+
+  const faqFormations = [
+    {
+      question: "Les formations sont-elles certifiantes ?",
+      answer: "Oui, toutes nos formations délivrent une attestation de formation reconnue. La formation dirigeants NIS2 délivre un certificat spécifique attestant de la conformité à l'obligation de formation des organes de direction imposée par la directive. Ce certificat est valable comme preuve auprès de l'ANSSI."
+    },
+    {
+      question: "Puis-je former tous mes collaborateurs en une seule session ?",
+      answer: "Oui, nous proposons des formations intra-entreprise sur mesure. Nous pouvons intervenir sur site ou en visio pour former jusqu'à 20 personnes par session. Pour les grandes entreprises, nous organisons plusieurs sessions successives ou des formations en e-learning accessibles à tous vos collaborateurs."
+    },
+    {
+      question: "Quels sont les prérequis pour la formation dirigeants ?",
+      answer: "Aucun prérequis technique n'est nécessaire. La formation est conçue pour des dirigeants et membres de COMEX/CODIR sans background IT. Nous vulgarisons les concepts techniques et nous concentrons sur les enjeux stratégiques, juridiques et organisationnels de la cybersécurité."
+    },
+    {
+      question: "Proposez-vous des formations en présentiel ?",
+      answer: "Oui, nous proposons des formations en présentiel à Paris et dans les principales métropoles françaises. Le présentiel est particulièrement adapté aux ateliers pratiques et aux simulations de crise. Contactez-nous pour connaître les prochaines dates et lieux disponibles."
+    }
+  ];
+
   const formats = [
     {
       id: 1,
@@ -509,6 +570,141 @@ export default function Formations() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PROCHAINES SESSIONS DE FORMATION */}
+        <section className="section-standard">
+          <div className="container-lg">
+            <h2 className="section-title-center">
+              Prochaines sessions de formation
+            </h2>
+            <p className="section-subtitle-center">
+              Sessions inter-entreprises ouvertes à tous • Formations intra sur demande
+            </p>
+
+            <div className="sessions-grid">
+              {sessions.map((session, index) => (
+                <div key={index} className="session-card">
+                  <div className="session-date-badge">{session.date}</div>
+                  <h3 className="session-title">{session.title}</h3>
+                  <div className="session-details">
+                    <span className="session-detail">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                      </svg>
+                      {session.duration}
+                    </span>
+                    <span className="session-detail">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                      {session.location}
+                    </span>
+                    <span className="session-detail">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      </svg>
+                      {session.places} places
+                    </span>
+                  </div>
+                  <div className="session-footer">
+                    <span className="session-price">{session.price}</span>
+                    <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-session">
+                      S'inscrire
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FINANCEMENT OPCO */}
+        <section className="section-purple-gradient">
+          <div className="container-lg">
+            <h2 className="section-title-center">
+              Financement OPCO : jusqu'à 100% pris en charge
+            </h2>
+            <p className="section-subtitle-center">
+              Nos formations sont éligibles au financement par votre OPCO
+            </p>
+
+            <div className="opco-steps-grid">
+              <div className="opco-step-card">
+                <div className="opco-step-number">1</div>
+                <h4 className="opco-step-title">Identifiez votre OPCO</h4>
+                <p className="opco-step-desc">
+                  Chaque entreprise est rattachée à un OPCO selon sa convention collective. Nous pouvons vous aider à l'identifier.
+                </p>
+              </div>
+              <div className="opco-step-card">
+                <div className="opco-step-number">2</div>
+                <h4 className="opco-step-title">Nous préparons le dossier</h4>
+                <p className="opco-step-desc">
+                  Nous vous fournissons tous les documents nécessaires : programme, convention, feuilles de présence, évaluation.
+                </p>
+              </div>
+              <div className="opco-step-card">
+                <div className="opco-step-number">3</div>
+                <h4 className="opco-step-title">Vous déposez la demande</h4>
+                <p className="opco-step-desc">
+                  Vous transmettez le dossier à votre OPCO qui valide la prise en charge (généralement sous 2 semaines).
+                </p>
+              </div>
+              <div className="opco-step-card">
+                <div className="opco-step-number">4</div>
+                <h4 className="opco-step-title">Formation financée</h4>
+                <p className="opco-step-desc">
+                  Selon votre OPCO et votre enveloppe formation, la prise en charge peut aller jusqu'à 100% du coût.
+                </p>
+              </div>
+            </div>
+
+            <div className="opco-help-banner">
+              <p>
+                <strong>Besoin d'aide ?</strong> Nous vous accompagnons gratuitement dans vos démarches de financement OPCO.{' '}
+                <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="link-purple">
+                  Contactez-nous
+                </a>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ FORMATIONS */}
+        <section className="section-standard">
+          <div className="container-lg">
+            <h2 className="section-title-center">
+              Questions fréquentes sur nos formations
+            </h2>
+
+            <div className="faq-grid-tarifs">
+              {faqFormations.map((item, index) => (
+                <div
+                  key={index}
+                  className={`faq-card-tarif ${openFaq === index ? 'faq-card-open' : ''}`}
+                  onClick={() => toggleFaq(index)}
+                >
+                  <div className="faq-question-row">
+                    <span className="faq-question-text">{item.question}</span>
+                    <span className={`faq-chevron ${openFaq === index ? 'faq-chevron-open' : ''}`}>
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </span>
+                  </div>
+                  <div className={`faq-answer-wrapper ${openFaq === index ? 'faq-answer-visible' : ''}`}>
+                    <p className="faq-answer-text">{item.answer}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
