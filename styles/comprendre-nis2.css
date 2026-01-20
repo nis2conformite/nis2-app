@@ -1797,3 +1797,85 @@
     padding: 6px 14px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION NIS2 EN DÉTAILS - Navigation
+   ═══════════════════════════════════════════════════════════ */
+
+.guide-nav-section {
+  padding: var(--space-xl) var(--space-md);
+  background: var(--color-bg);
+}
+
+.guide-nav-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl) var(--space-2xl);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #F3E8FF;
+}
+
+.guide-nav-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-lg);
+}
+
+.guide-nav-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.guide-nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px 20px;
+  background: #FAFAFA;
+  border: 1px solid #E5E7EB;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.guide-nav-item:hover {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
+  border-color: rgba(168, 85, 247, 0.3);
+  transform: translateY(-2px);
+}
+
+.guide-nav-number {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-purple);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(236, 72, 153, 0.15) 100%);
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+.guide-nav-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .guide-nav-card {
+    padding: var(--space-lg);
+  }
+
+  .guide-nav-items {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .guide-nav-item {
+    justify-content: flex-start;
+  }
+}
