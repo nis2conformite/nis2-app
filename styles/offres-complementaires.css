@@ -821,3 +821,142 @@
     width: 100%;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   FAQ TARIFS - Accordéon
+   ═══════════════════════════════════════════════════════════ */
+
+.faq-grid-tarifs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+  max-width: 1100px;
+  margin: var(--space-2xl) auto 0;
+}
+
+.faq-card-tarif {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg) var(--space-xl);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #E5E7EB;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-card-tarif:hover {
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.1);
+}
+
+.faq-card-open {
+  border-color: var(--color-purple);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.15);
+}
+
+.faq-question-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.faq-question-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  flex: 1;
+}
+
+.faq-chevron {
+  color: var(--color-text-tertiary);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.faq-chevron-open {
+  transform: rotate(180deg);
+  color: var(--color-purple);
+}
+
+.faq-answer-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-answer-visible {
+  max-height: 300px;
+  padding-top: var(--space-md);
+}
+
+.faq-answer-text {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin: 0;
+  padding-top: var(--space-md);
+  border-top: 1px solid #F3F4F6;
+}
+
+/* Section Tarif Groupe */
+.section-groupe-gradient {
+  padding: var(--space-3xl) var(--space-md);
+  background: linear-gradient(135deg, #A855F7 0%, #9333EA 40%, #EC4899 80%, #F472B6 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-groupe-gradient::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.badge-groupe {
+  display: inline-block;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-lg);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.section-title-white-lg {
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: var(--space-md);
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive FAQ */
+@media (max-width: 768px) {
+  .faq-grid-tarifs {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-card-tarif {
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .faq-question-text {
+    font-size: 15px;
+  }
+
+  .section-title-white-lg {
+    font-size: 28px;
+  }
+}
