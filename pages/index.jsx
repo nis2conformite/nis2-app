@@ -18,7 +18,12 @@ export default function Home() {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
   const [email, setEmail] = useState('');
+  const [openFaq, setOpenFaq] = useState(null);
   const quiz = useQuiz();
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
   const popup = useLeadPopup({
     quizIsOpen: quiz.isOpen,
     videoIsPlaying
@@ -885,7 +890,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION FAQ REDESIGN MODERNE */}
+      {/* SECTION FAQ - FORMAT ACCORDÉON */}
       <section className="content-section">
         <div className="content-container faq-container">
           <div className="section-badge-center">FAQ</div>
@@ -894,33 +899,26 @@ export default function Home() {
             Les questions que se posent les <span className="gradient">dirigeants</span>
           </h2>
 
-          <div className="faq-grid-redesign">
-            {FAQ_ITEMS.map((item, index) => {
-              // Couleurs alternées pour les cartes
-              const colorClass = index % 3 === 0 ? 'faq-purple' : index % 3 === 1 ? 'faq-pink' : 'faq-blue';
-
-              return (
-                <details key={item.id} className={`faq-item-redesign ${colorClass}`}>
-                  <summary className="faq-question-redesign">
-                    <div className="faq-icon-circle">
-                      <span className="faq-emoji">{item.icon}</span>
-                    </div>
-                    <span className="faq-question-text-redesign">{item.question}</span>
-                    <div className="faq-toggle-icon">
-                      <svg className="faq-plus" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M10 4V16M4 10H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                      </svg>
-                      <svg className="faq-minus" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M4 10H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                      </svg>
-                    </div>
-                  </summary>
-                  <div className="faq-answer-redesign">
-                    <p>{item.answer}</p>
-                  </div>
-                </details>
-              );
-            })}
+          <div className="faq-grid-tarifs">
+            {FAQ_ITEMS.map((item, index) => (
+              <div
+                key={item.id}
+                className={`faq-card-tarif ${openFaq === index ? 'faq-card-open' : ''}`}
+                onClick={() => toggleFaq(index)}
+              >
+                <div className="faq-question-row">
+                  <span className="faq-question-text">{item.question}</span>
+                  <span className={`faq-chevron ${openFaq === index ? 'faq-chevron-open' : ''}`}>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
+                <div className={`faq-answer-wrapper ${openFaq === index ? 'faq-answer-visible' : ''}`}>
+                  <p className="faq-answer-text">{item.answer}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

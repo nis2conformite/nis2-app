@@ -2923,8 +2923,8 @@ body {
 
 /* Video wrapper avec halo violet */
 .video-section .video-wrapper {
-  margin-top: var(--space-xl);
-  max-width: 720px;
+  margin-top: var(--space-lg);
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   border-radius: var(--radius-2xl);
@@ -2935,6 +2935,16 @@ body {
     0 0 60px rgba(236, 72, 153, 0.05),
     0 20px 40px rgba(0, 0, 0, 0.1);
   transition: box-shadow var(--transition-base);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-section .video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
 }
 
 .video-section .video-wrapper:hover {
