@@ -780,16 +780,16 @@ export default function Home() {
               Une équipe de <span className="highlight">cyber experts</span> à votre service
             </h2>
             <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
-              Consultants ISO 27001 • Méthodologie ANSSI • 15+ années d'expérience
+              Consultants ISO 27001 • Méthodologie ANSSI • 10 années d'expérience
             </p>
 
             {/* 2 CARTES PRINCIPALES */}
             <div className="cyber-stats-grid-encart">
               <div className="cyber-stat-card-encart">
-                <div className="cyber-stat-number-encart">+15 ans</div>
+                <div className="cyber-stat-number-encart">+10 ans</div>
                 <h3>D'expérience dans la cyber</h3>
                 <p>
-                  Depuis 2009 dans l'accompagnement cyber des PME et ETI. Expertise reconnue sur les secteurs critiques et essentiels.
+                  Depuis 2016 dans l'accompagnement cyber des PME et ETI. Expertise reconnue sur les secteurs critiques et essentiels.
                 </p>
               </div>
 

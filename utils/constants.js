@@ -328,7 +328,7 @@ export const FAQ_ITEMS = [
     id: 6,
     icon: "🏆",
     question: "Pourquoi nous choisir ?",
-    answer: "15 ans d'expertise, équipe ISO 27001, experts ANSSI, 150+ PME accompagnées, 98% conformité, 0 client sanctionné. Nous parlons votre langage, pas du jargon."
+    answer: "10 ans d'expertise, équipe ISO 27001, experts ANSSI, 150+ PME accompagnées, 98% conformité, 0 client sanctionné. Nous parlons votre langage, pas du jargon."
   }
 ];
 

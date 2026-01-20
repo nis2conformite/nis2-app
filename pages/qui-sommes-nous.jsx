@@ -7,7 +7,7 @@ export default function QuiSommesNous() {
     <>
       <Head>
         <title>Qui sommes-nous ? | Experts Conformité NIS2</title>
-        <meta name="description" content="Depuis 2009, nous accompagnons les PME et ETI dans leur conformité cyber. Équipe certifiée ISO 27001, méthodologie ANSSI, 150+ entreprises accompagnées." />
+        <meta name="description" content="Depuis 2016, nous accompagnons les PME et ETI dans leur conformité cyber. Équipe certifiée ISO 27001, méthodologie ANSSI, 150+ entreprises accompagnées." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
@@ -41,7 +41,7 @@ export default function QuiSommesNous() {
         <section className="hero-artisan-exact hero-compact">
           <div className="hero-artisan-container">
             <div className="hero-badge-artisan">
-              Experts conformité cyber • Depuis 2009
+              Experts conformité cyber • Depuis 2016
             </div>
 
             {/* Logo central sous le badge */}
@@ -55,7 +55,7 @@ export default function QuiSommesNous() {
             </h1>
 
             <p className="hero-subtitle-artisan">
-              Depuis 2009, nous transformons la conformité cyber en levier de performance<br />
+              Depuis 2016, nous transformons la conformité cyber en levier de performance<br />
               pour les PME et ETI européennes
             </p>
           </div>
@@ -123,7 +123,7 @@ export default function QuiSommesNous() {
                 Une équipe de <span className="highlight">cyber experts</span> à votre service
               </h2>
               <p className="section-subtitle-artisan" style={{textAlign: 'center'}}>
-                Consultants ISO 27001 • Méthodologie ANSSI • 15+ années d'expérience
+                Consultants ISO 27001 • Méthodologie ANSSI • 10 années d'expérience
               </p>
 
               {/* SECTION ÉQUIPE AVEC PROFILS */}
@@ -232,10 +232,10 @@ export default function QuiSommesNous() {
               {/* 2 CARTES PRINCIPALES */}
               <div className="cyber-stats-grid-encart">
                 <div className="cyber-stat-card-encart">
-                  <div className="cyber-stat-number-encart">+15 ans</div>
+                  <div className="cyber-stat-number-encart">+10 ans</div>
                   <h3>D'expérience dans la cyber</h3>
                   <p>
-                    Depuis 2009 dans l'accompagnement cyber des PME et ETI. Expertise reconnue sur les secteurs critiques et essentiels.
+                    Depuis 2016 dans l'accompagnement cyber des PME et ETI. Expertise reconnue sur les secteurs critiques et essentiels.
                   </p>
                 </div>
 
