@@ -175,6 +175,27 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SECTION VIDÉO YOUTUBE - APRÈS LE HERO */}
+      <section className="content-section video-section" id="video-section">
+        <div className="content-container">
+          <h2 className="section-title-artisan">
+            Comprendre <span className="gradient">NIS2</span> en vidéo
+          </h2>
+          <p className="section-subtitle-artisan">
+            3 minutes pour tout comprendre de la directive NIS2
+          </p>
+
+          <div className="video-wrapper">
+            <iframe
+              src={EXTERNAL_LINKS.videoYoutube}
+              title="Directive NIS2 expliquée"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </section>
+
       {/* SECTION AVANT/APRÈS - DESIGN EXPERT */}
       <section className="before-after-section-v2" id="solutions">
         <div className="before-after-container-v2">
@@ -777,27 +798,6 @@ export default function Home() {
           </p>
 
           <TestimonialsCarousel />
-        </div>
-      </section>
-
-      {/* SECTION VIDÉO YOUTUBE */}
-      <section className="content-section video-section" id="video-section">
-        <div className="content-container">
-          <h2 className="section-title-artisan">
-            Comprendre <span className="gradient">NIS2</span> en vidéo
-          </h2>
-          <p className="section-subtitle-artisan">
-            3 minutes pour tout comprendre de la directive NIS2
-          </p>
-
-          <div className="video-wrapper">
-            <iframe
-              src={EXTERNAL_LINKS.videoYoutube}
-              title="Directive NIS2 expliquée"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
         </div>
       </section>
 
