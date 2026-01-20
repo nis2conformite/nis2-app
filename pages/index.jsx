@@ -445,6 +445,56 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SECTION GARANTIES */}
+      <section className="guarantees-section-v2">
+        <div className="content-container">
+          <div className="text-center mb-12">
+            <span className="section-badge-purple">Nos engagements</span>
+            <h2 className="section-title-artisan">
+              Nos garanties, votre <span className="gradient">sérénité</span>
+            </h2>
+          </div>
+
+          <div className="guarantees-grid-v2">
+            <div className="guarantee-card-v2">
+              <div className="guarantee-check-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <h3 className="guarantee-title-v2">Méthodologie ANSSI officielle</h3>
+              <p className="guarantee-desc-v2">
+                Nous suivons le guide ANSSI pour garantir la validité de votre conformité
+              </p>
+            </div>
+
+            <div className="guarantee-card-v2">
+              <div className="guarantee-check-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <h3 className="guarantee-title-v2">Experts certifiés ISO 27001</h3>
+              <p className="guarantee-desc-v2">
+                Consultants accrédités avec 10+ ans d'expérience cyber
+              </p>
+            </div>
+
+            <div className="guarantee-card-v2">
+              <div className="guarantee-check-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <h3 className="guarantee-title-v2">Sans engagement</h3>
+              <p className="guarantee-desc-v2">
+                Paiement unique, aucun abonnement, aucuns frais cachés
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION PRICING */}
       <section className="pricing-section-artisan" id="pricing">
         <div className="before-after-container">
