@@ -1810,37 +1810,41 @@
 .guide-nav-card {
   background: white;
   border-radius: var(--radius-xl);
-  padding: var(--space-xl) var(--space-2xl);
+  padding: var(--space-lg) var(--space-xl);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border: 1px solid #F3E8FF;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .guide-nav-label {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--color-text-tertiary);
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
 .guide-nav-items {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
+  flex-wrap: nowrap;
+  gap: var(--space-xs);
   align-items: center;
+  justify-content: space-between;
 }
 
 .guide-nav-item {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: 10px 20px;
+  gap: 8px;
+  padding: 8px 14px;
   background: #FAFAFA;
   border: 1px solid #E5E7EB;
   border-radius: 9999px;
   text-decoration: none;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .guide-nav-item:hover {
@@ -1850,32 +1854,79 @@
 }
 
 .guide-nav-number {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--color-purple);
   background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(236, 72, 153, 0.15) 100%);
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 9999px;
 }
 
 .guide-nav-text {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--color-text-primary);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Responsive tablette */
+@media (max-width: 1024px) {
   .guide-nav-card {
-    padding: var(--space-lg);
+    max-width: 100%;
   }
 
   .guide-nav-items {
-    flex-direction: column;
-    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: var(--space-xs);
   }
 
   .guide-nav-item {
+    padding: 8px 12px;
+  }
+
+  .guide-nav-text {
+    font-size: 12px;
+  }
+}
+
+/* Responsive mobile */
+@media (max-width: 640px) {
+  .guide-nav-section {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .guide-nav-card {
+    padding: var(--space-md);
+    border-radius: var(--radius-lg);
+  }
+
+  .guide-nav-label {
+    font-size: 11px;
+    margin-bottom: var(--space-sm);
+  }
+
+  .guide-nav-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .guide-nav-item {
+    padding: 8px 10px;
     justify-content: flex-start;
+  }
+
+  .guide-nav-item:last-child {
+    grid-column: span 2;
+    justify-content: center;
+  }
+
+  .guide-nav-number {
+    font-size: 11px;
+    padding: 2px 6px;
+  }
+
+  .guide-nav-text {
+    font-size: 12px;
   }
 }
