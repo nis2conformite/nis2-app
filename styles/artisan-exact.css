@@ -2921,10 +2921,10 @@ body {
   overflow: hidden;
 }
 
-/* Video wrapper avec halo violet */
+/* Video wrapper avec halo violet - ratio 2:1 pour optimiser l'espace */
 .video-section .video-wrapper {
   margin-top: var(--space-lg);
-  max-width: 800px;
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
   border-radius: var(--radius-2xl);
@@ -2935,7 +2935,7 @@ body {
     0 0 60px rgba(236, 72, 153, 0.05),
     0 20px 40px rgba(0, 0, 0, 0.1);
   transition: box-shadow var(--transition-base);
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 2 / 1;
   overflow: hidden;
   background: #000;
 }
