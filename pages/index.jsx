@@ -495,6 +495,43 @@ export default function Home() {
               </div>
             </div>
 
+            {/* TIMELINE ACCORDÉON - CYBERATTAQUES */}
+            <div className="cyber-timeline-section">
+              <h3 className="cyber-timeline-title">
+                <span className="cyber-timeline-dot-live"></span>
+                Les cyberattaques majeures en France
+              </h3>
+              <p className="cyber-timeline-subtitle">Cliquez pour voir les détails</p>
+
+              <div className="cyber-timeline">
+                <div className="cyber-timeline-line"></div>
+
+                {CYBER_TIMELINE.map((event, index) => (
+                  <div
+                    key={index}
+                    className={`cyber-timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${openTimeline === index ? 'active' : ''}`}
+                    onClick={() => toggleTimeline(index)}
+                  >
+                    <div className="cyber-timeline-point"></div>
+                    <div className="cyber-timeline-content">
+                      <div className="cyber-timeline-header">
+                        <span className="cyber-timeline-date">{event.date}</span>
+                        <span className={`cyber-timeline-chevron ${openTimeline === index ? 'open' : ''}`}>
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </span>
+                      </div>
+                      <h4 className="cyber-timeline-event-title">{event.title}</h4>
+                      <div className={`cyber-timeline-description ${openTimeline === index ? 'visible' : ''}`}>
+                        <p>{event.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* 3 BLOCS CONTEXTE - MENACES */}
             <div className="cyber-threats-section">
               <h3 className="cyber-threats-title">3 menaces qui pèsent sur votre entreprise</h3>
@@ -532,43 +569,6 @@ export default function Home() {
                   </p>
                   <div className="cyber-threat-badge">1 attaque toutes les 11 secondes</div>
                 </div>
-              </div>
-            </div>
-
-            {/* TIMELINE ACCORDÉON - CYBERATTAQUES 2025-2026 */}
-            <div className="cyber-timeline-section">
-              <h3 className="cyber-timeline-title">
-                <span className="cyber-timeline-dot-live"></span>
-                Les cyberattaques majeures en France en 2025 et début 2026
-              </h3>
-              <p className="cyber-timeline-subtitle">Cliquez pour voir les détails</p>
-
-              <div className="cyber-timeline">
-                <div className="cyber-timeline-line"></div>
-
-                {CYBER_TIMELINE.map((event, index) => (
-                  <div
-                    key={index}
-                    className={`cyber-timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${openTimeline === index ? 'active' : ''}`}
-                    onClick={() => toggleTimeline(index)}
-                  >
-                    <div className="cyber-timeline-point"></div>
-                    <div className="cyber-timeline-content">
-                      <div className="cyber-timeline-header">
-                        <span className="cyber-timeline-date">{event.date}</span>
-                        <span className={`cyber-timeline-chevron ${openTimeline === index ? 'open' : ''}`}>
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </span>
-                      </div>
-                      <h4 className="cyber-timeline-event-title">{event.title}</h4>
-                      <div className={`cyber-timeline-description ${openTimeline === index ? 'visible' : ''}`}>
-                        <p>{event.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
 
