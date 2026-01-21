@@ -2805,7 +2805,7 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   TIMELINE ACCORDÉON CYBERATTAQUES
+   TIMELINE ACCORDÉON CYBERATTAQUES - STYLE IMPACTANT
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .cyber-timeline-section {
@@ -2813,52 +2813,110 @@ body {
   margin-bottom: var(--space-2xl);
   position: relative;
   z-index: 1;
+  padding: var(--space-2xl) var(--space-xl);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(139, 92, 246, 0.05) 50%, rgba(239, 68, 68, 0.08) 100%);
+  border-radius: 24px;
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  box-shadow:
+    0 0 40px rgba(239, 68, 68, 0.15),
+    0 0 80px rgba(239, 68, 68, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  animation: timeline-glow 3s ease-in-out infinite;
+}
+
+@keyframes timeline-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 40px rgba(239, 68, 68, 0.15),
+      0 0 80px rgba(239, 68, 68, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 60px rgba(239, 68, 68, 0.25),
+      0 0 120px rgba(239, 68, 68, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    border-color: rgba(239, 68, 68, 0.5);
+  }
+}
+
+.cyber-timeline-section::before {
+  content: "ALERTE CYBER";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 6px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.5);
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.5);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 6px 30px rgba(239, 68, 68, 0.7);
+  }
 }
 
 .cyber-timeline-title {
   text-align: center;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 26px;
+  font-weight: 800;
   color: white;
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-sm);
+  margin-top: var(--space-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .cyber-timeline-dot-live {
   display: inline-block;
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
   background: #ef4444;
   border-radius: 50%;
-  animation: pulse-live 1.5s ease-in-out infinite;
+  animation: pulse-live 1.2s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
 }
 
 @keyframes pulse-live {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.8), 0 0 0 0 rgba(239, 68, 68, 0.7);
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
-    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 1), 0 0 0 12px rgba(239, 68, 68, 0);
+    transform: scale(1.2);
   }
 }
 
 .cyber-timeline-subtitle {
   text-align: center;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: var(--space-md);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: var(--space-lg);
+  font-weight: 500;
 }
 
 .cyber-timeline {
   position: relative;
-  max-width: 640px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: var(--space-md) 0;
+  padding: var(--space-lg) 0;
 }
 
 .cyber-timeline-line {
@@ -2866,69 +2924,73 @@ body {
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, transparent 0%, #8b5cf6 10%, #8b5cf6 90%, transparent 100%);
+  width: 3px;
+  background: linear-gradient(to bottom, transparent 0%, #ef4444 10%, #8b5cf6 50%, #ef4444 90%, transparent 100%);
   transform: translateX(-50%);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
 }
 
 .cyber-timeline-item {
   position: relative;
-  width: calc(50% - 25px);
+  width: calc(50% - 30px);
   cursor: pointer;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
 }
 
 .cyber-timeline-item.left {
   margin-right: auto;
   margin-left: 0;
-  padding-right: var(--space-md);
+  padding-right: var(--space-lg);
 }
 
 .cyber-timeline-item.right {
   margin-left: auto;
   margin-right: 0;
-  padding-left: var(--space-md);
+  padding-left: var(--space-lg);
 }
 
 .cyber-timeline-point {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  background: #8b5cf6;
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   border-radius: 50%;
-  top: 12px;
+  top: 14px;
   z-index: 2;
   transition: all 0.3s ease;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.6), 0 0 0 4px rgba(239, 68, 68, 0.2);
 }
 
 .cyber-timeline-item.left .cyber-timeline-point {
-  right: -30px;
+  right: -32px;
 }
 
 .cyber-timeline-item.right .cyber-timeline-point {
-  left: -30px;
+  left: -32px;
 }
 
 .cyber-timeline-item:hover .cyber-timeline-point,
 .cyber-timeline-item.active .cyber-timeline-point {
-  background: #a78bfa;
-  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.5);
-  transform: scale(1.15);
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.8), 0 0 0 6px rgba(239, 68, 68, 0.3);
+  transform: scale(1.3);
 }
 
 .cyber-timeline-content {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 18px 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(139, 92, 246, 0.08) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 20px 22px;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .cyber-timeline-item:hover .cyber-timeline-content,
 .cyber-timeline-item.active .cyber-timeline-content {
-  border-color: rgba(139, 92, 246, 0.4);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(239, 68, 68, 0.5);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(239, 68, 68, 0.1) 100%);
+  box-shadow: 0 8px 30px rgba(239, 68, 68, 0.2), 0 0 20px rgba(239, 68, 68, 0.1);
+  transform: translateY(-2px);
 }
 
 .cyber-timeline-header {
@@ -2939,27 +3001,33 @@ body {
 }
 
 .cyber-timeline-date {
-  font-size: 11px;
-  font-weight: 700;
-  color: #a78bfa;
+  font-size: 12px;
+  font-weight: 800;
+  color: #ef4444;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
 }
 
 .cyber-timeline-chevron {
-  color: rgba(255, 255, 255, 0.5);
-  transition: transform 0.3s ease;
+  color: rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s ease, color 0.3s ease;
   display: flex;
   align-items: center;
 }
 
+.cyber-timeline-item:hover .cyber-timeline-chevron {
+  color: #ef4444;
+}
+
 .cyber-timeline-chevron.open {
   transform: rotate(180deg);
+  color: #ef4444;
 }
 
 .cyber-timeline-event-title {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   color: white;
   margin: 0;
   line-height: 1.4;
@@ -2973,16 +3041,20 @@ body {
 }
 
 .cyber-timeline-description.visible {
-  max-height: 150px;
+  max-height: 180px;
   margin-top: var(--space-sm);
   opacity: 1;
 }
 
 .cyber-timeline-description p {
-  font-size: 12px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
   margin: 0;
+  padding: 10px;
+  background: rgba(239, 68, 68, 0.08);
+  border-left: 3px solid #ef4444;
+  border-radius: 0 8px 8px 0;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -3025,13 +3097,24 @@ body {
     gap: var(--space-md);
   }
 
+  .cyber-timeline-section {
+    padding: var(--space-xl) var(--space-md);
+    border-radius: 16px;
+  }
+
+  .cyber-timeline-section::before {
+    font-size: 10px;
+    padding: 5px 16px;
+  }
+
   .cyber-timeline-line {
     left: 15px;
+    width: 2px;
   }
 
   .cyber-timeline-item {
     width: 100%;
-    padding-left: 40px !important;
+    padding-left: 45px !important;
     padding-right: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -3039,8 +3122,10 @@ body {
 
   .cyber-timeline-item.left .cyber-timeline-point,
   .cyber-timeline-item.right .cyber-timeline-point {
-    left: 10px;
+    left: 8px;
     right: auto;
+    width: 12px;
+    height: 12px;
   }
 
   .cyber-stat-number-large {
@@ -3062,7 +3147,9 @@ body {
   }
 
   .cyber-timeline-title {
-    font-size: 16px;
+    font-size: 18px;
+    flex-direction: column;
+    gap: var(--space-xs);
   }
 
   .cyber-threat-card {
@@ -3070,7 +3157,12 @@ body {
   }
 
   .cyber-timeline-content {
-    padding: 10px;
+    padding: 14px 16px;
+  }
+
+  .cyber-timeline-description p {
+    font-size: 12px;
+    padding: 8px;
   }
 
   .cyber-cta-button {
