@@ -474,8 +474,8 @@ export default function Home() {
               Guerre hybride • IA criminelle • NIS2 : 2026 marque un tournant critique
             </p>
 
-            {/* 2 CARTES STATS PRINCIPALES */}
-            <div className="cyber-stats-grid-encart cyber-stats-enhanced">
+            {/* 3 CARTES STATS PRINCIPALES */}
+            <div className="cyber-stats-grid-encart cyber-stats-enhanced cyber-stats-3cols">
               <div className="cyber-stat-card-encart cyber-stat-card-large">
                 <div className="cyber-stat-number-encart cyber-stat-number-large">+38%</div>
                 <h3>Hausse des cyberattaques</h3>
@@ -491,6 +491,15 @@ export default function Home() {
                 <p>
                   60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne),
                   perte de données, rançons.
+                </p>
+              </div>
+
+              <div className="cyber-stat-card-encart cyber-stat-card-large cyber-stat-card-ransomware">
+                <div className="cyber-stat-number-encart cyber-stat-number-large">74%</div>
+                <h3>Attaques par ransomware</h3>
+                <p>
+                  74% des cyberattaques en France sont des ransomwares.
+                  Rançon moyenne : 250 000€. Délai de récupération : 3 semaines.
                 </p>
               </div>
             </div>
