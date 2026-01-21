@@ -19,11 +19,49 @@ export default function Home() {
   const [showComparison, setShowComparison] = useState(false);
   const [email, setEmail] = useState('');
   const [openFaq, setOpenFaq] = useState(null);
+  const [openTimeline, setOpenTimeline] = useState(null);
   const quiz = useQuiz();
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
   };
+
+  const toggleTimeline = (index) => {
+    setOpenTimeline(openTimeline === index ? null : index);
+  };
+
+  const CYBER_TIMELINE = [
+    {
+      date: "1ER JANVIER 2026",
+      title: "La Poste & La Banque Postale",
+      description: "11 millions de clients bloqués. Attaque DDoS massive paralysant tous les services en ligne. Aucune consultation de compte ni virement possible pendant plusieurs jours."
+    },
+    {
+      date: "JANVIER 2026",
+      title: "Fédérations sportives (FFT, FFF, FFH)",
+      description: "Fuites massives de données sensibles de licenciés. Stratégie coordonnée ciblant le sport français."
+    },
+    {
+      date: "22 DÉCEMBRE 2025",
+      title: "La Poste - Période Noël",
+      description: "180 millions de colis impactés. Groupe NoName057(16) pro-russe. Services Colissimo, Digiposte paralysés en pleine période des fêtes."
+    },
+    {
+      date: "DÉCEMBRE 2025",
+      title: "Ministères Intérieur & Défense",
+      description: "Attaques d'intensité inédite. Vol de documents sensibles, accès à des dossiers de police et personnes recherchées."
+    },
+    {
+      date: "FÉVRIER 2025",
+      title: "Viamedis & Almerys - Santé",
+      description: "33 millions de Français compromis. Plus grande fuite de données santé de l'histoire française. Numéros sécu, états civils, assurances exposés."
+    },
+    {
+      date: "JUILLET-DÉCEMBRE 2025",
+      title: "France Travail - Série d'attaques",
+      description: "3 incidents : 340 000 demandeurs (Kairos), 31 000 comptes (Stormous), 1,6M jeunes (Missions Locales)."
+    }
+  ];
   const popup = useLeadPopup({
     quizIsOpen: quiz.isOpen,
     videoIsPlaying
@@ -423,23 +461,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION CYBER - ENCART */}
-      <section className="content-section">
+      {/* SECTION CYBER - CHIFFRES CLÉS ENRICHIE */}
+      <section className="content-section" id="chiffres-cles">
         <div className="content-container">
-          <div className="cyber-encart">
+          <div className="cyber-encart cyber-encart-enhanced">
             <div className="section-badge-center">Chiffres clés</div>
 
             <h2 className="section-title-artisan">
               La prévention est plus <span className="highlight">rentable</span> qu'une crise cyber
             </h2>
             <p className="section-subtitle-artisan">
-              Vulnérabilité des PME et ETI • 43% perdent des clients après une attaque cyber
+              Guerre hybride • IA criminelle • NIS2 : 2026 marque un tournant critique
             </p>
 
-            {/* 2 CARTES CYBER UNIQUEMENT */}
-            <div className="cyber-stats-grid-encart">
-              <div className="cyber-stat-card-encart">
-                <div className="cyber-stat-number-encart">+38%</div>
+            {/* 2 CARTES STATS PRINCIPALES */}
+            <div className="cyber-stats-grid-encart cyber-stats-enhanced">
+              <div className="cyber-stat-card-encart cyber-stat-card-large">
+                <div className="cyber-stat-number-encart cyber-stat-number-large">+38%</div>
                 <h3>Hausse des cyberattaques</h3>
                 <p>
                   Les attaques contre les PME ont explosé de 38% en 2024.
@@ -447,14 +485,98 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="cyber-stat-card-encart">
-                <div className="cyber-stat-number-encart">4,35M€</div>
+              <div className="cyber-stat-card-encart cyber-stat-card-large">
+                <div className="cyber-stat-number-encart cyber-stat-number-large">4,35M€</div>
                 <h3>Coût moyen d'une cyberattaque</h3>
                 <p>
                   60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne),
                   perte de données, rançons.
                 </p>
               </div>
+            </div>
+
+            {/* 3 BLOCS CONTEXTE - MENACES */}
+            <div className="cyber-threats-section">
+              <h3 className="cyber-threats-title">3 menaces qui pèsent sur votre entreprise</h3>
+
+              <div className="cyber-threats-grid">
+                <div className="cyber-threat-card">
+                  <div className="cyber-threat-header">
+                    <span className="cyber-threat-icon">⚔️</span>
+                    <h4>Guerre hybride</h4>
+                  </div>
+                  <p>
+                    Groupes pro-russes (NoName057), chinois, iraniens ciblent quotidiennement les infrastructures françaises. La Poste, ministères, fédérations sportives : personne n'est épargné.
+                  </p>
+                  <div className="cyber-threat-badge">2 200 attaques/jour en France</div>
+                </div>
+
+                <div className="cyber-threat-card">
+                  <div className="cyber-threat-header">
+                    <span className="cyber-threat-icon">🤖</span>
+                    <h4>IA criminelle</h4>
+                  </div>
+                  <p>
+                    Deepfakes indétectables, agents autonomes, phishing généré par IA : les cybercriminels industrialisent leurs méthodes. L'attaque devient automatisée et massive.
+                  </p>
+                  <div className="cyber-threat-badge">43% de phishing en 2025 (+19pts)</div>
+                </div>
+
+                <div className="cyber-threat-card">
+                  <div className="cyber-threat-header">
+                    <span className="cyber-threat-icon">⚖️</span>
+                    <h4>NIS2 obligatoire</h4>
+                  </div>
+                  <p>
+                    15 000 entreprises françaises concernées. Amendes lourdes, responsabilité pénale des dirigeants : la non-conformité n'est plus une option.
+                  </p>
+                  <div className="cyber-threat-badge cyber-threat-badge-urgent">Date limite proche</div>
+                </div>
+              </div>
+            </div>
+
+            {/* TIMELINE ACCORDÉON - CYBERATTAQUES 2025-2026 */}
+            <div className="cyber-timeline-section">
+              <h3 className="cyber-timeline-title">
+                <span className="cyber-timeline-dot-live"></span>
+                Cascade de cyberattaques 2025-2026
+              </h3>
+              <p className="cyber-timeline-subtitle">Cliquez pour voir les détails</p>
+
+              <div className="cyber-timeline">
+                <div className="cyber-timeline-line"></div>
+
+                {CYBER_TIMELINE.map((event, index) => (
+                  <div
+                    key={index}
+                    className={`cyber-timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${openTimeline === index ? 'active' : ''}`}
+                    onClick={() => toggleTimeline(index)}
+                  >
+                    <div className="cyber-timeline-point"></div>
+                    <div className="cyber-timeline-content">
+                      <div className="cyber-timeline-header">
+                        <span className="cyber-timeline-date">{event.date}</span>
+                        <span className={`cyber-timeline-chevron ${openTimeline === index ? 'open' : ''}`}>
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </span>
+                      </div>
+                      <h4 className="cyber-timeline-event-title">{event.title}</h4>
+                      <div className={`cyber-timeline-description ${openTimeline === index ? 'visible' : ''}`}>
+                        <p>{event.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA FINAL */}
+            <div className="cyber-cta-wrapper">
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="cyber-cta-button">
+                Protégez votre entreprise maintenant
+              </a>
             </div>
           </div>
         </div>
