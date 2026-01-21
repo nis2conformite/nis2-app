@@ -497,10 +497,6 @@ export default function Home() {
 
             {/* TIMELINE ACCORDÉON - CYBERATTAQUES */}
             <div className="cyber-timeline-section">
-              <h3 className="cyber-timeline-title">
-                <span className="cyber-timeline-dot-live"></span>
-                Les cyberattaques majeures en France
-              </h3>
               <p className="cyber-timeline-subtitle">Cliquez pour voir les détails</p>
 
               <div className="cyber-timeline">

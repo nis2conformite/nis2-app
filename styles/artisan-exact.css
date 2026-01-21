@@ -2817,7 +2817,7 @@ body {
 }
 
 .cyber-timeline-section::before {
-  content: "DERNIÈRE ALERTE CYBER";
+  content: "Dernières Cyber Attaques Majeures - France";
   position: absolute;
   top: -18px;
   left: 50%;
