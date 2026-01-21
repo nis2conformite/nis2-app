@@ -3420,7 +3420,7 @@ body {
   overflow: hidden;
 }
 
-/* Video wrapper avec halo violet - ratio 16:9 forcé */
+/* Video wrapper avec halo violet - hauteur réduite pour éliminer bandes noires */
 .video-section .video-wrapper {
   margin-top: var(--space-lg);
   max-width: 630px;
@@ -3436,7 +3436,7 @@ body {
   transition: box-shadow var(--transition-base);
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 = 9/16 = 0.5625 */
+  padding-bottom: 42%; /* Ratio plus large pour cropper les bandes noires */
   height: 0;
   overflow: hidden;
   background: #000;
@@ -3444,10 +3444,11 @@ body {
 
 .video-section .video-wrapper iframe {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  height: 100%;
+  height: 134%; /* Zoom pour remplir et cropper les bandes noires */
   border: none;
   display: block;
 }
