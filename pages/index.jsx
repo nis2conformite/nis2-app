@@ -539,7 +539,7 @@ export default function Home() {
             <div className="cyber-timeline-section">
               <h3 className="cyber-timeline-title">
                 <span className="cyber-timeline-dot-live"></span>
-                Cascade de cyberattaques 2025-2026
+                Cascade de cyberattaques en France 2025-2026
               </h3>
               <p className="cyber-timeline-subtitle">Cliquez pour voir les détails</p>
 
