@@ -2802,11 +2802,11 @@ body {
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .cyber-timeline-section {
-  margin-top: var(--space-3xl);
-  margin-bottom: var(--space-2xl);
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-xl);
   position: relative;
   z-index: 1;
-  padding: var(--space-2xl) var(--space-xl);
+  padding: var(--space-xl) var(--space-xl) var(--space-lg);
   background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(168, 85, 247, 0.12) 50%, rgba(124, 58, 237, 0.08) 100%);
   border-radius: 24px;
   border: 2px solid rgba(139, 92, 246, 0.35);
@@ -2817,19 +2817,43 @@ body {
 }
 
 .cyber-timeline-section::before {
-  content: "ALERTE CYBER";
+  content: "DERNIÈRE ALERTE CYBER";
   position: absolute;
-  top: -14px;
+  top: -18px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
   color: white;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 800;
-  letter-spacing: 2px;
-  padding: 6px 20px;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+  letter-spacing: 2.5px;
+  padding: 12px 32px;
+  border-radius: 30px;
+  box-shadow:
+    0 4px 30px rgba(239, 68, 68, 0.5),
+    0 0 60px rgba(239, 68, 68, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  animation: cyber-alert-pulse 2s ease-in-out infinite;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes cyber-alert-pulse {
+  0%, 100% {
+    box-shadow:
+      0 4px 30px rgba(239, 68, 68, 0.5),
+      0 0 60px rgba(239, 68, 68, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    box-shadow:
+      0 4px 50px rgba(239, 68, 68, 0.8),
+      0 0 100px rgba(239, 68, 68, 0.5),
+      0 0 150px rgba(239, 68, 68, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateX(-50%) scale(1.05);
+  }
 }
 
 .cyber-timeline-title {
@@ -2877,9 +2901,9 @@ body {
 
 .cyber-timeline {
   position: relative;
-  max-width: 720px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: var(--space-lg) 0;
+  padding: var(--space-md) 0;
 }
 
 .cyber-timeline-line {
@@ -2895,21 +2919,21 @@ body {
 
 .cyber-timeline-item {
   position: relative;
-  width: calc(50% - 30px);
+  width: calc(50% - 40px);
   cursor: pointer;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
 .cyber-timeline-item.left {
   margin-right: auto;
   margin-left: 0;
-  padding-right: var(--space-lg);
+  padding-right: var(--space-xl);
 }
 
 .cyber-timeline-item.right {
   margin-left: auto;
   margin-right: 0;
-  padding-left: var(--space-lg);
+  padding-left: var(--space-xl);
 }
 
 .cyber-timeline-point {
@@ -2925,11 +2949,11 @@ body {
 }
 
 .cyber-timeline-item.left .cyber-timeline-point {
-  right: -32px;
+  right: -48px;
 }
 
 .cyber-timeline-item.right .cyber-timeline-point {
-  left: -32px;
+  left: -48px;
 }
 
 .cyber-timeline-item:hover .cyber-timeline-point,
@@ -2943,7 +2967,7 @@ body {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(139, 92, 246, 0.08) 100%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
-  padding: 20px 22px;
+  padding: 16px 20px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
@@ -3066,8 +3090,9 @@ body {
   }
 
   .cyber-timeline-section::before {
-    font-size: 10px;
-    padding: 5px 16px;
+    font-size: 11px;
+    padding: 8px 20px;
+    letter-spacing: 1.5px;
   }
 
   .cyber-timeline-line {
