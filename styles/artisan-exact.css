@@ -3354,7 +3354,7 @@ body {
     0 0 60px rgba(236, 72, 153, 0.05),
     0 20px 40px rgba(0, 0, 0, 0.1);
   transition: box-shadow var(--transition-base);
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: #000;
 }
