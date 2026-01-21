@@ -368,7 +368,7 @@ export const EXPERTISE_TIMELINE = [
     number: "1",
     title: "Réaliser un audit",
     description: "Évaluer votre niveau de conformité actuel et identifier les écarts",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+    image: "/audit-screenshot.png"
   },
   {
     number: "2",

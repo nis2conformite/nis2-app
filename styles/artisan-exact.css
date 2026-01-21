@@ -2660,6 +2660,425 @@ body {
   z-index: 1;
 }
 
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION CHIFFRES CLÉS ENRICHIE
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Encart enhanced avec fond dégradé noir/violet */
+.cyber-encart-enhanced {
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  padding: var(--space-3xl) var(--space-xl);
+}
+
+/* Stats agrandies */
+.cyber-stats-enhanced {
+  margin-bottom: var(--space-3xl);
+}
+
+.cyber-stat-card-large {
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+.cyber-stat-number-large {
+  font-size: 72px !important;
+}
+
+.cyber-stat-card-large:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(168, 85, 247, 0.25), 0 10px 30px rgba(249, 115, 22, 0.15);
+}
+
+/* Grille 3 colonnes pour les stats */
+.cyber-stats-3cols {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.cyber-stat-card-ransomware {
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.cyber-stat-card-ransomware .cyber-stat-number-encart {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cyber-stat-card-ransomware:hover {
+  border-color: rgba(239, 68, 68, 0.6);
+  box-shadow: 0 20px 60px rgba(239, 68, 68, 0.25), 0 10px 30px rgba(239, 68, 68, 0.15);
+}
+
+@media (max-width: 1024px) {
+  .cyber-stats-3cols {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTION 3 MENACES
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.cyber-threats-section {
+  margin-top: var(--space-3xl);
+  margin-bottom: var(--space-3xl);
+  position: relative;
+  z-index: 1;
+}
+
+.cyber-threats-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: var(--space-xl);
+}
+
+.cyber-threats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.cyber-threat-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 36px 28px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.cyber-threat-card:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(139, 92, 246, 0.2);
+}
+
+.cyber-threat-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.cyber-threat-icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.cyber-threat-header h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.cyber-threat-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: var(--space-lg);
+}
+
+.cyber-threat-badge {
+  display: inline-block;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  color: #c4b5fd;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.cyber-threat-badge-urgent {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  animation: pulse-urgent 2s ease-in-out infinite;
+}
+
+@keyframes pulse-urgent {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TIMELINE ACCORDÉON CYBERATTAQUES
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.cyber-timeline-section {
+  margin-top: var(--space-3xl);
+  margin-bottom: var(--space-2xl);
+  position: relative;
+  z-index: 1;
+}
+
+.cyber-timeline-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: var(--space-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+.cyber-timeline-dot-live {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  animation: pulse-live 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-live {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+    transform: scale(1.1);
+  }
+}
+
+.cyber-timeline-subtitle {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: var(--space-md);
+}
+
+.cyber-timeline {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-md) 0;
+}
+
+.cyber-timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent 0%, #8b5cf6 10%, #8b5cf6 90%, transparent 100%);
+  transform: translateX(-50%);
+}
+
+.cyber-timeline-item {
+  position: relative;
+  width: calc(50% - 25px);
+  cursor: pointer;
+  margin-bottom: var(--space-sm);
+}
+
+.cyber-timeline-item.left {
+  margin-right: auto;
+  margin-left: 0;
+  padding-right: var(--space-md);
+}
+
+.cyber-timeline-item.right {
+  margin-left: auto;
+  margin-right: 0;
+  padding-left: var(--space-md);
+}
+
+.cyber-timeline-point {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #8b5cf6;
+  border-radius: 50%;
+  top: 12px;
+  z-index: 2;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+}
+
+.cyber-timeline-item.left .cyber-timeline-point {
+  right: -30px;
+}
+
+.cyber-timeline-item.right .cyber-timeline-point {
+  left: -30px;
+}
+
+.cyber-timeline-item:hover .cyber-timeline-point,
+.cyber-timeline-item.active .cyber-timeline-point {
+  background: #a78bfa;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.5);
+  transform: scale(1.15);
+}
+
+.cyber-timeline-content {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 18px 20px;
+  transition: all 0.3s ease;
+}
+
+.cyber-timeline-item:hover .cyber-timeline-content,
+.cyber-timeline-item.active .cyber-timeline-content {
+  border-color: rgba(139, 92, 246, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cyber-timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-xs);
+}
+
+.cyber-timeline-date {
+  font-size: 11px;
+  font-weight: 700;
+  color: #a78bfa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cyber-timeline-chevron {
+  color: rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.cyber-timeline-chevron.open {
+  transform: rotate(180deg);
+}
+
+.cyber-timeline-event-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.cyber-timeline-description {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, margin-top 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.cyber-timeline-description.visible {
+  max-height: 150px;
+  margin-top: var(--space-sm);
+  opacity: 1;
+}
+
+.cyber-timeline-description p {
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CTA FINAL CHIFFRES CLÉS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.cyber-cta-wrapper {
+  text-align: center;
+  margin-top: var(--space-2xl);
+  position: relative;
+  z-index: 1;
+}
+
+.cyber-cta-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 18px 48px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+  transition: all 0.3s ease;
+}
+
+.cyber-cta-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+  background: linear-gradient(135deg, #9d7af9 0%, #7c3aed 100%);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE CHIFFRES CLÉS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 968px) {
+  .cyber-threats-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .cyber-timeline-line {
+    left: 15px;
+  }
+
+  .cyber-timeline-item {
+    width: 100%;
+    padding-left: 40px !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .cyber-timeline-item.left .cyber-timeline-point,
+  .cyber-timeline-item.right .cyber-timeline-point {
+    left: 10px;
+    right: auto;
+  }
+
+  .cyber-stat-number-large {
+    font-size: 56px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .cyber-encart-enhanced {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .cyber-stat-number-large {
+    font-size: 48px !important;
+  }
+
+  .cyber-threats-title {
+    font-size: 22px;
+  }
+
+  .cyber-timeline-title {
+    font-size: 16px;
+  }
+
+  .cyber-threat-card {
+    padding: 24px 20px;
+  }
+
+  .cyber-timeline-content {
+    padding: 10px;
+  }
+
+  .cyber-cta-button {
+    font-size: 16px;
+    padding: 14px 32px;
+  }
+}
+
 /* Accréditations - section logos */
 .accreditations-wrapper {
   margin-top: var(--space-2xl);
@@ -2921,10 +3340,10 @@ body {
   overflow: hidden;
 }
 
-/* Video wrapper avec halo violet */
+/* Video wrapper avec halo violet - ratio 2:1 pour optimiser l'espace */
 .video-section .video-wrapper {
   margin-top: var(--space-lg);
-  max-width: 800px;
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
   border-radius: var(--radius-2xl);
@@ -2935,7 +3354,7 @@ body {
     0 0 60px rgba(236, 72, 153, 0.05),
     0 20px 40px rgba(0, 0, 0, 0.1);
   transition: box-shadow var(--transition-base);
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 2 / 1;
   overflow: hidden;
   background: #000;
 }
