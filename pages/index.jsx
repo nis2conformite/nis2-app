@@ -474,8 +474,8 @@ export default function Home() {
               Guerre hybride • IA criminelle • NIS2 : 2026 marque un tournant critique
             </p>
 
-            {/* 3 CARTES STATS PRINCIPALES */}
-            <div className="cyber-stats-grid-encart cyber-stats-enhanced cyber-stats-3cols">
+            {/* 2 CARTES STATS PRINCIPALES */}
+            <div className="cyber-stats-grid-encart cyber-stats-enhanced">
               <div className="cyber-stat-card-encart cyber-stat-card-large">
                 <div className="cyber-stat-number-encart cyber-stat-number-large">+38%</div>
                 <h3>Hausse des cyberattaques</h3>
@@ -491,15 +491,6 @@ export default function Home() {
                 <p>
                   60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne),
                   perte de données, rançons.
-                </p>
-              </div>
-
-              <div className="cyber-stat-card-encart cyber-stat-card-large cyber-stat-card-ransomware">
-                <div className="cyber-stat-number-encart cyber-stat-number-large">74%</div>
-                <h3>Attaques par ransomware</h3>
-                <p>
-                  74% des cyberattaques en France sont des ransomwares.
-                  Rançon moyenne : 250 000€. Délai de récupération : 3 semaines.
                 </p>
               </div>
             </div>
@@ -533,13 +524,13 @@ export default function Home() {
 
                 <div className="cyber-threat-card">
                   <div className="cyber-threat-header">
-                    <span className="cyber-threat-icon">⚖️</span>
-                    <h4>NIS2 obligatoire</h4>
+                    <span className="cyber-threat-icon">🔒</span>
+                    <h4>Ransomware</h4>
                   </div>
                   <p>
-                    15 000 entreprises françaises concernées. Amendes lourdes, responsabilité pénale des dirigeants : la non-conformité n'est plus une option.
+                    69% des cyberattaques contre les PME sont des ransomwares. 40% des PME paient la rançon. 4 jours d'arrêt complet avant de récupérer leurs systèmes.
                   </p>
-                  <div className="cyber-threat-badge cyber-threat-badge-urgent">Date limite proche</div>
+                  <div className="cyber-threat-badge">1 attaque toutes les 11 secondes</div>
                 </div>
               </div>
             </div>
