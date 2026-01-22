@@ -775,18 +775,18 @@ export default function Formations() {
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:nis2conformite@gmail.com">
-                    nis2conformite@gmail.com
+                  <a href="mailto:contact@cyber-solferino.com">
+                    contact@cyber-solferino.com
                   </a>
                 </li>
-                <li><a href="tel:+33000000000">+33 (0)0 00 00 00 00</a></li>
+                <li><a href="tel:+33649432092">+33 (0) 6 49 43 20 92</a></li>
               </ul>
             </div>
           </div>
 
           <div className="footer-bottom-modern">
             <div className="footer-bottom-content">
-              <p className="footer-copyright">© 2025 NIS2 Conformité. Tous droits réservés</p>
+              <p className="footer-copyright">© 2026 Cyber Solferino. Tous droits réservés</p>
               <div className="footer-legal-links">
                 <a href="/mentions-legales">Mentions légales</a>
                 <a href="/politique-confidentialite">Politique de confidentialité</a>
