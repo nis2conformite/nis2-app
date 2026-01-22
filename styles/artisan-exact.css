@@ -2822,7 +2822,7 @@ body {
   top: -18px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #F97316 0%, #F472B6 50%, #EC4899 100%);
+  background: linear-gradient(135deg, #F97316 0%, #F97316 35%, #F472B6 70%, #EC4899 100%);
   color: white;
   font-size: 14px;
   font-weight: 800;
