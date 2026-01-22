@@ -237,6 +237,123 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SECTION CYBER - CHIFFRES CLÉS ENRICHIE */}
+      <section className="content-section" id="chiffres-cles">
+        <div className="content-container">
+          <div className="cyber-encart cyber-encart-enhanced">
+            <div className="section-badge-center">Chiffres clés</div>
+
+            <h2 className="section-title-artisan">
+              La prévention est plus <span className="highlight">rentable</span> qu'une crise cyber
+            </h2>
+            <p className="section-subtitle-artisan">
+              Guerre hybride • IA criminelle • NIS2 : 2026 marque un tournant critique
+            </p>
+
+            {/* 2 CARTES STATS PRINCIPALES */}
+            <div className="cyber-stats-grid-encart cyber-stats-enhanced">
+              <div className="cyber-stat-card-encart cyber-stat-card-large">
+                <div className="cyber-stat-number-encart cyber-stat-number-large">+38%</div>
+                <h3>Hausse des cyberattaques</h3>
+                <p>
+                  Les attaques contre les PME ont explosé de 38% en 2024.
+                  Les cybercriminels ciblent les entreprises non protégées.
+                </p>
+              </div>
+
+              <div className="cyber-stat-card-encart cyber-stat-card-large">
+                <div className="cyber-stat-number-encart cyber-stat-number-large">4,35M€</div>
+                <h3>Coût moyen d'une cyberattaque</h3>
+                <p>
+                  60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne),
+                  perte de données, rançons.
+                </p>
+              </div>
+            </div>
+
+            {/* TIMELINE ACCORDÉON - CYBERATTAQUES */}
+            <div className="cyber-timeline-section">
+              <p className="cyber-timeline-subtitle">Cliquez pour voir les détails</p>
+
+              <div className="cyber-timeline">
+                <div className="cyber-timeline-line"></div>
+
+                {CYBER_TIMELINE.map((event, index) => (
+                  <div
+                    key={index}
+                    className={`cyber-timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${openTimeline === index ? 'active' : ''}`}
+                    onClick={() => toggleTimeline(index)}
+                  >
+                    <div className="cyber-timeline-point"></div>
+                    <div className="cyber-timeline-content">
+                      <div className="cyber-timeline-header">
+                        <span className="cyber-timeline-date">{event.date}</span>
+                        <span className={`cyber-timeline-chevron ${openTimeline === index ? 'open' : ''}`}>
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </span>
+                      </div>
+                      <h4 className="cyber-timeline-event-title">{event.title}</h4>
+                      <div className={`cyber-timeline-description ${openTimeline === index ? 'visible' : ''}`}>
+                        <p>{event.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 3 BLOCS CONTEXTE - MENACES */}
+            <div className="cyber-threats-section">
+              <h3 className="cyber-threats-title">3 menaces qui pèsent sur votre entreprise</h3>
+
+              <div className="cyber-threats-grid">
+                <div className="cyber-threat-card">
+                  <div className="cyber-threat-header">
+                    <span className="cyber-threat-icon">⚔️</span>
+                    <h4>Guerre hybride</h4>
+                  </div>
+                  <p>
+                    Groupes pro-russes (NoName057), chinois, iraniens ciblent quotidiennement les infrastructures françaises. La Poste, ministères, fédérations sportives : personne n'est épargné.
+                  </p>
+                  <div className="cyber-threat-badge">2 200 attaques/jour en France</div>
+                </div>
+
+                <div className="cyber-threat-card">
+                  <div className="cyber-threat-header">
+                    <span className="cyber-threat-icon">🤖</span>
+                    <h4>IA criminelle</h4>
+                  </div>
+                  <p>
+                    Deepfakes indétectables, agents autonomes, phishing généré par IA : les cybercriminels industrialisent leurs méthodes. L'attaque devient automatisée et massive.
+                  </p>
+                  <div className="cyber-threat-badge">43% de phishing en 2025 (+19pts)</div>
+                </div>
+
+                <div className="cyber-threat-card">
+                  <div className="cyber-threat-header">
+                    <span className="cyber-threat-icon">🔒</span>
+                    <h4>Ransomware</h4>
+                  </div>
+                  <p>
+                    69% des cyberattaques contre les PME sont des ransomwares. 40% des PME paient la rançon. 4 jours d'arrêt complet avant de récupérer leurs systèmes.
+                  </p>
+                  <div className="cyber-threat-badge">1 attaque toutes les 11 secondes</div>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA FINAL */}
+            <div className="cyber-cta-wrapper">
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="cyber-cta-button">
+                Protégez votre entreprise maintenant
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION AVANT/APRÈS - DESIGN EXPERT */}
       <section className="before-after-section-v2" id="solutions">
         <div className="before-after-container-v2">
@@ -456,123 +573,6 @@ export default function Home() {
                   <span>Paiement unique, sans frais cachés</span>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION CYBER - CHIFFRES CLÉS ENRICHIE */}
-      <section className="content-section" id="chiffres-cles">
-        <div className="content-container">
-          <div className="cyber-encart cyber-encart-enhanced">
-            <div className="section-badge-center">Chiffres clés</div>
-
-            <h2 className="section-title-artisan">
-              La prévention est plus <span className="highlight">rentable</span> qu'une crise cyber
-            </h2>
-            <p className="section-subtitle-artisan">
-              Guerre hybride • IA criminelle • NIS2 : 2026 marque un tournant critique
-            </p>
-
-            {/* 2 CARTES STATS PRINCIPALES */}
-            <div className="cyber-stats-grid-encart cyber-stats-enhanced">
-              <div className="cyber-stat-card-encart cyber-stat-card-large">
-                <div className="cyber-stat-number-encart cyber-stat-number-large">+38%</div>
-                <h3>Hausse des cyberattaques</h3>
-                <p>
-                  Les attaques contre les PME ont explosé de 38% en 2024.
-                  Les cybercriminels ciblent les entreprises non protégées.
-                </p>
-              </div>
-
-              <div className="cyber-stat-card-encart cyber-stat-card-large">
-                <div className="cyber-stat-number-encart cyber-stat-number-large">4,35M€</div>
-                <h3>Coût moyen d'une cyberattaque</h3>
-                <p>
-                  60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne),
-                  perte de données, rançons.
-                </p>
-              </div>
-            </div>
-
-            {/* TIMELINE ACCORDÉON - CYBERATTAQUES */}
-            <div className="cyber-timeline-section">
-              <p className="cyber-timeline-subtitle">Cliquez pour voir les détails</p>
-
-              <div className="cyber-timeline">
-                <div className="cyber-timeline-line"></div>
-
-                {CYBER_TIMELINE.map((event, index) => (
-                  <div
-                    key={index}
-                    className={`cyber-timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${openTimeline === index ? 'active' : ''}`}
-                    onClick={() => toggleTimeline(index)}
-                  >
-                    <div className="cyber-timeline-point"></div>
-                    <div className="cyber-timeline-content">
-                      <div className="cyber-timeline-header">
-                        <span className="cyber-timeline-date">{event.date}</span>
-                        <span className={`cyber-timeline-chevron ${openTimeline === index ? 'open' : ''}`}>
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </span>
-                      </div>
-                      <h4 className="cyber-timeline-event-title">{event.title}</h4>
-                      <div className={`cyber-timeline-description ${openTimeline === index ? 'visible' : ''}`}>
-                        <p>{event.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 3 BLOCS CONTEXTE - MENACES */}
-            <div className="cyber-threats-section">
-              <h3 className="cyber-threats-title">3 menaces qui pèsent sur votre entreprise</h3>
-
-              <div className="cyber-threats-grid">
-                <div className="cyber-threat-card">
-                  <div className="cyber-threat-header">
-                    <span className="cyber-threat-icon">⚔️</span>
-                    <h4>Guerre hybride</h4>
-                  </div>
-                  <p>
-                    Groupes pro-russes (NoName057), chinois, iraniens ciblent quotidiennement les infrastructures françaises. La Poste, ministères, fédérations sportives : personne n'est épargné.
-                  </p>
-                  <div className="cyber-threat-badge">2 200 attaques/jour en France</div>
-                </div>
-
-                <div className="cyber-threat-card">
-                  <div className="cyber-threat-header">
-                    <span className="cyber-threat-icon">🤖</span>
-                    <h4>IA criminelle</h4>
-                  </div>
-                  <p>
-                    Deepfakes indétectables, agents autonomes, phishing généré par IA : les cybercriminels industrialisent leurs méthodes. L'attaque devient automatisée et massive.
-                  </p>
-                  <div className="cyber-threat-badge">43% de phishing en 2025 (+19pts)</div>
-                </div>
-
-                <div className="cyber-threat-card">
-                  <div className="cyber-threat-header">
-                    <span className="cyber-threat-icon">🔒</span>
-                    <h4>Ransomware</h4>
-                  </div>
-                  <p>
-                    69% des cyberattaques contre les PME sont des ransomwares. 40% des PME paient la rançon. 4 jours d'arrêt complet avant de récupérer leurs systèmes.
-                  </p>
-                  <div className="cyber-threat-badge">1 attaque toutes les 11 secondes</div>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA FINAL */}
-            <div className="cyber-cta-wrapper">
-              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="cyber-cta-button">
-                Protégez votre entreprise maintenant
-              </a>
             </div>
           </div>
         </div>
