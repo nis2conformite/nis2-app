@@ -1,110 +1,41 @@
 import Head from 'next/head';
-import { useState, useEffect } from 'react';
 import { CONTACT_INFO } from '../utils/constants';
 import MenuBurger from '../components/MenuBurger';
 
 export default function Ressources() {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // Flux RSS français sur les cyberattaques
-  const RSS_FEEDS = [
-    'https://www.cert.ssi.gouv.fr/feed/', // CERT-FR - Alertes et menaces
-    'https://www.cybermalveillance.gouv.fr/feed/', // Cybermalveillance.gouv.fr - Alertes
-  ];
-
-  useEffect(() => {
-    fetchRSSArticles();
-  }, []);
-
-  const fetchRSSArticles = async () => {
-    setLoading(true);
-    try {
-      // Utiliser un proxy CORS pour récupérer les flux RSS
-      const CORS_PROXY = 'https://api.rss2json.com/v1/api.json?rss_url=';
-
-      const feedPromises = RSS_FEEDS.map(async (feedUrl) => {
-        try {
-          const response = await fetch(`${CORS_PROXY}${encodeURIComponent(feedUrl)}`);
-          const data = await response.json();
-          if (data.status === 'ok' && data.items) {
-            return data.items.map(item => ({
-              title: item.title,
-              link: item.link,
-              pubDate: new Date(item.pubDate),
-              description: item.description?.replace(/<[^>]*>/g, '').substring(0, 280),
-              source: data.feed?.title || 'Cybersécurité France'
-            }));
-          }
-          return [];
-        } catch (err) {
-          console.error('Erreur flux RSS:', err);
-          return [];
-        }
-      });
-
-      const allArticles = await Promise.all(feedPromises);
-      const flatArticles = allArticles.flat();
-
-      // Trier par date et prendre les 6 plus récents
-      const sortedArticles = flatArticles
-        .sort((a, b) => b.pubDate - a.pubDate)
-        .slice(0, 6);
-
-      setArticles(sortedArticles);
-      setError(null);
-    } catch (err) {
-      setError('Impossible de charger les actualités');
-      // Articles de fallback en cas d'erreur - Focus cyberattaques
-      setArticles([
-        {
-          title: "Cyberattaque majeure contre un groupe hospitalier français",
-          link: "https://www.cert.ssi.gouv.fr/cti/",
-          pubDate: new Date(),
-          description: "Un groupe hospitalier du sud de la France a été victime d'une attaque par rançongiciel paralysant ses systèmes informatiques. Les équipes médicales ont dû basculer en mode dégradé. Le groupe cybercriminel LockBit revendique l'attaque et exige une rançon de plusieurs millions d'euros.",
-          source: "CERT-FR"
-        },
-        {
-          title: "Campagne d'attaques ciblant les PME industrielles françaises",
-          link: "https://www.cert.ssi.gouv.fr/cti/",
-          pubDate: new Date(Date.now() - 86400000),
-          description: "Le CERT-FR a identifié une campagne d'intrusions visant spécifiquement les PME du secteur industriel. Les attaquants exploitent des accès VPN compromis pour déployer des rançongiciels. Plusieurs entreprises ont vu leur production arrêtée pendant plusieurs jours.",
-          source: "CERT-FR"
-        },
-        {
-          title: "Hausse de 40% des attaques par rançongiciel en France",
-          link: "https://www.cybermalveillance.gouv.fr",
-          pubDate: new Date(Date.now() - 172800000),
-          description: "Le dernier rapport de Cybermalveillance.gouv.fr révèle une augmentation significative des attaques par rançongiciel ciblant les PME et collectivités françaises. Les secteurs de la santé et de l'industrie sont particulièrement touchés par ces cyberattaques.",
-          source: "Cybermalveillance"
-        },
-        {
-          title: "Attaque par supply chain : un éditeur logiciel français compromis",
-          link: "https://www.cert.ssi.gouv.fr/cti/",
-          pubDate: new Date(Date.now() - 259200000),
-          description: "Une attaque par chaîne d'approvisionnement a touché un éditeur de logiciels de gestion français. Les attaquants ont injecté du code malveillant dans une mise à jour, compromettant potentiellement des centaines de clients. Une investigation est en cours.",
-          source: "CERT-FR"
-        },
-        {
-          title: "Vague de phishing imitant les services des impôts",
-          link: "https://www.cybermalveillance.gouv.fr",
-          pubDate: new Date(Date.now() - 345600000),
-          description: "Une nouvelle campagne de phishing massive usurpe l'identité de la Direction Générale des Finances Publiques. Les victimes sont redirigées vers de faux sites pour voler leurs identifiants bancaires. Des milliers de signalements ont été enregistrés cette semaine.",
-          source: "Cybermalveillance"
-        },
-        {
-          title: "Collectivités territoriales : bilan des cyberattaques 2025",
-          link: "https://www.cybermalveillance.gouv.fr",
-          pubDate: new Date(Date.now() - 432000000),
-          description: "Cybermalveillance.gouv.fr dresse le bilan des cyberattaques ayant touché les collectivités territoriales. Plus de 200 communes et intercommunalités ont été victimes d'attaques cette année, avec des conséquences parfois durables sur les services publics.",
-          source: "Cybermalveillance"
-        }
-      ]);
-    } finally {
-      setLoading(false);
+  // Articles statiques sur les cyberattaques
+  const articles = [
+    {
+      title: "Attaque Reprompt contre Microsoft Copilot",
+      pubDate: new Date('2026-01-15'),
+      description: "Une nouvelle méthode d'attaque appelée \"Reprompt\" a été révélée, permettant aux acteurs malveillants d'exfiltrer des données sensibles des chatbots IA comme Microsoft Copilot en un seul clic, tout en contournant entièrement les contrôles de sécurité d'entreprise. L'attaquant maintient le contrôle même lorsque le chat Copilot est fermé.",
+      source: "Cybersécurité"
+    },
+    {
+      title: "Transposition NIS2 s'accélère en Europe",
+      pubDate: new Date('2026-01-14'),
+      description: "La transposition NIS2 s'accélère dans l'UE. L'Allemagne, le Portugal et l'Autriche ont récemment adopté une législation nationale d'implémentation, tandis que l'Espagne, la France et la Pologne approchent de l'achèvement de leurs processus de transposition.",
+      source: "Réglementation"
+    },
+    {
+      title: "L'IA transforme l'attaque et la défense en 2026",
+      pubDate: new Date('2026-01-12'),
+      description: "L'intelligence artificielle redéfinit les méthodes d'attaque et de défense selon Google et Fortinet. L'IA diminuera le coût de génération d'attaques et augmentera le volume, transformant la cybersécurité en \"jeu de nombres\" où l'IA élargit la toile des attaquants.",
+      source: "Tendances"
+    },
+    {
+      title: "Korean Air victime via un fournisseur",
+      pubDate: new Date('2026-01-05'),
+      description: "Korean Air a subi une violation de données via KC&D Service, un fournisseur gérant la restauration en vol et les duty-free. L'incident a exposé les données personnelles d'environ 30 000 employés, y compris noms et numéros de comptes bancaires. Cl0p a revendiqué la responsabilité et aurait exploité une faille Oracle E-Business Suite.",
+      source: "Data Breach"
+    },
+    {
+      title: "Vague d'attaques ransomware en début d'année",
+      pubDate: new Date('2026-01-03'),
+      description: "Le groupe ransomware Qilin a ciblé CSV Group et HealthBridge Chiropractic début janvier. Manage My Health en Nouvelle-Zélande a découvert un accès non autorisé compromettant 400 000 documents médicaux de 120 000 patients. Une vague d'attaques qui marque le début de l'année 2026.",
+      source: "Ransomware"
     }
-  };
+  ];
 
   const formatDate = (date) => {
     return new Intl.DateTimeFormat('fr-FR', {
@@ -244,70 +175,24 @@ export default function Ressources() {
         {/* SECTION ACTUALITÉS RSS */}
         <section className="section-standard section-actualites" id="actualites">
           <div className="container-lg">
-            <div className="actualites-header">
-              <div>
-                <h2 className="section-title-center">
-                  Actualités Cybersécurité
-                </h2>
-                <p className="section-subtitle-center">
-                  Les dernières alertes et actualités cybersécurité en France
-                </p>
-              </div>
-              <button
-                onClick={fetchRSSArticles}
-                className="btn-refresh"
-                disabled={loading}
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className={loading ? 'spin' : ''}>
-                  <path d="M23 4v6h-6M1 20v-6h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                Actualiser
-              </button>
-            </div>
+            <h2 className="section-title-center">
+              Actualités Cybersécurité
+            </h2>
+            <p className="section-subtitle-center">
+              Les dernières actualités sur les cyberattaques et la réglementation
+            </p>
 
             <div className="actualites-grid">
-              {loading ? (
-                // Skeleton loading
-                [...Array(6)].map((_, idx) => (
-                  <div key={idx} className="article-card article-card-skeleton">
-                    <div className="skeleton-date"></div>
-                    <div className="skeleton-title"></div>
-                    <div className="skeleton-text"></div>
-                    <div className="skeleton-text"></div>
-                    <div className="skeleton-text short"></div>
+              {articles.map((article, idx) => (
+                <div key={idx} className="article-card">
+                  <div className="article-meta">
+                    <span className="article-source">{article.source}</span>
+                    <span className="article-date">{formatDate(article.pubDate)}</span>
                   </div>
-                ))
-              ) : (
-                articles.map((article, idx) => (
-                  <div key={idx} className="article-card">
-                    <div className="article-meta">
-                      <span className="article-source">{article.source}</span>
-                      <span className="article-date">{formatDate(article.pubDate)}</span>
-                    </div>
-                    <h3 className="article-title">{article.title}</h3>
-                    <p className="article-excerpt">{article.description}</p>
-                    <a
-                      href={article.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="article-source-link"
-                    >
-                      Source
-                    </a>
-                  </div>
-                ))
-              )}
-            </div>
-
-            {error && (
-              <p className="actualites-error">
-                {error} - Affichage des articles de démonstration
-              </p>
-            )}
-
-            <div className="actualites-sources">
-              <p>Sources : CERT-FR, Cybermalveillance.gouv.fr</p>
+                  <h3 className="article-title">{article.title}</h3>
+                  <p className="article-excerpt">{article.description}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
