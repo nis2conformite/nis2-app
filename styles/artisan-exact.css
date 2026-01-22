@@ -2822,7 +2822,7 @@ body {
   top: -18px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+  background: linear-gradient(135deg, #F97316 0%, #F472B6 50%, #EC4899 100%);
   color: white;
   font-size: 14px;
   font-weight: 800;
@@ -2830,8 +2830,8 @@ body {
   padding: 12px 32px;
   border-radius: 30px;
   box-shadow:
-    0 4px 30px rgba(239, 68, 68, 0.5),
-    0 0 60px rgba(239, 68, 68, 0.3),
+    0 4px 30px rgba(249, 115, 22, 0.5),
+    0 0 60px rgba(236, 72, 153, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   animation: cyber-alert-pulse 2s ease-in-out infinite;
   border: 2px solid rgba(255, 255, 255, 0.3);
@@ -2841,16 +2841,16 @@ body {
 @keyframes cyber-alert-pulse {
   0%, 100% {
     box-shadow:
-      0 4px 30px rgba(239, 68, 68, 0.5),
-      0 0 60px rgba(239, 68, 68, 0.3),
+      0 4px 30px rgba(249, 115, 22, 0.5),
+      0 0 60px rgba(236, 72, 153, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
     transform: translateX(-50%) scale(1);
   }
   50% {
     box-shadow:
-      0 4px 50px rgba(239, 68, 68, 0.8),
-      0 0 100px rgba(239, 68, 68, 0.5),
-      0 0 150px rgba(239, 68, 68, 0.2),
+      0 4px 50px rgba(249, 115, 22, 0.8),
+      0 0 100px rgba(236, 72, 153, 0.5),
+      0 0 150px rgba(236, 72, 153, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
     transform: translateX(-50%) scale(1.05);
   }
