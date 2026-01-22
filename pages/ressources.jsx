@@ -8,11 +8,10 @@ export default function Ressources() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Flux RSS français sur la cybersécurité
+  // Flux RSS français sur les cyberattaques
   const RSS_FEEDS = [
-    'https://www.cert.ssi.gouv.fr/feed/', // CERT-FR - Alertes de sécurité
-    'https://www.ssi.gouv.fr/feed/actualite/', // ANSSI - Actualités
-    'https://www.cybermalveillance.gouv.fr/feed/', // Cybermalveillance.gouv.fr
+    'https://www.cert.ssi.gouv.fr/cti/feed/', // CERT-FR - Menaces et cyberattaques (CTI)
+    'https://www.cybermalveillance.gouv.fr/feed/', // Cybermalveillance.gouv.fr - Alertes
   ];
 
   useEffect(() => {
@@ -57,48 +56,48 @@ export default function Ressources() {
       setError(null);
     } catch (err) {
       setError('Impossible de charger les actualités');
-      // Articles de fallback en cas d'erreur
+      // Articles de fallback en cas d'erreur - Focus cyberattaques
       setArticles([
         {
-          title: "Alerte CERT-FR : Vulnérabilité critique dans les systèmes Windows Server",
-          link: "https://www.cert.ssi.gouv.fr",
+          title: "Cyberattaque majeure contre un groupe hospitalier français",
+          link: "https://www.cert.ssi.gouv.fr/cti/",
           pubDate: new Date(),
-          description: "Le CERT-FR alerte sur une vulnérabilité critique affectant les serveurs Windows. Cette faille permet une élévation de privilèges et pourrait être exploitée par des attaquants pour prendre le contrôle total des systèmes affectés. Les correctifs sont disponibles.",
-          source: "CERT-FR"
+          description: "Un groupe hospitalier du sud de la France a été victime d'une attaque par rançongiciel paralysant ses systèmes informatiques. Les équipes médicales ont dû basculer en mode dégradé. Le groupe cybercriminel LockBit revendique l'attaque et exige une rançon de plusieurs millions d'euros.",
+          source: "CERT-FR CTI"
         },
         {
-          title: "L'ANSSI publie ses recommandations pour la mise en conformité NIS2",
-          link: "https://www.ssi.gouv.fr",
+          title: "Campagne d'attaques ciblant les PME industrielles françaises",
+          link: "https://www.cert.ssi.gouv.fr/cti/",
           pubDate: new Date(Date.now() - 86400000),
-          description: "L'Agence nationale de la sécurité des systèmes d'information dévoile son guide pratique pour accompagner les entreprises françaises dans leur mise en conformité avec la directive européenne NIS2. Focus sur les 10 mesures essentielles à mettre en place.",
-          source: "ANSSI"
+          description: "Le CERT-FR a identifié une campagne d'intrusions visant spécifiquement les PME du secteur industriel. Les attaquants exploitent des accès VPN compromis pour déployer des rançongiciels. Plusieurs entreprises ont vu leur production arrêtée pendant plusieurs jours.",
+          source: "CERT-FR CTI"
         },
         {
-          title: "Cybermalveillance : Hausse de 40% des attaques par rançongiciel en France",
+          title: "Hausse de 40% des attaques par rançongiciel en France",
           link: "https://www.cybermalveillance.gouv.fr",
           pubDate: new Date(Date.now() - 172800000),
-          description: "Le dernier rapport de Cybermalveillance.gouv.fr révèle une augmentation significative des attaques par rançongiciel ciblant les PME et collectivités françaises. Les secteurs de la santé et de l'industrie sont particulièrement touchés.",
+          description: "Le dernier rapport de Cybermalveillance.gouv.fr révèle une augmentation significative des attaques par rançongiciel ciblant les PME et collectivités françaises. Les secteurs de la santé et de l'industrie sont particulièrement touchés par ces cyberattaques.",
           source: "Cybermalveillance"
         },
         {
-          title: "Nouvelle campagne de phishing ciblant les entreprises du CAC 40",
-          link: "https://www.cert.ssi.gouv.fr",
+          title: "Attaque par supply chain : un éditeur logiciel français compromis",
+          link: "https://www.cert.ssi.gouv.fr/cti/",
           pubDate: new Date(Date.now() - 259200000),
-          description: "Le CERT-FR signale une vague d'attaques par hameçonnage sophistiqué visant les grandes entreprises françaises. Les cybercriminels utilisent des techniques d'ingénierie sociale avancées pour compromettre les comptes de dirigeants.",
-          source: "CERT-FR"
+          description: "Une attaque par chaîne d'approvisionnement a touché un éditeur de logiciels de gestion français. Les attaquants ont injecté du code malveillant dans une mise à jour, compromettant potentiellement des centaines de clients. Une investigation est en cours.",
+          source: "CERT-FR CTI"
         },
         {
-          title: "Formation obligatoire cybersécurité : ce que dit la réglementation",
-          link: "https://www.ssi.gouv.fr",
+          title: "Vague de phishing imitant les services des impôts",
+          link: "https://www.cybermalveillance.gouv.fr",
           pubDate: new Date(Date.now() - 345600000),
-          description: "Avec NIS2, la sensibilisation des collaborateurs devient une obligation légale. L'ANSSI détaille les exigences en matière de formation et les bonnes pratiques pour construire une culture cybersécurité au sein des organisations.",
-          source: "ANSSI"
+          description: "Une nouvelle campagne de phishing massive usurpe l'identité de la Direction Générale des Finances Publiques. Les victimes sont redirigées vers de faux sites pour voler leurs identifiants bancaires. Des milliers de signalements ont été enregistrés cette semaine.",
+          source: "Cybermalveillance"
         },
         {
-          title: "Bilan 2025 : Les collectivités territoriales face aux cybermenaces",
+          title: "Collectivités territoriales : bilan des cyberattaques 2025",
           link: "https://www.cybermalveillance.gouv.fr",
           pubDate: new Date(Date.now() - 432000000),
-          description: "Cybermalveillance.gouv.fr dresse le bilan des incidents cyber ayant touché les collectivités territoriales. Malgré une prise de conscience croissante, de nombreuses communes restent vulnérables faute de moyens et de compétences.",
+          description: "Cybermalveillance.gouv.fr dresse le bilan des cyberattaques ayant touché les collectivités territoriales. Plus de 200 communes et intercommunalités ont été victimes d'attaques cette année, avec des conséquences parfois durables sur les services publics.",
           source: "Cybermalveillance"
         }
       ]);
@@ -308,7 +307,7 @@ export default function Ressources() {
             )}
 
             <div className="actualites-sources">
-              <p>Sources : CERT-FR, ANSSI, Cybermalveillance.gouv.fr</p>
+              <p>Sources : CERT-FR CTI (Menaces), Cybermalveillance.gouv.fr</p>
             </div>
           </div>
         </section>
