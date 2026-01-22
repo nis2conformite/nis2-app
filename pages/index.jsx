@@ -123,6 +123,44 @@ export default function Home() {
         <meta name="description" content="Audit structuré selon référentiel ANSSI. Rapport détaillé. Recommandations priorisées. Conformité NIS2 pour PME et ETI." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href="https://www.cybersolferino.fr/" />
+
+        {/* Open Graph - Facebook, LinkedIn */}
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta property="og:site_name" content="Cyber Solferino" />
+        <meta property="og:title" content="Cyber Solferino | Audit et Conformité NIS2 pour PME et ETI" />
+        <meta property="og:description" content="Experts certifiés ISO 27001. Audit cyber NIS2 complet selon méthodologie ANSSI. Accompagnement personnalisé pour votre mise en conformité." />
+        <meta property="og:image" content="https://www.cybersolferino.fr/og-image.png" />
+        <meta property="og:url" content="https://www.cybersolferino.fr/" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Cyber Solferino | Audit et Conformité NIS2" />
+        <meta name="twitter:description" content="Experts certifiés ISO 27001. Audit cyber NIS2 complet selon méthodologie ANSSI pour PME et ETI." />
+        <meta name="twitter:image" content="https://www.cybersolferino.fr/og-image.png" />
+
+        {/* Données structurées JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Cyber Solferino",
+              "description": "Plateforme d'audit et de conformité cyber NIS2 pour PME et ETI",
+              "url": "https://www.cybersolferino.fr",
+              "logo": "https://www.cybersolferino.fr/logo.png",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "contact@cyber-solferino.com",
+                "contactType": "customer service",
+                "availableLanguage": "French"
+              },
+              "sameAs": []
+            })
+          }}
+        />
       </Head>
 
       {/* HEADER - STICKY AVEC NAVIGATION */}
@@ -1107,18 +1145,18 @@ export default function Home() {
                 </a>
               </li>
               <li>
-                <a href="mailto:nis2conformite@gmail.com">
-                  nis2conformite@gmail.com
+                <a href="mailto:contact@cyber-solferino.com">
+                  contact@cyber-solferino.com
                 </a>
               </li>
-              <li><a href="tel:+33000000000">+33 (0)0 00 00 00 00</a></li>
+              <li><a href="tel:+33649432092">+33 (0) 6 49 43 20 92</a></li>
             </ul>
           </div>
         </div>
 
         <div className="footer-bottom-modern">
           <div className="footer-bottom-content">
-            <p className="footer-copyright">© 2025 NIS2 Conformité. Tous droits réservés</p>
+            <p className="footer-copyright">© 2026 Cyber Solferino. Tous droits réservés</p>
             <div className="footer-legal-links">
               <a href="/mentions-legales">Mentions légales</a>
               <a href="/politique-confidentialite">Politique de confidentialité</a>

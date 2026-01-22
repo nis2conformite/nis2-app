@@ -75,8 +75,8 @@ export default function PageLayout({ children }) {
                 </a>
               </li>
               <li>
-                <a href="mailto:nis2conformite@gmail.com">
-                  nis2conformite@gmail.com
+                <a href="mailto:contact@cyber-solferino.com">
+                  contact@cyber-solferino.com
                 </a>
               </li>
             </ul>
@@ -88,7 +88,7 @@ export default function PageLayout({ children }) {
         </div>
 
         <div className="footer-bottom">
-          <p>© 2025 NIS2 Conformité • Tous droits réservés</p>
+          <p>© 2026 Cyber Solferino. Tous droits réservés</p>
         </div>
       </footer>
 
