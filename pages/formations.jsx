@@ -194,6 +194,7 @@ export default function Formations() {
             <a href="/qui-sommes-nous" className="header-nav-link">Qui sommes-nous</a>
             <a href="/offres-complementaires" className="header-nav-link">Nos tarifs</a>
             <a href="/formations" className="header-nav-link">Formation</a>
+            <a href="/ressources" className="header-nav-link">Ressources</a>
           </nav>
 
           <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="btn-header-expert">

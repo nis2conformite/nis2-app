@@ -30,6 +30,7 @@ export default function MenuBurger() {
     { label: 'Qui sommes-nous', href: '/qui-sommes-nous' },
     { label: 'Nos tarifs', href: '/offres-complementaires' },
     { label: 'Formation', href: '/formations' },
+    { label: 'Ressources', href: '/ressources' },
   ];
 
   const isActive = (href) => {
