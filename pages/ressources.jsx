@@ -10,7 +10,7 @@ export default function Ressources() {
 
   // Flux RSS français sur les cyberattaques
   const RSS_FEEDS = [
-    'https://www.cert.ssi.gouv.fr/cti/feed/', // CERT-FR - Menaces et cyberattaques (CTI)
+    'https://www.cert.ssi.gouv.fr/feed/', // CERT-FR - Alertes et menaces
     'https://www.cybermalveillance.gouv.fr/feed/', // Cybermalveillance.gouv.fr - Alertes
   ];
 
@@ -63,14 +63,14 @@ export default function Ressources() {
           link: "https://www.cert.ssi.gouv.fr/cti/",
           pubDate: new Date(),
           description: "Un groupe hospitalier du sud de la France a été victime d'une attaque par rançongiciel paralysant ses systèmes informatiques. Les équipes médicales ont dû basculer en mode dégradé. Le groupe cybercriminel LockBit revendique l'attaque et exige une rançon de plusieurs millions d'euros.",
-          source: "CERT-FR CTI"
+          source: "CERT-FR"
         },
         {
           title: "Campagne d'attaques ciblant les PME industrielles françaises",
           link: "https://www.cert.ssi.gouv.fr/cti/",
           pubDate: new Date(Date.now() - 86400000),
           description: "Le CERT-FR a identifié une campagne d'intrusions visant spécifiquement les PME du secteur industriel. Les attaquants exploitent des accès VPN compromis pour déployer des rançongiciels. Plusieurs entreprises ont vu leur production arrêtée pendant plusieurs jours.",
-          source: "CERT-FR CTI"
+          source: "CERT-FR"
         },
         {
           title: "Hausse de 40% des attaques par rançongiciel en France",
@@ -84,7 +84,7 @@ export default function Ressources() {
           link: "https://www.cert.ssi.gouv.fr/cti/",
           pubDate: new Date(Date.now() - 259200000),
           description: "Une attaque par chaîne d'approvisionnement a touché un éditeur de logiciels de gestion français. Les attaquants ont injecté du code malveillant dans une mise à jour, compromettant potentiellement des centaines de clients. Une investigation est en cours.",
-          source: "CERT-FR CTI"
+          source: "CERT-FR"
         },
         {
           title: "Vague de phishing imitant les services des impôts",
@@ -307,7 +307,7 @@ export default function Ressources() {
             )}
 
             <div className="actualites-sources">
-              <p>Sources : CERT-FR CTI (Menaces), Cybermalveillance.gouv.fr</p>
+              <p>Sources : CERT-FR, Cybermalveillance.gouv.fr</p>
             </div>
           </div>
         </section>
