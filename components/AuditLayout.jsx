@@ -23,7 +23,7 @@ export default function AuditLayout({ children }) {
 
       {/* Footer minimal */}
       <footer className="audit-footer">
-        <p>© 2025 NIS2 Conformité • Confidentiel</p>
+        <p>© 2026 Cyber Solferino • Confidentiel</p>
       </footer>
 
       <style jsx>{`

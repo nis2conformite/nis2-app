@@ -119,10 +119,52 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>NIS2 Conformité | Mesurez vos risques et priorisez vos actions</title>
-        <meta name="description" content="Audit structuré selon référentiel ANSSI. Rapport détaillé. Recommandations priorisées. Conformité NIS2 pour PME et ETI." />
+        {/* SEO - Balises de base */}
+        <title>Cyber Solferino | Audit et Conformité NIS2 pour PME et ETI</title>
+        <meta name="description" content="Experts certifiés ISO 27001. Audit cyber NIS2 complet selon méthodologie ANSSI. Rapport détaillé, recommandations priorisées et accompagnement personnalisé pour PME et ETI." />
+        <meta name="keywords" content="NIS2, conformité NIS2, audit cyber, cybersécurité PME, directive NIS2, ANSSI, ISO 27001, sécurité informatique, ETI, mise en conformité" />
+        <meta name="author" content="Cyber Solferino" />
+        <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href="https://www.cybersolferino.fr/" />
+
+        {/* Open Graph - Facebook, LinkedIn */}
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta property="og:site_name" content="Cyber Solferino" />
+        <meta property="og:title" content="Cyber Solferino | Audit et Conformité NIS2 pour PME et ETI" />
+        <meta property="og:description" content="Experts certifiés ISO 27001. Audit cyber NIS2 complet selon méthodologie ANSSI. Accompagnement personnalisé pour votre mise en conformité." />
+        <meta property="og:image" content="https://www.cybersolferino.fr/og-image.png" />
+        <meta property="og:url" content="https://www.cybersolferino.fr/" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Cyber Solferino | Audit et Conformité NIS2" />
+        <meta name="twitter:description" content="Experts certifiés ISO 27001. Audit cyber NIS2 complet selon méthodologie ANSSI pour PME et ETI." />
+        <meta name="twitter:image" content="https://www.cybersolferino.fr/og-image.png" />
+
+        {/* Données structurées JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Cyber Solferino",
+              "description": "Plateforme d'audit et de conformité cyber NIS2 pour PME et ETI",
+              "url": "https://www.cybersolferino.fr",
+              "logo": "https://www.cybersolferino.fr/logo.png",
+              "contactPoint": {
+                "@type": "ContactPoint",
+"email": "contact@cyber-solferino.com",
+                "contactType": "customer service",
+                "availableLanguage": "French"
+              },
+              "sameAs": []
+            })
+          }}
+        />
       </Head>
 
       {/* HEADER - STICKY AVEC NAVIGATION */}
@@ -233,6 +275,123 @@ export default function Home() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             />
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION CYBER - CHIFFRES CLÉS ENRICHIE */}
+      <section className="content-section" id="chiffres-cles">
+        <div className="content-container">
+          <div className="cyber-encart cyber-encart-enhanced">
+            <div className="section-badge-center">Chiffres clés</div>
+
+            <h2 className="section-title-artisan">
+              La prévention est plus <span className="highlight">rentable</span> qu'une crise cyber
+            </h2>
+            <p className="section-subtitle-artisan">
+              Guerre hybride • IA criminelle • NIS2 : 2026 marque un tournant critique
+            </p>
+
+            {/* 2 CARTES STATS PRINCIPALES */}
+            <div className="cyber-stats-grid-encart cyber-stats-enhanced">
+              <div className="cyber-stat-card-encart cyber-stat-card-large">
+                <div className="cyber-stat-number-encart cyber-stat-number-large">+38%</div>
+                <h3>Hausse des cyberattaques</h3>
+                <p>
+                  Les attaques contre les PME ont explosé de 38% en 2024.
+                  Les cybercriminels ciblent les entreprises non protégées.
+                </p>
+              </div>
+
+              <div className="cyber-stat-card-encart cyber-stat-card-large">
+                <div className="cyber-stat-number-encart cyber-stat-number-large">4,35M€</div>
+                <h3>Coût moyen d'une cyberattaque</h3>
+                <p>
+                  60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne),
+                  perte de données, rançons.
+                </p>
+              </div>
+            </div>
+
+            {/* TIMELINE ACCORDÉON - CYBERATTAQUES */}
+            <div className="cyber-timeline-section">
+              <p className="cyber-timeline-subtitle">Cliquez pour voir les détails</p>
+
+              <div className="cyber-timeline">
+                <div className="cyber-timeline-line"></div>
+
+                {CYBER_TIMELINE.map((event, index) => (
+                  <div
+                    key={index}
+                    className={`cyber-timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${openTimeline === index ? 'active' : ''}`}
+                    onClick={() => toggleTimeline(index)}
+                  >
+                    <div className="cyber-timeline-point"></div>
+                    <div className="cyber-timeline-content">
+                      <div className="cyber-timeline-header">
+                        <span className="cyber-timeline-date">{event.date}</span>
+                        <span className={`cyber-timeline-chevron ${openTimeline === index ? 'open' : ''}`}>
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </span>
+                      </div>
+                      <h4 className="cyber-timeline-event-title">{event.title}</h4>
+                      <div className={`cyber-timeline-description ${openTimeline === index ? 'visible' : ''}`}>
+                        <p>{event.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 3 BLOCS CONTEXTE - MENACES */}
+            <div className="cyber-threats-section">
+              <h3 className="cyber-threats-title">3 menaces qui pèsent sur votre entreprise</h3>
+
+              <div className="cyber-threats-grid">
+                <div className="cyber-threat-card">
+                  <div className="cyber-threat-header">
+                    <span className="cyber-threat-icon">⚔️</span>
+                    <h4>Guerre hybride</h4>
+                  </div>
+                  <p>
+                    Groupes pro-russes (NoName057), chinois, iraniens ciblent quotidiennement les infrastructures françaises. La Poste, ministères, fédérations sportives : personne n'est épargné.
+                  </p>
+                  <div className="cyber-threat-badge">2 200 attaques/jour en France</div>
+                </div>
+
+                <div className="cyber-threat-card">
+                  <div className="cyber-threat-header">
+                    <span className="cyber-threat-icon">🤖</span>
+                    <h4>IA criminelle</h4>
+                  </div>
+                  <p>
+                    Deepfakes indétectables, agents autonomes, phishing généré par IA : les cybercriminels industrialisent leurs méthodes. L'attaque devient automatisée et massive.
+                  </p>
+                  <div className="cyber-threat-badge">43% de phishing en 2025 (+19pts)</div>
+                </div>
+
+                <div className="cyber-threat-card">
+                  <div className="cyber-threat-header">
+                    <span className="cyber-threat-icon">🔒</span>
+                    <h4>Ransomware</h4>
+                  </div>
+                  <p>
+                    69% des cyberattaques contre les PME sont des ransomwares. 40% des PME paient la rançon. 4 jours d'arrêt complet avant de récupérer leurs systèmes.
+                  </p>
+                  <div className="cyber-threat-badge">1 attaque toutes les 11 secondes</div>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA FINAL */}
+            <div className="cyber-cta-wrapper">
+              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="cyber-cta-button">
+                Protégez votre entreprise maintenant
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -461,123 +620,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION CYBER - CHIFFRES CLÉS ENRICHIE */}
-      <section className="content-section" id="chiffres-cles">
-        <div className="content-container">
-          <div className="cyber-encart cyber-encart-enhanced">
-            <div className="section-badge-center">Chiffres clés</div>
-
-            <h2 className="section-title-artisan">
-              La prévention est plus <span className="highlight">rentable</span> qu'une crise cyber
-            </h2>
-            <p className="section-subtitle-artisan">
-              Guerre hybride • IA criminelle • NIS2 : 2026 marque un tournant critique
-            </p>
-
-            {/* 2 CARTES STATS PRINCIPALES */}
-            <div className="cyber-stats-grid-encart cyber-stats-enhanced">
-              <div className="cyber-stat-card-encart cyber-stat-card-large">
-                <div className="cyber-stat-number-encart cyber-stat-number-large">+38%</div>
-                <h3>Hausse des cyberattaques</h3>
-                <p>
-                  Les attaques contre les PME ont explosé de 38% en 2024.
-                  Les cybercriminels ciblent les entreprises non protégées.
-                </p>
-              </div>
-
-              <div className="cyber-stat-card-encart cyber-stat-card-large">
-                <div className="cyber-stat-number-encart cyber-stat-number-large">4,35M€</div>
-                <h3>Coût moyen d'une cyberattaque</h3>
-                <p>
-                  60% des PME touchées ferment dans les 12 mois. Arrêt de production (21 jours en moyenne),
-                  perte de données, rançons.
-                </p>
-              </div>
-            </div>
-
-            {/* TIMELINE ACCORDÉON - CYBERATTAQUES */}
-            <div className="cyber-timeline-section">
-              <p className="cyber-timeline-subtitle">Cliquez pour voir les détails</p>
-
-              <div className="cyber-timeline">
-                <div className="cyber-timeline-line"></div>
-
-                {CYBER_TIMELINE.map((event, index) => (
-                  <div
-                    key={index}
-                    className={`cyber-timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${openTimeline === index ? 'active' : ''}`}
-                    onClick={() => toggleTimeline(index)}
-                  >
-                    <div className="cyber-timeline-point"></div>
-                    <div className="cyber-timeline-content">
-                      <div className="cyber-timeline-header">
-                        <span className="cyber-timeline-date">{event.date}</span>
-                        <span className={`cyber-timeline-chevron ${openTimeline === index ? 'open' : ''}`}>
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </span>
-                      </div>
-                      <h4 className="cyber-timeline-event-title">{event.title}</h4>
-                      <div className={`cyber-timeline-description ${openTimeline === index ? 'visible' : ''}`}>
-                        <p>{event.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 3 BLOCS CONTEXTE - MENACES */}
-            <div className="cyber-threats-section">
-              <h3 className="cyber-threats-title">3 menaces qui pèsent sur votre entreprise</h3>
-
-              <div className="cyber-threats-grid">
-                <div className="cyber-threat-card">
-                  <div className="cyber-threat-header">
-                    <span className="cyber-threat-icon">⚔️</span>
-                    <h4>Guerre hybride</h4>
-                  </div>
-                  <p>
-                    Groupes pro-russes (NoName057), chinois, iraniens ciblent quotidiennement les infrastructures françaises. La Poste, ministères, fédérations sportives : personne n'est épargné.
-                  </p>
-                  <div className="cyber-threat-badge">2 200 attaques/jour en France</div>
-                </div>
-
-                <div className="cyber-threat-card">
-                  <div className="cyber-threat-header">
-                    <span className="cyber-threat-icon">🤖</span>
-                    <h4>IA criminelle</h4>
-                  </div>
-                  <p>
-                    Deepfakes indétectables, agents autonomes, phishing généré par IA : les cybercriminels industrialisent leurs méthodes. L'attaque devient automatisée et massive.
-                  </p>
-                  <div className="cyber-threat-badge">43% de phishing en 2025 (+19pts)</div>
-                </div>
-
-                <div className="cyber-threat-card">
-                  <div className="cyber-threat-header">
-                    <span className="cyber-threat-icon">🔒</span>
-                    <h4>Ransomware</h4>
-                  </div>
-                  <p>
-                    69% des cyberattaques contre les PME sont des ransomwares. 40% des PME paient la rançon. 4 jours d'arrêt complet avant de récupérer leurs systèmes.
-                  </p>
-                  <div className="cyber-threat-badge">1 attaque toutes les 11 secondes</div>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA FINAL */}
-            <div className="cyber-cta-wrapper">
-              <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="cyber-cta-button">
-                Protégez votre entreprise maintenant
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* SECTION PRICING */}
       <section className="pricing-section-artisan" id="pricing">
         <div className="before-after-container">
@@ -700,7 +742,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Comparatif accordéon */}
+          {/* Bouton toggle comparatif */}
           <div className="pricing-cta-wrapper">
             <button
               onClick={() => setShowComparison(!showComparison)}
@@ -710,92 +752,65 @@ export default function Home() {
             </button>
           </div>
 
+          {/* TABLEAU COMPARATIF */}
           {showComparison && (
-            <div className="comparison-wrapper">
-              <table className="comparison-table">
-                <thead>
-                  <tr>
-                    <th>Fonctionnalités</th>
-                    <th>Essentielle<br/><span className="price-sub">3 490€</span></th>
-                    <th>Sérénité<br/><span className="price-sub">7 990€</span></th>
-                    <th>Expertise<br/><span className="price-sub">14 900€</span></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Audit cyber NIS2</td>
-                    <td>✓</td>
-                    <td>✓</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Résultat immédiat</td>
-                    <td>✓</td>
-                    <td>—</td>
-                    <td>—</td>
-                  </tr>
-                  <tr>
-                    <td>Rapport validé par experts</td>
-                    <td>—</td>
-                    <td>✓</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Analyse écarts de conformité</td>
-                    <td>—</td>
-                    <td>✓</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Plan de remédiation détaillé</td>
-                    <td>—</td>
-                    <td>✓</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Restitution avec expert</td>
-                    <td>—</td>
-                    <td>✓</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Entretien préalable expert</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Roadmap personnalisée</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Enregistrement ANSSI</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Dossier aides d'État</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Accès plateforme</td>
-                    <td>—</td>
-                    <td>6 mois</td>
-                    <td>12 mois</td>
-                  </tr>
-                  <tr>
-                    <td>Délai de livraison</td>
-                    <td>Immédiat</td>
-                    <td>48H</td>
-                    <td>1 mois</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="card-table">
+              <h3 className="table-title">
+                Comparatif détaillé des offres
+              </h3>
+              <div className="table-wrapper">
+                <table className="table-compare">
+                  <thead>
+                    <tr>
+                      <th className="th-feature">Fonctionnalités</th>
+                      <th className="th-offer-purple">Essentielle<br/><span className="th-price">3 490€</span></th>
+                      <th className="th-offer-pink">Sérénité<br/><span className="th-price">7 990€</span></th>
+                      <th className="th-offer-purple">Expertise<br/><span className="th-price">14 900€</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { name: 'Audit cyber NIS2', essential: true, serenity: true, expertise: true },
+                      { name: 'Résultat immédiat', essential: true, serenity: false, expertise: false },
+                      { name: 'Rapport validé par experts', essential: false, serenity: true, expertise: true },
+                      { name: 'Analyse écarts de conformité', essential: false, serenity: true, expertise: true },
+                      { name: 'Plan de remédiation détaillé', essential: false, serenity: true, expertise: true },
+                      { name: 'Restitution avec expert', essential: false, serenity: true, expertise: true },
+                      { name: 'Entretien préalable expert', essential: false, serenity: false, expertise: true },
+                      { name: 'Roadmap personnalisée', essential: false, serenity: false, expertise: true },
+                      { name: 'Enregistrement ANSSI', essential: false, serenity: false, expertise: true },
+                      { name: 'Dossier aides d\'État', essential: false, serenity: false, expertise: true },
+                      { name: 'Accès plateforme', essential: '—', serenity: '6 mois', expertise: '12 mois' },
+                      { name: 'Délai de livraison', essential: 'Immédiat', serenity: '48H', expertise: '1 mois' }
+                    ].map((row, idx) => (
+                      <tr key={idx} className={idx % 2 === 0 ? 'tr-even' : 'tr-odd'}>
+                        <td className="td-feature">{row.name}</td>
+                        <td className="td-value">
+                          {typeof row.essential === 'boolean' ? (
+                            row.essential ?
+                              <span className="check-circle">✓</span> :
+                              <span className="cross-circle">—</span>
+                          ) : <span className="td-text">{row.essential}</span>}
+                        </td>
+                        <td className="td-value">
+                          {typeof row.serenity === 'boolean' ? (
+                            row.serenity ?
+                              <span className="check-circle">✓</span> :
+                              <span className="cross-circle">—</span>
+                          ) : <span className="td-text">{row.serenity}</span>}
+                        </td>
+                        <td className="td-value">
+                          {typeof row.expertise === 'boolean' ? (
+                            row.expertise ?
+                              <span className="check-circle">✓</span> :
+                              <span className="cross-circle">—</span>
+                          ) : <span className="td-text">{row.expertise}</span>}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
         </div>
@@ -1103,18 +1118,18 @@ export default function Home() {
                 </a>
               </li>
               <li>
-                <a href="mailto:nis2conformite@gmail.com">
-                  nis2conformite@gmail.com
+                <a href="mailto:contact@cyber-solferino.com">
+                  contact@cyber-solferino.com
                 </a>
               </li>
-              <li><a href="tel:+33000000000">+33 (0)0 00 00 00 00</a></li>
+              <li><a href="tel:+33649432092">+33 (0) 6 49 43 20 92</a></li>
             </ul>
           </div>
         </div>
 
         <div className="footer-bottom-modern">
           <div className="footer-bottom-content">
-            <p className="footer-copyright">© 2025 NIS2 Conformité. Tous droits réservés</p>
+            <p className="footer-copyright">© 2026 Cyber Solferino. Tous droits réservés</p>
             <div className="footer-legal-links">
               <a href="/mentions-legales">Mentions légales</a>
               <a href="/politique-confidentialite">Politique de confidentialité</a>
