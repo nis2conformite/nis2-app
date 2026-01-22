@@ -8,10 +8,11 @@ export default function Ressources() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Flux RSS européens sur la cybersécurité
+  // Flux RSS français sur la cybersécurité
   const RSS_FEEDS = [
-    'https://www.enisa.europa.eu/press/rss.xml', // ENISA - Agence européenne cybersécurité
-    'https://feeds.feedburner.com/TheHackersNews', // The Hacker News
+    'https://www.cert.ssi.gouv.fr/feed/', // CERT-FR - Alertes de sécurité
+    'https://www.ssi.gouv.fr/feed/actualite/', // ANSSI - Actualités
+    'https://www.cybermalveillance.gouv.fr/feed/', // Cybermalveillance.gouv.fr
   ];
 
   useEffect(() => {
@@ -33,8 +34,8 @@ export default function Ressources() {
               title: item.title,
               link: item.link,
               pubDate: new Date(item.pubDate),
-              description: item.description?.replace(/<[^>]*>/g, '').substring(0, 150) + '...',
-              source: data.feed?.title || 'Cybersécurité Europe'
+              description: item.description?.replace(/<[^>]*>/g, '').substring(0, 280),
+              source: data.feed?.title || 'Cybersécurité France'
             }));
           }
           return [];
@@ -47,10 +48,10 @@ export default function Ressources() {
       const allArticles = await Promise.all(feedPromises);
       const flatArticles = allArticles.flat();
 
-      // Trier par date et prendre les 3 plus récents
+      // Trier par date et prendre les 6 plus récents
       const sortedArticles = flatArticles
         .sort((a, b) => b.pubDate - a.pubDate)
-        .slice(0, 3);
+        .slice(0, 6);
 
       setArticles(sortedArticles);
       setError(null);
@@ -59,25 +60,46 @@ export default function Ressources() {
       // Articles de fallback en cas d'erreur
       setArticles([
         {
-          title: "NIS2 : L'ENISA publie de nouvelles recommandations pour les entreprises européennes",
-          link: "https://www.enisa.europa.eu",
+          title: "Alerte CERT-FR : Vulnérabilité critique dans les systèmes Windows Server",
+          link: "https://www.cert.ssi.gouv.fr",
           pubDate: new Date(),
-          description: "L'Agence de l'Union européenne pour la cybersécurité (ENISA) vient de publier un nouveau guide pratique...",
-          source: "ENISA"
+          description: "Le CERT-FR alerte sur une vulnérabilité critique affectant les serveurs Windows. Cette faille permet une élévation de privilèges et pourrait être exploitée par des attaquants pour prendre le contrôle total des systèmes affectés. Les correctifs sont disponibles.",
+          source: "CERT-FR"
         },
         {
-          title: "Cyberattaques en Europe : bilan et tendances 2025",
-          link: "https://www.enisa.europa.eu",
+          title: "L'ANSSI publie ses recommandations pour la mise en conformité NIS2",
+          link: "https://www.ssi.gouv.fr",
           pubDate: new Date(Date.now() - 86400000),
-          description: "Le nombre de cyberattaques ciblant les entreprises européennes continue d'augmenter...",
-          source: "ENISA"
+          description: "L'Agence nationale de la sécurité des systèmes d'information dévoile son guide pratique pour accompagner les entreprises françaises dans leur mise en conformité avec la directive européenne NIS2. Focus sur les 10 mesures essentielles à mettre en place.",
+          source: "ANSSI"
         },
         {
-          title: "Les PME face aux nouvelles exigences de cybersécurité",
-          link: "https://www.enisa.europa.eu",
+          title: "Cybermalveillance : Hausse de 40% des attaques par rançongiciel en France",
+          link: "https://www.cybermalveillance.gouv.fr",
           pubDate: new Date(Date.now() - 172800000),
-          description: "Avec l'entrée en vigueur de NIS2, les petites et moyennes entreprises doivent renforcer...",
-          source: "The Hacker News"
+          description: "Le dernier rapport de Cybermalveillance.gouv.fr révèle une augmentation significative des attaques par rançongiciel ciblant les PME et collectivités françaises. Les secteurs de la santé et de l'industrie sont particulièrement touchés.",
+          source: "Cybermalveillance"
+        },
+        {
+          title: "Nouvelle campagne de phishing ciblant les entreprises du CAC 40",
+          link: "https://www.cert.ssi.gouv.fr",
+          pubDate: new Date(Date.now() - 259200000),
+          description: "Le CERT-FR signale une vague d'attaques par hameçonnage sophistiqué visant les grandes entreprises françaises. Les cybercriminels utilisent des techniques d'ingénierie sociale avancées pour compromettre les comptes de dirigeants.",
+          source: "CERT-FR"
+        },
+        {
+          title: "Formation obligatoire cybersécurité : ce que dit la réglementation",
+          link: "https://www.ssi.gouv.fr",
+          pubDate: new Date(Date.now() - 345600000),
+          description: "Avec NIS2, la sensibilisation des collaborateurs devient une obligation légale. L'ANSSI détaille les exigences en matière de formation et les bonnes pratiques pour construire une culture cybersécurité au sein des organisations.",
+          source: "ANSSI"
+        },
+        {
+          title: "Bilan 2025 : Les collectivités territoriales face aux cybermenaces",
+          link: "https://www.cybermalveillance.gouv.fr",
+          pubDate: new Date(Date.now() - 432000000),
+          description: "Cybermalveillance.gouv.fr dresse le bilan des incidents cyber ayant touché les collectivités territoriales. Malgré une prise de conscience croissante, de nombreuses communes restent vulnérables faute de moyens et de compétences.",
+          source: "Cybermalveillance"
         }
       ]);
     } finally {
@@ -99,12 +121,6 @@ export default function Ressources() {
       title: 'Livre Blanc NIS2',
       subtitle: 'Guide complet pour les dirigeants',
       description: 'Tout ce que vous devez savoir sur la directive NIS2 et ses implications pour votre entreprise.',
-      points: [
-        'Les 18 secteurs concernés expliqués',
-        'Les 10 mesures de sécurité obligatoires',
-        'Checklist de mise en conformité',
-        'Calendrier des échéances clés'
-      ],
       icon: 'book',
       color: 'violet',
       fileName: 'livre-blanc-nis2.pdf',
@@ -113,16 +129,10 @@ export default function Ressources() {
     {
       id: 'rapport-cyberattaques',
       title: 'Rapport Cyberattaques 2025',
-      subtitle: 'Analyse des menaces en Europe',
-      description: 'État des lieux des cyberattaques touchant les entreprises européennes et françaises.',
-      points: [
-        'Statistiques et tendances 2025',
-        'Secteurs les plus ciblés',
-        'Coûts moyens des incidents',
-        'Recommandations de protection'
-      ],
+      subtitle: 'Analyse des menaces en France',
+      description: 'État des lieux des cyberattaques touchant les entreprises françaises et européennes.',
       icon: 'chart',
-      color: 'rose',
+      color: 'orange',
       fileName: 'rapport-cyberattaques-2025.pdf',
       pages: '32 pages'
     }
@@ -176,7 +186,7 @@ export default function Ressources() {
 
             <p className="hero-subtitle-artisan">
               Téléchargez nos guides pratiques et suivez l'actualité<br />
-              cybersécurité européenne en temps réel
+              cybersécurité française en temps réel
             </p>
           </div>
         </section>
@@ -215,14 +225,6 @@ export default function Ressources() {
                   <p className="ressource-card-subtitle">{doc.subtitle}</p>
                   <p className="ressource-card-description">{doc.description}</p>
 
-                  <ul className="ressource-points-list">
-                    {doc.points.map((point, idx) => (
-                      <li key={idx}>
-                        <span className={`check-${doc.color}`}>✓</span>
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
 
                   <a
                     href={`/documents/${doc.fileName}`}
@@ -249,7 +251,7 @@ export default function Ressources() {
                   Actualités Cybersécurité
                 </h2>
                 <p className="section-subtitle-center">
-                  Les dernières nouvelles de la cybersécurité en Europe
+                  Les dernières alertes et actualités cybersécurité en France
                 </p>
               </div>
               <button
@@ -268,36 +270,33 @@ export default function Ressources() {
             <div className="actualites-grid">
               {loading ? (
                 // Skeleton loading
-                [...Array(3)].map((_, idx) => (
+                [...Array(6)].map((_, idx) => (
                   <div key={idx} className="article-card article-card-skeleton">
                     <div className="skeleton-date"></div>
                     <div className="skeleton-title"></div>
+                    <div className="skeleton-text"></div>
                     <div className="skeleton-text"></div>
                     <div className="skeleton-text short"></div>
                   </div>
                 ))
               ) : (
                 articles.map((article, idx) => (
-                  <a
-                    key={idx}
-                    href={article.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="article-card"
-                  >
+                  <div key={idx} className="article-card">
                     <div className="article-meta">
                       <span className="article-source">{article.source}</span>
                       <span className="article-date">{formatDate(article.pubDate)}</span>
                     </div>
                     <h3 className="article-title">{article.title}</h3>
                     <p className="article-excerpt">{article.description}</p>
-                    <span className="article-link">
-                      Lire l'article
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </span>
-                  </a>
+                    <a
+                      href={article.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="article-source-link"
+                    >
+                      Source
+                    </a>
+                  </div>
                 ))
               )}
             </div>
@@ -309,7 +308,7 @@ export default function Ressources() {
             )}
 
             <div className="actualites-sources">
-              <p>Sources : ENISA (Agence européenne de cybersécurité), The Hacker News</p>
+              <p>Sources : CERT-FR, ANSSI, Cybermalveillance.gouv.fr</p>
             </div>
           </div>
         </section>
