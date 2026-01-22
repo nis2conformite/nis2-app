@@ -16,7 +16,6 @@ import {
 
 export default function Home() {
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
-  const [showComparison, setShowComparison] = useState(false);
   const [email, setEmail] = useState('');
   const [openFaq, setOpenFaq] = useState(null);
   const [openTimeline, setOpenTimeline] = useState(null);
@@ -742,104 +741,65 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Comparatif accordéon */}
-          <div className="pricing-cta-wrapper">
-            <button
-              onClick={() => setShowComparison(!showComparison)}
-              className="btn-compare-toggle"
-            >
-              {showComparison ? '▼ Masquer le comparatif' : '▶ Comparer nos offres'}
-            </button>
-          </div>
-
-          {showComparison && (
-            <div className="comparison-wrapper">
-              <table className="comparison-table">
+          {/* TABLEAU COMPARATIF */}
+          <div className="card-table">
+            <h3 className="table-title">
+              Comparatif détaillé des offres
+            </h3>
+            <div className="table-wrapper">
+              <table className="table-compare">
                 <thead>
                   <tr>
-                    <th>Fonctionnalités</th>
-                    <th>Essentielle<br/><span className="price-sub">3 490€</span></th>
-                    <th>Sérénité<br/><span className="price-sub">7 990€</span></th>
-                    <th>Expertise<br/><span className="price-sub">14 900€</span></th>
+                    <th className="th-feature">Fonctionnalités</th>
+                    <th className="th-offer-purple">Essentielle<br/><span className="th-price">3 490€</span></th>
+                    <th className="th-offer-pink">Sérénité<br/><span className="th-price">7 990€</span></th>
+                    <th className="th-offer-purple">Expertise<br/><span className="th-price">14 900€</span></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Audit cyber NIS2</td>
-                    <td>✓</td>
-                    <td>✓</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Résultat immédiat</td>
-                    <td>✓</td>
-                    <td>—</td>
-                    <td>—</td>
-                  </tr>
-                  <tr>
-                    <td>Rapport validé par experts</td>
-                    <td>—</td>
-                    <td>✓</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Analyse écarts de conformité</td>
-                    <td>—</td>
-                    <td>✓</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Plan de remédiation détaillé</td>
-                    <td>—</td>
-                    <td>✓</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Restitution avec expert</td>
-                    <td>—</td>
-                    <td>✓</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Entretien préalable expert</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Roadmap personnalisée</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Enregistrement ANSSI</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Dossier aides d'État</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>✓</td>
-                  </tr>
-                  <tr>
-                    <td>Accès plateforme</td>
-                    <td>—</td>
-                    <td>6 mois</td>
-                    <td>12 mois</td>
-                  </tr>
-                  <tr>
-                    <td>Délai de livraison</td>
-                    <td>Immédiat</td>
-                    <td>48H</td>
-                    <td>1 mois</td>
-                  </tr>
+                  {[
+                    { name: 'Audit cyber NIS2', essential: true, serenity: true, expertise: true },
+                    { name: 'Résultat immédiat', essential: true, serenity: false, expertise: false },
+                    { name: 'Rapport validé par experts', essential: false, serenity: true, expertise: true },
+                    { name: 'Analyse écarts de conformité', essential: false, serenity: true, expertise: true },
+                    { name: 'Plan de remédiation détaillé', essential: false, serenity: true, expertise: true },
+                    { name: 'Restitution avec expert', essential: false, serenity: true, expertise: true },
+                    { name: 'Entretien préalable expert', essential: false, serenity: false, expertise: true },
+                    { name: 'Roadmap personnalisée', essential: false, serenity: false, expertise: true },
+                    { name: 'Enregistrement ANSSI', essential: false, serenity: false, expertise: true },
+                    { name: 'Dossier aides d\'État', essential: false, serenity: false, expertise: true },
+                    { name: 'Accès plateforme', essential: '—', serenity: '6 mois', expertise: '12 mois' },
+                    { name: 'Délai de livraison', essential: 'Immédiat', serenity: '48H', expertise: '1 mois' }
+                  ].map((row, idx) => (
+                    <tr key={idx} className={idx % 2 === 0 ? 'tr-even' : 'tr-odd'}>
+                      <td className="td-feature">{row.name}</td>
+                      <td className="td-value">
+                        {typeof row.essential === 'boolean' ? (
+                          row.essential ?
+                            <span className="check-circle">✓</span> :
+                            <span className="cross-circle">—</span>
+                        ) : <span className="td-text">{row.essential}</span>}
+                      </td>
+                      <td className="td-value">
+                        {typeof row.serenity === 'boolean' ? (
+                          row.serenity ?
+                            <span className="check-circle">✓</span> :
+                            <span className="cross-circle">—</span>
+                        ) : <span className="td-text">{row.serenity}</span>}
+                      </td>
+                      <td className="td-value">
+                        {typeof row.expertise === 'boolean' ? (
+                          row.expertise ?
+                            <span className="check-circle">✓</span> :
+                            <span className="cross-circle">—</span>
+                        ) : <span className="td-text">{row.expertise}</span>}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
-          )}
+          </div>
         </div>
       </section>
 
