@@ -53,8 +53,7 @@ export default function Ressources() {
       description: 'Tout ce que vous devez savoir sur la directive NIS2 et ses implications pour votre entreprise.',
       icon: 'book',
       color: 'violet',
-      fileName: 'livre-blanc-nis2.pdf',
-      pages: '40 pages'
+      fileName: 'livre-blanc-nis2.pdf'
     },
     {
       id: 'rapport-cyberattaques',
@@ -63,8 +62,7 @@ export default function Ressources() {
       description: 'État des lieux des cyberattaques touchant les entreprises françaises et européennes.',
       icon: 'chart',
       color: 'orange',
-      fileName: 'rapport-cyberattaques-2025.pdf',
-      pages: '32 pages'
+      fileName: 'rapport-cyberattaques-2025.pdf'
     }
   ];
 
@@ -148,7 +146,6 @@ export default function Ressources() {
                         </svg>
                       )}
                     </div>
-                    <div className="ressource-badge">{doc.pages}</div>
                   </div>
 
                   <h3 className={`ressource-card-title title-gradient-${doc.color}`}>{doc.title}</h3>
