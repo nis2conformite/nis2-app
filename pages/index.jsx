@@ -200,11 +200,6 @@ export default function Home() {
             NIS2 Conformité obligatoire • Premières sanctions en 2027 • Agissez maintenant
           </div>
 
-          {/* Logo central sous le badge */}
-          <div className="hero-logo-wrapper">
-            <img src="/logo.png" alt="Cyber Solferino" className="hero-logo" />
-          </div>
-
           <p className="hero-baseline-small">
             La plateforme d'audit et de conformité cyber<br />
             pensée pour les PME et ETI européennes
