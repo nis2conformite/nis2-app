@@ -167,6 +167,12 @@ export default function Home() {
         />
       </Head>
 
+      {/* BANDEAU ANNONCE AVA - STICKY */}
+      <div className="announcement-bar-ava">
+        🚀 NOUVEAU : Découvrez AVA, votre RSSI virtuel 24/7
+        <a href="/plateforme-ava" className="announcement-bar-link">En savoir plus →</a>
+      </div>
+
       {/* HEADER - STICKY AVEC NAVIGATION */}
       <header className="header-artisan-sticky">
         <div className="header-container-modern">
@@ -175,6 +181,7 @@ export default function Home() {
           </a>
 
           <nav className="header-nav-modern">
+            <a href="/plateforme-ava" className="header-nav-link header-nav-link-highlight">Plateforme AVA ⭐</a>
             <a href="/comprendre-nis2" className="header-nav-link">Comprendre NIS2</a>
             <a href="/qui-sommes-nous" className="header-nav-link">Qui sommes-nous</a>
             <a href="/offres-complementaires" className="header-nav-link">Nos tarifs</a>
@@ -206,12 +213,12 @@ export default function Home() {
           </p>
 
           <h1 className="hero-title-artisan">
-            Mesurez vos risques <span className="highlight">NIS2</span><br />
-            et priorisez vos actions
+            Votre conformité <span className="highlight">NIS2</span> pilotée par IA<br />
+            De l'audit à la surveillance continue
           </h1>
 
           <p className="hero-subtitle-artisan">
-            Audit structuré • Selon référentiel ANSSI • Rapport détaillé • Recommandations priorisées
+            La seule plateforme qui combine audit express (48h), assistant IA expert, et suivi temps réel de votre conformité. Sans les 50K€ d'un Big 4.
           </p>
 
           {/* Stats dans le Hero */}
@@ -251,6 +258,14 @@ export default function Home() {
             <span>•</span>
             <span>✓ Sans engagement</span>
           </div>
+
+          {/* TRUST BAR */}
+          <div className="trust-bar-ava">
+            <div className="trust-item-ava">✓ Méthodologie ANSSI</div>
+            <div className="trust-item-ava">✓ Experts ISO 27001</div>
+            <div className="trust-item-ava">✓ 98% conformité clients</div>
+            <div className="trust-item-ava">✓ -90% vs cabinet conseil</div>
+          </div>
         </div>
       </section>
 
@@ -272,6 +287,39 @@ export default function Home() {
               allowFullScreen
             />
           </div>
+        </div>
+      </section>
+
+      {/* SECTION LE PROBLÈME - NOUVEAU */}
+      <section className="problem-section-ava">
+        <div className="content-container">
+          <h2 className="section-title-artisan" style={{textAlign: 'center', marginBottom: '48px'}}>
+            Pourquoi la conformité NIS2 est un <span className="highlight">casse-tête</span> pour les PME ?
+          </h2>
+
+          <div className="problem-grid-ava">
+            <div className="problem-card-ava">
+              <div className="problem-icon-ava">💰</div>
+              <h3>Big 4 : 15-50K€</h3>
+              <p>Les cabinets de conseil traditionnels facturent des missions à 5 chiffres inaccessibles pour les PME.</p>
+            </div>
+
+            <div className="problem-card-ava">
+              <div className="problem-icon-ava">🧩</div>
+              <h3>Complexité : 65 mesures</h3>
+              <p>La directive NIS2 impose 65 mesures de sécurité techniques et organisationnelles à documenter.</p>
+            </div>
+
+            <div className="problem-card-ava">
+              <div className="problem-icon-ava">⏱️</div>
+              <h3>Temps : 3-6 mois</h3>
+              <p>Les audits classiques prennent des mois. Et après ? Vous êtes seul face à la mise en œuvre.</p>
+            </div>
+          </div>
+
+          <p className="problem-callout-ava">
+            <strong>Et après l'audit ? Vous êtes seul face à la mise en œuvre.</strong>
+          </p>
         </div>
       </section>
 
@@ -387,6 +435,51 @@ export default function Home() {
               <a href={CONTACT_INFO.calendly} target="_blank" rel="noopener noreferrer" className="cyber-cta-button">
                 Protégez votre entreprise maintenant
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION AVA GAME CHANGER - NOUVELLE SECTION CLÉ */}
+      <section className="ava-section-dark">
+        <div className="content-container">
+          <div className="ava-split-layout">
+            {/* Partie gauche : Contenu */}
+            <div className="ava-content-left">
+              <div className="badge-ava-ai">✨ Powered by AI</div>
+
+              <h2 className="ava-title-main">
+                AVA : Votre RSSI virtuel qui ne dort jamais
+              </h2>
+
+              <p className="ava-subtitle-main">
+                Formé sur 500+ documents ANSSI et 1000+ audits NIS2, AVA n'est pas un simple chatbot. C'est un agent IA autonome qui pilote votre conformité 24/7.
+              </p>
+
+              <div className="ava-capabilities-list">
+                <div className="ava-capability-item">✓ Répond à vos questions 24/7 sur NIS2, ISO 27001, RGPD</div>
+                <div className="ava-capability-item">✓ Analyse vos documents (PSSI, PCA, politique) en temps réel</div>
+                <div className="ava-capability-item">✓ Génère vos politiques de sécurité conformes ANSSI</div>
+                <div className="ava-capability-item">✓ Vous alerte proactivement des changements réglementaires</div>
+                <div className="ava-capability-item">✓ Prépare vos rapports de conformité pour l'ANSSI</div>
+              </div>
+
+              <div className="ava-cta-group">
+                <a href="/plateforme-ava" className="btn-ava-primary">Essayer AVA 30 jours gratuit</a>
+                <a href="#demo-ava" className="btn-ava-secondary">Voir AVA en action (30s)</a>
+              </div>
+
+              <p className="ava-disclaimer">
+                💡 AVA n'est pas un simple chatbot. C'est un agent IA autonome formé sur 500+ documents ANSSI et 1000+ audits NIS2.
+              </p>
+            </div>
+
+            {/* Partie droite : Mockup/Démo */}
+            <div className="ava-demo-right">
+              <div className="ava-mockup-placeholder">
+                <p style={{textAlign: 'center', opacity: 0.5, fontSize: '14px'}}>[Vidéo démo AVA 30s à intégrer ici]</p>
+                <p style={{textAlign: 'center', opacity: 0.5, marginTop: '16px', fontSize: '12px'}}>Mockup : Interface chat AVA + Dashboard conformité</p>
+              </div>
             </div>
           </div>
         </div>

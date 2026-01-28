@@ -972,3 +972,308 @@
     font-size: 14px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   REFONTE AVA - NOUVEAUX COMPOSANTS
+   ═══════════════════════════════════════════════════════════ */
+
+/* BANDEAU ANNONCE AVA - STICKY */
+.announcement-bar-ava {
+  background: linear-gradient(90deg, #7C3AED 0%, #EC4899 100%);
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.announcement-bar-link {
+  color: white;
+  text-decoration: underline;
+  margin-left: 10px;
+  font-weight: 700;
+  transition: opacity 0.3s ease;
+}
+
+.announcement-bar-link:hover {
+  opacity: 0.8;
+}
+
+/* NAVIGATION - HIGHLIGHT AVA */
+.header-nav-link-highlight {
+  background: linear-gradient(90deg, #7C3AED, #EC4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600 !important;
+}
+
+/* TRUST BAR */
+.trust-bar-ava {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding: 24px;
+  background: #F9FAFB;
+  border-radius: 12px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.trust-item-ava {
+  font-size: 14px;
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+/* SECTION PROBLÈME */
+.problem-section-ava {
+  background: #F9FAFB;
+  padding: 80px 20px;
+}
+
+.problem-grid-ava {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.problem-card-ava {
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.problem-card-ava:hover {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+}
+
+.problem-icon-ava {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.problem-card-ava h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.problem-card-ava p {
+  color: #6B7280;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.problem-callout-ava {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 18px;
+  color: #EF4444;
+}
+
+.problem-callout-ava strong {
+  font-weight: 700;
+}
+
+/* SECTION AVA DARK */
+.ava-section-dark {
+  background: linear-gradient(135deg, #1E1B4B 0%, #000000 100%);
+  color: white;
+  padding: 100px 20px;
+}
+
+.ava-split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ava-content-left {
+  padding-right: 20px;
+}
+
+.badge-ava-ai {
+  display: inline-block;
+  background: rgba(124, 58, 237, 0.2);
+  color: #C084FC;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.ava-title-main {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  margin-bottom: 24px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.ava-subtitle-main {
+  font-size: 20px;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.ava-capabilities-list {
+  margin-bottom: 40px;
+}
+
+.ava-capability-item {
+  padding: 12px 0;
+  font-size: 16px;
+  opacity: 0.9;
+  border-left: 3px solid #7C3AED;
+  padding-left: 16px;
+  margin-bottom: 8px;
+}
+
+.ava-cta-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.btn-ava-primary {
+  background: linear-gradient(90deg, #7C3AED, #EC4899);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.btn-ava-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+}
+
+.btn-ava-secondary {
+  background: transparent;
+  color: white;
+  padding: 14px 28px;
+  border: 2px solid white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.btn-ava-secondary:hover {
+  background: white;
+  color: #1E1B4B;
+}
+
+.ava-disclaimer {
+  font-size: 14px;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+.ava-demo-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ava-mockup-placeholder {
+  background: rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 80px 32px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed rgba(255,255,255,0.3);
+}
+
+/* RESPONSIVE AVA SECTIONS */
+@media (max-width: 968px) {
+  .problem-grid-ava {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .ava-split-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .ava-title-main {
+    font-size: 36px;
+  }
+
+  .ava-subtitle-main {
+    font-size: 18px;
+  }
+
+  .ava-content-left {
+    padding-right: 0;
+  }
+
+  .ava-mockup-placeholder {
+    min-height: 300px;
+    padding: 40px 20px;
+  }
+
+  .trust-bar-ava {
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .trust-item-ava {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .announcement-bar-ava {
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+
+  .problem-section-ava {
+    padding: 60px 20px;
+  }
+
+  .ava-section-dark {
+    padding: 60px 20px;
+  }
+
+  .ava-title-main {
+    font-size: 32px;
+  }
+
+  .ava-cta-group {
+    flex-direction: column;
+  }
+
+  .btn-ava-primary,
+  .btn-ava-secondary {
+    width: 100%;
+    text-align: center;
+  }
+}

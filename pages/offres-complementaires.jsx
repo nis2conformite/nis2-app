@@ -75,6 +75,7 @@ export default function OffresServices() {
           </a>
 
           <nav className="header-nav-modern">
+            <a href="/plateforme-ava" className="header-nav-link header-nav-link-highlight">Plateforme AVA ⭐</a>
             <a href="/comprendre-nis2" className="header-nav-link">Comprendre NIS2</a>
             <a href="/qui-sommes-nous" className="header-nav-link">Qui sommes-nous</a>
             <a href="/offres-complementaires" className="header-nav-link">Nos tarifs</a>
@@ -98,18 +99,24 @@ export default function OffresServices() {
         <section className="hero-artisan-exact hero-compact">
           <div className="hero-artisan-container">
             <div className="hero-badge-artisan">
-              Solutions complètes • Prix transparents • Accompagnement expert
+              Pas de "contactez-nous" • Pas de devis mystère • Nos prix affichés
             </div>
 
             <h1 className="hero-title-artisan">
-              Tout pour votre<br />
-              <span className="highlight">conformité NIS2</span>
+              Nos prix. <span className="highlight">Point.</span>
             </h1>
 
             <p className="hero-subtitle-artisan">
-              Des audits complets aux formations en passant par les services complémentaires<br />
-              Choisissez la solution adaptée à votre maturité cyber
+              Contrairement aux Big 4, nous publions nos tarifs.<br />
+              Transparence totale sur nos offres d'audit, formations et services NIS2.
             </p>
+
+            {/* ENCART AVA INCLUS */}
+            <div className="ava-included-banner-tarifs">
+              💡 <strong>Tous nos audits incluent 30 jours d'essai gratuit AVA</strong>
+              {' '}(puis 149-499€/mois selon votre besoin)
+              {' '}<a href="/plateforme-ava" className="ava-link-inline">En savoir plus →</a>
+            </div>
           </div>
         </section>
 
@@ -256,6 +263,65 @@ export default function OffresServices() {
                   </tbody>
                 </table>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION AIDES D'ÉTAT DÉTAILLÉE */}
+        <section className="aides-etat-section-detailed">
+          <div className="container-lg">
+            <div className="section-header-center">
+              <h2 className="section-title-lg">
+                Jusqu'à <span className="highlight">70% remboursés</span> par l'État
+              </h2>
+              <p className="section-subtitle">
+                Votre conformité peut coûter 3K€ au lieu de 10K€
+              </p>
+            </div>
+
+            <div className="aides-grid-detailed">
+              <div className="aide-card-detailed">
+                <h3>France Num</h3>
+                <div className="aide-montant">Jusqu'à 12 000€</div>
+                <p>Subvention pour transformation numérique des PME</p>
+                <div className="aide-criteres">
+                  <span className="aide-tag">PME < 250 salariés</span>
+                  <span className="aide-tag">CA < 50M€</span>
+                </div>
+              </div>
+
+              <div className="aide-card-detailed aide-card-featured">
+                <div className="aide-badge">⭐ Le plus utilisé</div>
+                <h3>BPI France</h3>
+                <div className="aide-montant">5 000€ à 15 000€</div>
+                <p>Diagnostic cybersécurité et mise en conformité</p>
+                <div className="aide-criteres">
+                  <span className="aide-tag">TPE-PME</span>
+                  <span className="aide-tag">Secteurs critiques</span>
+                </div>
+              </div>
+
+              <div className="aide-card-detailed">
+                <h3>Crédit Impôt Innovation</h3>
+                <div className="aide-montant">30% de réduction</div>
+                <p>Crédit d'impôt sur dépenses innovation (dont cyber)</p>
+                <div className="aide-criteres">
+                  <span className="aide-tag">PME éligibles</span>
+                  <span className="aide-tag">Jusqu'à 400K€</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="aides-cta-wrapper">
+              <button
+                onClick={() => alert('Simulateur en cours de développement')}
+                className="btn-artisan btn-artisan-primary"
+              >
+                Simuler mes aides (3 min)
+              </button>
+              <p className="aides-note">
+                💡 Avec notre offre Expertise, nous constituons votre dossier de demande d'aides
+              </p>
             </div>
           </div>
         </section>

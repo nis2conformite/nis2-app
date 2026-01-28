@@ -1,0 +1,542 @@
+/* ═══════════════════════════════════════════════════════════
+   PLATEFORME AVA - STYLES SPÉCIFIQUES
+   ═══════════════════════════════════════════════════════════ */
+
+@import url('./variables.css');
+
+/* HERO AVA PAGE */
+.hero-ava-page {
+  background: var(--color-beige);
+  padding: 80px 20px 100px;
+  text-align: center;
+}
+
+.hero-ava-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-ava-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-12xl);
+  font-weight: var(--font-weight-black);
+  line-height: var(--line-height-tight);
+  color: var(--color-gray-900);
+  margin: 0 0 var(--spacing-8);
+  letter-spacing: -0.03em;
+}
+
+.hero-ava-lead {
+  font-size: var(--font-size-2xl);
+  color: var(--color-gray-600);
+  margin: 0 0 var(--spacing-12);
+  line-height: var(--line-height-relaxed);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-ava-cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: var(--spacing-10);
+  flex-wrap: wrap;
+}
+
+.btn-large {
+  padding: 16px 32px;
+  font-size: 16px;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.hero-ava-trust {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+/* SECTION CAPACITÉS AVA */
+.ava-capabilities-section {
+  padding: 80px 20px;
+  background: white;
+}
+
+.accordion-ava {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.accordion-item-ava {
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.accordion-item-ava:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.accordion-header-ava {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.accordion-header-ava:hover {
+  background: #F9FAFB;
+}
+
+.accordion-header-ava h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #111827;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.accordion-icon {
+  font-size: 24px;
+}
+
+.accordion-toggle {
+  font-size: 32px;
+  color: var(--color-primary);
+  font-weight: bold;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.accordion-toggle.open {
+  transform: rotate(45deg);
+}
+
+.accordion-content-ava {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding: 0 24px;
+}
+
+.accordion-content-ava.visible {
+  max-height: 500px;
+  padding: 0 24px 24px 24px;
+}
+
+.accordion-description {
+  font-size: 16px;
+  color: #6B7280;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.accordion-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.accordion-features li {
+  font-size: 15px;
+  color: #374151;
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.accordion-features li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+/* PRICING AVA SAAS */
+.pricing-ava-section {
+  padding: 80px 20px;
+  background: #F9FAFB;
+}
+
+.pricing-ava-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto 32px;
+}
+
+.pricing-ava-card {
+  background: white;
+  border: 2px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 40px 32px;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.pricing-ava-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.pricing-ava-card.highlighted {
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 40px rgba(124, 58, 237, 0.2);
+  transform: scale(1.05);
+}
+
+.pricing-ava-card.highlighted:hover {
+  transform: scale(1.05) translateY(-4px);
+}
+
+.pricing-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #7C3AED, #EC4899);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pricing-plan-name {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.pricing-plan-price {
+  font-size: 48px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.pricing-period {
+  font-size: 18px;
+  color: #6B7280;
+  font-weight: 400;
+}
+
+.pricing-plan-description {
+  color: #6B7280;
+  margin-bottom: 24px;
+  font-size: 15px;
+}
+
+.pricing-plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+  text-align: left;
+}
+
+.pricing-plan-features li {
+  padding: 12px 0;
+  border-bottom: 1px solid #F3F4F6;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pricing-plan-features li:last-child {
+  border-bottom: none;
+}
+
+.feature-icon {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.pricing-plan-features li.included .feature-icon {
+  color: var(--color-success);
+}
+
+.pricing-plan-features li.not-included {
+  opacity: 0.5;
+}
+
+.pricing-plan-features li.not-included .feature-icon {
+  color: #9CA3AF;
+}
+
+.btn-ava-outline {
+  background: transparent;
+  color: var(--color-primary);
+  padding: 14px 28px;
+  border: 2px solid var(--color-primary);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.btn-ava-outline:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.pricing-note-ava {
+  text-align: center;
+  font-size: 15px;
+  color: #6B7280;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #E5E7EB;
+}
+
+/* HOW IT WORKS SECTION */
+.how-it-works-section {
+  padding: 80px 20px;
+  background: white;
+}
+
+.timeline-horizontal-ava {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto 48px;
+  position: relative;
+}
+
+.timeline-step-ava {
+  text-align: center;
+  position: relative;
+}
+
+.timeline-step-ava::after {
+  content: '→';
+  position: absolute;
+  right: -20px;
+  top: 20px;
+  font-size: 24px;
+  color: var(--color-primary);
+}
+
+.timeline-step-ava:last-child::after {
+  display: none;
+}
+
+.step-number-ava {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #7C3AED, #EC4899);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 auto 16px;
+}
+
+.timeline-step-ava h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.timeline-step-ava p {
+  font-size: 14px;
+  color: #6B7280;
+  line-height: 1.6;
+}
+
+.tech-callout-ava {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: 12px;
+}
+
+.tech-callout-ava p {
+  margin: 0;
+  font-size: 15px;
+  color: #166534;
+  line-height: 1.6;
+}
+
+.tech-callout-ava strong {
+  font-weight: 700;
+}
+
+/* CTA FINAL AVA */
+.cta-final-ava-section {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #1E1B4B 0%, #000000 100%);
+  color: white;
+  text-align: center;
+}
+
+.cta-final-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-8xl);
+  font-weight: var(--font-weight-black);
+  margin-bottom: 16px;
+}
+
+.cta-final-subtitle {
+  font-size: var(--font-size-xl);
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.trial-form-ava {
+  max-width: 600px;
+  margin: 0 auto 24px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.trial-form-ava input {
+  flex: 1;
+  min-width: 250px;
+  padding: 16px 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  font-size: 16px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.trial-form-ava input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+.trial-form-ava input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: rgba(255,255,255,0.15);
+}
+
+.trial-form-ava button {
+  padding: 16px 32px;
+  border: none;
+  cursor: pointer;
+}
+
+.form-note-ava {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 968px) {
+  .hero-ava-title {
+    font-size: var(--font-size-10xl);
+  }
+
+  .hero-ava-lead {
+    font-size: var(--font-size-xl);
+  }
+
+  .pricing-ava-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .pricing-ava-card.highlighted {
+    transform: scale(1);
+  }
+
+  .pricing-ava-card.highlighted:hover {
+    transform: translateY(-4px);
+  }
+
+  .timeline-horizontal-ava {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .timeline-step-ava::after {
+    content: '↓';
+    right: auto;
+    top: auto;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-ava-page {
+    padding: 60px 20px 80px;
+  }
+
+  .hero-ava-title {
+    font-size: var(--font-size-8xl);
+  }
+
+  .hero-ava-lead {
+    font-size: var(--font-size-lg);
+  }
+
+  .hero-ava-cta {
+    flex-direction: column;
+  }
+
+  .hero-ava-cta a {
+    width: 100%;
+  }
+
+  .ava-capabilities-section,
+  .pricing-ava-section,
+  .how-it-works-section {
+    padding: 60px 20px;
+  }
+
+  .cta-final-ava-section {
+    padding: 60px 20px;
+  }
+
+  .cta-final-title {
+    font-size: var(--font-size-7xl);
+  }
+
+  .trial-form-ava {
+    flex-direction: column;
+  }
+
+  .trial-form-ava input {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .trial-form-ava button {
+    width: 100%;
+  }
+}

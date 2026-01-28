@@ -960,3 +960,170 @@
     font-size: 28px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   REFONTE AVA - NOUVEAUX COMPOSANTS TARIFS
+   ═══════════════════════════════════════════════════════════ */
+
+/* ENCART AVA INCLUS DANS HERO */
+.ava-included-banner-tarifs {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 32px;
+  text-align: center;
+  font-size: 16px;
+  color: var(--color-text-primary);
+}
+
+.ava-included-banner-tarifs strong {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.ava-link-inline {
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+
+.ava-link-inline:hover {
+  opacity: 0.7;
+}
+
+/* SECTION AIDES D'ÉTAT DÉTAILLÉE */
+.aides-etat-section-detailed {
+  padding: 80px 20px;
+  background: #F9FAFB;
+}
+
+.aides-grid-detailed {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto 48px;
+}
+
+.aide-card-detailed {
+  background: white;
+  border: 2px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.aide-card-detailed:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.aide-card-featured {
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 40px rgba(124, 58, 237, 0.2);
+  transform: scale(1.05);
+}
+
+.aide-card-featured:hover {
+  transform: scale(1.05) translateY(-4px);
+}
+
+.aide-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #7C3AED, #EC4899);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.aide-card-detailed h3 {
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.aide-montant {
+  font-size: 36px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #7C3AED, #EC4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
+
+.aide-card-detailed p {
+  color: #6B7280;
+  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.aide-criteres {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.aide-tag {
+  background: #F3F4F6;
+  color: #6B7280;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.aides-cta-wrapper {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.aides-note {
+  margin-top: 20px;
+  font-size: 15px;
+  color: #6B7280;
+}
+
+/* RESPONSIVE AIDES SECTION */
+@media (max-width: 968px) {
+  .aides-grid-detailed {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .aide-card-featured {
+    transform: scale(1);
+  }
+
+  .aide-card-featured:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 768px) {
+  .ava-included-banner-tarifs {
+    font-size: 14px;
+    padding: 16px 20px;
+  }
+
+  .aides-etat-section-detailed {
+    padding: 60px 20px;
+  }
+
+  .aide-montant {
+    font-size: 28px;
+  }
+}

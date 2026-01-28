@@ -22,6 +22,7 @@ import '../styles/artisan-exact.css';
 
 // 5. Styles spécifiques par page
 import '../styles/home.css';
+import '../styles/plateforme-ava.css';
 import '../styles/comprendre-nis2.css';
 import '../styles/qui-sommes-nous.css';
 import '../styles/formations.css';
